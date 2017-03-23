@@ -39,7 +39,15 @@
     </repositories>
  
  
+ 
  <dependencies>
+ <!-- tiles 인클루드 같은거라고 보면됨  -->
+ <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+<dependency>
+    <groupId>org.apache.tiles</groupId>
+    <artifactId>tiles-jsp</artifactId>
+    <version>3.0.5</version>
+</dependency>
  <!-- gson -->
  <dependency>
     <groupId>com.google.code.gson</groupId>
