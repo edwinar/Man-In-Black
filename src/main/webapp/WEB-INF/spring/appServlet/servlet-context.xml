@@ -25,7 +25,7 @@
 	</beans:bean>
 	
 	<!-- base-package -->
-	<context:component-scan base-package="com.sist.controller" />
+	<context:component-scan base-package="com.eagle.man_in_black.controller" />
 	
 	
 	
