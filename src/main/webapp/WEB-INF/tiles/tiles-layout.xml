@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+		<!-- Template // main이 우리가 만드는 부분  -->
+		<definition name="layout" template="/WEB-INF/views/layout.jsp">
+			<put-attribute name="title" value="메인페이지"/>
+			<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+			<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp"/>
+			<put-attribute name="left" value="/WEB-INF/views/layout/left.jsp"/>
+			<put-attribute name="main" />
+			<put-attribute name="login" value="/WEB-INF/views/layout/login.jsp"/>
+			<put-attribute name="right" value="/WEB-INF/views/layout/right.jsp"/>
+			<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
+		</definition>
+		<!-- //Template -->
+
+		<!-- Template extends// layout전체가 들어감 -->
+		<definition name="*" extends="layout" >
+			<put-attribute name="main" value="/WEB-INF/views/{1}.jsp"/>
+		</definition>
+		<definition name="*/*" extends="layout" >
+			<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
+		</definition>
+		
+		<!-- //Template extends -->
+		<!-- Tiles미적용 extends -->
+      <definition name="no-tiles" template="WEB-INF/views/noTemplate.jsp">
+         <put-attribute name="noTemplate" value="" />
+      </definition>
+      
+		
+</tiles-definitions>
