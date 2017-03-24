@@ -9,16 +9,36 @@
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<style>
 	#wrap {
-	    width: 900px;
 	    margin: 0 auto;
-	    padding-top: 50px;
+	    padding-top: 1px;
 	}
-	.container .row .col-md-12, .col-md-2, .col-md-3, .col-md-8, .col-md-9 {
-	    border: 1px solid #000000;
+	.top{
+	font-weight: bold;
+	max-height: 200px;
+	}
+	.header{
+	font-weight: bold;
+	margin-top: 15px;
+	
+	}
+	
+	.main{
+	margin-top: 300px;
+	height: 600px;
+	border: 1px solid #000000;
 	    border-collapse: collapse;
+	    margin-bottom: 50px;
 	}
+	.right{
+	}
+	.footer{
+	margin-top: 20px;
+	text-align: center;
+	}
+	
 	#wrap .container {
 	    width: 100%;
+	        background: #eee;
 	}
 	</style> 	
 </head>
@@ -26,31 +46,28 @@
     <div id="wrap">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8 col-md-offset-2 header">
                     <tiles:insertAttribute name="header" />
                 </div>
             </div>
+           
             <div class="row">
-                <div class="col-md-9">
-                    <tiles:insertAttribute name="banner" />
-                </div>
-                <div class="col-md-3">
-                    <tiles:insertAttribute name="login" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
+                
+                <div class="col-md-2 left">
                     <tiles:insertAttribute name="left" />
                 </div>
-                <div class="col-md-8">
+                
+                <div class="col-md-8 main">
                     <tiles:insertAttribute name="main" />
                 </div>
                 <div class="col-md-2">
                     <tiles:insertAttribute name="right" />
                 </div>
             </div>
+            
+            
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 footer">
                     <tiles:insertAttribute name="footer" />
                 </div>
             </div>
