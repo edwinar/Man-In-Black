@@ -21,6 +21,17 @@ display: inline-block;
 }
 .top{
 margin-top: 5px;
+
+}
+
+
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  min-width: 970px;
+}
+.container {
+  width: 970px;
+  max-width: none !important;
 }
     </style>
 
@@ -43,9 +54,9 @@ margin-top: 5px;
       </ul>
      </div>
        </div>
-    <div class="nav navbar-nav" id="navbar" align="center" style="margin-bottom: 0px">
+    <div class="nav navbar-nav" id="navbar" align="center">
 
-      <ul class="nav navbar-nav" style="margin-bottom: 0px;padding-bottom: 0px">
+      <ul class="nav navbar-nav" style="margin-bottom: 0px;">
           
      			 <li class="dropdown" >
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NEW <span class="caret"></span></a>
