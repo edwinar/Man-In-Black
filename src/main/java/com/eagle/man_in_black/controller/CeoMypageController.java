@@ -8,14 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CeoMypageController {
-	Logger logger = LoggerFactory.getLogger(this.getClass());
+	Logger loger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping("dudwo.mib")
 	public ModelAndView code_msg1111(){
 		
-		logger.debug("=Controller ===========================");
-		logger.debug("codeMSvc === " + "김옥지");
-		logger.debug("============================");
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "김옥지");
+		loger.debug("============================");
 		
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/NewFile");
 		mav.addObject("msg", "김옥지");
