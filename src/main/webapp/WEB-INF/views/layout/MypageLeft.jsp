@@ -235,23 +235,37 @@ header.shadow {
    <span>MyPage</span>
   </div>
   <ul>
-    <li>Listen Now</li>
-    <li>Top Charts</li>
-    <li>New Releases</li>
-    <li>Music Library</li>
-    <li>Podcasts</li>
-    <li>Browse Stations</li>
-    <li>Shop</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
-    <li>Lorem Ipsum...</li>
+    <li></li>
+    <li>
+  	<a href="userup.mib">  
+   	 정보수정
+    </a>
+    </li>
+    <li>
+    <a href="buylist.mib">  
+          구매내역
+    </a>
+    </li>
+    <li>
+  	<a href="basketlist.mib">    
+  	  장바구니
+  	</a> 
+  	</li>
+    <li>
+ 	<a href="todayGoods.mib">    
+  	  오늘본 상품
+    </a>
+    </li>
+    <li>
+ 	<a href="myboard.mib">    
+   	 내가 쓴 게시물
+    </a>
+    </li>
+    <li>
+  	<a href="coupon_Mileage.mib">    
+         쿠폰 & 적립금
+    </a>
+    </li>
   </ul>
   
 </div>

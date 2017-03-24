@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CeoMypageController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@RequestMapping("dudwo.do")
+	@RequestMapping("dudwo.mib")
 	public ModelAndView code_msg1111(){
 		
 		logger.debug("=Controller ===========================");
