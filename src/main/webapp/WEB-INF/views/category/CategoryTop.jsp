@@ -59,9 +59,10 @@
 	<div class="col-md-6 visible-md visible-lg" align="left">
 	<p>
 		<a href="#" class="btn btn-primary" role="button">전체보기</a>
-		<a href="#" class="btn btn-primary" role="button">COAT</a>
-		<a href="#" class="btn btn-primary" role="button">JACKET</a>
-		<a href="#" class="btn btn-primary" role="button">JUMPER</a>
+		<a href="#" class="btn btn-primary" role="button">TEE</a>
+		<a href="#" class="btn btn-primary" role="button">SHIRT</a>
+		<a href="#" class="btn btn-primary" role="button">KNIT</a>
+		<a href="#" class="btn btn-primary" role="button">HOOD</a>
 	</p>
 	</div>
 	<div class="col-md-6 visible-md visible-lg" align="right">

@@ -59,9 +59,8 @@
 	<div class="col-md-6 visible-md visible-lg" align="left">
 	<p>
 		<a href="#" class="btn btn-primary" role="button">전체보기</a>
-		<a href="#" class="btn btn-primary" role="button">COAT</a>
-		<a href="#" class="btn btn-primary" role="button">JACKET</a>
-		<a href="#" class="btn btn-primary" role="button">JUMPER</a>
+		<a href="#" class="btn btn-primary" role="button">WALKER</a>
+		<a href="#" class="btn btn-primary" role="button">RUNNING SHOES</a>
 	</p>
 	</div>
 	<div class="col-md-6 visible-md visible-lg" align="right">

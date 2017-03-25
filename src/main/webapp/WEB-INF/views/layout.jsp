@@ -9,7 +9,7 @@
 	<link rel="stylesheet"
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<style>
-	body{padding-top: 140px;}
+	body{padding-top: 137px;}
 	#wrap {
 	    margin: 0 auto;
 	    padding-top: 1px;
