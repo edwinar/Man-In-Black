@@ -23,7 +23,7 @@ body {
   background-image: linear-gradient(to top, #000 0%, #323232 100%);
   width: 100%;
   height: 100%;
-  
+
 }
 
 .content {
