@@ -41,7 +41,7 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -71,7 +71,7 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -80,7 +80,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -89,7 +89,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -101,7 +101,7 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -110,7 +110,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -119,7 +119,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -131,7 +131,7 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -140,7 +140,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -149,7 +149,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
       <img src="../images/../images/LOVE.jpg" alt="...">
       <div class="caption">
