@@ -26,7 +26,7 @@
 <br></br>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-sm-12 col-md-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
@@ -182,7 +182,7 @@
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000ASD Won</p>
+        <p>19000 Won</p>
       </div>
     </div>
   </div>
