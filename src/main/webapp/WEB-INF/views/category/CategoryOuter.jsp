@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:::Outer:::</title>
+<link rel="stylesheet"
+    href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<title>:::Product_Frame:::</title>
 <style>
 .thumbnail{
  width: 400px;
@@ -26,7 +28,7 @@
 <div class="row" align="center">
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -35,7 +37,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail" >
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -44,7 +46,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -78,7 +80,7 @@
 <div class="row" align="center">
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -87,7 +89,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail" >
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -96,7 +98,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -108,7 +110,7 @@
 <div class="row" align="center">
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -117,7 +119,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail" >
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -126,7 +128,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -138,7 +140,7 @@
 <div class="row" align="center">
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -147,7 +149,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail" >
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -156,7 +158,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -168,7 +170,7 @@
 <div class="row" align="center">
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src="../../../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -177,7 +179,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail" >
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -186,7 +188,7 @@
   </div>
   <div class="col-sm-12 col-md-4">
     <div class="thumbnail">
-      <img src=".../images/KakaoTalk_20170217_103012871 (2).jpg" alt="...">
+      <img src="LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -204,6 +206,5 @@
 	<a href="#" class="btn btn-default" role="button">></a>
 	</p>
 </div>
-
 </body>
 </html>
