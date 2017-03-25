@@ -340,6 +340,29 @@ small {
             <!-- 앞에 <이거부분 -->
             <label class="opener" for="toggle" title="Toggle aside menu…"></label>
       </article>
+</aside>
+<aside id="buyaside" class="buyaside">
+   <img alt="" src="77.png">
+</aside>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+   $("#toggle").click(function(){
+   if($("#toggle").prop("checked")) {
+   
+      $("#buyaside").css('margin-top','45%');
+   
+   }else{
+      
+         $("#buyaside").css('margin-top','32%');
+   
+   }
+   });
+   
+});
+
+</script>
 </body>
 </html>
