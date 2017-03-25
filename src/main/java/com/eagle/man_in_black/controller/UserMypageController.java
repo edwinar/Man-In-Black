@@ -9,7 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
-	
+	// 회원정보수정 
+		@RequestMapping("mymain.mib")
+		public ModelAndView mymain(){
+			
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "앙 기무띠~");
+			loger.debug("============================");
+			
+			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
+			mav.addObject("msg", "김옥지");
+			
+			return mav;
+			
+		}
 	// 회원정보수정 
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(){

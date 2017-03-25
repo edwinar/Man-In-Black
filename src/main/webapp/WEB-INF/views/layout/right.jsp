@@ -323,7 +323,7 @@ small {
                   <div class="content">
                         <nav id="nav">
                               <ul>
-                                    <li><a href="#" class="fa fa-home">home</a></li>
+                                    <li><a href="mymain.mib" class="fa fa-home">마이페이지들어가기</a></li>
                                     <li><a href="#" class="fa fa-amazon">products</a></li>
                                     <li><a href="#" class="fa fa-male">men</a></li>
                                     <li><a href="#" class="fa fa-female">women</a></li>
