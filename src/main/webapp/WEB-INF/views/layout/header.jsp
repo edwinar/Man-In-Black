@@ -43,7 +43,7 @@ margin-top: 5px;
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="row">
      <div class="col-md-6 col-md-offset-3 top" align="center">
-     <a href=""><img id="logo-main" src="/images/LOGO6.png" height="80"></a>
+     <a href=""><img id="logo-main" src="//images/LOGO6.png" height="80"></a>
        </div>
        <div class="col-md-3" >
       <ul class="nav navbar-nav navbar-right">
@@ -116,7 +116,6 @@ margin-top: 5px;
                 </li>
                 
                 <br>
-     <hr style="border: solid black 2px; margin-bottom: 0px;padding-bottom: 0px;">
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
