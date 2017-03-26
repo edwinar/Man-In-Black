@@ -51,7 +51,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="row">
                 <div class="col-md-4 col-md-offset-4 top  header" align="center">
-                    <a href=""><img id="logo-main" src="../images/LOGO6.png" height="80"></a>
+                    <a href='meninblack.mib'><img id="logo-main" src="../images/LOGO6.png" height="80"></a>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"  aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -78,8 +78,8 @@
 
         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" align="center" >
             <div class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="NewCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NEW <span class="caret"></span></a>
+                    <li class="dropdown" onclick="location.href='NewCategory.mib'">
+                        <a href="NewCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NEW<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">COAT</a></li>
                             <li><a href="#">JACKET</a></li>
@@ -90,7 +90,7 @@
                              <li><a href="#">느셈</a></li> -->
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown" onclick="location.href='outerCategory.mib'">
                         <a href="outerCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OUTER<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">TEE</a></li>

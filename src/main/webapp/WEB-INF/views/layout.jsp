@@ -24,8 +24,8 @@
 	}
 
 	.main{
-	margin-top: 300px;
-	height: 600px;
+	margin-top: 0.3%;
+	
 	border: 1px solid #000000;
 	    border-collapse: collapse;
 	    margin-bottom: 50px;
@@ -37,7 +37,7 @@
 
 	#wrap .container {
 	    width: 100%;
-	        background: #eee;
+	        background: cyan;
 	}
 	</style>
 </head>
