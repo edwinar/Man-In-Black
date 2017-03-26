@@ -29,7 +29,7 @@ body {
 							{
 
 								/* 이미파일 저장할 경로 */
-								filebrowserImageUploadUrl : '${pageContext.request.contextPath}ckeditorImageUpload.mib',
+								filebrowserImageUploadUrl : 'ckeditorImageUpload.mib',
 
 								filebrowserWindowWidth : '650',
 
