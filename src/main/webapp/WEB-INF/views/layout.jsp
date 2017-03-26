@@ -23,15 +23,7 @@
 
 	}
 
-	.main{
-	margin-top: 300px;
-	height: 600px;
-	border: 1px solid #000000;
-	    border-collapse: collapse;
-	    margin-bottom: 50px;
-	}
 	.footer{
-	margin-top: 20px;
 	text-align: center;
 	}
 

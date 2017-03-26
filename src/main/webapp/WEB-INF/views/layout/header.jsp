@@ -3,27 +3,41 @@
 <style>
 
     @media (min-width: 768px) { /* 최소 768 사이즈때 보이는 크기 */
-        .topnav{
 
-        }
         .navbar-nav {
-            width: 100%;
             text-align: center;
         }
         .navbar-nav > li {
             float: none;
             display: inline-block;
-            width: 12%;
+            width: 16%;
+
+            /*border: 5px solid red;*/
         }
         .dropdown:hover .dropdown-menu {
             display: block;
             margin-top: 0;
-            text-align: center;
         }
         .container{
             display: inline-block;
         }
+
+
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+        }
+
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
     }
+
+
+
+
+
+
     @media (max-width: 768px) { /* 최대 768 사이즈때 보이는 크기 */
         .topnav{
             display: none;
@@ -39,7 +53,6 @@
 
         }
     }
-//인라인블록 플룻 설정
 </style>
 
 
@@ -50,8 +63,9 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="row">
-                <div class="col-md-4 col-md-offset-4 top  header" align="center">
+                <div class="col-md-4 col-md-offset-4 col-sm-2 col-sm-offset-5 top header" align="center" /*style="border: 5px solid red;/*">
                     <a href=""><img id="logo-main" src="../images/LOGO6.png" height="80"></a>
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"  aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -62,7 +76,7 @@
 
         </div>
             </div>
-            <div class="col-md-4 " >
+            <div class="col-md-4 col-sm-5">
                 <div class="nav navbar-nav navbar-right topnav" style="width: 100px">
                     <li style="width: 100%"><a href="#about" >고객센터</a></li>
                 </div>
@@ -75,11 +89,11 @@
                 </div>
             </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-
+        <br>
         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" align="center" >
-            <div class="nav navbar-nav">
+            <div class="nav navbar-nav"align="center" style="width: 80%">
                     <li class="dropdown">
-                        <a href="NewCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NEW <span class="caret"></span></a>
+                        <a href="NewCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">NEW <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">COAT</a></li>
                             <li><a href="#">JACKET</a></li>
@@ -91,7 +105,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="outerCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OUTER<span class="caret"></span></a>
+                        <a href="outerCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">OUTER<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">TEE</a></li>
                             <li><a href="#">SHIRT</a></li>
@@ -99,7 +113,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="topCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TOP <span class="caret"></span></a>
+                        <a href="topCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">TOP <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">TEE</a></li>
                             <li><a href="#">COAT</a></li>
@@ -108,7 +122,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="pantsCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">PANTS <span class="caret"></span></a>
+                        <a href="pantsCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">PANTS <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">PANTS</a></li>
                             <li><a href="#">JEANS</a></li>
@@ -116,7 +130,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="shoesCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">SHOES <span class="caret"></span></a>
+                        <a href="shoesCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">SHOES <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">COAT</a></li>
                             <li><a href="#">WALKER</a></li>
@@ -124,7 +138,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="bnaCategory.mib" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">BAG&ACC <span class="caret"></span></a>
+                        <a href="bnaCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">BAG&ACC <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">BAG</a></li>
                             <li><a href="#">BELT</a></li>
@@ -132,9 +146,9 @@
                         </ul>
                     </li>
                 <br>
-                <hr style="border: solid black 2px; margin-bottom: 0px;padding-bottom: 0px; display: inline-block; width: 76%">
-            </div>
 
+            </div>
+            <hr style="border: solid black 2px; margin-right: 50px; display: inline-block; width: 85%">
         </div><!-- /.navbar-collapse -->
 
 

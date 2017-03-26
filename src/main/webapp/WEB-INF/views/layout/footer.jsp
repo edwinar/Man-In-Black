@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <style>
-	 a:link { color:#2ecc71; text-decoration: none;}
-	 a:visited { color: #2ecc71; text-decoration: none;}
- 	 a:hover { color: #2ecc71; text-decoration: none;}
+	 footer > p > a:link { color:#2ecc71; text-decoration: none;}
+     footer > p > a:visited { color: #2ecc71; text-decoration: none;}
+     footer > p > a:hover { color: #2ecc71; text-decoration: none;}
 </style>
 <!-- FOOTER -->
       <footer>
