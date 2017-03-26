@@ -57,6 +57,15 @@ body {
 	line-height: 50px;
 }
 
+#table1 .head {
+	font-weight: 900;
+	font-size: 30px;
+	text-transform: uppercase;
+	text-align: center;
+	min-height: 60px;
+	line-height: 50px;
+}
+
 .cta {
 	width: 100%;
 	height: 50px;
@@ -73,18 +82,21 @@ body {
 .yellow {
 	border-bottom: 5px solid #FDA202;
 }
+
 .ta {
 	width: 95%;
 	text-align: center;
-	  border-collapse: collapse;
+	border-collapse: collapse;
 }
 
-table th{
-   text-align: center;
+table th {
+	text-align: center;
 }
-table td{
-  text-align: center;
+
+table td {
+	text-align: center;
 }
+
 #table.pro {
 	background: #15181B;
 }
@@ -99,30 +111,47 @@ table td{
 	float: left;
 }
 
-#iseqchart th   {
-   border:1px solid #333;
-   padding:3px 6px;
-   }
+#iseqchart th {
+	border: 1px solid #333;
+	padding: 3px 6px;
+}
 
-#iseqchart td   {
-   border:1px solid #999;
-   padding:3px 6px;
-   }
+#iseqchart td {
+	border: 1px solid #999;
+	padding: 3px 6px;
+}
 
 @media only screen and (max-width: 1000px) {
-   #turnover, .turnover      { display:none; visibility:hidden; }
+	#turnover, .turnover {
+		display: none;
+		visibility: hidden;
+	}
 }
 
 @media only screen and (max-width: 820px) {
-   #turnover, .turnover      { display:none; visibility:hidden; }
-   #yearhigh, .yearhigh      { display:none; visibility:hidden; }
+	#turnover, .turnover {
+		display: none;
+		visibility: hidden;
+	}
+	#yearhigh, .yearhigh {
+		display: none;
+		visibility: hidden;
+	}
 }
 
 @media only screen and (max-width: 620px) {
-   #turnover, .turnover      { display:none; visibility:hidden; }
-   #yearhigh, .yearhigh       { display:none; visibility:hidden; }
-   #dailyhigh, .dailyhigh      { display:none; visibility:hidden; }
-   
+	#turnover, .turnover {
+		display: none;
+		visibility: hidden;
+	}
+	#yearhigh, .yearhigh {
+		display: none;
+		visibility: hidden;
+	}
+	#dailyhigh, .dailyhigh {
+		display: none;
+		visibility: hidden;
+	}
 }
 </style>
 </head>
@@ -182,6 +211,7 @@ table td{
 			</div>
 		</div>
 		<div id="bo">
+			<p style="background-color: #FDA202">주문내용</p>
 			<table class="ta">
 
 				<tr>
@@ -251,9 +281,97 @@ table td{
 				</tr>
 			</table>
 		</div>
-		<div id="bo"></div>
-		<div id="bo"></div>
+		<div id="bo">
+			<p style="background-color: #FDA202">장바구니</p>
+			<table class="ta">
 
+				<tr>
+					<th class="turnover">이미지</th>
+					<th class="turnover">분류</th>
+					<th>상품이름1234512</th>
+					<th class="turnover">수량</th>
+					<th>재고</th>
+					<th class="yearhigh">판매가</th>
+
+				</tr>
+				<tr>
+					<td class="turnover">이미지</td>
+					<td class="turnover">분류</td>
+					<td>상품이름</td>
+					<td class="turnover">수량</td>
+					<td>재고</td>
+					<th class="yearhigh">판매가</th>
+				</tr>
+				<tr>
+					<td class="turnover">이미지</td>
+					<td class="turnover">분류</td>
+					<td>상품이름</td>
+					<td class="turnover">수량</td>
+					<td>재고</td>
+					<th class="yearhigh">판매가</th>
+
+				</tr>
+				<tr>
+					<td class="turnover">이미지</td>
+					<td class="turnover">분류</td>
+					<td>상품이름</td>
+					<td class="turnover">수량</td>
+					<td>재고</td>
+					<th class="yearhigh">판매가</th>
+
+				</tr>
+				<tr>
+					<td class="turnover">이미지</td>
+					<td class="turnover">분류</td>
+					<td>상품이름</td>
+					<td class="turnover">수량</td>
+					<td>재고</td>
+					<th class="yearhigh">판매가</th>
+				</tr>
+			</table>
+		</div>
+		<div id="bo">
+			<p style="background-color: #FDA202">Q&A</p>
+			<table class="ta">
+
+				<tr>
+					<th>번호</th>
+					<th>상품명</th>
+					<th>제목</th>
+					<th>날짜</th>
+					<th>답변여부</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>바지바지</td>
+					<td>바지 이뻐여?</td>
+					<td>01.06</td>
+					<td>답변완료</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>티티티</td>
+					<td>티티티 이뻐여?</td>
+					<td>01.06</td>
+					<td>답변완료</td>
+
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>바지바지</td>
+					<td>바지 이뻐여?</td>
+					<td>01.06</td>
+					<td>답변완료</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>바지바지</td>
+					<td>바지 이뻐여?</td>
+					<td>01.06</td>
+					<td>답변완료</td>
+				</tr>
+			</table>
+		</div>
 
 	</div>
 </body>
