@@ -83,21 +83,21 @@ body{
 <body>
 <div class="slide-container">
   <div class="slide">
-    
+
     <div class="content"><img src="../images/aa.jpg" height="400px" width="100%"></div>
-   
+
   </div>
 
   <div class="slide">
-   
+
     <div class="content"><img src="../images/dd.jpg" height="400px" width="100%"></div>
-   
+
   </div>
 
   <div class="slide">
-    
+
     <div class="content"><img src="../images/ss.jpg" height="400px" width="100%"></div>
-  
+
   </div>
   <div class="prev" onclick="plus(-1)">&#10094;</div>
   <div class="next" onclick="plus(1)">&#10095;</div>
@@ -109,7 +109,7 @@ body{
   </div>
 </div>
 
-<h1 style="font-size: 50px; font-weight: bold; " > OUTER </h1>   
+<h1 style="font-size: 50px; font-weight: bold; " > OUTER </h1>
 <div class="row" align="center">
   <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
@@ -142,7 +142,7 @@ body{
 
 <hr style="border: solid black 2px;">
 
-<h1 style="font-size: 50px; font-weight: bold; " > TOP </h1>   
+<h1 style="font-size: 50px; font-weight: bold; " > TOP </h1>
 <div class="row" align="center">
   <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
@@ -175,7 +175,7 @@ body{
 
 <hr style="border: solid black 2px;">
 
-<h1 style="font-size: 50px; font-weight: bold; " > PANTS </h1>   
+<h1 style="font-size: 50px; font-weight: bold; " > PANTS </h1>
 <div class="row" align="center">
   <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
