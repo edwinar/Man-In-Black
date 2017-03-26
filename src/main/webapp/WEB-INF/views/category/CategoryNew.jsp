@@ -4,9 +4,171 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>:::NEW:::</title>
+<style>
+.thumbnail{
+ width: 400px;
+}
+.thumbnail{
+	opacity: 1;
+}
+.thumbnail:hover{
+	opacity: 0.5;
+}
+</style>
 </head>
 <body>
-<h1>신상품</h1>
+
+<br></br>
+<h1 style="font-size: 50px; font-weight: bold; text-align: center; " > NEW </h1>   
+<br></br>
+
+<div class="row" align="center">
+	<div class="col-md-6 visible-md visible-lg" align="left">
+	<p>
+		
+	</p>
+	</div>
+	<div class="col-md-6 visible-md visible-lg" align="right">
+	<p>
+		<a href="#" class="btn btn-primary" role="button">신상품순</a>
+		<a href="#" class="btn btn-primary" role="button">낮은가격순</a>
+		<a href="#" class="btn btn-primary" role="button">인기상품순</a>
+		<a href="#" class="btn btn-primary" role="button">리뷰수순</a>
+	</p>
+	</div>
+	<br></br><br></br>
+</div>
+
+<div class="row" align="center">
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail" >
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" align="center">
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail" >
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" align="center">
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail" >
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" align="center">
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail" >
+      <img src="../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-4">
+    <div class="thumbnail">
+      <img src="../images/../images/LOVE.jpg" alt="...">
+      <div class="caption">
+        <h3>창거니가 어제 입던 소매티</h3>
+        <p>19000 Won</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" align="center">
+	<p>
+	<a href="#" class="btn btn-default" role="button"><</a>
+	<a href="#" class="btn btn-default" role="button">1</a>
+	<a href="#" class="btn btn-default" role="button">2</a>
+	<a href="#" class="btn btn-default" role="button">3</a>
+	<a href="#" class="btn btn-default" role="button">4</a>
+	<a href="#" class="btn btn-default" role="button">></a>
+	</p>
+</div>
+
 </body>
 </html>

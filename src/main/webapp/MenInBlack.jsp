@@ -75,7 +75,7 @@ body {
 <div class="wrap" >
 <div class="content" onclick="location.href='meninblack.mib'">
  <div class="drift">MEN IN BLACK</div>
-  <h3>sist 5eagles YJ,SI,TY,IB,CG,'s third project, since 2017/03/16<h3>
+  <h3>sist 5eagles YJ,SI,TY,IB,CG,'s third project, since 2017/03/16</h3>
 </div>
 </div>
 <script type="text/javascript">

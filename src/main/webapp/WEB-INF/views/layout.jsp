@@ -12,6 +12,7 @@
     <script src="../../js/bootstrap.min.js"></script>
 
 	<style>
+	body{padding-top: 137px;}
 	#wrap {
 	    margin: 0 auto;
 	    padding-top: 1px;

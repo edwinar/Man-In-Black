@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>:::Product_Frame:::</title>
+<title>:::Outer:::</title>
 <style>
 .thumbnail{
- width: 400px;
+ width: 100%;
 }
 .thumbnail{
 	opacity: 1;
@@ -22,31 +22,31 @@
 <body>
 
 <br></br>
-<h1 style="font-size: 50px; font-weight: bold; text-align: center; " > outer </h1>   
+<h1 style="font-size: 50px; font-weight: bold; text-align: center; " > OUTER </h1>   
 <br></br>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
-    <div class="thumbnail" >
-      <img src="LOVE.jpg" alt="...">
+  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
+    <div class="thumbnail">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -78,27 +78,27 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -108,27 +108,27 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -138,27 +138,27 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -168,27 +168,27 @@
 </div>
 
 <div class="row" align="center">
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail" >
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="LOVE.jpg" alt="...">
+      <img src="../images/../images/LOVE.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>
@@ -206,5 +206,6 @@
 	<a href="#" class="btn btn-default" role="button">></a>
 	</p>
 </div>
+
 </body>
 </html>

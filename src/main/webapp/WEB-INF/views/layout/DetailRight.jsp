@@ -323,7 +323,7 @@ small {
                   <div class="content">
                         <nav id="nav">
                               <ul>
-                                    <li><a href="mymain.mib" class="fa fa-home">마이페이지들어가기</a></li>
+                                    <li><a href="#" class="fa fa-home">home</a></li>
                                     <li><a href="#" class="fa fa-amazon">products</a></li>
                                     <li><a href="#" class="fa fa-male">men</a></li>
                                     <li><a href="#" class="fa fa-female">women</a></li>
@@ -340,6 +340,29 @@ small {
             <!-- 앞에 <이거부분 -->
             <label class="opener" for="toggle" title="Toggle aside menu…"></label>
       </article>
+</aside>
+<aside id="buyaside" class="buyaside">
+   <img alt="" src="77.png">
+</aside>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+   $("#toggle").click(function(){
+   if($("#toggle").prop("checked")) {
+   
+      $("#buyaside").css('margin-top','45%');
+   
+   }else{
+      
+         $("#buyaside").css('margin-top','32%');
+   
+   }
+   });
+   
+});
+
+</script>
 </body>
 </html>
