@@ -8,9 +8,7 @@
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Insert title here</title>
 <style type="text/css">
-body{
- margin-top: 0.2%;
-}
+
 .slide-container{
   position: relative;
   width: 100%;
