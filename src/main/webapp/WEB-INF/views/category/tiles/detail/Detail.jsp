@@ -527,7 +527,7 @@ table.responsive-table{
 	</div>
 </div>
 <div>
-<h1> s </h1>
+<h1> </h1>
 <br></br>
 <hr style="border: solid black 1px; width: 100%;">
 <br></br>
