@@ -27,7 +27,7 @@
 	
 	
 	<!-- base-package -->
-	<context:component-scan base-package="com.eagle.man_in_black.controller" />
+	<context:component-scan base-package="com.eagle.men_in_black.controller" />
 	
 	<!-- Tiles에 대한 뷰리절브 -->
 
