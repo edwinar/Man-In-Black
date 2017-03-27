@@ -24,7 +24,9 @@
 	.footer{
 	text-align: center;
 	}
-
+    .header{
+     padding-top: 3px;
+    }
 	#wrap .container {
 	    width: 100%;
 	        background: white;
