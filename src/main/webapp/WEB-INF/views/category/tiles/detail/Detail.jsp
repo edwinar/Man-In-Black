@@ -143,6 +143,10 @@ margin-top: 100px;
  height: 600px;
 }
 /* /////////////////////////////상세/리뷰/Q&A/////////////////////////// */
+/* .tab__content{
+	width: 100%;
+	text-align: center;
+} */
 .tab-wrap {
   -webkit-transition: 0.3s box-shadow ease;
   transition: 0.3s box-shadow ease;
@@ -526,12 +530,14 @@ table.responsive-table{
 	  	</div>
 	</div>
 </div>
+
 <div>
 <h1> </h1>
 <br></br>
 <hr style="border: solid black 1px; width: 100%;">
 <br></br>
 </div>
+
 <div class="container">
 
   <div class="tab-wrap">
@@ -547,35 +553,42 @@ table.responsive-table{
     <label for="tab3">Q&A</label>
 
     <div class="tab__content">
-     <h1>상품상세</h1>
+     <center>
+     <h1>상품상세 TEST</h1>
+     <img alt="..." src="../images/LOVE.jpg"><br/>
+     <img alt="..." src="../images/LOVE.jpg"><br/>
+     <img alt="..." src="../images/LOVE.jpg"><br/>
+     <img alt="..." src="../images/LOVE.jpg"><br/>
+     <img alt="..." src="../images/LOVE.jpg"><br/>
+     </center>
     </div>
 
     <div class="tab__content">
-      <table class="layout display responsive-table">
+      <table class="layout display responsive-table" width="400px">
+      <col width="30%"/><col width="50%"/><col width="20%"/>
     <thead>
         <tr>
-            <th colspan="3" style="text-align: center; height: 100px;">평점 
+            <th colspan="3" style="text-align: center; height: 100px;">평점 : 
             <img alt="" src="../images/scoreFull.png">
             <img alt="" src="../images/scoreFull.png">
             <img alt="" src="../images/scoreFull.png">
             <img alt="" src="../images/scoreFull.png">
             <img alt="" src="../images/scoreEmpty.png">
-            
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td class="organisationnumber">
-            	<img alt="" src="123.jpg" class="imgr">            
+            	<img alt="" src="../images/LOVE.jpg" class="imgr">            
          	</td>
             <td class="organisationname">
             	<a href="#">
-	            <img alt="" src="별.png" class="star">
-	            <img alt="" src="별.png" class="star">
-	            <img alt="" src="별.png" class="star">
-	            <img alt="" src="별.png" class="star">
-	            <img alt="" src="별.png" class="star"> <br><br>
+	            <img alt="" src="../images/scoreFull.png" class="star">
+	            <img alt="" src="../images/scoreFull.png" class="star">
+	            <img alt="" src="../images/scoreFull.png" class="star">
+	            <img alt="" src="../images/scoreFull.png" class="star">
+	            <img alt="" src="../images/scoreEmpty.png" class="star"> <br><br>
 	            Stet clita kasd gubergren, no sea takimata sanctus est
 	            </a>
 	        </td>
@@ -586,15 +599,15 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="77.png" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr">            
          	</td>
             <td class="organisationname">
 	            <a href="#">
-	            <img alt="" src="별.png" class="star">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png"> 
+	            <img alt="" src="../images/scoreFull.png" class="star">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreEmpty.png"> 
 	            <br/><br/>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
 	            </a>
 	        </td>
@@ -605,15 +618,15 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="77.png" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr">            
          	</td>
             <td class="organisationname">
 	            <a href="#">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png"> <br><br>
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
 	            Vel illum dolore eu feugiat nulla facilisis at vero eros
 	            </a>
 	        </td>
@@ -624,14 +637,15 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="77.png" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr">            
          	</td>
             <td class="organisationname">
-	            <a href="#"><img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png"> <br><br>
+	            <a href="#">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
 	            Iusto odio dignissim qui blandit praesent luptatum zzril delenit
 	            </a>
 	        </td>
@@ -642,15 +656,15 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="77.png" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr">            
          	</td>
             <td class="organisationname">
 	            <a href="#">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png">
-	            <img alt="" src="별.png"> <br><br>
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreFull.png">
+	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
 	            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam
 	            </a>
             </td>
