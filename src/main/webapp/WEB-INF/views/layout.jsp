@@ -12,17 +12,15 @@
     <script src="../../js/bootstrap.min.js"></script>
 
 	<style>
-	body{padding-top: 137px;}
+	body{padding-top: 102px;}
 	#wrap {
 	    margin: 0 auto;
 	    padding-top: 1px;
 	}
 	.header{
 	font-weight: bold;
-	margin-top: 15px;
 
 	}
-
 	.footer{
 	text-align: center;
 	}

@@ -20,6 +20,7 @@
         }
         .container{
             display: inline-block;
+            font-size: 10px;
         }
 
 
@@ -50,7 +51,6 @@
     @media (max-width:992px) { /* 최대 992 사이즈때 보이는 크기 */
         .topnav{
             display: none;
-
         }
     }
 </style>
@@ -62,9 +62,10 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="row">
-                <div class="col-md-4 col-md-offset-4 col-sm-2 col-sm-offset-5 top header" align="center" /*style="border: 5px solid red;/*">
-                    <a href="meninblack.mib"><img id="logo-main" src="../images/main.png" height="80"></a>
+       
+        <div class="row" style="margin-bottom: -15px;">
+                <div class="col-md-4 col-md-offset-4 col-sm-2 col-sm-offset-5 top header" align="center">
+                    <a href="meninblack.mib"><img id="logo-main" src="../images/LOGO6.png" height="50"></a>
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"  aria-expanded="false" aria-controls="navbar">
@@ -77,7 +78,7 @@
         </div>
             </div>
             <div class="col-md-4 col-sm-5">
-                <div class="nav navbar-nav navbar-right topnav" style="width: 100px">
+                <div class="nav navbar-nav navbar-right topnav" style="width: 100px ">
                     <li style="width: 100%"><a href="#about" >고객센터</a></li>
                 </div>
                 <div class="nav navbar-nav  navbar-right topnav" style="width: 100px">
@@ -91,9 +92,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <br>
         <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" align="center" >
-            <div class="nav navbar-nav"align="center" style="width: 80%">
+            <div class="nav navbar-nav"align="center" style="width: 60%;">
                     <li class="dropdown">
-                        <a href="NewCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">NEW <span class="caret"></span></a>
+                        <a href="NewCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">NEW </a>
                        
                     </li>
                     <li class="dropdown">
@@ -139,7 +140,7 @@
                 <br>
 
             </div>
-            <hr style="border: solid black 2px; margin-right: 50px; display: inline-block; width: 85%">
+            <hr style="border: solid black 1px; margin-right: 50px; display: inline-block; width: 65%;margin-top: -0px;margin-bottom: 0px;">
         </div><!-- /.navbar-collapse -->
 
 
