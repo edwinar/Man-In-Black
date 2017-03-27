@@ -295,15 +295,14 @@ margin-top: 100px;
 
 
 /*이게 전체 크기 */
-.container {
+/* .container {
   margin: 0 auto;
   display: block;
   max-width: 1920px;
-}
+} */
 .container > *:not(.tab-wrap) {
   padding: 0 80px;
 }
-
 a{
    color: black;
    cursor: pointer;
@@ -336,126 +335,6 @@ table.responsive-table{
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 80em){
-    table.responsive-table{
-      box-shadow: none;  
-    }
-    table.responsive-table thead{
-      display: none; 
-    }
-  table.display th,
-  table.display td{
-    padding: .5em;
-  }
-    
-  .imgr{
-     margin-top: 50px;
-     width: 30%;
-     height: 40%;
-     
-  } 
-  .star{
-  width: 6%;
-  }
-  
-  table.responsive-table td:nth-child(1){
-     text-align: center;
-     
-  }
-  
-  table.responsive-table td:nth-child(1):before,
-  table.responsive-table td:nth-child(2):before,
-  table.responsive-table td:nth-child(3):before{
-    position: absolute;
-    left: .5em;
-    font-weight: bold;
-  }
-  
-    table.responsive-table tr,
-    table.responsive-table td{
-        display: block;
-    }
-    table.responsive-table tr{
-        position: relative;
-        margin-bottom: 1em;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    }
-    table.responsive-table td{
-        border-top: none;
-    }
-    /* 작아졌을때 색상  */
-    table.responsive-table th.organisationnumber{
-        background: #D5E0CC;
-        border-top: 1px solid #B3BFAA;
-    }
-    table.responsive-table td.actions{
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: none;
-        background: none;
-    }
-}
-
-@media (max-width: 30em){
-    table.responsive-table{
-      box-shadow: none;  
-    }
-    table.responsive-table thead{
-      display: none; 
-    }
-  table.display th,
-  table.display td{
-    padding: .5em;
-  }
-    
-  .imgr{
-     margin-top: 50px;
-     width: 50%;
-     
-  } 
-  .star{
-  width: 10%;
-  }
-  
-  table.responsive-table td:nth-child(1){
-     text-align: center;
-     
-  }
-  
-  table.responsive-table td:nth-child(1):before,
-  table.responsive-table td:nth-child(2):before,
-  table.responsive-table td:nth-child(3):before{
-    position: absolute;
-    left: .5em;
-    font-weight: bold;
-  }
-  
-    table.responsive-table tr,
-    table.responsive-table td{
-        display: block;
-    }
-    table.responsive-table tr{
-        position: relative;
-        margin-bottom: 1em;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    }
-    table.responsive-table td{
-        border-top: none;
-    }
-    /* 작아졌을때 색상  */
-    table.responsive-table th.organisationnumber{
-        background: #D5E0CC;
-        border-top: 1px solid #B3BFAA;
-    }
-    table.responsive-table td.actions{
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: none;
-        background: none;
-    }
-}
 </style>
 </head>
 <body>
@@ -489,12 +368,12 @@ table.responsive-table{
 	  </div>
 	</div>
 
-	<div class="productExplain" align="center">
+	<div class="productExplain" align="right" style="border: solid black 1px;">
 		<div class="col-xs-12 col-lg-12" >
 		    <div class="thumbnail">
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
-		      <div class="caption">
-		      	<div class="productName" style="height: 20%;">
+		      <div class="caption" align="center">
+		      	<div class="productName" style="height: 20%;" align="center">
 					<h2><b>창거니가 어제 입던 소매티</b></h2>
 				</div>
 				<div class="productDeail" style="width: 70%; height: 80%;" align="left">
@@ -520,7 +399,7 @@ table.responsive-table{
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
-		        		<button style="width: 80%; height: 50px;">구매하기</button>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">구매하기</button>
 		        	</div>
 		        </div>
 		      </div>
@@ -528,6 +407,9 @@ table.responsive-table{
 	  	</div>
 	</div>
 </div>
+
+<br></br><br></br>
+<hr style="border: solid black 1px; width: 100%">
 
 <div class="container">
 
@@ -562,7 +444,6 @@ table.responsive-table{
         </tr>
     </thead>
     <tbody>
-
         <tr>
             <td class="organisationnumber">
             	<img alt="" src="123.jpg" class="imgr">            

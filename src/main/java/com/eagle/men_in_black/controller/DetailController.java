@@ -22,17 +22,4 @@ public class DetailController {
 
 		return mav;
 	}
-	
-	@RequestMapping("review.mib")
-	public ModelAndView review() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
-		ModelAndView mav = new ModelAndView("category/tiles/detail/Review");
-		mav.addObject("msg", "김옥지");
-
-		return mav;
-	}
 }
