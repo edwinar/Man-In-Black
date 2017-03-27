@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 @Controller
 public class MainController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
@@ -44,11 +45,19 @@ public class MainController {
 		
 	}
 	
-	/*@RequestMapping(value="login.mib", method=RequestMethod.GET)
-	public String testForm(HttpServletRequest request, @RequestParam Map<String, Object> param, Model model) throws Exception {
-	  
-	    return "main/SignIn";
-	}*/
+	@RequestMapping("signup.mib")
+	public ModelAndView signup(){
+		
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "김옥지");
+		loger.debug("============================");
+		
+		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignUp");
+		mav.addObject("msg", "김옥지");
+		
+		return mav;
+		
+	}
 
 	
 }
