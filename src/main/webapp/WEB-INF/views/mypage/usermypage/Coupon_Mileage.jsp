@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 body {
-	font-family: "Lato", sans-serif;
-	color: white;
-	/*   background: #171A1D; */
+	font-family: "Lato", sans-serif; 
 }
 
 #contain {
@@ -23,9 +21,9 @@ body {
 	width: 45%;
 	height: 377px;
 	display: inline-block;
-	/*border:3px solid rgba(39, 44, 48, 0.36); */
+	border:2px solid rgba(39, 44, 48, 0.36); 
 	float: left;
-	background: #171A1D;
+	//background: #171A1D;
 	margin-left: 45px;
 }
 
@@ -38,39 +36,28 @@ body {
 	line-height: 50px;
 }
 
-#table1 .offer ul {
-	list-style: none;
-	padding: 40px;
-}
 
-#table2 .offer ul li td th{
-	margin-bottom: 20px;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 15px;
-	color: #8C8C8C;
-}
 
 .cta {
 	width: 100%;
 	height: 30px;
 	margin: 0 ;
-	background: #FDA202;
+	/* background: #FDA202; */
 	text-align: center;
 	text-transform: uppercase;
 	line-height: 30px;
 	font-size: 15px;
-	color: #171A1D;
+	/* color: #171A1D; */
 	font-weight: 900;
 	
 }
 
 .yellow {
-	border-bottom: 5px solid #FDA202;
+	border-bottom: 5px solid #696969;
 }
 
 #table.pro {
-	background: #15181B;
+	/* background: #15181B; */
 }
 
 #box_a {
@@ -93,8 +80,8 @@ body {
 				<table style="text-align: center;">
 				<col width="200px"><col width="200px">
 					<tr>
-						<th style="text-align: center;">쿠폰명</th>
-						<th style="text-align: center;">할인 금액</th>
+						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
+						<th style="text-align: center; margin-top: 10px">할인 금액</th>
 					</tr>
 					<tr>
 						<td>생일푹하 쿠폰</td>
@@ -115,10 +102,10 @@ body {
 				<col width="150px">
 				<col width="150px">
 				<tr>
-					<th style="text-align: center;">날짜</th>
-					<th style="text-align: center;">상품명</th>
-					<th style="text-align: center;">금액</th>
-					<th style="text-align: center;">최종</th>
+					<th style="text-align: center; margin-top: 5px">날짜</th>
+					<th style="text-align: center;margin-top: 5px">상품명</th>
+					<th style="text-align: center;margin-top: 5px">금액</th>
+					<th style="text-align: center;margin-top: 5px">최종</th>
 				</tr>
 				<tr>
 					<td>01.02</td>

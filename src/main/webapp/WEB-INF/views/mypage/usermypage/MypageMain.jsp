@@ -8,8 +8,6 @@
 <style type="text/css">
 body {
 	font-family: "Lato", sans-serif;
-	color: white;
-	/*   background: #171A1D; */
 }
 
 #contain {
@@ -24,8 +22,8 @@ body {
 	height: 300px;
 	display: inline-block;
 	float: left;
-	background: #171A1D;
 	margin-left: 5%;
+	border: 2px solid rgba(39, 44, 48, 0.36);
 }
 
 #table1 {
@@ -33,16 +31,15 @@ body {
 	height: 300px;
 	display: inline-block;
 	float: left;
-	background: #171A1D;
 	margin-left: 5%;
+	border: 2px solid rgba(39, 44, 48, 0.36);
 }
 
 #bo {
 	width: 100%;
 	height: 220px;
 	display: inline-block;
-	/*border:3px solid rgba(39, 44, 48, 0.36); */
-	float: left;
+	float: left; //
 	background: #171A1D;
 	margin-left: 45px;
 	margin-top: 50px
@@ -80,7 +77,7 @@ body {
 }
 
 .yellow {
-	border-bottom: 5px solid #FDA202;
+	border-bottom: 5px solid #696969;
 }
 
 .ta {
@@ -89,26 +86,8 @@ body {
 	border-collapse: collapse;
 }
 
-table th {
+td, th {
 	text-align: center;
-}
-
-table td {
-	text-align: center;
-}
-
-#table.pro {
-	background: #15181B;
-}
-
-#box_a {
-	margin-left: 86px;
-	float: left;
-	width: 90px;
-}
-
-#box_b {
-	float: left;
 }
 
 #iseqchart th {
@@ -177,9 +156,7 @@ table td {
 						</tr>
 					</table>
 				</div>
-				<div>
-					<!--페이징 -->
-				</div>
+
 			</div>
 			<div id="table1" align="center" style="position: relative;">
 				<div class="head yellow">적립금</div>
@@ -210,11 +187,24 @@ table td {
 				</table>
 			</div>
 		</div>
-		<div id="bo">
-			<p style="background-color: #FDA202">주문내용</p>
-			<table class="ta">
 
-				<tr>
+
+
+		<div id="bo">
+			<p style="background-color: #696969">주문내용</p>
+			<table class="ta" border="1px">
+				<col width="10%">
+				<col width="5%">
+				<col width="30%">
+				<col width="5%">
+				<col width="5%">
+				<col width="7%">
+				<col width="7%">
+				<col width="7%">
+				<col width="7%">
+				<col width="10%">
+				<col width="10%">
+				<tr height="40px">
 					<th class="turnover">이미지</th>
 					<th class="turnover">분류</th>
 					<th>상품이름1234512</th>
@@ -227,62 +217,81 @@ table td {
 					<th class="#dailyhigh">판매일</th>
 					<th>상태</th>
 				</tr>
-				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+				<tr height="30px">
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-					<th class="yearhigh">쿠폰</th>
-					<th class="yearhigh">적립금</th>
-					<td>결제금액</td>
-					<th class="#dailyhigh">판매일</th>
-					<td>상태</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="yearhigh" rowspan="2">쿠폰</th>
+					<th class="yearhigh" rowspan="2">적립금</th>
+					<td rowspan="2">결제금액</td>
+					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td>옵션1 옵션 2</td>
+				</tr>
+				<tr height="30px">
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-					<th class="yearhigh">쿠폰</th>
-					<th class="yearhigh">적립금</th>
-					<td>결제금액</td>
-					<th class="#dailyhigh">판매일</th>
-					<td>상태</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="yearhigh" rowspan="2">쿠폰</th>
+					<th class="yearhigh" rowspan="2">적립금</th>
+					<td rowspan="2">결제금액</td>
+					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td>옵션1 옵션 2</td>
+				</tr>
+				<tr height="30px">
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-					<th class="yearhigh">쿠폰</th>
-					<th class="yearhigh">적립금</th>
-					<td>결제금액</td>
-					<th class="#dailyhigh">판매일</th>
-					<td>상태</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="yearhigh" rowspan="2">쿠폰</th>
+					<th class="yearhigh" rowspan="2">적립금</th>
+					<td rowspan="2">결제금액</td>
+					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td>옵션1 옵션 2</td>
+				</tr>
+				<tr height="30px">
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-					<th class="yearhigh">쿠폰</th>
-					<th class="yearhigh">적립금</th>
-					<td>결제금액</td>
-					<th class="#dailyhigh">판매일</th>
-					<td>상태</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="yearhigh" rowspan="2">쿠폰</th>
+					<th class="yearhigh" rowspan="2">적립금</th>
+					<td rowspan="2">결제금액</td>
+					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<td rowspan="2">상태</td>
+				</tr>
+				<tr>
+					<td>옵션1 옵션 2</td>
 				</tr>
 			</table>
 		</div>
+
+
+
 		<div id="bo">
-			<p style="background-color: #FDA202">장바구니</p>
+			<p style="background-color: #696969">장바구니</p>
 			<table class="ta">
 
 				<tr>
@@ -330,8 +339,11 @@ table td {
 				</tr>
 			</table>
 		</div>
+
+
+
 		<div id="bo">
-			<p style="background-color: #FDA202">Q&A</p>
+			<p style="background-color: #696969">Q&A</p>
 			<table class="ta">
 
 				<tr>

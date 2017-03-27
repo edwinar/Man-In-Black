@@ -11,10 +11,9 @@
 	width: 20px;
 	height: 20px
 }
-td,th {
-text-align: center;
 
-
+td, th {
+	text-align: center;
 }
 </style>
 <title>::장바구니::</title>
@@ -23,7 +22,7 @@ text-align: center;
 	<div id="total" style="height: 600px; margin-top: 300px">
 		<div id="table" style="width: 90%">
 			<form name="f1">
-				<table class="table" >
+				<table class="table">
 					<col width="5%">
 					<col width="5%">
 					<col width="9%">
@@ -76,7 +75,30 @@ text-align: center;
 					</tr>
 
 				</table>
-				배송료, 선택 상품 합계 금액<input type="text" id="pay" value="">
+
+				<table width="50%" align="center" class="table"
+					style="margin-top: 100px">
+
+					<tr>
+						<td>상품가격</td>
+						<td>+</td>
+						<td>택배비(5만이상 무료)</td>
+						<td>=</td>
+						<td>총가격</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="pay" value="" readonly="readonly">
+						</td>
+						<td>+</td>
+						<td><input type="text" id="tag" value="" readonly="readonly">
+						</td>
+						<td>=</td>
+						<td><input type="text" id="top" value="" readonly="readonly">
+						</td>
+					</tr>
+				</table>
+
+
 			</form>
 
 		</div>
@@ -88,34 +110,56 @@ text-align: center;
 			if (document.f1.elements[n].checked == true) {
 				b += Number(document.f1.elements[n].value);
 				document.getElementById('pay').value = b;
+				if (b < 50000) {
+					document.getElementById('top').value = b + 2500;
+					document.getElementById('tag').value = 2500;
+				} else {
+					document.getElementById('top').value = b;
+					document.getElementById('tag').value = "무료";
+				}
+
 			} else if (document.f1.elements[n].checked == false) {
 				b -= Number(document.f1.elements[n].value);
 				document.getElementById('pay').value = b;
+				if (b < 50000) {
+					document.getElementById('top').value = b + 2500;
+					document.getElementById('tag').value = 2500;
+				} else {
+					document.getElementById('top').value = b;
+					document.getElementById('tag').value = "무료";
+				}
 			}
 		}
 
 		$(function() {
 			$("#allCheck").click(function() {
-				b=0;
+				b = 0;
 				if ($("#allCheck").prop("checked")) {
 					$("input[type=checkbox]").prop("checked", true);
-				} else if($("#allCheck").prop("checked", false)){
+				} else if ($("#allCheck").prop("checked", false)) {
 					$("input[type=checkbox]").prop("checked", false);
-				}for (var i = 1; i < 4; i++) {
+				}
+				for (var i = 1; i < 4; i++) {
 					if (document.f1.elements[i].checked == true) {
 						b += Number(document.f1.elements[i].value);
 						document.getElementById('pay').value = b;
-					} else{
-						
+						if (b < 50000) {
+							document.getElementById('top').value = b + 2500;
+							document.getElementById('tag').value = 2500;
+						} else {
+							document.getElementById('top').value = b;
+							document.getElementById('tag').value = "무료";
+						}
+					} else {
 						document.getElementById('pay').value = 0;
+						document.getElementById('top').value = 0;
+						document.getElementById('tag').value = 0;
+
 					}
 				}
 			})
-			
-		})
 
-		
-		
+		})
 	</script>
 
 
