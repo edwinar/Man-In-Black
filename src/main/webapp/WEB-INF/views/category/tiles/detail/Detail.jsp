@@ -4,8 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-    href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>:::Detail:::</title>
 <style type="text/css">
 #outerH1{
@@ -160,6 +158,7 @@ margin-top: 100px;
   background-color: #fff;
   margin: 40px 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  width: 100%
 }
 .tab-wrap:hover {
   box-shadow: 0 12px 23px rgba(0, 0, 0, 0.23), 0 10px 10px rgba(0, 0, 0, 0.19);
@@ -335,6 +334,126 @@ table.responsive-table{
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 80em){
+    table.responsive-table{
+      box-shadow: none;  
+    }
+    table.responsive-table thead{
+      display: none; 
+    }
+  table.display th,
+  table.display td{
+    padding: .5em;
+  }
+    
+  .imgr{
+     margin-top: 50px;
+     width: 30%;
+     height: 40%;
+     
+  } 
+  .star{
+  width: 6%;
+  }
+  
+  table.responsive-table td:nth-child(1){
+     text-align: center;
+     
+  }
+  
+  table.responsive-table td:nth-child(1):before,
+  table.responsive-table td:nth-child(2):before,
+  table.responsive-table td:nth-child(3):before{
+    position: absolute;
+    left: .5em;
+    font-weight: bold;
+  }
+  
+    table.responsive-table tr,
+    table.responsive-table td{
+        display: block;
+    }
+    table.responsive-table tr{
+        position: relative;
+        margin-bottom: 1em;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    }
+    table.responsive-table td{
+        border-top: none;
+    }
+    /* 작아졌을때 색상  */
+    table.responsive-table th.organisationnumber{
+        background: #D5E0CC;
+        border-top: 1px solid #B3BFAA;
+    }
+    table.responsive-table td.actions{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+    }
+}
+
+@media (max-width: 30em){
+    table.responsive-table{
+      box-shadow: none;  
+    }
+    table.responsive-table thead{
+      display: none; 
+    }
+  table.display th,
+  table.display td{
+    padding: .5em;
+  }
+    
+  .imgr{
+     margin-top: 50px;
+     width: 50%;
+     
+  } 
+  .star{
+  width: 10%;
+  }
+  
+  table.responsive-table td:nth-child(1){
+     text-align: center;
+     
+  }
+  
+  table.responsive-table td:nth-child(1):before,
+  table.responsive-table td:nth-child(2):before,
+  table.responsive-table td:nth-child(3):before{
+    position: absolute;
+    left: .5em;
+    font-weight: bold;
+  }
+  
+    table.responsive-table tr,
+    table.responsive-table td{
+        display: block;
+    }
+    table.responsive-table tr{
+        position: relative;
+        margin-bottom: 1em;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    }
+    table.responsive-table td{
+        border-top: none;
+    }
+    /* 작아졌을때 색상  */
+    table.responsive-table th.organisationnumber{
+        background: #D5E0CC;
+        border-top: 1px solid #B3BFAA;
+    }
+    table.responsive-table td.actions{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+    }
+}
 </style>
 </head>
 <body>
@@ -368,12 +487,12 @@ table.responsive-table{
 	  </div>
 	</div>
 
-	<div class="productExplain" align="right">
+	<div class="productExplain" align="center">
 		<div class="col-xs-12 col-lg-12" >
 		    <div class="thumbnail">
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
-		      <div class="caption" align="center">
-		      	<div class="productName" style="height: 20%;" align="center">
+		      <div class="caption">
+		      	<div class="productName" style="height: 20%;">
 					<h2><b>창거니가 어제 입던 소매티</b></h2>
 				</div>
 				<div class="productDeail" style="width: 70%; height: 80%;" align="left">
@@ -407,10 +526,12 @@ table.responsive-table{
 	  	</div>
 	</div>
 </div>
-
-<br></br><br></br>
-<hr style="border: solid black 1px; width: 100%">
-
+<div>
+<h1> s </h1>
+<br></br>
+<hr style="border: solid black 1px; width: 100%;">
+<br></br>
+</div>
 <div class="container">
 
   <div class="tab-wrap">
