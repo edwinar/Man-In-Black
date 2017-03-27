@@ -7,7 +7,7 @@
 <title>:::Shoes:::</title>
 <style>
 .thumbnail{
- width: 400px;
+ width: 100%;
 }
 .thumbnail{
 	opacity: 1;
@@ -28,7 +28,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -79,7 +79,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -88,7 +88,7 @@
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -97,7 +97,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -109,7 +109,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -118,7 +118,7 @@
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -127,7 +127,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -148,7 +148,7 @@
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -157,7 +157,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -169,7 +169,7 @@
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
@@ -178,16 +178,16 @@
     <div class="thumbnail" >
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
   </div>
   <div class="col-xs-12 col-lg-4">
     <div class="thumbnail">
-      <img src="../images/../images/LOVE.jpg" alt="...">
+      <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
+        <h5>창거니가 어제 입던 소매티</h5>
         <p>19000 Won</p>
       </div>
     </div>
