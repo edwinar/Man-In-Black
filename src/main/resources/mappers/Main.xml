@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eagle.repository.mapper.Main">
+
+<select id="do_search_pw" parameterType="String" resultType="com.eagle.men_in_black.model.MainDto">
+SELECT USER_ID, USER_PW, USER_NAME, TEL, ADDRESS, POSTCODE, SEX, BIRTH, EMAIL  
+FROM MEMBERS 
+WHERE USER_ID=#{id}
+</select>
+
+</mapper>

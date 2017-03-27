@@ -19,15 +19,30 @@ td, th {
 <title>::구매내역::</title>
 </head>
 <body>
+	<center>
+		<div id="mypagehead">
+			<h4 align="right" style="margin-right: 100px">
+				<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a> >
+				<a href="buylist.mib">구매내역</a>
+			</h4>
+			<h3>MY Order</h3>
+			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+		</div>
+	</center>
 
-
-
+	<div  align="right">
+		<p> <input type="date" height="50px">~<input type="date" value="2017-03-27">
+			<a href="#" class="btn btn-primary" role="button">1주</a> 
+			<a href="#"class="btn btn-primary" role="button">1개월</a> 
+			<a href="#"class="btn btn-primary" role="button">3개월</a> 
+		</p>
+	</div>
 
 
 
 	<div>
-		
-	
+
+
 
 		<div id="total" style="margin-top: 100px">
 			<div id="table" style="width: 90%">
@@ -38,7 +53,7 @@ td, th {
 						<col width="50%">
 						<col width="10%">
 						<tr>
-							
+
 							<th>번호</th>
 							<th>이미지</th>
 							<th>상품정보</th>
@@ -57,7 +72,7 @@ td, th {
 							<td>SIZE:L, COLOR: green</td>
 						</tr>
 						<tr>
-							
+
 							<td rowspan="2">2번</td>
 							<td rowspan="2"><img alt="not found"
 								src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>

@@ -132,11 +132,11 @@ label:hover ~ input[type=password] {
 </style>
 </head>
 <body>
-<form>
+<form action="loginCheck.mib">
   <h1>MEN IN BLACK</h1>
   <div class="inset">
   <p style="margin-bottom: -13px; margin-top: 20px">
-    <input type="text" placeholder="아이디" name="email" id="email">
+    <input type="text" placeholder="아이디" name="ID" id="email">
   </p>
   <p>
     <input type="password"placeholder="비밀번호" name="password" id="password">
