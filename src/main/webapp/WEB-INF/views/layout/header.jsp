@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<script type="text/javascript">
-$(function(){
-	$("#login").click(function() {
-		$('div.modal').modal({remote : 'SignIn.jsp'});
-	})
-})
-</script>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
+
 @media ( min-width : 768px) { /* 최소 768 사이즈때 보이는 크기 */
-	.modal-dialog {
-		width: 300px;
-		height: 382px;
-	}
-	.p-container {
-		color: black;
-	}
+
 	.navbar-nav {
 		text-align: center;
 	}
@@ -56,7 +52,15 @@ $(function(){
 	}
 }
 </style>
-
+<script type="text/javascript">
+$(function(){
+    $("#login").click(function(){
+        $('div.modal').modal({remote : 'SignIn.jsp'});
+    })
+})
+</script>
+</head>
+<body>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -90,7 +94,7 @@ $(function(){
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
-					<li style="width: 100%"><a href="login.mib">로그인</a></li>
+					<li style="width: 100%"><a href="#"><button class="btn btn-default" data-target="#layerpop" data-toggle="modal">로그인</button></a></li>
 				</div>
 			</div>
 		</div>
@@ -148,3 +152,13 @@ $(function(){
 	</div>
 	<!-- /.container-fluid -->
 </nav>
+
+<div class="modal fade" id="layerpop">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <!-- remote ajax call이 되는영역 -->
+    </div>
+  </div>
+</div>
+</body>
+</html>
