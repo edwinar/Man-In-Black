@@ -564,7 +564,7 @@ table.responsive-table{
     </div>
 
     <div class="tab__content">
-      <table class="layout display responsive-table" width="400px">
+      <table class="layout display responsive-table">
       <col width="30%"/><col width="50%"/><col width="20%"/>
     <thead>
         <tr>
