@@ -82,17 +82,6 @@ label {
   padding-bottom: 9px;
 }
 
-input[type=text],
-input[type=password] {
-  width: 100%;
-  padding: 8px 5px;
-  background: linear-gradient(#1f2124, #27292c);
-  border: 1px solid #222;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-radius: 0.3em;
-  margin-bottom: 20px;
-}
-
 .p-container {
   padding: 0 20px 20px 20px;
 }
@@ -105,7 +94,7 @@ input[type=password] {
 
 
 input[type=submit] {
-  padding: 10px 110px;
+  padding: 10px 90px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
@@ -134,16 +123,9 @@ label:hover ~ input[type=password] {
 <body>
 <form>
   <h1>MEN IN BLACK</h1>
-  <div class="inset">
-  <p style="margin-bottom: -13px; margin-top: 20px">
-    <input type="text" placeholder="아이디" name="email" id="email">
-  </p>
-  <p>
-    <input type="password"placeholder="비밀번호" name="password" id="password">
-  </p>
-  </div>
+ 
   <p class="p-container">
-    <input type="submit" name="go" id="go" value="로그인">
+    <input type="submit" name="signup" id="singup" value="MIB 회원가입">
   </p>
 </form>
 </body>
