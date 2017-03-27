@@ -1,4 +1,4 @@
-package com.eagle.man_in_black.controller;
+package com.eagle.men_in_black.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

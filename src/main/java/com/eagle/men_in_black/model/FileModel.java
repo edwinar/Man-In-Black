@@ -1,4 +1,4 @@
-package com.eagle.man_in_black.model;
+package com.eagle.men_in_black.model;
 
 import java.io.Serializable;
 import org.springframework.web.multipart.MultipartFile;

@@ -81,7 +81,7 @@
                     <li style="width: 100%"><a href="#about" >고객센터</a></li>
                 </div>
                 <div class="nav navbar-nav  navbar-right topnav" style="width: 100px">
-                    <li style="width: 100%"><a href="#about">로그아웃</a></li>
+                    <li style="width: 100%"><a href="#about">회원가입</a></li>
                 </div>
                 <div class="nav navbar-nav  navbar-right topnav" style="width: 100px">
                     <li style="width: 100%"><a href="#about">로그인</a></li>
@@ -94,29 +94,21 @@
             <div class="nav navbar-nav"align="center" style="width: 80%">
                     <li class="dropdown">
                         <a href="NewCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">NEW <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">COAT</a></li>
-                            <li><a href="#">JACKET</a></li>
-                            <li><a href="#">JUMPER</a></li>
-                            <!--  <li class="divider"></li>
-                             <li class="dropdown-header">분할도 됨</li>
-                             <li><a href="#">아무거나</a></li>
-                             <li><a href="#">느셈</a></li> -->
-                        </ul>
+                       
                     </li>
                     <li class="dropdown">
                         <a href="outerCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">OUTER<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">TEE</a></li>
-                            <li><a href="#">SHIRT</a></li>
-                            <li><a href="#">KNIT</a></li>
+                            <li><a href="#">COAT</a></li>
+                            <li><a href="#">JACKET</a></li>
+                            <li><a href="#">JUMPER</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="topCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">TOP <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">TEE</a></li>
-                            <li><a href="#">COAT</a></li>
+                            <li><a href="#">SHIRT</a></li>
                             <li><a href="#">KNIT</a></li>
                             <li><a href="#">HOOD</a></li>
                         </ul>
@@ -124,15 +116,14 @@
                     <li class="dropdown">
                         <a href="pantsCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">PANTS <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">PANTS</a></li>
                             <li><a href="#">JEANS</a></li>
+                            <li><a href="#">SLACKS</a></li>
                             <li><a href="#">COTTON PANTS</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="shoesCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">SHOES <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">COAT</a></li>
                             <li><a href="#">WALKER</a></li>
                             <li><a href="#">RUNNING SHOES</a></li>
                         </ul>

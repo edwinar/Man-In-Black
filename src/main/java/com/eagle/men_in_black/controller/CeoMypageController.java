@@ -1,4 +1,4 @@
-package com.eagle.man_in_black.controller;
+package com.eagle.men_in_black.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.eagle.man_in_black.model.FileModel;
+import com.eagle.men_in_black.model.FileModel;
 
 @Controller
 public class CeoMypageController {

@@ -8,18 +8,26 @@
     href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Insert title here</title>
 <style type="text/css">
-
+#outerH1{
+margin-top: 150px;
+}
 .slide-container{
+  margin-top : 130px;
   position: relative;
   width: 100%;
-  height: 400px;
-/*   background:red; */
-  margin: auto;
+  height: 600px;
+  
+  
 }
 .slide{
   width: 100%;
-  height: 80%;
+  height: 100%;
   animation: fade 1s;
+}
+
+.content{
+	width: 100%;
+	height: 100%;
 }
 .prev,
 .next{
@@ -65,6 +73,60 @@
     opacity: 1;
   }
 }
+/*작아졌을때*/
+@media (max-width: 30em){
+#outerH1{
+margin-top: 100px;
+}
+
+.slide-container{
+  position: relative;
+  width: 100%;
+  height: 200px;
+/*   background:red; */
+  margin: auto;
+}
+.slide{
+  width: 100%;
+  height: 80%;
+  animation: fade 1s;
+}
+.prev,
+.next{
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .5s;
+  padding: 5px 10px;
+  border-radius: 0px 5px 5px 0px;
+}
+.next{
+  right:0;
+  border-radius: 5px 0px 0px 5px;
+}
+.prev:hover,
+.next:hover{
+  background-color: rgba(0,0,0,.5);
+}
+.pagers{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.pagers div{
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: white;
+}
+
+}
+
 
 /* 베스트 상품 부분 스타일*/
 .thumbnail{
@@ -82,19 +144,19 @@
 <div class="slide-container">
   <div class="slide">
 
-    <div class="content"><img src="../images/aa.jpg" height="400px" width="100%"></div>
+    <div class="content"><img src="../images/aa.jpg" height="100%" width="100%"></div>
 
   </div>
 
   <div class="slide">
 
-    <div class="content"><img src="../images/dd.jpg" height="400px" width="100%"></div>
+    <div class="content"><img src="../images/dd.jpg" height="100%" width="100%"></div>
 
   </div>
 
   <div class="slide">
 
-    <div class="content"><img src="../images/ss.jpg" height="400px" width="100%"></div>
+    <div class="content"><img src="../images/ss.jpg" height="100%" width="100%"></div>
 
   </div>
   <div class="prev" onclick="plus(-1)">&#10094;</div>
@@ -107,7 +169,7 @@
   </div>
 </div>
 
-<h1 style="font-size: 50px; font-weight: bold; " > OUTER </h1>
+<h1 style="font-size: 50px; font-weight: bold; " id="outerH1"  > OUTER </h1>
 <div class="row" align="center">
   <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
