@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
+  <div class="col-xs-12 col-lg-4" onclick="location.href='review.mib'">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
