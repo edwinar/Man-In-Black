@@ -295,9 +295,10 @@ td, th {
 		<div id="bo">
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
-
+						<col width="5%"><col width="5%"><col width="50%">
+						<col width="10%"><col width="10%"><col width="10%">
 				<tr>
-					<th class="turnover">이미지</th>
+					<th class="turnover" >이미지</th>
 					<th class="turnover">분류</th>
 					<th>상품이름1234512</th>
 					<th class="turnover">수량</th>
@@ -306,39 +307,46 @@ td, th {
 
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
+				<tr><td>옵션 1 옵션 2</td></tr>
+				
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
+				<tr><td>옵션 1 옵션 2</td></tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
+				<tr><td>옵션 1 옵션 2</td></tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
+				<tr><td>옵션 1 옵션 2</td></tr>
 			</table>
 		</div>
 
