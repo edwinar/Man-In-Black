@@ -11,8 +11,6 @@
             float: none;
             display: inline-block;
             width: 16%;
-
-            /*border: 5px solid red;*/
         }
         .dropdown:hover .dropdown-menu {
             display: block;
@@ -20,24 +18,16 @@
         }
         .container{
             display: inline-block;
-            font-size: 10px;
+            font-size: 11px;
         }
-
-
         .navbar .navbar-nav {
             display: inline-block;
             float: none;
         }
-
         .navbar .navbar-collapse {
             text-align: center;
         }
     }
-
-
-
-
-
 
     @media (max-width: 768px) { /* 최대 768 사이즈때 보이는 크기 */
         .topnav{
@@ -54,9 +44,6 @@
         }
     }
 </style>
-
-
-
 
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -98,7 +85,7 @@
                        
                     </li>
                     <li class="dropdown">
-                        <a href="outerCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">OUTER<span class="caret"></span></a>
+                        <a href="outerCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">OUTER</span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">COAT</a></li>
                             <li><a href="#">JACKET</a></li>
@@ -106,7 +93,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="topCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">TOP <span class="caret"></span></a>
+                        <a href="topCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">TOP</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">TEE</a></li>
                             <li><a href="#">SHIRT</a></li>
@@ -115,7 +102,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="pantsCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">PANTS <span class="caret"></span></a>
+                        <a href="pantsCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">PANTS</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">JEANS</a></li>
                             <li><a href="#">SLACKS</a></li>
@@ -123,14 +110,14 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="shoesCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">SHOES <span class="caret"></span></a>
+                        <a href="shoesCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">SHOES</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">WALKER</a></li>
                             <li><a href="#">RUNNING SHOES</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="bnaCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">BAG&ACC <span class="caret"></span></a>
+                        <a href="bnaCategory.mib" class="dropdown-toggle"  role="button" aria-expanded="false">BAG&ACC</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">BAG</a></li>
                             <li><a href="#">BELT</a></li>
@@ -140,7 +127,7 @@
                 <br>
 
             </div>
-            <hr style="border: solid black 1px; margin-right: 50px; display: inline-block; width: 65%;margin-top: -0px;margin-bottom: 0px;">
+            <hr style="border: solid black 1px; margin-right: 30px; display: inline-block; width: 65%;margin-top: -0px;margin-bottom: 0px;">
         </div><!-- /.navbar-collapse -->
 
 
