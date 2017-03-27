@@ -17,7 +17,7 @@ body {
 }
 
 form {
-  background: #111;
+  background: gray;
   width: 300px; height:382px;
   border-radius: 0.4em;
   border: 1px solid #191919;
@@ -33,7 +33,7 @@ form:after {
   height: 1px;
   width: 100px;
   left: 20%;
-  background: linear-gradient(to right, #111111, #444444, #b6b6b8, #444444, #111111);
+  
   top: 0;
 }
 
@@ -86,9 +86,9 @@ input[type=text],
 input[type=password] {
   width: 100%;
   padding: 8px 5px;
-  background: linear-gradient(#1f2124, #27292c);
+  background: white;
   border: 1px solid #222;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: white;
   border-radius: 0.3em;
   margin-bottom: 20px;
 }

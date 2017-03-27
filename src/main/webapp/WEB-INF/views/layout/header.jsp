@@ -4,10 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <style>
 
 @media ( min-width : 768px) { /* 최소 768 사이즈때 보이는 크기 */
@@ -51,13 +48,43 @@
 		display: none;
 	}
 }
+.modal-content{
+   width:300px;
+   height:382px;
+}
+.modal-dialog{
+   width:300px;
+   height:382px;
+}
+.p-container{
+   color: black;
+}
 </style>
-<script type="text/javascript">
-$(function(){
-    $("#login").click(function(){
-        $('div.modal').modal({remote : 'SignIn.jsp'});
-    })
-})
+<script>
+$("#join-trigger").click(function(){
+	  $('#modal-login').modal('hide');
+	  $('#modal-join').modal('show');
+	});
+
+	$("#forgot-trigger").click(function(){
+	  $('#modal-login').modal('hide');
+	  $('#modal-forgot').modal('show');
+	});
+
+	$("#login-trigger").click(function(){
+	  $('#modal-join').modal('hide');
+	  $('#modal-login').modal('show');
+	});
+
+	$("#back-login").click(function(){
+	  $('#modal-forgot').modal('hide');
+	  $('#modal-login').modal('show');
+	});
+
+	$("#back-join").click(function(){
+	  $('#modal-forgot').modal('hide');
+	  $('#modal-join').modal('show');
+	});
 </script>
 </head>
 <body>
@@ -94,7 +121,7 @@ $(function(){
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
-					<li style="width: 100%"><a href="#"><button class="btn btn-default" data-target="#layerpop" data-toggle="modal">로그인</button></a></li>
+					<li style="width: 100%"><a href="login.mib" data-toggle="modal" data-target="#modal-login" >로그인</a></li>
 				</div>
 			</div>
 		</div>
@@ -153,12 +180,20 @@ $(function(){
 	<!-- /.container-fluid -->
 </nav>
 
-<div class="modal fade" id="layerpop">
-  <div class="modal-dialog">
+<!-- *********************************************************************************** -->
+
+<!-- Modal Login -->
+<div class="modal fade bs-example-modal-sm" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
-        <!-- remote ajax call이 되는영역 -->
-    </div>
-  </div>
-</div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
 </body>
 </html>

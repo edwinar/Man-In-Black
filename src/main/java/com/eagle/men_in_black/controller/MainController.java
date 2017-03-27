@@ -1,9 +1,16 @@
 package com.eagle.men_in_black.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
@@ -30,10 +37,18 @@ public class MainController {
 		loger.debug("codeMSvc === " + "김옥지");
 		loger.debug("============================");
 		
-		ModelAndView mav = new ModelAndView("main/SignIn");
+		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignIn");
 		mav.addObject("msg", "김옥지");
 		
 		return mav;
 		
 	}
+	
+	/*@RequestMapping(value="login.mib", method=RequestMethod.GET)
+	public String testForm(HttpServletRequest request, @RequestParam Map<String, Object> param, Model model) throws Exception {
+	  
+	    return "main/SignIn";
+	}*/
+
+	
 }
