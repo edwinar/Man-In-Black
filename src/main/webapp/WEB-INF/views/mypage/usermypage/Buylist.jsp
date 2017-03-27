@@ -31,7 +31,7 @@ td, th {
 	</center>
 
 	<div  align="right">
-		<p> <input type="date">~<input type="date" value="2017-03-27">
+		<p> <input type="date" height="50px">~<input type="date" value="2017-03-27">
 			<a href="#" class="btn btn-primary" role="button">1주</a> 
 			<a href="#"class="btn btn-primary" role="button">1개월</a> 
 			<a href="#"class="btn btn-primary" role="button">3개월</a> 
