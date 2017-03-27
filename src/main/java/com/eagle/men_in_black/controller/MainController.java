@@ -22,4 +22,18 @@ public class MainController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("login.mib")
+	public ModelAndView login(){
+		
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "김옥지");
+		loger.debug("============================");
+		
+		ModelAndView mav = new ModelAndView("main/SignIn");
+		mav.addObject("msg", "김옥지");
+		
+		return mav;
+		
+	}
 }
