@@ -64,7 +64,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-2 col-sm-offset-5 top header" align="center" /*style="border: 5px solid red;/*">
-                    <a href="meninblack.mib"><img id="logo-main" src="../images/LOGO6.png" height="80"></a>
+                    <a href="meninblack.mib"><img id="logo-main" src="../images/main.png" height="80"></a>
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"  aria-expanded="false" aria-controls="navbar">

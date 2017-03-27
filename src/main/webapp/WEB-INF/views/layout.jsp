@@ -29,7 +29,7 @@
 
 	#wrap .container {
 	    width: 100%;
-	        background: #eee;
+	        background: white;
 	}
 	</style>
 </head>
