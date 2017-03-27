@@ -48,6 +48,8 @@
 		display: none;
 	}
 }
+
+
 .modal-content{
    width:300px;
    height:382px;
