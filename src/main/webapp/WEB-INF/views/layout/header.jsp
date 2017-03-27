@@ -117,7 +117,7 @@ $("#join-trigger").click(function(){
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px">
-					<li style="width: 100%"><a href="#about">회원가입</a></li>
+					<li style="width: 100%"><a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a></li>
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
@@ -184,6 +184,15 @@ $("#join-trigger").click(function(){
 
 <!-- Modal Login -->
 <div class="modal fade bs-example-modal-sm" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal signup -->
+<div class="modal fade bs-example-modal-sm" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       
