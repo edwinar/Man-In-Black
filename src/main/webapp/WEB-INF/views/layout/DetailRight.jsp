@@ -340,7 +340,7 @@ small {
       </article>
 </aside>
 <aside id="buyaside" class="buyaside">
-   <img alt="" src="77.png">
+   <img alt="" src="../images/buybtn.png" width="300px" height="300px">
 </aside>
 
 
