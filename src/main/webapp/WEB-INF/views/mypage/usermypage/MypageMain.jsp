@@ -81,8 +81,6 @@ body {
 	border-bottom: 5px solid #696969;
 }
 
-
-
 td, th {
 	text-align: center;
 }
@@ -132,7 +130,15 @@ td, th {
 </style>
 </head>
 <body>
-
+<center>
+	<div id="mypagehead">
+		<h4 align="right" style="margin-right: 100px">
+			<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a>
+		</h4>
+		<h3>MY Order</h3>
+		<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+	</div>
+</center>
 	<h1>마이페이지 메인</h1>
 	<div>
 		<div id="contain">
@@ -284,21 +290,20 @@ td, th {
 				</tr>
 			</table>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br> <br>
 
 
 		<div id="bo">
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
-						<col width="5%"><col width="5%"><col width="50%">
-						<col width="10%"><col width="10%"><col width="10%">
+				<col width="5%">
+				<col width="5%">
+				<col width="50%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
 				<tr>
-					<th class="turnover" >이미지</th>
+					<th class="turnover">이미지</th>
 					<th class="turnover">분류</th>
 					<th>상품이름1234512</th>
 					<th class="turnover">수량</th>
@@ -315,8 +320,10 @@ td, th {
 					<td rowspan="2">재고</td>
 					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
-				<tr><td>옵션 1 옵션 2</td></tr>
-				
+				<tr>
+					<td>옵션 1 옵션 2</td>
+				</tr>
+
 				<tr>
 					<td class="turnover" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
@@ -326,7 +333,9 @@ td, th {
 					<td rowspan="2">재고</td>
 					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
-				<tr><td>옵션 1 옵션 2</td></tr>
+				<tr>
+					<td>옵션 1 옵션 2</td>
+				</tr>
 				<tr>
 					<td class="turnover" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
@@ -336,7 +345,9 @@ td, th {
 					<td rowspan="2">재고</td>
 					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
-				<tr><td>옵션 1 옵션 2</td></tr>
+				<tr>
+					<td>옵션 1 옵션 2</td>
+				</tr>
 				<tr>
 					<td class="turnover" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
@@ -346,7 +357,9 @@ td, th {
 					<td rowspan="2">재고</td>
 					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
-				<tr><td>옵션 1 옵션 2</td></tr>
+				<tr>
+					<td>옵션 1 옵션 2</td>
+				</tr>
 			</table>
 		</div>
 
