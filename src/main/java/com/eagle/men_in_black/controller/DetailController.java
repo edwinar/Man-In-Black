@@ -21,7 +21,5 @@ public class DetailController {
 		mav.addObject("msg", "김옥지");
 
 		return mav;
-
 	}
-	
 }
