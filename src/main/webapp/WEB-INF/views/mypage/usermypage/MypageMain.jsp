@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>마이 페이지</title>
 <style type="text/css">
 body {
@@ -37,7 +39,6 @@ body {
 
 #bo {
 	width: 100%;
-	height: 220px;
 	display: inline-block;
 	float: left; //
 	background: #171A1D;
@@ -80,12 +81,6 @@ body {
 	border-bottom: 5px solid #696969;
 }
 
-.ta {
-	width: 95%;
-	text-align: center;
-	border-collapse: collapse;
-}
-
 td, th {
 	text-align: center;
 }
@@ -100,14 +95,14 @@ td, th {
 	padding: 3px 6px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
 	#turnover, .turnover {
 		display: none;
 		visibility: hidden;
 	}
 }
 
-@media only screen and (max-width: 820px) {
+@media only screen and (max-width: 920px) {
 	#turnover, .turnover {
 		display: none;
 		visibility: hidden;
@@ -118,7 +113,7 @@ td, th {
 	}
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 720px) {
 	#turnover, .turnover {
 		display: none;
 		visibility: hidden;
@@ -135,7 +130,15 @@ td, th {
 </style>
 </head>
 <body>
-
+<center>
+	<div id="mypagehead">
+		<h4 align="right" style="margin-right: 100px">
+			<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a>
+		</h4>
+		<h3>MY Order</h3>
+		<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+	</div>
+</center>
 	<h1>마이페이지 메인</h1>
 	<div>
 		<div id="contain">
@@ -192,7 +195,7 @@ td, th {
 
 		<div id="bo">
 			<p style="background-color: #696969">주문내용</p>
-			<table class="ta" border="1px">
+			<table class="table">
 				<col width="10%">
 				<col width="5%">
 				<col width="30%">
@@ -287,13 +290,18 @@ td, th {
 				</tr>
 			</table>
 		</div>
-
+		<br> <br> <br> <br> <br> <br>
 
 
 		<div id="bo">
 			<p style="background-color: #696969">장바구니</p>
-			<table class="ta">
-
+			<table class="table">
+				<col width="5%">
+				<col width="5%">
+				<col width="50%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
 				<tr>
 					<th class="turnover">이미지</th>
 					<th class="turnover">분류</th>
@@ -304,38 +312,53 @@ td, th {
 
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
-					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
+					<td>옵션 1 옵션 2</td>
+				</tr>
 
+				<tr>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
+					<td>상품이름</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
-					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
-
+					<td>옵션 1 옵션 2</td>
 				</tr>
 				<tr>
-					<td class="turnover">이미지</td>
-					<td class="turnover">분류</td>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover">수량</td>
-					<td>재고</td>
-					<th class="yearhigh">판매가</th>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+				</tr>
+				<tr>
+					<td>옵션 1 옵션 2</td>
+				</tr>
+				<tr>
+					<td class="turnover" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="turnover" rowspan="2">분류</td>
+					<td>상품이름</td>
+					<td class="turnover" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="yearhigh" rowspan="2">판매가</th>
+				</tr>
+				<tr>
+					<td>옵션 1 옵션 2</td>
 				</tr>
 			</table>
 		</div>
@@ -344,7 +367,7 @@ td, th {
 
 		<div id="bo">
 			<p style="background-color: #696969">Q&A</p>
-			<table class="ta">
+			<table class="table">
 
 				<tr>
 					<th>번호</th>

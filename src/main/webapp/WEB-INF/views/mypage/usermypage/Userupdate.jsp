@@ -7,7 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<center>
+<div id="mypagehead">
+<h4 align="right" style="margin-right: 100px"><a href="MenInBlack.jsp">홈</a> > 
+<a href="mymain.mib">MY PAGE</a> > 
+<a href="userup.mib">회원정보수정</a></h4>
+<h3>MY Order</h3>
+<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+</div>
+</center>
 	<div style="width: 100%; height: 700px;">
 		<center>
 			<form style="margin-top: 200px">

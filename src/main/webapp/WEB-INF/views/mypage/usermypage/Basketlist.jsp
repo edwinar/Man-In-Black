@@ -19,7 +19,16 @@ td, th {
 <title>::장바구니::</title>
 </head>
 <body>
-	<div id="total" style="height: 600px; margin-top: 300px">
+<center>
+<div id="mypagehead">
+<h4 align="right" style="margin-right: 100px"><a href="MenInBlack.jsp">홈</a> > 
+<a href="mymain.mib">MY PAGE</a> > 
+<a href="basketlist.mib">장바구니</a></h4>
+<h3>MY Order</h3>
+<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+</div>
+</center>
+	<div id="total" style="height: 600px; margin-top: 100px">
 		<div id="table" style="width: 90%">
 			<form name="f1">
 				<table class="table">
