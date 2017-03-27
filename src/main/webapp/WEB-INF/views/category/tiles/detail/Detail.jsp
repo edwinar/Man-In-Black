@@ -368,7 +368,7 @@ table.responsive-table{
 	  </div>
 	</div>
 
-	<div class="productExplain" align="right" style="border: solid black 1px;">
+	<div class="productExplain" align="right">
 		<div class="col-xs-12 col-lg-12" >
 		    <div class="thumbnail">
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
