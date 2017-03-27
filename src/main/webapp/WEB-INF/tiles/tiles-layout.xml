@@ -20,11 +20,6 @@
 			<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
 		</definition>
 		
-		
-      <definition name="no-tiles" template="WEB-INF/views/noTemplate.jsp">
-         <put-attribute name="noTemplate" value="" />
-      </definition>
-      
       <!-- 마이페이지 부분  -->
       <!-- Template // main이 우리가 만드는 부분  -->
 		<definition name="mypagelayout" template="/WEB-INF/views/layout.jsp">
