@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <style>
-	 footer > p > a:link { color:#2ecc71; text-decoration: none;}
-     footer > p > a:visited { color: #2ecc71; text-decoration: none;}
-     footer > p > a:hover { color: #2ecc71; text-decoration: none;}
+	 footer > p > a:link { color:#2ecc71; text-decoration: none;font-family: 소야나눔9}
+     footer > p > a:visited { color: #2ecc71; text-decoration: none;font-family: 소야나눔9}
+     footer > p > a:hover { color: #2ecc71; text-decoration: none;font-family: 소야나눔9}
+
+     @media (max-width: 790px) { /* 최대 768 사이즈때 보이는 크기 */
+         footer{
+             display: none;
+         }
+
+         }
 </style>
 <!-- FOOTER -->
       <footer>

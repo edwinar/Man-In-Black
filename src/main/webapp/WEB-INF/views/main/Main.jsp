@@ -141,6 +141,7 @@ margin-top: 100px;
 </style>
 </head>
 <body>
+
 <div class="slide-container">
   <div class="slide">
 
@@ -267,6 +268,7 @@ margin-top: 100px;
 </div>
 
 <hr style="border: solid black 2px;">
+
 
 <script type="text/javascript">
 var slide = document.getElementsByClassName('slide'),
