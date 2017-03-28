@@ -48,7 +48,8 @@ td, th {
 					</tr>
 
 					<tr>
-						<td rowspan="2"><input type="checkbox" onclick="ty(1)"
+						<td rowspan="2">
+						<input type="checkbox" onclick="ty(1)"
 							value="10000" id="ch1" class="chbox"></td>
 						<td rowspan="2">1번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
@@ -159,9 +160,9 @@ td, th {
 			$("#allCheck").click(function() {
 				b = 0;
 				if ($("#allCheck").prop("checked")) {
-					$("input[type=checkbox]").prop("checked", true);
+					$(".chbox").prop("checked", true);
 				} else if ($("#allCheck").prop("checked", false)) {
-					$("input[type=checkbox]").prop("checked", false);
+					$(".chbox").prop("checked", false);
 				}
 				for (var i = 1; i < 5; i++) {
 					if (document.f1.elements[i].checked == true) {
@@ -187,7 +188,7 @@ td, th {
 		})
 		
 		$(function() {
-			$("input[type=checkbox]").click(function(){		
+			$(".chbox").click(function(){		
 			if(document.getElementById('pay').value == 0){
 				document.getElementById('pay').value = 0;
 				document.getElementById('top').value = 0;
