@@ -25,10 +25,10 @@ td, th {
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="basketlist.mib">장바구니</a></h4>
 <h3>MY Order</h3>
-<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+<h4>회원님의 장바구니 입니다.</h4>
 </div>
 </center>
-	<div id="total" style="height: 600px; margin-top: 100px">
+	<div id="total" style="height: 900px; margin-top: 100px">
 		<div id="table" style="width: 90%">
 			<form name="f1">
 				<table class="table">
@@ -39,7 +39,7 @@ td, th {
 					<col width="10%">
 					<tr>
 						<th><input type="checkbox" id="allCheck"
-							style="width: 20px; height: 20px" c></th>
+							style="width: 20px; height: 20px" ></th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
@@ -52,7 +52,7 @@ td, th {
 						<td rowspan="2">1번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 소매티</td>
+						<td>창거니가 어제 입던 양말</td>
 						<td rowspan="2">10000 Won</td>
 					</tr>
 					<tr>
@@ -64,7 +64,7 @@ td, th {
 						<td rowspan="2">2번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 소매티</td>
+						<td>창거니가 어제 입던 소매</td>
 						<td rowspan="2">20000 Won</td>
 					</tr>
 					<tr>
@@ -73,11 +73,23 @@ td, th {
 					<tr>
 						<td rowspan="2"><input type="checkbox" onclick="ty(3)"
 							value="30000" id="ch3" class="ch"></td>
-						<td rowspan="2">2번</td>
+						<td rowspan="2">3번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 소매티</td>
+						<td>창거니가 어제 입던 티</td>
 						<td rowspan="2">30000 Won</td>
+					</tr>
+					<tr>
+						<td>SIZE:L, COLOR: green</td>
+					</tr>
+							<tr>
+						<td rowspan="2"><input type="checkbox" onclick="ty(4)"
+							value="40000" id="ch3" class="ch"></td>
+						<td rowspan="2">4번</td>
+						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
+							style="width: 100px; height: 100px"></td>
+						<td>창거니가  입던 v빤쮸</td>
+						<td rowspan="2">40000 Won</td>
 					</tr>
 					<tr>
 						<td>SIZE:L, COLOR: green</td>
@@ -115,6 +127,8 @@ td, th {
 	</div>
 	<script type="text/javascript">
 		var b = 0;
+		var sum = 0;
+
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
 				b += Number(document.f1.elements[n].value);
@@ -148,13 +162,14 @@ td, th {
 				} else if ($("#allCheck").prop("checked", false)) {
 					$("input[type=checkbox]").prop("checked", false);
 				}
-				for (var i = 1; i < 4; i++) {
+				for (var i = 1; i < 5; i++) {
 					if (document.f1.elements[i].checked == true) {
 						b += Number(document.f1.elements[i].value);
 						document.getElementById('pay').value = b;
 						if (b < 50000) {
-							document.getElementById('top').value = b + 2500;
 							document.getElementById('tag').value = 2500;
+							document.getElementById('top').value = b + 2500;
+							
 						} else {
 							document.getElementById('top').value = b;
 							document.getElementById('tag').value = "무료";
@@ -169,6 +184,21 @@ td, th {
 			})
 
 		})
+		
+		$(function() {
+			$("input[type=checkbox]").click(function(){		
+			if(document.getElementById('pay').value == 0){
+				document.getElementById('pay').value = 0;
+				document.getElementById('top').value = 0;
+				document.getElementById('tag').value = 0;
+			}			
+						
+					}
+				)
+			}
+		)
+		
+		
 	</script>
 
 

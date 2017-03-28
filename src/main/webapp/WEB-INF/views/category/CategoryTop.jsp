@@ -5,17 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::Top:::</title>
-<style>
-.thumbnail{
- width: 100%;
-}
-.thumbnail{
-	opacity: 1;
-}
-.thumbnail:hover{
-	opacity: 0.5;
-}
-</style>
 </head>
 <body>
 
