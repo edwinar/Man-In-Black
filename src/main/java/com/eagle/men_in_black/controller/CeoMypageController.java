@@ -26,20 +26,42 @@ import com.eagle.men_in_black.model.FileModel;
 public class CeoMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping("dudwo.mib")
-	public ModelAndView code_msg1111() {
+	// 사장 마이페이지 메인, 판매관리 
+	@RequestMapping("ceoMypage_Main.mib")
+	public ModelAndView ceoMypage_Main() {
 
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
+		
+		return mav;
 
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/NewFile");
-		mav.addObject("msg", "김옥지");
+	}
+	
+	@RequestMapping("coupon_Administer.mib")
+	public ModelAndView coupon_Administer() {
 
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Coupon_Administer");
+		
 		return mav;
 
 	}
 
+	@RequestMapping("qnA_Administer.mib")
+	public ModelAndView qnA_Administer() {
+
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+		
+		return mav;
+
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("register_Good.mib")
 	public ModelAndView register_Good() {
 

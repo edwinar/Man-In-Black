@@ -68,12 +68,18 @@ body {
 	}
 }
 
-
 /* 마이페이지 메뉴 */
-
+.side-menusize{
+	width: 40px;
+	height: 35px;
+	background-color: red;
+	visibility: hidden;
+	
+}
 .mobile-only {
 	display: none;
 }
+
 .mypage-side-menu {
 	justify-content: center;
 	flex-wrap: wrap;
@@ -90,13 +96,15 @@ body {
 	will-change: transform;
 	-webkit-overflow-scrolling: touch;
 	display: block;
-   	color: black;
-   	padding-left: 35px;
-   	border-radius: 3px;
+	color: black;
+	padding-left: 35px;
+	border-radius: 3px;
 }
+
 .mypage-side-menu.active {
 	transform: translateX(0) translateZ(0);
 }
+
 .mypage-logo {
 	width: 100%;
 	height: 40px;
@@ -107,10 +115,11 @@ body {
 	font-weight: bold;
 	font-size: 30px;
 }
+
 .mypage-side-menu ul {
 	margin-top: 30px;
+}
 
-	}
 .mypage-side-menu li {
 	list-style: none;
 	color: black;
@@ -127,170 +136,180 @@ body {
 	background: #EEE;
 }
 
-@media ( max-width : 1000px) {
-	.mypage-side-menu.active ~ header input {
-		width: calc(50vw - 100px);
-	}
+.mypage-side-menu-click{
+	justify-content: center;
+	flex-wrap: wrap;
+	background: white;
+	height: 100%;
+	width: 225px;
+	position: fixed;
+	padding-top: 20px;
+	left: 0;
+	z-index: 10;
+	transform: translateX(-100%) translateZ(0);
+	transition: .3s;
+	overflow-y: auto;
+	will-change: transform;
+	-webkit-overflow-scrolling: touch;
+	display: block;
+	color: black;
+	padding-left: 35px;
+	border-radius: 3px;
 }
 
-@media ( max-width : 767px) {
-	.mypage-side-menu.active ~ header .mypage-logo {
-		margin: 12px;
-		width: 40px;
-	}
-	
-	
+@media screen and (max-width: 70em) {
+   .mypage-side-menu-click{
+    
+    left: -20em;
+  }
+  .side-menusize{
+  visibility: visible;
+  }
 }
-@media ( max-width : 599px) {
-	.desktop-only {
-		display: none;
-	}
-	.mobile-only {
-		display: inherit;
-	}
-	.profile {
-		margin: 16px !important;
-	}
-	.mobile-input input {
-		display: initial;
-	}
-	
-	
-}
+
 
 /*오른쪽 메뉴 기본*/
 #right-aside {
-  position: absolute;
-  position: fixed;
-  right: 0;
-  width: 10%;
-  min-width: 15em;
-  height: 50%;
-  top: 0;
-  bottom: 0;
-  margin-top: 350px;
-  min-height:25em;
-  border-radius: .5em;
-  pointer-events: none;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
-  -webkit-transform: translateX(calc(100% - .75em));
-          transform: translateX(calc(100% - .75em));
+	position: absolute;
+	position: fixed;
+	right: 0;
+	width: 10%;
+	min-width: 15em;
+	height: 50%;
+	top: 0;
+	bottom: 0;
+	margin-top: 350px;
+	min-height: 25em;
+	border-radius: .5em;
+	pointer-events: none;
+	-webkit-transition: all 0.45s ease-in;
+	transition: all 0.45s ease-in;
+	-webkit-transform: translateX(calc(100% - .75em));
+	transform: translateX(calc(100% - .75em));
 }
+
 #right-art {
-  position: relative;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 /*박스 색상 */
 #right-art .right-box {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding-top:50px;
-  background-color: white;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-top: 50px;
+	background-color: white;
 }
+
 #right-art .right-box .right-content {
-  overflow-y: auto;
-  height: 100%;
+	overflow-y: auto;
+	height: 100%;
 }
+
 #right-art .right-spacer {
-  position: absolute;
-  left: -2em;
-  top: 45%;
-  width: 4em;
-  height: 4em;
-  z-index: -1;
-  border-radius: 100%;
-  mix-blend-mode: darken;
-  box-shadow: 0 0 0 0 rgba(17, 141, 240, 0.5), 0 0 0 0 #fff;
-  -webkit-transition: all 0.6s ease-out;
-  transition: all 0.6s ease-out;
+	position: absolute;
+	left: -2em;
+	top: 45%;
+	width: 4em;
+	height: 4em;
+	z-index: -1;
+	border-radius: 100%;
+	mix-blend-mode: darken;
+	box-shadow: 0 0 0 0 rgba(17, 141, 240, 0.5), 0 0 0 0 #fff;
+	-webkit-transition: all 0.6s ease-out;
+	transition: all 0.6s ease-out;
 }
+
 #right-art .right-spacer:after {
-  display: inline-block;
+	display: inline-block;
 }
+
 #right-art .opener {
-  position: absolute;
-  position: absolute;
-  left: -.75em;
-  top: calc(45% + .25em);
-  font-size: 2em;
-  width: 1.5em;
-  height: 1.5em;
-  display: inline-block;
-  line-height: 1.4;
-  pointer-events: all;
-  background-color: black;
-  background-position: center center;
-  background-blend-mode: overlay;
-  background-size: 100% 100%;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 100%;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	position: absolute;
+	position: absolute;
+	left: -.75em;
+	top: calc(45% + .25em);
+	font-size: 2em;
+	width: 1.5em;
+	height: 1.5em;
+	display: inline-block;
+	line-height: 1.4;
+	pointer-events: all;
+	background-color: black;
+	background-position: center center;
+	background-blend-mode: overlay;
+	background-size: 100% 100%;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 100%;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
+
 #right-art .opener:hover {
-  box-shadow: 0.1em 0 0 rgba(0, 0, 0, 0.2);
-  -webkit-transform: translateX(-25%);
-          transform: translateX(-25%);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	box-shadow: 0.1em 0 0 rgba(0, 0, 0, 0.2);
+	-webkit-transform: translateX(-25%);
+	transform: translateX(-25%);
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
+
 #right-art .opener:focus {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 /* 여기색상이 < 이거색상 */
 #right-art .opener:before, #right-art .opener:after {
-  content: '';
-  position: absolute;
-  background-color: #fff;
-  width: .2em;
-  height: .656em;
-  left: .6em;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+	content: '';
+	position: absolute;
+	background-color: #fff;
+	width: .2em;
+	height: .656em;
+	left: .6em;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
+
 #right-art .opener:before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  top: .25em;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: .25em;
 }
+
 #right-art .opener:after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  bottom: .25em;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	bottom: .25em;
 }
 
 #right-toggle {
-  display: inline;
-  width: 0;
-  height: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+	display: inline;
+	width: 0;
+	height: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
 }
 
 #right-toggle:after {
-  content: '';
-  display: block;
-  position: fixed;
-  left: -.75em;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  opacity: 0;
-  border-radius: 100%;
-  pointer-events: none;
-  -webkit-transform: translateX(95%);
-          transform: translateX(95%);
-  box-shadow: inset 0 0 0 0 transparent;
-  -webkit-transition: all 0.6s ease-out;
-  transition: all 0.6s ease-out;
+	content: '';
+	display: block;
+	position: fixed;
+	left: -.75em;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+	border-radius: 100%;
+	pointer-events: none;
+	-webkit-transform: translateX(95%);
+	transform: translateX(95%);
+	box-shadow: inset 0 0 0 0 transparent;
+	-webkit-transition: all 0.6s ease-out;
+	transition: all 0.6s ease-out;
 }
 /* #toggle:checked:after {
   opacity: 1;
@@ -303,12 +322,12 @@ body {
   transition: all 0.9s ease-in;
   box-shadow: inset 10em 0 0em 150em rgba(0, 0, 0, 0.5);
 } */
-#right-toggle:checked + #right-aside {
-  pointer-events: all;
-  -webkit-transform: translateY(0%);
-          transform: translateY(0%);
-  -webkit-transition: all 0.6s ease-in 0.3s;
-  transition: all 0.6s ease-in 0.3s;
+#right-toggle:checked+#right-aside {
+	pointer-events: all;
+	-webkit-transform: translateY(0%);
+	transform: translateY(0%);
+	-webkit-transition: all 0.6s ease-in 0.3s;
+	transition: all 0.6s ease-in 0.3s;
 }
 /* #right-toggle:checked + #right-aside .right-spacer {
   box-shadow: 0 0 0 100em rgba(17, 141, 240, 0.95), 0 0 0 40em #fff;
@@ -316,179 +335,182 @@ body {
   transition: all 1.2s ease-in;
 } */
 /*이게시간?*/
-#right-toggle:checked + #right-aside .opener {
-  background-color: black;
-  -webkit-transition: all 0.1s ease-in-out 0.1s;
-  transition: all 0.1s ease-in-out 0.1s;
+#right-toggle:checked+#right-aside .opener {
+	background-color: black;
+	-webkit-transition: all 0.1s ease-in-out 0.1s;
+	transition: all 0.1s ease-in-out 0.1s;
 }
-#right-toggle:checked + #right-aside .opener:hover {
-  box-shadow: 0 0 0 0.5em #eee;
-  -webkit-transform: rotate(360deg) scale(1.2);
-          transform: rotate(360deg) scale(1.2);
-  
+
+#right-toggle:checked+#right-aside .opener:hover {
+	box-shadow: 0 0 0 0.5em #eee;
+	-webkit-transform: rotate(360deg) scale(1.2);
+	transform: rotate(360deg) scale(1.2);
 }
 /*나오고 들어가는시간??*/
-#right-toggle:checked + #right-aside .opener:before, #right-toggle:checked + #right-aside .opener:after {
-  -webkit-transition: all 0.1s 0.1s;
-  transition: all 0.1s 0.1s;
+#right-toggle:checked+#right-aside .opener:before, #right-toggle:checked+#right-aside .opener:after
+	{
+	-webkit-transition: all 0.1s 0.1s;
+	transition: all 0.1s 0.1s;
 }
-#right-toggle:checked + #right-aside .opener:before {
-  -webkit-transform: rotate(-45deg) translate(-40%, 25%);
-          transform: rotate(-45deg) translate(-40%, 25%);
+
+#right-toggle:checked+#right-aside .opener:before {
+	-webkit-transform: rotate(-45deg) translate(-40%, 25%);
+	transform: rotate(-45deg) translate(-40%, 25%);
 }
-#right-toggle:checked + #right-aside .opener:after {
-  -webkit-transform: rotate(45deg) translate(-40%, -25%);
-          transform: rotate(45deg) translate(-40%, -25%);
+
+#right-toggle:checked+#right-aside .opener:after {
+	-webkit-transform: rotate(45deg) translate(-40%, -25%);
+	transform: rotate(45deg) translate(-40%, -25%);
 }
 /*들어갈수있는 메뉴 수정*/
-#right-nav ul li{
-  list-style: none;
+#right-nav ul li {
+	list-style: none;
 }
+
 #right-nav ul li a {
-  display: inline-block;
-  height: 100%;
-  line-height: 1.3;
-  background-color:white;
-  color: black;
-  margin:10%;
-  text-transform: capitalize;
+	display: inline-block;
+	height: 100%;
+	line-height: 1.3;
+	background-color: white;
+	color: black;
+	margin: 10%;
+	text-transform: capitalize;
 }
 /*목록 마우스 오버 색 */
 #right-nav ul li a:hover {
-  background-color: #eee;
-  color: black;
-  border-radius: .5em;
+	background-color: #eee;
+	color: black;
+	border-radius: .5em;
 }
 /*디테일 오른쪽 메뉴*/
 #buyaside {
-  position: absolute;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin-top: 630px;
-  border-radius: .5em;
-  pointer-events: none;
-  -webkit-transition: all 0.45s ease-in;
-  transition: all 0.45s ease-in;
+	position: absolute;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin-top: 630px;
+	border-radius: .5em;
+	pointer-events: none;
+	-webkit-transition: all 0.45s ease-in;
+	transition: all 0.45s ease-in;
 }
 
 /***********************************************************************************************/
 /*********************************************메인**********************************************/
 /***********************************************************************************************/
-
-#main-best-h1{
-margin-top: 150px;
-}
-.main-slide-container{
-  margin-top : 60px;
-  position: relative;
-  width: 100%;
-  height: 600px;
-}
-.main-slide{
-  width: 100%;
-  height: 100%;
-  animation: fade 1s;
+#main-best-h1 {
+	margin-top: 150px;
 }
 
-.main-slide-content{
+.main-slide-container {
+	margin-top: 60px;
+	position: relative;
+	width: 100%;
+	height: 600px;
+}
+
+.main-slide {
+	width: 100%;
+	height: 100%;
+	animation: fade 1s;
+}
+
+.main-slide-content {
 	width: 100%;
 	height: 100%;
 }
-.prev,
-.next{
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  font-weight: bold;
-  font-size: 35px;
-  cursor: pointer;
-  transition: all .5s;
-  padding: 5px 10px;
-  border-radius: 0px 5px 5px 0px;
+
+.prev, .next {
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	font-weight: bold;
+	font-size: 35px;
+	cursor: pointer;
+	transition: all .5s;
+	padding: 5px 10px;
+	border-radius: 0px 5px 5px 0px;
 }
-.next{
-  right:0;
-  border-radius: 5px 0px 0px 5px;
+
+.next {
+	right: 0;
+	border-radius: 5px 0px 0px 5px;
 }
-.prev:hover,
-.next:hover{
-  background-color: #eee;
-  color: black;
+
+.prev:hover, .next:hover {
+	background-color: #eee;
+	color: black;
 }
-.main-pagers{
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
+
+.main-pagers {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
 }
-.main-pagers div{
-  display: inline-block;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: #eee;
+
+.main-pagers div {
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 50%;
+	background-color: #eee;
 }
 /*밑에 동그라미 색깔 바뀌는거 */
-.main-pagers-active{
-  background-color: rgba(0,0,0,.5) !important;
+.main-pagers-active {
+	background-color: rgba(0, 0, 0, .5) !important;
 }
 /*작아졌을때*/
-@media (max-width: 30em){
-#main-best-h1{
-margin-top: 100px;
-}
-
-.main-slide-container{
-  position: relative;
-  width: 100%;
-  height: 200px;
-/*   background:red; */
-  margin-top: 50px;
-}
-.main-slide{
-  width: 100%;
-  height: 80%;
-  animation: fade 1s;
-}
-.prev,
-.next{
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all .5s;
-  padding: 5px 10px;
-  border-radius: 0px 5px 5px 0px;
-}
-.next{
-  right:0;
-  border-radius: 5px 0px 0px 5px;
-}
-.prev:hover,
-.next:hover{
-  background-color: rgba(0,0,0,.5);
-}
-.main-pagers{
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-}
-.main-pagers div{
-  display: inline-block;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: #eee;
-}
-
+@media ( max-width : 30em) {
+	#main-best-h1 {
+		margin-top: 100px;
+	}
+	.main-slide-container {
+		position: relative;
+		width: 100%;
+		height: 200px;
+		/*   background:red; */
+		margin-top: 50px;
+	}
+	.main-slide {
+		width: 100%;
+		height: 80%;
+		animation: fade 1s;
+	}
+	.prev, .next {
+		color: #fff;
+		position: absolute;
+		top: 50%;
+		font-weight: bold;
+		font-size: 20px;
+		cursor: pointer;
+		transition: all .5s;
+		padding: 5px 10px;
+		border-radius: 0px 5px 5px 0px;
+	}
+	.next {
+		right: 0;
+		border-radius: 5px 0px 0px 5px;
+	}
+	.prev:hover, .next:hover {
+		background-color: rgba(0, 0, 0, .5);
+	}
+	.main-pagers {
+		position: absolute;
+		bottom: 0;
+		text-align: center;
+		width: 100%;
+	}
+	.main-pagers div {
+		display: inline-block;
+		padding: 10px;
+		cursor: pointer;
+		border-radius: 50%;
+		background-color: #eee;
+	}
 }
 /* 로그인, 회원가입 모달팝업 부분 */
-
 .modal-content {
 	width: 300px;
 	height: 382px;
@@ -505,98 +527,114 @@ margin-top: 100px;
 }
 
 #signinForm {
-  background: #eee;
-  width: 300px; 
-  height:382px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.2);
+	background: #eee;
+	width: 300px;
+	height: 382px;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.2);
 }
 
 #signinForm:after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 1px;
-  width: 100px;
-  left: 20%;
-  
-  top: 0;
+	content: "";
+	display: block;
+	position: absolute;
+	height: 1px;
+	width: 100px;
+	left: 20%;
+	top: 0;
 }
 
 #signinForm:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 8px;
-  height: 5px;
-  border-radius: 50%;
-  left: 34%;
-  top: -7px;
-  box-shadow: 0 0 6px 4px #fff;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 8px;
+	height: 5px;
+	border-radius: 50%;
+	left: 34%;
+	top: -7px;
+	box-shadow: 0 0 6px 4px #fff;
 }
 /*하얀줄 부분*/
 .inset {
-  padding: 20px;
-  
+	padding: 20px;
 }
 
 #signinForm h1 {
-  font-size: 25px;
-  text-shadow: 0 1px 0 black;
-  text-align: center;
-  padding: 25px 0;
-  border-bottom: 5px solid #ffffff;
-  position: relative;
-  
+	font-size: 25px;
+	text-shadow: 0 1px 0 black;
+	text-align: center;
+	padding: 25px 0;
+	border-bottom: 5px solid #ffffff;
+	position: relative;
 }
 
 #signinForm h1:after {
-  content: "";
-  display: block;
-  width: 250px;
-  height: 100px;
-  position: absolute;
-  top: 0;
-  left: 50px;
-  pointer-events: none;
-  transform: rotate(70deg);
-  background: linear-gradient(50deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0));
+	content: "";
+	display: block;
+	width: 250px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	left: 50px;
+	pointer-events: none;
+	transform: rotate(70deg);
+	background: linear-gradient(50deg, rgba(255, 255, 255, 0.15),
+		rgba(0, 0, 0, 0));
 }
 
-.inset input[type=text],
-.inset input[type=password] {
-  width: 100%;
-  padding: 8px 5px;
-  background: white;
-  border: 1px solid #222;
-  box-shadow: white;
-  border-radius: 0.3em;
-  margin-bottom: 20px;
+.inset input[type=text], .inset input[type=password] {
+	width: 100%;
+	padding: 8px 5px;
+	background: white;
+	border: 1px solid #222;
+	box-shadow: white;
+	border-radius: 0.3em;
+	margin-bottom: 20px;
 }
 
 .signin-container input[type=submit] {
-  padding: 10px 110px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
-  border-radius: 0.3em;
-  background: #FFFFFF;
-  float: right;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 13px;
-
+	padding: 10px 110px;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px
+		rgba(255, 255, 255, 0.1);
+	border-radius: 0.3em;
+	background: #FFFFFF;
+	float: right;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 13px;
 }
 
-.signin-container{
-  padding: 0 20px 20px 20px;
+.signin-container {
+	padding: 0 20px 20px 20px;
 }
 /*회원가입 모달 */
 .signup-container input[type=submit] {
-  padding: 10px 20px 10px 160px;
+	padding: 10px 20px 10px 160px;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 0.3em;
+	background: #FFFFFF;
+	float: right;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.signup-container {
+	padding: 5px 20px 20px 20px;
+}
+
+
+/*회원가입 모달 */
+.signup-container input[type=submit] {
+  padding: 10px 90px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  text-align: right;
   border-radius: 0.3em;
   background: #FFFFFF;
   float: right;
@@ -605,12 +643,14 @@ margin-top: 100px;
   font-size: 13px;
 }
 .signup-container{
-	padding: 5px 20px 20px 20px;
+   padding: 5px 20px 20px 20px;
+   
 }
-
-
-
-/***********************************************************************************************/
-/*********************************************마이페이지**********************************************/
-/***********************************************************************************************/
-
+.social-login-types{
+   width: 260px;
+   height: 40px;
+}
+.social-login-types{
+   padding: 52px 20px 56px 18px;
+   
+}
