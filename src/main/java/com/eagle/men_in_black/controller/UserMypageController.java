@@ -29,11 +29,16 @@ public class UserMypageController {
 			
 			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
-			List<UserMypageDto> couponList = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
+			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
+			List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(userdto.getUSER_ID());
+			List<UserMypageDto> qnaList = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+			
 			
 			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
 			mav.addObject("point",mypageDto);
-			mav.addObject("coupon",couponList);
+			mav.addObject("coupon",coupon);
+			mav.addObject("buyList",buyList);
+			mav.addObject("qnaList",qnaList);
 			return mav;
 			
 		}
@@ -53,15 +58,18 @@ public class UserMypageController {
 	}
 	// 구매목록 
 	@RequestMapping("buylist.mib")
-	public ModelAndView buylist(){
+	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
 		
 		loger.debug("=Controller ===========================");
 		loger.debug("codeMSvc === " + "앙 기무띠~");
 		loger.debug("============================");
 		
-		ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
-		mav.addObject("msg", "김옥지");
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(userdto.getUSER_ID());
 		
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
+		mav.addObject("buyList",buyList);
 		return mav;
 		
 	}
@@ -110,15 +118,13 @@ public class UserMypageController {
 	
 	// 내가쓴 게시물 보기  Q&A
 	@RequestMapping("myboardqna.mib")
-	public ModelAndView myboardqna(){
+	public ModelAndView myboardqna(HttpServletRequest res, HttpServletResponse rep){
 		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> qnaList = userMypageSvc.do_search_qna(userdto.getUSER_ID());
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Q&A");
-		mav.addObject("msg", "김옥지");
-		
+		mav.addObject("qnaList",qnaList);
 		return mav;
 		
 	}

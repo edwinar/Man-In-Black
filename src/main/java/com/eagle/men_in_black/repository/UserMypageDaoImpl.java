@@ -28,6 +28,18 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.selectList(statement,id);
 	}
 
+	@Override
+	public List<UserMypageDto> do_search_buylist(String id) {
+		String statement = namespace+".do_search_buylist";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_qna(String id) {
+		String statement = namespace+".do_search_qna";
+		return sqlSession.selectList(statement,id);
+	}
+
 	
 
 }

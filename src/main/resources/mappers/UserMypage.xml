@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.UserMypage">
-
+<!-- 메인 포인트 --> 
 <select id="do_search_point" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	SELECT 
 		POINT_FINAL
@@ -16,7 +16,7 @@
 	WHERE ROWNUM = 1
 
 </select>
-
+<!-- 메인 쿠폰  -->
 <select id="do_search_coupon" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	<![CDATA[  
 	SELECT 
@@ -30,6 +30,42 @@
 		AND COUP_LIMIT >  SYSDATE
 		)
 	WHERE ROWNUM <=3
+	]]> 
+</select>
+<!-- 구매한 상품  -->
+<select id="do_search_buylist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+	<![CDATA[  
+SELECT 
+	  A.SEL_SEQ, 
+	  A.PRO_SEQ, 
+	  A.SEL_NUM,
+	  A.SEL_TIME,
+	  A.FINAL_PRICE,
+	  C.PRO_NAME,
+	  A.DEL_SEQ, 
+	  A.SEL_SIZE, 
+	  A.SEL_COLOR, 
+	  B.DEL_STEP,
+	  C.SUB_ITEM  
+FROM SALES A JOIN  DELIVERY B 
+ON A.USER_ID = B.USER_ID AND A.PRO_SEQ=B.PRO_SEQ
+	JOIN PRODUCT C
+    ON A.PRO_SEQ = C.PRO_SEQ
+    WHERE A.USER_ID = #{id} 
+ORDER BY A.SEL_SEQ DESC
+	]]> 
+</select>
+
+<select id="do_search_qna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+	<![CDATA[  
+SELECT 
+	  A.PRO_SEQ, 
+	  B.PRO_NAME, 
+	  A.QNA_TITLE, 
+	  A.QNA_STEP	
+FROM QNA A JOIN PRODUCT B		
+ON A.PRO_SEQ = B.PRO_SEQ		
+WHERE A.USER_ID = #{id}
 	]]> 
 </select>
 

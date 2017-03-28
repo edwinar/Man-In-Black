@@ -32,6 +32,8 @@ public class UserMypageDto implements Serializable{
 	private	String	 QNA_TITLE;
 	private	int	 QNA_REF;
 	private	int	 REV_SEQ;
+	private	String	SUB_ITEM;
+	private	int	 SEL_NUM;
 	private	String	 REV_STEP;
 	private	String	 REV_TIME;
 	private	String	 REV_TITLE;
@@ -50,11 +52,39 @@ public class UserMypageDto implements Serializable{
 	private	int	 POINT;
 	private	int	 FINAL_PRICE;
 	private	String	 CANCLE;
-	
+	private	String SEL_TIME;
 	public UserMypageDto() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
+	public String getSEL_TIME() {
+		return SEL_TIME;
+	}
+
+
+	public void setSEL_TIME(String sEL_TIME) {
+		SEL_TIME = sEL_TIME;
+	}
+
+
+	public String getSUB_ITEM() {
+		return SUB_ITEM;
+	}
+
+	public void setSUB_ITEM(String sUB_ITEM) {
+		SUB_ITEM = sUB_ITEM;
+	}
+
+	public int getSEL_NUM() {
+		return SEL_NUM;
+	}
+
+	public void setSEL_NUM(int sEL_NUM) {
+		SEL_NUM = sEL_NUM;
+	}
+
+	
 	public String getADDRESS() {
 		return ADDRESS;
 	}
@@ -416,13 +446,15 @@ public class UserMypageDto implements Serializable{
 				+ POINT_TIME + ", POSTCODE=" + POSTCODE + ", PRO_CONTENT=" + PRO_CONTENT + ", PRO_NAME=" + PRO_NAME
 				+ ", PRO_PRICE=" + PRO_PRICE + ", PRO_SEQ=" + PRO_SEQ + ", PRO_SIZE=" + PRO_SIZE + ", QNA_SEQ="
 				+ QNA_SEQ + ", QNA_STEP=" + QNA_STEP + ", QNA_TIME=" + QNA_TIME + ", QNA_TITLE=" + QNA_TITLE
-				+ ", QNA_REF=" + QNA_REF + ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP + ", REV_TIME=" + REV_TIME
-				+ ", REV_TITLE=" + REV_TITLE + ", SCORE=" + SCORE + ", SEL_COLOR=" + SEL_COLOR + ", SEL_SEQ=" + SEL_SEQ
-				+ ", SEL_SIZE=" + SEL_SIZE + ", STORED_NAME=" + STORED_NAME + ", TEL=" + TEL + ", USER_ID=" + USER_ID
-				+ ", USER_NAME=" + USER_NAME + ", USER_PW=" + USER_PW + ", BAS_SEQ=" + BAS_SEQ + ", BAS_PRO_NUM="
-				+ BAS_PRO_NUM + ", COUPON=" + COUPON + ", POINT=" + POINT + ", FINAL_PRICE=" + FINAL_PRICE + ", CANCLE="
-				+ CANCLE + "]";
+				+ ", QNA_REF=" + QNA_REF + ", REV_SEQ=" + REV_SEQ + ", SUB_ITEM=" + SUB_ITEM + ", REV_STEP=" + REV_STEP
+				+ ", REV_TIME=" + REV_TIME + ", REV_TITLE=" + REV_TITLE + ", SCORE=" + SCORE + ", SEL_COLOR="
+				+ SEL_COLOR + ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE=" + SEL_SIZE + ", STORED_NAME=" + STORED_NAME
+				+ ", TEL=" + TEL + ", USER_ID=" + USER_ID + ", USER_NAME=" + USER_NAME + ", USER_PW=" + USER_PW
+				+ ", BAS_SEQ=" + BAS_SEQ + ", BAS_PRO_NUM=" + BAS_PRO_NUM + ", COUPON=" + COUPON + ", POINT=" + POINT
+				+ ", FINAL_PRICE=" + FINAL_PRICE + ", CANCLE=" + CANCLE + "]";
 	}
+
+	
 	
 	
 	

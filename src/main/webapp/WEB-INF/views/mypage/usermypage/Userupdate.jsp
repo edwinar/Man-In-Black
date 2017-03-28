@@ -31,18 +31,7 @@
 		</center>
 	</div>
 	<div>
-<%-- <input type="hidden" class="ppw" value="<%=userinfo.getUSER_PW()%>">
-<script type="text/javascript">
-	$(function() {
-		$(".checkbtn").click(function() {
-		if(($(".pw").val).equals($(".ppw").val)){
-			location.href ="UserupdateAfter.jsp";
-			}else{
-				alert("ㅗㅗ");
-			}
-		}
-		)
-	})
-</script> --%>
+
+</script> 
 </body>
 </html>

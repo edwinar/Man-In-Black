@@ -26,4 +26,18 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_coupon(id);
 	}
 
+
+	@Override
+	public List<UserMypageDto> do_search_buylist(String id) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_search_buylist(id);
+	}
+
+
+	@Override
+	public List<UserMypageDto> do_search_qna(String id) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_search_qna(id);
+	}
+
 }
