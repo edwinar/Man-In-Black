@@ -11,14 +11,15 @@
 body {
 	font-family: "Lato", sans-serif;
 }
-
-#contain {
+//마이페이지 콘테인
+#mainmaincontain {
 	margin: 0 auto;
 	width: 100%;
 	height: 350px;
 	margin-top: 100px;
 }
 
+//마이페이지 왼쪽다이브
 #divl {
 	width: 45%;
 	height: 300px;
@@ -27,7 +28,7 @@ body {
 	margin-left: 5%;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
-
+//마이페이지 오른쪽다이브
 #divr {
 	width: 45%;
 	height: 300px;
@@ -36,7 +37,7 @@ body {
 	margin-left: 5%;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
-
+//마이페이지 테이블 공간 다이브
 #boarddiv {
 	width: 100%;
 	display: inline-block;
@@ -45,7 +46,7 @@ body {
 	margin-left: 45px;
 	margin-top: 50px
 }
-
+//마이페이지
 #divl .head {
 	font-weight: 900;
 	font-size: 30px;
@@ -54,7 +55,7 @@ body {
 	min-height: 60px;
 	line-height: 50px;
 }
-
+//마이페이지
 #divr .head {
 	font-weight: 900;
 	font-size: 30px;
@@ -64,19 +65,8 @@ body {
 	line-height: 50px;
 }
 
-/* .cta {
-	width: 100%;
-	height: 50px;
-	margin: 0 auto;
-	background: #FDA202;
-	text-align: center;
-	text-transform: uppercase;
-	line-height: 50px;
-	font-size: 15px;
-	color: #171A1D;
-	font-weight: 900;
-} */
 
+//마이페이지 페이징 처리 공간
 .parea {
 	border-bottom: 5px solid #696969;
 }
@@ -85,23 +75,14 @@ td, th {
 	text-align: center;
 }
 
-/* #iseqchart th {
-	border: 1px solid #333;
-	padding: 3px 6px;
-}
-
-#iseqchart td {
-	border: 1px solid #999;
-	padding: 3px 6px;
-} */
-
+//마이페이지 메인 테이블 조절
 @media only screen and (max-width: 1600px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
 	}
 }
-
+//마이페이지 메인 테이블 조절
 @media only screen and (max-width: 1300px) {
 	#boardone, .boardone {
 		display: none;
@@ -112,7 +93,7 @@ td, th {
 		visibility: hidden;
 	}
 }
-
+//마이페이지 메인 테이블 조절
 @media only screen and (max-width: 1100px) {
 	#boardone, .boardone {
 		display: none;
@@ -141,7 +122,7 @@ td, th {
 </center>
 
 	<div>
-		<div id="contain">
+		<div id="maincontain">
 			<div id="divl">
 				<div class="head parea">사용가능한 쿠폰</div>
 
