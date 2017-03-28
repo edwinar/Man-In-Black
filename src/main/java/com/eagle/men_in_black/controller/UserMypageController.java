@@ -93,6 +93,38 @@ public class UserMypageController {
 		return mav;
 		
 	}
+	
+	// 내가쓴 게시물 보기  Q&A
+	@RequestMapping("myboardqna.mib")
+	public ModelAndView myboardqna(){
+		
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Q&A");
+		mav.addObject("msg", "김옥지");
+		
+		return mav;
+		
+	}
+	
+	//내가쓴 게시물 보기  리뷰
+	@RequestMapping("myboardreview.mib")
+	public ModelAndView myboardreview(){
+		
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
+		mav.addObject("msg", "김옥지");
+		
+		return mav;
+		
+	}
+	
+	
 	// 쿠폰 그리고 적립금 
 	@RequestMapping("coupon_Mileage.mib")
 	public ModelAndView coupon_Mileage(){
@@ -107,6 +139,7 @@ public class UserMypageController {
 		return mav;
 		
 	}
+
 	
 	
 }

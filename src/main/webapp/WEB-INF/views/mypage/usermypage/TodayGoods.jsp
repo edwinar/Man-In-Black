@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:::Outer:::</title>
+<title>::오늘본 상품::</title>
 <style>
 .thumbnail {
 	width: 100%;
@@ -27,7 +27,7 @@
 				<a href="todayGoods.mib">오늘본 상품</a>
 			</h4>
 			<h3>MY Order</h3>
-			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+			<h4>회원님이 M.I.B에서 오늘 보신 상품입니다.</h4>
 		</div>
 	</center>
 

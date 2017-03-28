@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>::회원정보 수정::</title>
 </head>
 <body>
 <center>
@@ -13,7 +13,7 @@
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="userup.mib">회원정보수정</a></h4>
 <h3>MY Order</h3>
-<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+<h4>회원님의 정보를 수정하세요</h4>
 </div>
 </center>
 	<div style="width: 100%; height: 700px;">

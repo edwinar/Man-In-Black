@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>마이 페이지</title>
+<title>::마이 페이지::</title>
 <style type="text/css">
 body {
 	font-family: "Lato", sans-serif;
@@ -16,10 +16,10 @@ body {
 	margin: 0 auto;
 	width: 100%;
 	height: 350px;
-	margin-top: 150px;
+	margin-top: 100px;
 }
 
-#table {
+#divl {
 	width: 45%;
 	height: 300px;
 	display: inline-block;
@@ -28,7 +28,7 @@ body {
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
 
-#table1 {
+#divr {
 	width: 45%;
 	height: 300px;
 	display: inline-block;
@@ -37,7 +37,7 @@ body {
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
 
-#bo {
+#boarddiv {
 	width: 100%;
 	display: inline-block;
 	float: left; //
@@ -46,7 +46,7 @@ body {
 	margin-top: 50px
 }
 
-#table .head {
+#divl .head {
 	font-weight: 900;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -55,7 +55,7 @@ body {
 	line-height: 50px;
 }
 
-#table1 .head {
+#divr .head {
 	font-weight: 900;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -64,7 +64,7 @@ body {
 	line-height: 50px;
 }
 
-.cta {
+/* .cta {
 	width: 100%;
 	height: 50px;
 	margin: 0 auto;
@@ -75,9 +75,9 @@ body {
 	font-size: 15px;
 	color: #171A1D;
 	font-weight: 900;
-}
+} */
 
-.yellow {
+.parea {
 	border-bottom: 5px solid #696969;
 }
 
@@ -85,7 +85,7 @@ td, th {
 	text-align: center;
 }
 
-#iseqchart th {
+/* #iseqchart th {
 	border: 1px solid #333;
 	padding: 3px 6px;
 }
@@ -93,36 +93,36 @@ td, th {
 #iseqchart td {
 	border: 1px solid #999;
 	padding: 3px 6px;
-}
+} */
 
-@media only screen and (max-width: 1200px) {
-	#turnover, .turnover {
-		display: none;
-		visibility: hidden;
-	}
-}
-
-@media only screen and (max-width: 920px) {
-	#turnover, .turnover {
-		display: none;
-		visibility: hidden;
-	}
-	#yearhigh, .yearhigh {
+@media only screen and (max-width: 1600px) {
+	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
 	}
 }
 
-@media only screen and (max-width: 720px) {
-	#turnover, .turnover {
+@media only screen and (max-width: 1300px) {
+	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
 	}
-	#yearhigh, .yearhigh {
+	#boardtwo, .boardtwo {
 		display: none;
 		visibility: hidden;
 	}
-	#dailyhigh, .dailyhigh {
+}
+
+@media only screen and (max-width: 1100px) {
+	#boardone, .boardone {
+		display: none;
+		visibility: hidden;
+	}
+	#boardtwo, .boardtwo {
+		display: none;
+		visibility: hidden;
+	}
+	#boardthree, .boardthree {
 		display: none;
 		visibility: hidden;
 	}
@@ -136,14 +136,14 @@ td, th {
 			<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a>
 		</h4>
 		<h3>MY Order</h3>
-		<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+		<h4>회원님의 마이페이지입니다.</h4>
 	</div>
 </center>
-	<h1>마이페이지 메인</h1>
+
 	<div>
 		<div id="contain">
-			<div id="table">
-				<div class="head yellow">사용가능한 쿠폰</div>
+			<div id="divl">
+				<div class="head parea">사용가능한 쿠폰</div>
 
 				<div class="offer" align="center">
 					<table style="text-align: center;">
@@ -161,8 +161,8 @@ td, th {
 				</div>
 
 			</div>
-			<div id="table1" align="center" style="position: relative;">
-				<div class="head yellow">적립금</div>
+			<div id="divr" align="center" style="position: relative;">
+				<div class="head parea">적립금</div>
 				<p align="center">현재0원</p>
 				<table style="text-align: center;">
 					<col width="150px">
@@ -193,96 +193,96 @@ td, th {
 
 
 
-		<div id="bo">
+		<div id="boarddiv">
 			<p style="background-color: #696969">주문내용</p>
 			<table class="table">
-				<col width="10%">
-				<col width="5%">
-				<col width="30%">
-				<col width="5%">
-				<col width="5%">
+				<col width="9%">
+				<col width="7%">
+				<col width="23%">
+				<col width="6%">
+				<col width="6%">
 				<col width="7%">
 				<col width="7%">
 				<col width="7%">
+				<col width="9%">
+				<col width="12%">
 				<col width="7%">
-				<col width="10%">
-				<col width="10%">
 				<tr height="40px">
-					<th class="turnover">이미지</th>
-					<th class="turnover">분류</th>
+					<th class="boardone">이미지</th>
+					<th class="boardone">분류</th>
 					<th>상품이름1234512</th>
-					<th class="turnover">수량</th>
+					<th class="boardone">수량</th>
 					<th>재고</th>
-					<th class="yearhigh">판매가</th>
-					<th class="yearhigh">쿠폰</th>
-					<th class="yearhigh">적립금</th>
+					<th class="boardtwo">판매가</th>
+					<th class="boardtwo">쿠폰</th>
+					<th class="boardtwo">적립금</th>
 					<th>결제금액</th>
-					<th class="#dailyhigh">판매일</th>
+					<th class="#boardthree">판매일</th>
 					<th>상태</th>
 				</tr>
 				<tr height="30px">
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2" valign="middle">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2" valign="middle">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
-					<th class="yearhigh" rowspan="2">쿠폰</th>
-					<th class="yearhigh" rowspan="2">적립금</th>
+					<th class="boardtwo" rowspan="2" valign="middle">판매가</th>
+					<th class="boardtwo" rowspan="2" valign="middle">쿠폰</th>
+					<th class="boardtwo" rowspan="2" valign="middle">적립금</th>
+					<td rowspan="2" valign="middle">결제금액</td>
+					<th class="#boardthree" rowspan="2" valign="middle">판매일</th>
+					<td rowspan="2" valign="middle">상태</td>
+				</tr>
+				<tr>
+					<td>옵션1 옵션 2</td>
+				</tr>
+				<tr height="30px">
+					<td class="boardone" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2">분류</td>
+					<td>상품이름</td>
+					<td class="boardone" rowspan="2">수량</td>
+					<td rowspan="2">재고</td>
+					<th class="boardtwo" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">쿠폰</th>
+					<th class="boardtwo" rowspan="2">적립금</th>
 					<td rowspan="2">결제금액</td>
-					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<th class="#boardthree" rowspan="2">판매일</th>
 					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
 					<td>옵션1 옵션 2</td>
 				</tr>
 				<tr height="30px">
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
-					<th class="yearhigh" rowspan="2">쿠폰</th>
-					<th class="yearhigh" rowspan="2">적립금</th>
+					<th class="boardtwo" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">쿠폰</th>
+					<th class="boardtwo" rowspan="2">적립금</th>
 					<td rowspan="2">결제금액</td>
-					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<th class="#boardthree" rowspan="2">판매일</th>
 					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
 					<td>옵션1 옵션 2</td>
 				</tr>
 				<tr height="30px">
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
-					<th class="yearhigh" rowspan="2">쿠폰</th>
-					<th class="yearhigh" rowspan="2">적립금</th>
+					<th class="boardtwo" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">쿠폰</th>
+					<th class="boardtwo" rowspan="2">적립금</th>
 					<td rowspan="2">결제금액</td>
-					<th class="#dailyhigh" rowspan="2">판매일</th>
-					<td rowspan="2">상태</td>
-				</tr>
-				<tr>
-					<td>옵션1 옵션 2</td>
-				</tr>
-				<tr height="30px">
-					<td class="turnover" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
-					<th class="yearhigh" rowspan="2">쿠폰</th>
-					<th class="yearhigh" rowspan="2">적립금</th>
-					<td rowspan="2">결제금액</td>
-					<th class="#dailyhigh" rowspan="2">판매일</th>
+					<th class="#boardthree" rowspan="2">판매일</th>
 					<td rowspan="2">상태</td>
 				</tr>
 				<tr>
@@ -293,7 +293,7 @@ td, th {
 		<br> <br> <br> <br> <br> <br>
 
 
-		<div id="bo">
+		<div id="boarddiv">
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
 				<col width="5%">
@@ -303,59 +303,58 @@ td, th {
 				<col width="10%">
 				<col width="10%">
 				<tr>
-					<th class="turnover">이미지</th>
-					<th class="turnover">분류</th>
+					<th class="boardone" >이미지</th>
+					<th class="boardone" >분류</th>
 					<th>상품이름1234512</th>
-					<th class="turnover">수량</th>
-					<th>재고</th>
-					<th class="yearhigh">판매가</th>
-
+					<th class="boardone" >수량</th>
+					<th >재고</th>
+					<th class="boardtwo" >판매가</th>
 				</tr>
 				<tr>
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2" rowspan="2">판매가</th>
 				</tr>
 				<tr>
 					<td>옵션 1 옵션 2</td>
 				</tr>
 
 				<tr>
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">판매가</th>
 				</tr>
 				<tr>
 					<td>옵션 1 옵션 2</td>
 				</tr>
 				<tr>
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">판매가</th>
 				</tr>
 				<tr>
 					<td>옵션 1 옵션 2</td>
 				</tr>
 				<tr>
-					<td class="turnover" rowspan="2"><img alt="not found"
+					<td class="boardone" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="turnover" rowspan="2">분류</td>
+					<td class="boardone" rowspan="2">분류</td>
 					<td>상품이름</td>
-					<td class="turnover" rowspan="2">수량</td>
+					<td class="boardone" rowspan="2">수량</td>
 					<td rowspan="2">재고</td>
-					<th class="yearhigh" rowspan="2">판매가</th>
+					<th class="boardtwo" rowspan="2">판매가</th>
 				</tr>
 				<tr>
 					<td>옵션 1 옵션 2</td>
@@ -365,7 +364,7 @@ td, th {
 
 
 
-		<div id="bo">
+		<div id="boarddiv">
 			<p style="background-color: #696969">Q&A</p>
 			<table class="table">
 
