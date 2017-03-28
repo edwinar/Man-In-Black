@@ -8,34 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  	<link rel="stylesheet" href="../css/Mib.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<style>
-	body{padding-top: 102px;}
-	#wrap {
-	    margin: 0 auto;
-	    padding-top: 1px;
-	}
-	.header{
-	font-weight: bold;
-
-	}
-	.footer{
-	text-align: center;
-	}
-    .header{
-     padding-top: 3px;
-    }
-	#wrap .container {
-	    width: 100%;
-	        background: white;
-	}
-	</style>
+	
 </head>
 <body>
-    <div id="wrap">
-        <div class="container">
+    <div id="layoutWrap">
+        <div class="container"> <!-- 부트스트랩 -->
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 header">
                     <tiles:insertAttribute name="header" />
