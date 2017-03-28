@@ -55,6 +55,15 @@
             </tbody>
 
         </table>
-
+	<div class="row" align="center">
+			<p>
+				<a href="#" class="btn btn-default" role="button"><</a> 
+				<a href="#"class="btn btn-default" role="button">1</a> 
+					<a href="#"class="btn btn-default" role="button">2</a> 
+					<a href="#"class="btn btn-default" role="button">3</a> 
+					<a href="#"class="btn btn-default" role="button">4</a> 
+					<a href="#"class="btn btn-default" role="button">></a>
+			</p>
+		</div>
 </body>
 </html>
