@@ -1,5 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+UserMypageDto mypageDto = (UserMypageDto)request.getAttribute("point");
+List<UserMypageDto> coupon= (List<UserMypageDto>)request.getAttribute("coupon");
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -129,21 +136,21 @@ td, th {
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
+						<%for(int i = 0; i<coupon.size(); i++){ %>
 						<tr>
-							<th style="text-align: center;">쿠폰명</th>
-							<th style="text-align: center;">할인 금액</th>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME() %></th>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE() %></th>
 						</tr>
-						<tr>
-							<td>생일푹하 쿠폰</td>
-							<td>1000원할인</td>
-						</tr>
+						<%} %>
+						
+						
 					</table>
 				</div>
 
 			</div>
 			<div id="divr" align="center" style="position: relative;">
 				<div class="head parea">적립금</div>
-				<p align="center">현재0원</p>
+				<p align="center">현재<%=mypageDto.getPOINT_FINAL() %></p>
 				<table style="text-align: center;">
 					<col width="150px">
 					<col width="200px%">

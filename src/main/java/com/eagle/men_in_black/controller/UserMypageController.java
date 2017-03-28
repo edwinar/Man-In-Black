@@ -1,25 +1,39 @@
 package com.eagle.men_in_black.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.model.MainDto;
+import com.eagle.men_in_black.model.UserMypageDto;
+import com.eagle.men_in_black.service.UserMypageSvc;
+
 @Controller
 public class UserMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
-	// 회원정보수정 
+	
+	@Autowired
+	private UserMypageSvc userMypageSvc;
+	
+	// 마이페이지 메인
 		@RequestMapping("mymain.mib")
-		public ModelAndView mymain(){
+		public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
 			
-			loger.debug("=Controller ===========================");
-			loger.debug("codeMSvc === " + "앙 기무띠~");
-			loger.debug("============================");
+			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
+			List<UserMypageDto> couponList = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
 			
 			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
-			mav.addObject("msg", "김옥지");
-			
+			mav.addObject("point",mypageDto);
+			mav.addObject("coupon",couponList);
 			return mav;
 			
 		}
