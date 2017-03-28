@@ -5,6 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::B&A:::</title>
+<style type="text/css">
+/* 베스트 상품 부분, 카테고리부분 */
+.thumbnail{
+ width: 100%;
+}
+.thumbnail{
+	opacity: 1;
+}
+.thumbnail:hover{
+	opacity: 0.5;
+}
+</style>
 </head>
 <body>
 

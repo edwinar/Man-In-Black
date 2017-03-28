@@ -49,20 +49,24 @@ public class MainController {
 	@RequestMapping("loginCheck.mib")
 	public ModelAndView loginCheck(HttpServletRequest res){
 		
-		String id = res.getParameter("ID");
-		MainDto dto =  mainSvc.do_search_pw(id);
+		String id = res.getParameter("id");
+		String pwd = res.getParameter("pwd");
 		
+		MainDto dto =  mainSvc.do_search_pw(id);
 		ModelAndView mav = new ModelAndView("main/Main");
 		
 		if(dto!=null){
-			mav.addObject("userDto", dto);
-				
+			if(pwd.equals(dto.getUSER_PW())){
+				// 로그인 됬을 때 
+				res.getSession().setAttribute("LoginInfo", dto);
+			}else{
+				// 비밀번호 틀렸을 때 
+				mav.addObject("LoginInfo", "NotPwd");
+			}
 		}else{
-			MainDto nodto = new MainDto();
-			nodto.setUSER_ID("NoMember");
-			mav.addObject("userDto", nodto);
+			// 로그인 안됬을 때 
+			mav.addObject("LoginInfo", "NoMember");
 		}
-		
 		
 		return mav;		
 	}

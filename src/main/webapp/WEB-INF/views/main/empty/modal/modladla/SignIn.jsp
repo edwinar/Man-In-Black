@@ -11,7 +11,7 @@
   <h1>MEN IN BLACK</h1>
   <div class="inset">
   <p style="margin-bottom: -13px; margin-top: 20px">
-    <input type="text" placeholder="아이디" name="ID" id="email">
+    <input type="text" placeholder="아이디" name="id" id="email">
   </p>
   <p>
     <input type="password" placeholder="비밀번호" name="pwd" id="pwd">
