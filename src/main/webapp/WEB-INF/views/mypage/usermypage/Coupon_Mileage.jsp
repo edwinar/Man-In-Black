@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>::쿠폰 & 적립금::</title>
 <style type="text/css">
 body {
 	font-family: "Lato", sans-serif; 
@@ -78,7 +78,7 @@ body {
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="coupon_Mileage.mib">쿠폰&적립금</a></h4>
 <h3>MY Order</h3>
-<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+<h4>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</h4>
 </div>
 </center>
 	<div id="contain">
