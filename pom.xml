@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.eagle.sist</groupId>
-  <artifactId>man-in-black</artifactId>
+  <groupId>com.sist.git</groupId>
+  <artifactId>spring_mybatis_web</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>man-in-black Maven Webapp</name>
+  <name>spring_mybatis_web Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <properties>
+<properties>
   <java-version>1.8</java-version>
-  
   <org.springframework-version>4.2.6.RELEASE</org.springframework-version>
         <org.aspectj-version>1.7.3</org.aspectj-version>
         <org.slf4j-version>1.6.6</org.slf4j-version>
@@ -40,8 +39,7 @@
     </repositories>
  
  
- 
- <dependencies> 
+ <dependencies>
  <!-- tiles 인클루드 같은거라고 보면됨  -->
  <!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
 <dependency>
@@ -49,6 +47,7 @@
     <artifactId>tiles-jsp</artifactId>
     <version>3.0.5</version>
 </dependency>
+ 
  <!-- gson -->
  <dependency>
     <groupId>com.google.code.gson</groupId>
@@ -265,13 +264,17 @@
 </dependency>
   
   <!-- MappingJacksonJsonView -->
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-	<dependency>
-	    <groupId>com.google.code.gson</groupId>
-	    <artifactId>gson</artifactId>
-	    <version>2.8.0</version>
-	</dependency>
-	
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+         
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
          
         <!-- MultipartHttpServletRequset -->
         <dependency>
@@ -333,9 +336,9 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <directory>${basedir}/target</directory>
-        <finalName>man-in-black</finalName>
+        <finalName>spring_mybatis_web</finalName>
         <plugins>
-            <plugin>   
+            <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>
                 <configuration>
