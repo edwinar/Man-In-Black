@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::오늘본 상품::</title>
 <style>
+
 .thumbnail {
 	width: 100%;
 }

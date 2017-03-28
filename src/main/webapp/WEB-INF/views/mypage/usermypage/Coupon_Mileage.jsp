@@ -6,18 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::쿠폰 & 적립금::</title>
 <style type="text/css">
+//쿠폰바디 폰트
 body {
 	font-family: "Lato", sans-serif; 
 }
-
-#contain {
+//쿠폰 콘테인 다이브 
+#couponcontain {
 	margin: 0 auto;
 	width: 100%;
 	height: 700px;
 	margin-top: 150px;
 }
-
-#table {
+//쿠폰 적립금 다이브
+#divl {
 	width: 45%;
 	height: 377px;
 	display: inline-block;
@@ -26,8 +27,8 @@ body {
 	//background: #171A1D;
 	margin-left: 45px;
 }
-
-#table .head {
+//쿠폰 적립금 다이브 헤드
+#divl .head {
 	font-weight: 900;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -37,38 +38,24 @@ body {
 }
 
 
-
-.cta {
+//페이징 처리 공간 
+.paging {
 	width: 100%;
 	height: 30px;
 	margin: 0 ;
-	/* background: #FDA202; */
 	text-align: center;
 	text-transform: uppercase;
 	line-height: 30px;
 	font-size: 15px;
-	/* color: #171A1D; */
 	font-weight: 900;
 	
 }
-
-.yellow {
+//쿠폰 적립금 라인 
+.gray {
 	border-bottom: 5px solid #696969;
 }
 
-#table.pro {
-	/* background: #15181B; */
-}
 
-#box_a {
-	margin-left: 86px;
-	float: left;
-	width: 90px;
-}
-
-#box_b {
-	float: left;
-}
 </style>
 </head>
 <body>
@@ -81,9 +68,9 @@ body {
 <h4>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</h4>
 </div>
 </center>
-	<div id="contain">
+	<div id="couponcontain">
 		<div id="table">
-			<div class="head yellow">사용가능한 쿠폰</div>
+			<div class="head gray">사용가능한 쿠폰</div>
 
 			<div class="offer" align="center">
 				<table style="text-align: center;">
@@ -103,7 +90,7 @@ body {
 			</div>
 		</div>
 		<div id="table" align="center" style=" position: relative;">
-			<div class="head yellow">적립금</div>
+			<div class="head gray">적립금</div>
 			<p align="center">현재0원</p>
 			<table style="text-align: center;">
 				<col width="150px">
@@ -130,7 +117,7 @@ body {
 				</tr>
 
 			</table>
-			<div class="cta" style="position:absolute; right:0px; bottom:0px">1 2 3 4 5</div>
+			<div class="paging" style="position:absolute; right:0px; bottom:0px">1 2 3 4 5</div>
 		</div>
 		
 	</div>

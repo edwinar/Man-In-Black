@@ -7,7 +7,8 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
-.ch {
+//체크박스 싸이즈 크게
+.chbox {
 	width: 20px;
 	height: 20px
 }
@@ -39,7 +40,7 @@ td, th {
 					<col width="10%">
 					<tr>
 						<th><input type="checkbox" id="allCheck"
-							style="width: 20px; height: 20px" ></th>
+							class="chbox"></th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
@@ -48,7 +49,7 @@ td, th {
 
 					<tr>
 						<td rowspan="2"><input type="checkbox" onclick="ty(1)"
-							value="10000" id="ch1" class="ch"></td>
+							value="10000" id="ch1" class="chbox"></td>
 						<td rowspan="2">1번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
@@ -60,7 +61,7 @@ td, th {
 					</tr>
 					<tr>
 						<td rowspan="2"><input type="checkbox" onclick="ty(2)"
-							value="20000" id="ch2" class="ch"></td>
+							value="20000" id="ch2" class="chbox"></td>
 						<td rowspan="2">2번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
@@ -72,7 +73,7 @@ td, th {
 					</tr>
 					<tr>
 						<td rowspan="2"><input type="checkbox" onclick="ty(3)"
-							value="30000" id="ch3" class="ch"></td>
+							value="30000" id="ch3" class="chbox"></td>
 						<td rowspan="2">3번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
@@ -84,7 +85,7 @@ td, th {
 					</tr>
 							<tr>
 						<td rowspan="2"><input type="checkbox" onclick="ty(4)"
-							value="40000" id="ch3" class="ch"></td>
+							value="40000" id="ch3" class="chbox"></td>
 						<td rowspan="2">4번</td>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>

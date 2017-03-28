@@ -7,10 +7,6 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
-.ch {
-	width: 20px;
-	height: 20px
-}
 
 td, th {
 	text-align: center;
