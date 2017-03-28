@@ -68,19 +68,6 @@ body {
 	}
 }
 
-.modal-content {
-	width: 300px;
-	height: 382px;
-}
-
-.modal-dialog {
-	width: 300px;
-	height: 382px;
-}
-
-.p-container {
-	color: black;
-}
 
 /* 마이페이지 메뉴 */
 
@@ -386,6 +373,251 @@ body {
   transition: all 0.45s ease-in;
 }
 
+/***********************************************************************************************/
+/*********************************************메인**********************************************/
+/***********************************************************************************************/
+
+#main-best-h1{
+margin-top: 150px;
+}
+.main-slide-container{
+  margin-top : 60px;
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+.main-slide{
+  width: 100%;
+  height: 100%;
+  animation: fade 1s;
+}
+
+.main-slide-content{
+	width: 100%;
+	height: 100%;
+}
+.prev,
+.next{
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  font-weight: bold;
+  font-size: 35px;
+  cursor: pointer;
+  transition: all .5s;
+  padding: 5px 10px;
+  border-radius: 0px 5px 5px 0px;
+}
+.next{
+  right:0;
+  border-radius: 5px 0px 0px 5px;
+}
+.prev:hover,
+.next:hover{
+  background-color: #eee;
+  color: black;
+}
+.main-pagers{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.main-pagers div{
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #eee;
+}
+/*밑에 동그라미 색깔 바뀌는거 */
+.main-pagers-active{
+  background-color: rgba(0,0,0,.5) !important;
+}
+/*작아졌을때*/
+@media (max-width: 30em){
+#main-best-h1{
+margin-top: 100px;
+}
+
+.main-slide-container{
+  position: relative;
+  width: 100%;
+  height: 200px;
+/*   background:red; */
+  margin-top: 50px;
+}
+.main-slide{
+  width: 100%;
+  height: 80%;
+  animation: fade 1s;
+}
+.prev,
+.next{
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .5s;
+  padding: 5px 10px;
+  border-radius: 0px 5px 5px 0px;
+}
+.next{
+  right:0;
+  border-radius: 5px 0px 0px 5px;
+}
+.prev:hover,
+.next:hover{
+  background-color: rgba(0,0,0,.5);
+}
+.main-pagers{
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.main-pagers div{
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+}
+/* 로그인, 회원가입 모달팝업 부분 */
+
+.modal-content {
+	width: 300px;
+	height: 382px;
+}
+
+.modal-dialog {
+	width: 300px;
+	height: 382px;
+}
+
+/*버튼 글자색*/
+.signin-container {
+	color: black;
+}
+
+#signinForm {
+  background: #eee;
+  width: 300px; 
+  height:382px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.2);
+}
+
+#signinForm:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 100px;
+  left: 20%;
+  
+  top: 0;
+}
+
+#signinForm:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 5px;
+  border-radius: 50%;
+  left: 34%;
+  top: -7px;
+  box-shadow: 0 0 6px 4px #fff;
+}
+/*하얀줄 부분*/
+.inset {
+  padding: 20px;
+  
+}
+
+#signinForm h1 {
+  font-size: 25px;
+  text-shadow: 0 1px 0 black;
+  text-align: center;
+  padding: 25px 0;
+  border-bottom: 5px solid #ffffff;
+  position: relative;
+  
+}
+
+#signinForm h1:after {
+  content: "";
+  display: block;
+  width: 250px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 50px;
+  pointer-events: none;
+  transform: rotate(70deg);
+  background: linear-gradient(50deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0));
+}
+
+.inset input[type=text],
+.inset input[type=password] {
+  width: 100%;
+  padding: 8px 5px;
+  background: white;
+  border: 1px solid #222;
+  box-shadow: white;
+  border-radius: 0.3em;
+  margin-bottom: 20px;
+}
+
+.signin-container input[type=submit] {
+  padding: 10px 110px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
+  border-radius: 0.3em;
+  background: #FFFFFF;
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+
+}
+
+.signin-container{
+  padding: 0 20px 20px 20px;
+}
+/*회원가입 모달 */
+.signup-container input[type=submit] {
+  padding: 10px 20px 10px 160px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 0.3em;
+  background: #FFFFFF;
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+}
+.signup-container{
+	padding: 5px 20px 20px 20px;
+}
+
+/* 베스트 상품 부분, 카테고리부분 */
+.thumbnail{
+ width: 100%;
+}
+.thumbnail{
+	opacity: 1;
+}
+.thumbnail:hover{
+	opacity: 0.5;
+}
 
 
 
