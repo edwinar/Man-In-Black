@@ -40,4 +40,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_qna(id);
 	}
 
+
+	@Override
+	public List<UserMypageDto> do_search_basket(String id) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_search_basket(id);
+	}
+
 }

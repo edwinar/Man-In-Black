@@ -32,13 +32,14 @@ public class UserMypageController {
 			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
 			List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(userdto.getUSER_ID());
 			List<UserMypageDto> qnaList = userMypageSvc.do_search_qna(userdto.getUSER_ID());
-			
+			List<UserMypageDto> basket = userMypageSvc.do_search_qna(userdto.getUSER_ID());
 			
 			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
 			mav.addObject("point",mypageDto);
 			mav.addObject("coupon",coupon);
 			mav.addObject("buyList",buyList);
 			mav.addObject("qnaList",qnaList);
+			mav.addObject("basket",basket);
 			return mav;
 			
 		}
@@ -75,15 +76,15 @@ public class UserMypageController {
 	}
 	// 장바구니 
 	@RequestMapping("basketlist.mib")
-	public ModelAndView basketlist(){
+	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep){
 		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+
+		List<UserMypageDto> basket = userMypageSvc.do_search_qna(userdto.getUSER_ID());
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
-		mav.addObject("msg", "김옥지");
-		
+
+		mav.addObject("basket",basket);
 		return mav;
 		
 	}

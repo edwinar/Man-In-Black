@@ -55,7 +55,7 @@ ON A.USER_ID = B.USER_ID AND A.PRO_SEQ=B.PRO_SEQ
 ORDER BY A.SEL_SEQ DESC
 	]]> 
 </select>
-
+<!-- qna -->
 <select id="do_search_qna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	<![CDATA[  
 SELECT 
@@ -69,5 +69,21 @@ WHERE A.USER_ID = #{id}
 	]]> 
 </select>
 
+<!-- 장바구니 -->
+<select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+	<![CDATA[  
+SELECT 
+  	  B.PRO_NAME, 
+  	  B.PRO_PRICE, 
+  	  A.PRO_SIZE, 
+  	  A.COLOR,
+  	  A.BAS_PRO_NUM,
+  	  B.SUB_ITEM
+FROM BASKET A JOIN PRODUCT B
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE A.USER_ID = #{id}
+ORDER BY A.BAS_SEQ DESC
+	]]> 
+</select>
 
 </mapper>

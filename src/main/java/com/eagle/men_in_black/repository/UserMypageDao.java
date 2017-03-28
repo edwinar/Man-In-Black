@@ -10,5 +10,7 @@ public interface UserMypageDao {
 	public List<UserMypageDto> do_search_coupon(String id);
 	public List<UserMypageDto> do_search_buylist(String id);
 	public List<UserMypageDto> do_search_qna(String id);
+	public List<UserMypageDto> do_search_basket(String id);
+	
 	
 }

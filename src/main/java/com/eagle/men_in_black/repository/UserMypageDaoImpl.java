@@ -40,6 +40,12 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.selectList(statement,id);
 	}
 
+	@Override
+	public List<UserMypageDto> do_search_basket(String id) {
+		String statement = namespace+".do_search_basket";
+		return sqlSession.selectList(statement,id);
+	}
+
 	
 
 }
