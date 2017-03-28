@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%> 
 <%
 	
-String loginInfo = (String)request.getAttribute("LoginInfo");
-System.out.println("로그인 정보 *************************************"+loginInfo);
+String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,6 +24,15 @@ System.out.println("로그인 정보 *************************************"+logi
 </style>
 </head>
 <body>
+<% if(loginInfo.equals("success")){ %>
+	<script type="text/javascript"> alert("로그인성공"); </script>
+<%}else if(loginInfo.equals("NotPwd")){ %>
+	<script type="text/javascript"> alert("비밀번호틀림"); </script>
+<%}else if(loginInfo.equals("NoMember")){ %>
+	<script type="text/javascript"> alert("ID가없음"); </script>
+<%}else if(loginInfo.equals("logout")){ %>
+<script type="text/javascript"> alert("로그아웃"); </script>
+<%} %>
 
 <div class="main-slide-container">
   <div class="main-slide">

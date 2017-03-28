@@ -11,15 +11,15 @@
 body {
 	font-family: "Lato", sans-serif;
 }
-//마이페이지 콘테인
-#mainmaincontain {
+
+#contain {
 	margin: 0 auto;
 	width: 100%;
-	height: 350px;
+	height: 330px;
 	margin-top: 100px;
 }
 
-//마이페이지 왼쪽다이브
+
 #divl {
 	width: 45%;
 	height: 300px;
@@ -28,7 +28,7 @@ body {
 	margin-left: 5%;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
-//마이페이지 오른쪽다이브
+
 #divr {
 	width: 45%;
 	height: 300px;
@@ -37,7 +37,7 @@ body {
 	margin-left: 5%;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 }
-//마이페이지 테이블 공간 다이브
+
 #boarddiv {
 	width: 100%;
 	display: inline-block;
@@ -46,7 +46,7 @@ body {
 	margin-left: 45px;
 	margin-top: 50px
 }
-//마이페이지
+
 #divl .head {
 	font-weight: 900;
 	font-size: 30px;
@@ -55,7 +55,7 @@ body {
 	min-height: 60px;
 	line-height: 50px;
 }
-//마이페이지
+
 #divr .head {
 	font-weight: 900;
 	font-size: 30px;
@@ -66,7 +66,6 @@ body {
 }
 
 
-//마이페이지 페이징 처리 공간
 .parea {
 	border-bottom: 5px solid #696969;
 }
@@ -75,14 +74,14 @@ td, th {
 	text-align: center;
 }
 
-//마이페이지 메인 테이블 조절
+
 @media only screen and (max-width: 1600px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
 	}
 }
-//마이페이지 메인 테이블 조절
+
 @media only screen and (max-width: 1300px) {
 	#boardone, .boardone {
 		display: none;
@@ -93,7 +92,7 @@ td, th {
 		visibility: hidden;
 	}
 }
-//마이페이지 메인 테이블 조절
+
 @media only screen and (max-width: 1100px) {
 	#boardone, .boardone {
 		display: none;
@@ -122,11 +121,11 @@ td, th {
 </center>
 
 	<div>
-		<div id="maincontain">
+		<div id="contain" onclick="location.href='coupon_Mileage.mib'">
 			<div id="divl">
 				<div class="head parea">사용가능한 쿠폰</div>
 
-				<div class="offer" align="center">
+				<div  align="center">
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
@@ -170,11 +169,12 @@ td, th {
 					</tr>
 				</table>
 			</div>
+			<button type="button" onclick="location.href='coupon_Mileage.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 
 
-		<div id="boarddiv">
+		<div id="boarddiv" onclick="location.href='buylist.mib'">
 			<p style="background-color: #696969">주문내용</p>
 			<table class="table">
 				<col width="9%">
@@ -270,11 +270,12 @@ td, th {
 					<td>옵션1 옵션 2</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 
 
-		<div id="boarddiv">
+		<div id="boarddiv" onclick="location.href='basketlist.mib'">
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
 				<col width="5%">
@@ -289,7 +290,7 @@ td, th {
 					<th>상품이름1234512</th>
 					<th class="boardone" >수량</th>
 					<th >재고</th>
-					<th class="boardtwo" >판매가</th>
+					<th class="boardtwo" >금액</th>
 				</tr>
 				<tr>
 					<td class="boardone" rowspan="2" rowspan="2"><img alt="not found"
@@ -341,11 +342,12 @@ td, th {
 					<td>옵션 1 옵션 2</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='basketlist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 
 
-		<div id="boarddiv">
+		<div id="boarddiv" onclick="location.href='myboard.mib'">
 			<p style="background-color: #696969">Q&A</p>
 			<table class="table">
 
@@ -386,6 +388,7 @@ td, th {
 					<td>답변완료</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='myboard.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 	</div>
