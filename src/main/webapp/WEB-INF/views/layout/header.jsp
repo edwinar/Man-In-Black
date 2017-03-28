@@ -4,64 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<style>
-
-@media ( min-width : 768px) { /* 최소 768 사이즈때 보이는 크기 */
-
-	.navbar-nav {
-		text-align: center;
-	}
-	.navbar-nav>li {
-		float: none;
-		display: inline-block;
-		width: 16%;
-	}
-	.dropdown:hover .dropdown-menu {
-		display: block;
-		margin-top: 0;
-	}
-	.container {
-		display: inline-block;
-		font-size: 11px;
-	}
-	.navbar .navbar-nav {
-		display: inline-block;
-		float: none;
-	}
-	.navbar .navbar-collapse {
-		text-align: center;
-	}
-}
-
-@media ( max-width : 768px) { /* 최대 768 사이즈때 보이는 크기 */
-	.topnav {
-		display: none;
-	}
-	.dropdown:hover .dropdown-menu {
-		text-align: center;
-	}
-}
-
-@media ( max-width :992px) { /* 최대 992 사이즈때 보이는 크기 */
-	.topnav {
-		display: none;
-	}
-}
-
-
-.modal-content{
-   width:300px;
-   height:382px;
-}
-.modal-dialog{
-   width:300px;
-   height:382px;
-}
-.p-container{
-   color: black;
-}
-</style>
 <script>
 $("#join-trigger").click(function(){
 	  $('#modal-login').modal('hide');
@@ -91,7 +33,7 @@ $("#join-trigger").click(function(){
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav id="hearder_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 
