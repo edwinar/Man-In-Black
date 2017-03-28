@@ -12,71 +12,42 @@ margin-top: 150px;
 .productExplain{
   margin-top : 130px;
   position: relative;
-  width: 50%;
+  width: 40%;
   height: 600px;
   float: right;
 }
 .slide-container{
   margin-top : 130px;
   position: relative;
-  width: 50%;
+  width: 60%;
   height: 600px;
   float: left;
-  
+}
+.sub-slide{
+	float: left;
+	width: 30%;
+	height: 600px;
+}
+.sub-photo{
+	width: 100%;
+	height: 33.333333333333333%;
+	opacity: 1;
+	border: double gray 0.1px;
+}
+.sub-photo:hover{
+	opacity: 0.5;
 }
 .slide{
-  width: 100%;
+  width: 70%;
   height: 100%;
-  animation: fade 1s;
+  float: right;
+  border-right: double gray 0.1px;
+  border-top: double gray 0.1px;
 }
 
 .content{
 	width: 100%;
 	height: 100%;
-}
-.prev,
-.next{
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all .5s;
-  padding: 5px 10px;
-  border-radius: 0px 5px 5px 0px;
-}
-.next{
-  right:0;
-  border-radius: 5px 0px 0px 5px;
-}
-.prev:hover,
-.next:hover{
-  background-color: rgba(0,0,0,.5);
-}
-.pagers{
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-}
-.pagers div{
-  display: inline-block;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: white;
-}
-.active{
-  background-color: rgba(0,0,0,.5) !important;
-}
-@keyframes fade{
-  0%{
-    opacity: .7;
-  }
-  100%{
-    opacity: 1;
-  }
 }
 /*작아졌을때*/
 @media (max-width: 30em){
@@ -464,31 +435,28 @@ table.responsive-table{
 <div>
 <div>
 	<div class="slide-container">
-	  <div class="slide">
-	
-	    <div class="content"><img src="../images/aa.jpg" height="100%" width="100%"></div>
-	
-	  </div>
-	
-	  <div class="slide">
-	
-	    <div class="content"><img src="../images/dd.jpg" height="100%" width="100%"></div>
-	
-	  </div>
-	
-	  <div class="slide">
-	
-	    <div class="content"><img src="../images/ss.jpg" height="100%" width="100%"></div>
-	
-	  </div>
-	  <div class="prev" onclick="plus(-1)">&#10094;</div>
-	  <div class="next" onclick="plus(1)">&#10095;</div>
-	
-	  <div class="pagers">
-	    <div class="active" onclick="current(0)"></div>
-	    <div onclick="current(1)"></div>
-	    <div onclick="current(2)"></div>
-	  </div>
+		<div class="sub-slide">
+			<div class="sub-photo">
+				<div class="content">
+		    		<img src="../images/aa.jpg" height="100%" width="100%">
+		    	</div>
+			</div>
+			<div class="sub-photo">
+				<div class="content">
+		    		<img src="../images/dd.jpg" height="100%" width="100%">
+		    	</div>
+			</div>
+			<div class="sub-photo">
+				<div class="content">
+		    		<img src="../images/ss.jpg" height="100%" width="100%">
+		    	</div>
+			</div>
+		</div>
+	  	<div class="slide">
+		    <div class="content">
+		    	<img src="../images/aa.jpg" height="100%" width="100%">
+		    </div>
+	  	</div>	
 	</div>
 
 	<div class="productExplain" align="center">
@@ -531,12 +499,12 @@ table.responsive-table{
 	</div>
 </div>
 
-<div>
+<!-- <div>
 <h1> </h1>
 <br></br>
 <hr style="border: solid black 1px; width: 100%;">
 <br></br>
-</div>
+</div> -->
 
 <div class="container">
 
@@ -565,7 +533,6 @@ table.responsive-table{
 
     <div class="tab__content">
       <table class="layout display responsive-table">
-      <col width="30%"/><col width="50%"/><col width="20%"/>
     <thead>
         <tr>
             <th colspan="3" style="text-align: center; height: 100px;">평점 : 
@@ -580,7 +547,7 @@ table.responsive-table{
     <tbody>
         <tr>
             <td class="organisationnumber">
-            	<img alt="" src="../images/LOVE.jpg" class="imgr">            
+            	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname">
             	<a href="#">
@@ -589,7 +556,7 @@ table.responsive-table{
 	            <img alt="" src="../images/scoreFull.png" class="star">
 	            <img alt="" src="../images/scoreFull.png" class="star">
 	            <img alt="" src="../images/scoreEmpty.png" class="star"> <br><br>
-	            Stet clita kasd gubergren, no sea takimata sanctus est
+	            <h4>Stet clita kasd gubergren, no sea takimata sanctus est</h4>
 	            </a>
 	        </td>
             <td class="actions">
@@ -599,7 +566,7 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">           
          	</td>
             <td class="organisationname">
 	            <a href="#">
@@ -608,7 +575,8 @@ table.responsive-table{
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreEmpty.png"> 
-	            <br/><br/>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat
+	            <br/><br/>
+	            <h4>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</h4>
 	            </a>
 	        </td>
             <td class="actions">
@@ -618,7 +586,7 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname">
 	            <a href="#">
@@ -627,7 +595,7 @@ table.responsive-table{
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            Vel illum dolore eu feugiat nulla facilisis at vero eros
+	            <h4>Vel illum dolore eu feugiat nulla facilisis at vero eros</h4>
 	            </a>
 	        </td>
             <td class="actions">
@@ -637,7 +605,7 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">           
          	</td>
             <td class="organisationname">
 	            <a href="#">
@@ -646,7 +614,7 @@ table.responsive-table{
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            Iusto odio dignissim qui blandit praesent luptatum zzril delenit
+	            <h4>Iusto odio dignissim qui blandit praesent luptatum zzril delenit</h4>
 	            </a>
 	        </td>
             <td class="actions">
@@ -656,7 +624,7 @@ table.responsive-table{
         </tr>
         <tr>
             <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr">            
+               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname">
 	            <a href="#">
@@ -665,7 +633,7 @@ table.responsive-table{
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreFull.png">
 	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam
+	            <h4>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam</h4>
 	            </a>
             </td>
             <td class="actions">
@@ -757,52 +725,5 @@ table.responsive-table{
 	</div>
 </div>
 </div>
-
-<script type="text/javascript">
-var slide = document.getElementsByClassName('slide'),
-pager = document.querySelectorAll('.pagers div'),
-i,
-slideIndex = 0;
-
-function showSlide() {
-"use strict";
-for (i = 0; i < slide.length; i = i + 1) {
-slide[i].style.display = "none";
-pager[i].classList.remove('active');
-}
-
-if (slideIndex >= slide.length) {slideIndex = 0; }
-slide[slideIndex].style.display = "block";
-pager[slideIndex].classList.add('active');
-slideIndex = slideIndex + 1;
-
-}
-
-showSlide();
-setInterval(showSlide,2000);
-function clickshow(n) {
-"use strict";
-var slide = document.getElementsByClassName('slide'),
-  pager = document.querySelectorAll('.pagers div');
-for (i = 0; i < slide.length; i = i + 1) {
-slide[i].style.display = "none";
-pager[i].classList.remove("active");
-}
-if (slideIndex >= slide.length) {slideIndex = 0; }
-if (slideIndex < 0) {slideIndex = slide.length - 1; }
-slide[slideIndex].style.display = "block";
-pager[slideIndex].classList.add("active");
-}
-
-function plus(n) {
-"use strict";
-clickshow(slideIndex += n);
-}
-
-function current(n) {
-"use strict";
-clickshow(slideIndex = n);
-}
-</script>
 </body>
 </html>
