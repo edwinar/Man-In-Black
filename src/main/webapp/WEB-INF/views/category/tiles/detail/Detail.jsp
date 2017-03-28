@@ -13,36 +13,37 @@ margin-top: 150px;
   margin-top : 130px;
   position: relative;
   width: 40%;
-  height: 600px;
+  height: 700px;
   float: right;
 }
 .slide-container{
   margin-top : 130px;
   position: relative;
   width: 60%;
-  height: 600px;
+  height: 700px;
   float: left;
 }
 .sub-slide{
 	float: left;
 	width: 30%;
-	height: 600px;
+	height: 95%;
+	border-top: double gray 0.1px;
+	border-left: double gray 0.1px;
 }
 .sub-photo{
 	width: 100%;
 	height: 33.333333333333333%;
 	opacity: 1;
-	border: double gray 0.1px;
+	border-bottom: double gray 0.1px;
 }
 .sub-photo:hover{
 	opacity: 0.5;
 }
 .slide{
   width: 70%;
-  height: 100%;
+  height: 95%;
   float: right;
-  border-right: double gray 0.1px;
-  border-top: double gray 0.1px;
+  border: double gray 0.1px;
 }
 
 .content{
@@ -50,15 +51,16 @@ margin-top: 150px;
 	height: 100%;
 }
 /*작아졌을때*/
-@media (max-width: 30em){
+@media (max-width: 80em){
 #outerH1{
-margin-top: 100px;
+margin-top: 150px;
 }
 .productExplain{
   margin:auto;
   position: relative;
   width: 100%;
   height: 600px;
+  float: none;
 }
 .slide-container{
   position: relative;
@@ -66,52 +68,32 @@ margin-top: 100px;
   height: 200px;
 /*   background:red; */
   margin: auto;
+  float: none;
+}
+.sub-slide{
+	/* float: none; */
+	width: auto;
+	height: auto;
+}
+.sub-photo{
+	width: auto;
+	height: 50;
+	opacity: 1;
+	border: double gray 0.1px;
+	float: none;
 }
 .slide{
-  width: 100%;
-  height: 80%;
-  animation: fade 1s;
-}
-.prev,
-.next{
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all .5s;
-  padding: 5px 10px;
-  border-radius: 0px 5px 5px 0px;
-}
-.next{
-  right:0;
-  border-radius: 5px 0px 0px 5px;
-}
-.prev:hover,
-.next:hover{
-  background-color: rgba(0,0,0,.5);
-}
-.pagers{
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-}
-.pagers div{
-  display: inline-block;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: white;
+  width: auto;
+  height: auto;
 }
 
 }
 
 /* 베스트 상품 부분 스타일*/
 .thumbnail{
- width: 80%;
- height: 600px;
+ width: 90%;
+ height: 100%;
+ float: right;
 }
 /* /////////////////////////////상세/리뷰/Q&A/////////////////////////// */
 /* .tab__content{
@@ -435,7 +417,7 @@ table.responsive-table{
 <div>
 <div>
 	<div class="slide-container">
-		<div class="sub-slide">
+		<div class="sub-slide visible-lg">
 			<div class="sub-photo">
 				<div class="content">
 		    		<img src="../images/aa.jpg" height="100%" width="100%">
@@ -460,14 +442,14 @@ table.responsive-table{
 	</div>
 
 	<div class="productExplain" align="center">
-		<div class="col-xs-12 col-lg-12" >
+		<div class="" >
 		    <div class="thumbnail">
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
 		      <div class="caption">
 		      	<div class="productName" style="height: 20%;">
 					<h2><b>창거니가 어제 입던 소매티</b></h2>
 				</div>
-				<div class="productDeail" style="width: 70%; height: 80%;" align="left">
+				<div class="productDeail" style="width: 80%; height: 80%;" align="left">
 			        <h4>창거니가 어제 입고 아직 안빨았음.<br/> 그의 채취가 그대로 담겨있음.</h4>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <p><h3 align="center">판매가</h3></p>
@@ -499,17 +481,16 @@ table.responsive-table{
 	</div>
 </div>
 
-<!-- <div>
+<div>
 <h1> </h1>
 <br></br>
 <hr style="border: solid black 1px; width: 100%;">
 <br></br>
-</div> -->
+</div>
 
 <div class="container">
-
+	
   <div class="tab-wrap">
-
     <!-- active tab on page load gets checked attribute -->
     <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
     <label for="tab1">상품상세</label>
@@ -523,11 +504,11 @@ table.responsive-table{
     <div class="tab__content">
      <center>
      <h1>상품상세 TEST</h1>
-     <img alt="..." src="../images/LOVE.jpg"><br/>
-     <img alt="..." src="../images/LOVE.jpg"><br/>
-     <img alt="..." src="../images/LOVE.jpg"><br/>
-     <img alt="..." src="../images/LOVE.jpg"><br/>
-     <img alt="..." src="../images/LOVE.jpg"><br/>
+     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
      </center>
     </div>
 
