@@ -539,10 +539,10 @@ $(document).ready(function () {
     </thead>
     <tbody>
         <tr>
-            <td class="organisationnumber">
+            <td class="organisationnumber" width="20%">
             	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
-            <td class="organisationname">
+            <td class="organisationname" width="60%">
             	<a href="#">
 	            <img alt="" src="../images/scoreFull.png" class="star">
 	            <img alt="" src="../images/scoreFull.png" class="star">
@@ -552,7 +552,7 @@ $(document).ready(function () {
 	            <h4>Stet clita kasd gubergren, no sea takimata sanctus est</h4>
 	            </a>
 	        </td>
-            <td class="actions">
+            <td class="actions" width="20%">
                         	작성자 : 전창건<br>
                          	작성일 : 2017-03-24
             </td>
