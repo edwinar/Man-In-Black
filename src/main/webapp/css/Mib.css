@@ -136,12 +136,29 @@ body {
 	background: #EEE;
 }
 
-.mypage-side-menu.click{
+.mypage-side-menu-click{
+	justify-content: center;
+	flex-wrap: wrap;
+	background: white;
+	height: 100%;
+	width: 225px;
+	position: fixed;
+	padding-top: 20px;
 	left: 0;
+	z-index: 10;
+	transform: translateX(-100%) translateZ(0);
+	transition: .3s;
+	overflow-y: auto;
+	will-change: transform;
+	-webkit-overflow-scrolling: touch;
+	display: block;
+	color: black;
+	padding-left: 35px;
+	border-radius: 3px;
 }
 
 @media screen and (max-width: 70em) {
-   .mypage-side-menu{
+   .mypage-side-menu-click{
     
     left: -20em;
   }
