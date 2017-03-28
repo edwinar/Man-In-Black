@@ -24,13 +24,10 @@ public class MainController {
 	@Autowired
 	private MainSvc mainSvc;
 	
+	// 메인 화면 
 	@RequestMapping("meninblack.mib")
 	public ModelAndView meninblack(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
-		
+				
 		ModelAndView mav = new ModelAndView("main/Main");
 		mav.addObject("msg", "김옥지");
 		
@@ -38,13 +35,10 @@ public class MainController {
 		
 	}
 	
+	// 로그인 모달 팝업 
 	@RequestMapping("login.mib")
 	public ModelAndView login(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
-		
+			
 		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignIn");
 		mav.addObject("msg", "김옥지");
 		
@@ -55,33 +49,26 @@ public class MainController {
 	@RequestMapping("loginCheck.mib")
 	public ModelAndView loginCheck(HttpServletRequest res){
 		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
-		
 		String id = res.getParameter("ID");
-
-		System.out.println("로그인한 아이디 넘어왔는지 ****************** == "+id);
-		
 		MainDto dto =  mainSvc.do_search_pw(id);
 		
 		ModelAndView mav = new ModelAndView("main/Main");
-		mav.addObject("userDto", dto);
-		System.out.println("dlfjstlqkfksandlsndlkansldknasldnsalk"+dto.getADDRESS());
-		System.out.println("dlfjstlqkfksandlsndlkansldknasldnsalk"+dto.getBIRTH());
-		System.out.println("dlfjstlqkfksandlsndlkansldknasldnsalk"+dto.getUSER_PW());
-		System.out.println("dlfjstlqkfksandlsndlkansldknasldnsalk"+dto.getUSER_NAME());
 		
-		return mav;
+		if(dto!=null){
+			mav.addObject("userDto", dto);
+				
+		}else{
+			MainDto nodto = new MainDto();
+			nodto.setUSER_ID("NoMember");
+			mav.addObject("userDto", nodto);
+		}
 		
+		
+		return mav;		
 	}
 	
 	@RequestMapping("signup.mib")
 	public ModelAndView signup(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
 		
 		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignUp");
 		mav.addObject("msg", "김옥지");
