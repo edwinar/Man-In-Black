@@ -69,6 +69,13 @@ body {
 }
 
 /* 마이페이지 메뉴 */
+.side-menusize{
+	width: 40px;
+	height: 35px;
+	background-color: red;
+	visibility: hidden;
+	
+}
 .mobile-only {
 	display: none;
 }
@@ -129,43 +136,20 @@ body {
 	background: #EEE;
 }
 
+.mypage-side-menu.click{
+	left: 0;
+}
+
 @media screen and (max-width: 70em) {
    .mypage-side-menu{
-    width: auto;
-    position: absolute;
-    top: 0;
-    left: -14em;
+    
+    left: -20em;
+  }
+  .side-menusize{
+  visibility: visible;
   }
 }
 
-@media ( max-width : 1000px) {
-	.mypage-side-menu.active ~ header input {
-		width: calc(50vw - 100px);
-	}
-}
-
-@media ( max-width : 767px) {
-	.mypage-side-menu.active ~ header .mypage-logo {
-		margin: 12px;
-		width: 40px;
-	}
-}
-
-
-@media ( max-width : 599px) {
-	.desktop-only {
-		display: none;
-	}
-	.mobile-only {
-		display: inherit;
-	}
-	.profile {
-		margin: 16px !important;
-	}
-	.mobile-input input {
-		display: initial;
-	}
-}
 
 /*오른쪽 메뉴 기본*/
 #right-aside {
@@ -627,6 +611,29 @@ body {
 	padding: 5px 20px 20px 20px;
 }
 
-/***********************************************************************************************/
-/*********************************************마이페이지**********************************************/
-/***********************************************************************************************/
+
+/*회원가입 모달 */
+.signup-container input[type=submit] {
+  padding: 10px 90px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  text-align: right;
+  border-radius: 0.3em;
+  background: #FFFFFF;
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+}
+.signup-container{
+   padding: 5px 20px 20px 20px;
+   
+}
+.social-login-types{
+   width: 260px;
+   height: 40px;
+}
+.social-login-types{
+   padding: 52px 20px 56px 18px;
+   
+}

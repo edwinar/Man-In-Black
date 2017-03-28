@@ -15,7 +15,10 @@ request.setCharacterEncoding("UTF-8");
 MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 
 %>
-<div class="mypage-side-menu wrap">
+<nav class="side-menusize" >
+<img src="../images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
+</nav>
+<div class="mypage-side-menu">
  <span class="mypage-logo">MyPage</span>
   <%if(dto.getUSER_ID().equals("adm")){ %>
  <ul>
@@ -62,15 +65,12 @@ $(function() {
       var $sidebarWidth = $('.mypage-side-menu').width();
       $('.mypage-side-menu').toggleClass('active');
 });
-/* 
+
 $(document).ready(function () {
-    $("li").each(function () {
-        $(this).click(function () {        	
-            $(this).addClass("active");                //클릭된 부분을 상단에 정의된 CCS인 selected클래스로 적용
-            $(this).siblings().removeClass("active");  //siblings:형제요소들,removeClass:선택된 클래스의 특성을 없앰
-        });
-    });
-}); */
+   $(".side-menusize").click(function(){
+	  $(". mypage-side-menu").toggleClass('click');
+   });
+});
 </script>
 
 </body>
