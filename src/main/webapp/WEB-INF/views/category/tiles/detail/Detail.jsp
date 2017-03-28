@@ -46,10 +46,11 @@ margin-top: 150px;
   border: double gray 0.1px;
 }
 
-.content{
+.content, .content1, .content2, .content3{
 	width: 100%;
 	height: 100%;
 }
+
 /*작아졌을때*/
 @media (max-width: 80em){
 #outerH1{
@@ -66,7 +67,6 @@ margin-top: 150px;
   position: relative;
   width: 100%;
   height: 200px;
-/*   background:red; */
   margin: auto;
   float: none;
 }
@@ -249,7 +249,6 @@ margin-top: 150px;
   border-radius: 6px;
 }
 
-
 /*이게 전체 크기 */
 /* .container {
   margin: 0 auto;
@@ -414,29 +413,42 @@ table.responsive-table{
 </style>
 </head>
 <body>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.content1').hover(function () {
+        $('#mainImage').attr("src", "../images/aa.jpg");
+    });
+    $('.content2').hover(function () {
+        $('#mainImage').attr("src", "../images/dd.jpg");
+    });
+    $('.content3').hover(function () {
+        $('#mainImage').attr("src", "../images/ss.jpg");
+    });
+});
+</script>
 <div>
 <div>
 	<div class="slide-container">
 		<div class="sub-slide visible-lg">
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content1">
 		    		<img src="../images/aa.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content2">
 		    		<img src="../images/dd.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content3">
 		    		<img src="../images/ss.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 		</div>
 	  	<div class="slide">
 		    <div class="content">
-		    	<img src="../images/aa.jpg" height="100%" width="100%">
+		    	<img src="../images/aa.jpg" height="100%" width="100%" id="mainImage">
 		    </div>
 	  	</div>	
 	</div>
