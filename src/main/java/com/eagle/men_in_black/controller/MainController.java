@@ -3,6 +3,7 @@ package com.eagle.men_in_black.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,10 +48,12 @@ public class MainController {
 	}
 	// 로그인입력후 전송 
 	@RequestMapping("loginCheck.mib")
-	public ModelAndView loginCheck(HttpServletRequest res){
+	public ModelAndView loginCheck(HttpServletRequest res, HttpServletResponse rep){
 		
 		String id = res.getParameter("id");
+		System.out.println("아이디 ================ " + id);
 		String pwd = res.getParameter("pwd");
+		System.out.println("비밀번호 ================ " + pwd);
 		
 		MainDto dto =  mainSvc.do_search_pw(id);
 		ModelAndView mav = new ModelAndView("main/Main");
@@ -59,17 +62,32 @@ public class MainController {
 			if(pwd.equals(dto.getUSER_PW())){
 				// 로그인 됬을 때 
 				res.getSession().setAttribute("LoginInfo", dto);
+				mav.addObject("LoginInfo", "success");
 			}else{
 				// 비밀번호 틀렸을 때 
+				System.out.println("비번틀림 ================----------------------------------- " );
 				mav.addObject("LoginInfo", "NotPwd");
 			}
 		}else{
 			// 로그인 안됬을 때 
+			System.out.println("로그인 실패 ================----------------------------------- " );
 			mav.addObject("LoginInfo", "NoMember");
 		}
 		
 		return mav;		
 	}
+	
+	// 로그아웃 
+		@RequestMapping("logout.mib")
+		public ModelAndView logout(HttpServletRequest res, HttpServletResponse rep){
+									
+			ModelAndView mav = new ModelAndView("main/Main");
+			
+					res.getSession().removeAttribute("LoginInfo");
+					mav.addObject("LoginInfo", "logout");
+			
+			return mav;		
+		}
 	
 	@RequestMapping("signup.mib")
 	public ModelAndView signup(){

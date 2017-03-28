@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -65,7 +66,16 @@ $("#join-trigger").click(function(){
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
-					<li style="width: 100%"><a href="login.mib" data-toggle="modal" data-target="#modal-login" >로그인</a></li>
+					<li style="width: 100%">
+					<% 
+						MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo"); 
+					if(dto!=null){%>
+					<a href="logout.mib">로그아웃</a>
+					<%}else{ %> 
+					<a href="login.mib" data-toggle="modal" data-target="#modal-login" >로그인</a>
+					<% 
+					}%>
+					</li>
 				</div>
 			</div>
 		</div>
