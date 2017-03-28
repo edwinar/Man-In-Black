@@ -14,7 +14,7 @@
     <input type="text" placeholder="아이디" name="ID" id="email">
   </p>
   <p>
-    <input type="password"placeholder="비밀번호" name="password" id="password">
+    <input type="password" placeholder="비밀번호" name="pwd" id="pwd">
   </p>
   </div>
   <p class="signin-container">

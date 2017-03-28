@@ -33,6 +33,15 @@ public class MainDto implements Serializable{
 	private	String	USER_NAME;
 	private	String	USER_PW;
 	private	String	WASH;
+	
+	public MainDto() {
+	}
+	
+	
+	public MainDto(String uSER_ID) {
+		USER_ID = uSER_ID;
+	}
+	
 	public String getADDRESS() {
 		return ADDRESS;
 	}
