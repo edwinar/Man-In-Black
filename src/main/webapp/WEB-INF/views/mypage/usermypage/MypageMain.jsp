@@ -7,7 +7,7 @@ UserMypageDto mypageDto = (UserMypageDto)request.getAttribute("point");
 List<UserMypageDto> coupon= (List<UserMypageDto>)request.getAttribute("coupon");
 List<UserMypageDto> buyList= (List<UserMypageDto>)request.getAttribute("buyList");
 List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qnaList");
-
+List<UserMypageDto> basket= (List<UserMypageDto>)request.getAttribute("basket");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -249,58 +249,21 @@ td, th {
 					<th class="boardone" >분류</th>
 					<th>상품이름1234512</th>
 					<th class="boardone" >수량</th>
-					<th >재고</th>
 					<th class="boardtwo" >금액</th>
 				</tr>
+				<%for(int i = 0; i<5;i++){ %>
 				<tr>
 					<td class="boardone" rowspan="2" rowspan="2"><img alt="not found"
 						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2" rowspan="2">판매가</th>
+					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM() %></td>
+					<td><%=basket.get(i).getPRO_NAME() %></td>
+					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM() %></td>
+					<td class="boardtwo" rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE() %></td>
 				</tr>
 				<tr>
-					<td>옵션 1 옵션 2</td>
+					<td><%=basket.get(i).getPRO_SIZE() %> : <%=basket.get(i).getCOLOR() %></td>
 				</tr>
-
-				<tr>
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-				</tr>
-				<tr>
-					<td>옵션 1 옵션 2</td>
-				</tr>
-				<tr>
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-				</tr>
-				<tr>
-					<td>옵션 1 옵션 2</td>
-				</tr>
-				<tr>
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-				</tr>
-				<tr>
-					<td>옵션 1 옵션 2</td>
-				</tr>
+				<%} %>
 			</table>
 			<button type="button" onclick="location.href='basketlist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
