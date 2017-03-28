@@ -169,6 +169,7 @@ td, th {
 					</tr>
 				</table>
 			</div>
+			<button type="button" onclick="location.href='coupon_Mileage.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 
@@ -269,6 +270,7 @@ td, th {
 					<td>옵션1 옵션 2</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 
@@ -340,6 +342,7 @@ td, th {
 					<td>옵션 1 옵션 2</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='basketlist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 
@@ -385,6 +388,7 @@ td, th {
 					<td>답변완료</td>
 				</tr>
 			</table>
+			<button type="button" onclick="location.href='myboard.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 
 	</div>
