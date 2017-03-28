@@ -5,35 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script>
-$("#join-trigger").click(function(){
-	  $('#modal-login').modal('hide');
-	  $('#modal-join').modal('show');
-	});
-
-	$("#forgot-trigger").click(function(){
-	  $('#modal-login').modal('hide');
-	  $('#modal-forgot').modal('show');
-	});
-
-	$("#login-trigger").click(function(){
-	  $('#modal-join').modal('hide');
-	  $('#modal-login').modal('show');
-	});
-
-	$("#back-login").click(function(){
-	  $('#modal-forgot').modal('hide');
-	  $('#modal-login').modal('show');
-	});
-
-	$("#back-join").click(function(){
-	  $('#modal-forgot').modal('hide');
-	  $('#modal-join').modal('show');
-	});
-</script>
 </head>
 <body>
+<%
+MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 
+%>
 <nav id="hearder_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -62,14 +39,28 @@ $("#join-trigger").click(function(){
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px">
-					<li style="width: 100%"><a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a></li>
+				<li style="width: 100%">
+					<% 	 
+					if(dto!=null){
+						if(dto.getUSER_ID().equals("adm")){
+					%>
+					<a href="ceoMypage_Main.mib">마이페이지</a>
+					<%}else{ %>
+					<a href="mymain.mib">마이페이지</a>
+					<%}
+					}else{ %> 
+					<a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a>
+					<% 
+					}%>		
+				</li>
+				
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
 					<li style="width: 100%">
-					<% 
-						MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo"); 
-					if(dto!=null){%>
+					<% 	 
+					if(dto!=null){
+					%>
 					<a href="logout.mib">로그아웃</a>
 					<%}else{ %> 
 					<a href="login.mib" data-toggle="modal" data-target="#modal-login" >로그인</a>

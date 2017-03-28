@@ -1,5 +1,15 @@
+<%@page import="java.util.List"%>
+<%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+UserMypageDto mypageDto = (UserMypageDto)request.getAttribute("point");
+List<UserMypageDto> coupon= (List<UserMypageDto>)request.getAttribute("coupon");
+List<UserMypageDto> buyList= (List<UserMypageDto>)request.getAttribute("buyList");
+List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qnaList");
+
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -129,21 +139,21 @@ td, th {
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
+						<%for(int i = 0; i<coupon.size(); i++){ %>
 						<tr>
-							<th style="text-align: center;">쿠폰명</th>
-							<th style="text-align: center;">할인 금액</th>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME() %></th>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE() %></th>
 						</tr>
-						<tr>
-							<td>생일푹하 쿠폰</td>
-							<td>1000원할인</td>
-						</tr>
+						<%} %>
+						
+						
 					</table>
 				</div>
 
 			</div>
 			<div id="divr" align="center" style="position: relative;">
 				<div class="head parea">적립금</div>
-				<p align="center">현재0원</p>
+				<p align="center">현재<%=mypageDto.getPOINT_FINAL() %></p>
 				<table style="text-align: center;">
 					<col width="150px">
 					<col width="200px%">
@@ -193,7 +203,6 @@ td, th {
 					<th class="boardone">분류</th>
 					<th>상품이름1234512</th>
 					<th class="boardone">수량</th>
-					<th>재고</th>
 					<th class="boardtwo">판매가</th>
 					<th class="boardtwo">쿠폰</th>
 					<th class="boardtwo">적립금</th>
@@ -201,75 +210,26 @@ td, th {
 					<th class="#boardthree">판매일</th>
 					<th>상태</th>
 				</tr>
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" valign="middle">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2" valign="middle">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2" valign="middle">판매가</th>
-					<th class="boardtwo" rowspan="2" valign="middle">쿠폰</th>
-					<th class="boardtwo" rowspan="2" valign="middle">적립금</th>
-					<td rowspan="2" valign="middle">결제금액</td>
-					<th class="#boardthree" rowspan="2" valign="middle">판매일</th>
-					<td rowspan="2" valign="middle">상태</td>
+				<%for(int i = 0; i<buyList.size(); i++){ %>
+				<tr height="30px" >
+					<td class="boardone" rowspan="2"><img alt="not found"src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM() %></td>
+					<td><%=buyList.get(i).getPRO_NAME()%></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></td>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON() %></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT() %></th>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE() %></td>
+					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></th>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></td>
 				</tr>
 				<tr>
-					<td>옵션1 옵션 2</td>
+					<td><%=buyList.get(i).getSEL_SIZE() %> : <%=buyList.get(i).getSEL_COLOR() %></td>
 				</tr>
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-					<th class="boardtwo" rowspan="2">쿠폰</th>
-					<th class="boardtwo" rowspan="2">적립금</th>
-					<td rowspan="2">결제금액</td>
-					<th class="#boardthree" rowspan="2">판매일</th>
-					<td rowspan="2">상태</td>
-				</tr>
-				<tr>
-					<td>옵션1 옵션 2</td>
-				</tr>
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-					<th class="boardtwo" rowspan="2">쿠폰</th>
-					<th class="boardtwo" rowspan="2">적립금</th>
-					<td rowspan="2">결제금액</td>
-					<th class="#boardthree" rowspan="2">판매일</th>
-					<td rowspan="2">상태</td>
-				</tr>
-				<tr>
-					<td>옵션1 옵션 2</td>
-				</tr>
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2">분류</td>
-					<td>상품이름</td>
-					<td class="boardone" rowspan="2">수량</td>
-					<td rowspan="2">재고</td>
-					<th class="boardtwo" rowspan="2">판매가</th>
-					<th class="boardtwo" rowspan="2">쿠폰</th>
-					<th class="boardtwo" rowspan="2">적립금</th>
-					<td rowspan="2">결제금액</td>
-					<th class="#boardthree" rowspan="2">판매일</th>
-					<td rowspan="2">상태</td>
-				</tr>
-				<tr>
-					<td>옵션1 옵션 2</td>
-				</tr>
+					<%}%>
 			</table>
+			
+			
 			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
@@ -358,35 +318,19 @@ td, th {
 					<th>날짜</th>
 					<th>답변여부</th>
 				</tr>
+				<%for(int i = 0; i < 6; i++){ %>
 				<tr>
-					<td>1</td>
-					<td>바지바지</td>
-					<td>바지 이뻐여?</td>
-					<td>01.06</td>
+					<td><%=i+1%></td>
+					<td><%=qnaList.get(i).getPRO_NAME() %></td>
+					<td><%=qnaList.get(i).getQNA_TITLE()%></td>
+					<td><%=qnaList.get(i).getQNA_TIME()%></td>
+					<%if(qnaList.get(i).getQNA_STEP()=="Y"){ %>
 					<td>답변완료</td>
+					<%}else{ %>
+					<td>답변중</td>
+					<%} %>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>티티티</td>
-					<td>티티티 이뻐여?</td>
-					<td>01.06</td>
-					<td>답변완료</td>
-
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>바지바지</td>
-					<td>바지 이뻐여?</td>
-					<td>01.06</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>바지바지</td>
-					<td>바지 이뻐여?</td>
-					<td>01.06</td>
-					<td>답변완료</td>
-				</tr>
+				<%} %>
 			</table>
 			<button type="button" onclick="location.href='myboard.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>

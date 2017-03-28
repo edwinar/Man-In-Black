@@ -30,8 +30,6 @@ public class MainController {
 	public ModelAndView meninblack(){
 				
 		ModelAndView mav = new ModelAndView("main/Main");
-		mav.addObject("msg", "김옥지");
-		
 		return mav;
 		
 	}
@@ -65,12 +63,10 @@ public class MainController {
 				mav.addObject("LoginInfo", "success");
 			}else{
 				// 비밀번호 틀렸을 때 
-				System.out.println("비번틀림 ================----------------------------------- " );
 				mav.addObject("LoginInfo", "NotPwd");
 			}
 		}else{
 			// 로그인 안됬을 때 
-			System.out.println("로그인 실패 ================----------------------------------- " );
 			mav.addObject("LoginInfo", "NoMember");
 		}
 		
