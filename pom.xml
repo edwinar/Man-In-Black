@@ -5,8 +5,8 @@
   <artifactId>man-in-black</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>spring_mybatis_web Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+    <name>man-in-black Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 <properties>
   <java-version>1.8</java-version>
   <org.springframework-version>4.2.6.RELEASE</org.springframework-version>
@@ -270,18 +270,7 @@
 </dependency>
   
   <!-- MappingJacksonJsonView -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-         
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-         
+
         <!-- MultipartHttpServletRequset -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -342,7 +331,7 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <directory>${basedir}/target</directory>
-        <finalName>spring_mybatis_web</finalName>
+        <finalName>man-in-black</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
