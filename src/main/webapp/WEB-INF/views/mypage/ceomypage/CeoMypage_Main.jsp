@@ -208,17 +208,39 @@ td, th {
 
 	</div>
 
+<%  
+	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
+	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
+	String STRAT_DATE = (request.getParameter("STRAT_DATE")==null || request.getParameter("STRAT_DATE")=="")?"":request.getParameter("STRAT_DATE");
+	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
+	System.out.println("페이지넘" +PAGE_NUM);
+	int page_num = Integer.parseInt(PAGE_NUM);
+	int page_size = Integer.parseInt(PAGE_SIZE);
+	
+	
+	int pageCount = list.get(0).getTOT_CNT()/page_size==0?list.get(0).getTOT_CNT()/page_size:(list.get(0).getTOT_CNT()/page_size)+1; 
+	System.out.println("페이지카운트" +pageCount);
+%>
 	<div class="row" align="center">
 		<p>
-			<a href="#" class="btn btn-default" role="button"><</a> <a href="#"
-				class="btn btn-default" role="button">1</a> <a href="#"
-				class="btn btn-default" role="button">2</a> <a href="#"
-				class="btn btn-default" role="button">3</a> <a href="#"
-				class="btn btn-default" role="button">4</a> <a href="#"
-				class="btn btn-default" role="button">></a>
+			
+			<table>
+			<tr>
+			<%for(int i=1; i<=pageCount; i++){ %>
+			<td>
+			<form action="ceoMypage_Main.mib">
+			<input type="hidden" name="PAGE_NUM" value="<%=i %>">
+			<input type="submit" class="btn btn-default" value="<%=i %>">
+			</form>
+			</td>
+			<td width="10px"></td>
+			<%} %>
+			</tr> 
+			</table>
+			
 		</p>
 	</div>
-	</div>
+	
 
 </body>
 </html>

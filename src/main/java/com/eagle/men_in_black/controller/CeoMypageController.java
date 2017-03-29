@@ -37,7 +37,7 @@ public class CeoMypageController {
 	
 	// 사장 마이페이지 메인, 판매관리 
 	@RequestMapping("ceoMypage_Main.mib")
-	public ModelAndView ceoMypage_Main() {
+	public ModelAndView ceoMypage_Main(HttpServletRequest res, HttpServletResponse rep) {
 
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 		
@@ -64,11 +64,12 @@ public class CeoMypageController {
 		
 		System.out.println("ㄴㅁㅇㅁㄴㅇㅁㄴㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁ======================"+todaydate.substring(2, 8));
 		
-		String PAGE_SIZE = "10";
-		String PAGE_NUM = "1"; 
-		String STRAT_DATE ="SYSDATE";
-		String END_DATE ="SYSDATE";
-		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String STRAT_DATE = (res.getParameter("STRAT_DATE")==null || res.getParameter("STRAT_DATE")=="")?"SYSDATE":res.getParameter("STRAT_DATE");
+		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+				
+		System.out.println("페이지넘" +PAGE_NUM);
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);

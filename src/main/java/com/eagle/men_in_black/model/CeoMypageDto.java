@@ -47,6 +47,15 @@ private	String	SUB_ITEM;
 private	String	USER_ID;
 private	String	WASH;
 private	String	NEW_ITEM;
+private int TOT_CNT;
+
+public int getTOT_CNT() {
+	return TOT_CNT;
+}
+
+public void setTOT_CNT(int tOT_CNT) {
+	TOT_CNT = tOT_CNT;
+}
 
 public CeoMypageDto() {
 	// TODO Auto-generated constructor stub
