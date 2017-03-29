@@ -9,6 +9,7 @@ import com.eagle.men_in_black.model.MainDto;
 public class MainDaoImpl implements MainDao {
 
 	private final String namespace="com.eagle.repository.mapper.Main";
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

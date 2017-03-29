@@ -3,4 +3,45 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.CeoMypage">
+
+<select id="do_ceomypage_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto" >
+SELECT TT1.*
+  FROM (
+       SELECT ROWNUM RNUM,T1.*,T2.*
+       from(
+            SELECT Z.*, Y.STORED_NAME, X.STOCK
+            FROM(
+                 SELECT B.ITEM, B.PRO_NAME, B.PRO_PRICE 
+                 , A.SEL_TIME SELTIME, A.SEL_COLOR SEL_COLOR,
+                 A.SEL_SIZE SEL_SIZE, A.PRO_SEQ, A.SEL_SEQ,A.SEL_NUM 
+                 ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME  
+                 FROM SALES A LEFT OUTER JOIN PRODUCT B
+                 ON A.PRO_SEQ=B.PRO_SEQ
+                 ) Z INNER JOIN PHOTO Y
+                 ON Z.PRO_SEQ=Y.PRO_SEQ
+             INNER JOIN PRO_DETAIL X
+                 ON Z.PRO_SEQ=X.PRO_SEQ
+             WHERE Y.STORED_NAME LIKE 'MAIN%' 
+             AND X.PRO_SIZE=Z.SEL_SIZE  
+             AND X.COLOR=Z.SEL_COLOR
+             
+             AND Z.SELTIME BETWEEN TO_DATE(170301) 
+             AND TO_DATE(170329) 
+             <!-- AND Z.SELTIME BETWEEN TO_DATE(${STRAT_DATE}) 
+             AND TO_DATE(${END_DATE}+1)  -->  
+             
+             ORDER BY Z.SEL_SEQ DESC
+         ) T1
+NATURAL JOIN
+  	(
+     SELECT COUNT(*) TOT_CNT
+     FROM SALES A LEFT OUTER JOIN PRODUCT B
+     ON A.PRO_SEQ=B.PRO_SEQ
+     WHERE A.SEL_TIME BETWEEN TO_DATE(170301) 
+             AND TO_DATE(170329) 
+     ) T2
+  	) TT1
+  	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
+
 </mapper>

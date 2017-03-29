@@ -29,7 +29,7 @@
             <thead  >
             <tr>
                 <th>글번호</th>
-                <th>게시판</th>
+                <th>상품명</th>
                 <th>글제목</th>
                 <th>날짜</th>
                 <th>추천</th>
