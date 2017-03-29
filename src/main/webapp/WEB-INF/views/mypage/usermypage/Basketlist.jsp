@@ -125,7 +125,7 @@ td, th {
 			</form>
 
 		</div>
-		<div id="결제"></div>
+		<div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
 	</div>
 	<script type="text/javascript">
 		var b = 0;
