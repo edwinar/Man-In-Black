@@ -24,11 +24,9 @@ SELECT TT1.*
              WHERE Y.STORED_NAME LIKE 'MAIN%' 
              AND X.PRO_SIZE=Z.SEL_SIZE  
              AND X.COLOR=Z.SEL_COLOR
-             
-             AND Z.SELTIME BETWEEN TO_DATE(170301) 
-             AND TO_DATE(170329) 
-             <!-- AND Z.SELTIME BETWEEN TO_DATE(${STRAT_DATE}) 
-             AND TO_DATE(${END_DATE}+1)  -->  
+            
+             AND Z.SELTIME BETWEEN TO_DATE(${START_DATE}) 
+             AND TO_DATE(${END_DATE})  
              
              ORDER BY Z.SEL_SEQ DESC
          ) T1
@@ -37,8 +35,8 @@ NATURAL JOIN
      SELECT COUNT(*) TOT_CNT
      FROM SALES A LEFT OUTER JOIN PRODUCT B
      ON A.PRO_SEQ=B.PRO_SEQ
-     WHERE A.SEL_TIME BETWEEN TO_DATE(170301) 
-             AND TO_DATE(170329) 
+     WHERE A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+             AND TO_DATE(${END_DATE}) 
      ) T2
   	) TT1
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
