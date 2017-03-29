@@ -10,7 +10,7 @@
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
 			<h3>My Post</h3>

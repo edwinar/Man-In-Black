@@ -32,7 +32,7 @@ public class UserMypageController {
 			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
 			List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(userdto.getUSER_ID());
 			List<UserMypageDto> qnaList = userMypageSvc.do_search_qna(userdto.getUSER_ID());
-			List<UserMypageDto> basket = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+			List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
 			
 			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
 			mav.addObject("point",mypageDto);
