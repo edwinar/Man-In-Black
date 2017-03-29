@@ -120,7 +120,7 @@ public class UserMypageController {
 		mav.addObject("qnaList",qnaList);
 		mav.addObject("reviewlist", reviewlist);
 		return mav;
-		
+
 	}
 	
 	// 내가쓴 게시물 보기  Q&A
