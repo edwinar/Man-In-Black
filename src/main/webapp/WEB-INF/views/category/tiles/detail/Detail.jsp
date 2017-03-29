@@ -1,5 +1,9 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -440,6 +444,7 @@ function QnADetail(){
 function QnAWrite(){
 	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
+
 </script>
 <div>
 <div>
@@ -499,7 +504,21 @@ function QnAWrite(){
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
+		        	<% 	 
+					if(dto!=null){
+					%>
 		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='basketlist.mib'">구매하기</button>
+		        	<%
+		        	}else{ 
+		        	%>
+		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
+		        		구매하기
+		        		</button>	
+		        		</a>
+		        	<%
+		        	}
+		        	%>
 		        	</div>
 		        </div>
 		      </div>
