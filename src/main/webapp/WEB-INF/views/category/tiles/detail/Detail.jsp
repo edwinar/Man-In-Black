@@ -267,7 +267,13 @@ a:hover{
    text-decoration: underline;
 }
 table td{
-  text-align: left;
+  text-align: center;
+}
+td.organisationname{
+	text-align: left;
+}
+td.actions{
+	text-align: left;
 }
 table.layout{
   width: 100%;
@@ -651,11 +657,11 @@ function QnADetail(){
        <col width="15%"/><col width="15%"/><col width="40%"/><col width="15%"/><col width="15%"/>
     <thead>
         <tr>
-            <th>공개/비공개</th>
-            <th>구분</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
+            <th style="text-align: center;">공개/비공개</th>
+            <th style="text-align: center;">구분</th>
+            <th style="text-align: center;">제목</th>
+            <th style="text-align: center;">작성자</th>
+            <th style="text-align: center;">작성일</th>
         </tr>
     </thead>
     <tbody>
@@ -718,9 +724,9 @@ function QnADetail(){
                2017-03-24
             </td>
         </tr>
-
     </tbody>
 	</table>
+		<p align="right" style="margin-right: 30px;"><button class="writeBtn" style="width: 10%;">글쓰기</button></p>
     </div>
 	</div>
 </div>
