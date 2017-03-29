@@ -1,5 +1,10 @@
+<%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+		List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qnaList");
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +15,7 @@
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
 			<h3>My Post</h3>
@@ -31,28 +36,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>제품상세</td>
-                <td>제몸에 딱이에요!!</td>
-                <td>2017-01-01</td>
-                <td>211</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>제품상세</td>
-                <td>정말...</td>
-                <td>2017-01-01</td>
-                <td>211</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>제품상세</td>
-                <td>광고 아닙니다 정말 최고..</td>
-                <td>2017-01-01</td>
-                <td>211</td>
-            </tr>
-           
+            	<%for(int i = 0; i < qnaList.size(); i++){ %>
+				<tr>
+					<td><%=i+1%></td>
+					<td><%=qnaList.get(i).getPRO_NAME() %></td>
+					<td><%=qnaList.get(i).getQNA_TITLE()%></td>
+					<td><%=qnaList.get(i).getQNA_TIME()%></td>
+					<%if(qnaList.get(i).getQNA_STEP()=="Y"){ %>
+					<td>답변완료</td>
+					<%}else{ %>
+					<td>답변중</td>
+					<%} %>
+				</tr>
+				<%} %>
             </tbody>
 
         </table>

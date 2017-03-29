@@ -46,10 +46,11 @@ margin-top: 150px;
   border: double gray 0.1px;
 }
 
-.content{
+.content, .content1, .content2, .content3{
 	width: 100%;
 	height: 100%;
 }
+
 /*작아졌을때*/
 @media (max-width: 80em){
 #outerH1{
@@ -66,7 +67,6 @@ margin-top: 150px;
   position: relative;
   width: 100%;
   height: 200px;
-/*   background:red; */
   margin: auto;
   float: none;
 }
@@ -249,7 +249,6 @@ margin-top: 150px;
   border-radius: 6px;
 }
 
-
 /*이게 전체 크기 */
 /* .container {
   margin: 0 auto;
@@ -414,29 +413,45 @@ table.responsive-table{
 </style>
 </head>
 <body>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.content1').hover(function () {
+        $('#mainImage').attr("src", "../images/aa.jpg");
+    });
+    $('.content2').hover(function () {
+        $('#mainImage').attr("src", "../images/dd.jpg");
+    });
+    $('.content3').hover(function () {
+        $('#mainImage').attr("src", "../images/ss.jpg");
+    });
+});
+function popup(){
+	window.open("review.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+</script>
 <div>
 <div>
 	<div class="slide-container">
 		<div class="sub-slide visible-lg">
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content1">
 		    		<img src="../images/aa.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content2">
 		    		<img src="../images/dd.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
-				<div class="content">
+				<div class="content3">
 		    		<img src="../images/ss.jpg" height="100%" width="100%">
 		    	</div>
 			</div>
 		</div>
 	  	<div class="slide">
 		    <div class="content">
-		    	<img src="../images/aa.jpg" height="100%" width="100%">
+		    	<img src="../images/aa.jpg" height="100%" width="100%" id="mainImage">
 		    </div>
 	  	</div>	
 	</div>
@@ -472,7 +487,7 @@ table.responsive-table{
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">구매하기</button>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="popup()">구매하기</button>
 		        	</div>
 		        </div>
 		      </div>
@@ -514,6 +529,7 @@ table.responsive-table{
 
     <div class="tab__content">
       <table class="layout display responsive-table">
+      <col width="20%"/><col width="60%"/><col width="20%"/>
     <thead>
         <tr>
             <th colspan="3" style="text-align: center; height: 100px;">평점 : 
@@ -527,11 +543,11 @@ table.responsive-table{
     </thead>
     <tbody>
         <tr>
-            <td class="organisationnumber">
+            <td class="organisationnumber" width="20%">
             	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
-            <td class="organisationname">
-            	<a href="#">
+            <td class="organisationname" width="60%">
+            	<a href="javascript:popup()">
 	            <img alt="" src="../images/scoreFull.png" class="star">
 	            <img alt="" src="../images/scoreFull.png" class="star">
 	            <img alt="" src="../images/scoreFull.png" class="star">
@@ -540,7 +556,7 @@ table.responsive-table{
 	            <h4>Stet clita kasd gubergren, no sea takimata sanctus est</h4>
 	            </a>
 	        </td>
-            <td class="actions">
+            <td class="actions" width="20%">
                         	작성자 : 전창건<br>
                          	작성일 : 2017-03-24
             </td>
