@@ -82,7 +82,7 @@ WHERE ROWNUM <=5
 	]]>
 </select>
 	<select id="do_search_review" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-		<![CDATA[
+	<![CDATA[
 SELECT *
 FROM
 	(
