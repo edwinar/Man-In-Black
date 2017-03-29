@@ -1,3 +1,5 @@
+package com.eagle.men_in_black.util;
+
 public class PagingUtil {
 	public static String renderPaging(int maxNum_i, int currPageNoIn_i, int rowsPerPage_i, int bottomCount_i,
 									  String url_i, String scriptName_i) {
