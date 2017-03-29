@@ -2,10 +2,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%
-	List<UserMypageDto> buyList= (List<UserMypageDto>)request.getAttribute("buyList");
-	
-	%>
+<%
+	List<UserMypageDto> buyList = (List<UserMypageDto>) request.getAttribute("buyList");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -84,7 +83,7 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT() %></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE() %></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP() %></td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE() %> : <%=buyList.get(i).getSEL_COLOR() %></td>

@@ -1,5 +1,10 @@
+<%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<UserMypageDto> basketlist = (List<UserMypageDto>) request.getAttribute("basketlist");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +25,7 @@ td, th {
 <title>::장바구니::</title>
 </head>
 <body>
+<input type="hidden" value="<%=basketlist.size()+1 %>" id="list">
 <center>
 <div id="mypagehead">
 <h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
@@ -40,63 +46,30 @@ td, th {
 					<col width="10%">
 					<tr>
 						<th><input type="checkbox" id="allCheck"
-							class="chbox"></th>
+							class="chbox" style="width: 20px; height: 20px"></th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
 						<th>가격</th>
 					</tr>
-
+						<%for(int i = 0; i<basketlist.size();i++){ %>
 					<tr>
 						<td rowspan="2">
-						<input type="checkbox" onclick="ty(1)"
-							value="10000" id="ch1" class="chbox"></td>
-						<td rowspan="2">1번</td>
+						<input type="checkbox" onclick="ty(<%=i+1 %>)"
+							value="<%=basketlist.get(i).getPRO_PRICE() %>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+						<td rowspan="2"><%=i+1 %>
+						
+			
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 양말</td>
-						<td rowspan="2">10000 Won</td>
+						<td><%=basketlist.get(i).getPRO_NAME() %></td>
+						<td rowspan="2"><%=basketlist.get(i).getPRO_PRICE() %></td>
 					</tr>
 					<tr>
-						<td>SIZE:L, COLOR: green</td>
+						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR() %></td>
 					</tr>
-					<tr>
-						<td rowspan="2"><input type="checkbox" onclick="ty(2)"
-							value="20000" id="ch2" class="chbox"></td>
-						<td rowspan="2">2번</td>
-						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 소매</td>
-						<td rowspan="2">20000 Won</td>
-					</tr>
-					<tr>
-						<td>SIZE:L, COLOR: green</td>
-					</tr>
-					<tr>
-						<td rowspan="2"><input type="checkbox" onclick="ty(3)"
-							value="30000" id="ch3" class="chbox"></td>
-						<td rowspan="2">3번</td>
-						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>창거니가 어제 입던 티</td>
-						<td rowspan="2">30000 Won</td>
-					</tr>
-					<tr>
-						<td>SIZE:L, COLOR: green</td>
-					</tr>
-							<tr>
-						<td rowspan="2"><input type="checkbox" onclick="ty(4)"
-							value="40000" id="ch3" class="chbox"></td>
-						<td rowspan="2">4번</td>
-						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>창거니가  입던 v빤쮸</td>
-						<td rowspan="2">40000 Won</td>
-					</tr>
-					<tr>
-						<td>SIZE:L, COLOR: green</td>
-					</tr>
-
+					<% }%>
+				
 				</table>
 
 				<table width="50%" align="center" class="table"
@@ -125,12 +98,13 @@ td, th {
 			</form>
 
 		</div>
-		<div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
+<div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
 	</div>
 	<script type="text/javascript">
 		var b = 0;
 		var sum = 0;
-
+		var list = $("#list").val();
+				
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
 				b += Number(document.f1.elements[n].value);
@@ -164,7 +138,7 @@ td, th {
 				} else if ($("#allCheck").prop("checked", false)) {
 					$(".chbox").prop("checked", false);
 				}
-				for (var i = 1; i < 5; i++) {
+				for (var i = 1; i < list; i++) {
 					if (document.f1.elements[i].checked == true) {
 						b += Number(document.f1.elements[i].value);
 						document.getElementById('pay').value = b;
