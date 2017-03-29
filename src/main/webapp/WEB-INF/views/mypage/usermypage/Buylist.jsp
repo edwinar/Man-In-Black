@@ -24,7 +24,7 @@ td, th {
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
 			<h3>MY Order</h3>

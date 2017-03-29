@@ -426,7 +426,10 @@ $(document).ready(function () {
     });
 });
 function popup(){
-	window.open("review.mib","pop","width=800 height=600 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	window.open("review.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+function QnADetail(){
+	window.open("QnADetail.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 </script>
 <div>
@@ -660,7 +663,7 @@ function popup(){
             <td class="organisationnumber">비공개</td>
             <td>상품문의</td>
             <td class="organisationname">
-            	<a href="#">그래서 사이즈 뭐입어?</a>
+            	<a href="javascript:QnADetail()">그래서 사이즈 뭐입어?</a>
             </td>
          	<td>전창건</td>
             <td>
