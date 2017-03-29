@@ -30,7 +30,20 @@ public class DetailController {
 		loger.debug("codeMSvc === " + "앙 기무띠~");
 		loger.debug("============================");
 
-		ModelAndView mav = new ModelAndView("category/tiles/detail/modal/Review");
+		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Review");
+		mav.addObject("msg", "김옥지");
+
+		return mav;
+	}
+	
+	@RequestMapping("reviewReply.mib")
+	public ModelAndView reviewReply() {
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/ReviewReply");
 		mav.addObject("msg", "김옥지");
 
 		return mav;

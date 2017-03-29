@@ -123,7 +123,7 @@ td, th {
 <center>
 	<div id="mypagehead">
 		<h4 align="right" style="margin-right: 100px">
-			<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a>
+			<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a>
 		</h4>
 		<h3>MY Order</h3>
 		<h4>회원님의 마이페이지입니다.</h4>
@@ -245,27 +245,34 @@ td, th {
 				<col width="10%">
 				<col width="10%">
 				<tr>
-					<th class="boardone" >이미지</th>
-					<th class="boardone" >분류</th>
-					<th>상품이름1234512</th>
-					<th class="boardone" >수량</th>
-					<th class="boardtwo" >금액</th>
+					<th class="boardone">이미지</th>
+					<th class="boardone">분류</th>
+					<th>상품이름</th>
+					<th class="boardone">수량</th>
+					<th class="boardtwo">금액</th>
 				</tr>
-				<%for(int i = 0; i<5;i++){ %>
+				<%
+					for (int i = 0; i < basket.size(); i++) {
+				%>
+
 				<tr>
-					<td class="boardone" rowspan="2" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM() %></td>
-					<td><%=basket.get(i).getPRO_NAME() %></td>
-					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM() %></td>
-					<td class="boardtwo" rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE() %></td>
+
+					<td class="boardone" rowspan="2" rowspan="2">
+					<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
+					<td><%=basket.get(i).getPRO_NAME()%></td>
+					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
+					<td class="boardtwo" rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE()%></td>
 				</tr>
 				<tr>
-					<td><%=basket.get(i).getPRO_SIZE() %> : <%=basket.get(i).getCOLOR() %></td>
+					<td><%=basket.get(i).getPRO_SIZE()%> : <%=basket.get(i).getCOLOR()%></td>
 				</tr>
-				<%} %>
+				<%
+					}
+				%>
 			</table>
-			<button type="button" onclick="location.href='basketlist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+			<button type="button" onclick="location.href='basketlist.mib'"
+				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
 
@@ -281,7 +288,7 @@ td, th {
 					<th>날짜</th>
 					<th>답변여부</th>
 				</tr>
-				<%for(int i = 0; i < 6; i++){ %>
+				<%for(int i = 0; i < qnaList.size(); i++){ %>
 				<tr>
 					<td><%=i+1%></td>
 					<td><%=qnaList.get(i).getPRO_NAME() %></td>

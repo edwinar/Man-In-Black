@@ -426,7 +426,7 @@ $(document).ready(function () {
     });
 });
 function popup(){
-	window.open("review.mib","pop","width=800 height=600 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	window.open("review.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 </script>
 <div>
