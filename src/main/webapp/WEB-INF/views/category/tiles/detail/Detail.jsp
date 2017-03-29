@@ -437,6 +437,9 @@ function popup(){
 function QnADetail(){
 	window.open("QnADetail.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
+function QnAWrite(){
+	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
 </script>
 <div>
 <div>
@@ -496,7 +499,7 @@ function QnADetail(){
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="popup()">구매하기</button>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='Detail_Buy_Info.mib'">구매하기</button>
 		        	</div>
 		        </div>
 		      </div>
@@ -726,7 +729,9 @@ function QnADetail(){
         </tr>
     </tbody>
 	</table>
-		<p align="right" style="margin-right: 30px;"><button class="writeBtn" style="width: 10%;">글쓰기</button></p>
+		<p align="right" style="margin-right: 30px;">
+			<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+		</p>
     </div>
 	</div>
 </div>

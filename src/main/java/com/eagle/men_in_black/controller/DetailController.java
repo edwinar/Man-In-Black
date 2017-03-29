@@ -61,4 +61,30 @@ public class DetailController {
 
 		return mav;
 	}
+	
+	@RequestMapping("QnAWrite.mib")
+	public ModelAndView QnAWrite() {
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AWrite");
+		mav.addObject("msg", "김옥지");
+
+		return mav;
+	}
+	
+	@RequestMapping("Detail_Buy_Info.mib")
+	public ModelAndView Detail_Buy_Info() {
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail_Buy_Info");
+		mav.addObject("msg", "김옥지");
+
+		return mav;
+	}
 }
