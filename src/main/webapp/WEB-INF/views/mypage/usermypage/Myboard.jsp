@@ -25,38 +25,57 @@
 			<h4>회원님님의 게시물 작성 리스트 입니다</h4>
 		</div>
 	</center>
-	<div>
+	<div class="row">
 		<div class="col-xs-8 col-xs-offset-2 MyPost">
-			<table class="table" onclick="location.href='myboardreview.mib'">
+			<span class="mypage-link" style="font-size: 19px;"><a href='myboardreview.mib'>My Review</a></span>
+			<table class="table">
+				<tfoot>
+				<td colspan="5" align="center">
+					<span class="mypage-link"><a href='myboardreview.mib'>더 보기</a></span>
+				</td>
+				</tfoot>
 				<thead>
 				<tr>
 					<th>글번호</th>
-					<th>게시판</th>
+					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
 					<th>추천</th>
 				</tr>
 				</thead>
-				<tbody>
+
+				<tbody id="board">
+
 				<%for(int i = 0; i < reviewlist.size(); i++){ %>
 				<tr>
 					<td><%=reviewlist.get(i).getREV_SEQ() %></td>
-					<td>리뷰</td>
+					<td><%=reviewlist.get(i).getPRO_NAME() %></td>
 					<td><%=reviewlist.get(i).getREV_TITLE()%></td>
 					<td><%=reviewlist.get(i).getREV_TIME()%></td>
 					<td><%=reviewlist.get(i).getSCORE()%></td>
 				</tr>
 				<%} %>
+
 				</tbody>
+
 			</table>
+
 				<br><br><br><br>
 
 
-			<table class="table" onclick="location.href='myboardqna.mib'">
+			<table class="table">
+				<tfoot>
+				<td colspan="5" align="center">
+					<span class="mypage-link"><a href='myboardqna.mib'>더 보기</a></span>
+				</td>
+				</tfoot>
+
+
+				<span class="mypage-link" style="font-size: 19px;"><a href='myboardqna.mib'>My Q&A</a></span>
 				<thead  >
 				<tr>
 					<th>글번호</th>
-					<th>게시판</th>
+					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
 					<th>추천</th>
@@ -84,5 +103,9 @@
 
 		</div>
 	</div>
+
+
+
 </body>
 </html>
+

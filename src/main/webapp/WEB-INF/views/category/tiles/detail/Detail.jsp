@@ -1,5 +1,9 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -267,7 +271,13 @@ a:hover{
    text-decoration: underline;
 }
 table td{
-  text-align: left;
+  text-align: center;
+}
+td.organisationname{
+	text-align: left;
+}
+td.actions{
+	text-align: left;
 }
 table.layout{
   width: 100%;
@@ -431,6 +441,10 @@ function popup(){
 function QnADetail(){
 	window.open("QnADetail.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
+function QnAWrite(){
+	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+
 </script>
 <div>
 <div>
@@ -490,7 +504,21 @@ function QnADetail(){
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="popup()">구매하기</button>
+		        	<% 	 
+					if(dto!=null){
+					%>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='basketlist.mib'">구매하기</button>
+		        	<%
+		        	}else{ 
+		        	%>
+		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
+		        		구매하기
+		        		</button>	
+		        		</a>
+		        	<%
+		        	}
+		        	%>
 		        	</div>
 		        </div>
 		      </div>
@@ -651,11 +679,11 @@ function QnADetail(){
        <col width="15%"/><col width="15%"/><col width="40%"/><col width="15%"/><col width="15%"/>
     <thead>
         <tr>
-            <th>공개/비공개</th>
-            <th>구분</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
+            <th style="text-align: center;">공개/비공개</th>
+            <th style="text-align: center;">구분</th>
+            <th style="text-align: center;">제목</th>
+            <th style="text-align: center;">작성자</th>
+            <th style="text-align: center;">작성일</th>
         </tr>
     </thead>
     <tbody>
@@ -718,9 +746,11 @@ function QnADetail(){
                2017-03-24
             </td>
         </tr>
-
     </tbody>
 	</table>
+		<p align="right" style="margin-right: 30px;">
+			<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+		</p>
     </div>
 	</div>
 </div>
