@@ -1,9 +1,44 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%
 		List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
+	
+	String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
+	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
+	
+		Calendar cal = Calendar.getInstance();
+		int tyear = cal.get(Calendar.YEAR);
+		int tmonth = cal.get(Calendar.MONTH)+1;
+		int tday = cal.get(Calendar.DATE);
+	
+	if(START_DATE.equals("")){
+	
+		if(tmonth<10){
+			if(tday<10){
+				START_DATE = tyear+"-0"+tmonth+"-0"+tday;
+				END_DATE = tyear+"-0"+tmonth+"-0"+tday;
+			}else{
+				START_DATE = tyear+"-0"+tmonth+"-"+tday;
+				END_DATE = tyear+"-0"+tmonth+"-"+tday;
+			}
+		}else{
+			if(tday<10){
+				START_DATE = tyear+"-"+tmonth+"-0"+tday;
+				END_DATE = tyear+"-"+tmonth+"-0"+tday;
+			}else{
+				START_DATE = tyear+"-"+tmonth+"-"+tday;
+				END_DATE = tyear+"-"+tmonth+"-"+tday;
+			}
+		}
+	}else{
+		START_DATE = tyear +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
+
+		END_DATE = tyear +"-"+ END_DATE.substring(2,4) +"-"+ END_DATE.substring(4, 6);
+	}
+	
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -73,6 +108,112 @@ td, th {
 	outline: 0;
 }
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#start_date').change(function(){
+    	var date1 = $('#start_date').val();
+    	var date2 = $('#end_date').val();
+    	
+    	$("#end_date").attr( 'min', date1 );
+    	$("#start_date").attr( 'max', date2 );
+    	
+	}); 
+	
+    $('#dateBtn').click(function(){
+    	var date1 = $('#start_date').val();
+    	var date2 = $('#end_date').val();
+    	
+    	strat_date = date1.split('-').join('').substring(2,8);
+    	end_date = date2.split('-').join('').substring(2,8);
+    	
+    	location.href='ceoMypage_Main.mib?START_DATE='+strat_date+"&END_DATE="+end_date;
+    });  
+    
+    
+	$('#week').click(function(){
+    	var now = new Date();
+        var year= now.getFullYear();
+        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+              
+        var fullDate = year + mon + day;
+        
+        var weekDate = year+''+mon+''+(day-7);
+		
+        // 오늘날짜가 7일보다 작을때 
+		for(i=1;i<=7;i++){
+			if(day==i){
+				var lastDay = ( new Date( year, (mon-1), 0) ).getDate();
+				lastDay = lastDay-i;
+				weekDate = year+''+(mon-1)+''+lastDay;
+				if(mon<10){
+					weekDate = year+'0'+(mon-1)+''+lastDay;
+				}
+				
+			}
+		}
+		
+		fullDate = fullDate.substring(2,8);
+		weekDate = weekDate.substring(2,8);
+		
+		alert(fullDate);
+		alert(weekDate);
+		
+		location.href='ceoMypage_Main.mib?START_DATE='+weekDate+"&END_DATE="+fullDate;
+		
+	});
+	
+	$('#month').click(function(){
+		var now = new Date();
+		var year= now.getFullYear();
+		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()) : '0'+(now.getMonth());
+        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+        
+        var fullDate = year + mon + day;
+        var monthDate = year+monthdate_mon+day;
+		
+		var monthdate_lastDay = ( new Date( year, (monthdate_mon), 0) ).getDate();
+		
+		// 전에 한달의 마지막 날보다 지금 날이 클경우 년도 도 고려 
+		if(monthdate_lastDay<day){
+			monthDate = year+monthdate_mon+monthdate_lastDay;
+		}
+		
+		fullDate = fullDate.substring(2,8);
+		monthDate = monthDate.substring(2,8);
+				
+		location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
+        
+	});
+	$('#threeMonth').click(function(){
+		var now = new Date();
+		var year= now.getFullYear();
+		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()-2) : '0'+(now.getMonth()-2);
+        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+        
+        var fullDate = year + mon + day;
+        var monthDate = year+monthdate_mon+day;
+		alert(fullDate);
+		alert(monthDate);
+		var monthdate_lastDay = ( new Date( year, (monthdate_mon), 0) ).getDate();
+		
+		alert(monthdate_lastDay);
+		
+		// 전에 한달의 마지막 날보다 지금 날이 클경우  // 년도 월 일 추가 
+		if(monthdate_lastDay<day){
+			monthDate = year+monthdate_mon+monthdate_lastDay;
+		}
+		
+		fullDate = fullDate.substring(2,8);
+		monthDate = monthDate.substring(2,8);
+		alert(fullDate);
+		alert(monthDate);	
+		//location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
+	});
+});
+</script>
 </head>
 <body>
 	<center>
@@ -87,11 +228,13 @@ td, th {
 
 		<div class="datediv">
 			<p>
-				<a href="#" class="btn btn-success" role="button">1주</a> <a href="#"
-					class="btn btn-success" role="button">1개월</a> <a href="#"
-					class="btn btn-success" role="button">3개월</a> <br> <br> <input
-					type="date" height="50px">~<input type="date"
-					value="2017-03-27"><br>
+			<br><br>
+				<h5>날짜별 검색</h5>
+				<button class="btn btn-success" id="week">1주</button> 
+				<button class="btn btn-success" id="month">1개월</button> 
+				<button class="btn btn-success" id="threeMonth">3개월</button> <br> <br> 
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" max="<%=START_DATE%>"> ~ <input type="date" 		name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
+				<br>
 			</p>
 		</div>
 
@@ -152,7 +295,9 @@ td, th {
 						<th>상태</th>
 					</tr>
 
-				<%for(int i=0; i<list.size(); i++){ %>
+				<%
+				if(list!=null){
+				for(int i=0; i<list.size(); i++){ %>
 					<tr>
 						<td><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
@@ -165,41 +310,12 @@ td, th {
 						<td>배송완료</td>
 					</tr>
 				<%}
+				}else{
 				%>	
-					
-				<!-- 	<tr>
-						<td><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>상의</td>
-						<td>컬러-베이지,사이즈-Free</td>
-						<td>1</td>
-						<td>10</td>
-						<td>20000</td>
-						<td>2017.01.02</td>
-						<td>배송완료</td>
-					</tr>
-					<tr>
-						<td><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>상의</td>
-						<td>컬러-베이지,사이즈-Free</td>
-						<td>1</td>
-						<td>10</td>
-						<td>20000</td>
-						<td>2017.01.02</td>
-						<td>배송완료</td>
-					</tr>
-					<tr>
-						<td><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>상의</td>
-						<td>컬러-베이지,사이즈-Free</td>
-						<td>1</td>
-						<td>10</td>
-						<td>20000</td>
-						<td>2017.01.02</td>
-						<td>배송완료</td>
-					</tr> -->
+				<tr>
+					<td colspan="999999">내역이 없습니다.</td>
+				</tr>
+				<%} %>
 				</table>
 
 			</form>
@@ -209,34 +325,34 @@ td, th {
 	</div>
 
 <%  
+				// 페이징 및 날짜 선택 
 	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
 	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
-	String STRAT_DATE = (request.getParameter("STRAT_DATE")==null || request.getParameter("STRAT_DATE")=="")?"":request.getParameter("STRAT_DATE");
-	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
-	System.out.println("페이지넘" +PAGE_NUM);
+
+	
 	int page_num = Integer.parseInt(PAGE_NUM);
 	int page_size = Integer.parseInt(PAGE_SIZE);
 	
 	
 	int pageCount = list.get(0).getTOT_CNT()/page_size==0?list.get(0).getTOT_CNT()/page_size:(list.get(0).getTOT_CNT()/page_size)+1; 
-	System.out.println("페이지카운트" +pageCount);
+	
 %>
 	<div class="row" align="center">
 		<p>
 			
-			<table>
-			<tr>
-			<%for(int i=1; i<=pageCount; i++){ %>
-			<td>
-			<form action="ceoMypage_Main.mib">
-			<input type="hidden" name="PAGE_NUM" value="<%=i %>">
-			<input type="submit" class="btn btn-default" value="<%=i %>">
-			</form>
-			</td>
-			<td width="10px"></td>
-			<%} %>
-			</tr> 
-			</table>
+			
+			
+			<%
+			if(list!=null){
+			START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
+
+			END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substring(8, 10);
+			
+			
+			for(int i=1; i<=pageCount; i++){  %>
+			<a href="ceoMypage_Main.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE %>&END_DATE=<%=END_DATE %>" class="btn btn-default" role="button"><%=i %></a> 
+			<%} 
+			}%>
 			
 		</p>
 	</div>
