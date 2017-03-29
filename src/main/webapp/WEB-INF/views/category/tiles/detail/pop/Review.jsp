@@ -12,21 +12,20 @@
 	width: 790px;
 	height: 390px;
 	position: relative;
-	border: solid black 1px;
+	margin-top: 10px;
 }
 .leftLayout{
 	float: left;
 	width: 49.5%;
 	height: 100%;
 	position: relative;
-	border: solid black 1px;
+	margin-left: 5px;
 }
 .rightLayout{
 	float: right;
 	width: 49.5%;
 	height: 100%;
 	position: relative;
-	border: solid black 1px;
 }
 .thumbnail{
  width: 100%;
@@ -36,15 +35,16 @@
 </style>
 </head>
 <body>
-
+<script type="text/javascript">
+function reviewReplyPop(){
+	window.open("reviewReply.mib","pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+</script>
 <div class="layout">
 	<div class="leftLayout">
-		<div>
-			<img alt="..." src="../images/LOVE.jpg" width="100%">
-		</div>
+		<img alt="..." src="../images/LOVE.jpg" width="100%">
 	</div>
 	<div class="rightLayout">
-		<div></div>
 		<div class="thumbnail">
 			<div class="score" align="center" style="height: 20%"> 평점 
 				<img alt="..." src="../images/scoreFull.png">
@@ -54,20 +54,19 @@
 				<img alt="..." src="../images/scoreEmpty.png">
 				<hr style="border: solid black 1px; width: 70%;">
 			</div>
-			<div class="title" align="center" style="height: 20%; width: 80%; border: solid black 1px;">
+			<div class="title" align="center" style="height: 20%; width: 100%;">
 				<h3>니가 게맛을 알아?</h3>
 			</div>
-			<div class="info" style="height: 20%; width: 40%; text-align: right; border: solid black 1px;">
+			<div class="info" style="height: 15%; width: 100%; text-align: right;">
 				<h5>작성자:급식창건<br/>작성날짜:시스데이트</h5>
 			</div>
-			<div class="content" align="center" style="height: 20%; border: solid black 1px;">
-				<h4>니들이 게맛을 알아?</h4>
+			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
+				<textarea rows="5px" cols="50px" readonly="readonly">니들이 게맛을 알아?</textarea>
 			</div>
-			<div class="btn" align="center" style="height: 20%; width:80%; border: solid black 1px;">
-				<button>답글달기</button>
+			<div class="btn" align="center" style="height: 10%; width:100%;">
+				<button style="width: 50%; height: 100%;" onclick="reviewReplyPop()">답글달기</button>
 			</div>
 		</div>
-		<div></div>
 	</div>
 </div>
 
