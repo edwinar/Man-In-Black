@@ -5,15 +5,15 @@
 <mapper namespace="com.eagle.repository.mapper.UserMypage">
 <!-- 메인 포인트 --> 
 <select id="do_search_point" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-	SELECT 
-		POINT_FINAL
-    FROM(
-    	SELECT POINT_FINAL 
-    	FROM POINTS
-		WHERE USER_ID = #{id} 
-		ORDER BY PRO_SEQ DESC
+SELECT 
+	  POINT_FINAL
+FROM(
+     SELECT POINT_FINAL 
+     FROM POINTS
+	 WHERE USER_ID = #{id} 
+	 ORDER BY PRO_SEQ DESC
 		)
-	WHERE ROWNUM = 1
+WHERE ROWNUM = 1
 
 </select>
 <!-- 메인 쿠폰  -->
@@ -23,7 +23,9 @@
 		COUP_NAME ,
 		COUP_PRICE  
 	FROM(
-		SELECT  COUP_NAME, COUP_PRICE
+		SELECT  
+			  COUP_NAME, 
+			  COUP_PRICE
 		FROM COUPON
 		WHERE USER_ID  = #{id} 
 		AND COUP_USE = '가능' 
@@ -34,55 +36,71 @@
 </select>
 <!-- 구매한 상품  -->
 <select id="do_search_buylist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-	<![CDATA[  
-SELECT 
-	  A.SEL_SEQ, 
-	  A.PRO_SEQ, 
-	  A.SEL_NUM,
-	  A.SEL_TIME,
-	  A.FINAL_PRICE,
-	  C.PRO_NAME,
-	  A.DEL_SEQ, 
-	  A.SEL_SIZE, 
-	  A.SEL_COLOR, 
-	  B.DEL_STEP,
-	  C.SUB_ITEM  
-FROM SALES A JOIN  DELIVERY B 
-ON A.USER_ID = B.USER_ID AND A.PRO_SEQ=B.PRO_SEQ
-	JOIN PRODUCT C
-    ON A.PRO_SEQ = C.PRO_SEQ
-    WHERE A.USER_ID = #{id} 
-ORDER BY A.SEL_SEQ DESC
+	<![CDATA[ 
+	
+SELECT *
+FROM(	
+	 SELECT A.SEL_SEQ, 
+	        A.PRO_SEQ, 
+	        A.SEL_NUM,
+	        A.SEL_TIME,
+	        A.FINAL_PRICE,
+	        C.PRO_NAME,
+	        A.DEL_SEQ, 
+	        A.SEL_SIZE, 
+	        A.SEL_COLOR, 
+	        B.DEL_STEP,
+	        C.SUB_ITEM  
+	 FROM SALES A JOIN  DELIVERY B 
+	 ON A.USER_ID = B.USER_ID AND A.PRO_SEQ=B.PRO_SEQ
+	 JOIN PRODUCT C
+	 ON A.PRO_SEQ = C.PRO_SEQ
+	 WHERE A.USER_ID = #{id}
+	 ORDER BY A.SEL_SEQ DESC
+	 )
+WHERE ROWNUM <=5
 	]]> 
 </select>
+
 <!-- qna -->
 <select id="do_search_qna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	<![CDATA[  
-SELECT 
-	  A.PRO_SEQ, 
-	  B.PRO_NAME, 
-	  A.QNA_TITLE, 
-	  A.QNA_STEP	
-FROM QNA A JOIN PRODUCT B		
-ON A.PRO_SEQ = B.PRO_SEQ		
-WHERE A.USER_ID = #{id}
+SELECT * 
+FROM		
+	(
+	SELECT 
+		   A.PRO_SEQ, 
+		   B.PRO_NAME, 
+		   A.QNA_TITLE, 
+		   A.QNA_STEP,
+		   A.QNA_TIME	
+	FROM QNA A JOIN PRODUCT B		
+	ON A.PRO_SEQ = B.PRO_SEQ		
+	WHERE A.USER_ID = #{id}
+	)		
+WHERE ROWNUM <=5		
 	]]> 
 </select>
 
 <!-- 장바구니 -->
 <select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	<![CDATA[  
-SELECT 
-  	  B.PRO_NAME, 
-  	  B.PRO_PRICE, 
-  	  A.PRO_SIZE, 
-  	  A.COLOR,
-  	  A.BAS_PRO_NUM,
-  	  B.SUB_ITEM
-FROM BASKET A JOIN PRODUCT B
-ON A.PRO_SEQ = B.PRO_SEQ
-WHERE A.USER_ID = #{id}
-ORDER BY A.BAS_SEQ DESC
+SELECT *
+FROM
+	(
+	SELECT 
+		   B.PRO_NAME, 
+		   B.PRO_PRICE, 
+		   A.PRO_SIZE, 
+		   A.COLOR,
+		   A.BAS_PRO_NUM,
+		   B.SUB_ITEM
+	FROM BASKET A JOIN PRODUCT B
+	ON A.PRO_SEQ = B.PRO_SEQ
+	WHERE A.USER_ID = #{id}
+	ORDER BY A.BAS_SEQ DESC
+	)
+WHERE ROWNUM <=5
 	]]> 
 </select>
 

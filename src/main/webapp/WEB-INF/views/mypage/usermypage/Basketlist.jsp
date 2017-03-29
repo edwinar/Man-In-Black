@@ -22,7 +22,7 @@ td, th {
 <body>
 <center>
 <div id="mypagehead">
-<h4 align="right" style="margin-right: 100px"><a href="MenInBlack.jsp">홈</a> > 
+<h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="basketlist.mib">장바구니</a></h4>
 <h3>MY Order</h3>
