@@ -3,4 +3,33 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.UserMypage">
+
+
+
+    <select id="mib_myreview" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+    --내가쓴 게시물 리뷰가져오기
+    SELECT  REV_SEQ,
+            REV_TITLE,
+            REV_TIME,
+            SCORE
+    FROM (SELECT *
+            FROM REVIEW
+            WHERE USER_ID = #{id})
+    WHERE   ROWNUM <=5;
+    </select>
+
+    <select id="mib_myqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+        --내가쓴 게시물 QNA가져오기
+        SELECT QNA_SEQ,
+        QNA_TITLE,
+        QNA_TIME,
+        QNA_STEP
+        FROM (SELECT *
+        FROM QNA
+        WHERE USER_ID = #{id})
+        WHERE ROWNUM <=5;
+    </select>
+
+
+
 </mapper>

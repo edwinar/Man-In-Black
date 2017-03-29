@@ -56,6 +56,7 @@
 				</tbody>
 
 			</table>
+				<br><br><br><br>
 
 
 			<table class="table" onclick="location.href='myboardqna.mib'">
@@ -93,41 +94,7 @@
 				</tbody>
 
 			</table>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>게시판</th>
-						<th>글제목</th>
-						<th>날짜</th>
-						<th>추천</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>기타문의</td>
-						<td>제몸에 딱이에요!!</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>기타문의</td>
-						<td>정말...</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>기타문의</td>
-						<td>광고 아닙니다 정말 최고..</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-				</tbody>
 
-			</table>
 
 
 		</div>

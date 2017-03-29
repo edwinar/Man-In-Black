@@ -1,14 +1,25 @@
 package com.eagle.men_in_black.controller;
 
+import com.eagle.men_in_black.model.MainDto;
+import com.eagle.men_in_black.model.UserMypageDto;
+import com.eagle.men_in_black.service.UserMypageSvc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private UserMypageSvc UserMypageSvc;
+
+
 	// 회원정보수정 
 		@RequestMapping("mymain.mib")
 		public ModelAndView mymain(){
@@ -86,7 +97,7 @@ public class UserMypageController {
 		loger.debug("=Controller ===========================");
 		loger.debug("codeMSvc === " + "앙 기무띠~");
 		loger.debug("============================");
-		
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard");
 		mav.addObject("msg", "김옥지");
 		
@@ -96,12 +107,10 @@ public class UserMypageController {
 	
 	// 내가쓴 게시물 보기  Q&A
 	@RequestMapping("myboardqna.mib")
-	public ModelAndView myboardqna(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-		
+	public ModelAndView myboardqna(HttpSession session){
+		MainDto mainDto = (MainDto)session.getAttribute("LoginInfo");
+		String id = mainDto.getUSER_ID();
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Q&A");
 		mav.addObject("msg", "김옥지");
 		
@@ -111,14 +120,14 @@ public class UserMypageController {
 	
 	//내가쓴 게시물 보기  리뷰
 	@RequestMapping("myboardreview.mib")
-	public ModelAndView myboardreview(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-		
+	public ModelAndView myboardreview(HttpSession session ,Model model){
+		MainDto mainDto = (MainDto)session.getAttribute("LoginInfo");
+		String id = mainDto.getUSER_ID();
+
+		UserMypageDto dto = UserMypageSvc.mib_myreview(id);
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
-		mav.addObject("msg", "김옥지");
+		mav.addObject("reviwlist", dto);
 		
 		return mav;
 		
