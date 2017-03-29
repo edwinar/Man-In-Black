@@ -1,6 +1,7 @@
 package com.eagle.men_in_black.controller;
 
-import java.util.Map;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,10 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.MainDto;
@@ -94,7 +93,7 @@ public class MainController {
 		return mav;
 		
 	}
-	// 회원가입 페이지 
+	// 회원가입 페이지
 	@RequestMapping("mib_SignUp.mib")
 	public ModelAndView mib_SignUp(){
 		
@@ -103,6 +102,33 @@ public class MainController {
 		return mav;
 		
 	}
-
+	//이메일 인증
 	
+	 @RequestMapping("mail.mib")
+	 public ModelAndView send(){
+	        	
+		 String authNum = RandomNum();
+		 
+		 mainSvc.sendEmail("vovo118@naver.com", authNum);
+		 
+		 ModelAndView mav = new ModelAndView("main/Main");
+		 
+		 
+	     return mav;
+	        
+	        
+	    }
+	 
+	//랜덤번호 인증 번호 
+	 public String RandomNum(){
+		 StringBuffer buffer = new StringBuffer();
+		 for(int i=0;i<=6; i++){
+			 int n = (int)(Math.random()*10);
+			 buffer.append(n);
+		 }
+		 return buffer.toString();
+	 }
+
+
 }
+	

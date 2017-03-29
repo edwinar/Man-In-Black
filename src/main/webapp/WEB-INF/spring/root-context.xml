@@ -9,7 +9,8 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/tx
-    	http://www.springframework.org/schema/tx/spring-tx.xsd">
+    	http://www.springframework.org/schema/tx/spring-tx.xsd
+    	">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 스프링이 관리하는 패키지에 org.zerock.persistence 를 추가한다. -->
@@ -29,7 +30,7 @@
        p:maxIdle="5"
        p:maxWait="-1"
     />
-    
+        
 	<!-- SqlSessionFactoryBean 생성 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
  		<!-- mybatis-config.xml 파일이 스프링이 동작할 때 같이 동작하도록 설정한 것. -->
@@ -49,4 +50,22 @@
 	<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
+	<!-- mail bean -->
+ <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  <property name="host" value="smtp.gmail.com"/>
+  <property name="port" value="587"/>
+  <property name="username" value="dudwo456@gmail.com"/>
+  <property name="password" value="dudjd1414145"/>
+  <property name="javaMailProperties">
+  <props>
+    <prop key="mail.smtp.auth">true</prop>
+    <prop key="mail.smtp.starttls.enable">true</prop>
+    <prop key="mail.smtp.timeout">8500</prop>  <!-- mail 서버 연결시 timeout 시간 설정 -->
+    <prop key="mail.debug">true</prop> <!-- log를 보고 싶다면 사용 -->
+  </props>
+  </property>
+ </bean>		
+
+
+ 
 </beans>
