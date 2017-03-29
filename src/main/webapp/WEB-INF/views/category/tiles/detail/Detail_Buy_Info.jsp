@@ -7,6 +7,8 @@
 <title>:::Detail_Buy_Info:::</title>
 </head>
 <body>
-<h1>상품구매</h1>
+
+<h1>사자</h1>
+
 </body>
 </html>

@@ -499,7 +499,7 @@ function QnAWrite(){
 		        		<img alt="..." src="../images/scoreEmpty.png">
 		        	</div>
 		        	<div class="buy" align="center">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='Detail_Buy_Info.mib'">구매하기</button>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='basketlist.mib'">구매하기</button>
 		        	</div>
 		        </div>
 		      </div>
