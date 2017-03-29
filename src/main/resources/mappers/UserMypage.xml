@@ -81,7 +81,24 @@ FROM
 WHERE ROWNUM <=5
 	]]>
 </select>
-
+	<select id="do_search_review" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+		<![CDATA[
+SELECT *
+FROM
+	(
+	SELECT
+		   A.REV_SEQ,
+		   B.PRO_NAME,
+		   A.REV_TITLE,
+		   A.SCORE,
+		   A.REV_TIME
+	FROM REVIEW A JOIN PRODUCT B
+	ON A.PRO_SEQ = B.PRO_SEQ
+	WHERE A.USER_ID = #{id}
+	)
+WHERE ROWNUM <=5
+	]]>
+	</select>
 <!-- 장바구니 -->
 <select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 	<![CDATA[
@@ -104,32 +121,6 @@ WHERE ROWNUM <=5
 	]]>
 </select>
 
-
-
-
-    <select id="mib_myreview" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-    --내가쓴 게시물 리뷰가져오기
-    SELECT  REV_SEQ,
-            REV_TITLE,
-            REV_TIME,
-            SCORE
-    FROM (SELECT *
-            FROM REVIEW
-            WHERE USER_ID = #{id})
-    WHERE   ROWNUM <=5;
-    </select>
-
-    <select id="mib_myqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-        --내가쓴 게시물 QNA가져오기
-        SELECT QNA_SEQ,
-        QNA_TITLE,
-        QNA_TIME,
-        QNA_STEP
-        FROM (SELECT *
-        FROM QNA
-        WHERE USER_ID = #{id})
-        WHERE ROWNUM <=5;
-    </select>
 
 
 

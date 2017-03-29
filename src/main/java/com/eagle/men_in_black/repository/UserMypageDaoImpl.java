@@ -48,6 +48,6 @@ public class UserMypageDaoImpl implements UserMypageDao {
     @Override
     public List<UserMypageDto> do_search_review(String id) {
         String statement = namespace+".do_search_review";
-        return sqlSession.selectOne(statement,id);
+        return sqlSession.selectList(statement,id);
     }
 }

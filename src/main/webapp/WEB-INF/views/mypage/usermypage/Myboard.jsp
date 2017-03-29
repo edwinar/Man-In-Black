@@ -1,6 +1,12 @@
+<%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qnaList");
+	List<UserMypageDto> reviewlist= (List<UserMypageDto>)request.getAttribute("reviewlist");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,74 +29,53 @@
 		<div class="col-xs-8 col-xs-offset-2 MyPost">
 			<table class="table" onclick="location.href='myboardreview.mib'">
 				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>게시판</th>
-						<th>글제목</th>
-						<th>날짜</th>
-						<th>추천</th>
-					</tr>
+				<tr>
+					<th>글번호</th>
+					<th>게시판</th>
+					<th>글제목</th>
+					<th>날짜</th>
+					<th>추천</th>
+				</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>상품리뷰</td>
-						<td>제몸에 딱이에요!!</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>상품리뷰</td>
-						<td>정말...</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>상품리뷰</td>
-						<td>광고 아닙니다 정말 최고..</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
+				<%for(int i = 0; i < reviewlist.size(); i++){ %>
+				<tr>
+					<td><%=reviewlist.get(i).getREV_SEQ() %></td>
+					<td>리뷰</td>
+					<td><%=reviewlist.get(i).getREV_TITLE()%></td>
+					<td><%=reviewlist.get(i).getREV_TIME()%></td>
+					<td><%=reviewlist.get(i).getSCORE()%></td>
+				</tr>
+				<%} %>
 				</tbody>
-
 			</table>
 				<br><br><br><br>
 
 
 			<table class="table" onclick="location.href='myboardqna.mib'">
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>게시판</th>
-						<th>글제목</th>
-						<th>날짜</th>
-						<th>추천</th>
-					</tr>
+				<thead  >
+				<tr>
+					<th>글번호</th>
+					<th>게시판</th>
+					<th>글제목</th>
+					<th>날짜</th>
+					<th>추천</th>
+				</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>제품상세</td>
-						<td>제몸에 딱이에요!!</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>제품상세</td>
-						<td>정말...</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>제품상세</td>
-						<td>광고 아닙니다 정말 최고..</td>
-						<td>2017-01-01</td>
-						<td>211</td>
-					</tr>
+				<%for(int i = 0; i < qnaList.size(); i++){ %>
+				<tr>
+					<td><%=i+1%></td>
+					<td><%=qnaList.get(i).getPRO_NAME() %></td>
+					<td><%=qnaList.get(i).getQNA_TITLE()%></td>
+					<td><%=qnaList.get(i).getQNA_TIME()%></td>
+					<%if(qnaList.get(i).getQNA_STEP()=="Y"){ %>
+					<td>답변완료</td>
+					<%}else{ %>
+					<td>답변중</td>
+					<%} %>
+				</tr>
+				<%} %>
 				</tbody>
 
 			</table>

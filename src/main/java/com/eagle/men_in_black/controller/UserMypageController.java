@@ -109,15 +109,16 @@ public class UserMypageController {
 	}
 	// 내가쓴 게시물 보기 
 	@RequestMapping("myboard.mib")
-	public ModelAndView myboard(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
+	public ModelAndView myboard(HttpServletRequest res,HttpServletResponse rep){
+
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> qnaList = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+		List<UserMypageDto> reviewlist = userMypageSvc.do_search_review(userdto.getUSER_ID());
+
 
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard");
-		mav.addObject("msg", "김옥지");
-		
+		mav.addObject("qnaList",qnaList);
+		mav.addObject("reviewlist", reviewlist);
 		return mav;
 		
 	}
@@ -137,14 +138,13 @@ public class UserMypageController {
 	
 	//내가쓴 게시물 보기  리뷰
 	@RequestMapping("myboardreview.mib")
-	public ModelAndView myboardreview(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
+	public ModelAndView myboardreview(HttpServletRequest res,HttpServletResponse rep){
+
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> reviewlist = userMypageSvc.do_search_review(userdto.getUSER_ID());
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
-		mav.addObject("msg", "김옥지");
+		mav.addObject("reviewlist", reviewlist);
 		
 		return mav;
 		

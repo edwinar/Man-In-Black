@@ -1,11 +1,17 @@
+<%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
+<%
+    List<UserMypageDto> reviewlist= (List<UserMypageDto>)request.getAttribute("reviewlist");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::리뷰::</title>
 </head>
+
 <body>
 	<center>
 		<div id="mypagehead">
@@ -30,30 +36,16 @@
             </tr>
             </thead>
             <tbody>
+            <%for(int i = 0; i < reviewlist.size(); i++){ %>
             <tr>
-                <td>1</td>
-                <td>상품리뷰</td>
-                <td>제몸에 딱이에요!!</td>
-                <td>2017-01-01</td>
-                <td>211</td>
+                <td><%=reviewlist.get(i).getREV_SEQ() %></td>
+                <td>리뷰</td>
+                <td><%=reviewlist.get(i).getREV_TITLE()%></td>
+                <td><%=reviewlist.get(i).getREV_TIME()%></td>
+                <td><%=reviewlist.get(i).getSCORE()%></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>상품리뷰</td>
-                <td>정말...</td>
-                <td>2017-01-01</td>
-                <td>211</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>상품리뷰</td>
-                <td>광고 아닙니다 정말 최고..</td>
-                <td>2017-01-01</td>
-                <td>211</td>
-            </tr>
-            </tr>
+            <%} %>
             </tbody>
-
         </table>
 	<div class="row" align="center">
 			<p>
