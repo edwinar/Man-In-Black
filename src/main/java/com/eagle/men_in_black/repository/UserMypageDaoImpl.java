@@ -12,10 +12,10 @@ import com.eagle.men_in_black.model.UserMypageDto;
 public class UserMypageDaoImpl implements UserMypageDao {
 
 	private final String namespace="com.eagle.repository.mapper.UserMypage";
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-		
+
 	@Override
 	public UserMypageDto do_search_point(String id) {
 		String statement = namespace+".do_search_point";
@@ -45,7 +45,9 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_search_basket";
 		return sqlSession.selectList(statement,id);
 	}
-
-	
-
+    @Override
+    public List<UserMypageDto> do_search_review(String id) {
+        String statement = namespace+".do_search_review";
+        return sqlSession.selectList(statement,id);
+    }
 }
