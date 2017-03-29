@@ -1,13 +1,14 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<%!//
-//%>
-<%//
-//%>
+<%
+MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,7 +24,11 @@ request.setCharacterEncoding("UTF-8");
                   <div class="right-content">
                         <nav id="right-nav">
                               <ul>
+                              <%if(dto!=null){ %>
                                     <li><a href="mymain.mib" >마이페이지들어가기</a></li>
+                              <%}else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">마이페이지들어가기</a></li>
+                              <%} %>
                                     <li><a href="#" >products</a></li>
                                     <li><a href="#" >men</a></li>
                                     <li><a href="#" >women</a></li>

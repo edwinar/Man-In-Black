@@ -84,13 +84,22 @@ public class MainController {
 			
 			return mav;		
 		}
-	
+	//회원가입 팝업창 
 	@RequestMapping("signup.mib")
 	public ModelAndView signup(){
 		
 		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignUp");
 		mav.addObject("msg", "김옥지");
 		
+		return mav;
+		
+	}
+	// 회원가입 페이지 
+	@RequestMapping("mib_SignUp.mib")
+	public ModelAndView mib_SignUp(){
+		
+		ModelAndView mav = new ModelAndView("main/MIB_SignUp");
+				
 		return mav;
 		
 	}

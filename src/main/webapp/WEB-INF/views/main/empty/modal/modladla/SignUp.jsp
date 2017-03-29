@@ -10,11 +10,11 @@
    <script type="text/javascript" src="http://wcs.naver.net/wcslog.js">
       
    </script>
-   <form id="signinForm">
+   <form id="signinForm" action="mib_SignUp.mib">
       <h1>MEN IN BLACK</h1>
 
       <div class="signup-container">
-         <input type="submit" name="signup" id="singup" value="MIB 회원가입">
+         <input type="submit" name="signup" id="singup" value="MIB 회원가입" >
       </div>
       <div class="social-login-types">
          <div>
