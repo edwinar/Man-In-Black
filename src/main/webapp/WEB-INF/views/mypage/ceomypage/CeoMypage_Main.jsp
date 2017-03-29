@@ -1,5 +1,10 @@
+<%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+		List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,10 +63,7 @@ td, th {
 	border-radius: 0 3px 3px 0;
 }
 
-.search button:hover {
-	background: #fff;
-	color: #444;
-}
+
 
 .search button:active {
 	box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
@@ -140,7 +142,6 @@ td, th {
 					<col width="50%">
 					<col width="10%">
 					<tr>
-
 						<th>상품</th>
 						<th>분류</th>
 						<th>상품이름</th>
@@ -151,7 +152,22 @@ td, th {
 						<th>상태</th>
 					</tr>
 
+				<%for(int i=0; i<list.size(); i++){ %>
 					<tr>
+						<td><img alt="not found" src="../images/LOVE.jpg"
+							style="width: 100px; height: 100px"></td>
+						<td><%=list.get(i).getITEM() %></td>
+						<td>컬러-<%=list.get(i).getSEL_COLOR() %>,사이즈-<%=list.get(i).getSEL_SIZE() %></td>
+						<td><%=list.get(i).getSEL_NUM() %></td>
+						<td>재고까먹음</td>
+						<td><%=list.get(i).getFINAL_PRICE() %></td>
+						<td><%=list.get(i).getSELTIME() %></td>
+						<td>배송완료</td>
+					</tr>
+				<%}
+				%>	
+					
+				<!-- 	<tr>
 						<td><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
 						<td>상의</td>
@@ -183,18 +199,7 @@ td, th {
 						<td>20000</td>
 						<td>2017.01.02</td>
 						<td>배송완료</td>
-					</tr>
-					<tr>
-						<td><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></td>
-						<td>상의</td>
-						<td>컬러-베이지,사이즈-Free</td>
-						<td>1</td>
-						<td>10</td>
-						<td>20000</td>
-						<td>2017.01.02</td>
-						<td>배송완료</td>
-					</tr>
+					</tr> -->
 				</table>
 
 			</form>
