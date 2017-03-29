@@ -29,8 +29,8 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_buylist(String id) {
-		String statement = namespace+".do_search_buylist";
+	public List<UserMypageDto> do_search_buy(String id) {
+		String statement = namespace+".do_search_buy";
 		return sqlSession.selectList(statement,id);
 	}
 
@@ -45,9 +45,63 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_search_basket";
 		return sqlSession.selectList(statement,id);
 	}
-    @Override
-    public List<UserMypageDto> do_search_review(String id) {
-        String statement = namespace+".do_search_review";
-        return sqlSession.selectList(statement,id);
-    }
+
+	@Override
+	public List<UserMypageDto> do_search_buylist(String id) {
+		String statement = namespace+".do_search_buylist";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_pointlist(String id) {
+		String statement = namespace+".do_search_pointlist";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_couponlist(String id) {
+		String statement = namespace+".do_search_couponlist";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_point5(String id) {
+		String statement = namespace+".do_search_point5";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_basketlist(String id) {
+		String statement = namespace+".do_search_basketlist";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_myboradreview(String id) {
+		String statement = namespace+".do_search_myboradreview";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_myboradqna(String id) {
+		String statement = namespace+".do_search_myboradqna";
+		return sqlSession.selectList(statement,id);
+	}
+
+	@Override
+	public List<UserMypageDto> do_search_reviewlist(String id) {
+		String statement = namespace+".do_search_reviewlist";
+		return sqlSession.selectList(statement,id);
+	}
+
+
+	@Override
+	public List<UserMypageDto> do_search_qnalist(String id) {
+		String statement = namespace+".do_search_qnalist";
+		return sqlSession.selectList(statement,id);
+	}
+
+
+	
+
 }

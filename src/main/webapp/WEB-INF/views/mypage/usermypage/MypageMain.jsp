@@ -5,9 +5,11 @@
 <%
 UserMypageDto mypageDto = (UserMypageDto)request.getAttribute("point");
 List<UserMypageDto> coupon= (List<UserMypageDto>)request.getAttribute("coupon");
-List<UserMypageDto> buyList= (List<UserMypageDto>)request.getAttribute("buyList");
-List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qnaList");
+List<UserMypageDto> buy= (List<UserMypageDto>)request.getAttribute("buy");
+List<UserMypageDto> qna= (List<UserMypageDto>)request.getAttribute("qna");
 List<UserMypageDto> basket= (List<UserMypageDto>)request.getAttribute("basket");
+List<UserMypageDto> point5= (List<UserMypageDto>)request.getAttribute("point5");
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -131,7 +133,7 @@ td, th {
 </center>
 
 	<div>
-		<div id="contain" onclick="location.href='coupon_Mileage.mib'">
+		<div id="contain" ><!--onclick="location.href='coupon_Mileage.mib'"-->
 			<div id="divl">
 				<div class="head parea">사용가능한 쿠폰</div>
 
@@ -165,18 +167,16 @@ td, th {
 						<th style="text-align: center;">금액</th>
 						<th style="text-align: center;">최종</th>
 					</tr>
+					<%for(int i = 0; i<point5.size();i++ ){ %>
 					<tr>
-						<td>01.02</td>
-						<td>jean</td>
-						<td>100원</td>
-						<td>100원</td>
+						<td><%=point5.get(i).getPOINT_TIME()%></td>
+						<td><%=point5.get(i).getPRO_NAME()%></td>
+						<td><%=point5.get(i).getPOINT_PRICE()%></td>
+						<td><%=point5.get(i).getPOINT_FINAL()%></td>
 					</tr>
-					<tr>
-						<td>01.03</td>
-						<td>outer</td>
-						<td>100원</td>
-						<td>200원</td>
-					</tr>
+					<% }%>
+					
+					
 				</table>
 			</div>
 			<button type="button" onclick="location.href='coupon_Mileage.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
@@ -184,7 +184,7 @@ td, th {
 
 
 
-		<div id="boarddiv" onclick="location.href='buylist.mib'">
+		<div id="boarddiv" ><!--onclick="location.href='buyList.mib'"-->
 			<p style="background-color: #696969">주문내용</p>
 			<table class="table">
 				<col width="9%">
@@ -210,32 +210,32 @@ td, th {
 					<th class="#boardthree">판매일</th>
 					<th>상태</th>
 				</tr>
-				<%for(int i = 0; i<buyList.size(); i++){ %>
+				<%for(int i = 0; i<buy.size(); i++){ %>
 				<tr height="30px" >
 					<td class="boardone" rowspan="2"><img alt="not found"src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM() %></td>
-					<td><%=buyList.get(i).getPRO_NAME()%></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT() %></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE() %></td>
-					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM() %></td>
+					<td><%=buy.get(i).getPRO_NAME()%></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM() %></td>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM() %></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getCOUPON() %></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getPOINT() %></th>
+					<td rowspan="2" valign="middle"><%=buy.get(i).getFINAL_PRICE() %></td>
+					<th class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME() %></th>
+					<td rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME() %></td>
 				</tr>
 				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE() %> : <%=buyList.get(i).getSEL_COLOR() %></td>
+					<td><%=buy.get(i).getSEL_SIZE() %> : <%=buy.get(i).getSEL_COLOR() %></td>
 				</tr>
 					<%}%>
 			</table>
 			
 			
-			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+			<button type="button" onclick="location.href='buyList.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 
 
-		<div id="boarddiv" onclick="location.href='basketlist.mib'">
+		<div id="boarddiv" ><!--onclick="location.href='basketlist.mib'"-->
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
 				<col width="5%">
@@ -277,7 +277,7 @@ td, th {
 
 
 
-		<div id="boarddiv" onclick="location.href='myboard.mib'">
+		<div id="boarddiv"><!--onclick="location.href='myboard.mib'"-->
 			<p style="background-color: #696969">Q&A</p>
 			<table class="table">
 
@@ -288,13 +288,13 @@ td, th {
 					<th>날짜</th>
 					<th>답변여부</th>
 				</tr>
-				<%for(int i = 0; i < qnaList.size(); i++){ %>
+				<%for(int i = 0; i < qna.size(); i++){ %>
 				<tr>
 					<td><%=i+1%></td>
-					<td><%=qnaList.get(i).getPRO_NAME() %></td>
-					<td><%=qnaList.get(i).getQNA_TITLE()%></td>
-					<td><%=qnaList.get(i).getQNA_TIME()%></td>
-					<%if(qnaList.get(i).getQNA_STEP()=="Y"){ %>
+					<td><%=qna.get(i).getPRO_NAME() %></td>
+					<td><%=qna.get(i).getQNA_TITLE()%></td>
+					<td><%=qna.get(i).getQNA_TIME()%></td>
+					<%if(qna.get(i).getQNA_STEP()=="Y"){ %>
 					<td>답변완료</td>
 					<%}else{ %>
 					<td>답변중</td>
