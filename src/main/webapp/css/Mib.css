@@ -138,6 +138,28 @@ body {
 	text-decoration: none;
 	color: black;
 }
+
+
+.mypage-link > a:link {
+	text-decoration: none; color: black;
+}
+
+.mypage-link > a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.mypage-link > a:active {
+	text-decoration: none;
+	color: black;
+}
+
+.mypage-link > a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+
 .mypage-side-menu ul {
 	margin-top: 30px;
 }

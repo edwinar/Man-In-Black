@@ -27,11 +27,12 @@
 	</center>
 	<div>
 		<div class="col-xs-8 col-xs-offset-2 MyPost">
-			<table class="table" onclick="location.href='myboardreview.mib'">
+			<span class="mypage-link" style="font-size: 19px;"><a href='myboardreview.mib'>My Review</a></span>
+			<table class="table" >
 				<thead>
 				<tr>
 					<th>글번호</th>
-					<th>게시판</th>
+					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
 					<th>추천</th>
@@ -41,7 +42,7 @@
 				<%for(int i = 0; i < reviewlist.size(); i++){ %>
 				<tr>
 					<td><%=reviewlist.get(i).getREV_SEQ() %></td>
-					<td>리뷰</td>
+					<td><%=reviewlist.get(i).getPRO_NAME() %></td>
 					<td><%=reviewlist.get(i).getREV_TITLE()%></td>
 					<td><%=reviewlist.get(i).getREV_TIME()%></td>
 					<td><%=reviewlist.get(i).getSCORE()%></td>
@@ -53,10 +54,11 @@
 
 
 			<table class="table" onclick="location.href='myboardqna.mib'">
+				<span class="mypage-link" style="font-size: 19px;"><a href='myboardreview.mib'>My Q&A</a></span>
 				<thead  >
 				<tr>
 					<th>글번호</th>
-					<th>게시판</th>
+					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
 					<th>추천</th>
