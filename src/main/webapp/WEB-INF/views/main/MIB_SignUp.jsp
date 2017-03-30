@@ -85,7 +85,10 @@ color:white;
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" /> <button type="button" onclick="location.href='mail.mib'">EMAIL인증</button></div> 
+<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" /> 
+<a href="mail.mib" data-toggle="modal" data-target="#modal-email">
+<button type="button">EMAIL인증</button></div> 
+</a>
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" /></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" /></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="Confirm PassWord" /></div>
