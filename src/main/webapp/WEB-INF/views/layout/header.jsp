@@ -145,7 +145,14 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+<!-- Modal signup -->
+<div class="modal fade bs-example-modal-sm" id="modal-email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 

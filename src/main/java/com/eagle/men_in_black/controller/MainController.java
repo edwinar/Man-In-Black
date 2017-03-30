@@ -105,13 +105,16 @@ public class MainController {
 	//이메일 인증
 	
 	 @RequestMapping("mail.mib")
-	 public ModelAndView send(){
-	        	
+	 public ModelAndView send(HttpServletRequest res, HttpServletResponse rep){
+	     
+		 String email = res.getParameter("email");
+		 System.out.println(email);
+		 
 		 String authNum = RandomNum();
 		 
-		 mainSvc.sendEmail("vovo118@naver.com", authNum);
+		 //mainSvc.sendEmail("vovo118@naver.com", authNum);
 		 
-		 ModelAndView mav = new ModelAndView("main/Main");
+		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 
 		 
 	     return mav;
