@@ -36,10 +36,10 @@ public class ServiceController {
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		
-		List<ServiceDto> list = serviceSvc.do_service_main(map);
+		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
+	
 		
-		
-		mav.addObject("list", list);
+		mav.addObject("noticelist", noticelist);
 		
 		
 		return mav;
