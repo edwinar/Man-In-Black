@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ServiceController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
 	
-	
+	// 고객센터 메인(공지사항)
 	@RequestMapping("servicenotice.mib")
 	public ModelAndView coupon_Administer() {
 
