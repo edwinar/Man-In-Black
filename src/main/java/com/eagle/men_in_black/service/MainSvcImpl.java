@@ -97,7 +97,7 @@ public class MainSvcImpl implements MainSvc {
 	            message.setSubject("[공지] 회원 가입 안내", "UTF-8");
 	            String htmlContent = "<strong>안녕하세요</strong>, 반갑습니다." + authNum;
 	            message.setText(htmlContent, "UTF-8", "html");
-	            message.setFrom(new InternetAddress("gz.kyungho@gmail.com"));
+	            message.setFrom(new InternetAddress("dudwo456@gmail.com"));
 	            message.addRecipient(RecipientType.TO, new InternetAddress(email));
 	            javaMailSender.send(message);
 	        } catch (MessagingException e) {

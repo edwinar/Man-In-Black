@@ -35,7 +35,7 @@ td, th {
 <h4>회원님의 장바구니 입니다.</h4>
 </div>
 </center>
-	<div id="total" style="height: 900px; margin-top: 100px">
+	<div id="total" style="height: margin-top: 100px">
 		<div id="table" style="width: 90%">
             <input type="checkbox" id="allCheck"
                    class="chbox" style="width: 20px; height: 20px">
@@ -57,7 +57,7 @@ td, th {
 					<tr>
 						<td rowspan="2">
 						<input type="checkbox" onclick="ty(<%=i %>)"
-							value="<%=basketlist.get(i).getPRO_SEQ()%>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
 
 						<td rowspan="2"><%=i+1 %>
 						
@@ -100,6 +100,7 @@ td, th {
 			</form>
 
 		</div>
+        <input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()">
 <div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
 	</div>
 	<script type="text/javascript">
@@ -176,36 +177,34 @@ td, th {
 			});
 
 
+        function deletes() {
+            var BAS_SEQ = "";
+            var list = $("#list").val();
 
+            for (var i = 0; i < list; i++) {
+               // alert("start");
 
-
-
-		
-	</script>
-<script type="text/javascript">
-    function deletes() {
-        var bas_seq = "";
-        var list = $("#list").val();
-
-        for (var i = 0; i < list; i++) {
-            if(i = list-1){
                 if (document.f1.elements[i].checked == true) {
-                    bas_seq += String(document.f1.elements[i].value);
+                    BAS_SEQ += document.f1.elements[i].value + ",";
+                   // alert(BAS_SEQ+'중간');
                 }
-            }
-            else if (document.f1.elements[i].checked == true) {
-                bas_seq += String(document.f1.elements[i].value + ',');
-            }
 
+            }
+            alert(BAS_SEQ);
+            BAS_SEQ = BAS_SEQ.slice(0,-1);
+            alert(BAS_SEQ + 'end');
+            document.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ;
 
         }
-        document.location.href='basketdelete.mib?bas_num='+bas_seq;
 
-    }
 
-</script>
 
-		<input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()">
+
+
+	</script>
+
+
+
 
 </body>
 </html>

@@ -104,9 +104,9 @@ public class UserMypageDaoImpl implements UserMypageDao {
 
 
 	@Override
-	public void do_delete_basketlist(String bas_seq){
-		String statement = namespace+".do_search_qnalist";
-		 sqlSession.selectOne(statement,bas_seq);
+	public void do_delete_basketlist(List<Integer> list){
+		String statement = namespace+".do_delete_basketlist";
+		 sqlSession.delete(statement,list);
 	}
 	
 
