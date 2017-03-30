@@ -43,7 +43,40 @@ td, th {
 </style>
 </head>
 <body>
-
+<script type="text/javascript">
+$(function() {
+	$('#ch').on('click',function(){
+		if($("#ch").is(':checked')){		
+			var name = $("#orderName").text();	
+			var email = $("#orderEmail").text();
+			var phone = $("#orderPhone").text();
+			var num_1 = $("#orderNum_1").text();
+			var num_2 = $("#orderNum_2").text();
+			var address_1 = $("#orderAddress_1").text();
+			var address_2 = $("#orderAddress_2").text();
+			
+			$("#receiveName").text(name);
+			$("#receiveEmail").text(email);
+			$("#receivePhone").text(phone);
+			$("#receiveNum_1").text(num_1);
+			$("#receiveNum_2").text(num_2);
+			$("#receiveAddress_1").text(address_1);
+			$("#receiveAddress_2").text(address_2);	
+		}else{
+			$("#receiveName").text('');
+			$("#receiveEmail").text('');
+			$("#receivePhone").text('');
+			$("#receiveNum_1").text('');
+			$("#receiveNum_2").text('');
+			$("#receiveAddress_1").text('');
+			$("#receiveAddress_2").text('');	
+		}
+	});
+});
+function buy() {
+	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
+}
+</script>
 <center>
 <div id="mypagehead">
 	<h3 style="margin-top: 50px;">결제/주문</h3>
@@ -108,30 +141,30 @@ td, th {
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td colspan="2">황인배</td>
+					<td colspan="2" id="orderName">황인배</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td colspan="2">hinbae2002@naver.com</td>
+					<td colspan="2" id="orderEmail">hinbae2002@naver.com</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
-					<td colspan="2">010-7536-7209</td>
+					<td colspan="2" id="orderPhone">010-7536-7209</td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" readonly="readonly" id="orderNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" readonly="readonly" id="orderNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_1"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_2"/>
 					</td>
 				</tr>
 			</table>
@@ -142,36 +175,36 @@ td, th {
 				<tr>
 					<td colspan="2" style="padding-left: 150px">수령인</td>
 					<td colspan="1">
-						<input type="checkbox" onclick="" value="" id="ch" class="chbox" style="width: 20px; height: 20px"/>
+						<input type="checkbox" id="ch" class="chbox" style="width: 20px; height: 20px"/>
 						주문자와 동일
 					</td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td colspan="2"></td>
+					<td colspan="2" id="receiveName"></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td colspan="2"></td>
+					<td colspan="2" id="receiveEmail"></td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
-					<td colspan="2"></td>
+					<td colspan="2" id="receivePhone"></td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" id="receiveNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px"/>
+						<input type="text" size="42px" id="receiveAddress_1"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px"/>
+						<input type="text" size="42px" id="receiveAddress_2"/>
 					</td>
 				</tr>
 			</table>
@@ -241,7 +274,7 @@ td, th {
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button style="width: 80%; height: 100%">결제하기</button>
+				<button style="width: 80%; height: 100%" onclick="buy()">결제하기</button>
 			</td>
 		</tr>
 	</table>
