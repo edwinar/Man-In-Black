@@ -155,7 +155,9 @@ FROM (
            JOIN PHOTO C
            ON B.PRO_SEQ = C.PRO_SEQ
            JOIN DELIVERY D
-           ON A.USER_ID = D.USER_ID AND A.PRO_SEQ = D.PRO_SEQ
+           ON A.USER_ID = D.USER_ID 
+           AND A.PRO_SEQ = D.PRO_SEQ
+           AND A.DEL_SEQ = D.DEL_SEQ
            WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE 'MAIN%'
            AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE}) 
