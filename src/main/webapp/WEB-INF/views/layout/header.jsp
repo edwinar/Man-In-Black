@@ -35,7 +35,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 			</div>
 			<div class="col-md-4 col-sm-5">
 				<div class="nav navbar-nav navbar-right topnav" style="width: 100px">
-					<li style="width: 100%"><a href="#about">고객센터</a></li>
+					<li style="width: 100%"><a href="servicenotice.mib">고객센터</a></li>
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px">

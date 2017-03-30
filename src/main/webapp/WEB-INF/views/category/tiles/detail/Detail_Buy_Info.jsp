@@ -16,199 +16,235 @@
 td, th {
 	text-align: center;
 }
+#order{
+	width: 90%;
+}
+#leftOrder{
+	float: left;
+	width: 50%;
+}
+#rightOrder{
+	float: right;
+	width: 50%;
+	border-left: solid black 1px;
+}
+#gift{
+	width: 90%;
+}
+#leftGift{
+	float: left;
+	width: 50%;
+}
+#rightGift{
+	float: right;
+	width: 50%;
+	border-left: solid black 1px;
+}
 </style>
 </head>
 <body>
 
 <center>
 <div id="mypagehead">
-	<h4 align="right" style="margin-right: 100px">
-	<a href="meninblack.mib">홈</a> > 
-	<a href="mymain.mib">MY PAGE</a> > 
-	<a href="basketlist.mib">장바구니</a>
-	</h4>
-	<h3>MY Order</h3>
-	<h4>회원님의 장바구니 입니다.</h4>
+	<h3 style="margin-top: 50px;">결제/주문</h3>
 </div>
 </center>
 
-<div id="total" style="height: 900px; margin-top: 100px">
+<div id="total" style="margin-top: 50px;" align="center">
 	<div id="table" style="width: 90%">
 		<form name="f1">
 			<table class="table">
-				<col width="5%"><col width="5%"><col width="9%"><col width="50%"><col width="10%">
+				<col width="5%"><col width="9%"><col width="45%"><col width="10%"><col width="10%">
 				<tr>
-					<th>
-						<input type="checkbox" id="allCheck" class="chbox">
-					</th>
 					<th>번호</th>
 					<th>이미지</th>
 					<th>상품정보</th>
+					<th>가격정보</th>
 					<th>가격</th>
 				</tr>
+				
 				<tr>
-					<td rowspan="2">
-						<input type="checkbox" onclick="ty(1)" value="10000" id="ch1" class="chbox">
-					</td>
 					<td rowspan="2">1번</td>
 					<td rowspan="2">
 						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
 					</td>
 					<td>창거니가 어제 입던 양말</td>
-					<td rowspan="2">10000 Won</td>
+					<td>수량 : 1개</td>
+					<td>10000 Won</td>
 				</tr>
 				<tr>
 					<td>SIZE:L, COLOR: green</td>
+					<td>상품 합계</td>
+					<td>10000 Won</td>
 				</tr>
+				
 				<tr>
-					<td rowspan="2">
-						<input type="checkbox" onclick="ty(2)" value="20000" id="ch2" class="chbox">
-					</td>
 					<td rowspan="2">2번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px;">
-					</td>
-					<td>창거니가 어제 입던 소매</td>
-					<td rowspan="2">20000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-				</tr>
-				<tr>
-					<td rowspan="2">
-						<input type="checkbox" onclick="ty(3)" value="30000" id="ch3" class="chbox">
-					</td>
-					<td rowspan="2">3번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px;">
-						</td>
-					<td>창거니가 어제 입던 티</td>
-					<td rowspan="2">30000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-				</tr>
-				<tr>
-					<td rowspan="2">
-						<input type="checkbox" onclick="ty(4)" value="40000" id="ch3" class="chbox">
-					</td>
-					<td rowspan="2">4번</td>
 					<td rowspan="2">
 						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
 					</td>
-					<td>창거니가  입던 v빤쮸</td>
-					<td rowspan="2">40000 Won</td>
+					<td>창거니가 어제 입던 양말</td>
+					<td>수량 : 1개</td>
+					<td>10000 Won</td>
 				</tr>
 				<tr>
 					<td>SIZE:L, COLOR: green</td>
-				</tr>
-			</table>
-			<table width="50%" align="center" class="table"style="margin-top: 100px">
-
-				<tr>
-					<td>상품가격</td>
-					<td>+</td>
-					<td>택배비(5만이상 무료)</td>
-					<td>=</td>
-					<td>총가격</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" id="pay" value="" readonly="readonly">
-					</td>
-					<td>
-						+
-					</td>
-					<td>
-						<input type="text" id="tag" value="" readonly="readonly">
-					</td>
-					<td>
-						=
-					</td>
-					<td>
-						<input type="text" id="top" value="" readonly="readonly">
-					</td>
+					<td>상품 합계</td>
+					<td>10000 Won</td>
 				</tr>
 			</table>
 		</form>
 	</div>
-	<div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
 </div>
-<script type="text/javascript">
-	var b = 0;
-	var sum = 0;
 
-	function ty(n) {
-		if (document.f1.elements[n].checked == true) {
-			b += Number(document.f1.elements[n].value);
-			document.getElementById('pay').value = b;
-			if (b < 50000) {
-				document.getElementById('top').value = b + 2500;
-				document.getElementById('tag').value = 2500;
-			} else {
-				document.getElementById('top').value = b;
-				document.getElementById('tag').value = "무료";
-			}
-
-		} else if (document.f1.elements[n].checked == false) {
-			b -= Number(document.f1.elements[n].value);
-			document.getElementById('pay').value = b;
-			if (b < 50000) {
-				document.getElementById('top').value = b + 2500;
-				document.getElementById('tag').value = 2500;
-			} else {
-				document.getElementById('top').value = b;
-				document.getElementById('tag').value = "무료";
-			}
-		}
-	}
-
-	$(function() {
-		$("#allCheck").click(function() {
-			b = 0;
-			if ($("#allCheck").prop("checked")) {
-				$(".chbox").prop("checked", true);
-			} else if ($("#allCheck").prop("checked", false)) {
-				$(".chbox").prop("checked", false);
-			}
-			for (var i = 1; i < 5; i++) {
-				if (document.f1.elements[i].checked == true) {
-					b += Number(document.f1.elements[i].value);
-					document.getElementById('pay').value = b;
-					if (b < 50000) {
-						document.getElementById('tag').value = 2500;
-						document.getElementById('top').value = b + 2500;
-						
-					} else {
-						document.getElementById('top').value = b;
-						document.getElementById('tag').value = "무료";
-					}
-				} else {
-					document.getElementById('pay').value = 0;
-					document.getElementById('top').value = 0;
-					document.getElementById('tag').value = 0;
-
-				}
-			}
-		})
-
-	})
-	
-	$(function() {
-		$(".chbox").click(function(){		
-		if(document.getElementById('pay').value == 0){
-			document.getElementById('pay').value = 0;
-			document.getElementById('top').value = 0;
-			document.getElementById('tag').value = 0;
-		}			
-					
-				}
-			)
-		}
-	)
-	
-	
-</script>
-
+<div id="orderInfo" style="margin-top: 100px;" align="center">
+	<hr style="border: solid black 1px; width: 90%;" align="center">
+	<div id="order">
+		<div id="leftOrder">
+			<table class="orderTable" width="90%" height="400px">
+			<col width="20%"/><col width="50%"/><col width="30%"/>
+				<tr>
+					<td colspan="3">주문인</td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td colspan="2">황인배</td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td colspan="2">hinbae2002@naver.com</td>
+				</tr>
+				<tr>
+					<td>휴대전화</td>
+					<td colspan="2">010-7536-7209</td>
+				</tr>
+				<tr>
+					<td rowspan="3">주소</td>
+					<td colspan="2">
+						<input type="text" size="10px"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" size="42px"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" size="42px"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="rightOrder">
+			<table class="orderTable" width="90%" height="400px">
+			<col width="20%"/><col width="50%"/><col width="30%"/>
+				<tr>
+					<td colspan="2" style="padding-left: 150px">수령인</td>
+					<td colspan="1">
+						<input type="checkbox" onclick="" value="" id="ch" class="chbox" style="width: 20px; height: 20px"/>
+						주문자와 동일
+					</td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td>휴대전화</td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td rowspan="3">주소</td>
+					<td colspan="2">
+						<input type="text" size="10px"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" size="42px"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" size="42px"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="giftInfo" style="margin-top: 500px;" align="center">
+	<hr style="border: solid black 1px; width: 90%;" align="center">
+	<div id="gift">
+		<div id="leftGift">
+			<table class="giftTable" width="90%" height="150px">
+			<col width="20%"/><col width="50%"/><col width="30%"/>
+				<tr>
+					<td colspan="3">쿠폰</td>
+				</tr>
+				<tr>
+					<td colspan="2">쿠폰선택</td>
+					<td rowspan="2">
+						<button style="width: 80%; height: 80%;">적용하기</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<select name=coupon size=1>
+					        <option value="미선택" selected="selected">미선택</option>
+					        <option value="5000">쿠폰 5000원</option>
+					        <option value="10000">쿠폰 10000원</option>
+				    	</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="rightGift">
+			<table class="giftTable" width="90%" height="150px">
+			<col width="35%"/><col width="35%"/><col width="30%"/>
+				<tr>
+					<td colspan="3">적립금</td>
+				</tr>
+				<tr>
+					<td>사용가능적립금</td>
+					<td>0</td>
+					<td>Won 사용가능</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" size="30px"/>
+					</td>
+					<td>
+						<button>Won 사용하기</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div style="margin-top: 250px; margin-bottom: 50px;" align="center">
+	<hr style="border: solid black 1px; width: 90%;" align="center">
+	<table width="30%" height="100px">
+	<col width="50%"/><col width="50%"/>
+		<tr>
+			<td>배송비</td>
+			<td>3000 Won</td>
+		</tr>
+		<tr>
+			<td>총 결제 금액</td>
+			<td>23000 Won</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button style="width: 80%; height: 100%">결제하기</button>
+			</td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>

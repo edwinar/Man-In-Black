@@ -3,4 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.Service">
+
+
+<!--공지사항 불러오기  -->
+<select id="do_service_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.ServiceDto">
+SELECT * FROM NOTICE_BOARD
+ORDER BY NOTICE_SEQ DESC;
+</select>
+
+
+
 </mapper>
+
+
+

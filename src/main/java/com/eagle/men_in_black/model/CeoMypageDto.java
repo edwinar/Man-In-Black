@@ -7,14 +7,6 @@ public class CeoMypageDto implements Serializable {
 	private static final long serialVersionUID = 3677511154849423670L;
 
 private String SELTIME;
-public String getSELTIME() {
-	return SELTIME;
-}
-
-public void setSELTIME(String sELTIME) {
-	SELTIME = sELTIME;
-}
-
 private	String	BODYTYPE;
 private	String	COLOR;
 private	int	COUPON;
@@ -316,7 +308,13 @@ public String getNEW_ITEM() {
 public void setNEW_ITEM(String nEW_ITEM) {
 	NEW_ITEM = nEW_ITEM;
 }
+public String getSELTIME() {
+	return SELTIME;
+}
 
+public void setSELTIME(String sELTIME) {
+	SELTIME = sELTIME;
+}
 @Override
 public String toString() {
 	return "CeoMypageDto [BODYTYPE=" + BODYTYPE + ", COLOR=" + COLOR + ", COUPON=" + COUPON + ", DET_SEQ=" + DET_SEQ
