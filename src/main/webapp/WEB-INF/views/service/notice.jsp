@@ -15,6 +15,10 @@
 td, th {
 	text-align: center;
 }
+.table{
+	margin-left: 120px;
+	width: 86%;
+}
 </style>
 <title>::NOTICEBOARD::</title>
 </head>
@@ -33,7 +37,7 @@ td, th {
 
 	<table class="table">
 		<col width="5%">
-		<col width="50%">
+		<col width="60%">
 		<col width="10%">
 		<thead>
 			<tr>
