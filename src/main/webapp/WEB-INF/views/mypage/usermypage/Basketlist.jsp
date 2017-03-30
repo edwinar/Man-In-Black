@@ -186,7 +186,7 @@ td, th {
 
                 if (document.f1.elements[i].checked == true) {
                     BAS_SEQ += document.f1.elements[i].value + ",";
-                    alert(BAS_SEQ);
+                    alert(BAS_SEQ+'중간');
                 }
 
             }
@@ -196,6 +196,7 @@ td, th {
             document.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ;
 
         }
+
 
 
 
