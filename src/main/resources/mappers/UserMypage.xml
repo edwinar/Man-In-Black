@@ -244,11 +244,11 @@ WHERE RNUM BETWEEN 1 and 10
 ]]> 
 </select>
     <!-- 장바구니 아이템 삭제  -->
-    <select id="do_delete_basketlist" parameterType="String" resultType="int">
-        <![CDATA[
+    <delete id="do_delete_basketlist" parameterType="hashmap">
+
       DELETE BASKET WHERE BAS_SEQ IN (#{BAS_SEQ})
-]]>
-    </select>
+
+    </delete>
 <!-- 내가쓴글QNA  -->
 <select id="do_search_myboradqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
