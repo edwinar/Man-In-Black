@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
-//체크박스 싸이즈 크게
+/*체크박스 싸이즈 크게*/
 .chbox {
 	width: 20px;
 	height: 20px
@@ -56,14 +56,15 @@ td, th {
 					<tr>
 						<td rowspan="2">
 						<input type="checkbox" onclick="ty(<%=i+1 %>)"
-							value="<%=basketlist.get(i).getPRO_PRICE() %>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+							value="<%=basketlist.get(i).getPRO_SEQ() %>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+
 						<td rowspan="2"><%=i+1 %>
 						
 			
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
 						<td><%=basketlist.get(i).getPRO_NAME() %></td>
-						<td rowspan="2"><%=basketlist.get(i).getPRO_PRICE() %></td>
+						<td rowspan="2" id="price<%=i+1%>"><%=basketlist.get(i).getPRO_PRICE() %></td>
 					</tr>
 					<tr>
 						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR() %></td>
@@ -104,10 +105,13 @@ td, th {
 		var b = 0;
 		var sum = 0;
 		var list = $("#list").val();
-				
+
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
-				b += Number(document.f1.elements[n].value);
+			    console.log('트루들어옴')
+				b += Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
+
+                bas_seq.append()
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -118,7 +122,7 @@ td, th {
 				}
 
 			} else if (document.f1.elements[n].checked == false) {
-				b -= Number(document.f1.elements[n].value);
+				b -= Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -140,7 +144,7 @@ td, th {
 				}
 				for (var i = 1; i < list; i++) {
 					if (document.f1.elements[i].checked == true) {
-						b += Number(document.f1.elements[i].value);
+						b += Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
 						document.getElementById('pay').value = b;
 						if (b < 50000) {
 							document.getElementById('tag').value = 2500;
@@ -159,7 +163,7 @@ td, th {
 				}
 			})
 
-		})
+		});
 		
 		$(function() {
 			$(".chbox").click(function(){		
@@ -171,12 +175,39 @@ td, th {
 						
 					}
 				)
-			}
-		)
-		
+			});
+
+
+
+
+
+
 		
 	</script>
+<script type="text/javascript">
+    function deletes() {
+        var bas_seq = "";
+        var list = $("#list").val();
 
+        for (var i = 1; i < list; i++) {
+            if(i = list-1){
+                if (document.f1.elements[i].checked == true) {
+                    bas_seq += String(document.f1.elements[i].value);
+                }
+            }
+            else if (document.f1.elements[i].checked == true) {
+                bas_seq += String(document.f1.elements[i].value + ',');
+            }
+
+
+        }
+        document.location.href='basketdelete.mib?bas_num='+bas_seq;
+
+    }
+
+</script>
+
+		<input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()">
 
 </body>
 </html>

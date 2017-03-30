@@ -103,6 +103,11 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 
+	@Override
+	public void do_delete_basketlist(String bas_seq){
+		String statement = namespace+".do_search_qnalist";
+		 sqlSession.selectOne(statement,bas_seq);
+	}
 	
 
 }
