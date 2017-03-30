@@ -100,6 +100,7 @@ public class UserMypageController {
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
+		mav.addObject("basketlist",basketlist);
 		return mav;
 
 	}

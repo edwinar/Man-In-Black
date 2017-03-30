@@ -68,7 +68,7 @@
 						int page_num = Integer.parseInt(PAGE_NUM);
 						int page_size = Integer.parseInt(PAGE_SIZE);
 
-						int pageCount = qnaList.get(0).getTOT_CNT() / page_size == 0 ? qnaList.get(0).getTOT_CNT() / page_size
+						int pageCount = qnaList.get(0).getTOT_CNT() % page_size == 0 ? qnaList.get(0).getTOT_CNT() / page_size
 								: (qnaList.get(0).getTOT_CNT() / page_size) + 1;
 					%>
 				<div class="row" align="center">

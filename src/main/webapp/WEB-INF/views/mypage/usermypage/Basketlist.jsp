@@ -199,6 +199,8 @@ td, th {
 
 
         }
+        alert(bas_seq);
+        console.log(bas_seq);
         document.location.href='basketdelete.mib?bas_num='+bas_seq;
 
     }
