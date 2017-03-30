@@ -19,4 +19,14 @@ public class CategorySvcImpl implements CategorySvc {
 	public List<CategoryDto> do_selectCategoryProductList(HashMap<String, String> map) {
 		return categoryDao.do_selectCategoryProductList(map);
 	}
+
+	@Override
+	public List<CategoryDto> do_selectSub_itemList(String ITEM) {
+		return categoryDao.do_selectSub_itemList(ITEM);
+	}
+
+	@Override
+	public List<CategoryDto> do_bestList(HashMap<String, String> map) {
+		return categoryDao.do_selectCategoryProductList(map);
+	}	
 }

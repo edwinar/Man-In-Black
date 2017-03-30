@@ -74,4 +74,11 @@ FROM (
 ) TT1
 WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
+
+<select id="do_selectSub_itemList" parameterType="String" resultType="com.eagle.men_in_black.model.CategoryDto">
+SELECT SUB_ITEM
+FROM PRODUCT
+WHERE ITEM=#{ITEM}
+GROUP BY SUB_ITEM
+</select>
 </mapper>

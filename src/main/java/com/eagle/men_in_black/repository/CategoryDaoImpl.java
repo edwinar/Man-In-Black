@@ -23,5 +23,16 @@ public class CategoryDaoImpl implements CategoryDao {
 		String statement = namespace+".do_selectCategoryProductList";
 		return sqlSession.selectList(statement,map);
 	}
-	
+
+	@Override
+	public List<CategoryDto> do_selectSub_itemList(String ITEM) {
+		String statement = namespace+".do_selectSub_itemList";
+		return sqlSession.selectList(statement,ITEM);
+	}
+
+	@Override
+	public List<CategoryDto> do_bestList(HashMap<String, String> map) {
+		String statement = namespace+".do_selectCategoryProductList";
+		return sqlSession.selectList(statement,map);
+	}
 }
