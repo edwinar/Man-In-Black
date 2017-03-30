@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class UserMypageController {
 	// 장바구니 
 	@RequestMapping("basketlist.mib")
 	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep){
-		
+
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
@@ -90,6 +91,29 @@ public class UserMypageController {
 		return mav;
 		
 	}
+	// 장바구니 삭제
+	@RequestMapping("basketdelete.mib")
+	public ModelAndView basketdelete(HttpServletRequest res,HttpServletResponse rep){
+
+		
+		String BAS_SEQ = res.getParameter("BAS_SEQ");
+		
+		String str[] = BAS_SEQ.split(",");
+		List<Integer> list= new ArrayList<>();
+		for(int i=0; i<str.length; i++){
+			list.add(Integer.parseInt(str[i]));
+		}
+		
+		userMypageSvc.do_delete_basketlist(list);
+		
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
+		mav.addObject("basketlist",basketlist);
+		return mav;
+
+	}
+
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
 	public ModelAndView todayGoods(){

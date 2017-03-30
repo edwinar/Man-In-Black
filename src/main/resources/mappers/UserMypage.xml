@@ -215,16 +215,17 @@ FROM (
 </select>
 
 <!-- 장바구니LIST  -->
-<select id="do_search_basketlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+    <select id="do_search_basketlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<![CDATA[
 SELECT TT1.*
 FROM (
        SELECT ROWNUM RNUM,T1.*,T2.*
           FROM(
-               SELECT 
-               B.PRO_NAME, 
-               B.PRO_PRICE, 
-               A.PRO_SIZE, 
+               SELECT
+               A.BAS_SEQ,
+               B.PRO_NAME,
+               B.PRO_PRICE,
+               A.PRO_SIZE,
                A.COLOR,
                A.BAS_PRO_NUM,
                B.SUB_ITEM
@@ -238,11 +239,19 @@ FROM (
                          SELECT COUNT(*) TOT_CNT FROM BASKET WHERE USER_ID=#{id}
                         ) T2
       ) TT1
-WHERE RNUM BETWEEN 1 and 10
+WHERE RNUM BETWEEN 1 and 100
 
 ]]> 
 </select>
+    <!-- 장바구니 아이템 삭제  -->
+    <delete id="do_delete_basketlist" parameterType="java.util.List" >
 
+      DELETE BASKET WHERE BAS_SEQ IN 
+      <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.value}
+        </foreach>
+
+    </delete>
 <!-- 내가쓴글QNA  -->
 <select id="do_search_myboradqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  

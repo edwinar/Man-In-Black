@@ -78,14 +78,14 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 				<li class="dropdown"><a href="NewCategory.mib"
 					class="dropdown-toggle" role="button" aria-expanded="false">NEW
 				</a></li>
-				<li class="dropdown"><a href="outerCategory.mib"
+				<li class="dropdown"><a href="category.mib?ITEM=OUTER"
 					class="dropdown-toggle" role="button" aria-expanded="false">OUTER</span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">COAT</a></li>
 						<li><a href="#">JACKET</a></li>
 						<li><a href="#">JUMPER</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="topCategory.mib"
+				<li class="dropdown"><a href="category.mib?ITEM=TOP"
 					class="dropdown-toggle" role="button" aria-expanded="false">TOP</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">TEE</a></li>
@@ -93,20 +93,20 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 						<li><a href="#">KNIT</a></li>
 						<li><a href="#">HOOD</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="pantsCategory.mib"
+				<li class="dropdown"><a href="category.mib?ITEM=PANTS"
 					class="dropdown-toggle" role="button" aria-expanded="false">PANTS</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">JEANS</a></li>
 						<li><a href="#">SLACKS</a></li>
 						<li><a href="#">COTTON PANTS</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="shoesCategory.mib"
+				<li class="dropdown"><a href="category.mib?ITEM=SHOES"
 					class="dropdown-toggle" role="button" aria-expanded="false">SHOES</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">WALKER</a></li>
 						<li><a href="#">RUNNING SHOES</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="bnaCategory.mib"
+				<li class="dropdown"><a href="category.mib?ITEM=BAGnACC"
 					class="dropdown-toggle" role="button" aria-expanded="false">BAG&ACC</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">BAG</a></li>

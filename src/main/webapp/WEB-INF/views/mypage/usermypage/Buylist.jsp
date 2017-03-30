@@ -396,7 +396,7 @@ td, th {
 			int page_num = Integer.parseInt(PAGE_NUM);
 			int page_size = Integer.parseInt(PAGE_SIZE);
 
-			int pageCount = buyList.get(0).getTOT_CNT() / page_size == 0 ? buyList.get(0).getTOT_CNT() / page_size
+			int pageCount = buyList.get(0).getTOT_CNT() % page_size == 0 ? buyList.get(0).getTOT_CNT() / page_size
 					: (buyList.get(0).getTOT_CNT() / page_size) + 1;
 	%>
 	<div class="row" align="center">

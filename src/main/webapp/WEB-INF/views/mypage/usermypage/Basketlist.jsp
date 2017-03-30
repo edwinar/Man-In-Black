@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
-//체크박스 싸이즈 크게
+/*체크박스 싸이즈 크게*/
 .chbox {
 	width: 20px;
 	height: 20px
@@ -25,7 +25,7 @@ td, th {
 <title>::장바구니::</title>
 </head>
 <body>
-<input type="hidden" value="<%=basketlist.size()+1 %>" id="list">
+<input type="hidden" value="<%=basketlist.size() %>" id="list">
 <center>
 <div id="mypagehead">
 <h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
@@ -35,8 +35,10 @@ td, th {
 <h4>회원님의 장바구니 입니다.</h4>
 </div>
 </center>
-	<div id="total" style="height: 900px; margin-top: 100px">
+	<div id="total" style="height: margin-top: 100px">
 		<div id="table" style="width: 90%">
+            <input type="checkbox" id="allCheck"
+                   class="chbox" style="width: 20px; height: 20px">
 			<form name="f1">
 				<table class="table">
 					<col width="5%">
@@ -45,8 +47,7 @@ td, th {
 					<col width="50%">
 					<col width="10%">
 					<tr>
-						<th><input type="checkbox" id="allCheck"
-							class="chbox" style="width: 20px; height: 20px"></th>
+						<th> x </th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
@@ -55,15 +56,16 @@ td, th {
 						<%for(int i = 0; i<basketlist.size();i++){ %>
 					<tr>
 						<td rowspan="2">
-						<input type="checkbox" onclick="ty(<%=i+1 %>)"
-							value="<%=basketlist.get(i).getPRO_PRICE() %>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+						<input type="checkbox" onclick="ty(<%=i %>)"
+							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+
 						<td rowspan="2"><%=i+1 %>
 						
 			
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
 						<td><%=basketlist.get(i).getPRO_NAME() %></td>
-						<td rowspan="2"><%=basketlist.get(i).getPRO_PRICE() %></td>
+						<td rowspan="2" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE() %></td>
 					</tr>
 					<tr>
 						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR() %></td>
@@ -98,16 +100,17 @@ td, th {
 			</form>
 
 		</div>
+        <input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()">
 <div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
 	</div>
 	<script type="text/javascript">
 		var b = 0;
 		var sum = 0;
 		var list = $("#list").val();
-				
+
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
-				b += Number(document.f1.elements[n].value);
+				b += Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -118,7 +121,7 @@ td, th {
 				}
 
 			} else if (document.f1.elements[n].checked == false) {
-				b -= Number(document.f1.elements[n].value);
+				b -= Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -138,9 +141,9 @@ td, th {
 				} else if ($("#allCheck").prop("checked", false)) {
 					$(".chbox").prop("checked", false);
 				}
-				for (var i = 1; i < list; i++) {
+				for (var i =0 ; i < list; i++) {
 					if (document.f1.elements[i].checked == true) {
-						b += Number(document.f1.elements[i].value);
+						b += Number(document.getElementById('price'+[i]).childNodes[0].nodeValue);
 						document.getElementById('pay').value = b;
 						if (b < 50000) {
 							document.getElementById('tag').value = 2500;
@@ -159,7 +162,7 @@ td, th {
 				}
 			})
 
-		})
+		});
 		
 		$(function() {
 			$(".chbox").click(function(){		
@@ -171,11 +174,36 @@ td, th {
 						
 					}
 				)
-			}
-		)
-		
-		
+			});
+
+
+        function deletes() {
+            var BAS_SEQ = "";
+            var list = $("#list").val();
+
+            for (var i = 0; i < list; i++) {
+               // alert("start");
+
+                if (document.f1.elements[i].checked == true) {
+                    BAS_SEQ += document.f1.elements[i].value + ",";
+                   // alert(BAS_SEQ+'중간');
+                }
+
+            }
+            alert(BAS_SEQ);
+            BAS_SEQ = BAS_SEQ.slice(0,-1);
+            alert(BAS_SEQ + 'end');
+            document.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ;
+
+        }
+
+
+
+
+
 	</script>
+
+
 
 
 </body>

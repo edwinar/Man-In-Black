@@ -26,7 +26,7 @@ body {
 
 #divl {
 	width: 45%;
-	height: 377px;
+	height: 60%;
 	display: inline-block;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 	float: left;
@@ -75,9 +75,10 @@ body {
 			<div class="head gray">사용가능한 쿠폰</div>
 
 			<div class="offer" align="center" >
-				<table style="text-align: center;">
-					<col width="200px">
-					<col width="200px">
+				<table style="text-align: center; width: 90%">
+					<col width="40%">
+					<col width="30%">
+					<col width="30%">
 					<tr>
 						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
 						<th style="text-align: center; margin-top: 10px">할인 금액</th>
@@ -108,7 +109,7 @@ body {
 						int page_numc = Integer.parseInt(PAGE_NUMC);
 						int page_sizec = Integer.parseInt(PAGE_SIZEC);
 
-						int pageCountc = couponList.get(0).getTOT_CNT() / page_sizec == 0 ? couponList.get(0).getTOT_CNT() / page_sizec
+						int pageCountc = couponList.get(0).getTOT_CNT() % page_sizec == 0 ? couponList.get(0).getTOT_CNT() / page_sizec
 								: (couponList.get(0).getTOT_CNT() / page_sizec) + 1;
 					%>
 					<div class="row" align="center">
@@ -134,11 +135,11 @@ body {
 			<div class="head gray">적립금</div>
 			<p align="center">
 				현재<%=mypageDto.getPOINT_FINAL()%></p>
-			<table style="text-align: center;">
-				<col width="150px">
-				<col width="200px%">
-				<col width="150px">
-				<col width="150px">
+			<table style="text-align: center; width: 90%">
+				<col width="20%">
+				<col width="40%">
+				<col width="20%">
+				<col width="20%">
 				<tr>
 					<th style="text-align: center; margin-top: 5px">날짜</th>
 					<th style="text-align: center; margin-top: 5px">상품명</th>
@@ -186,7 +187,7 @@ body {
 						int page_num = Integer.parseInt(PAGE_NUM);
 						int page_size = Integer.parseInt(PAGE_SIZE);
 
-						int pageCount = pointList.get(0).getTOT_CNT() / page_size == 0 ? pointList.get(0).getTOT_CNT() / page_size
+						int pageCount = pointList.get(0).getTOT_CNT() % page_size == 0 ? pointList.get(0).getTOT_CNT() / page_size
 								: (pointList.get(0).getTOT_CNT() / page_size) + 1;
 					%>
 				<div class="row" align="center">

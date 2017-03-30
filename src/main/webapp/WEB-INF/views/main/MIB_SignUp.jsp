@@ -1,6 +1,13 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+HashMap<String,String> map = (HashMap<String,String>)request.getAttribute("map");
+String idcheck = map.get("idcheck");
+
+String success = map.get("success");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -85,10 +92,31 @@ color:white;
 <script type="text/javascript">
 
 $(document).ready(function() {
+	$("#complete").click(function() {
+		
+		
+		
+	if( $("#success").val()=="success" && $("#idcheck")=="OK"){
+		$("#signupform").attr('action','compl.mib');
+		$("#signupform").submit();
+	}else{
+	
+		alert("모든항목을 체크해주세요");
+	}
+	
+	});
+	
+	$("#IDBtn").click(function() {
+		
+		$("#signupform").attr('action','mib_SignUp.mib');
+		$("#signupform").submit();
+	});
+	
+	
 	$("#emailBtn").click(function(){
     	
-	var email = $("#email").val();
-	$("#signA").attr('href','mail.mib?email='+email);
+	var email = $("#sign_email").val();
+	$("#signA").attr('href','mail.mib?sign_email='+email);
         	
     });
 });
@@ -123,9 +151,10 @@ function Postcode() {
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+            
             if(fullRoadAddr!=null&&fullRoadAddr!=""){
             	document.getElementById('jibunAddressdiv').innerHTML = '';
-            	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress"/>';
+            	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress" readonly="readonly" />';
                 document.getElementById('roadAddress').value = fullRoadAddr;
                 document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress"/>';
                
@@ -133,51 +162,68 @@ function Postcode() {
             if(data.jibunAddress!=null&&data.jibunAddress!=""){
           
             document.getElementById('roadAddressdiv').innerHTML ='';
-            document.getElementById('jibunAddressdiv').innerHTML = '<label>지번주소</label><input type="text" placeholder="ADDRESS" id="jibunAddress" name="jibunAddress"/>';
+            document.getElementById('jibunAddressdiv').innerHTML = '<label>지번주소</label><input type="text" placeholder="ADDRESS" id="jibunAddress" name="jibunAddress" readonly="readonly"/>';
             document.getElementById('jibunAddress').value = data.jibunAddress;
-            document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress"/>';
+            document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress" />';
             }
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
                 //예상되는 도로명 주소에 조합형 주소를 추가한다.
                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+               // document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 
             } else if(data.autoJibunAddress) {
                 var expJibunAddr = data.autoJibunAddress;
-                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                //document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 
             } else {
-                document.getElementById('guide').innerHTML = '';
+               // document.getElementById('guide').innerHTML = '';
             }
         }
 
     }).open();
 }
 </script>
-<form id="signupform" action="mail.mib">
+
+
+<%
+if(idcheck.equals("NO")){
+	%>
+	<script type="text/javascript">alert("ID중복입니다.")</script>
+	<%
+}else if(idcheck.equals("OK")){
+%>
+<script type="text/javascript">alert("사용가능합니다.")</script>
+<%}
+%>
+<input type="hidden" name="idcheck" id="idcheck" value="<%=idcheck %>">
+<input type="hidden" name="success" id="success" value="<%=success %>">
+<form id="signupform" action="">
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="email" id="email" /> 
+<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
+
 <a href="" id="signA" data-toggle="modal" data-target="#modal-email">
 <button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
 </a>
-<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" /></div>
+<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" value="<%=map.get("id") %>"/>
+	<button type="button" id="IDBtn">ID중복확인</button>
+</div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password"/></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="Confirm PassWord" /></div>
-<div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name"/></div>
-<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" /></div>
-<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" />
+<div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" value="<%=map.get("name") %>"/></div>
+<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" value="<%=map.get("tel") %>"/></div>
+<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" />
 <button onclick="Postcode()" type="button">우편번호 찾기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" /></div>
-<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" /></div>
+<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; value="<%=map.get("sex") %>" /></div>
+<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; value="<%=map.get("birth") %>" /></div>
 
 </div>
-<button type="submit">회원가입하기</button>
+<button type="button" id="complete">회원가입하기</button>
 </div>
 </form>
 </body>

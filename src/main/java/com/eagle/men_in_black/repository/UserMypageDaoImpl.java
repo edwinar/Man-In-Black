@@ -103,6 +103,11 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 
+	@Override
+	public void do_delete_basketlist(List<Integer> list){
+		String statement = namespace+".do_delete_basketlist";
+		 sqlSession.delete(statement,list);
+	}
 	
 
 }
