@@ -5,6 +5,7 @@
 <%
 HashMap<String,String> map = (HashMap<String,String>)request.getAttribute("map");
 String idcheck = map.get("idcheck");
+
 String success = map.get("success");
 %>
 <html>

@@ -25,7 +25,7 @@
 <%
 	String randomNum = (String)request.getAttribute("randomNum");
 	String sign_email = (String)request.getAttribute("sign_email");
-	System.out.println("모달이메일"+sign_email);
+	//System.out.println("모달이메일"+sign_email);
 	
 %>
 <form action="" name="signinForm" id="signinForm">
@@ -46,7 +46,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#sign_email_Btn").click(function() {
-			if($("#sign_email").val()==$("#randomNum").val()){
+			if($("#email_check").val()==$("#randomNum").val()){
 			
 			$("#success").val('success');
 			$("#signinForm").attr('action','mib_SignUp.mib');
