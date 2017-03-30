@@ -64,9 +64,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 
 	@Override
-	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> map) {
+	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> mapc) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_couponlist(map);
+		return userMypageDao.do_search_couponlist(mapc);
 	}
 
 

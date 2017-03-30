@@ -23,7 +23,7 @@ public interface UserMypageSvc {
 
 	public List<UserMypageDto> do_search_pointlist(HashMap<String, String> map);
 
-	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> map);
+	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> mapc);
 
 	public List<UserMypageDto> do_search_basketlist(String id);
 

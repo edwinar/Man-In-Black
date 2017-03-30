@@ -175,14 +175,21 @@ public class UserMypageController {
 		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
 		
+		String PAGE_NUMC = (res.getParameter("PAGE_NUMC")==null || res.getParameter("PAGE_NUMC")=="")?"1":res.getParameter("PAGE_NUMC");
+		String PAGE_SIZEC = (res.getParameter("PAGE_SIZEC")==null || res.getParameter("PAGE_SIZEC")=="")?"10":res.getParameter("PAGE_SIZEC");
+		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("id", userdto.getUSER_ID());
 		
+		HashMap<String, String> mapc = new HashMap<>();
+		mapc.put("PAGE_SIZEC", PAGE_SIZEC);
+		mapc.put("PAGE_NUMC", PAGE_NUMC);
+		mapc.put("id", userdto.getUSER_ID());
 		
 		
-		List<UserMypageDto> couponList = userMypageSvc.do_search_couponlist(map);
+		List<UserMypageDto> couponList = userMypageSvc.do_search_couponlist(mapc);
 		List<UserMypageDto> pointList = userMypageSvc.do_search_pointlist(map);
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Coupon_Mileage");
 		mav.addObject("point",mypageDto);

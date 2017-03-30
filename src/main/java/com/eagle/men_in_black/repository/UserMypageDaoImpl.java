@@ -60,9 +60,9 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> map) {
+	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> mapc) {
 		String statement = namespace+".do_search_couponlist";
-		return sqlSession.selectList(statement,map);
+		return sqlSession.selectList(statement,mapc);
 	}
 
 	@Override

@@ -100,10 +100,10 @@ body {
 				<div class="paging" style="position: absolute; right: 0px; bottom: 0px">
 					<%
 						// 페이징 및 날짜 선택 
-						String PAGE_NUMC = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
-								: request.getParameter("PAGE_NUM");
-						String PAGE_SIZEC = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
-								? "10" : request.getParameter("PAGE_SIZE");
+						String PAGE_NUMC = (request.getParameter("PAGE_NUMC") == null || request.getParameter("PAGE_NUMC") == "") ? "1"
+								: request.getParameter("PAGE_NUMC");
+						String PAGE_SIZEC = (request.getParameter("PAGE_SIZEC") == null || request.getParameter("PAGE_SIZEC") == "")
+								? "10" : request.getParameter("PAGE_SIZEC");
 
 						int page_numc = Integer.parseInt(PAGE_NUMC);
 						int page_sizec = Integer.parseInt(PAGE_SIZEC);
@@ -116,7 +116,7 @@ body {
 							<%
 								for (int i = 1; i <= pageCountc; i++) {
 							%>
-							<a href="coupon_Mileage.mib?PAGE_NUM=<%=i%>&" class="btn btn-default"
+							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&" class="btn btn-default"
 								role="button"><%=i%></a>
 							<%
 								}
