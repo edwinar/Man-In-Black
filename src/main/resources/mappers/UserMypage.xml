@@ -176,7 +176,7 @@ FROM (
 </select>
 
 <!-- 포인트LIST --> 
-<select id="do_search_pointlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_pointlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
@@ -192,11 +192,11 @@ FROM (
           SELECT COUNT(*) TOT_CNT FROM POINTS WHERE USER_ID=#{id}
           ) T2
              ) TT1
-           WHERE RNUM BETWEEN 1 and 4
+            WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
 <!-- 쿠폰LIST  -->
-<select id="do_search_couponlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_couponlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
 SELECT TT1.*
 FROM (
@@ -210,7 +210,7 @@ FROM (
            SELECT COUNT(*) TOT_CNT FROM COUPON WHERE USER_ID=#{id} AND COUPON.COUP_LIMIT > SYSDATE
            ) T2
     ) TT1
-    WHERE RNUM BETWEEN 1 and 10
+     WHERE RNUM BETWEEN (#{PAGE_SIZEC} * (#{PAGE_NUMC}-1)+1) and ((#{PAGE_SIZEC}*(#{PAGE_NUMC}-1))+#{PAGE_SIZEC})
 ]]> 
 </select>
 
@@ -284,7 +284,7 @@ WHERE ROWNUM <=5
 </select>
 
 <!-- 리뷰 -->
-<select id="do_search_reviewlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_reviewlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
 SELECT TT1.*
 FROM (
@@ -302,12 +302,12 @@ FROM (
            SELECT COUNT(*) TOT_CNT FROM REVIEW WHERE USER_ID=#{id}
 ) T2
            ) TT1
-           WHERE RNUM BETWEEN 1 and 2
+           WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
 
 <!-- qna -->
-<select id="do_search_qnalist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
 SELECT TT1.*
 FROM (
@@ -322,7 +322,7 @@ FROM (
     SELECT COUNT(*) TOT_CNT FROM QNA WHERE USER_ID=#{id} 
 ) T2
            ) TT1
-           WHERE RNUM BETWEEN 1 and 2
+            WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
 
