@@ -5,49 +5,51 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<UserMypageDto> buyList = (List<UserMypageDto>) request.getAttribute("buyList");
-String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
-String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
+	String START_DATE = (request.getParameter("START_DATE") == null || request.getParameter("START_DATE") == "")
+			? ""
+			: request.getParameter("START_DATE");
+	String END_DATE = (request.getParameter("END_DATE") == null || request.getParameter("END_DATE") == "")
+			? ""
+			: request.getParameter("END_DATE");
 
 	Calendar cal = Calendar.getInstance();
 	int tyear = cal.get(Calendar.YEAR);
-	int tmonth = cal.get(Calendar.MONTH)+1;
+	int tmonth = cal.get(Calendar.MONTH) + 1;
 	int tday = cal.get(Calendar.DATE);
 
-if(START_DATE.equals("")){
+	if (START_DATE.equals("")) {
 
-	if(tmonth<10){
-		if(tday<10){
-			START_DATE = tyear+"-0"+tmonth+"-0"+tday;
-			END_DATE = tyear+"-0"+tmonth+"-0"+tday;
-		}else{
-			START_DATE = tyear+"-0"+tmonth+"-"+tday;
-			END_DATE = tyear+"-0"+tmonth+"-"+tday;
+		if (tmonth < 10) {
+			if (tday < 10) {
+				START_DATE = tyear + "-0" + tmonth + "-0" + tday;
+				END_DATE = tyear + "-0" + tmonth + "-0" + tday;
+			} else {
+				START_DATE = tyear + "-0" + tmonth + "-" + tday;
+				END_DATE = tyear + "-0" + tmonth + "-" + tday;
+			}
+		} else {
+			if (tday < 10) {
+				START_DATE = tyear + "-" + tmonth + "-0" + tday;
+				END_DATE = tyear + "-" + tmonth + "-0" + tday;
+			} else {
+				START_DATE = tyear + "-" + tmonth + "-" + tday;
+				END_DATE = tyear + "-" + tmonth + "-" + tday;
+			}
 		}
-	}else{
-		if(tday<10){
-			START_DATE = tyear+"-"+tmonth+"-0"+tday;
-			END_DATE = tyear+"-"+tmonth+"-0"+tday;
-		}else{
-			START_DATE = tyear+"-"+tmonth+"-"+tday;
-			END_DATE = tyear+"-"+tmonth+"-"+tday;
+	} else {
+		END_DATE = tyear + "-" + END_DATE.substring(2, 4) + "-" + END_DATE.substring(4, 6);
+
+		String yyear = tyear + "";
+		String endyear = START_DATE.substring(0, 2);
+
+		if (!yyear.substring(2, 4).equals(endyear)) {
+			START_DATE = (tyear - 1) + "-" + START_DATE.substring(2, 4) + "-" + START_DATE.substring(4, 6);
+
+		} else {
+			START_DATE = tyear + "-" + START_DATE.substring(2, 4) + "-" + START_DATE.substring(4, 6);
 		}
+
 	}
-}else{
-	END_DATE = tyear +"-"+ END_DATE.substring(2,4) +"-"+ END_DATE.substring(4, 6);
-	
-	
-	String yyear = tyear+"";
-	String endyear = START_DATE.substring(0, 2);
-			
-	if(!yyear.substring(2,4).equals(endyear)){
-		START_DATE = (tyear-1) +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
-		
-	}else{
-		START_DATE = tyear +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
-	}
-	
-	
-}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,155 +58,222 @@ if(START_DATE.equals("")){
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <style type="text/css">
-
 td, th {
 	text-align: center;
 }
 </style>
 <script type="text/javascript">
-$(document).ready(function(){
-    $('#start_date').change(function(){
-    	var date1 = $('#start_date').val();
-    	var date2 = $('#end_date').val();
-    	
-    	$("#end_date").attr( 'min', date1 );
-    	$("#start_date").attr( 'max', date2 );
-    	
-	}); 
-	
-    $('#dateBtn').click(function(){
-    	var date1 = $('#start_date').val();
-    	var date2 = $('#end_date').val();
-    	
-    	strat_date = date1.split('-').join('').substring(2,8);
-    	end_date = date2.split('-').join('').substring(2,8);
-    	
-    	location.href='buylist.mib?START_DATE='+strat_date+"&END_DATE="+end_date;
-    });  
-    
-    
-	$('#week').click(function(){
-    	var now = new Date();
-        var year= now.getFullYear();
-        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-              
-        var fullDate = year + mon + day;
-        
-        var weekDate = year+''+mon+''+(day-7);
-		
-        // 오늘날짜가 7일보다 작을때 
-		for(i=1;i<=7;i++){
-			if(day==i){
-				var lastDay = ( new Date( year, (mon-1), 0) ).getDate();
-				lastDay = lastDay-i;
-				weekDate = year+''+(mon-1)+''+lastDay;
-				if(mon<10){
-					weekDate = year+'0'+(mon-1)+''+lastDay;
-				}
-				
-			}
-		}
-		
-		fullDate = fullDate.substring(2,8);
-		weekDate = weekDate.substring(2,8);
-		
-		//alert(fullDate);
-		//alert(weekDate);
-		
-		location.href='buylist.mib?START_DATE='+weekDate+"&END_DATE="+fullDate;
-		
-	});
-	
-	$('#month').click(function(){
-		var now = new Date();
-		var year= now.getFullYear();
-		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-        
-        var fullDate = year + mon + day;
-        var monthDate = year+monthdate_mon+day;
-		
-		var monthdate_lastDay = ( new Date( year, (monthdate_mon-1), 0) ).getDate();
-		
-		// 전에 한달의 마지막 날보다 지금 날이 클경우 
-		// 연도 도 고려 
-		if(mon==1){ //1월일때 
-			year = year-1;
-			monthdate_mon = 12;
-			monthDate = year +''+ monthdate_mon + day;
-		}
-		
-		if(monthdate_lastDay<day && mon!=1){ // 1월이아니고 전달보다 지금이 클때 
-			monthdate_mon = monthdate_mon -1;
-			if(monthdate_mon>9){
-			monthDate = year+''+(monthdate_mon)+monthdate_lastDay;
-			}else{
-			monthDate = year+'0'+(monthdate_mon)+monthdate_lastDay;
-			}
-		}
+	$(document)
+			.ready(
+					function() {
+						$('#start_date').change(function() {
+							var date1 = $('#start_date').val();
+							var date2 = $('#end_date').val();
 
-		fullDate = fullDate.substring(2,8);
-		monthDate = monthDate.substring(2,8);
-		//alert(fullDate);
-		//alert(monthDate);	
-		location.href='buylist.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
-        
-	});
-	$('#threeMonth').click(function(){
-		var now = new Date();
-		var year= now.getFullYear();
-		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-		var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-		var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-                
-        var fullDate = year + mon + day;
-        var monthDate = year+monthdate_mon+day;
-	             
-        if(monthdate_mon>2){        
-		var monthdate_lastDay = ( new Date( year, (monthdate_mon-3), 0) ).getDate();
-        }
-        
-        if(mon>2 && monthdate_lastDay<day){
-        	monthdate_mon = monthdate_mon-3;
-        	if(monthdate_mon==0){
-				monthdate_mon = 1;
-				monthDate = year +'0'+ monthdate_mon + monthdate_lastDay;
-			}else{
-				monthDate = year +'0'+ monthdate_mon + monthdate_lastDay;
-			}
-						
-		}else{
-			monthdate_mon = monthdate_mon-3;
-				if(monthdate_mon==0){
-					monthdate_mon = 1;
-					monthDate = year +'0'+ monthdate_mon + day;
-				}else{
-					monthDate = year +'0'+ monthdate_mon + day;
-				}
-			
-		}
-		
-		for(i=1;i<=2;i++){ // 1,2,월일때 연도,월 바꿔줌 
-			if(mon==i){
-				year = year-1;
-				//alert(year);
-				monthdate_mon = 10+i;
-				monthDate = year +''+ monthdate_mon + day;
-				//alert(monthDate);
-			}
-		}
-				
-		
-		
-		fullDate = fullDate.substring(2,8);
-		monthDate = monthDate.substring(2,8);
-		//alert(fullDate);
-		//alert(monthDate);	
-		location.href='buylist.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
-	});
-});
+							$("#end_date").attr('min', date1);
+							$("#start_date").attr('max', date2);
+
+						});
+
+						$('#dateBtn').click(
+								function() {
+									var date1 = $('#start_date').val();
+									var date2 = $('#end_date').val();
+
+									strat_date = date1.split('-').join('')
+											.substring(2, 8);
+									end_date = date2.split('-').join('')
+											.substring(2, 8);
+
+									location.href = 'buylist.mib?START_DATE='
+											+ strat_date + "&END_DATE="
+											+ end_date;
+								});
+
+						$('#week').click(
+								function() {
+									var now = new Date();
+									var year = now.getFullYear();
+									var mon = (now.getMonth() + 1) > 9 ? ''
+											+ (now.getMonth() + 1) : '0'
+											+ (now.getMonth() + 1);
+									var day = now.getDate() > 9 ? ''
+											+ now.getDate() : '0'
+											+ now.getDate();
+
+									var fullDate = year + mon + day;
+
+									var weekDate = year + '' + mon + ''
+											+ (day - 7);
+
+									// 오늘날짜가 7일보다 작을때 
+									for (i = 1; i <= 7; i++) {
+										if (day == i) {
+											var lastDay = (new Date(year,
+													(mon - 1), 0)).getDate();
+											lastDay = lastDay - i;
+											weekDate = year + '' + (mon - 1)
+													+ '' + lastDay;
+											if (mon < 10) {
+												weekDate = year + '0'
+														+ (mon - 1) + ''
+														+ lastDay;
+											}
+
+										}
+									}
+
+									fullDate = fullDate.substring(2, 8);
+									weekDate = weekDate.substring(2, 8);
+
+									//alert(fullDate);
+									//alert(weekDate);
+
+									location.href = 'buylist.mib?START_DATE='
+											+ weekDate + "&END_DATE="
+											+ fullDate;
+
+								});
+
+						$('#month')
+								.click(
+										function() {
+											var now = new Date();
+											var year = now.getFullYear();
+											var mon = (now.getMonth() + 1) > 9 ? ''
+													+ (now.getMonth() + 1)
+													: '0'
+															+ (now.getMonth() + 1);
+											var monthdate_mon = (now.getMonth() + 1) > 9 ? ''
+													+ (now.getMonth() + 1)
+													: '0'
+															+ (now.getMonth() + 1);
+											var day = now.getDate() > 9 ? ''
+													+ now.getDate() : '0'
+													+ now.getDate();
+
+											var fullDate = year + mon + day;
+											var monthDate = year
+													+ monthdate_mon + day;
+
+											var monthdate_lastDay = (new Date(
+													year, (monthdate_mon - 1),
+													0)).getDate();
+
+											// 전에 한달의 마지막 날보다 지금 날이 클경우 
+											// 연도 도 고려 
+											if (mon == 1) { //1월일때 
+												year = year - 1;
+												monthdate_mon = 12;
+												monthDate = year + ''
+														+ monthdate_mon + day;
+											}
+
+											if (monthdate_lastDay < day
+													&& mon != 1) { // 1월이아니고 전달보다 지금이 클때 
+												monthdate_mon = monthdate_mon - 1;
+												if (monthdate_mon > 9) {
+													monthDate = year + ''
+															+ (monthdate_mon)
+															+ monthdate_lastDay;
+												} else {
+													monthDate = year + '0'
+															+ (monthdate_mon)
+															+ monthdate_lastDay;
+												}
+											}
+
+											fullDate = fullDate.substring(2, 8);
+											monthDate = monthDate.substring(2,
+													8);
+											//alert(fullDate);
+											//alert(monthDate);	
+											location.href = 'buylist.mib?START_DATE='
+													+ monthDate
+													+ "&END_DATE="
+													+ fullDate;
+
+										});
+						$('#threeMonth')
+								.click(
+										function() {
+											var now = new Date();
+											var year = now.getFullYear();
+											var mon = (now.getMonth() + 1) > 9 ? ''
+													+ (now.getMonth() + 1)
+													: '0'
+															+ (now.getMonth() + 1);
+											var monthdate_mon = (now.getMonth() + 1) > 9 ? ''
+													+ (now.getMonth() + 1)
+													: '0'
+															+ (now.getMonth() + 1);
+											var day = now.getDate() > 9 ? ''
+													+ now.getDate() : '0'
+													+ now.getDate();
+
+											var fullDate = year + mon + day;
+											var monthDate = year
+													+ monthdate_mon + day;
+
+											if (monthdate_mon > 2) {
+												var monthdate_lastDay = (new Date(
+														year,
+														(monthdate_mon - 3), 0))
+														.getDate();
+											}
+
+											if (mon > 2
+													&& monthdate_lastDay < day) {
+												monthdate_mon = monthdate_mon - 3;
+												if (monthdate_mon == 0) {
+													monthdate_mon = 1;
+													monthDate = year + '0'
+															+ monthdate_mon
+															+ monthdate_lastDay;
+												} else {
+													monthDate = year + '0'
+															+ monthdate_mon
+															+ monthdate_lastDay;
+												}
+
+											} else {
+												monthdate_mon = monthdate_mon - 3;
+												if (monthdate_mon == 0) {
+													monthdate_mon = 1;
+													monthDate = year + '0'
+															+ monthdate_mon
+															+ day;
+												} else {
+													monthDate = year + '0'
+															+ monthdate_mon
+															+ day;
+												}
+
+											}
+
+											for (i = 1; i <= 2; i++) { // 1,2,월일때 연도,월 바꿔줌 
+												if (mon == i) {
+													year = year - 1;
+													//alert(year);
+													monthdate_mon = 10 + i;
+													monthDate = year + ''
+															+ monthdate_mon
+															+ day;
+													//alert(monthDate);
+												}
+											}
+
+											fullDate = fullDate.substring(2, 8);
+											monthDate = monthDate.substring(2,
+													8);
+											//alert(fullDate);
+											//alert(monthDate);	
+											location.href = 'buylist.mib?START_DATE='
+													+ monthDate
+													+ "&END_DATE="
+													+ fullDate;
+										});
+					});
 </script>
 <title>::구매내역::</title>
 </head>
@@ -220,10 +289,15 @@ $(document).ready(function(){
 		</div>
 	</center>
 
-	<div  align="right">
-		<p> <input type="date" height="50px" name="start_date" id="start_date" value="<%=START_DATE %>" max="<%=START_DATE%>">~<input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" ><button type="button" id="dateBtn">검색</button>
+	<div align="right">
+		<p>
+			<input type="date" height="50px" name="start_date" id="start_date"
+				value="<%=START_DATE%>" max="<%=START_DATE%>">~<input
+				type="date" name="end_date" id="end_date" value="<%=END_DATE%>"
+				min="<%=END_DATE%>">
+			<button type="button" id="dateBtn">검색</button>
 			<button class="btn btn-success" id="week">1주</button>
-			<button class="btn btn-success" id="month">1개월</button> 
+			<button class="btn btn-success" id="month">1개월</button>
 			<button class="btn btn-success" id="threeMonth">3개월</button>
 		</p>
 	</div>
@@ -238,34 +312,35 @@ $(document).ready(function(){
 			<div id="table" style="width: 90%">
 				<form name="f1">
 					<table class="table">
-				<col width="9%">
-				<col width="7%">
-				<col width="23%">
-				<col width="6%">
-				<col width="6%">
-				<col width="7%">
-				<col width="7%">
-				<col width="7%">
-				<col width="9%">
-				<col width="12%">
-				<col width="7%">
-				<tr height="40px">
-					<th class="boardone">이미지</th>
-					<th class="boardone">분류</th>
-					<th>상품이름1234512</th>
-					<th class="boardone">수량</th>
-					<th class="boardtwo">판매가</th>
-					<th class="boardtwo">쿠폰</th>
-					<th class="boardtwo">적립금</th>
-					<th>결제금액</th>
-					<th class="#boardthree">판매일</th>
-					<th>상태</th>
-				</tr>
-				<%
-				if(buyList==null||buyList.size()==0){ %>
-					<tr>
-						<td colspan="9999">내역이 없습니다.</td>
-					</tr>
+						<col width="9%">
+						<col width="7%">
+						<col width="23%">
+						<col width="6%">
+						<col width="6%">
+						<col width="7%">
+						<col width="7%">
+						<col width="7%">
+						<col width="9%">
+						<col width="12%">
+						<col width="7%">
+						<tr height="40px">
+							<th class="boardone">이미지</th>
+							<th class="boardone">분류</th>
+							<th>상품이름1234512</th>
+							<th class="boardone">수량</th>
+							<th class="boardtwo">판매가</th>
+							<th class="boardtwo">쿠폰</th>
+							<th class="boardtwo">적립금</th>
+							<th>결제금액</th>
+							<th class="#boardthree">판매일</th>
+							<th>상태</th>
+						</tr>
+						<%
+							if (buyList == null || buyList.size() == 0) {
+						%>
+						<tr>
+							<td colspan="9999">내역이 없습니다.</td>
+						</tr>
 					</table>
 
 				</form>
@@ -273,61 +348,77 @@ $(document).ready(function(){
 			</div>
 
 		</div>
-				<%
-				}else{
-					
-				for(int i = 0; i<buyList.size(); i++){ %>
-				<tr height="30px" >
-					<td class="boardone" rowspan="2"><img alt="not found"src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM() %></td>
+
+		<div>
+			<table>
+				
+					<%
+						} else {
+
+							for (int i = 0; i < buyList.size(); i++) {
+					%>
+				
+				<tr height="30px">
+					<td class="boardone" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
 					<td><%=buyList.get(i).getPRO_NAME()%></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT() %></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE() %></td>
-					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME() %></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP() %></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON()%></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
+					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
 				</tr>
 				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE() %> : <%=buyList.get(i).getSEL_COLOR() %></td>
+					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 				</tr>
-					<%}%>
+				<%
+					}
+				%>
+				
 			</table>
-
-				</form>
-
-			</div>
-
-		</div>
-
-		<%  
-				// 페이징 및 날짜 선택 
-	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
-	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
-
-	
-	int page_num = Integer.parseInt(PAGE_NUM);
-	int page_size = Integer.parseInt(PAGE_SIZE);
-	
-	
-	int pageCount = buyList.get(0).getTOT_CNT()/page_size==0?buyList.get(0).getTOT_CNT()/page_size:(buyList.get(0).getTOT_CNT()/page_size)+1; 
-	
-%>
-		<div class="row" align="center">
-			<p>
-			<%
-			START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
-
-			END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substring(8, 10);
 			
-			for(int i=1; i<=pageCount; i++){ %>
-					<a href="buylist.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE %>&END_DATE=<%=END_DATE %>"class="btn btn-default" role="button"><%=i %></a> 
-			<%} 
-			%>
-			</p>
+
+
 		</div>
+
 	</div>
-	<%} %>
+
+	<%
+		// 페이징 및 날짜 선택 
+			String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
+					? "1" : request.getParameter("PAGE_NUM");
+			String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null
+					|| request.getParameter("PAGE_SIZE") == "") ? "10" : request.getParameter("PAGE_SIZE");
+
+			int page_num = Integer.parseInt(PAGE_NUM);
+			int page_size = Integer.parseInt(PAGE_SIZE);
+
+			int pageCount = buyList.get(0).getTOT_CNT() / page_size == 0 ? buyList.get(0).getTOT_CNT() / page_size
+					: (buyList.get(0).getTOT_CNT() / page_size) + 1;
+	%>
+	<div class="row" align="center">
+		<p>
+			<%
+				START_DATE = START_DATE.substring(2, 4) + START_DATE.substring(5, 7) + START_DATE.substring(8, 10);
+
+					END_DATE = END_DATE.substring(2, 4) + END_DATE.substring(5, 7) + END_DATE.substring(8, 10);
+
+					for (int i = 1; i <= pageCount; i++) {
+			%>
+			<a
+				href="buylist.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE%>&END_DATE=<%=END_DATE%>"
+				class="btn btn-default" role="button"><%=i%></a>
+			<%
+				}
+			%>
+		</p>
+	</div>
+	
+	<%
+		}
+	%>
 </body>
 </html>

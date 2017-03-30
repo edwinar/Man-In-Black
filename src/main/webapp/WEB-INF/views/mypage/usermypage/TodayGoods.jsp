@@ -34,28 +34,8 @@
 
 
 
-	<div class="row" align="center" style="margin-top: 100px">
-		<div class="col-md-6 visible-md visible-lg" align="left" style="">
-			<p>
-				<a href="#" class="btn btn-primary" role="button">전체보기</a> <a
-					href="#" class="btn btn-primary" role="button">COAT</a> <a href="#"
-					class="btn btn-primary" role="button">JACKET</a> <a href="#"
-					class="btn btn-primary" role="button">JUMPER</a>
-			</p>
-		</div>
-		<div class="col-md-6 visible-md visible-lg" align="right">
-			<p>
-				<a href="#" class="btn btn-primary" role="button">신상품순</a> <a
-					href="#" class="btn btn-primary" role="button">낮은가격순</a> <a
-					href="#" class="btn btn-primary" role="button">인기상품순</a> <a
-					href="#" class="btn btn-primary" role="button">리뷰수순</a>
-			</p>
-		</div>
-		<br></br>
-		<br></br>
-	</div>
 
-	<div class="row" align="center">
+	<div class="row" align="center" style="margin-top: 70px">
 		<div class="col-xs-12 col-lg-4">
 			<div class="thumbnail">
 				<img src="../images/LOVE.jpg" alt="...">
