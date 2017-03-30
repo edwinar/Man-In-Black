@@ -34,9 +34,20 @@
 			}
 		}
 	}else{
-		START_DATE = tyear +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
-
 		END_DATE = tyear +"-"+ END_DATE.substring(2,4) +"-"+ END_DATE.substring(4, 6);
+		
+		
+		String yyear = tyear+"";
+		String endyear = START_DATE.substring(0, 2);
+				
+		if(!yyear.substring(2,4).equals(endyear)){
+			START_DATE = (tyear-1) +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
+			
+		}else{
+			START_DATE = tyear +"-"+ START_DATE.substring(2,4) +"-"+ START_DATE.substring(4, 6);
+		}
+		
+		
 	}
 	
 	%>
@@ -156,8 +167,8 @@ $(document).ready(function(){
 		fullDate = fullDate.substring(2,8);
 		weekDate = weekDate.substring(2,8);
 		
-		alert(fullDate);
-		alert(weekDate);
+		//alert(fullDate);
+		//alert(weekDate);
 		
 		location.href='ceoMypage_Main.mib?START_DATE='+weekDate+"&END_DATE="+fullDate;
 		
@@ -167,22 +178,35 @@ $(document).ready(function(){
 		var now = new Date();
 		var year= now.getFullYear();
 		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()) : '0'+(now.getMonth());
+        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
         var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
         
         var fullDate = year + mon + day;
         var monthDate = year+monthdate_mon+day;
 		
-		var monthdate_lastDay = ( new Date( year, (monthdate_mon), 0) ).getDate();
+		var monthdate_lastDay = ( new Date( year, (monthdate_mon-1), 0) ).getDate();
 		
-		// 전에 한달의 마지막 날보다 지금 날이 클경우 년도 도 고려 
-		if(monthdate_lastDay<day){
-			monthDate = year+monthdate_mon+monthdate_lastDay;
+		// 전에 한달의 마지막 날보다 지금 날이 클경우 
+		// 연도 도 고려 
+		if(mon==1){ //1월일때 
+			year = year-1;
+			monthdate_mon = 12;
+			monthDate = year +''+ monthdate_mon + day;
 		}
 		
+		if(monthdate_lastDay<day && mon!=1){ // 1월이아니고 전달보다 지금이 클때 
+			monthdate_mon = monthdate_mon -1;
+			if(monthdate_mon>9){
+			monthDate = year+''+(monthdate_mon)+monthdate_lastDay;
+			}else{
+			monthDate = year+'0'+(monthdate_mon)+monthdate_lastDay;
+			}
+		}
+
 		fullDate = fullDate.substring(2,8);
 		monthDate = monthDate.substring(2,8);
-				
+		//alert(fullDate);
+		//alert(monthDate);	
 		location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
         
 	});
@@ -190,27 +214,53 @@ $(document).ready(function(){
 		var now = new Date();
 		var year= now.getFullYear();
 		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()-2) : '0'+(now.getMonth()-2);
-        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-        
+		var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+		var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+                
         var fullDate = year + mon + day;
         var monthDate = year+monthdate_mon+day;
-		alert(fullDate);
-		alert(monthDate);
-		var monthdate_lastDay = ( new Date( year, (monthdate_mon), 0) ).getDate();
-		
-		alert(monthdate_lastDay);
-		
-		// 전에 한달의 마지막 날보다 지금 날이 클경우  // 년도 월 일 추가 
-		if(monthdate_lastDay<day){
-			monthDate = year+monthdate_mon+monthdate_lastDay;
+	             
+        if(monthdate_mon>2){        
+		var monthdate_lastDay = ( new Date( year, (monthdate_mon-3), 0) ).getDate();
+        }
+        
+        if(mon>2 && monthdate_lastDay<day){
+        	monthdate_mon = monthdate_mon-3;
+        	if(monthdate_mon==0){
+				monthdate_mon = 1;
+				monthDate = year +'0'+ monthdate_mon + monthdate_lastDay;
+			}else{
+				monthDate = year +'0'+ monthdate_mon + monthdate_lastDay;
+			}
+						
+		}else{
+			monthdate_mon = monthdate_mon-3;
+				if(monthdate_mon==0){
+					monthdate_mon = 1;
+					monthDate = year +'0'+ monthdate_mon + day;
+				}else{
+					monthDate = year +'0'+ monthdate_mon + day;
+				}
+			
 		}
+		
+		for(i=1;i<=2;i++){ // 1,2,월일때 연도,월 바꿔줌 
+			if(mon==i){
+				year = year-1;
+				//alert(year);
+				monthdate_mon = 10+i;
+				monthDate = year +''+ monthdate_mon + day;
+				//alert(monthDate);
+			}
+		}
+				
+		
 		
 		fullDate = fullDate.substring(2,8);
 		monthDate = monthDate.substring(2,8);
-		alert(fullDate);
-		alert(monthDate);	
-		//location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
+		//alert(fullDate);
+		//alert(monthDate);	
+		location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
 	});
 });
 </script>
@@ -296,7 +346,16 @@ $(document).ready(function(){
 					</tr>
 
 				<%
-				if(list!=null){
+				
+				if(list==null || list.size()==0){%>
+				<tr>
+					<td colspan="999999">내역이 없습니다.</td>
+				</tr>
+				</table>
+				</form>
+				</div>
+				</div>
+				<%}else{
 				for(int i=0; i<list.size(); i++){ %>
 					<tr>
 						<td><img alt="not found" src="../images/LOVE.jpg"
@@ -310,12 +369,9 @@ $(document).ready(function(){
 						<td>배송완료</td>
 					</tr>
 				<%}
-				}else{
+				
 				%>	
-				<tr>
-					<td colspan="999999">내역이 없습니다.</td>
-				</tr>
-				<%} %>
+				
 				</table>
 
 			</form>
@@ -343,7 +399,7 @@ $(document).ready(function(){
 			
 			
 			<%
-			if(list!=null){
+			
 			START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
 
 			END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substring(8, 10);
@@ -352,11 +408,13 @@ $(document).ready(function(){
 			for(int i=1; i<=pageCount; i++){  %>
 			<a href="ceoMypage_Main.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE %>&END_DATE=<%=END_DATE %>" class="btn btn-default" role="button"><%=i %></a> 
 			<%} 
-			}%>
+			%>
 			
 		</p>
 	</div>
-	
+	<%
+	}
+	%>
 
 </body>
 </html>

@@ -17,7 +17,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .wrap {
   position: absolute;
   background-image: linear-gradient(to top, #000 0%, #323232 100%);
@@ -25,7 +24,6 @@ body {
   height: 100%;
 
 }
-
 .content {
   position: absolute;
   top: 50%;
