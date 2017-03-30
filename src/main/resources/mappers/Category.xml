@@ -5,15 +5,13 @@
 <mapper namespace="com.eagle.repository.mapper.Category">
 	
 	<sql id="BaseCondition">
-        <where>
          <choose>
-             <when test="SUB_ITEM!='ALL'">
-              AND A.SUB_ITEM=#{SUB_ITEM}
+             <when test="SUB_ITEM != 'ALL'">
+              AND A.SUB_ITEM = #{SUB_ITEM}
              </when>
              <otherwise>
              </otherwise>        	    
          </choose>
-         </where>
       </sql>
 	
 <select id="do_selectCategoryProductList" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CategoryDto">
@@ -67,6 +65,7 @@ FROM (
 			SELECT COUNT(A.PRO_SEQ)
 			FROM  PRODUCT A LEFT JOIN SALES B 
 			ON A.PRO_SEQ=B.PRO_SEQ 
+			WHERE A.ITEM= #{ITEM} 
 			<include refid="BaseCondition"/>                     
 			GROUP BY A.PRO_SEQ
 		) 

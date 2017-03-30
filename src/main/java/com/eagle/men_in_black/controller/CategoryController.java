@@ -51,8 +51,10 @@ public class CategoryController {
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"10":res.getParameter("PAGE_SIZE");
 		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
 		
+		System.out.println("서브아이템"+SUB_ITEM);
+		
 		// 메소드 실행시 필요한 키값들의 해시맵
-		HashMap<String, String> map = new HashMap<>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("ITEM", ITEM);
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
@@ -60,13 +62,12 @@ public class CategoryController {
 		map.put("SUB_ITEM", SUB_ITEM);
 		
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
-		//mav.addObject("list", list);
-		for(int i=0; i<list.size(); i++){
+		mav.addObject("list", list);
+		/*for(int i=0; i<list.size(); i++){
 			System.out.println(list.get(i).getPRO_NAME());
 			System.out.println(list.get(i).getPRO_PRICE());
 			System.out.println(list.get(i).getPRO_SEQ());
-		}
-		
+		}*/
 		return mav;
 	}
 
