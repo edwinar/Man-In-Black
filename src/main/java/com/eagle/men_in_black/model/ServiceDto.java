@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class ServiceDto implements Serializable {
 
 	private static final long serialVersionUID = -5980152029432023538L;
-
+	
+	private int TOT_CNT;
 	private	int	NOTICE_SEQ;
 	private	String	NOTICE_TITLE;
 	private	String	NOTICE_CONTENT;
@@ -18,6 +19,18 @@ public class ServiceDto implements Serializable {
 	public int getNOTICE_SEQ() {
 		return NOTICE_SEQ;
 	}
+	
+	
+	public int getTOT_CNT() {
+		return TOT_CNT;
+	}
+
+
+	public void setTOT_CNT(int tOT_CNT) {
+		TOT_CNT = tOT_CNT;
+	}
+
+
 	public void setNOTICE_SEQ(int nOTICE_SEQ) {
 		NOTICE_SEQ = nOTICE_SEQ;
 	}

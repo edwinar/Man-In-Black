@@ -46,17 +46,6 @@ public class PagingUtil {
 			html.append("</a></li>     \n");
 		}
 
-
-//		<ul class="pagination">
-//		  <li class="disabled"><a href="#">&laquo;</a></li>
-//		  <li class="active"><a href="#">1</a></li>
-//		  <li><a href="#">2</a></li>
-//		  <li><a href="#">3</a></li>
-//		  <li><a href="#">4</a></li>
-//		  <li><a href="#">5</a></li>
-//		  <li><a href="#">&raquo;</a></li>
-//		</ul>
-
 		// 1 2 3 ... 10	(숫자보여주기)
 		for (inx = startPageNo; inx <= maxPageNo && inx <= endPageNo; inx++) {
 
@@ -80,6 +69,7 @@ public class PagingUtil {
 			html.append("&raquo;     \n");
 			html.append("</a></li>    \n");
 		}
+
 		html.append("</ul>		\n");
 		html.append("</td>  	\n");
 		html.append("</tr>  	\n");

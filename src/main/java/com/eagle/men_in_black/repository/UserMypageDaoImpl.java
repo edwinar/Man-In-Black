@@ -54,15 +54,15 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_pointlist(String id) {
+	public List<UserMypageDto> do_search_pointlist(HashMap<String, String> map) {
 		String statement = namespace+".do_search_pointlist";
-		return sqlSession.selectList(statement,id);
+		return sqlSession.selectList(statement,map);
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_couponlist(String id) {
+	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> mapc) {
 		String statement = namespace+".do_search_couponlist";
-		return sqlSession.selectList(statement,id);
+		return sqlSession.selectList(statement,mapc);
 	}
 
 	@Override
@@ -90,19 +90,24 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_reviewlist(String id) {
+	public List<UserMypageDto> do_search_reviewlist(HashMap<String, String> map) {
 		String statement = namespace+".do_search_reviewlist";
-		return sqlSession.selectList(statement,id);
+		return sqlSession.selectList(statement,map);
 	}
 
 
 	@Override
-	public List<UserMypageDto> do_search_qnalist(String id) {
+	public List<UserMypageDto> do_search_qnalist(HashMap<String, String> map) {
 		String statement = namespace+".do_search_qnalist";
-		return sqlSession.selectList(statement,id);
+		return sqlSession.selectList(statement,map);
 	}
 
 
+	@Override
+	public void do_delete_basketlist(String bas_seq){
+		String statement = namespace+".do_search_qnalist";
+		 sqlSession.selectOne(statement,bas_seq);
+	}
 	
 
 }

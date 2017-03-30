@@ -40,7 +40,7 @@
 					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
-					<th>추천</th>
+					<th>평점</th>
 				</tr>
 				</thead>
 
@@ -78,7 +78,7 @@
 					<th>상품명</th>
 					<th>글제목</th>
 					<th>날짜</th>
-					<th>추천</th>
+					<th>답글</th>
 				</tr>
 				</thead>
 				<tbody>

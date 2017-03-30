@@ -23,9 +23,11 @@
 			<h4>회원님님의 게시물 작성 리스트 입니다</h4>
 		</div>
 	</center>
-
+<div class="row">
+		<div class="col-xs-8 col-xs-offset-2 MyPost">
 <h3>상품 리뷰</h3>
  <table class="table">
+ <col width="15%"><col width="15%"><col width="40%"><col width="15%"><col width="15%">
             <thead>
             <tr>
                 <th>글번호</th>
@@ -48,14 +50,29 @@
             </tbody>
         </table>
 	<div class="row" align="center">
-			<p>
-				<a href="#" class="btn btn-default" role="button"><</a> 
-				<a href="#"class="btn btn-default" role="button">1</a> 
-					<a href="#"class="btn btn-default" role="button">2</a> 
-					<a href="#"class="btn btn-default" role="button">3</a> 
-					<a href="#"class="btn btn-default" role="button">4</a> 
-					<a href="#"class="btn btn-default" role="button">></a>
-			</p>
-		</div>
+			<%
+						// 페이징 및 날짜 선택 
+						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
+								: request.getParameter("PAGE_NUM");
+						String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
+								? "10" : request.getParameter("PAGE_SIZE");
+
+						int page_num = Integer.parseInt(PAGE_NUM);
+						int page_size = Integer.parseInt(PAGE_SIZE);
+
+						int pageCount = reviewlist.get(0).getTOT_CNT() / page_size == 0 ? reviewlist.get(0).getTOT_CNT() / page_size
+								: (reviewlist.get(0).getTOT_CNT() / page_size) + 1;
+					%>
+				<div class="row" align="center">
+					<p>
+						<%
+							for (int i = 1; i <= pageCount; i++) {
+						%>
+						<a href="myboardreview.mib?PAGE_NUM=<%=i%>&" class="btn btn-default"
+							role="button"><%=i%></a>
+						<%
+							}
+						%>
+		</div></div></div>
 </body>
 </html>
