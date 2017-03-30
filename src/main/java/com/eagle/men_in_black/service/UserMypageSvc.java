@@ -35,4 +35,5 @@ public interface UserMypageSvc {
 
 	public List<UserMypageDto> do_search_qnalist(HashMap<String, String> map);
 
+	public void do_delete_basketlist(HashMap<String,Integer> BAS_SEQ);
 }

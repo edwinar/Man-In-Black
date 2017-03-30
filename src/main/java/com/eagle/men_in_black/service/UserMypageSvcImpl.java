@@ -111,4 +111,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_qnalist(map);
 	}
 
+	@Override
+	public void do_delete_basketlist(HashMap<String,Integer> BAS_SEQ){
+		// TODO Auto-generated method stub
+		 userMypageDao.do_delete_basketlist(BAS_SEQ);
+	}
 }

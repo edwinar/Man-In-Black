@@ -1,11 +1,11 @@
-<%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
-<%@ page import="java.util.List" %>
+<%@ page import="com.eagle.men_in_black.model.UserMypageDto"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	List<UserMypageDto> qnaList= (List<UserMypageDto>)request.getAttribute("qna");
-	List<UserMypageDto> reviewlist= (List<UserMypageDto>)request.getAttribute("review");
+	List<UserMypageDto> qna = (List<UserMypageDto>) request.getAttribute("qna");
+	List<UserMypageDto> review = (List<UserMypageDto>) request.getAttribute("review");
 %>
 <html>
 <head>
@@ -25,76 +25,113 @@
 			<h4>회원님님의 게시물 작성 리스트 입니다</h4>
 		</div>
 	</center>
+	
 	<div class="row">
 		<div class="col-xs-8 col-xs-offset-2 MyPost">
-			<span class="mypage-link" style="font-size: 19px;"><a href='myboardreview.mib'>My Review</a></span>
+			<span class="mypage-link" style="font-size: 19px;"><a
+				href='myboardreview.mib'>My Review</a></span>
 			<table class="table">
 				<tfoot>
-				<td colspan="5" align="center">
-					<span class="mypage-link"><a href='myboardreview.mib'>더 보기</a></span>
-				</td>
+				<tr>
+					<%
+						if (review.size() >= 5) {
+					%>
+					<td colspan="5" align="center"><span class="mypage-link"><a
+							href='myboardreview.mib'>더 보기</a></span></td>
+					<%
+						} else {
+					%>
+					<td colspan="5" align="center"></td>
+					<%
+						}
+					%>
+					</tr>
 				</tfoot>
 				<thead>
-				<tr>
-					<th>글번호</th>
-					<th>상품명</th>
-					<th>글제목</th>
-					<th>날짜</th>
-					<th>평점</th>
-				</tr>
+					<tr>
+						<th>글번호</th>
+						<th>상품명</th>
+						<th>글제목</th>
+						<th>날짜</th>
+						<th>평점</th>
+					</tr>
 				</thead>
 
 				<tbody id="board">
 
-				<%for(int i = 0; i < reviewlist.size(); i++){ %>
-				<tr>
-					<td><%=reviewlist.get(i).getREV_SEQ() %></td>
-					<td><%=reviewlist.get(i).getPRO_NAME() %></td>
-					<td><%=reviewlist.get(i).getREV_TITLE()%></td>
-					<td><%=reviewlist.get(i).getREV_TIME()%></td>
-					<td><%=reviewlist.get(i).getSCORE()%></td>
-				</tr>
-				<%} %>
+					<%
+						for (int i = 0; i < review.size(); i++) {
+					%>
+					<tr>
+						<td><%=review.get(i).getREV_SEQ()%></td>
+						<td><%=review.get(i).getPRO_NAME()%></td>
+						<td><%=review.get(i).getREV_TITLE()%></td>
+						<td><%=review.get(i).getREV_TIME()%></td>
+						<td><%=review.get(i).getSCORE()%></td>
+					</tr>
+					<%
+						}
+					%>
 
 				</tbody>
 
 			</table>
 
-				<br><br><br><br>
+			<br> <br> <br> <br>
 
 
 			<table class="table">
-				<tfoot>
-				<td colspan="5" align="center">
-					<span class="mypage-link"><a href='myboardqna.mib'>더 보기</a></span>
-				</td>
+				<tfoot><tr>
+					<%
+						if (qna.size() >= 5) {
+					%>
+					<td colspan="5" align="center"><span class="mypage-link"><a
+							href='myboardqna.mib'>더 보기</a></span></td>
+					<%
+						} else {
+					%>
+					<td colspan="5" align="center"></td>
+					<%
+						}
+					%>
+					</tr>
 				</tfoot>
 
-
-				<span class="mypage-link" style="font-size: 19px;"><a href='myboardqna.mib'>My Q&A</a></span>
-				<thead  >
-				<tr>
-					<th>글번호</th>
-					<th>상품명</th>
-					<th>글제목</th>
-					<th>날짜</th>
-					<th>답글</th>
-				</tr>
+				<span class="mypage-link" style="font-size: 19px;"><a
+					href='myboardqna.mib'>My Q&A</a></span>
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>상품명</th>
+						<th>글제목</th>
+						<th>날짜</th>
+						<th>답글</th>
+					</tr>
 				</thead>
 				<tbody>
-				<%for(int i = 0; i < qnaList.size(); i++){ %>
-				<tr>
-					<td><%=i+1%></td>
-					<td><%=qnaList.get(i).getPRO_NAME() %></td>
-					<td><%=qnaList.get(i).getQNA_TITLE()%></td>
-					<td><%=qnaList.get(i).getQNA_TIME()%></td>
-					<%if(qnaList.get(i).getQNA_STEP()=="Y"){ %>
-					<td>답변완료</td>
-					<%}else{ %>
-					<td>답변중</td>
-					<%} %>
-				</tr>
-				<%} %>
+					<%
+						for (int i = 0; i < qna.size(); i++) {
+					%>
+					<tr>
+						<td><%=i + 1%></td>
+						<td><%=qna.get(i).getPRO_NAME()%></td>
+						<td><%=qna.get(i).getQNA_TITLE()%></td>
+						<td><%=qna.get(i).getQNA_TIME()%></td>
+						<%
+							if (qna.get(i).getQNA_STEP() == "Y") {
+						%>
+						<td>답변완료</td>
+						<%
+							} else {
+						%>
+						<td>답변중</td>
+						<%
+							}
+						%>
+					</tr>
+					<%
+						}
+					%>
 				</tbody>
 
 			</table>

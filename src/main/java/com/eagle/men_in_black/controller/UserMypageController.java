@@ -82,7 +82,7 @@ public class UserMypageController {
 	// 장바구니 
 	@RequestMapping("basketlist.mib")
 	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep){
-		
+
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
@@ -90,6 +90,29 @@ public class UserMypageController {
 		return mav;
 		
 	}
+	// 장바구니 삭제
+	@RequestMapping("basketdelete.mib")
+	public ModelAndView basketdelete(HttpServletRequest res,HttpServletResponse rep){
+
+		HashMap<String,Integer> BAS_SEQ = new HashMap<>();
+		BAS_SEQ.put("BAS_SEQ", Integer.parseInt(res.getParameter("BAS_SEQ")));
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + BAS_SEQ);
+		loger.debug("============================");
+
+		userMypageSvc.do_delete_basketlist(BAS_SEQ);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "딜리트");
+		loger.debug("============================");
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
+		mav.addObject("basketlist",basketlist);
+		return mav;
+
+	}
+
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
 	public ModelAndView todayGoods(){
