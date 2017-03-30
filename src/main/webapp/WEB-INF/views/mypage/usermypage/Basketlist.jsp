@@ -35,7 +35,7 @@ td, th {
 <h4>회원님의 장바구니 입니다.</h4>
 </div>
 </center>
-	<div id="total" style="height: 900px; margin-top: 100px">
+	<div id="total" style="height: margin-top: 100px">
 		<div id="table" style="width: 90%">
             <input type="checkbox" id="allCheck"
                    class="chbox" style="width: 20px; height: 20px">
