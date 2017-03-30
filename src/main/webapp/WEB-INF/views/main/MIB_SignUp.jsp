@@ -87,8 +87,8 @@ color:white;
 $(document).ready(function() {
 	$("#emailBtn").click(function(){
     	
-	var email = $("#email").val();
-	$("#signA").attr('href','mail.mib?email='+email);
+	var email = $("#sign_email").val();
+	$("#signA").attr('href','mail.mib?sign_email='+email);
         	
     });
 });
@@ -123,9 +123,10 @@ function Postcode() {
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+            
             if(fullRoadAddr!=null&&fullRoadAddr!=""){
             	document.getElementById('jibunAddressdiv').innerHTML = '';
-            	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress"/>';
+            	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress" readonly="readonly" />';
                 document.getElementById('roadAddress').value = fullRoadAddr;
                 document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress"/>';
                
@@ -133,22 +134,22 @@ function Postcode() {
             if(data.jibunAddress!=null&&data.jibunAddress!=""){
           
             document.getElementById('roadAddressdiv').innerHTML ='';
-            document.getElementById('jibunAddressdiv').innerHTML = '<label>지번주소</label><input type="text" placeholder="ADDRESS" id="jibunAddress" name="jibunAddress"/>';
+            document.getElementById('jibunAddressdiv').innerHTML = '<label>지번주소</label><input type="text" placeholder="ADDRESS" id="jibunAddress" name="jibunAddress" readonly="readonly"/>';
             document.getElementById('jibunAddress').value = data.jibunAddress;
-            document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress"/>';
+            document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress" />';
             }
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
                 //예상되는 도로명 주소에 조합형 주소를 추가한다.
                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+               // document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 
             } else if(data.autoJibunAddress) {
                 var expJibunAddr = data.autoJibunAddress;
-                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                //document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 
             } else {
-                document.getElementById('guide').innerHTML = '';
+               // document.getElementById('guide').innerHTML = '';
             }
         }
 
@@ -159,7 +160,7 @@ function Postcode() {
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="email" id="email" /> 
+<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" /> 
 <a href="" id="signA" data-toggle="modal" data-target="#modal-email">
 <button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
 </a>
@@ -168,7 +169,7 @@ function Postcode() {
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="Confirm PassWord" /></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name"/></div>
 <div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" /></div>
-<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" />
+<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" />
 <button onclick="Postcode()" type="button">우편번호 찾기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
