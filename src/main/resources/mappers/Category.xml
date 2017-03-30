@@ -4,33 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.Category">
 	
-	<!-- <sql id="BaseCondition">
-           <where>
-            <choose>
-                <when test="search_div == 10 ">
-                 CD_ID LIKE #{search_word}
-                </when>
-                <when test="search_div == 20 ">
-                 CD_NM LIKE #{search_word}
-                </when>
-                <otherwise></otherwise>                    
-            </choose>
-            </where>
-      </sql>
-	
-	<resultMap id="CodMap" type="java.util.HashMap">
-		<result javaType="java.lang.String" column="CD_ID" property="CD_ID"/>
-		<result javaType="java.lang.String" column="CD_NM" property="CD_NM"/>
-		<result javaType="java.lang.String" column="REG_ID" property="REG_ID"/>
-		<result javaType="java.lang.String" column="REG_DT" property="REG_DT"/>
-		<result javaType="java.lang.String" column="MOD_ID" property="MOD_ID"/>
-		<result javaType="java.lang.String" column="MOD_DT" property="MOD_DT"/>
-		<result javaType="java.lang.String" column="RNUM" property="RNUM"/>
-		<result javaType="java.lang.String" column="TOT_CNT" property="TOT_CNT"/>
-		result javaType="데이터타입" column="db컬럼명" property="맵에서 키값"/
-	</resultMap> 
-	
-<select id="do_selectCategoryProductList" parameterType="String" resultType="CodMap">
+<select id="do_selectCategoryProductList" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CategoryDto">
 SELECT TT1.*
 FROM (
 	SELECT ROWNUM RNUM,T1.*,T2.*
@@ -52,7 +26,7 @@ FROM (
 				, A.ITEM
 			FROM PRODUCT A LEFT JOIN SALES B 
 			ON A.PRO_SEQ=B.PRO_SEQ 
-			WHERE A.ITEM='OUTER'                       
+			WHERE A.ITEM= #{ITEM}                  
 			GROUP BY B.PRO_SEQ
 				,A.PRO_NAME
 				,A.PRO_CONTENT
@@ -70,7 +44,7 @@ FROM (
 			, C.ITEM
 			, D.STORED_NAME
 			, E.PRO_SEQ
-		ORDER BY REVIEW_CNT DESC                    
+		ORDER BY ${ORDER}                    
   
 	) T1 
 	NATURAL JOIN(
@@ -80,12 +54,12 @@ FROM (
 			SELECT COUNT(A.PRO_SEQ)
 			FROM  PRODUCT A LEFT JOIN SALES B 
 			ON A.PRO_SEQ=B.PRO_SEQ 
-			WHERE A.ITEM='OUTER'                       
+			WHERE A.ITEM=#{ITEM}                       
 			GROUP BY A.PRO_SEQ
 		) 
 
 	) T2
 ) TT1
-WHERE RNUM BETWEEN 1 and 9;
-</select> -->
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
 </mapper>
