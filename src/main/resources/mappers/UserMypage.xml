@@ -239,14 +239,17 @@ FROM (
                          SELECT COUNT(*) TOT_CNT FROM BASKET WHERE USER_ID=#{id}
                         ) T2
       ) TT1
-WHERE RNUM BETWEEN 1 and 10
+WHERE RNUM BETWEEN 1 and 100
 
 ]]> 
 </select>
     <!-- 장바구니 아이템 삭제  -->
-    <delete id="do_delete_basketlist" parameterType="hashmap">
+    <delete id="do_delete_basketlist" parameterType="java.util.List" >
 
-      DELETE BASKET WHERE BAS_SEQ IN (#{BAS_SEQ})
+      DELETE BASKET WHERE BAS_SEQ IN 
+      <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.value}
+        </foreach>
 
     </delete>
 <!-- 내가쓴글QNA  -->

@@ -112,8 +112,8 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 	}
 
 	@Override
-	public void do_delete_basketlist(HashMap<String,Integer> BAS_SEQ){
+	public void do_delete_basketlist(List<Integer> list){
 		// TODO Auto-generated method stub
-		 userMypageDao.do_delete_basketlist(BAS_SEQ);
+		 userMypageDao.do_delete_basketlist(list);
 	}
 }

@@ -182,11 +182,11 @@ td, th {
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
-                alert("start");
+               // alert("start");
 
                 if (document.f1.elements[i].checked == true) {
                     BAS_SEQ += document.f1.elements[i].value + ",";
-                    alert(BAS_SEQ+'중간');
+                   // alert(BAS_SEQ+'중간');
                 }
 
             }

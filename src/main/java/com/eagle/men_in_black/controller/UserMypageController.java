@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -94,17 +95,17 @@ public class UserMypageController {
 	@RequestMapping("basketdelete.mib")
 	public ModelAndView basketdelete(HttpServletRequest res,HttpServletResponse rep){
 
-		HashMap<String,Integer> BAS_SEQ = new HashMap<>();
-		BAS_SEQ.put("BAS_SEQ", Integer.parseInt(res.getParameter("BAS_SEQ")));
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + BAS_SEQ);
-		loger.debug("============================");
-
-		userMypageSvc.do_delete_basketlist(BAS_SEQ);
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "딜리트");
-		loger.debug("============================");
+		
+		String BAS_SEQ = res.getParameter("BAS_SEQ");
+		
+		String str[] = BAS_SEQ.split(",");
+		List<Integer> list= new ArrayList<>();
+		for(int i=0; i<str.length; i++){
+			list.add(Integer.parseInt(str[i]));
+		}
+		
+		userMypageSvc.do_delete_basketlist(list);
+		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		List<UserMypageDto> basketlist = userMypageSvc.do_search_basketlist(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Basketlist");
