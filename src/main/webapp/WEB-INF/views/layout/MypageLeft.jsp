@@ -23,7 +23,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
   <%if(dto.getUSER_ID().equals("adm")){ %>
  <ul>
     
-    <li onclick="location.href='userup.mib'">제품등록</li>
+    <li onclick="location.href='register_Good.mib'">제품등록</li>
     
     <li onclick="location.href='buylist.mib'">판매내역</li>
    
