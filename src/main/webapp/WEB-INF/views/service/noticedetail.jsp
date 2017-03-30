@@ -30,7 +30,9 @@
 		</div>
 		<p align="right">
 			<a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a>
+			<!-- <a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a> -->
 		</p>
+	
 	</div>
 
 </body>

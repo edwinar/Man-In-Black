@@ -34,6 +34,11 @@ td, th {
 		</div>
 	</center>
 	<h3>NOTICE</h3>
+	
+	<!--CEO기능지워야됨  noticewrite로 옮겨야됨-->
+	<p align="right">
+			<a  class="btn btn-primary" href="ckeditorImageUpload.mib" role="button">공지사항 쓰기</a>
+	</p>
 
 	<!--공지제목 누르면 seq가지고 컨트롤러 이동  -->
 	<table class="table">
