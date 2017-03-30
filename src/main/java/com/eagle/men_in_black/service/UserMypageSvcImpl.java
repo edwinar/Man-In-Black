@@ -57,16 +57,16 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 
 	@Override
-	public List<UserMypageDto> do_search_pointlist(String id) {
+	public List<UserMypageDto> do_search_pointlist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_pointlist(id);
+		return userMypageDao.do_search_pointlist(map);
 	}
 
 
 	@Override
-	public List<UserMypageDto> do_search_couponlist(String id) {
+	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_couponlist(id);
+		return userMypageDao.do_search_couponlist(map);
 	}
 
 
@@ -99,16 +99,16 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 
 	@Override
-	public List<UserMypageDto> do_search_reviewlist(String id) {
+	public List<UserMypageDto> do_search_reviewlist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_reviewlist(id);
+		return userMypageDao.do_search_reviewlist(map);
 	}
 
 
 	@Override
-	public List<UserMypageDto> do_search_qnalist(String id) {
+	public List<UserMypageDto> do_search_qnalist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_qnalist(id);
+		return userMypageDao.do_search_qnalist(map);
 	}
 
 }

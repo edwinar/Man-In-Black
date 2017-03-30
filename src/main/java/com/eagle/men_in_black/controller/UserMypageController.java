@@ -126,9 +126,18 @@ public class UserMypageController {
 	// 내가쓴 게시물 보기  Q&A
 	@RequestMapping("myboardqna.mib")
 	public ModelAndView myboardqna(HttpServletRequest res, HttpServletResponse rep){
-		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		List<UserMypageDto> qnaList = userMypageSvc.do_search_qnalist(userdto.getUSER_ID());
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("id", userdto.getUSER_ID());
+		
+
+		List<UserMypageDto> qnaList = userMypageSvc.do_search_qnalist(map);
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Q&A");
 		mav.addObject("qnaList",qnaList);
@@ -139,9 +148,17 @@ public class UserMypageController {
 	//내가쓴 게시물 보기  리뷰
 	@RequestMapping("myboardreview.mib")
 	public ModelAndView myboardreview(HttpServletRequest res, HttpServletResponse rep){
-		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(userdto.getUSER_ID());
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("id", userdto.getUSER_ID());
+		
+		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
 		mav.addObject("reviewlist",reviewlist);
@@ -153,12 +170,20 @@ public class UserMypageController {
 	// 쿠폰 그리고 적립금 
 	@RequestMapping("coupon_Mileage.mib")
 	public ModelAndView coupon_Mileage(HttpServletRequest res, HttpServletResponse rep){
-		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
 		
-		List<UserMypageDto> couponList = userMypageSvc.do_search_couponlist(userdto.getUSER_ID());
-		List<UserMypageDto> pointList = userMypageSvc.do_search_pointlist(userdto.getUSER_ID());
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("id", userdto.getUSER_ID());
+		
+		
+		
+		List<UserMypageDto> couponList = userMypageSvc.do_search_couponlist(map);
+		List<UserMypageDto> pointList = userMypageSvc.do_search_pointlist(map);
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Coupon_Mileage");
 		mav.addObject("point",mypageDto);
 		mav.addObject("couponList",couponList);

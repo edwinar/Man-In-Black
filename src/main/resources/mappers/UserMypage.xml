@@ -192,7 +192,7 @@ FROM (
           SELECT COUNT(*) TOT_CNT FROM POINTS WHERE USER_ID=#{id}
           ) T2
              ) TT1
-           WHERE RNUM BETWEEN 1 and 4
+            WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
 <!-- 쿠폰LIST  -->
@@ -210,7 +210,7 @@ FROM (
            SELECT COUNT(*) TOT_CNT FROM COUPON WHERE USER_ID=#{id} AND COUPON.COUP_LIMIT > SYSDATE
            ) T2
     ) TT1
-    WHERE RNUM BETWEEN 1 and 10
+     WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]> 
 </select>
 
@@ -302,7 +302,7 @@ FROM (
            SELECT COUNT(*) TOT_CNT FROM REVIEW WHERE USER_ID=#{id}
 ) T2
            ) TT1
-           WHERE RNUM BETWEEN 1 and 2
+           WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
 
@@ -322,7 +322,7 @@ FROM (
     SELECT COUNT(*) TOT_CNT FROM QNA WHERE USER_ID=#{id} 
 ) T2
            ) TT1
-           WHERE RNUM BETWEEN 1 and 2
+            WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
 
