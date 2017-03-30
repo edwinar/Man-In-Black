@@ -45,10 +45,11 @@ public class CategoryController {
 	public ModelAndView outerCategory(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/CategoryOuter");
 		
-		String ITEM = "OUTER";
-		String ORDER = "PRO_SEQ DESC";
-		String PAGE_NUM = "1";
-		String PAGE_SIZE = "10";
+		String ITEM = (res.getParameter("ITEM")==null||res.getParameter("ITEM").equals("") )?"OUTER":res.getParameter("ITEM");
+		String ORDER = (res.getParameter("ORDER")==null||res.getParameter("ORDER").equals("") )?"C.PRO_SEQ DESC":res.getParameter("ORDER");
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"10":res.getParameter("PAGE_SIZE");
+		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
 		
 		// 메소드 실행시 필요한 키값들의 해시맵
 		HashMap<String, String> map = new HashMap<>();
@@ -56,11 +57,17 @@ public class CategoryController {
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("SUB_ITEM", SUB_ITEM);
 		
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
-		mav.addObject("list", list);
+		//mav.addObject("list", list);
+		for(int i=0; i<list.size(); i++){
+			System.out.println(list.get(i).getPRO_NAME());
+			System.out.println(list.get(i).getPRO_PRICE());
+			System.out.println(list.get(i).getPRO_SEQ());
+		}
+		
 		return mav;
-
 	}
 
 	// 상의

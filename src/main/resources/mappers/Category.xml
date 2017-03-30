@@ -4,6 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.Category">
 	
+	<sql id="BaseCondition">
+        <where>
+         <choose>
+             <when test="SUB_ITEM!='ALL'">
+              AND A.SUB_ITEM=#{SUB_ITEM}
+             </when>
+             <otherwise>
+             </otherwise>        	    
+         </choose>
+         </where>
+      </sql>
+	
 <select id="do_selectCategoryProductList" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CategoryDto">
 SELECT TT1.*
 FROM (
@@ -26,7 +38,8 @@ FROM (
 				, A.ITEM
 			FROM PRODUCT A LEFT JOIN SALES B 
 			ON A.PRO_SEQ=B.PRO_SEQ 
-			WHERE A.ITEM= #{ITEM}                  
+			WHERE A.ITEM= #{ITEM} 
+			<include refid="BaseCondition"/>                 
 			GROUP BY B.PRO_SEQ
 				,A.PRO_NAME
 				,A.PRO_CONTENT
@@ -37,7 +50,7 @@ FROM (
 		LEFT JOIN REVIEW E ON C.PRO_SEQ = E.PRO_SEQ
 		WHERE D.STORED_NAME LIKE 'MAIN%'            
 		GROUP BY C.SALE_CNT
-			,C.PRO_NAME
+			, C.PRO_NAME
 			, C.PRO_CONTENT
 			, C.PRO_SEQ
 			, C.PRO_PRICE
@@ -54,10 +67,10 @@ FROM (
 			SELECT COUNT(A.PRO_SEQ)
 			FROM  PRODUCT A LEFT JOIN SALES B 
 			ON A.PRO_SEQ=B.PRO_SEQ 
-			WHERE A.ITEM=#{ITEM}                       
+			<include refid="BaseCondition"/>                     
 			GROUP BY A.PRO_SEQ
 		) 
-
+		
 	) T2
 ) TT1
 WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
