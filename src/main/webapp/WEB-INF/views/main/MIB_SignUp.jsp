@@ -85,6 +85,11 @@ color:white;
 <script type="text/javascript">
 
 $(document).ready(function() {
+	$("#IDBtn").click(function() {
+		$("#signupform").submit();
+	});
+	
+	
 	$("#emailBtn").click(function(){
     	
 	var email = $("#sign_email").val();
@@ -156,15 +161,26 @@ function Postcode() {
     }).open();
 }
 </script>
-<form id="signupform" action="mail.mib">
+
+<%
+String success = (request.getParameter("success")==null || request.getParameter("success")=="")?"fail":request.getParameter("success");
+String sign_email = (request.getParameter("success")==null || request.getParameter("success")=="")?"":request.getParameter("sign_email");
+
+System.out.println("회원가입페이지"+sign_email);
+
+%>
+<form id="signupform" action="mib_SignUp.mib">
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" /> 
+<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=sign_email %>" /> 
+
 <a href="" id="signA" data-toggle="modal" data-target="#modal-email">
 <button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
 </a>
-<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" /></div>
+<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" />
+	<button type="button" id="IDBtn">ID중복확인</button>
+</div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password"/></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="Confirm PassWord" /></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name"/></div>
@@ -174,8 +190,8 @@ function Postcode() {
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" /></div>
-<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" /></div>
+<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; /></div>
+<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; /></div>
 
 </div>
 <button type="submit">회원가입하기</button>

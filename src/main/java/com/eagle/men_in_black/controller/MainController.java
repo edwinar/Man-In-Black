@@ -2,6 +2,7 @@ package com.eagle.men_in_black.controller;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,10 +96,37 @@ public class MainController {
 	}
 	// 회원가입 페이지
 	@RequestMapping("mib_SignUp.mib")
-	public ModelAndView mib_SignUp(){
+	public ModelAndView mib_SignUp(HttpServletRequest res, HttpServletResponse rep){
 		
 		ModelAndView mav = new ModelAndView("main/MIB_SignUp");
 				
+		String success = (res.getParameter("success")==null || res.getParameter("success")=="")?"fail":res.getParameter("success");
+		String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
+		String password = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
+		String name = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
+		String tel = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+		String postcode = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
+		String roadAddress = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
+		String jibunAddress = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
+		String sex = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
+		String birth = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("success", success);
+		map.put("sign_email", sign_email);
+		map.put("password", password);
+		map.put("name", name);
+		map.put("tel", tel);
+		map.put("postcode", postcode);
+		map.put("roadAddress", roadAddress);
+		map.put("jibunAddress", jibunAddress);
+		map.put("sex", sex);
+		map.put("birth", birth);
+		
+		mav.addObject("success", success);
+		mav.addObject("sign_email", sign_email);
+		 
+		
 		return mav;
 		
 	}
@@ -107,15 +135,16 @@ public class MainController {
 	 @RequestMapping("mail.mib")
 	 public ModelAndView send(HttpServletRequest res, HttpServletResponse rep){
 	     
-		 String email = res.getParameter("email");
+		 String email = res.getParameter("sign_email");
 		 System.out.println(email);
 		 
 		 String authNum = RandomNum();
 		 
 		 //mainSvc.sendEmail("vovo118@naver.com", authNum);
-		 
+		 System.out.println("모달컨트롤러"+email);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
-		 
+		 mav.addObject("randomNum", authNum);
+		 mav.addObject("sign_email",email);
 		 
 	     return mav;
 	        
