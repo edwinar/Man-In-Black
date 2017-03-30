@@ -131,7 +131,7 @@ WHERE ROWNUM <=5
 
 
 <!-- 구매한상품LIST  -->
-<select id="do_search_buylist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_buylist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[ 
 SELECT TT1.*
 FROM (
@@ -157,13 +157,18 @@ FROM (
            JOIN DELIVERY D
            ON A.USER_ID = D.USER_ID AND A.PRO_SEQ = D.PRO_SEQ
            WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE 'MAIN%'
+           AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+             AND TO_DATE(${END_DATE}) 
            ) T1
           NATURAL JOIN
           (
-          SELECT COUNT(*) TOT_CNT FROM DELIVERY WHERE DELIVERY.USER_ID=#{id}
+          SELECT COUNT(*) TOT_CNT FROM SALES WHERE 
+          SALES.USER_ID=#{id}
+          AND SALES.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+             AND TO_DATE(${END_DATE}) 
           ) T2
       ) TT1
-       WHERE RNUM BETWEEN 1 and 10
+       WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 
 ]]> 
 </select>

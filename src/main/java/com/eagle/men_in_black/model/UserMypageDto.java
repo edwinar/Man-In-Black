@@ -6,6 +6,7 @@ public class UserMypageDto implements Serializable {
 
     private static final long serialVersionUID = 9097026812134548681L;
 
+    private int TOT_CNT;
     private	String	BODYTYPE;
     private	String	COLOR;
     private	String	COUP_LIMIT;
@@ -82,7 +83,17 @@ public class UserMypageDto implements Serializable {
     private int FINAL_PRICE;
     private String CANCLE;
 
-    public String getBODYTYPE() {
+    
+    
+    public int getTOT_CNT() {
+		return TOT_CNT;
+	}
+
+	public void setTOT_CNT(int tOT_CNT) {
+		TOT_CNT = tOT_CNT;
+	}
+
+	public String getBODYTYPE() {
         return BODYTYPE;
     }
 

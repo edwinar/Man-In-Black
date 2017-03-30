@@ -283,7 +283,7 @@ $(document).ready(function(){
 				<button class="btn btn-success" id="week">1주</button> 
 				<button class="btn btn-success" id="month">1개월</button> 
 				<button class="btn btn-success" id="threeMonth">3개월</button> <br> <br> 
-		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" max="<%=START_DATE%>"> ~ <input type="date" 		name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" max="<%=START_DATE%>"> ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
 				<br>
 			</p>
 		</div>
