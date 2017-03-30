@@ -19,6 +19,12 @@ public class MainDaoImpl implements MainDao {
 		return sqlSession.selectOne(statement,id);
 	}
 
+	@Override
+	public MainDto do_search_email(String email) {
+		String statement = namespace+".do_search_pw";
+		return sqlSession.selectOne(statement,email);
+	}
+
 	
 
 }

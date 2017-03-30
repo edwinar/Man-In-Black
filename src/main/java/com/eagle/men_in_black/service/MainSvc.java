@@ -10,5 +10,7 @@ public interface MainSvc {
 	public MainDto do_search_pw(String id);
 	// 메일인증 
 	public void sendEmail(String email, String authNum);
+	// 메일 체크
+	public MainDto do_search_email(String email);
 
 }
