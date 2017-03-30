@@ -284,7 +284,7 @@ WHERE ROWNUM <=5
 </select>
 
 <!-- 리뷰 -->
-<select id="do_search_reviewlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_reviewlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
 SELECT TT1.*
 FROM (
@@ -307,7 +307,7 @@ FROM (
 </select>
 
 <!-- qna -->
-<select id="do_search_qnalist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[  
 SELECT TT1.*
 FROM (
