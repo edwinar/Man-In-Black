@@ -230,7 +230,7 @@ td, th {
 			</table>
 			
 			
-			<button type="button" onclick="location.href='buyList.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 

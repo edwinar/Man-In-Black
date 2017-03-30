@@ -2,6 +2,7 @@ package com.eagle.men_in_black.controller;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,27 +96,85 @@ public class MainController {
 	}
 	// 회원가입 페이지
 	@RequestMapping("mib_SignUp.mib")
-	public ModelAndView mib_SignUp(){
+	public ModelAndView mib_SignUp(HttpServletRequest res, HttpServletResponse rep){
 		
 		ModelAndView mav = new ModelAndView("main/MIB_SignUp");
 				
+		String success = (res.getParameter("success")==null || res.getParameter("success")=="")?"fail":res.getParameter("success");
+		String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
+		String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
+		String name = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
+		String tel = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+		String sex = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
+		String birth = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
+		String idcheck = "SIBBAL";
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("success", success);
+		map.put("sign_email", sign_email);
+		map.put("id", id);
+		map.put("name", name);
+		map.put("tel", tel);
+		map.put("sex", sex);
+		map.put("birth", birth);
+		map.put("idcheck", idcheck);
+		
+		// 아이디 중복체크 
+		MainDto dto = mainSvc.do_search_pw(id);
+		if(dto!=null){
+		if(dto.getUSER_ID().equals("") || dto.getUSER_ID()==null){ // 중복 안된거
+			idcheck = "OK";
+			map.put("idcheck", idcheck);
+		}else{ // 중복된거 
+			idcheck = "NO";
+			map.put("idcheck", idcheck);
+			
+		}
+		}
+		
+		mav.addObject("map", map);
+		
 		return mav;
 		
 	}
+		//회원가입 완료 버튼 
+	 @RequestMapping("compl.mib")
+	 public ModelAndView completeJoin(HttpServletRequest res, HttpServletResponse rep){
+		 ModelAndView mav = new ModelAndView("main/Main");
+		
+			String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
+			String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
+			String name = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
+			String tel = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+			String sex = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
+			String birth = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
+			String postcode = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
+			String password = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
+			String jibunAddress = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
+			String roadAddress = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
+			String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
+			
+			
+		
+		 
+		 
+		 return mav;
+	 }
+	 
 	//이메일 인증
-	
 	 @RequestMapping("mail.mib")
 	 public ModelAndView send(HttpServletRequest res, HttpServletResponse rep){
 	     
-		 String email = res.getParameter("email");
+		 String email = res.getParameter("sign_email");
 		 System.out.println(email);
 		 
 		 String authNum = RandomNum();
 		 
-		 //mainSvc.sendEmail("vovo118@naver.com", authNum);
-		 
+		 mainSvc.sendEmail(email, authNum);
+		 System.out.println("모달컨트롤러"+email+authNum);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
-		 
+		 mav.addObject("randomNum", authNum);
+		 mav.addObject("sign_email",email);
 		 
 	     return mav;
 	        
