@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -47,9 +48,9 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_buylist(String id) {
+	public List<UserMypageDto> do_search_buylist(HashMap<String, String> map) {
 		String statement = namespace+".do_search_buylist";
-		return sqlSession.selectList(statement,id);
+		return sqlSession.selectList(statement,map);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +50,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 
 	@Override
-	public List<UserMypageDto> do_search_buylist(String id) {
+	public List<UserMypageDto> do_search_buylist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
-		return userMypageDao.do_search_buylist(id);
+		return userMypageDao.do_search_buylist(map);
 	}
 
 

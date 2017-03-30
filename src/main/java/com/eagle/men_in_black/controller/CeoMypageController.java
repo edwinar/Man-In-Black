@@ -51,7 +51,6 @@ public class CeoMypageController {
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("START_DATE",START_DATE);
 		map.put("END_DATE",END_DATE);
-		System.out.println("리스트 == ?? "+END_DATE);
 		
 		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
 		

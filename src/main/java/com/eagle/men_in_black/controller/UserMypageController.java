@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +58,20 @@ public class UserMypageController {
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(userdto.getUSER_ID());
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String START_DATE = (res.getParameter("START_DATE")==null || res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
+		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("START_DATE",START_DATE);
+		map.put("END_DATE",END_DATE);
+		map.put("id", userdto.getUSER_ID());
+		
+		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(map);
 		
 		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
