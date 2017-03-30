@@ -25,4 +25,10 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.selectList(statement, map);
 	}
 
+	@Override
+	public ServiceDto do_service_detail(int seq) {
+		String statement = namespace+".do_service_detail";
+		return sqlSession.selectOne(statement, seq);
+	}
+
 }

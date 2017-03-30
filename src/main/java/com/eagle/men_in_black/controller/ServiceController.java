@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tiles.request.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ServiceController {
 	
 	// 고객센터 메인(공지사항)
 	@RequestMapping("servicenotice.mib")
-	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep) {
+	public ModelAndView servicenotice(HttpServletRequest res, HttpServletResponse rep) {
 
 		ModelAndView mav = new ModelAndView("service/notice");
 		
@@ -37,12 +38,25 @@ public class ServiceController {
 		map.put("PAGE_NUM", PAGE_NUM);
 		
 		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
-	
-		
+			
 		mav.addObject("noticelist", noticelist);
-		
-		
+	
 		return mav;
 
 	}
+	
+	// 고객센터 공지사항(디테일)
+	@RequestMapping("servicedetail.mib")
+	public ModelAndView servicedetail(HttpServletRequest res, HttpServletResponse rep) {
+		// view 에서 보낸 seq 받기
+		int seq = Integer.parseInt(res.getParameter("seq"));
+		
+		ModelAndView mav = new ModelAndView("service/noticedetail");
+		ServiceDto dto = serviceSvc.do_service_detail(seq);
+		mav.addObject("detail", dto);
+		return mav;
+
+	}
+	
+	
 }

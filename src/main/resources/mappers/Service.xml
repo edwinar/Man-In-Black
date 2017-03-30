@@ -5,25 +5,39 @@
 <mapper namespace="com.eagle.repository.mapper.Service">
 
 
-<!--공지사항 불러오기  -->
-<select id="do_service_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.ServiceDto">
-SELECT TT1.*
-            FROM (
-            SELECT ROWNUM RNUM,T1.*,T2.*
-               from(
+	<!--공지사항 불러오기 -->
+	<select id="do_service_main" parameterType="hashmap"
+		resultType="com.eagle.men_in_black.model.ServiceDto">
+		SELECT TT1.*
+		FROM (
+		SELECT ROWNUM RNUM,T1.*,T2.*
+		from(
 
-SELECT * FROM NOTICE_BOARD
-ORDER BY NOTICE_SEQ DESC
+		SELECT *
+		FROM NOTICE_BOARD
+		ORDER BY NOTICE_SEQ DESC
 
- ) T1
-               NATURAL JOIN
-               (
-                SELECT COUNT(NOTICE_BOARD.NOTICE_SEQ) TOT_CNT FROM NOTICE_BOARD
-               ) T2
-           ) TT1
-          WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+		) T1
+		NATURAL JOIN
+		(
+		SELECT
+		COUNT(NOTICE_BOARD.NOTICE_SEQ) TOT_CNT FROM NOTICE_BOARD
+		) T2
+		) TT1
+		WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and
+		((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 
-</select>
+	</select>
+
+	<!--공지사항 디테일 -->
+	<select id="do_service_detail" parameterType="String"
+		resultType="com.eagle.men_in_black.model.ServiceDto">
+		SELECT * 
+		FROM NOTICE_BOARD
+		WHERE NOTICE_SEQ=#{seq}
+		
+		
+	</select>
 
 
 

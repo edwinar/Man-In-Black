@@ -21,4 +21,10 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.do_service_main(map);
 	}
 
+	@Override
+	public ServiceDto do_service_detail(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_service_detail(seq);
+	}
+
 }

@@ -15,7 +15,8 @@
 td, th {
 	text-align: center;
 }
-.table{
+
+.table {
 	margin-left: 120px;
 	width: 86%;
 }
@@ -34,7 +35,7 @@ td, th {
 	</center>
 	<h3>NOTICE</h3>
 
-
+	<!--공지제목 누르면 seq가지고 컨트롤러 이동  -->
 	<table class="table">
 		<col width="5%">
 		<col width="60%">
@@ -47,42 +48,47 @@ td, th {
 			</tr>
 		</thead>
 		<tbody>
-			<%for(int i=0; i< noticelist.size(); i++){ %>
+			<%
+				for (int i = 0; i < noticelist.size(); i++) {
+			%>
 			<tr>
-				<td><%=noticelist.get(i).getNOTICE_SEQ() %></td>
-				<td><%=noticelist.get(i).getNOTICE_TITLE() %></td>
-				<td><%=noticelist.get(i).getNOTICE_TIME() %></td>
+				<td><%=noticelist.get(i).getNOTICE_SEQ()%></td>
+				<td><a
+					href="servicedetail.mib?seq=<%=noticelist.get(i).getNOTICE_SEQ()%>"><%=noticelist.get(i).getNOTICE_TITLE()%></a></td>
+				<td><%=noticelist.get(i).getNOTICE_TIME()%></td>
 			</tr>
 			<%
-			}
+				}
 			%>
 		</tbody>
 
 	</table>
-	
-	
-	<%  
-				// 페이징 및 날짜 선택 
-	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
-	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
 
-	
-	int page_num = Integer.parseInt(PAGE_NUM);
-	int page_size = Integer.parseInt(PAGE_SIZE);
-	
-	
-	int pageCount = (noticelist.get(0).getTOT_CNT()%page_size)==0?
-			noticelist.get(0).getTOT_CNT()/page_size : (noticelist.get(0).getTOT_CNT()/page_size)+1; 
-	
-%>
+
+	<%
+		// 페이징 및 날짜 선택 
+		String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
+				: request.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
+				? "10" : request.getParameter("PAGE_SIZE");
+
+		int page_num = Integer.parseInt(PAGE_NUM);
+		int page_size = Integer.parseInt(PAGE_SIZE);
+
+		int pageCount = (noticelist.get(0).getTOT_CNT() % page_size) == 0
+				? noticelist.get(0).getTOT_CNT() / page_size : (noticelist.get(0).getTOT_CNT() / page_size) + 1;
+	%>
 
 	<div class="row" align="center">
 		<p>
-		<% for(int i=1; i<=pageCount; i++){ %>
-			 <a href="servicenotice.mib?PAGE_NUM=<%=i %>" class="btn btn-default" role="button"><%=i %></a> 
-			 <%
-			 }
-			 %>
+			<%
+				for (int i = 1; i <= pageCount; i++) {
+			%>
+			<a href="servicenotice.mib?PAGE_NUM=<%=i%>" class="btn btn-default"
+				role="button"><%=i%></a>
+			<%
+				}
+			%>
 		</p>
 	</div>
 
