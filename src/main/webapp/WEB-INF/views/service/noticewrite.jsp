@@ -1,14 +1,15 @@
+<%@page import="com.eagle.men_in_black.model.ServiceDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
-	
+	ServiceDto serviceDto = (ServiceDto) request.getAttribute("update");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>:::공지사항 글쓰기:::</title>
 <script src="../js/ckeditor/ckeditor.js"></script>
 <style type="text/css">
 .wrap {
@@ -78,19 +79,21 @@
 	</center>
 	<h3>공지사항을 작성해주세요</h3>
 
-	<form action="servicereg.mib" method="post" enctype="multipart/form-data">
+	<form action="servicereg.mib" method="post"
+		enctype="multipart/form-data">
 
 		<div class="wrap">
 
 			<div class="mat-div">
-			<label for="first-name" class="mat-label">제목</label> 
-				<input type="text" class="mat-input" name="noticetitle" id="상품이름">
+				<label for="first-name" class="mat-label">제목</label>
+				 <input type="text" class="mat-input" name="noticetitle" id="제목"
+				 	<%if(serviceDto!=null){ %>value="<%=serviceDto.getNOTICE_TITLE() %>" <%} %>
+				 >
 			</div>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 		<textarea rows="10" cols="80" name="editor" id="editor1">
-				
+			<%if(serviceDto!=null){ %> <%=serviceDto.getNOTICE_CONTENT()%>  <%} %>
 	</textarea>
 		<script>
 			CKEDITOR.replace("editor", {
@@ -106,13 +109,16 @@
 
 			});
 		</script>
-		<input type="submit" class="btn btn-primary" value="등록">
+		<!-- <input type="submit" class="btn btn-primary" value="등록"> -->
+		<p align="right">
+			<input type="submit" class="btn btn-primary" value="등록"> <a
+				class="btn btn-primary" href="servicenotice.mib" role="button">취소</a>
+		</p>
+
 	</form>
-	<p align="right">
-		
-		 <a class="btn btn-primary" href="servicenotice.mib"
-			role="button">취소</a>
-	</p>
+
+
+	<!--공지사항제목 스크립트  -->
 	<script type="text/javascript">
 		$(".mat-input").focus(function() {
 			$(this).parent().addClass("is-active is-completed");
