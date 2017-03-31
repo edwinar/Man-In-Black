@@ -27,7 +27,11 @@
 	String sign_email = (String)request.getAttribute("sign_email");
 	
 %>
+
 <form action="" name="signinForm" id="signinForm">
+ <div class="modal-header">
+        <button type="button" id="close_Btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
   <h1>MEN IN BLACK</h1>
   <div class="inset">
   <p style="margin-bottom: -13px; margin-top: 20px">
@@ -58,7 +62,18 @@
 				
 			}
 		});
+		
+		$("#close_Btn").click(function() {
+			
+				alert("인증번호 틀림");
+			$("#success").val('fail');
+			$("#signinForm").attr('action','mib_SignUp.mib');
+			$("#signinForm").submit();	
+				
+			
+		});
 	});
+	
 </script>
 
 </body>

@@ -18,4 +18,14 @@ public class DetailSvcImpl implements DetailSvc {
 	public List<DetailDto> do_selectProductDetail(int PRO_SEQ) {
 		return detailDao.do_selectProductDetail(PRO_SEQ);
 	}
+
+	@Override
+	public List<DetailDto> do_selectProductColor(int PRO_SEQ) {
+		return detailDao.do_selectProductColor(PRO_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_selectProductSize(int PRO_SEQ) {
+		return detailDao.do_selectProductSize(PRO_SEQ);
+	}
 }

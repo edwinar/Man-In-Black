@@ -25,18 +25,16 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
     
     <li onclick="location.href='register_Good.mib'">제품등록</li>
     
-    <li onclick="location.href='buylist.mib'">판매내역</li>
+    <li onclick="location.href='ceoMypage_Main.mib'">판매내역</li>
    
-    <li onclick="location.href='basketlist.mib'">메인 배너등록</li>
+    <li onclick="location.href='register_MainBanner.mib'">메인 배너등록</li>
     
-    <li onclick="location.href='todayGoods.mib'">문의게시판 관리</li>
-      
-    <li onclick="location.href='myboard.mib'">공지글 작성</li>
-     
-    <li onclick="location.href='coupon_Mileage.mib'">쿠폰관리</li>
+    <li onclick="location.href='qnA_Administer.mib'">문의게시판 관리</li>
+          
+    <li onclick="location.href='coupon_Administer.mib'">쿠폰관리</li>
     
-    <li onclick="location.href='coupon_Mileage.mib'">리뷰관리</li>
-   
+    <li onclick="location.href='reiview_Administer.mib'">리뷰관리</li>
+    
   </ul>
   <%}else{ %>
   <ul>

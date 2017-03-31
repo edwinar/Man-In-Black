@@ -25,4 +25,16 @@ ON A.PRO_SEQ = B.PRO_SEQ
 WHERE B.PRO_SEQ=#{PRO_SEQ}
 </select>
 
+<select id="do_selectProductColor" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT DISTINCT COLOR
+FROM PRO_DETAIL
+WHERE PRO_SEQ=#{PRO_SEQ}
+</select>
+
+<select id="do_selectProductSize" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT DISTINCT PRO_SIZE
+FROM PRO_DETAIL
+WHERE PRO_SEQ=#{PRO_SEQ}
+</select>
+
 </mapper>

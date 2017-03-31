@@ -38,7 +38,7 @@ overflow:auto;
 border-bottom:1px solid #dedede;
 }
 
-#signupform label
+#MIBsignupform label
 {
 display:block;
 font-size:0.9em;
@@ -49,7 +49,7 @@ float:left;
 font-weight:bold;
 }
 
-#signupform input
+#MIBsignupform input
 {
 border:none;
 padding:20px 0px;
@@ -59,20 +59,23 @@ font-size:0.9em;
 }
 
 
-#signupform button[type=submit]
+#MIBsignupform input[type=button]
 {
 background:#fff;
 text-align:center;
 width:100%;
-border-radius:5px;
+border-radius:10px;
+border-style:groove;
+border-color:#f2f2f2;
 font-size:1.2em;
 color:black;
 margin-top:10px;
 cursor:pointer;
 -webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
-height: 50px;
+height: 15px;
+
 }
-#signupform button{
+#MIBsignupform button{
 background:#fff;
 text-align:center;
 border-radius:5px;
@@ -83,7 +86,7 @@ cursor:pointer;
 -webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
 height: 30px;
 }
-#signupform button:hover{
+#MIBsignupform button:hover{
 background:black;
 color:white;
 -webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;}
@@ -92,14 +95,15 @@ color:white;
 <body>
 <input type="hidden" name="success" id="success" value="<%=success %>">
 
-<form id="signupform" action="compl.mib">
+<form id="MIBsignupform" action="compl.mib" method="post">
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
 <div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
-<a href="" id="signA" data-toggle="modal" data-target="#modal-email" onclick="cl()">
-<button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
-</a>
+<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >
+ EMAIL인증</a></div> 
+
+
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock"/>
 	<button type="button" id="IDBtn">ID중복확인</button>
 </div>
@@ -114,16 +118,23 @@ color:white;
 <div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; class="lock"/></div>
 <div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; class="lock" /></div>
 
-</div>
-<button type="button" id="complete">회원가입하기</button>
-</div>
+
+<input type="button" id="complete" value="회원가입하기">
+
+
 </form>
 
 <script type="text/javascript">
-
-function cl() {
-	var email = $("#sign_email").val();
-	$("#signA").attr('href','mail.mib?sign_email='+email);
+ function cl() {
+	var email1 = $("#sign_email").val();
+	$("#modal-email").modal({
+        remote : 'mail.mib?sign_email='+email1,
+        backdrop: 'static' // 배경누르고 닫힘 방지 
+    });
+	
+	
+	
+		
 }
 
 $(document).ready(function() {
@@ -150,20 +161,19 @@ $(document).ready(function() {
 		var roadAddress   = $("#roadAddress").val();
 		var detailAddress = $("#detailAddress").val();
 		
-		if(sign_email == "") alert("EMAIL을 작성해주세요"); return;   
-		if(id            == "") alert("ID를 작성해주세요"); return;
-		//if(password      == "") alert("PASSWORD을 작성해주세요"); return;
-		if(name          == "") alert("NAME을 작성해주세요"); return;
-		if(tel           == "") alert("TEL을 작성해주세요"); return;
-		if(postcode      == "") alert("POSTCODE을 작성해주세요"); return;
-		if(detailAddress == "") alert("주소정보를 입력해주세요"); return;
-		if(sex           == "") alert("SEX을 작성해주세요"); return;
-		if(birth         == "") alert("BIRTH을 작성해주세요"); return;
-				
-		
-		
-		$("#signupform").submit;
-		
+		if(sign_email == "") {alert("EMAIL을 작성해주세요"); }   
+		else if(id            == "") {alert("ID를 작성해주세요"); }
+		else if(password      == "") {alert("PASSWORD을 작성해주세요");  }
+		else if(name          == "") {alert("NAME을 작성해주세요");      }
+		else if(tel           == "") {alert("TEL을 작성해주세요");       }
+		else if(postcode      == "") {alert("POSTCODE을 작성해주세요");  }
+		else if(detailAddress == "") {alert("주소정보를 입력해주세요");      }
+		else if(sex           == "") {alert("SEX을 작성해주세요");       }
+		else if(birth         == "") {alert("BIRTH을 작성해주세요");     }
+		else{
+			
+			$("#MIBsignupform").submit();
+		}
 	
 	
 	});
@@ -198,12 +208,10 @@ $(document).ready(function() {
 			 
 	});
 	
-	
-	$("#emailBtn").click(function(){
-    	
-	var email = $("#sign_email").val();
-	
-	$.ajax({
+	$("#signA").click(function(){
+		var email = $("#sign_email").val();
+		alert(email);
+		$.ajax({
 		 			type : "POST",
 		 			url : "emailCheck.mib",
 		 			async : true,
@@ -214,17 +222,21 @@ $(document).ready(function() {
 		 			success : function(data) {
 		 				//alert("success " + data);
 		 				var flag = $.parseJSON(data);
+		 				alert(flag.success);
+		 				if(flag.success==='success'){
 		 					
-		 				if(flag.success=='fail'){
+		 					//$("#signA").attr('data-target','#modal-email');
+		 					//$("#signA").attr('href','mail.mib?sign_email='+email);
+		 					cl();
+		 					//return false;
+		 				}else{
+
 		 					$("#sign_email").val('');
 		 					alert(flag.check); 
-		 					return;
-		 				}
-		 				$("signA").click(function(event){
-		 					event.preventDefault();
-		 					$("#signA").trigger('click');
-		 					});
+		 					//return false;
+		 					
 		 				
+		 				}
 		 					
 		 				
 		 			},
@@ -234,7 +246,6 @@ $(document).ready(function() {
 		 				alert("에러발생");
 		 			}
 		 		});		
-	
         	
     });
 });

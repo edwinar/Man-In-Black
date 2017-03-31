@@ -25,20 +25,22 @@ td, th {
 <title>::장바구니::</title>
 </head>
 <body>
-<input type="hidden" value="<%=basketlist.size() %>" id="list">
-<center>
-<div id="mypagehead">
-<h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
-<a href="mymain.mib">MY PAGE</a> > 
-<a href="basketlist.mib">장바구니</a></h4>
-<h3>MY Order</h3>
-<h4>회원님의 장바구니 입니다.</h4>
-</div>
-</center>
-	<div id="total" style="height: margin-top: 100px">
+	<input type="hidden" value="<%=basketlist.size()%>" id="list">
+	<center>
+		<div id="mypagehead">
+			<h4 align="right" style="margin-right: 100px">
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
+				<a href="basketlist.mib">장바구니</a>
+			</h4>
+			<h3>MY Order</h3>
+			<h4 style="margin-bottom: 50px">회원님의 장바구니 입니다.</h4>
+		</div>
+	</center>
+	<div id="total" style="height: margin-top: 150px">
 		<div id="table" style="width: 90%">
-            <input type="checkbox" id="allCheck"
-                   class="chbox" style="width: 20px; height: 20px">
+
+			<input type="checkbox" id="allCheck" class="chbox"
+				style="width: 20px; height: 20px; margin-left: 1.911577%">
 			<form name="f1">
 				<table class="table">
 					<col width="5%">
@@ -47,7 +49,7 @@ td, th {
 					<col width="50%">
 					<col width="10%">
 					<tr>
-						<th> &nbsp </th>
+						<th>&nbsp</th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
@@ -60,30 +62,31 @@ td, th {
 						<td colspan="9999">내역이 없습니다.</td>
 					</tr>
 					<%
-						}else{
+						} else {
 					%>
 
 					<%
 						for (int i = 0; i < basketlist.size(); i++) {
 					%>
 					<tr>
-						<td rowspan="2">
-						<input type="checkbox" onclick="ty(<%=i %>)"
-							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1" class="chbox" style="width: 20px; height: 20px"></td>
+						<td rowspan="2"><input type="checkbox" onclick="ty(<%=i%>)"
+							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1"
+							class="chbox" style="width: 20px; height: 20px"></td>
 
-						<td rowspan="2"><%=i+1 %>
-						
-			
+						<td rowspan="2"><%=i + 1%>
 						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></td>
-						<td><%=basketlist.get(i).getPRO_NAME() %></td>
-						<td rowspan="2" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE() %></td>
+						<td><%=basketlist.get(i).getPRO_NAME()%></td>
+						<td rowspan="2" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>
 					</tr>
 					<tr>
-						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR() %></td>
+						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR()%></td>
 					</tr>
-					<% }}%>
-				
+					<%
+						}
+						}
+					%>
+
 				</table>
 
 				<table width="50%" align="center" class="table"
@@ -97,13 +100,13 @@ td, th {
 						<td>총가격</td>
 					</tr>
 					<tr>
-						<td><input type="text" id="pay" value="" readonly="readonly">
+						<td><input type="text" id="pay" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>+</td>
-						<td><input type="text" id="tag" value="" readonly="readonly">
+						<td><input type="text" id="tag" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>=</td>
-						<td><input type="text" id="top" value="" readonly="readonly">
+						<td><input type="text" id="top" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 					</tr>
 				</table>
@@ -112,8 +115,14 @@ td, th {
 			</form>
 
 		</div>
-       <div align="right"> <input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()" class="btn btn-default" style="width: 200px;margin-right: 110px"></div>
-<div id="결제" align="right"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'" class="btn btn-default" style="width: 200px;margin-right: 110px"> </div>
+		<div align="right">
+			<input type="button" id="delete"  value="삭제하기"
+				onclick="deletes()" class="btn btn-default"
+				style="width: 15%; margin-right: 1% ">
+		
+			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
+				class="btn btn-default" style="width: 15%; margin-right: 10.5%">
+		</div>
 	</div>
 	<script type="text/javascript">
 		var b = 0;
@@ -202,15 +211,46 @@ td, th {
                 }
 
             }
+            
+            if(BAS_SEQ==null || BAS_SEQ == ""){
+            	alert("삭제할 상품이 없습니다.");
+            }else{
+            
+            
+            
             alert(BAS_SEQ);
             BAS_SEQ = BAS_SEQ.slice(0,-1);
             alert(BAS_SEQ + 'end');
             document.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ;
+            }
 
         }
+        
+        function buy() {
+            var PRO_SEQ = "";
+            var list = $("#list").val();
 
+            for (var i = 0; i < list; i++) {
+               // alert("start");
 
+                if (document.f1.elements[i].checked == true) {
+                	PRO_SEQ += document.f1.elements[i].value + ",";
+                   // alert(BAS_SEQ+'중간');
+                }
 
+            }
+            if(PRO_SEQ == null || PRO_SEQ == ""){
+            	alert("결제할 상품이 없습니다.");
+            }else{
+            
+            alert(PRO_SEQ);
+            PRO_SEQ = PRO_SEQ.slice(0,-1);
+            alert(PRO_SEQ + 'end');
+            document.location.href='Detail_Buy_Info.mib?PRO_SEQ='+PRO_SEQ;
+
+        }
+        }
+		
 
 
 	</script>

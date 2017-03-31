@@ -35,6 +35,55 @@ public class CeoMypageController {
 	@Autowired
 	private CeoMypageSvc ceoMypageSvc;
 	
+	// 제품등록
+		@RequestMapping("register_Good.mib")
+		public ModelAndView register_Good() {
+
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "김옥지");
+			loger.debug("============================");
+
+			ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
+			mav.addObject("msg", "김옥지");
+
+			return mav;
+
+		}
+
+		/* 이미지업로드 */
+		@RequestMapping(value="ckeditorImageUpload.mib",  method = RequestMethod.POST)
+		public ModelAndView procFileUpload(FileModel fileBean,HttpServletRequest request, Model model) { 
+			HttpSession session = request.getSession(); 
+			
+			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+			System.err.println("===>root_path" + root_path);
+			
+			String attach_path = "images\\"; 
+			
+			System.err.println("===>attach_path" + attach_path);
+			MultipartFile upload = fileBean.getUpload();
+			String filename = ""; 
+			String CKEditorFuncNum = "";
+			
+			if (upload != null) { filename = upload.getOriginalFilename(); 
+								fileBean.setFilename(filename); 
+								CKEditorFuncNum = fileBean.getCKEditorFuncNum(); 
+			try { File file = new File(root_path + attach_path + filename);
+			loger.info(root_path + attach_path + filename); upload.transferTo(file); 
+			} catch (IOException e) { 
+				e.printStackTrace(); } 
+			} 
+			String file_path = "../" + "images/" + filename; 
+					
+			ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");
+			mov.addObject("file_path", file_path);
+			mov.addObject("CKEditorFuncNum", CKEditorFuncNum);
+			
+			return mov;
+			}
+		
+	
+	
 	// 사장 마이페이지 메인, 판매관리 
 	@RequestMapping("ceoMypage_Main.mib")
 	public ModelAndView ceoMypage_Main(HttpServletRequest res, HttpServletResponse rep) {
@@ -60,6 +109,23 @@ public class CeoMypageController {
 
 	}
 	
+	//메인 배너 등록
+	@RequestMapping("register_MainBanner.mib")
+	public ModelAndView register_MainBanner(){
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_MainBanner");
+		
+		return mav;
+	}
+	// 문의글 관리 
+		@RequestMapping("qnA_Administer.mib")
+		public ModelAndView qnA_Administer() {
+
+			ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+			
+			return mav;
+
+		}
+	// 쿠폰관리 
 	@RequestMapping("coupon_Administer.mib")
 	public ModelAndView coupon_Administer() {
 
@@ -68,70 +134,28 @@ public class CeoMypageController {
 		return mav;
 
 	}
+	
+	// 리뷰관리 
+	@RequestMapping("reiview_Administer.mib")
+	public ModelAndView reiview_Administer() {
 
-	@RequestMapping("qnA_Administer.mib")
-	public ModelAndView qnA_Administer() {
-
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Reiview_Administer");
 		
 		return mav;
 
 	}
 	
+	
+	
 
 	
+}
 	
 	
 	
 	
 	
 	
-	@RequestMapping("register_Good.mib")
-	public ModelAndView register_Good() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
-
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
-		mav.addObject("msg", "김옥지");
-
-		return mav;
-
-	}
-
-	/* 이미지업로드 */
-	@RequestMapping(value="ckeditorImageUpload.mib",  method = RequestMethod.POST)
-	public ModelAndView procFileUpload(FileModel fileBean,HttpServletRequest request, Model model) { 
-		HttpSession session = request.getSession(); 
-		
-		String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
-		System.err.println("===>root_path" + root_path);
-		
-		String attach_path = "images\\"; 
-		
-		System.err.println("===>attach_path" + attach_path);
-		MultipartFile upload = fileBean.getUpload();
-		String filename = ""; 
-		String CKEditorFuncNum = "";
-		
-		if (upload != null) { filename = upload.getOriginalFilename(); 
-							fileBean.setFilename(filename); 
-							CKEditorFuncNum = fileBean.getCKEditorFuncNum(); 
-		try { File file = new File(root_path + attach_path + filename);
-		loger.info(root_path + attach_path + filename); upload.transferTo(file); 
-		} catch (IOException e) { 
-			e.printStackTrace(); } 
-		} 
-		String file_path = "../" + "images/" + filename; 
-				
-		ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");
-		mov.addObject("file_path", file_path);
-		mov.addObject("CKEditorFuncNum", CKEditorFuncNum);
-		
-		return mov;
-		}
-	}
 
 
 
