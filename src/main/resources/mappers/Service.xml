@@ -32,13 +32,40 @@
 	<!--공지사항 디테일 -->
 	<select id="do_service_detail" parameterType="String"
 		resultType="com.eagle.men_in_black.model.ServiceDto">
-		SELECT * 
+		SELECT *
 		FROM NOTICE_BOARD
 		WHERE NOTICE_SEQ=#{seq}
-		
-		
+
+
 	</select>
 
+	<!--공지사항 등록 -->
+	<insert id="do_service_reg" parameterType="hashmap">
+		INSERT INTO
+		NOTICE_BOARD
+		(NOTICE_SEQ,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_TIME)
+		<!--시퀀스 설정하고 등록  -->
+		VALUES(101,#{noticetitle},#{content},SYSDATE)
+
+	</insert>
+
+	<!--공지사항 수정 -->
+	<update id="do_service_update" parameterType="hashmap" >
+		UPDATE NOTICE_BOARD
+		SET
+		NOTICE_TITLE=#{},NOTICE_CONTENT=#{},NOTICE_TIME=#{}
+		WHERE NOTICE_SEQ=#{}
+
+
+	</update>
+
+	<!--공지사항 삭제 -->
+	<delete id="do_service_delete" parameterType="String">
+		DELETE
+		FROM NOTICE_BOARD
+		WHERE NOTICE_SEQ =#{seq}
+
+	</delete>
 
 
 </mapper>

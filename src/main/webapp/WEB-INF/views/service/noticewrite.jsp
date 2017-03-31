@@ -1,109 +1,128 @@
-<%@page import="com.eagle.men_in_black.model.ServiceDto"%>
-<%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
-	List<ServiceDto> noticelist = (List<ServiceDto>) request.getAttribute("noticelist");
 	
-
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="../js/ckeditor/ckeditor.js"></script>
 <style type="text/css">
-td, th {
-	text-align: center;
+.wrap {
+	width: 100%;
 }
 
-.table {
-	margin-left: 120px;
-	width: 86%;
+.mat-label {
+	display: block;
+	font-size: 16px;
+	transform: translateY(25px);
+	color: #e2e2e2;
+	transition: all 0.5s;
+}
+
+.mat-input {
+	position: relative;
+	background: transparent;
+	width: 100%;
+	border: none;
+	outline: none;
+	padding: 8px 0;
+	font-size: 16px;
+}
+
+.mat-div {
+	padding: 30px 0 0 0;
+	position: relative;
+}
+
+.mat-div:after, .mat-div:before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 2px;
+	background-color: #e2e2e2;
+	bottom: 0;
+	left: 0;
+	transition: all 0.5s;
+}
+
+.mat-div::after {
+	background-color: #8E8DBE;
+	transform: scaleX(0);
+}
+
+.is-active::after {
+	transform: scaleX(1);
+}
+
+.is-active .mat-label {
+	color: #8E8DBE;
+}
+
+.is-completed .mat-label {
+	font-size: 12px;
+	transform: translateY(0);
 }
 </style>
-<title>::NOTICEBOARD::</title>
-</head>
 <body>
 	<center>
-		<div id="mypagehead">
+		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">고객센터</a>
 			</h4>
-			<h3>고객센터</h3>
-			<h4>MIB 공지사항입니다</h4>
 		</div>
 	</center>
-	<h3>NOTICE</h3>
-	
-	<!--CEO기능  -->
+	<h3>공지사항을 작성해주세요</h3>
+
+	<form action="servicereg.mib" method="post" enctype="multipart/form-data">
+
+		<div class="wrap">
+
+			<div class="mat-div">
+			<label for="first-name" class="mat-label">제목</label> 
+				<input type="text" class="mat-input" name="noticetitle" id="상품이름">
+			</div>
+		</div>
+		<br>
+		<br>
+		<textarea rows="10" cols="80" name="editor" id="editor1">
+				
+	</textarea>
+		<script>
+			CKEDITOR.replace("editor", {
+
+				/* 이미파일 저장할 경로 */
+				filebrowserImageUploadUrl : 'CkeditorImgUpload.mib',
+
+				filebrowserWindowWidth : '500',
+
+				filebrowserWindowHeight : '380',
+
+				height : '600px'
+
+			});
+		</script>
+		<input type="submit" class="btn btn-primary" value="등록">
+	</form>
 	<p align="right">
-			<a  class="btn btn-primary" href="ckeditorImageUpload.mib" role="button">공지사항 쓰기</a>
+		
+		 <a class="btn btn-primary" href="servicenotice.mib"
+			role="button">취소</a>
 	</p>
+	<script type="text/javascript">
+		$(".mat-input").focus(function() {
+			$(this).parent().addClass("is-active is-completed");
+		});
 
-	<!--공지제목 누르면 seq가지고 컨트롤러 이동  -->
-	<table class="table">
-		<col width="5%">
-		<col width="60%">
-		<col width="10%">
-		<thead>
-			<tr>
-				<th>글번호</th>
-				<th>글제목</th>
-				<th>날짜</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				for (int i = 0; i < noticelist.size(); i++) {
-			%>
-			<tr>
-				<td><%=noticelist.get(i).getNOTICE_SEQ()%></td>
-				<td><a
-					href="servicedetail.mib?seq=<%=noticelist.get(i).getNOTICE_SEQ()%>"><%=noticelist.get(i).getNOTICE_TITLE()%></a></td>
-				<td><%=noticelist.get(i).getNOTICE_TIME()%></td>
-			</tr>
-			<%
-				}
-			%>
-		</tbody>
-
-	</table>
-
-
-	<%
-		// 페이징 및 날짜 선택 
-		String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
-				: request.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
-				? "10" : request.getParameter("PAGE_SIZE");
-
-		int page_num = Integer.parseInt(PAGE_NUM);
-		int page_size = Integer.parseInt(PAGE_SIZE);
-
-		int pageCount = (noticelist.get(0).getTOT_CNT() % page_size) == 0
-				? noticelist.get(0).getTOT_CNT() / page_size : (noticelist.get(0).getTOT_CNT() / page_size) + 1;
-	%>
-
-	<div class="row" align="center">
-		<p>
-			<%
-				for (int i = 1; i <= pageCount; i++) {
-			%>
-			<a href="servicenotice.mib?PAGE_NUM=<%=i%>" class="btn btn-default"
-				role="button"><%=i%></a>
-			<%
-				}
-			%>
-		</p>
-	</div>
-
-
-
+		$(".mat-input").focusout(function() {
+			if ($(this).val() === "")
+				$(this).parent().removeClass("is-completed");
+			$(this).parent().removeClass("is-active");
+		});
+	</script>
 </body>
-
-
-
 </html>

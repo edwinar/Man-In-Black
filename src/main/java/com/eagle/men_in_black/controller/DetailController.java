@@ -31,10 +31,12 @@ public class DetailController {
 		List<DetailDto> list = detailSvc.do_selectProductDetail(PRO_SEQ);
 		List<DetailDto> listColor = detailSvc.do_selectProductColor(PRO_SEQ);
 		List<DetailDto> listSize = detailSvc.do_selectProductSize(PRO_SEQ);
+		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(PRO_SEQ);
 		mav.addObject("list", list);
 		mav.addObject("listColor", listColor);
 		mav.addObject("listSize", listSize);
-		for(int i=0;i<listSize.size();i++){System.out.println(listSize.get(i).getPRO_SIZE());}
+		mav.addObject("reviewList", reviewList);
+		
 		return mav;
 	}
 	

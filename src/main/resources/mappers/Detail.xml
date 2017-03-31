@@ -37,4 +37,21 @@ FROM PRO_DETAIL
 WHERE PRO_SEQ=#{PRO_SEQ}
 </select>
 
+<select id="do_selectProductReviewList" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.REV_SEQ
+	, A.USER_ID
+	, A.REV_TIME
+	, A.REV_TITLE
+	, A.SCORE
+	, (SELECT ROUND(AVG(SCORE))
+  		FROM REVIEW
+  		WHERE PRO_SEQ=1
+		) AS AVG_SCORE
+	, B.STORED_NAME
+FROM REVIEW A LEFT JOIN PHOTO B
+ON A.REV_SEQ = B.REV_SEQ
+WHERE A.PRO_SEQ=#{PRO_SEQ}
+ORDER BY A.REV_REF DESC, A.REV_SEQ ASC
+</select>
+
 </mapper>

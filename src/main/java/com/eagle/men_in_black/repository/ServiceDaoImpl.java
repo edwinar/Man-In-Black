@@ -31,4 +31,23 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.selectOne(statement, seq);
 	}
 
+	@Override
+	public void do_service_reg(HashMap<String, String> map) {
+		String statement = namespace+".do_service_reg";
+		sqlSession.insert(statement,map);
+	}
+
+	@Override
+	public void do_service_update(HashMap<String, String> map) {
+		String statement = namespace+".do_service_update";
+		sqlSession.update(statement, map);
+		
+	}
+
+	@Override
+	public void do_service_delete(int seq) {
+		String statement = namespace+".do_service_delete";
+		sqlSession.delete(statement, seq);
+	}
+
 }
