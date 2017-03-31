@@ -1,6 +1,7 @@
 package com.eagle.men_in_black.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -116,14 +117,29 @@ public class UserMypageController {
 
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
-	public ModelAndView todayGoods(){
-		
+	public ModelAndView todayGoods(HttpServletRequest res,HttpServletResponse rep){
+
+		String pro_seq = res.getParameter("pro_seq");
 		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("codeMSvc === " + pro_seq +"받기완");
 		loger.debug("============================");
-		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		List<String> list = Arrays.asList(pro_seq.split(","));
+		param.put("list1",list);
+		param.put("list2",list);
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " +"주기");
+		loger.debug("============================");
+
+		List<UserMypageDto> goods = userMypageSvc.do_search_goods(param);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " +"서치완료");
+		loger.debug("============================");
+
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
-		mav.addObject("msg", "김옥지");
+		mav.addObject("goodslist", goods);
 		
 		return mav;
 		

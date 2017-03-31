@@ -1,8 +1,15 @@
+<%@page import="java.util.List"%>
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+	int PRO_SEQ = Integer.parseInt(request.getParameter("PRO_SEQ"));
+	List<DetailDto> list = (List<DetailDto>)request.getAttribute("list");
+	List<DetailDto> listColor = (List<DetailDto>)request.getAttribute("listColor");
+	List<DetailDto> listSize = (List<DetailDto>)request.getAttribute("listSize");
+	List<DetailDto> reviewList = (List<DetailDto>)request.getAttribute("reviewList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -444,7 +451,6 @@ function QnADetail(){
 function QnAWrite(){
 	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
-
 </script>
 <div>
 <div>
@@ -479,29 +485,93 @@ function QnAWrite(){
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
 		      <div class="caption">
 		      	<div class="productName" style="height: 20%;">
-					<h2><b>창거니가 어제 입던 소매티</b></h2>
+					<h2><b><%=list.get(0).getPRO_NAME() %></b></h2>
 				</div>
 				<div class="productDeail" style="width: 80%; height: 80%;" align="left">
-			        <h4>창거니가 어제 입고 아직 안빨았음.<br/> 그의 채취가 그대로 담겨있음.</h4>
+			        <h4><%=list.get(0).getPRO_CONTENT() %></h4>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <p><h3 align="center">판매가</h3></p>
-			        <p><h4 align="center">19000 Won</h4></p>
+			        <p><h4 align="center"><%=list.get(0).getPRO_PRICE() %> Won</h4></p>
 			        <br/>
 		        	<p><ul>
-		        	<li><h4>모델체형 : 183/75</h4></li>
-		        	<li><h4>색상 : BLACK/WHITE</h4></li>
-		        	<li><h4>사이즈 : S/M/L/XL</h4></li>
-		        	<li><h4>소재 : 돌멩이</h4></li>
-		        	<li><h4>세탁방법 : 손세탁</h4></li>
+		        	<li><h4>모델체형 : <%=list.get(0).getBODYTYPE() %></h4></li>
+		        	<li><h4>색상 : 
+		        	<%
+		        		for(int i=0; i<listColor.size();i++){
+		        	%>
+		        		<%=listColor.get(i).getCOLOR() %>
+		        	<%
+		        			if(i!=listColor.size()-1){
+		        	%>
+		        		/
+		        	<%
+		        			}
+		        		}
+		        	%>
+		        	</h4></li>
+		        	<li><h4>사이즈 : 
+		        	<%
+		        		for(int i=0; i<listSize.size();i++){
+		        	%>
+		        		<%=listSize.get(i).getPRO_SIZE() %>
+		        	<%
+		        			if(i!=listSize.size()-1){
+		        	%>
+		        		/
+		        	<%
+		        			}
+		        		}
+		        	%>
+		        	</h4></li>
+		        	<li><h4>소재 : <%=list.get(0).getMATERIAL() %></h4></li>
+		        	<li><h4>세탁방법 : <%=list.get(0).getWASH() %></h4></li>
 		        	</ul></p>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <div class="score" align="center">
 		        		<h4>평점</h4>
+	        		<%
+		        		if(list.get(0).getAVG_SCORE()==1){
+		        	%>
 		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==2){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==3){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==4){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==5){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        	<%
+		        		}
+	        		%>
 		        	</div>
 		        	<div class="buy" align="center">
 		        	<% 	 
@@ -564,111 +634,117 @@ function QnAWrite(){
     <thead>
         <tr>
             <th colspan="3" style="text-align: center; height: 100px;">평점 : 
-            <img alt="" src="../images/scoreFull.png">
-            <img alt="" src="../images/scoreFull.png">
-            <img alt="" src="../images/scoreFull.png">
-            <img alt="" src="../images/scoreFull.png">
-            <img alt="" src="../images/scoreEmpty.png">
+            <%
+        		if(list.get(0).getAVG_SCORE()==1){
+        	%>
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(list.get(0).getAVG_SCORE()==2){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(list.get(0).getAVG_SCORE()==3){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(list.get(0).getAVG_SCORE()==4){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(list.get(0).getAVG_SCORE()==5){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        	<%
+        		}
+       		%>
             </th>
         </tr>
     </thead>
     <tbody>
+    <%
+    	for(int i=0;i<reviewList.size();i++){
+    %>
         <tr>
             <td class="organisationnumber" width="20%">
             	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname" width="60%">
             	<a href="javascript:popup()">
-	            <img alt="" src="../images/scoreFull.png" class="star">
-	            <img alt="" src="../images/scoreFull.png" class="star">
-	            <img alt="" src="../images/scoreFull.png" class="star">
-	            <img alt="" src="../images/scoreFull.png" class="star">
-	            <img alt="" src="../images/scoreEmpty.png" class="star"> <br><br>
-	            <h4>Stet clita kasd gubergren, no sea takimata sanctus est</h4>
+	            <%
+	        		if(reviewList.get(i).getSCORE()==1){
+	        	%>
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	       		<%
+	        		}else if(reviewList.get(i).getSCORE()==2){
+	       		%>
+	       			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	       		<%
+	        		}else if(reviewList.get(i).getSCORE()==3){
+	       		%>
+	       			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	       		<%
+	        		}else if(reviewList.get(i).getSCORE()==4){
+	       		%>
+	       			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	       		<%
+	        		}else if(reviewList.get(i).getSCORE()==5){
+	       		%>
+	       			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        	<%
+	        		}
+	       		%>
+	             <br><br>
+	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
 	            </a>
 	        </td>
             <td class="actions" width="20%">
-                        	작성자 : 전창건<br>
-                         	작성일 : 2017-03-24
+                        	작성자 : <%=reviewList.get(i).getUSER_ID() %><br>
+                         	작성일 : <%=reviewList.get(i).getREV_TIME() %>
             </td>
         </tr>
-        <tr>
-            <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">           
-         	</td>
-            <td class="organisationname">
-	            <a href="#">
-	            <img alt="" src="../images/scoreFull.png" class="star">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreEmpty.png"> 
-	            <br/><br/>
-	            <h4>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</h4>
-	            </a>
-	        </td>
-            <td class="actions">
-                        	작성자 : 전창건<br>
-                       	작성일 : 2017-03-24
-            </td>
-        </tr>
-        <tr>
-            <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
-         	</td>
-            <td class="organisationname">
-	            <a href="#">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            <h4>Vel illum dolore eu feugiat nulla facilisis at vero eros</h4>
-	            </a>
-	        </td>
-            <td class="actions">
-                        	작성자 : 전창건<br>
-                        	작성일 : 2017-03-24
-            </td>
-        </tr>
-        <tr>
-            <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">           
-         	</td>
-            <td class="organisationname">
-	            <a href="#">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            <h4>Iusto odio dignissim qui blandit praesent luptatum zzril delenit</h4>
-	            </a>
-	        </td>
-            <td class="actions">
-                        	작성자 : 전창건<br>
-                        	작성일 : 2017-03-24
-            </td>
-        </tr>
-        <tr>
-            <td class="organisationnumber">            
-               <img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
-         	</td>
-            <td class="organisationname">
-	            <a href="#">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreFull.png">
-	            <img alt="" src="../images/scoreEmpty.png"> <br><br>
-	            <h4>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam</h4>
-	            </a>
-            </td>
-            <td class="actions">
-                       	작성자 : 전창건<br>
-                      	작성일 : 2017-03-24
-            </td>
-        </tr>
+    <%
+    	}
+    %>    
     </tbody>
 	</table>
 	</div>

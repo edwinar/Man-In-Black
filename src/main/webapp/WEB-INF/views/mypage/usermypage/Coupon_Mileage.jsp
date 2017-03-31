@@ -20,8 +20,8 @@ body {
 #contain {
 	margin: 0 auto;
 	width: 100%;
-	height: 700px;
-	margin-top: 150px;
+	height: 800px;
+	margin-top: 70px;
 }
 
 #divl {
@@ -63,18 +63,20 @@ body {
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
-				<a href="coupon_Mileage.mib">쿠폰&적립금</a>
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> <a
+					href="coupon_Mileage.mib">쿠폰&적립금</a>
 			</h4>
 			<h3>MY Order</h3>
 			<h4>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</h4>
 		</div>
 	</center>
+
+
 	<div id="contain">
-		<div id="divl"  style="position: relative;">
+		<div id="divl" style="position: relative;">
 			<div class="head gray">사용가능한 쿠폰</div>
 
-			<div class="offer" align="center" >
+			<div class="offer" align="center">
 				<table style="text-align: center; width: 90%">
 					<col width="40%">
 					<col width="30%">
@@ -85,6 +87,15 @@ body {
 						<th style="text-align: center; margin-top: 10px">사용 기한</th>
 					</tr>
 					<%
+						if (couponList == null || couponList.size() == 0) {
+					%>
+					<tr>
+						<td colspan="3" style="text-align: center;">내역이 없습니다.</td>
+					</tr>
+					<%
+						} else {
+					%>
+					<%
 						for (int i = 0; i < couponList.size(); i++) {
 					%>
 					<tr>
@@ -94,38 +105,54 @@ body {
 					</tr>
 					<%
 						}
+						}
 					%>
 
 
 				</table>
-				<div class="paging" style="position: absolute; right: 0px; bottom: 0px">
+
+				<%
+					if (couponList == null || couponList.size() == 0) {
+				%>
+				<div class="paging"
+					style="position: absolute; right: 0px; bottom: 0px"></div>
+				<%
+					} else {
+				%>
+				<div class="paging"
+					style="position: absolute; right: 0px; bottom: 0px">
 					<%
 						// 페이징 및 날짜 선택 
-						String PAGE_NUMC = (request.getParameter("PAGE_NUMC") == null || request.getParameter("PAGE_NUMC") == "") ? "1"
-								: request.getParameter("PAGE_NUMC");
-						String PAGE_SIZEC = (request.getParameter("PAGE_SIZEC") == null || request.getParameter("PAGE_SIZEC") == "")
-								? "10" : request.getParameter("PAGE_SIZEC");
+							String PAGE_NUMC = (request.getParameter("PAGE_NUMC") == null
+									|| request.getParameter("PAGE_NUMC") == "") ? "1" : request.getParameter("PAGE_NUMC");
+							String PAGE_SIZEC = (request.getParameter("PAGE_SIZEC") == null
+									|| request.getParameter("PAGE_SIZEC") == "") ? "10" : request.getParameter("PAGE_SIZEC");
 
-						int page_numc = Integer.parseInt(PAGE_NUMC);
-						int page_sizec = Integer.parseInt(PAGE_SIZEC);
+							int page_numc = Integer.parseInt(PAGE_NUMC);
+							int page_sizec = Integer.parseInt(PAGE_SIZEC);
 
-						int pageCountc = couponList.get(0).getTOT_CNT() % page_sizec == 0 ? couponList.get(0).getTOT_CNT() / page_sizec
-								: (couponList.get(0).getTOT_CNT() / page_sizec) + 1;
+							int pageCountc = couponList.get(0).getTOT_CNT() % page_sizec == 0
+									? couponList.get(0).getTOT_CNT() / page_sizec
+									: (couponList.get(0).getTOT_CNT() / page_sizec) + 1;
 					%>
 					<div class="row" align="center">
 						<p>
 							<%
 								for (int i = 1; i <= pageCountc; i++) {
 							%>
-							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&" class="btn btn-default"
-								role="button"><%=i%></a>
+							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&"
+								class="btn btn-default" role="button"><%=i%></a>
 							<%
-								}
-							%>
+					}%>
 						</p>
 					</div>
-					
+
 				</div>
+				<%
+					}
+					
+				%>
+
 			</div>
 			<div>
 				<!--페이징 -->
@@ -134,7 +161,16 @@ body {
 		<div id="divl" align="center" style="position: relative;">
 			<div class="head gray">적립금</div>
 			<p align="center">
-				현재<%=mypageDto.getPOINT_FINAL()%></p>
+				<%
+						if (mypageDto == null) {
+					%>
+				적립금이 없습니다.
+				<%
+						} else {
+					%>
+				현재<%=mypageDto.getPOINT_FINAL()%>
+				<%} %>
+			</p>
 			<table style="text-align: center; width: 90%">
 				<col width="20%">
 				<col width="40%">
@@ -146,9 +182,16 @@ body {
 					<th style="text-align: center; margin-top: 5px">금액</th>
 					<th style="text-align: center; margin-top: 5px">최종</th>
 				</tr>
-
 				<%
-					for (int i = 0; i < pointList.size(); i++) {
+					if (pointList == null || pointList.size() == 0) {
+				%>
+				<tr>
+					<td colspan="9999" style="text-align: center;">내역이 없습니다.</td>
+				</tr>
+				<%
+					} else {
+
+						for (int i = 0; i < pointList.size(); i++) {
 				%>
 
 
@@ -170,38 +213,52 @@ body {
 				</tr>
 				<%
 					}
+					}
 				%>
 
 
 
 			</table>
+			<%
+				if (pointList == null || pointList.size() == 0) {
+			%>
+			<div class="paging"
+				style="position: absolute; right: 0px; bottom: 0px"></div>
+			<%
+				} else {
+			%>
 			<div class="paging"
 				style="position: absolute; right: 0px; bottom: 0px">
 				<%
-						// 페이징 및 날짜 선택 
-						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
-								: request.getParameter("PAGE_NUM");
-						String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
-								? "10" : request.getParameter("PAGE_SIZE");
+					// 페이징 및 날짜 선택 
+						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
+								? "1" : request.getParameter("PAGE_NUM");
+						String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null
+								|| request.getParameter("PAGE_SIZE") == "") ? "10" : request.getParameter("PAGE_SIZE");
 
 						int page_num = Integer.parseInt(PAGE_NUM);
 						int page_size = Integer.parseInt(PAGE_SIZE);
 
-						int pageCount = pointList.get(0).getTOT_CNT() % page_size == 0 ? pointList.get(0).getTOT_CNT() / page_size
-								: (pointList.get(0).getTOT_CNT() / page_size) + 1;
-					%>
+						int pageCount = pointList.get(0).getTOT_CNT() % page_size == 0
+								? pointList.get(0).getTOT_CNT() / page_size : (pointList.get(0).getTOT_CNT() / page_size) + 1;
+				%>
 				<div class="row" align="center">
 					<p>
 						<%
 							for (int i = 1; i <= pageCount; i++) {
 						%>
-						<a href="coupon_Mileage.mib?PAGE_NUM=<%=i%>&" class="btn btn-default"
-							role="button"><%=i%></a>
+						<a href="coupon_Mileage.mib?PAGE_NUM=<%=i%>&"
+							class="btn btn-default" role="button"><%=i%></a>
 						<%
 							}
+							
 						%>
 					</p>
 				</div>
+				
+				
+				<% }%>
+				
 			</div>
 		</div>
 

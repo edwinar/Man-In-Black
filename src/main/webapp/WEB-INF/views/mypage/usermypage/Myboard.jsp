@@ -22,29 +22,28 @@
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
 			<h3>My Post</h3>
-			<h4>회원님님의 게시물 작성 리스트 입니다</h4>
+			<h4 style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</h4>
 		</div>
 	</center>
+
 	
-	<div class="row">
-		<div class="col-xs-8 col-xs-offset-2 MyPost">
 			<span class="mypage-link" style="font-size: 19px;"><a
 				href='myboardreview.mib'>My Review</a></span>
 			<table class="table">
 				<tfoot>
-				<tr>
-					<%
-						if (review.size() >= 5) {
-					%>
-					<td colspan="5" align="center"><span class="mypage-link"><a
-							href='myboardreview.mib'>더 보기</a></span></td>
-					<%
-						} else {
-					%>
-					<td colspan="5" align="center"></td>
-					<%
-						}
-					%>
+					<tr>
+						<%
+							if (review.size() >= 5) {
+						%>
+						<td colspan="5" align="center"><span class="mypage-link"><a
+								href='myboardreview.mib'>더 보기</a></span></td>
+						<%
+							} else {
+						%>
+						<td colspan="5" align="center"></td>
+						<%
+							}
+						%>
 					</tr>
 				</tfoot>
 				<thead>
@@ -58,6 +57,15 @@
 				</thead>
 
 				<tbody id="board">
+					<%
+						if (review == null || review.size() == 0) {
+					%>
+					<tr>
+						<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+					</tr>
+					<%
+						} else {
+					%>
 
 					<%
 						for (int i = 0; i < review.size(); i++) {
@@ -71,6 +79,7 @@
 					</tr>
 					<%
 						}
+						}
 					%>
 
 				</tbody>
@@ -81,19 +90,20 @@
 
 
 			<table class="table">
-				<tfoot><tr>
-					<%
-						if (qna.size() >= 5) {
-					%>
-					<td colspan="5" align="center"><span class="mypage-link"><a
-							href='myboardqna.mib'>더 보기</a></span></td>
-					<%
-						} else {
-					%>
-					<td colspan="5" align="center"></td>
-					<%
-						}
-					%>
+				<tfoot>
+					<tr>
+						<%
+							if (qna.size() >= 5) {
+						%>
+						<td colspan="5" align="center"><span class="mypage-link"><a
+								href='myboardqna.mib'>더 보기</a></span></td>
+						<%
+							} else {
+						%>
+						<td colspan="5" align="center"></td>
+						<%
+							}
+						%>
 					</tr>
 				</tfoot>
 
@@ -109,6 +119,15 @@
 					</tr>
 				</thead>
 				<tbody>
+					<%
+						if (qna == null || qna.size() == 0) {
+					%>
+					<tr>
+						<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+					</tr>
+					<%
+						} else {
+					%>
 					<%
 						for (int i = 0; i < qna.size(); i++) {
 					%>
@@ -130,7 +149,7 @@
 						%>
 					</tr>
 					<%
-						}
+						}}
 					%>
 				</tbody>
 
@@ -138,8 +157,7 @@
 
 
 
-		</div>
-	</div>
+	
 
 
 

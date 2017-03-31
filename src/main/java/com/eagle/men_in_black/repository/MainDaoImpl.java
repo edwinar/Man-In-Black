@@ -21,7 +21,7 @@ public class MainDaoImpl implements MainDao {
 
 	@Override
 	public MainDto do_search_email(String email) {
-		String statement = namespace+".do_search_pw";
+		String statement = namespace+".do_search_email";
 		return sqlSession.selectOne(statement,email);
 	}
 

@@ -12,4 +12,6 @@ public interface CategorySvc {
 	public List<CategoryDto> do_selectSub_itemList(String ITEM);
 	//카테고리페이지 베스트 리스트
 	public List<CategoryDto> do_bestList(HashMap<String, String> map);
+	//NEW 카테고리 페이지 리스트
+	public List<CategoryDto> do_selectNewProductList(HashMap<String, String> map);
 }
