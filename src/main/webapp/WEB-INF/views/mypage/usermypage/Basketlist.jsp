@@ -100,8 +100,8 @@ td, th {
 			</form>
 
 		</div>
-        <input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()">
-<div id="결제"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'"> </div>
+       <div align="right"> <input type="button" id="delete" align="right" value="삭제하기" onclick="deletes()" class="btn btn-default" style="width: 200px;margin-right: 110px"></div>
+<div id="결제" align="right"><input type="button" value="결제하기" onclick="location.href='Detail_Buy_Info.mib'" class="btn btn-default" style="width: 200px;margin-right: 110px"> </div>
 	</div>
 	<script type="text/javascript">
 		var b = 0;
