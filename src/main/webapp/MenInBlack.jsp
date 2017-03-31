@@ -10,7 +10,7 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400");
 body {
-  display: block;
+  display: block; 
   font-family: "Oswald", sans-serif;
   background: #121212;
   font-weight: 200;
