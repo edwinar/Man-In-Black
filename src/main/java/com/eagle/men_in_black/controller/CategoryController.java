@@ -25,14 +25,20 @@ public class CategoryController {
 	
 	// 신상품
 	@RequestMapping("NewCategory.mib")
-	public ModelAndView newCategory() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView newCategory(HttpServletRequest res,HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/CategoryNew");
-		mav.addObject("msg", "김옥지");
+		
+		String ORDER = (res.getParameter("ORDER")==null||res.getParameter("ORDER").equals("") )?"C.PRO_SEQ DESC":res.getParameter("ORDER");
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("ORDER", ORDER);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<CategoryDto> list = categorySvc.do_selectNewProductList(map);
+		mav.addObject("list", list);
 
 		return mav;
 	}
@@ -45,7 +51,7 @@ public class CategoryController {
 		String ITEM = (res.getParameter("ITEM")==null||res.getParameter("ITEM").equals("") )?"OUTER":res.getParameter("ITEM");
 		String ORDER = (res.getParameter("ORDER")==null||res.getParameter("ORDER").equals("") )?"C.PRO_SEQ DESC":res.getParameter("ORDER");
 		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"10":res.getParameter("PAGE_SIZE");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
 		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
 		
 		/*System.out.println("서브아이템"+SUB_ITEM);*/
@@ -59,14 +65,14 @@ public class CategoryController {
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("SUB_ITEM", SUB_ITEM);
 		mapBest.put("ITEM", ITEM);
-		mapBest.put("ORDER", "C.PRO_SEQ DESC");
+		mapBest.put("ORDER", "C.SALE_CNT DESC");
 		mapBest.put("PAGE_NUM", "1");
 		mapBest.put("PAGE_SIZE", "3");
 		mapBest.put("SUB_ITEM", SUB_ITEM);
 		
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
-		List<CategoryDto> listBest = categorySvc.do_bestList(map);
+		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);

@@ -11,8 +11,6 @@ import com.eagle.men_in_black.model.CategoryDto;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
-
-
 	private final String namespace="com.eagle.repository.mapper.Category";
 	
 	@Autowired
@@ -33,6 +31,12 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public List<CategoryDto> do_bestList(HashMap<String, String> map) {
 		String statement = namespace+".do_selectCategoryProductList";
+		return sqlSession.selectList(statement,map);
+	}
+
+	@Override
+	public List<CategoryDto> do_selectNewProductList(HashMap<String, String> map) {
+		String statement = namespace+".do_selectNewProductList";
 		return sqlSession.selectList(statement,map);
 	}
 }

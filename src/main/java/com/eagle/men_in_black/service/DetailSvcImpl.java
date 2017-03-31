@@ -1,5 +1,21 @@
 package com.eagle.men_in_black.service;
 
-public class DetailSvcImpl implements DetailSvc {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.eagle.men_in_black.model.DetailDto;
+import com.eagle.men_in_black.repository.DetailDao;
+
+@Service
+public class DetailSvcImpl implements DetailSvc {
+	
+	@Autowired
+	private DetailDao detailDao;
+
+	@Override
+	public List<DetailDto> do_selectProductDetail(int PRO_SEQ) {
+		return detailDao.do_selectProductDetail(PRO_SEQ);
+	}
 }
