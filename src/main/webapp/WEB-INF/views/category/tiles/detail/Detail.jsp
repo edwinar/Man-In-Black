@@ -1,8 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+	int PRO_SEQ = Integer.parseInt(request.getParameter("PRO_SEQ"));
+	List<DetailDto> list = (List<DetailDto>)request.getAttribute("list");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -444,7 +448,6 @@ function QnADetail(){
 function QnAWrite(){
 	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
-
 </script>
 <div>
 <div>
@@ -479,29 +482,67 @@ function QnAWrite(){
 		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
 		      <div class="caption">
 		      	<div class="productName" style="height: 20%;">
-					<h2><b>창거니가 어제 입던 소매티</b></h2>
+					<h2><b><%=list.get(0).getPRO_NAME() %></b></h2>
 				</div>
 				<div class="productDeail" style="width: 80%; height: 80%;" align="left">
-			        <h4>창거니가 어제 입고 아직 안빨았음.<br/> 그의 채취가 그대로 담겨있음.</h4>
+			        <h4><%=list.get(0).getPRO_CONTENT() %></h4>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <p><h3 align="center">판매가</h3></p>
-			        <p><h4 align="center">19000 Won</h4></p>
+			        <p><h4 align="center"><%=list.get(0).getPRO_PRICE() %> Won</h4></p>
 			        <br/>
 		        	<p><ul>
-		        	<li><h4>모델체형 : 183/75</h4></li>
+		        	<li><h4>모델체형 : <%=list.get(0).getBODYTYPE() %></h4></li>
 		        	<li><h4>색상 : BLACK/WHITE</h4></li>
 		        	<li><h4>사이즈 : S/M/L/XL</h4></li>
-		        	<li><h4>소재 : 돌멩이</h4></li>
-		        	<li><h4>세탁방법 : 손세탁</h4></li>
+		        	<li><h4>소재 : <%=list.get(0).getMATERIAL() %></h4></li>
+		        	<li><h4>세탁방법 : <%=list.get(0).getWASH() %></h4></li>
 		        	</ul></p>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <div class="score" align="center">
 		        		<h4>평점</h4>
+	        		<%
+		        		if(list.get(0).getAVG_SCORE()==1){
+		        	%>
 		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==2){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==3){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==4){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<%
+		        		}else if(list.get(0).getAVG_SCORE()==5){
+	        		%>
+	        			<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        		<img alt="..." src="../images/scoreFull.png">
+		        	<%
+		        		}
+	        		%>
 		        	</div>
 		        	<div class="buy" align="center">
 		        	<% 	 
