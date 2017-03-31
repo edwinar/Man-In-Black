@@ -118,27 +118,28 @@ public class UserMypageController {
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
 	public ModelAndView todayGoods(HttpServletRequest res,HttpServletResponse rep){
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " +"pro_seq 받기");
-		loger.debug("============================");
+
 		String pro_seq = res.getParameter("pro_seq");
 		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " +"pro_seq 받기");
+		loger.debug("codeMSvc === " + pro_seq +"받기완");
 		loger.debug("============================");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		List<String> list = Arrays.asList(pro_seq.split(","));
-		param.put("list",list);
+		param.put("list1",list);
+		param.put("list2",list);
 
 		loger.debug("=Controller ===========================");
 		loger.debug("codeMSvc === " +"주기");
 		loger.debug("============================");
 
-		userMypageSvc.do_search_goods(param);
-
+		List<UserMypageDto> goods = userMypageSvc.do_search_goods(param);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " +"서치완료");
+		loger.debug("============================");
 
 
 		ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
-		mav.addObject("msg", "김옥지");
+		mav.addObject("goodslist", goods);
 		
 		return mav;
 		

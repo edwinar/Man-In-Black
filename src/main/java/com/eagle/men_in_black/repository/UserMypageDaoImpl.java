@@ -110,8 +110,8 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
-	public List<UserMypageDto> do_search_goods(HashMap<String, Object> map) {
+	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param) {
 		String statement = namespace+".do_search_goods";
-		return sqlSession.selectList(statement,map);
+		return sqlSession.selectList(statement,param);
 	}
 }
