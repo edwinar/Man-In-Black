@@ -26,6 +26,10 @@ td, th {
 </style>
 <title>::NOTICEBOARD::</title>
 </head>
+<!--CEO기능-->
+	<p align="right">
+			<a  class="btn btn-primary" href="ckeditorImageUpload.mib" role="button">공지사항 쓰기</a>
+	</p>
 <body>
 	<center>
 		<div id="mypagehead">

@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.ServiceDto"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@page import="java.util.List"%>
@@ -5,6 +6,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	List<ServiceDto> noticelist = (List<ServiceDto>) request.getAttribute("noticelist");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,12 +36,15 @@ td, th {
 		</div>
 	</center>
 	<h3>NOTICE</h3>
-	
-	<!--CEO기능지워야됨  noticewrite로 옮겨야됨-->
+	<!-- CEO 글쓰기 버튼  -->
+	<%if(dto!=null){
+		if(dto.getUSER_ID().equals("adm")){
+		%>
 	<p align="right">
 			<a  class="btn btn-primary" href="ckeditorImageUpload.mib" role="button">공지사항 쓰기</a>
 	</p>
-
+	<%} 
+	}%>
 	<!--공지제목 누르면 seq가지고 컨트롤러 이동  -->
 	<table class="table">
 		<col width="5%">

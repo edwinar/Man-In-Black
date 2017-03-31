@@ -58,6 +58,16 @@ public class ServiceController {
 
 	}
 	
+	// CEO 고객센터 관리
+	@RequestMapping("noticewrite.mib")
+	public ModelAndView noticewrite() {
+
+		ModelAndView mav = new ModelAndView("service/noticewrite");
+		
+		return mav;
+
+	}
+	
 	
 	
 }
