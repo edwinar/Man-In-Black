@@ -245,5 +245,16 @@ public class UserMypageController {
 		return mav;
 		
 	}
-		
+	
+	
+	// 리뷰 쓰기
+	@RequestMapping("reveiwwrite.mib")
+	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/ReviewWrite");
+		mav.addObject("userdto",userdto);
+		return mav;
+
 	}
+	
+}
