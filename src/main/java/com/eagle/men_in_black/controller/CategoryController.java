@@ -59,14 +59,14 @@ public class CategoryController {
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("SUB_ITEM", SUB_ITEM);
 		mapBest.put("ITEM", ITEM);
-		mapBest.put("ORDER", "C.PRO_SEQ DESC");
+		mapBest.put("ORDER", "C.SALE_CNT DESC");
 		mapBest.put("PAGE_NUM", "1");
 		mapBest.put("PAGE_SIZE", "3");
 		mapBest.put("SUB_ITEM", SUB_ITEM);
 		
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
-		List<CategoryDto> listBest = categorySvc.do_bestList(map);
+		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
