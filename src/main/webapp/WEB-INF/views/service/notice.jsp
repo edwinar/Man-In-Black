@@ -36,12 +36,13 @@ td, th {
 		</div>
 	</center>
 	<h3>NOTICE</h3>
+	
 	<!-- CEO 글쓰기 버튼  -->
 	<%if(dto!=null){
 		if(dto.getUSER_ID().equals("adm")){
 		%>
 	<p align="right">
-			<a  class="btn btn-primary" href="ckeditorImageUpload.mib" role="button">공지사항 쓰기</a>
+			<a  class="btn btn-primary" href="CkeditorNoticeUpload.mib" role="button">공지사항 쓰기</a>
 	</p>
 	<%} 
 	}%>
