@@ -36,4 +36,7 @@ public interface UserMypageSvc {
 	public List<UserMypageDto> do_search_qnalist(HashMap<String, String> map);
 
 	public void do_delete_basketlist(List<Integer> list);
+
+	public List<UserMypageDto> do_search_goods(HashMap<String, Object> map);
+
 }

@@ -108,6 +108,10 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_delete_basketlist";
 		 sqlSession.delete(statement,list);
 	}
-	
 
+	@Override
+	public List<UserMypageDto> do_search_goods(HashMap<String, Object> map) {
+		String statement = namespace+".do_search_goods";
+		return sqlSession.selectList(statement,map);
+	}
 }

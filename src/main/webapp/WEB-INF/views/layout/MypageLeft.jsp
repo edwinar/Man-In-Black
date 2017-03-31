@@ -75,8 +75,9 @@ $(document).ready(function () {
 function movegoods() {
 
 
-    getCookie('recentitems').split(',');
-    location.href='todayGoods.mib'
+    var seq = getCookie('recentitems');
+
+    location.href='todayGoods.mib?seq='+seq;
 }
 
 
