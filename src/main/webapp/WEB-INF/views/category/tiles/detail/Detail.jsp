@@ -7,6 +7,8 @@
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	int PRO_SEQ = Integer.parseInt(request.getParameter("PRO_SEQ"));
 	List<DetailDto> list = (List<DetailDto>)request.getAttribute("list");
+	List<DetailDto> listColor = (List<DetailDto>)request.getAttribute("listColor");
+	List<DetailDto> listSize = (List<DetailDto>)request.getAttribute("listSize");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -492,8 +494,34 @@ function QnAWrite(){
 			        <br/>
 		        	<p><ul>
 		        	<li><h4>모델체형 : <%=list.get(0).getBODYTYPE() %></h4></li>
-		        	<li><h4>색상 : BLACK/WHITE</h4></li>
-		        	<li><h4>사이즈 : S/M/L/XL</h4></li>
+		        	<li><h4>색상 : 
+		        	<%
+		        		for(int i=0; i<listColor.size();i++){
+		        	%>
+		        		<%=listColor.get(i).getCOLOR() %>
+		        	<%
+		        			if(i!=listColor.size()-1){
+		        	%>
+		        		/
+		        	<%
+		        			}
+		        		}
+		        	%>
+		        	</h4></li>
+		        	<li><h4>사이즈 : 
+		        	<%
+		        		for(int i=0; i<listSize.size();i++){
+		        	%>
+		        		<%=listSize.get(i).getPRO_SIZE() %>
+		        	<%
+		        			if(i!=listSize.size()-1){
+		        	%>
+		        		/
+		        	<%
+		        			}
+		        		}
+		        	%>
+		        	</h4></li>
 		        	<li><h4>소재 : <%=list.get(0).getMATERIAL() %></h4></li>
 		        	<li><h4>세탁방법 : <%=list.get(0).getWASH() %></h4></li>
 		        	</ul></p>
