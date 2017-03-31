@@ -10,7 +10,6 @@
 	String SUB_ITEM = (request.getParameter("SUB_ITEM")==null||request.getParameter("SUB_ITEM").equals("") )?"ALL":request.getParameter("SUB_ITEM");
 	String ITEM = list.get(0).getITEM();
 	String centerName = "";
-	//System.out.print(ITEM);
 	if(ITEM.equalsIgnoreCase("BAGnACC"))centerName="BAG&ACC";
 	else centerName=ITEM;
 %>
@@ -84,7 +83,7 @@ function addCookie(pd_no) {
 <%
 	for(int i=0;i<listBest.size();i++){
 %>
-  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
