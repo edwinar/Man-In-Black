@@ -35,11 +35,7 @@
 </style>
 </head>
 <body>
-<script type="text/javascript">
-function reviewReplyPop(){
-	window.open("reviewReply.mib","pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
-}
-</script>
+
 <div class="layout">
 	<div class="leftLayout">
 		<img alt="..." src="../images/LOVE.jpg" width="100%">
@@ -69,6 +65,10 @@ function reviewReplyPop(){
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+function reviewReplyPop(){
+	window.open("reviewReply.mib","pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+</script>
 </body>
 </html>

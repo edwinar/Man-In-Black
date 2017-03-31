@@ -1,6 +1,7 @@
 package com.eagle.men_in_black.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -116,17 +117,39 @@ public class UserMypageController {
 
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
-	public ModelAndView todayGoods(){
-		
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-		
-		ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
-		mav.addObject("msg", "김옥지");
-		
-		return mav;
-		
+	public ModelAndView todayGoods(HttpServletRequest res,HttpServletResponse rep){
+
+		String pro_seq = res.getParameter("pro_seq");
+		if(pro_seq.equals("nocookie")) {
+			List<UserMypageDto> goods = null;
+			ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
+			mav.addObject("goodslist", goods);
+
+			return mav;
+		}else {
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + pro_seq + "받기완");
+			loger.debug("============================");
+			HashMap<String, Object> param = new HashMap<String, Object>();
+			List<String> list = Arrays.asList(pro_seq.split(","));
+			param.put("list1", list);
+			param.put("list2", list);
+
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "주기");
+			loger.debug("============================");
+
+			List<UserMypageDto> goods = userMypageSvc.do_search_goods(param);
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "서치완료");
+			loger.debug("============================");
+
+
+			ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
+			mav.addObject("goodslist", goods);
+
+			return mav;
+		}
 	}
 	// 내가쓴 게시물 보기 
 	@RequestMapping("myboard.mib")
@@ -222,5 +245,16 @@ public class UserMypageController {
 		return mav;
 		
 	}
-		
+	
+	
+	// 리뷰 쓰기
+	@RequestMapping("reveiwwrite.mib")
+	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/ReviewWrite");
+		mav.addObject("userdto",userdto);
+		return mav;
+
 	}
+	
+}

@@ -11,4 +11,6 @@ public interface DetailDao {
 	public List<DetailDto> do_selectProductColor(int PRO_SEQ);
 	//상품 사이즈 종류
 	public List<DetailDto> do_selectProductSize(int PRO_SEQ);
+	//상품 리뷰 리스트
+	public List<DetailDto> do_selectProductReviewList(int PRO_SEQ);
 }

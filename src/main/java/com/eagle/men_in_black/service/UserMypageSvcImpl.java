@@ -116,4 +116,10 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		 userMypageDao.do_delete_basketlist(list);
 	}
+
+	@Override
+	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_search_goods(param);
+	}
 }

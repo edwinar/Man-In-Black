@@ -274,6 +274,11 @@ td, th {
 													+ fullDate;
 										});
 					});
+	
+	
+	function  go() {
+		document.location.href='reveiwwrite.mib';
+	}
 </script>
 <title>::구매내역::</title>
 </head>
@@ -369,7 +374,7 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go()"> </td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>

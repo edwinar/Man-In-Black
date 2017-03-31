@@ -100,13 +100,13 @@ td, th {
 						<td>총가격</td>
 					</tr>
 					<tr>
-						<td><input type="text" id="pay" value="" readonly="readonly">
+						<td><input type="text" id="pay" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>+</td>
-						<td><input type="text" id="tag" value="" readonly="readonly">
+						<td><input type="text" id="tag" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>=</td>
-						<td><input type="text" id="top" value="" readonly="readonly">
+						<td><input type="text" id="top" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 					</tr>
 				</table>
@@ -116,13 +116,12 @@ td, th {
 
 		</div>
 		<div align="right">
-			<input type="button" id="delete" align="right" value="삭제하기"
+			<input type="button" id="delete"  value="삭제하기"
 				onclick="deletes()" class="btn btn-default"
-				style="width: 200px; margin-right: 110px">
-		</div>
-		<div id="결제" align="right">
-			<input type="button" id="buy" value="결제하기" onclick="buy()"
-				class="btn btn-default" style="width: 200px; margin-right: 110px">
+				style="width: 15%; margin-right: 1% ">
+		
+			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
+				class="btn btn-default" style="width: 15%; margin-right: 10.5%">
 		</div>
 	</div>
 	<script type="text/javascript">

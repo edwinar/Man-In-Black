@@ -10,7 +10,6 @@
 	String SUB_ITEM = (request.getParameter("SUB_ITEM")==null||request.getParameter("SUB_ITEM").equals("") )?"ALL":request.getParameter("SUB_ITEM");
 	String ITEM = list.get(0).getITEM();
 	String centerName = "";
-	//System.out.print(ITEM);
 	if(ITEM.equalsIgnoreCase("BAGnACC"))centerName="BAG&ACC";
 	else centerName=ITEM;
 %>
@@ -48,11 +47,14 @@ function setCookie(cookie_name, value, exdays) {
 }
 /*------------------------------------------------겟쿠키*/
 function getCookie(cookie_name) {
+
     var i, x, y, z = document.cookie.split(";");
+
     for (i = 0; i < z.length; i++) {
         x = z[i].substr(0, z[i].indexOf("="));
         y = z[i].substr(z[i].indexOf("=") + 1);
         x = x.replace(/^s+|s+$/g, "");
+        x = x + 's'
         if (x == cookie_name) {
             return unescape(y);
         }
@@ -60,15 +62,15 @@ function getCookie(cookie_name) {
 }
 /* ----------------------------------------쿠키 값 추가*/
 function addCookie(pd_no) {
-    var maxitem = 5; // 최대 유지할 수 있는 상품 개수
-    prev_pd_no = getCookie('recentitems');
+    var maxitem = 7; // 최대 유지할 수 있는 상품 개수-2개
+    var prev_pd_no = getCookie('recentitems');
     if ((prev_pd_no == '') || (prev_pd_no == null)) {
-        setCookie('recentitems', pd_no);
+        setCookie('recentitems', ',' + pd_no);
     }else {
         if (getCookie('recentitems').split(',').length > maxitem + 1) {
             prev_pd_no = prev_pd_no.substring(prev_pd_no.indexOf(',') + 1);
         }
-        if (prev_pd_no.match(pd_no)) {
+        if (prev_pd_no.match(','+pd_no)) {
             console.log(pd_no); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
         }else{
             setCookie('recentitems', prev_pd_no + ',' + pd_no);
@@ -84,7 +86,7 @@ function addCookie(pd_no) {
 <%
 	for(int i=0;i<listBest.size();i++){
 %>
-  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
       <img src="../images/LOVE.jpg" alt="...">
       <div class="caption">
