@@ -570,6 +570,10 @@ function QnAWrite(){
 		        		<img alt="..." src="../images/scoreFull.png">
 		        		<img alt="..." src="../images/scoreFull.png">
 		        	<%
+		        		}else{
+	        		%>
+	        			<h4>평점 데이터가 없습니다.</h4>
+	        		<%
 		        		}
 	        		%>
 		        	</div>
@@ -675,65 +679,92 @@ function QnAWrite(){
         		<img alt="..." src="../images/scoreFull.png">
         		<img alt="..." src="../images/scoreFull.png">
         	<%
+        		}else{
+       		%>
+       			평점 데이터가 없습니다.
+       		<%
         		}
        		%>
             </th>
         </tr>
     </thead>
     <tbody>
-    <%
-    	for(int i=0;i<reviewList.size();i++){
-    %>
+<%
+	for(int i=0;i<reviewList.size();i++){
+		if(reviewList.get(i).getUSER_ID().equalsIgnoreCase("adm")){
+%>
+    	<tr>
+    		<td class="organisationnumber" width="20%">
+            	<img alt="" src="../images/arrow.PNG" class="imgr" width="200px">            
+         	</td>
+    		<td class="organisationname" width="60%">
+            	<a href="javascript:popup()">
+             	<br><br>
+	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
+	            </a>
+	        </td>
+	        <td class="actions" width="20%">
+                        	작성자 : <%=reviewList.get(i).getUSER_ID() %><br>
+                         	작성일 : <%=reviewList.get(i).getREV_TIME() %>
+            </td>
+        </tr>
+<%
+		}else{
+%>
         <tr>
             <td class="organisationnumber" width="20%">
             	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname" width="60%">
             	<a href="javascript:popup()">
-	            <%
-	        		if(reviewList.get(i).getSCORE()==1){
-	        	%>
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	       		<%
-	        		}else if(reviewList.get(i).getSCORE()==2){
-	       		%>
-	       			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	       		<%
-	        		}else if(reviewList.get(i).getSCORE()==3){
-	       		%>
-	       			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	       		<%
-	        		}else if(reviewList.get(i).getSCORE()==4){
-	       		%>
-	       			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	       		<%
-	        		}else if(reviewList.get(i).getSCORE()==5){
-	       		%>
-	       			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        	<%
-	        		}
-	       		%>
-	             <br><br>
+            <%
+        		if(reviewList.get(i).getSCORE()==1){
+        	%>
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(reviewList.get(i).getSCORE()==2){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(reviewList.get(i).getSCORE()==3){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(reviewList.get(i).getSCORE()==4){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreEmpty.png">
+       		<%
+        		}else if(reviewList.get(i).getSCORE()==5){
+       		%>
+       			<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        		<img alt="..." src="../images/scoreFull.png">
+        	<%
+        		}else{
+       		%>
+       			<h4>평점 데이터가 없습니다.</h4>
+       		<%
+        		}
+       		%>
+             	<br><br>
 	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
 	            </a>
 	        </td>
@@ -742,9 +773,10 @@ function QnAWrite(){
                          	작성일 : <%=reviewList.get(i).getREV_TIME() %>
             </td>
         </tr>
-    <%
-    	}
-    %>    
+<%
+		}
+	}
+%>    
     </tbody>
 	</table>
 	</div>
