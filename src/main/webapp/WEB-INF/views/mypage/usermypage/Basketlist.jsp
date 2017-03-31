@@ -32,7 +32,7 @@ td, th {
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="basketlist.mib">장바구니</a></h4>
 <h3>MY Order</h3>
-<h4 style="margin-bottom: 100px">회원님의 장바구니 입니다.</h4>
+<h4 style="margin-bottom: 50px">회원님의 장바구니 입니다.</h4>
 </div>
 </center>
 	<div id="total" style="height: margin-top: 150px">
