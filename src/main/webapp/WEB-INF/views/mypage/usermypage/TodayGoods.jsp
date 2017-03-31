@@ -39,6 +39,16 @@
 		</div>
 	</center>
 	<div class="row" align="center" style="margin-top: 70px">
+
+		<%
+			if (goodslist == null || goodslist.size() == 0) {
+		%>
+		<tr>
+			<td colspan="9999">내역이 없습니다.</td>
+		</tr>
+		<%
+		} else {
+		%>
 			<%
 				for (int i = 0; i < goodslist.size(); i++) {
 			%>
@@ -54,7 +64,7 @@
 		</div>
 			<%
 						}
-
+				}
 			%>
 
 				</div>
