@@ -44,7 +44,8 @@
 		INSERT INTO
 		NOTICE_BOARD
 		(NOTICE_SEQ,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_TIME)
-		VALUES(100,#{},#{},#{})
+		<!--시퀀스 설정하고 등록  -->
+		VALUES(101,#{noticetitle},#{content},SYSDATE)
 
 	</insert>
 

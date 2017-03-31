@@ -78,13 +78,13 @@
 	</center>
 	<h3>공지사항을 작성해주세요</h3>
 
-	<form enctype="multipart/form-data">
+	<form action="servicereg.mib" method="post" enctype="multipart/form-data">
 
 		<div class="wrap">
 
 			<div class="mat-div">
-				<label for="first-name" class="mat-label">제목</label> <input
-					type="text" class="mat-input" name="noticetitle" id="상품이름">
+			<label for="first-name" class="mat-label">제목</label> 
+				<input type="text" class="mat-input" name="noticetitle" id="상품이름">
 			</div>
 		</div>
 		<br>
@@ -106,9 +106,10 @@
 
 			});
 		</script>
+		<input type="submit" class="btn btn-primary" value="등록">
 	</form>
 	<p align="right">
-		<input type="submit" class="btn btn-primary" value="등록">
+		
 		 <a class="btn btn-primary" href="servicenotice.mib"
 			role="button">취소</a>
 	</p>

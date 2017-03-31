@@ -69,17 +69,22 @@ public class ServiceController {
 	}
 
 	// 공지사항쓰기(관리자)
-	@RequestMapping("servicereg.mib")
+	@RequestMapping(value="servicereg.mib", method=RequestMethod.POST)
 	public ModelAndView noticeincert(MultipartHttpServletRequest res) {
 
 		ModelAndView mav = new ModelAndView("service/notice");
 
 		// DB에 글등록
 		String editor = res.getParameter("editor");
-
+		String noticetitle = res.getParameter("noticetitle");
+		
+		System.out.println("내영"+editor);
+		System.out.println("제목"+noticetitle);
+		
 		HashMap<String, String> writemap = new HashMap<>();
 		writemap.put("content", editor);
-		writemap.put("noticetitle", editor);
+		writemap.put("noticetitle", noticetitle);
+		
 		serviceSvc.do_service_reg(writemap);
 
 		// 공지게시판 목록으로 다시가기
