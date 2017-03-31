@@ -358,7 +358,7 @@ FROM(
                                                  ,A.PRO_SEQ,A.PRO_PRICE,A.ITEM,A.NEW_ITEM
                           )C LEFT JOIN PHOTO D ON C.PRO_SEQ = D.PRO_SEQ
             LEFT JOIN REVIEW E ON C.PRO_SEQ = E.PRO_SEQ
-             WHERE D.STORED_NAME LIKE MAIN%
+             WHERE D.STORED_NAME LIKE 'MAIN%'
              GROUP BY C.SALE_CNT,C.PRO_NAME, C.PRO_CONTENT, C.PRO_SEQ, C.PRO_PRICE, C.ITEM,
                                   D.STORED_NAME, C.NEW_ITEM, E.PRO_SEQ
              ORDER BY C.SALE_CNT DESC
