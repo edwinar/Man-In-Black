@@ -3,13 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-UserMypageDto mypageDto = (UserMypageDto)request.getAttribute("point");
-List<UserMypageDto> coupon= (List<UserMypageDto>)request.getAttribute("coupon");
-List<UserMypageDto> buy= (List<UserMypageDto>)request.getAttribute("buy");
-List<UserMypageDto> qna= (List<UserMypageDto>)request.getAttribute("qna");
-List<UserMypageDto> basket= (List<UserMypageDto>)request.getAttribute("basket");
-List<UserMypageDto> point5= (List<UserMypageDto>)request.getAttribute("point5");
-
+	UserMypageDto mypageDto = (UserMypageDto) request.getAttribute("point");
+	List<UserMypageDto> coupon = (List<UserMypageDto>) request.getAttribute("coupon");
+	List<UserMypageDto> buy = (List<UserMypageDto>) request.getAttribute("buy");
+	List<UserMypageDto> qna = (List<UserMypageDto>) request.getAttribute("qna");
+	List<UserMypageDto> basket = (List<UserMypageDto>) request.getAttribute("basket");
+	List<UserMypageDto> point5 = (List<UserMypageDto>) request.getAttribute("point5");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,7 +29,6 @@ body {
 	height: 330px;
 	margin-top: 100px;
 }
-
 
 #divl {
 	width: 45%;
@@ -77,7 +75,6 @@ body {
 	line-height: 50px;
 }
 
-
 .parea {
 	border-bottom: 5px solid #696969;
 }
@@ -85,7 +82,6 @@ body {
 td, th {
 	text-align: center;
 }
-
 
 @media only screen and (max-width: 1600px) {
 	#boardone, .boardone {
@@ -122,40 +118,65 @@ td, th {
 </style>
 </head>
 <body>
-<center>
-	<div id="mypagehead">
-		<h4 align="right" style="margin-right: 100px">
-			<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a>
-		</h4>
-		<h3>MY Order</h3>
-		<h4>회원님의 마이페이지입니다.</h4>
-	</div>
-</center>
+	<center>
+		<div id="mypagehead">
+			<h4 align="right" style="margin-right: 100px">
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a>
+			</h4>
+			<h3>MY Order</h3>
+			<h4>회원님의 마이페이지입니다.</h4>
+		</div>
+	</center>
 
 	<div>
-		<div id="contain" ><!--onclick="location.href='coupon_Mileage.mib'"-->
+		<div id="contain">
+			<!--onclick="location.href='coupon_Mileage.mib'"-->
 			<div id="divl">
 				<div class="head parea">사용가능한 쿠폰</div>
 
-				<div  align="center">
+				<div align="center">
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
-						<%for(int i = 0; i<coupon.size(); i++){ %>
+						<%
+							if (coupon == null || coupon.size() == 0) {
+						%>
 						<tr>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME() %></th>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE() %></th>
+							<td colspan="2" style="text-align: center;">내역이 없습니다.</td>
 						</tr>
-						<%} %>
-						
-						
+						<%
+							} else {
+						%>
+						<%
+							for (int i = 0; i < coupon.size(); i++) {
+						%>
+						<tr>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></th>
+							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></th>
+						</tr>
+						<%
+							}
+							}
+						%>
+
+
 					</table>
 				</div>
 
 			</div>
 			<div id="divr" align="center" style="position: relative;">
 				<div class="head parea">적립금</div>
-				<p align="center">현재<%=mypageDto.getPOINT_FINAL() %></p>
+				<p align="center">
+					<%
+						if (mypageDto == null) {
+					%>
+					적립금이 없습니다.
+					<%
+						} else {
+					%>
+					현재<%=mypageDto.getPOINT_FINAL()%>
+					<%} %>
+					</p>
 				<table style="text-align: center;">
 					<col width="150px">
 					<col width="200px%">
@@ -167,24 +188,42 @@ td, th {
 						<th style="text-align: center;">금액</th>
 						<th style="text-align: center;">최종</th>
 					</tr>
-					<%for(int i = 0; i<point5.size();i++ ){ %>
+					<col width="200px">
+					<%
+						if (point5 == null || point5.size() == 0) {
+					%>
+					<tr>
+						<td colspan="4" style="text-align: center;">내역이 없습니다.</td>
+					</tr>
+					<%
+						} else {
+					%>
+
+					<%
+						for (int i = 0; i < point5.size(); i++) {
+					%>
 					<tr>
 						<td><%=point5.get(i).getPOINT_TIME()%></td>
 						<td><%=point5.get(i).getPRO_NAME()%></td>
 						<td><%=point5.get(i).getPOINT_PRICE()%></td>
 						<td><%=point5.get(i).getPOINT_FINAL()%></td>
 					</tr>
-					<% }%>
-					
-					
+					<%
+						}
+						}
+					%>
+
+
 				</table>
 			</div>
-			<button type="button" onclick="location.href='coupon_Mileage.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+			<button type="button" onclick="location.href='coupon_Mileage.mib'"
+				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
 
 
-		<div id="boarddiv" ><!--onclick="location.href='buyList.mib'"-->
+		<div id="boarddiv">
+			<!--onclick="location.href='buyList.mib'"-->
 			<p style="background-color: #696969">주문내용</p>
 			<table class="table">
 				<col width="9%">
@@ -210,32 +249,49 @@ td, th {
 					<th class="#boardthree">판매일</th>
 					<th>상태</th>
 				</tr>
-				<%for(int i = 0; i<buy.size(); i++){ %>
-				<tr height="30px" >
-					<td class="boardone" rowspan="2"><img alt="not found"src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM() %></td>
+				<%
+					if (buy == null || buy.size() == 0) {
+				%>
+				<tr>
+					<td colspan="11" style="text-align: center;">내역이 없습니다.</td>
+				</tr>
+				<%
+					} else {
+				%>
+				<%
+					for (int i = 0; i < buy.size(); i++) {
+				%>
+				<tr height="30px">
+					<td class="boardone" rowspan="2"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM()%></td>
 					<td><%=buy.get(i).getPRO_NAME()%></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM() %></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getCOUPON() %></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getPOINT() %></th>
-					<td rowspan="2" valign="middle"><%=buy.get(i).getFINAL_PRICE() %></td>
-					<th class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME() %></th>
-					<td rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME() %></td>
+					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getCOUPON()%></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getPOINT()%></th>
+					<td rowspan="2" valign="middle"><%=buy.get(i).getFINAL_PRICE()%></td>
+					<th class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></th>
+					<td rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></td>
 				</tr>
 				<tr>
-					<td><%=buy.get(i).getSEL_SIZE() %> : <%=buy.get(i).getSEL_COLOR() %></td>
+					<td><%=buy.get(i).getSEL_SIZE()%> : <%=buy.get(i).getSEL_COLOR()%></td>
 				</tr>
-					<%}%>
+				<%
+					}
+					}
+				%>
 			</table>
-			
-			
-			<button type="button" onclick="location.href='buylist.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+
+
+			<button type="button" onclick="location.href='buylist.mib'"
+				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 
 
-		<div id="boarddiv" ><!--onclick="location.href='basketlist.mib'"-->
+		<div id="boarddiv">
+			<!--onclick="location.href='basketlist.mib'"-->
 			<p style="background-color: #696969">장바구니</p>
 			<table class="table">
 				<col width="5%">
@@ -252,13 +308,23 @@ td, th {
 					<th class="boardtwo">금액</th>
 				</tr>
 				<%
+					if (basket == null || basket.size() == 0) {
+				%>
+				<tr>
+					<td colspan="6" style="text-align: center;">내역이 없습니다.</td>
+				</tr>
+				<%
+					} else {
+				%>
+				<%
 					for (int i = 0; i < basket.size(); i++) {
 				%>
 
 				<tr>
 
-					<td class="boardone" rowspan="2" rowspan="2">
-					<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" rowspan="2"><img
+						alt="not found" src="../images/LOVE.jpg"
+						style="width: 100px; height: 100px"></td>
 					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
 					<td><%=basket.get(i).getPRO_NAME()%></td>
 					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
@@ -269,6 +335,7 @@ td, th {
 				</tr>
 				<%
 					}
+					}
 				%>
 			</table>
 			<button type="button" onclick="location.href='basketlist.mib'"
@@ -277,7 +344,8 @@ td, th {
 
 
 
-		<div id="boarddiv"><!--onclick="location.href='myboard.mib'"-->
+		<div id="boarddiv">
+			<!--onclick="location.href='myboard.mib'"-->
 			<p style="background-color: #696969">Q&A</p>
 			<table class="table">
 
@@ -288,21 +356,42 @@ td, th {
 					<th>날짜</th>
 					<th>답변여부</th>
 				</tr>
-				<%for(int i = 0; i < qna.size(); i++){ %>
+				<%
+					if (qna == null || qna.size() == 0) {
+				%>
 				<tr>
-					<td><%=i+1%></td>
-					<td><%=qna.get(i).getPRO_NAME() %></td>
+					<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+				</tr>
+				<%
+					} else {
+				%>
+				<%
+					for (int i = 0; i < qna.size(); i++) {
+				%>
+				<tr>
+					<td><%=i + 1%></td>
+					<td><%=qna.get(i).getPRO_NAME()%></td>
 					<td><%=qna.get(i).getQNA_TITLE()%></td>
 					<td><%=qna.get(i).getQNA_TIME()%></td>
-					<%if(qna.get(i).getQNA_STEP()=="Y"){ %>
+					<%
+						if (qna.get(i).getQNA_STEP() == "Y") {
+					%>
 					<td>답변완료</td>
-					<%}else{ %>
+					<%
+						} else {
+					%>
 					<td>답변중</td>
-					<%} %>
+					<%
+						}
+					%>
 				</tr>
-				<%} %>
+				<%
+					}
+					}
+				%>
 			</table>
-			<button type="button" onclick="location.href='myboard.mib'" style="margin-left: 94%" class="btn btn-default"> 더보기</button>
+			<button type="button" onclick="location.href='myboard.mib'"
+				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
 	</div>

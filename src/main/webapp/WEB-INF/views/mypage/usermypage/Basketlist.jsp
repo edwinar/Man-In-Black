@@ -47,13 +47,25 @@ td, th {
 					<col width="50%">
 					<col width="10%">
 					<tr>
-						<th> x </th>
+						<th> &nbsp </th>
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
 						<th>가격</th>
 					</tr>
-						<%for(int i = 0; i<basketlist.size();i++){ %>
+					<%
+						if (basketlist == null || basketlist.size() == 0) {
+					%>
+					<tr>
+						<td colspan="9999">내역이 없습니다.</td>
+					</tr>
+					<%
+						}else{
+					%>
+
+					<%
+						for (int i = 0; i < basketlist.size(); i++) {
+					%>
 					<tr>
 						<td rowspan="2">
 						<input type="checkbox" onclick="ty(<%=i %>)"
@@ -70,7 +82,7 @@ td, th {
 					<tr>
 						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR() %></td>
 					</tr>
-					<% }%>
+					<% }}%>
 				
 				</table>
 
