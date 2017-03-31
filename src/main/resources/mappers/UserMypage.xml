@@ -383,4 +383,5 @@ WHERE RNUM BETWEEN 1 and 9;
 
 ]]>
     </select>
+
 </mapper>

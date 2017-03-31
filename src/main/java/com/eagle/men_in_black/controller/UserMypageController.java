@@ -118,9 +118,13 @@ public class UserMypageController {
 	// 오늘본 상품 
 	@RequestMapping("todayGoods.mib")
 	public ModelAndView todayGoods(HttpServletRequest res,HttpServletResponse rep){
-
-		String pro_seq = res.getParameter("seq");
-
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " +"pro_seq 받기");
+		loger.debug("============================");
+		String pro_seq = res.getParameter("pro_seq");
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " +"pro_seq 받기");
+		loger.debug("============================");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		List<String> list = Arrays.asList(pro_seq.split(","));
 		param.put("list",list);

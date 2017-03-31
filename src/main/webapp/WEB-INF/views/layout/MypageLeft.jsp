@@ -75,20 +75,27 @@ $(document).ready(function () {
 function movegoods() {
 
 
-    var seq = getCookie('recentitems');
-
-    location.href='todayGoods.mib?seq='+seq;
+    var pro_seq = getCookie('recentitems');
+    alert(pro_seq);
+    pro_seq = pro_seq.substring(1);
+    alert(pro_seq);
+    location.href='todayGoods.mib?pro_seq='+pro_seq;
 }
 
 
 
 function getCookie(cookie_name) {
+    alert("get = " + document.cookie)
+
     var i, x, y, z = document.cookie.split(";");
+
     for (i = 0; i < z.length; i++) {
         x = z[i].substr(0, z[i].indexOf("="));
         y = z[i].substr(z[i].indexOf("=") + 1);
         x = x.replace(/^s+|s+$/g, "");
+        x = x + 's'
         if (x == cookie_name) {
+            alert("ret = " + unescape(y))
             return unescape(y);
         }
     }
