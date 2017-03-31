@@ -20,4 +20,16 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectProductDetail";
 		return sqlSession.selectList(statement, PRO_SEQ);
 	}
+
+	@Override
+	public List<DetailDto> do_selectProductColor(int PRO_SEQ) {
+		String statement = namespace+".do_selectProductColor";
+		return sqlSession.selectList(statement, PRO_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_selectProductSize(int PRO_SEQ) {
+		String statement = namespace+".do_selectProductSize";
+		return sqlSession.selectList(statement, PRO_SEQ);
+	}
 }
