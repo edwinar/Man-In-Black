@@ -120,29 +120,36 @@ public class UserMypageController {
 	public ModelAndView todayGoods(HttpServletRequest res,HttpServletResponse rep){
 
 		String pro_seq = res.getParameter("pro_seq");
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + pro_seq +"받기완");
-		loger.debug("============================");
-		HashMap<String, Object> param = new HashMap<String, Object>();
-		List<String> list = Arrays.asList(pro_seq.split(","));
-		param.put("list1",list);
-		param.put("list2",list);
+		if(pro_seq.equals("nocookie")) {
+			List<UserMypageDto> goods = null;
+			ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
+			mav.addObject("goodslist", goods);
 
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " +"주기");
-		loger.debug("============================");
+			return mav;
+		}else {
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + pro_seq + "받기완");
+			loger.debug("============================");
+			HashMap<String, Object> param = new HashMap<String, Object>();
+			List<String> list = Arrays.asList(pro_seq.split(","));
+			param.put("list1", list);
+			param.put("list2", list);
 
-		List<UserMypageDto> goods = userMypageSvc.do_search_goods(param);
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " +"서치완료");
-		loger.debug("============================");
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "주기");
+			loger.debug("============================");
+
+			List<UserMypageDto> goods = userMypageSvc.do_search_goods(param);
+			loger.debug("=Controller ===========================");
+			loger.debug("codeMSvc === " + "서치완료");
+			loger.debug("============================");
 
 
-		ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
-		mav.addObject("goodslist", goods);
-		
-		return mav;
-		
+			ModelAndView mav = new ModelAndView("mypage/usermypage/TodayGoods");
+			mav.addObject("goodslist", goods);
+
+			return mav;
+		}
 	}
 	// 내가쓴 게시물 보기 
 	@RequestMapping("myboard.mib")

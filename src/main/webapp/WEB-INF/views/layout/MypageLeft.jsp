@@ -71,8 +71,9 @@ $(document).ready(function () {
 });
 
 function movegoods() {
-
-
+    if ((document.cookie == '') || (document.cookie == null)) {
+        location.href='todayGoods.mib?pro_seq=nocookie';
+    }
     var pro_seq = getCookie('recentitems');
     pro_seq = pro_seq.substring(1);
     location.href='todayGoods.mib?pro_seq='+pro_seq;
