@@ -20,8 +20,8 @@ body {
 #contain {
 	margin: 0 auto;
 	width: 100%;
-	height: 700px;
-	margin-top: 150px;
+	height: 800px;
+	margin-top: 70px;
 }
 
 #divl {
@@ -63,13 +63,15 @@ body {
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
-				<a href="coupon_Mileage.mib">쿠폰&적립금</a>
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> <a
+					href="coupon_Mileage.mib">쿠폰&적립금</a>
 			</h4>
 			<h3>MY Order</h3>
 			<h4>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</h4>
 		</div>
 	</center>
+
+
 	<div id="contain">
 		<div id="divl" style="position: relative;">
 			<div class="head gray">사용가능한 쿠폰</div>
@@ -140,14 +142,15 @@ body {
 							%>
 							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&"
 								class="btn btn-default" role="button"><%=i%></a>
-
+							<%
+					}%>
 						</p>
 					</div>
 
 				</div>
 				<%
 					}
-					}
+					
 				%>
 
 			</div>
@@ -158,16 +161,16 @@ body {
 		<div id="divl" align="center" style="position: relative;">
 			<div class="head gray">적립금</div>
 			<p align="center">
-					<%
+				<%
 						if (mypageDto == null) {
 					%>
-					적립금이 없습니다.
-					<%
+				적립금이 없습니다.
+				<%
 						} else {
 					%>
-					현재<%=mypageDto.getPOINT_FINAL()%>
-					<%} %>
-					</p>
+				현재<%=mypageDto.getPOINT_FINAL()%>
+				<%} %>
+			</p>
 			<table style="text-align: center; width: 90%">
 				<col width="20%">
 				<col width="40%">
@@ -220,7 +223,7 @@ body {
 				if (pointList == null || pointList.size() == 0) {
 			%>
 			<div class="paging"
-				style="position: absolute; right: 0px; bottom: 0px">></div>
+				style="position: absolute; right: 0px; bottom: 0px"></div>
 			<%
 				} else {
 			%>
@@ -248,10 +251,14 @@ body {
 							class="btn btn-default" role="button"><%=i%></a>
 						<%
 							}
-							}
+							
 						%>
 					</p>
 				</div>
+				
+				
+				<% }%>
+				
 			</div>
 		</div>
 

@@ -20,11 +20,10 @@
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
 			<h3>My Post</h3>
-			<h4>회원님님의 게시물 작성 리스트 입니다</h4>
+			<h4 style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</h4>
 		</div>
 	</center>
-	<div class="row">
-		<div class="col-xs-8 col-xs-offset-2 MyPost">
+
 			<h3>상품 리뷰</h3>
 			<table class="table">
 				<col width="15%">
@@ -97,6 +96,6 @@
 					
 				</div>
 			</div>
-		</div>
+	
 </body>
 </html>

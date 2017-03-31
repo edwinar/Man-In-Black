@@ -32,13 +32,14 @@ td, th {
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="basketlist.mib">장바구니</a></h4>
 <h3>MY Order</h3>
-<h4>회원님의 장바구니 입니다.</h4>
+<h4 style="margin-bottom: 100px">회원님의 장바구니 입니다.</h4>
 </div>
 </center>
-	<div id="total" style="height: margin-top: 100px">
+	<div id="total" style="height: margin-top: 150px">
 		<div id="table" style="width: 90%">
-            <input type="checkbox" id="allCheck"
-                   class="chbox" style="width: 20px; height: 20px">
+	
+          <input type="checkbox" id="allCheck"
+                   class="chbox" style="width: 20px; height: 20px; margin-left:1.911577%">
 			<form name="f1">
 				<table class="table">
 					<col width="5%">
