@@ -74,16 +74,13 @@ function movegoods() {
 
 
     var pro_seq = getCookie('recentitems');
-    alert(pro_seq);
     pro_seq = pro_seq.substring(1);
-    alert(pro_seq);
     location.href='todayGoods.mib?pro_seq='+pro_seq;
 }
 
 
 
 function getCookie(cookie_name) {
-    alert("get = " + document.cookie)
 
     var i, x, y, z = document.cookie.split(";");
 
@@ -93,7 +90,6 @@ function getCookie(cookie_name) {
         x = x.replace(/^s+|s+$/g, "");
         x = x + 's'
         if (x == cookie_name) {
-            alert("ret = " + unescape(y))
             return unescape(y);
         }
     }

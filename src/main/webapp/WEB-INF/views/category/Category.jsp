@@ -41,16 +41,13 @@ function movedetail(pd_no) {
 }
 /*-------------------------------------------------쿠키만들기*/
 function setCookie(cookie_name, value, exdays) {
-    alert('setcookie start');
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + exdays);
     var cookie_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-    alert("set" + cookie_value);
     document.cookie = cookie_name + "=" + cookie_value;
 }
 /*------------------------------------------------겟쿠키*/
 function getCookie(cookie_name) {
-    alert("get = " + document.cookie)
 
     var i, x, y, z = document.cookie.split(";");
 
@@ -60,7 +57,6 @@ function getCookie(cookie_name) {
         x = x.replace(/^s+|s+$/g, "");
         x = x + 's'
         if (x == cookie_name) {
-            alert("ret = " + unescape(y))
             return unescape(y);
         }
     }
@@ -69,19 +65,15 @@ function getCookie(cookie_name) {
 function addCookie(pd_no) {
     var maxitem = 100; // 최대 유지할 수 있는 상품 개수
     var prev_pd_no = getCookie('recentitems');
-    alert(prev_pd_no )
     if ((prev_pd_no == '') || (prev_pd_no == null)) {
-        alert('no prev set')
         setCookie('recentitems', ',' + pd_no);
     }else {
         if (getCookie('recentitems').split(',').length > maxitem + 1) {
             prev_pd_no = prev_pd_no.substring(prev_pd_no.indexOf(',') + 1);
         }
         if (prev_pd_no.match(','+pd_no)) {
-            alert("이미존재하는 seq = " + pd_no);
             console.log(pd_no); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
         }else{
-            alert(prev_pd_no + "  ciick = " + pd_no);
             setCookie('recentitems', prev_pd_no + ',' + pd_no);
         }
     }
