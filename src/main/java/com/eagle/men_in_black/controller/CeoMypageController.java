@@ -112,9 +112,19 @@ public class CeoMypageController {
 	//메인 배너 등록
 	@RequestMapping("register_MainBanner.mib")
 	public ModelAndView register_MainBanner(){
-		return null;
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_MainBanner");
+		
+		return mav;
 	}
-	
+	// 문의글 관리 
+		@RequestMapping("qnA_Administer.mib")
+		public ModelAndView qnA_Administer() {
+
+			ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+			
+			return mav;
+
+		}
 	// 쿠폰관리 
 	@RequestMapping("coupon_Administer.mib")
 	public ModelAndView coupon_Administer() {
@@ -125,15 +135,17 @@ public class CeoMypageController {
 
 	}
 	
-	// 문의글 관리 
-	@RequestMapping("qnA_Administer.mib")
-	public ModelAndView qnA_Administer() {
+	// 리뷰관리 
+	@RequestMapping("reiview_Administer.mib")
+	public ModelAndView reiview_Administer() {
 
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Reiview_Administer");
 		
 		return mav;
 
 	}
+	
+	
 	
 
 	
