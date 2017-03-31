@@ -25,18 +25,16 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
     
     <li onclick="location.href='register_Good.mib'">제품등록</li>
     
-    <li onclick="location.href='buylist.mib'">판매내역</li>
+    <li onclick="location.href='ceoMypage_Main.mib'">판매내역</li>
    
-    <li onclick="location.href='basketlist.mib'">메인 배너등록</li>
+    <li onclick="location.href='register_MainBanner.mib'">메인 배너등록</li>
     
-    <li onclick="location.href='todayGoods.mib'">문의게시판 관리</li>
-      
-    <li onclick="location.href='myboard.mib'">공지글 작성</li>
-     
-    <li onclick="location.href='coupon_Mileage.mib'">쿠폰관리</li>
+    <li onclick="location.href='qnA_Administer.mib'">문의게시판 관리</li>
+          
+    <li onclick="location.href='coupon_Administer.mib'">쿠폰관리</li>
     
-    <li onclick="location.href='coupon_Mileage.mib'">리뷰관리</li>
-   
+    <li onclick="location.href='reiview_Administer.mib'">리뷰관리</li>
+    
   </ul>
   <%}else{ %>
   <ul>
@@ -47,7 +45,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
    
     <li onclick="location.href='basketlist.mib'"> 장바구니</li>
     
-    <li onclick="location.href='todayGoods.mib'"> 오늘본 상품</li>
+    <li onclick="movegoods()"> 오늘본 상품</li>
       
     <li onclick="location.href='myboard.mib'"> 내가 쓴 게시물</li>
      
@@ -71,6 +69,31 @@ $(document).ready(function () {
 	  $(".mypage-side-menu").toggleClass('mypage-side-menu-click');
    });
 });
+
+function movegoods() {
+
+
+    var pro_seq = getCookie('recentitems');
+    pro_seq = pro_seq.substring(1);
+    location.href='todayGoods.mib?pro_seq='+pro_seq;
+}
+
+
+
+function getCookie(cookie_name) {
+
+    var i, x, y, z = document.cookie.split(";");
+
+    for (i = 0; i < z.length; i++) {
+        x = z[i].substr(0, z[i].indexOf("="));
+        y = z[i].substr(z[i].indexOf("=") + 1);
+        x = x.replace(/^s+|s+$/g, "");
+        x = x + 's'
+        if (x == cookie_name) {
+            return unescape(y);
+        }
+    }
+}
 </script>
 
 </body>

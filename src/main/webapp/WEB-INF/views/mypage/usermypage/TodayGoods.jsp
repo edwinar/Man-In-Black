@@ -1,6 +1,13 @@
+<%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	List<UserMypageDto> goodslist= (List<UserMypageDto>)request.getAttribute("goodslist");
+%>
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,139 +38,42 @@
 			<h4>회원님이 M.I.B에서 오늘 보신 상품입니다.</h4>
 		</div>
 	</center>
-
-
-
-
 	<div class="row" align="center" style="margin-top: 70px">
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-	</div>
+			<%
+				for (int i = 0; i < goodslist.size(); i++) {
+			%>
 
-	<div class="row" align="center">
-		<div class="col-xs-12 col-lg-4">
+		<div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
 			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
+				<img src="../images/<%=goodslist.get(i).getSTORED_NAME()%>.jpg" alt="...">
 				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
+					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
+					<p><%=goodslist.get(i).getPRO_PRICE()%></p>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-	</div>
+			<%
+						}
 
-	<div class="row" align="center">
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-	</div>
+			%>
 
-	<div class="row" align="center">
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
 				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="../images/LOVE.jpg" alt="...">
-				<div class="caption">
-					<h5>창거니가 어제 입던 소매티</h5>
-					<p>19000 Won</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" align="center">
-		<p>
-			<a href="#" class="btn btn-default" role="button"><</a> <a href="#"
-				class="btn btn-default" role="button">1</a> <a href="#"
-				class="btn btn-default" role="button">2</a> <a href="#"
-				class="btn btn-default" role="button">3</a> <a href="#"
-				class="btn btn-default" role="button">4</a> <a href="#"
-				class="btn btn-default" role="button">></a>
-		</p>
-	</div>
-
 </body>
 </html>
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
