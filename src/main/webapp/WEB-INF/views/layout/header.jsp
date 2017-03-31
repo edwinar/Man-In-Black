@@ -1,17 +1,17 @@
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<%
-MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
-
-%>
-<nav id="hearder_nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<%
+		MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
+	%>
+	<nav id="hearder_nav" class="navbar navbar-default navbar-fixed-top"
+		role="navigation">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 
@@ -39,33 +39,33 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px">
-				<li style="width: 100%">
-					<% 	 
-					if(dto!=null){
-						if(dto.getUSER_ID().equals("adm")){
-					%>
-					<a href="ceoMypage_Main.mib">마이페이지</a>
-					<%}else{ %>
-					<a href="mymain.mib">마이페이지</a>
-					<%}
-					}else{ %> 
-					<a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a>
-					<% 
-					}%>		
-				</li>
-				
+					<li style="width: 100%">
+						<%
+							if (dto != null) {
+								if (dto.getUSER_ID().equals("adm")) {
+						%> <a href="ceoMypage_Main.mib">마이페이지</a> <%
+ 	} else {
+ %> <a href="mymain.mib">마이페이지</a> <%
+ 	}
+ 	} else {
+ %> <a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a>
+						<%
+							}
+						%>
+					</li>
+
 				</div>
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px" id="login">
 					<li style="width: 100%">
-					<% 	 
-					if(dto!=null){
-					%>
-					<a href="logout.mib">로그아웃</a>
-					<%}else{ %> 
-					<a href="login.mib" data-toggle="modal" data-target="#modal-login" >로그인</a>
-					<% 
-					}%>
+						<%
+							if (dto != null) {
+						%> <a href="logout.mib">로그아웃</a> <%
+ 	} else {
+ %> <a href="login.mib" data-toggle="modal" data-target="#modal-login">로그인</a>
+						<%
+							}
+						%>
 					</li>
 				</div>
 			</div>
@@ -122,37 +122,45 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 
 
 	</div>
-	<!-- /.container-fluid -->
-</nav>
+	<!-- /.container-fluid --> </nav>
 
-<!-- *********************************************************************************** -->
+	<!-- *********************************************************************************** -->
 
-<!-- Modal Login -->
-<div class="modal fade bs-example-modal-sm" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	<!-- Modal Login -->
+	<div class="modal fade bs-example-modal-sm" id="modal-login"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
-<!-- Modal signup -->
-<div class="modal fade bs-example-modal-sm" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	<!-- Modal signup -->
+	<div class="modal fade bs-example-modal-sm" id="modal-signup"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
-<!-- Modal signup -->
-<div class="modal fade bs-example-modal-sm" id="modal-email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	<!-- Modal signup -->
+	<div class="modal fade bs-example-modal-sm" id="modal-email"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
 
 

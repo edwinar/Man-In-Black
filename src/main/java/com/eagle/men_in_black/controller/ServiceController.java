@@ -1,63 +1,161 @@
 package com.eagle.men_in_black.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tiles.request.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.ServiceDto;
 import com.eagle.men_in_black.service.ServiceSvc;
 
 @Controller
 public class ServiceController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private ServiceSvc serviceSvc;
-	
+
 	// 고객센터 메인(공지사항)
 	@RequestMapping("servicenotice.mib")
 	public ModelAndView servicenotice(HttpServletRequest res, HttpServletResponse rep) {
 
 		ModelAndView mav = new ModelAndView("service/notice");
-		
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-		
+
+		String PAGE_NUM = (res.getParameter("PAGE_NUM") == null || res.getParameter("PAGE_NUM") == "") ? "1"
+				: res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "10"
+				: res.getParameter("PAGE_SIZE");
+
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
-		
+
 		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
-			
+
 		mav.addObject("noticelist", noticelist);
-	
+
 		return mav;
 
 	}
-	
+
 	// 고객센터 공지사항(디테일)
 	@RequestMapping("servicedetail.mib")
 	public ModelAndView servicedetail(HttpServletRequest res, HttpServletResponse rep) {
 		// view 에서 보낸 seq 받기
 		int seq = Integer.parseInt(res.getParameter("seq"));
-		
+
 		ModelAndView mav = new ModelAndView("service/noticedetail");
 		ServiceDto dto = serviceSvc.do_service_detail(seq);
 		mav.addObject("detail", dto);
 		return mav;
 
 	}
+
+	// 공지사항쓰기(관리자)
+	@RequestMapping(value="servicereg.mib", method=RequestMethod.POST)
+	public ModelAndView noticeincert(MultipartHttpServletRequest res) {
+
+		ModelAndView mav = new ModelAndView("service/notice");
+
+		// DB에 글등록
+		String editor = res.getParameter("editor");
+		String noticetitle = res.getParameter("noticetitle");
+		
+		System.out.println("내영"+editor);
+		System.out.println("제목"+noticetitle);
+		
+		HashMap<String, String> writemap = new HashMap<>();
+		writemap.put("content", editor);
+		writemap.put("noticetitle", noticetitle);
+		
+		serviceSvc.do_service_reg(writemap);
+
+		// 공지게시판 목록으로 다시가기
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", "10");
+		map.put("PAGE_NUM", "1");
+
+		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
+
+		mav.addObject("noticelist", noticelist);
+		return mav;
+	}
+
+	// 공지사항수정(관리자)
 	
 	
 	
+
+	// 공지사항삭제(관리자)
+	
+
+	/* FCK Editor */
+	@RequestMapping("CkeditorNoticeUpload.mib")
+	public ModelAndView register_Good() {
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "김옥지");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("/service/noticewrite");
+		mav.addObject("msg", "김옥지");
+
+		return mav;
+
+	}
+
+	/* FCK 이미지업로드 */
+	@RequestMapping(value = "CkeditorImgUpload.mib", method = RequestMethod.POST)
+	public ModelAndView procFileUpload(FileModel fileBean, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+
+		String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
+																			// root
+																			// 경로
+		System.err.println("===>root_path" + root_path);
+
+		String attach_path = "images\\";
+
+		System.err.println("===>attach_path" + attach_path);
+		MultipartFile upload = fileBean.getUpload();
+		String filename = "";
+		String CKEditorFuncNum = "";
+
+		if (upload != null) {
+			filename = upload.getOriginalFilename();
+			fileBean.setFilename(filename);
+			CKEditorFuncNum = fileBean.getCKEditorFuncNum();
+			try {
+				File file = new File(root_path + attach_path + filename);
+				loger.info(root_path + attach_path + filename);
+				upload.transferTo(file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String file_path = "../" + "images/" + filename;
+
+		ModelAndView mov = new ModelAndView("/service/NewFile");
+		mov.addObject("file_path", file_path);
+		mov.addObject("CKEditorFuncNum", CKEditorFuncNum);
+
+		return mov;
+	}
 }
