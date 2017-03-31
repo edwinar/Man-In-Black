@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 HashMap<String,String> map = (HashMap<String,String>)request.getAttribute("map");
-String idcheck = map.get("idcheck");
 
 String success = map.get("success");
+System.out.println(success);
+
 %>
 <html>
 <head>
@@ -89,34 +90,151 @@ color:white;
 </style>
 </head>
 <body>
+<input type="hidden" name="success" id="success" value="<%=success %>">
+
+<form id="signupform" action="compl.mib">
+<div id="signupdiv">
+<h1 id="Registration">회원 가입</h1>
+<div id="inputlbl">
+<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
+<a href="" id="signA" data-toggle="modal" data-target="#modal-email" onclick="cl()">
+<button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
+</a>
+<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock"/>
+	<button type="button" id="IDBtn">ID중복확인</button>
+</div>
+<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
+<div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
+<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" class="lock"/></div>
+<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
+<button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
+<div class="inputsnlables" id="roadAddressdiv"></div>
+<div class="inputsnlables" id="jibunAddressdiv"></div>
+<div class="inputsnlables" id="detailAddressdiv"></div>
+<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; class="lock"/></div>
+<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; class="lock" /></div>
+
+</div>
+<button type="button" id="complete">회원가입하기</button>
+</div>
+</form>
+
 <script type="text/javascript">
 
+function cl() {
+	var email = $("#sign_email").val();
+	$("#signA").attr('href','mail.mib?sign_email='+email);
+}
+
 $(document).ready(function() {
+	
+	var lock = $("#success").val();
+	if(lock=='fail'){
+		$(".lock").attr('disabled',true);
+	}else{
+		$(".lock").attr('disabled',false);
+	}
+	
+	
 	$("#complete").click(function() {
 		
+		var sign_email    = $("#sign_email").val();
+		var id            = $("#id").val();
+		var name          = $("#name").val();
+		var tel           = $("#tel").val();
+		var sex           = $("#sex").val();
+		var birth         = $("#birth").val();
+		var postcode      = $("#postcode").val();
+		var password      = $("#password").val();
+		var jibunAddress  = $("#jibunAddress").val();
+		var roadAddress   = $("#roadAddress").val();
+		var detailAddress = $("#detailAddress").val();
+		
+		if(sign_email == "") alert("EMAIL을 작성해주세요"); return;   
+		if(id            == "") alert("ID를 작성해주세요"); return;
+		//if(password      == "") alert("PASSWORD을 작성해주세요"); return;
+		if(name          == "") alert("NAME을 작성해주세요"); return;
+		if(tel           == "") alert("TEL을 작성해주세요"); return;
+		if(postcode      == "") alert("POSTCODE을 작성해주세요"); return;
+		if(detailAddress == "") alert("주소정보를 입력해주세요"); return;
+		if(sex           == "") alert("SEX을 작성해주세요"); return;
+		if(birth         == "") alert("BIRTH을 작성해주세요"); return;
+				
 		
 		
-	if( $("#success").val()=="success" && $("#idcheck")=="OK"){
-		$("#signupform").attr('action','compl.mib');
-		$("#signupform").submit();
-	}else{
+		$("#signupform").submit;
+		
 	
-		alert("모든항목을 체크해주세요");
-	}
 	
 	});
 	
+	
 	$("#IDBtn").click(function() {
 		
-		$("#signupform").attr('action','mib_SignUp.mib');
-		$("#signupform").submit();
+		var id = $('#id').val();
+		
+		$.ajax({
+			 			type : "POST",
+			 			url : "idCheck.mib",
+			 			async : true,
+			 			dataType : "html",
+			 			data : {
+			 				"id" : id
+			 			},
+			 			success : function(data) {
+			 				//alert("success " + data);
+			 				var flag = $.parseJSON(data);
+			 				alert(flag.check); 	
+			 				if(flag.result=='NO'){
+			 					$("#id").val('');
+			 				}
+			 			},
+			 			complete : function(data) {
+			 			},
+			 			error : function(xhr, status, error) {
+			 				alert("에러발생");
+			 			}
+			 		});		
+			 
 	});
 	
 	
 	$("#emailBtn").click(function(){
     	
 	var email = $("#sign_email").val();
-	$("#signA").attr('href','mail.mib?sign_email='+email);
+	
+	$.ajax({
+		 			type : "POST",
+		 			url : "emailCheck.mib",
+		 			async : true,
+		 			dataType : "html",
+		 			data : {
+		 				"email" : email
+		 			},
+		 			success : function(data) {
+		 				//alert("success " + data);
+		 				var flag = $.parseJSON(data);
+		 					
+		 				if(flag.success=='fail'){
+		 					$("#sign_email").val('');
+		 					alert(flag.check); 
+		 					return;
+		 				}
+		 				$("signA").click(function(event){
+		 					event.preventDefault();
+		 					$("#signA").trigger('click');
+		 					});
+		 				
+		 					
+		 				
+		 			},
+		 			complete : function(data) {
+		 			},
+		 			error : function(xhr, status, error) {
+		 				alert("에러발생");
+		 			}
+		 		});		
+	
         	
     });
 });
@@ -185,46 +303,5 @@ function Postcode() {
 }
 </script>
 
-
-<%
-if(idcheck.equals("NO")){
-	%>
-	<script type="text/javascript">alert("ID중복입니다.")</script>
-	<%
-}else if(idcheck.equals("OK")){
-%>
-<script type="text/javascript">alert("사용가능합니다.")</script>
-<%}
-%>
-<input type="hidden" name="idcheck" id="idcheck" value="<%=idcheck %>">
-<input type="hidden" name="success" id="success" value="<%=success %>">
-<form id="signupform" action="">
-<div id="signupdiv">
-<h1 id="Registration">회원 가입</h1>
-<div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
-
-<a href="" id="signA" data-toggle="modal" data-target="#modal-email">
-<button type="button" id="emailBtn" name="emailBtn">EMAIL인증</button></div> 
-</a>
-<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" value="<%=map.get("id") %>"/>
-	<button type="button" id="IDBtn">ID중복확인</button>
-</div>
-<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password"/></div>
-<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="Confirm PassWord" /></div>
-<div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" value="<%=map.get("name") %>"/></div>
-<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" value="<%=map.get("tel") %>"/></div>
-<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" />
-<button onclick="Postcode()" type="button">우편번호 찾기</button></div>
-<div class="inputsnlables" id="roadAddressdiv"></div>
-<div class="inputsnlables" id="jibunAddressdiv"></div>
-<div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; value="<%=map.get("sex") %>" /></div>
-<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; value="<%=map.get("birth") %>" /></div>
-
-</div>
-<button type="button" id="complete">회원가입하기</button>
-</div>
-</form>
 </body>
 </html>

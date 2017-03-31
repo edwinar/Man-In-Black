@@ -10,4 +10,10 @@ FROM MEMBERS
 WHERE USER_ID=#{id}
 </select>
 
+<select id="do_search_email" parameterType="String" resultType="com.eagle.men_in_black.model.MainDto">
+SELECT EMAIL  
+FROM MEMBERS 
+WHERE USER_ID=#{email}
+</select>
+
 </mapper>

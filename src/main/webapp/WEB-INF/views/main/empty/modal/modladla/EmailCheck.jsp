@@ -25,7 +25,6 @@
 <%
 	String randomNum = (String)request.getAttribute("randomNum");
 	String sign_email = (String)request.getAttribute("sign_email");
-	//System.out.println("모달이메일"+sign_email);
 	
 %>
 <form action="" name="signinForm" id="signinForm">

@@ -3,6 +3,7 @@ package com.eagle.men_in_black.controller;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.service.MainSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class MainController {
@@ -102,56 +106,87 @@ public class MainController {
 				
 		String success = (res.getParameter("success")==null || res.getParameter("success")=="")?"fail":res.getParameter("success");
 		String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
-		String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
-		String name = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
-		String tel = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
-		String sex = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
-		String birth = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
-		String idcheck = "SIBBAL";
 		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("success", success);
 		map.put("sign_email", sign_email);
-		map.put("id", id);
-		map.put("name", name);
-		map.put("tel", tel);
-		map.put("sex", sex);
-		map.put("birth", birth);
-		map.put("idcheck", idcheck);
-		
-		// 아이디 중복체크 
-		MainDto dto = mainSvc.do_search_pw(id);
-		if(dto!=null){
-		if(dto.getUSER_ID().equals("") || dto.getUSER_ID()==null){ // 중복 안된거
-			idcheck = "OK";
-			map.put("idcheck", idcheck);
-		}else{ // 중복된거 
-			idcheck = "NO";
-			map.put("idcheck", idcheck);
-			
-		}
-		}
-		
+				
 		mav.addObject("map", map);
 		
 		return mav;
 		
 	}
+	// 이메일 중복체크 아작스 부분 
+	@RequestMapping(value="emailCheck.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	
+	public @ResponseBody String emailCheck(HttpServletRequest res){
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		String email = res.getParameter("email");
+		
+		MainDto dto = mainSvc.do_search_email(email);
+		
+		if(dto!=null){
+			if(dto.getUSER_ID().equals(email)){
+				resultMap.put("check", "중복된 이메일입니다.");
+				resultMap.put("success", "fail");
+			}
+		}else{
+			resultMap.put("check", "사용가능한 이메일 입니다.");
+			resultMap.put("success", "success");
+		}
+		
+		Gson gson = new Gson();
+		
+		
+		return gson.toJson(resultMap);
+		
+	}
+	
+	// 아이디 중복체크 아작스 부분 
+	@RequestMapping(value="idCheck.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	
+	public @ResponseBody String idCheck(HttpServletRequest res){
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		String id = res.getParameter("id");
+		
+		MainDto dto = mainSvc.do_search_pw(id);
+		
+		if(dto!=null){
+			if(dto.getUSER_ID().equals(id)){
+				resultMap.put("check", "중복된 아이디입니다.//"+dto.getEMAIL());
+				resultMap.put("result", "NO");
+			}
+		}else{
+			resultMap.put("check", "사용가능한 아이디 입니다. ");
+			resultMap.put("result", "OK");
+		}
+		
+		Gson gson = new Gson();
+		
+		
+		return gson.toJson(resultMap);
+		
+	}
+	
+	
+	
 		//회원가입 완료 버튼 
 	 @RequestMapping("compl.mib")
 	 public ModelAndView completeJoin(HttpServletRequest res, HttpServletResponse rep){
 		 ModelAndView mav = new ModelAndView("main/Main");
 		
-			String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
-			String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
-			String name = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
-			String tel = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
-			String sex = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
-			String birth = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
-			String postcode = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
-			String password = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
-			String jibunAddress = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
-			String roadAddress = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
+			String sign_email    = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
+			String id            = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
+			String name          = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
+			String tel           = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+			String sex           = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
+			String birth         = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
+			String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
+			String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
+			String jibunAddress  = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
+			String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 			String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
 			
 			

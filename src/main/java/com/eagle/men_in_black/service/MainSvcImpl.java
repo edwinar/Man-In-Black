@@ -112,6 +112,12 @@ public class MainSvcImpl implements MainSvc {
 		
 	}
 
+	@Override
+	public MainDto do_search_email(String email) {
+		// TODO Auto-generated method stub
+		return mainDao.do_search_email(email);
+	}
+
 	
 
 
