@@ -122,18 +122,21 @@ public class MainController {
 	public @ResponseBody String emailCheck(HttpServletRequest res){
 		Map<String, Object> resultMap = new HashMap<>();
 		
-		String email = res.getParameter("email");
+		String email = (res.getParameter("email")==null || res.getParameter("email")=="")?"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz":res.getParameter("email");
+		System.out.println("넘어오긴하냐TLqk??"+email);
 		
 		MainDto dto = mainSvc.do_search_email(email);
 		
 		if(dto!=null){
-			if(dto.getUSER_ID().equals(email)){
+			if(dto.getEMAIL().equals(email)){
 				resultMap.put("check", "중복된 이메일입니다.");
 				resultMap.put("success", "fail");
+				System.out.println("넘어오긴하냐??"+email);
 			}
 		}else{
 			resultMap.put("check", "사용가능한 이메일 입니다.");
 			resultMap.put("success", "success");
+			System.out.println("넘어오긴하냐2222??"+email);
 		}
 		
 		Gson gson = new Gson();
@@ -189,7 +192,7 @@ public class MainController {
 			String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 			String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
 			
-			
+			System.out.println("완료!!"+sign_email+id+name+tel+sex+birth+postcode+password+jibunAddress+roadAddress+detailAddress);
 		
 		 
 		 
@@ -205,7 +208,7 @@ public class MainController {
 		 
 		 String authNum = RandomNum();
 		 
-		 mainSvc.sendEmail(email, authNum);
+		// mainSvc.sendEmail(email, authNum);
 		 System.out.println("모달컨트롤러"+email+authNum);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
