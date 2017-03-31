@@ -11,7 +11,6 @@ import com.eagle.men_in_black.repository.CategoryDao;
 
 @Service
 public class CategorySvcImpl implements CategorySvc {
-	
 	@Autowired
 	private CategoryDao categoryDao;
 	
@@ -28,5 +27,10 @@ public class CategorySvcImpl implements CategorySvc {
 	@Override
 	public List<CategoryDto> do_bestList(HashMap<String, String> map) {
 		return categoryDao.do_selectCategoryProductList(map);
+	}
+
+	@Override
+	public List<CategoryDto> do_selectNewProductList(HashMap<String, String> map) {
+		return categoryDao.do_selectNewProductList(map);
 	}	
 }

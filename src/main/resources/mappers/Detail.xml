@@ -3,4 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.Detail">
+
+<select id="do_selectProductDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.PHOTO_SEQ
+	, A.STORED_NAME
+	, B.PRO_SEQ
+	, B.BODYTYPE
+	, B.PRO_NAME
+	, B.PRO_CONTENT
+	, B.PRO_DETAIL
+	, B.WASH
+	, B.MATERIAL
+	, B.PRO_PRICE
+	, B.BODYTYPE
+	, (SELECT ROUND(AVG(SCORE))
+		FROM REVIEW
+		WHERE PRO_SEQ=1
+		) AS AVG_SCORE
+FROM PHOTO A INNER JOIN PRODUCT B
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE B.PRO_SEQ=#{PRO_SEQ}
+</select>
+
 </mapper>
