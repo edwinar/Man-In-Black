@@ -47,7 +47,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
    
     <li onclick="location.href='basketlist.mib'"> 장바구니</li>
     
-    <li onclick="location.href='todayGoods.mib'"> 오늘본 상품</li>
+    <li onclick="movegoods()"> 오늘본 상품</li>
       
     <li onclick="location.href='myboard.mib'"> 내가 쓴 게시물</li>
      
@@ -71,6 +71,27 @@ $(document).ready(function () {
 	  $(".mypage-side-menu").toggleClass('mypage-side-menu-click');
    });
 });
+
+function movegoods() {
+
+
+    getCookie('recentitems').split(',');
+    location.href='todayGoods.mib'
+}
+
+
+
+function getCookie(cookie_name) {
+    var i, x, y, z = document.cookie.split(";");
+    for (i = 0; i < z.length; i++) {
+        x = z[i].substr(0, z[i].indexOf("="));
+        y = z[i].substr(z[i].indexOf("=") + 1);
+        x = x.replace(/^s+|s+$/g, "");
+        if (x == cookie_name) {
+            return unescape(y);
+        }
+    }
+}
 </script>
 
 </body>

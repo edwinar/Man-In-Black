@@ -16,9 +16,9 @@ ORDER BY PRO_SEQ DESC
 WHERE ROWNUM = 1
 </select>
 
-<!-- 메인포인트--> 
+<!-- 메인포인트-->
 <select id="do_search_point5" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[ 
+<![CDATA[
 SELECT * 
 FROM(SELECT 
 A.POINT_SEQ, 
@@ -33,7 +33,7 @@ A.PRO_SEQ
     WHERE USER_ID = #{id} 
     ORDER BY PRO_SEQ DESC)
 WHERE ROWNUM <=5
-]]> 
+]]>
 </select>
 
 <!-- 메인쿠폰 -->
@@ -57,7 +57,7 @@ WHERE ROWNUM <=3
 
 <!-- 구매한상품 -->
 <select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[ 
+<![CDATA[
 SELECT *
 FROM(
 SELECT A.SEL_SEQ,
@@ -84,7 +84,7 @@ WHERE ROWNUM <=5
 
 <!-- 장바구니-->
 <select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT *
 FROM
 (
@@ -101,12 +101,12 @@ WHERE A.USER_ID = #{id}
 ORDER BY A.BAS_SEQ DESC
 )
 WHERE ROWNUM <=5
-]]> 
+]]>
 </select>
 
 <!-- qna -->
 <select id="do_search_qna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT * 
 FROM
 (
@@ -121,7 +121,7 @@ ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.USER_ID = #{id}
 )
 WHERE ROWNUM <=5
-]]> 
+]]>
 </select>
 
 <!-- 마이페이지메인end -->
@@ -132,7 +132,7 @@ WHERE ROWNUM <=5
 
 <!-- 구매한상품LIST  -->
 <select id="do_search_buylist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[ 
+<![CDATA[
 SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
@@ -172,10 +172,10 @@ FROM (
       ) TT1
        WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 
-]]> 
+]]>
 </select>
 
-<!-- 포인트LIST --> 
+<!-- 포인트LIST -->
 <select id="do_search_pointlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 SELECT TT1.*
 FROM (
@@ -197,7 +197,7 @@ FROM (
 
 <!-- 쿠폰LIST  -->
 <select id="do_search_couponlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
@@ -211,7 +211,7 @@ FROM (
            ) T2
     ) TT1
      WHERE RNUM BETWEEN (#{PAGE_SIZEC} * (#{PAGE_NUMC}-1)+1) and ((#{PAGE_SIZEC}*(#{PAGE_NUMC}-1))+#{PAGE_SIZEC})
-]]> 
+]]>
 </select>
 
 <!-- 장바구니LIST  -->
@@ -254,7 +254,7 @@ WHERE RNUM BETWEEN 1 and 100
     </delete>
 <!-- 내가쓴글QNA  -->
 <select id="do_search_myboradqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT * 
 FROM
 (
@@ -275,7 +275,7 @@ WHERE ROWNUM <=5
 
 <!-- 내가쓴글리뷰 -->
 <select id="do_search_myboradreview" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT *
 FROM (SELECT 
              A.REV_SEQ,
@@ -294,7 +294,7 @@ WHERE ROWNUM <=5
 
 <!-- 리뷰 -->
 <select id="do_search_reviewlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
@@ -317,7 +317,7 @@ FROM (
 
 <!-- qna -->
 <select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-<![CDATA[  
+<![CDATA[
 SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
