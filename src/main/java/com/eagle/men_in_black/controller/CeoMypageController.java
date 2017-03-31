@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.CeoMypageDto;
@@ -48,6 +49,17 @@ public class CeoMypageController {
 
 			return mav;
 
+		}
+		
+		/*글쓰기버튼 눌렀을 때*/
+		@RequestMapping(value="writeGood.mib" , method=RequestMethod.POST)
+		public ModelAndView writeGood(MultipartHttpServletRequest res){
+			ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
+			
+			String tt = res.getParameter("tt");
+			System.out.println(tt);
+			
+			return mav;
 		}
 
 		/* 이미지업로드 */
@@ -90,10 +102,10 @@ public class CeoMypageController {
 
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 		
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-		String START_DATE = (res.getParameter("START_DATE")==null || res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
-		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || 		res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || 		res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String START_DATE = (res.getParameter("START_DATE")==null || 		res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
+		String END_DATE = (res.getParameter("END_DATE")==null || 		res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
 				
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
