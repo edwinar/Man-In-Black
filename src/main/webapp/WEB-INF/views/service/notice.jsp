@@ -27,7 +27,7 @@ td, th {
 </head>
 <body>
 	<center>
-		<div id="mypagehead">
+		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">고객센터</a>
 			</h4>
