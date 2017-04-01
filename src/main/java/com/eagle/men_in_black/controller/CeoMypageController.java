@@ -5,9 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,25 +41,125 @@ public class CeoMypageController {
 	private CeoMypageSvc ceoMypageSvc;
 	
 	// 제품등록
-		@RequestMapping("register_Good.mib")
-		public ModelAndView register_Good() {
+	@RequestMapping("register_Good.mib")
+	public ModelAndView register_Good() {
 
 			ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
-			mav.addObject("msg", "김옥지");
+			
 
 			return mav;
 
-		}
+	}
+	
+		// 파일 이름 중복 방지 메소드
+	 public static String getRandomString(){
+
+		        return UUID.randomUUID().toString().replaceAll("-", "");
+
+	}
+	
+	// DB에 등록될 파일 메소드
+	public List<Map<String,Object>> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+		 
+			HttpSession session = request.getSession(); 
+	        
+			MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+
+	        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	        
+	        // 저장경로 
+	       // String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+			String root_path = System.getProperty("catalina.home");
+	        String attach_path = "images\\"; 
+			String filePath = root_path+attach_path;
+	         
+			System.out.println("저장경로=========================================================================================="+filePath);
+
+	        MultipartFile multipartFile = null;
+
+	        String originalFileName = null;
+
+	        String originalFileExtension = null;
+
+	        String storedFileName = null;
+
+	         
+
+	        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+
+	        Map<String, Object> listMap = null; 
+
+	         
+	        File file = new File(filePath);
+	        // 폴더가없을경우 폴더생성 
+	        if(file.exists() == false){
+
+	            file.mkdirs();
+
+	        }
+
+	         
+	        int SEQ = 254;
+	        while(iterator.hasNext()){
+	        		SEQ++;
+	            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+
+	            if(multipartFile.isEmpty() == false){
+
+	                originalFileName = multipartFile.getOriginalFilename();
+
+	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+	                storedFileName = getRandomString() + originalFileExtension;
+
+	                 
+	                // 첨부한 파일 생성 
+	                file = new File(filePath + storedFileName);
+
+	                multipartFile.transferTo(file);
+
+	                listMap = new HashMap<String,Object>();
+
+	                listMap.put("SEQ", SEQ);
+	                
+	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+	                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+
+	                //listMap.put("FILE_SIZE", multipartFile.getSize());  // 파일크기 
+
+	                list.add(listMap);
+
+	            }
+
+	        }
+
+	        return list;
+
+	    }
+
+
+	 
+	 
+	 
+	 
+	 /*글쓰기버튼 눌렀을 때*/
+	@RequestMapping(value="writeGood.mib" , method=RequestMethod.POST)
+	public ModelAndView writeGood(HttpServletRequest res) throws Exception{
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 		
-		/*글쓰기버튼 눌렀을 때*/
-		@RequestMapping(value="writeGood.mib" , method=RequestMethod.POST)
-		public ModelAndView writeGood(MultipartHttpServletRequest res){
-			ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
+		
+		// 사진 파일 부분 
+		List<Map<String, Object>> list =  parseInsertFileInfo(res);
+		
+		ceoMypageSvc.do_insert_photo(list);
+		
+		/*for(int i=0; i<list.size();i++){
+			System.out.println("파일이름"+list.get(i).get("ORIGINAL_FILE_NAME"));
+			System.out.println("파일이름"+list.get(i).get("STORED_FILE_NAME"));
+		}*/
 			
-			String tt = res.getParameter("tt");
-			System.out.println(tt);
-			
-			return mav;
+			 return mav;
 		}
 
 		/* 이미지업로드 */
@@ -69,18 +173,24 @@ public class CeoMypageController {
 			String attach_path = "images\\"; 
 			
 			System.err.println("===>attach_path" + attach_path);
+			
 			MultipartFile upload = fileBean.getUpload();
 			String filename = ""; 
 			String CKEditorFuncNum = "";
 			
-			if (upload != null) { filename = upload.getOriginalFilename(); 
-								fileBean.setFilename(filename); 
-								CKEditorFuncNum = fileBean.getCKEditorFuncNum(); 
-			try { File file = new File(root_path + attach_path + filename);
-			loger.info(root_path + attach_path + filename); upload.transferTo(file); 
+			if (upload != null) { 
+				filename = upload.getOriginalFilename(); 
+				fileBean.setFilename(filename); 
+				CKEditorFuncNum = fileBean.getCKEditorFuncNum(); 
+			
+			try { 
+				File file = new File(root_path + attach_path + filename);
+				loger.info(root_path + attach_path + filename); 
+				upload.transferTo(file); 
 			} catch (IOException e) { 
 				e.printStackTrace(); } 
 			} 
+			
 			String file_path = "../" + "images/" + filename; 
 					
 			ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");

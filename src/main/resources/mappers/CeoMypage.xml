@@ -42,4 +42,20 @@ NATURAL JOIN
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
+<insert id="do_insert_photo" parameterType="hashmap">
+INSERT
+INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME
+  )
+  VALUES
+  (
+    ${SEQ},
+    #{ORIGINAL_FILE_NAME},
+    #{STORED_FILE_NAME}
+  )
+</insert>
+
 </mapper>

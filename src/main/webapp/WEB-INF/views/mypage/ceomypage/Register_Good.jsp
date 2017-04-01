@@ -81,7 +81,15 @@
 
 	<div class="wrap">
  	
- 	<label class="mat-label-check">카테고리 분류 <select><option>OUTER</option></select> </label>
+ 	<label class="mat-label-check">카테고리 분류 <select>
+ 	<option>OUTER</option>
+ 	<option>TOP</option>
+ 	<option>PANTS</option>
+ 	<option>SHOES</option>
+ 	<option>BAG&ACC</option>					
+ 	</select></label>
+    
+    
     <label class="mat-label-check">카테고리  소분류<select><option>COAT</option></select> </label>
     <label class="mat-label-check">NEW카테고리 적용      <input type="checkbox" style="height: 20px; width: 20px;"></label>
     
@@ -121,9 +129,9 @@
     
   	</div>
  
-  	메인1<input type="file">	
-  	메인2<input type="file">	
-  	메인3<input type="file">
+  	메인1<input type="file" name="onefile">	
+  	메인2<input type="file" name="twofile">	
+  	메인3<input type="file" name="threefile">
    
 		
     <label  class="mat-label">제품 상세 설명</label>
