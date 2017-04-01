@@ -4,7 +4,12 @@
 	pageEncoding="UTF-8"%>
 	<%
 	MainDto userinfo  =(MainDto)session.getAttribute("LoginInfo");
+	String success = request.getParameter("success")==null?"success":request.getParameter("success");
+	String upda = request.getParameter("upda")==null?"":request.getParameter("upda");
+	String sign_email = (request.getParameter("sign_email")==null || request.getParameter("sign_email")=="")?"":request.getParameter("sign_email");
+	String updateResult = (request.getAttribute("updateResult")==null || request.getAttribute("updateResult")=="")?"":(String)request.getAttribute("updateResult");
 	%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -89,6 +94,15 @@ color:white;
 </style>
 </head>
 <body>
+<%
+if(updateResult.equals("OK")){
+%>
+<script type="text/javascript"> alert("회원정보수정 완료!"); </script>
+<%}else if(updateResult.equals("NO")){
+%>
+<script type="text/javascript">alert("회원정보수정 실패!");</script>
+<%} %>
+
 <center>
 <div id="mypagehead">
 <h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
@@ -98,11 +112,19 @@ color:white;
 <h4>회원님의 정보를 수정하세요</h4>
 </div>
 </center>
-
+<input type="hidden" id="upda" value="<%=upda%>">
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	$("#signA-div").hide();
+	$("#signupdiv").hide();
+	alert("업다==" + $("#upda").val());
+	if($("#upda").val()=='OK'){
+		$('#pwdCheck').hide(); 
+		$("#signB-div").hide();
+		$("#signupdiv").show();
+		$("#signA-div").show();
+	}
 	
 	$("#checkbtn").click(function() {
 		var pwd = $("#pw").val();
@@ -121,6 +143,7 @@ $(document).ready(function() {
  				
  				if(flag.success==='success'){
  					$('#pwdCheck').hide();  
+ 					$("#signupdiv").show();
  				}else{
  					alert(flag.check); 	
  				}
@@ -146,16 +169,16 @@ $(document).ready(function() {
 		</center>
 	</div>
 
+<input type="hidden" name="success" id="success" value="<%=success %>">
 
-<form id="MIBsignupform" action="userup.mib" method="post">
 <div id="signupdiv">
-<h1 id="Registration">회원 가입</h1>
+<form id="MIBsignupform" action="" method="post">
 <div id="inputlbl">
 
-<div class="inputsnlables" id="signB-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=userinfo.getEMAIL()%>" readonly="readonly" /> 
+<div class="inputsnlables" id="signB-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email-b" id="sign_email-b" value="<%=userinfo.getEMAIL()%>" readonly="readonly" /> 
 <a href="" id="signB" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL바꾸기</a></div> 
 
-<div class="inputsnlables" id="signA-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=userinfo.getEMAIL()%>" /> 
+<div class="inputsnlables" id="signA-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email-a" id="sign_email-a" value="<%=sign_email%>" /> 
 <a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL인증</a></div> 
 
 
@@ -174,15 +197,17 @@ $(document).ready(function() {
 
 <input type="button" id="complete" value="정보수정하기">
 </div>
-</div>
 
-</form>
+</form></div>
+
 
 <script type="text/javascript">
 function cl() {
-	var email1 = $("#sign_email").val();
+	var email = $("#sign_email-a").val();
+	var signupdate = 'update';
+	alert("씨엘"+email);
 	$("#modal-email").modal({
-        remote : 'mail.mib?sign_email='+email1,
+        remote : 'mail.mib?signupdate='+signupdate+'&sign_email='+email,
         backdrop: 'static' // 배경누르고 닫힘 방지 
     });
 }
@@ -190,14 +215,14 @@ function cl() {
 $(document).ready(function() {
 	
 	$("#signB").click(function(){
-		var email = $("#sign_email").val();
-		document.getElementById("signB").innerHTML = "EMAIL인증";
+		//var email = $("#sign_email").val();
+		//document.getElementById("signB").innerHTML = "EMAIL인증";
 		$("#signB-div").hide();
 		$("#signA-div").show();
 	});	
 
 	$("#signA").click(function(){
-		var email = $("#sign_email").val();
+		var email = $("#sign_email-a").val();
 		alert(email);
 		$.ajax({
 		 			type : "POST",
@@ -206,6 +231,7 @@ $(document).ready(function() {
 		 			dataType : "html",
 		 			data : {
 		 				"email" : email
+		 			   
 		 			},
 		 			success : function(data) {
 		 				//alert("success " + data);
@@ -213,15 +239,12 @@ $(document).ready(function() {
 		 				alert(flag.success);
 		 				if(flag.success==='success'){
 		 					
-		 					//$("#signA").attr('data-target','#modal-email');
-		 					//$("#signA").attr('href','mail.mib?sign_email='+email);
 		 					cl();
-		 					//return false;
+		 					
 		 				}else{
 
-		 					$("#sign_email").val('');
+		 					$("#sign_email-a").val('');
 		 					alert(flag.check); 
-		 					//return false;
 		 					
 		 				
 		 				}

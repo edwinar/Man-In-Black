@@ -122,4 +122,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_goods(param);
 	}
+
+
+	@Override
+	public int do_member_update(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_member_update(map);
+	}
 }

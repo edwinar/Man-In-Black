@@ -55,23 +55,36 @@ public class UserMypageController {
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(HttpServletRequest res){
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
-		
+		String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
 		String tel           = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
 		String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
 		String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
 		String jibunAddress  = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
 		String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 		String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
+		String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
 		
 		String fullAddress = jibunAddress+roadAddress+"";
 		
 		HashMap<String, String> map  = new HashMap<>();
+		map.put("EMAIL", sign_email);
 		map.put("TEL", tel);
 		map.put("POSTCODE", postcode);
 		map.put("PW", password);
 		map.put("ADDRESS", fullAddress);
 		map.put("DETAILADDRESS", detailAddress);
+		map.put("USER_ID", id);
 	 
+		String upda = (res.getParameter("upda")==null || res.getParameter("upda")=="")?"":res.getParameter("upda");
+		System.out.println("업다============="+upda);
+		mav.addObject("upda", upda);
+		mav.addObject("sign_email", sign_email);
+		
+		if(userMypageSvc.do_member_update(map)==0){
+			mav.addObject("updateResult", "NO");
+		}else{
+			mav.addObject("updateResult", "OK");
+		}
 		
 		
 		return mav;

@@ -25,9 +25,12 @@
 <%
 	String randomNum = (String)request.getAttribute("randomNum");
 	String sign_email = (String)request.getAttribute("sign_email");
+	String signupdate = (String)request.getAttribute("signupdate")==null?"":(String)request.getAttribute("signupdate");
 	
+	System.out.println("ㅇㅣ메일쳌쳌"+randomNum+sign_email+signupdate);
 %>
-
+<input type="hidden" id="signupdate" value="<%=signupdate%>">
+<script type="text/javascript"> alert($("#signupdate").val());</script>
 <form action="" name="signinForm" id="signinForm">
  <div class="modal-header">
         <button type="button" id="close_Btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -38,6 +41,7 @@
     <input type="text" placeholder="인증번호입력" name="email_check" id="email_check">
     <input type="hidden" name="randomNum" id="randomNum" value="<%=randomNum%>">
     <input type="hidden" name="sign_email" id="sign_email" value="<%=sign_email%>">
+    <input type="hidden" name="upda" id="upda" value="">
     <input type="hidden" name="success" id="success" value="">
   </p>
    </div>
@@ -47,33 +51,64 @@
  
 </form>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#sign_email_Btn").click(function() {
-			if($("#email_check").val()==$("#randomNum").val()){
-			
-			$("#success").val('success');
-			$("#signinForm").attr('action','mib_SignUp.mib');
-			$("#signinForm").submit();
-			}else{
-				alert("인증번호 틀림");
-			$("#success").val('fail');
-			$("#signinForm").attr('action','mib_SignUp.mib');
-			$("#signinForm").submit();	
-				
-			}
-		});
+	$(document).ready(function() { 
 		
-		$("#close_Btn").click(function() {
+		if($("#signupdate").val()=='update'){ // 회원 정보수정에서 
+		
+			$("#sign_email_Btn").click(function() {
+				if($("#email_check").val()==$("#randomNum").val()){
+			
+					$("#success").val('success');
+					$("#upda").val('OK');
+					$("#signinForm").attr('action','userup.mib');
+					$("#signinForm").submit();
+				}else{
+					alert("인증번호 틀림");
+					$("#success").val('fail');
+					$("#signinForm").attr('action','userup.mib');
+					$("#signinForm").submit();	
+				
+				}
+			});
+		
+		
+			$("#close_Btn").click(function() {
 			
 				alert("인증번호 틀림");
-			$("#success").val('fail');
-			$("#signinForm").attr('action','mib_SignUp.mib');
-			$("#signinForm").submit();	
+				$("#success").val('fail');
+				$("#signinForm").attr('action','userup.mib');
+				$("#signinForm").submit();	
 				
 			
-		});
+			});
+	}else{ // 회원가입때 
+			
+			$("#sign_email_Btn").click(function() {
+					if($("#email_check").val()==$("#randomNum").val()){
+				
+						$("#success").val('success');
+						$("#signinForm").attr('action','mib_SignUp.mib');
+						$("#signinForm").submit();
+					}else{
+						alert("인증번호 틀림");
+						$("#success").val('fail');
+						$("#signinForm").attr('action','mib_SignUp.mib');
+						$("#signinForm").submit();	
+					
+					}
+			});
+			$("#close_Btn").click(function() {
+				
+					alert("인증번호 틀림");
+				$("#success").val('fail');
+				$("#signinForm").attr('action','mib_SignUp.mib');
+				$("#signinForm").submit();	
+					
+				
+			});
+		
+	}
 	});
-	
 </script>
 
 </body>

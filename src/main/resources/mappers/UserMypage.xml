@@ -384,4 +384,16 @@ WHERE RNUM BETWEEN 1 and 9
 
     </select>
 
+<update id="do_member_update" parameterType="hashmap" >
+UPDATE MEMBERS SET 
+	ADDRESS = #{ADDRESS},
+	EMAIL = #{EMAIL},
+	TEL=#{TEL},
+	POSTCODE=#{POSTCODE},
+	USER_PW=#{POSTCODE},
+	DETAILADDRESS=#{DETAILADDRESS}
+	WHERE USER_ID = #{USER_ID}
+</update>
+
+
 </mapper>

@@ -123,7 +123,6 @@ public class MainController {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		String email = (res.getParameter("email")==null || res.getParameter("email")=="")?"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz":res.getParameter("email");
-		System.out.println("넘어오긴하냐TLqk??"+email);
 		
 		MainDto dto = mainSvc.do_search_email(email);
 		
@@ -131,12 +130,10 @@ public class MainController {
 			if(dto.getEMAIL().equals(email)){
 				resultMap.put("check", "중복된 이메일입니다.");
 				resultMap.put("success", "fail");
-				System.out.println("넘어오긴하냐??"+email);
 			}
 		}else{
 			resultMap.put("check", "사용가능한 이메일 입니다.");
 			resultMap.put("success", "success");
-			System.out.println("넘어오긴하냐2222??"+email);
 		}
 		
 		Gson gson = new Gson();
@@ -226,15 +223,16 @@ public class MainController {
 	 public ModelAndView send(HttpServletRequest res, HttpServletResponse rep){
 	     
 		 String email = res.getParameter("sign_email");
-		 System.out.println(email);
+		 String signupdate = (String)res.getParameter("signupdate")==null?"":(String)res.getParameter("signupdate");
 		 
 		 String authNum = RandomNum();
 		 
 		// mainSvc.sendEmail(email, authNum);
-		 System.out.println("모달컨트롤러"+email+authNum);
+		 System.out.println("모달컨트롤러"+email+authNum+signupdate);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
 		 mav.addObject("sign_email",email);
+		 mav.addObject("signupdate",signupdate);
 		 
 	     return mav;
 	        

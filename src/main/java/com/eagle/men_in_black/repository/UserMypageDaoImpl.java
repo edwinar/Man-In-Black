@@ -114,4 +114,10 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_search_goods";
 		return sqlSession.selectList(statement,param);
 	}
+
+	@Override
+	public int do_member_update(HashMap<String, String> map) {
+		String statement = namespace+".do_member_update";
+		return sqlSession.update(statement,map);
+	}
 }

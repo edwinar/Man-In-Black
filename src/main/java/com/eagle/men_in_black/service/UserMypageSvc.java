@@ -38,5 +38,7 @@ public interface UserMypageSvc {
 	public void do_delete_basketlist(List<Integer> list);
 
 	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param);
+	
+	public int do_member_update(HashMap<String, String> map);
 
 }
