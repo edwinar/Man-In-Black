@@ -178,7 +178,7 @@ public class MainController {
 		//회원가입 완료 버튼 
 	 @RequestMapping("compl.mib")
 	 public ModelAndView completeJoin(HttpServletRequest res, HttpServletResponse rep){
-		 ModelAndView mav = new ModelAndView("main/Main");
+		 ModelAndView mav = new ModelAndView();
 		
 			String sign_email    = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
 			String id            = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
@@ -192,9 +192,31 @@ public class MainController {
 			String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 			String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
 			
-			System.out.println("완료!!"+sign_email+id+name+tel+sex+birth+postcode+password+jibunAddress+roadAddress+detailAddress);
-		
+			String fullAddress = jibunAddress+roadAddress+"";
+			
+			HashMap<String, String> map  = new HashMap<>();
+			map.put("EMAIL", sign_email);
+			map.put("ID", id);
+			map.put("NAME", name);
+			map.put("TEL", tel);
+			map.put("SEX", sex);
+			map.put("BIRTH", birth);
+			map.put("POSTCODE", postcode);
+			map.put("PW", password);
+			map.put("ADDRESS", fullAddress);
+			map.put("DETAILADDRESS", detailAddress);
 		 
+			int insert = mainSvc.do_join_MIB(map);
+			
+			if(insert==0){
+				mav.setViewName("main/MIB_SignUp");
+				mav.addObject("insert", "noinsert");
+			}else{
+				mav.setViewName("main/Main");
+				mav.addObject("insert", "insert");
+			}
+			
+			
 		 
 		 return mav;
 	 }

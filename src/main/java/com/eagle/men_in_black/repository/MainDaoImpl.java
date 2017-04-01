@@ -1,5 +1,7 @@
 package com.eagle.men_in_black.repository;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,13 @@ public class MainDaoImpl implements MainDao {
 	public MainDto do_search_email(String email) {
 		String statement = namespace+".do_search_email";
 		return sqlSession.selectOne(statement,email);
+	}
+
+	@Override
+	public int do_join_MIB(HashMap<String, String> map) {
+		String statement = namespace+".do_join_MIB";
+		return sqlSession.insert(statement,map);
+		
 	}
 
 	
