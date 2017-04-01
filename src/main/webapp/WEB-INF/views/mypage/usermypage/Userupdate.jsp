@@ -5,7 +5,7 @@
 	<%
 	MainDto userinfo  =(MainDto)session.getAttribute("LoginInfo");
 	String success = request.getParameter("success")==null?"success":request.getParameter("success");
-	String upda = request.getParameter("upda")==null?"":request.getParameter("upda");
+	String upda = request.getAttribute("upda")==null?"":(String)request.getAttribute("upda");
 	String sign_email = (request.getParameter("sign_email")==null || request.getParameter("sign_email")=="")?"":request.getParameter("sign_email");
 	String updateResult = (request.getAttribute("updateResult")==null || request.getAttribute("updateResult")=="")?"":(String)request.getAttribute("updateResult");
 	%>
@@ -119,6 +119,7 @@ $(document).ready(function() {
 	$("#signA-div").hide();
 	$("#signupdiv").hide();
 	alert("업다==" + $("#upda").val());
+	
 	if($("#upda").val()=='OK'){
 		$('#pwdCheck').hide(); 
 		$("#signB-div").hide();

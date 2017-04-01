@@ -81,9 +81,10 @@ public class UserMypageController {
 		mav.addObject("sign_email", sign_email);
 		
 		if(userMypageSvc.do_member_update(map)==0){
-			mav.addObject("updateResult", "NO");
+			if(!id.equals(""))mav.addObject("updateResult", "NO");
 		}else{
 			mav.addObject("updateResult", "OK");
+			mav.addObject("upda", "NO");
 		}
 		
 		
