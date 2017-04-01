@@ -70,8 +70,9 @@ td, th {
 							var date1 = $('#start_date').val();
 							var date2 = $('#end_date').val();
 
-							$("#end_date").attr('min', date1);
-							$("#start_date").attr('max', date2);
+							$("#end_date").attr( 'min', date1 );
+					    	//$("#start_date").attr( 'max', date2 );
+					    	$("#end_date").val(date1);
 
 						});
 
@@ -297,7 +298,7 @@ td, th {
 	<div align="right">
 		<p>
 			<input type="date" height="50px" name="start_date" id="start_date"
-				value="<%=START_DATE%>" max="<%=START_DATE%>">~<input
+				value="<%=START_DATE%>" >~<input
 				type="date" name="end_date" id="end_date" value="<%=END_DATE%>"
 				min="<%=END_DATE%>">
 			<button type="button" id="dateBtn">검색</button>
