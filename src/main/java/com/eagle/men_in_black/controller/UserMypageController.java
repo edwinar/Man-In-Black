@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +14,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.UserMypageSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class UserMypageController {
@@ -49,13 +53,58 @@ public class UserMypageController {
 		}
 	// 회원정보수정 
 	@RequestMapping("userup.mib")
-	public ModelAndView userupdate(){
+	public ModelAndView userupdate(HttpServletRequest res){
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
-		mav.addObject("msg", "김옥지");
+		
+		String tel           = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+		String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
+		String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
+		String jibunAddress  = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
+		String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
+		String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
+		
+		String fullAddress = jibunAddress+roadAddress+"";
+		
+		HashMap<String, String> map  = new HashMap<>();
+		map.put("TEL", tel);
+		map.put("POSTCODE", postcode);
+		map.put("PW", password);
+		map.put("ADDRESS", fullAddress);
+		map.put("DETAILADDRESS", detailAddress);
+	 
+		
 		
 		return mav;
 		
 	}
+	
+	// 회원정보수정 비밀번호 체크 
+	@RequestMapping(value="pwdCheck.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	
+	public @ResponseBody String emailCheck(HttpServletRequest res){
+		
+		String pwd = res.getParameter("pwd");
+		MainDto dto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		
+		HashMap<String, String> map = new HashMap<>();
+		
+		if(pwd.equals(dto.getUSER_PW())){
+			
+			map.put("success", "success");
+
+		}else{
+			map.put("check", "비밀번호가 틀렸습니다.");
+			map.put("success", "fail");
+		}
+		
+		Gson gson = new Gson();
+		
+		
+		return gson.toJson(map);
+		
+	}
+	
+	
 	// 구매목록 
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){

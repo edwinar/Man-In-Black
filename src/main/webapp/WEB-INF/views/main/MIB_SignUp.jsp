@@ -12,7 +12,7 @@ System.out.println(success);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <title>Insert title here</title>
 <style>
 #Registration{font-size:1em;color:black;text-align:center;font-weight:normal;}
@@ -120,7 +120,7 @@ color:white;
 
 
 <input type="button" id="complete" value="회원가입하기">
-
+</div></div>
 
 </form>
 
