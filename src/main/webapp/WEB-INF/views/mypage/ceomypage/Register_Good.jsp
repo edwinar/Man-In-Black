@@ -119,9 +119,16 @@
   
     <br>
     
-  </div>
-  <br><br>
-
+  	</div>
+ 
+  	메인1<input type="file">	
+  	메인2<input type="file">	
+  	메인3<input type="file">
+   
+		
+    <label  class="mat-label">제품 상세 설명</label>
+  
+  	<br>
 		<textarea rows="10" cols="80" name="editor" id="editor1">
 		텍스트 아레아 
 	</textarea>
