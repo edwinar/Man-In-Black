@@ -17,6 +17,8 @@ SELECT TT1.*
                  ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME  
                  FROM SALES A LEFT OUTER JOIN PRODUCT B
                  ON A.PRO_SEQ=B.PRO_SEQ
+                 WHERE B.PRO_NAME LIKE #{search}
+                 or A.USER_ID LIKE #{search}
                  ) Z INNER JOIN PHOTO Y
                  ON Z.PRO_SEQ=Y.PRO_SEQ
              INNER JOIN PRO_DETAIL X
@@ -35,7 +37,9 @@ NATURAL JOIN
      SELECT COUNT(*) TOT_CNT
      FROM SALES A LEFT OUTER JOIN PRODUCT B
      ON A.PRO_SEQ=B.PRO_SEQ
-     WHERE A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+     WHERE (B.PRO_NAME LIKE #{search}
+     or A.USER_ID LIKE #{search})
+     AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE}) 
      ) T2
   	) TT1

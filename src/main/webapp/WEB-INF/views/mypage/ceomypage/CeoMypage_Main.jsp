@@ -4,10 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%
-		List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
+	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 	
 	String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
 	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
+	String search = (request.getParameter("search")==null || request.getParameter("search")=="")?"":request.getParameter("search");
+	
+	System.out.println("시작 데이트 = " +START_DATE);
+	System.out.println("끝 search  = " +search);
 	
 		Calendar cal = Calendar.getInstance();
 		int tyear = cal.get(Calendar.YEAR);
@@ -126,7 +130,8 @@ $(document).ready(function(){
     	var date2 = $('#end_date').val();
     	
     	$("#end_date").attr( 'min', date1 );
-    	$("#start_date").attr( 'max', date2 );
+    	//$("#start_date").attr( 'max', date2 );
+    	$("#end_date").val(date1);
     	
 	}); 
 	
@@ -283,7 +288,7 @@ $(document).ready(function(){
 				<button class="btn btn-success" id="week">1주</button> 
 				<button class="btn btn-success" id="month">1개월</button> 
 				<button class="btn btn-success" id="threeMonth">3개월</button> <br> <br> 
-		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" max="<%=START_DATE%>"> ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
 				<br>
 			</p>
 		</div>
@@ -298,10 +303,18 @@ $(document).ready(function(){
 		</button>
 	</div>
 
+<%
+START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
+
+END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substring(8, 10);
+
+%>
 
 	<!--검색(유저ID,상품이름)-->
-	<form class="search" action="">
-		<input type="search" placeholder="유저ID,상품이름" required>
+	<form class="search" action="ceoMypage_Main.mib">
+		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
+		<input type="hidden" name="START_DATE" value="<%=START_DATE %>">
+		<input type="hidden" name="END_DATE" value="<%=END_DATE %>">
 		<button type="submit">검색</button>
 	</form>
 
@@ -388,25 +401,18 @@ $(document).ready(function(){
 	
 	int page_num = Integer.parseInt(PAGE_NUM);
 	int page_size = Integer.parseInt(PAGE_SIZE);
+	System.out.println("페이지 넘버 = " +PAGE_NUM);
+	System.out.println("페이지 사이즈 = " +PAGE_SIZE);
 	
-	
-	int pageCount = list.get(0).getTOT_CNT()/page_size==0?list.get(0).getTOT_CNT()/page_size:(list.get(0).getTOT_CNT()/page_size)+1; 
-	
+	int pageCount = list.get(0).getTOT_CNT()%page_size==0?list.get(0).getTOT_CNT()/page_size:(list.get(0).getTOT_CNT()/page_size)+1; 
+	System.out.println(list.get(0).getTOT_CNT());
+	System.out.println("페이지 카운트 = " +pageCount);
 %>
 	<div class="row" align="center">
-		<p>
-			
-			
-			
-			<%
-			
-			START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
-
-			END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substring(8, 10);
-			
+		<p><%
 			
 			for(int i=1; i<=pageCount; i++){  %>
-			<a href="ceoMypage_Main.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE %>&END_DATE=<%=END_DATE %>" class="btn btn-default" role="button"><%=i %></a> 
+			<a href="ceoMypage_Main.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE %>&END_DATE=<%=END_DATE %>&search=<%=search %>" class="btn btn-default" role="button"><%=i %></a> 
 			<%} 
 			%>
 			
