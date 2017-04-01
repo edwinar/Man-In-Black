@@ -151,13 +151,13 @@ $(document).ready(function() {
 <div id="signupdiv">
 <h1 id="Registration">회원 가입</h1>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=userinfo.getEMAIL()%>" readonly="readonly" value="<%=userinfo.getEMAIL()%>"/> </div> 
-<div id="signB-div">
-<a href="" id="signB" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL바꾸기</a>
-</div>
-<div id="signA-div">
-<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL인증</a>
-</div>
+
+<div class="inputsnlables" id="signB-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=userinfo.getEMAIL()%>" readonly="readonly" /> 
+<a href="" id="signB" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL바꾸기</a></div> 
+
+<div class="inputsnlables" id="signA-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=userinfo.getEMAIL()%>" /> 
+<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL인증</a></div> 
+
 
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock" readonly="readonly" value="<%=userinfo.getUSER_ID()%>"/></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" /></div>
@@ -192,9 +192,50 @@ $(document).ready(function() {
 	$("#signB").click(function(){
 		var email = $("#sign_email").val();
 		document.getElementById("signB").innerHTML = "EMAIL인증";
-		$("#sign_email").attr('readonly',false);
-	
+		$("#signB-div").hide();
+		$("#signA-div").show();
 	});	
+
+	$("#signA").click(function(){
+		var email = $("#sign_email").val();
+		alert(email);
+		$.ajax({
+		 			type : "POST",
+		 			url : "emailCheck.mib",
+		 			async : true,
+		 			dataType : "html",
+		 			data : {
+		 				"email" : email
+		 			},
+		 			success : function(data) {
+		 				//alert("success " + data);
+		 				var flag = $.parseJSON(data);
+		 				alert(flag.success);
+		 				if(flag.success==='success'){
+		 					
+		 					//$("#signA").attr('data-target','#modal-email');
+		 					//$("#signA").attr('href','mail.mib?sign_email='+email);
+		 					cl();
+		 					//return false;
+		 				}else{
+
+		 					$("#sign_email").val('');
+		 					alert(flag.check); 
+		 					//return false;
+		 					
+		 				
+		 				}
+		 					
+		 				
+		 			},
+		 			complete : function(data) {
+		 			},
+		 			error : function(xhr, status, error) {
+		 				alert("에러발생");
+		 			}
+		 		});		
+        	
+    });
 
 		
 $("#complete").click(function() {
