@@ -40,10 +40,6 @@ public class CeoMypageController {
 		@RequestMapping("register_Good.mib")
 		public ModelAndView register_Good() {
 
-			loger.debug("=Controller ===========================");
-			loger.debug("codeMSvc === " + "김옥지");
-			loger.debug("============================");
-
 			ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
 			mav.addObject("msg", "김옥지");
 

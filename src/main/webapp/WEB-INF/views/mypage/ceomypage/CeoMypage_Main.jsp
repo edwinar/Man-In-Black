@@ -155,7 +155,7 @@ $(document).ready(function(){
 		for(i=1;i<=7;i++){
 			if(day==i){
 				var lastDay = ( new Date( year, (mon-1), 0) ).getDate();
-				lastDay = lastDay-i;
+				lastDay = (lastDay+i)-7;
 				weekDate = year+''+(mon-1)+''+lastDay;
 				if(mon<10){
 					weekDate = year+'0'+(mon-1)+''+lastDay;
@@ -178,7 +178,7 @@ $(document).ready(function(){
 		var now = new Date();
 		var year= now.getFullYear();
 		var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-        var monthdate_mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+        var monthdate_mon = (now.getMonth())>9 ? ''+(now.getMonth()) : '0'+(now.getMonth());
         var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
         
         var fullDate = year + mon + day;
@@ -188,14 +188,14 @@ $(document).ready(function(){
 		
 		// 전에 한달의 마지막 날보다 지금 날이 클경우 
 		// 연도 도 고려 
-		if(mon==1){ //1월일때 
+		if(mon==0){ //1월일때 
 			year = year-1;
 			monthdate_mon = 12;
 			monthDate = year +''+ monthdate_mon + day;
 		}
 		
-		if(monthdate_lastDay<day && mon!=1){ // 1월이아니고 전달보다 지금이 클때 
-			monthdate_mon = monthdate_mon -1;
+		if(monthdate_lastDay<day && mon!=0){ // 1월이아니고 전달보다 지금이 클때 
+			monthdate_mon;
 			if(monthdate_mon>9){
 			monthDate = year+''+(monthdate_mon)+monthdate_lastDay;
 			}else{
