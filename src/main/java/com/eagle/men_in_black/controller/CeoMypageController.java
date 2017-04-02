@@ -148,11 +148,16 @@ public class CeoMypageController {
 	public ModelAndView writeGood(HttpServletRequest res) throws Exception{
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 		
+		String color = res.getParameter("color");
+		String color1 = res.getParameter("color1");
+		String color2 = res.getParameter("color2");
+		String color3 = res.getParameter("color3");
+		
+		System.out.println("칼라"+color+"칼라원=="+color1+"color2=="+color2+"color3=="+color3);
 		
 		// 사진 파일 부분 
 		List<Map<String, Object>> list =  parseInsertFileInfo(res);
-		
-		ceoMypageSvc.do_insert_photo(list);
+		//ceoMypageSvc.do_insert_photo(list);
 		
 		/*for(int i=0; i<list.size();i++){
 			System.out.println("파일이름"+list.get(i).get("ORIGINAL_FILE_NAME"));
