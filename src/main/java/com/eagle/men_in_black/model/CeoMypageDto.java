@@ -6,6 +6,13 @@ public class CeoMypageDto implements Serializable {
 
 	private static final long serialVersionUID = 3677511154849423670L;
 
+private String QNA_SEQ;
+private String QNA_TITLE;
+private String QNA_TIME;
+private String QNA_TYPE;
+private String REV_TITLE;
+private String REV_TIME;
+private String SCORE;
 private String SELTIME;
 private	String	BODYTYPE;
 private	String	COLOR;
@@ -40,6 +47,64 @@ private	String	USER_ID;
 private	String	WASH;
 private	String	NEW_ITEM;
 private int TOT_CNT;
+
+
+
+public String getQNA_SEQ() {
+	return QNA_SEQ;
+}
+
+public void setQNA_SEQ(String qNA_SEQ) {
+	QNA_SEQ = qNA_SEQ;
+}
+
+public String getQNA_TITLE() {
+	return QNA_TITLE;
+}
+
+public void setQNA_TITLE(String qNA_TITLE) {
+	QNA_TITLE = qNA_TITLE;
+}
+
+public String getQNA_TIME() {
+	return QNA_TIME;
+}
+
+public void setQNA_TIME(String qNA_TIME) {
+	QNA_TIME = qNA_TIME;
+}
+
+public String getQNA_TYPE() {
+	return QNA_TYPE;
+}
+
+public void setQNA_TYPE(String qNA_TYPE) {
+	QNA_TYPE = qNA_TYPE;
+}
+
+public String getREV_TITLE() {
+	return REV_TITLE;
+}
+
+public void setREV_TITLE(String rEV_TITLE) {
+	REV_TITLE = rEV_TITLE;
+}
+
+public String getREV_TIME() {
+	return REV_TIME;
+}
+
+public void setREV_TIME(String rEV_TIME) {
+	REV_TIME = rEV_TIME;
+}
+
+public String getSCORE() {
+	return SCORE;
+}
+
+public void setSCORE(String sCORE) {
+	SCORE = sCORE;
+}
 
 public int getTOT_CNT() {
 	return TOT_CNT;

@@ -1,12 +1,33 @@
+<%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+
+List<CeoMypageDto> outerlist = (List<CeoMypageDto>)request.getAttribute("outerlist");
+
+List<CeoMypageDto> toplist = (List<CeoMypageDto>)request.getAttribute("toplist");
+
+List<CeoMypageDto> pantslist = (List<CeoMypageDto>)request.getAttribute("pantslist");
+
+List<CeoMypageDto> shoeslist = (List<CeoMypageDto>)request.getAttribute("shoeslist");
+
+List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist");
+
+ 
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>리뷰관리 페이지</title>
+<style type="text/css">
+.table th,td{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -16,25 +37,17 @@
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">리뷰관리</a>
 			</h4>
-			<h3>OUTER</h3>
-			<h4 style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</h4>
+			<h3>리뷰관리</h3>
+			<h5 style="margin-bottom: 50px">답변이 필요한 리뷰들을 보여줍니다</h5>
 		</div>
 	</center>
+	<br><br>
 
 	
 			<span class="mypage-link" style="font-size: 19px;"><a
-				href='myboardreview.mib'>My Review</a></span>
+				href='reiview_Administer_dt.mib?ITEM=OUTER'>OUTER</a></span>
 			<table class="table">
-				<tfoot>
-					<tr>
-						
-						<td colspan="5" align="center"><span class="mypage-link"><a
-								href='myboardreview.mib'>더 보기</a></span></td>
-						
-						
-						
-					</tr>
-				</tfoot>
+				<col width="10%" /><col width="20%" /><col width="40%" /><col width="15%" /><col width="15%" />
 				<thead>
 					<tr>
 						<th>글번호</th>
@@ -47,63 +60,237 @@
 
 				<tbody id="board">
 					
-
+					<%
+					if(outerlist==null || outerlist.size()==0){
+					%>
+						<tr><td colspan="99999">내역이 없습니다.</td></tr>
+					<%
+					}else{
+						for(int i=0; i<outerlist.size(); i++){ %>
 					
 					<tr>
-						<td>자아기</td>
-						<td>쟈기></td>
-						<td>자기</td>
-						<td>kfjsdV_TIME()%></td>
-						<td>a</td>
+						<td><%=outerlist.get(i).getREV_SEQ() %></td>
+						<td><%=outerlist.get(i).getPRO_NAME() %></td>
+						<td><%=outerlist.get(i).getREV_TITLE() %></td>
+						<td><%=outerlist.get(i).getREV_TIME() %></td>
+						<td><%=outerlist.get(i).getSCORE() %></td>
 					</tr>
-					
+					<%} %>					
 
 				</tbody>
-
+				
+				<%if(outerlist.get(0).getTOT_CNT()>5){ %>
+				<tfoot>
+					<tr>
+						
+						<td colspan="6" align="center"><span class="mypage-link"><a
+								href='reiview_Administer_dt.mib?ITEM=OUTER'>더 보기</a></span></td>
+					</tr>
+				</tfoot>
+				<%} 
+				}%>
 			</table>
 
 			<br> <br> <br> <br>
 
 
+			<span class="mypage-link" style="font-size: 19px;"><a
+				href='reiview_Administer_dt.mib?ITEM=TOP'>TOP</a></span>
 			<table class="table">
-				<tfoot>
-					<tr>
-						
-						<td colspan="5" align="center"><span class="mypage-link"><a
-								href='myboardqna.mib'>더 보기</a></span></td>
-						
-						
-						
-					</tr>
-				</tfoot>
-
-				<span class="mypage-link" style="font-size: 19px;"><a
-					href='myboardqna.mib'>My Q&A</a></span>
+				<col width="10%" /><col width="20%" /><col width="40%" /><col width="15%" /><col width="15%" />
 				<thead>
 					<tr>
 						<th>글번호</th>
 						<th>상품명</th>
 						<th>글제목</th>
 						<th>날짜</th>
-						<th>답글</th>
+						<th>평점</th>
 					</tr>
 				</thead>
-				<tbody>
-										
-					<tr>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						<td>aaaa</td>
-						
-						<td>답변중</td>
-						
-					</tr>
-					
-				</tbody>
 
+				<tbody id="board">
+					
+					<%
+					if(toplist==null || toplist.size()==0){
+					%>
+						<tr><td colspan="99999">내역이 없습니다.</td></tr>
+					<%
+					}else{
+						for(int i=0; i<toplist.size(); i++){ %>
+					
+					<tr>
+						<td><%=toplist.get(i).getREV_SEQ() %></td>
+						<td><%=toplist.get(i).getPRO_NAME() %></td>
+						<td><%=toplist.get(i).getREV_TITLE() %></td>
+						<td><%=toplist.get(i).getREV_TIME() %></td>
+						<td><%=toplist.get(i).getSCORE() %></td>
+					</tr>
+					<%} %>					
+
+				</tbody>
+				
+				<%if(toplist.get(0).getTOT_CNT()>5){ %>
+				<tfoot>
+					<tr>
+						
+						<td colspan="6" align="center"><span class="mypage-link"><a
+								href='reiview_Administer_dt.mib?ITEM=TOP'>더 보기</a></span></td>
+					</tr>
+				</tfoot>
+				<%} 
+				}%>
 			</table>
 
+			<br> <br> <br> <br>
+
+				<span class="mypage-link" style="font-size: 19px;"><a
+				href='reiview_Administer_dt.mib?ITEM=PANTS'>PANTS</a></span>
+			<table class="table">
+				<col width="10%" /><col width="20%" /><col width="40%" /><col width="15%" /><col width="15%" />
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>상품명</th>
+						<th>글제목</th>
+						<th>날짜</th>
+						<th>평점</th>
+					</tr>
+				</thead>
+
+				<tbody id="board">
+					
+					<%
+					if(pantslist==null || pantslist.size()==0){
+					%>
+						<tr><td colspan="99999">내역이 없습니다.</td></tr>
+					<%
+					}else{
+						for(int i=0; i<pantslist.size(); i++){ %>
+					
+					<tr>
+						<td><%=pantslist.get(i).getREV_SEQ() %></td>
+						<td><%=pantslist.get(i).getPRO_NAME() %></td>
+						<td><%=pantslist.get(i).getREV_TITLE() %></td>
+						<td><%=pantslist.get(i).getREV_TIME() %></td>
+						<td><%=pantslist.get(i).getSCORE() %></td>
+					</tr>
+					<%} %>					
+
+				</tbody>
+				
+				<%if(pantslist.get(0).getTOT_CNT()>5){ %>
+				<tfoot>
+					<tr>
+						
+						<td colspan="6" align="center"><span class="mypage-link"><a
+								href='reiview_Administer_dt.mib?ITEM=PANTS'>더 보기</a></span></td>
+					</tr>
+				</tfoot>
+				<%} 
+				}%>
+			</table>
+
+			<br> <br> <br> <br>
+		
+			<span class="mypage-link" style="font-size: 19px;"><a
+				href='reiview_Administer_dt.mib?ITEM=SHOES'>SHOES</a></span>
+			<table class="table">
+				<col width="10%" /><col width="20%" /><col width="40%" /><col width="15%" /><col width="15%" />
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>상품명</th>
+						<th>글제목</th>
+						<th>날짜</th>
+						<th>평점</th>
+					</tr>
+				</thead>
+
+				<tbody id="board">
+					
+					<%
+					if(shoeslist==null || shoeslist.size()==0){
+					%>
+						<tr><td colspan="99999">내역이 없습니다.</td></tr>
+					<%
+					}else{
+						for(int i=0; i<shoeslist.size(); i++){ %>
+					
+					<tr>
+						<td><%=shoeslist.get(i).getREV_SEQ() %></td>
+						<td><%=shoeslist.get(i).getPRO_NAME() %></td>
+						<td><%=shoeslist.get(i).getREV_TITLE() %></td>
+						<td><%=shoeslist.get(i).getREV_TIME() %></td>
+						<td><%=shoeslist.get(i).getSCORE() %></td>
+					</tr>
+					<%} %>					
+
+				</tbody>
+				
+				<%if(shoeslist.get(0).getTOT_CNT()>5){ %>
+				<tfoot>
+					<tr>
+						
+						<td colspan="6" align="center"><span class="mypage-link"><a
+								href='reiview_Administer_dt.mib?ITEM=SHOES'>더 보기</a></span></td>
+					</tr>
+				</tfoot>
+				<%} 
+				}%>
+			</table>
+			<br> <br> <br> <br>
+
+
+			<span class="mypage-link" style="font-size: 19px;"><a
+				href='reiview_Administer_dt.mib?ITEM=BAGnACC'>BAC&ACC</a></span>
+			<table class="table">
+				<col width="10%" /><col width="20%" /><col width="40%" /><col width="15%" /><col width="15%" />
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>상품명</th>
+						<th>글제목</th>
+						<th>날짜</th>
+						<th>평점</th>
+					</tr>
+				</thead>
+
+				<tbody id="board">
+					
+					<%
+					if(baglist==null || baglist.size()==0){
+					%>
+						<tr><td colspan="99999">내역이 없습니다.</td></tr>
+					<%
+					}else{
+						for(int i=0; i<baglist.size(); i++){ %>
+					
+					<tr>
+						<td><%=baglist.get(i).getREV_SEQ() %></td>
+						<td><%=baglist.get(i).getPRO_NAME() %></td>
+						<td><%=baglist.get(i).getREV_TITLE() %></td>
+						<td><%=baglist.get(i).getREV_TIME() %></td>
+						<td><%=baglist.get(i).getSCORE() %></td>
+					</tr>
+					<%} %>					
+
+				</tbody>
+				
+				<%if(baglist.get(0).getTOT_CNT()>5){ %>
+				<tfoot>
+					<tr>
+						
+						<td colspan="6" align="center"><span class="mypage-link"><a
+								href='reiview_Administer_dt.mib?ITEM=BAGnACC'>더 보기</a></span></td>
+					</tr>
+				</tfoot>
+				<%} 
+				}%>
+			</table>
+			<br> <br> <br> <br>
+
+
+			
 
 </body>
 </html>

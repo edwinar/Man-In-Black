@@ -81,19 +81,42 @@
 
 	<div class="wrap">
  	
- 	<label class="mat-label-check">카테고리 분류 <select>
- 	<option>OUTER</option>
- 	<option>TOP</option>
- 	<option>PANTS</option>
- 	<option>SHOES</option>
- 	<option>BAG&ACC</option>					
- 	</select></label>
+ 	<div class="mat-label-check" style="font-weight: bold;">카테고리 분류&nbsp;
+ 	<select>
+ 	<option>카테고리</option>
+ 	<option>OUTER</option>	
+ 	</select>
+    &nbsp;
+    <select>
+    <option>서브 카테고리</option>
+    <option>COAT</option>				
+ 	</select>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;NEW카테고리 적용 <input type="checkbox" style="height: 20px; width: 20px;">
+ 	</div>
+    <br>
+    <div class="mat-label-check" style="font-weight: bold;">메인 사진 등록<br>
+  	<div style="float: left;">메인1<input type="file" name="onefile"></div>	
+  	<div style="float: left;">메인2<input type="file" name="twofile"></div>	
+  	메인3<input type="file" name="threefile">
+    </div>
+    <br><br>
+    <button type="button">색상 및 사이즈 추가</button>
     
+    <div id="color-div">
+    	<div style="float: left;">색상 <input type="text"></div> 
+    	<div  style="float: left;">
+    	&nbsp;&nbsp;사이즈
+    	<select>
+    		<option>S</option>
+    		<option>M</option>
+    		<option>L</option>
+    		<option>XL</option>
+    	</select>
+    	</div>
+    	<div style="float: left;">&nbsp;&nbsp;재고 <input type="text"></div>
+   </div>
     
-    <label class="mat-label-check">카테고리  소분류<select><option>COAT</option></select> </label>
-    <label class="mat-label-check">NEW카테고리 적용      <input type="checkbox" style="height: 20px; width: 20px;"></label>
-    
- 	
+    <br>
  	<div class="mat-div">
     <label  class="mat-label">상품이름</label>
     <input type="text" class="mat-input" id="상품이름"> 
@@ -129,9 +152,6 @@
     
   	</div>
  
-  	메인1<input type="file" name="onefile">	
-  	메인2<input type="file" name="twofile">	
-  	메인3<input type="file" name="threefile">
    
 		
     <label  class="mat-label">제품 상세 설명</label>

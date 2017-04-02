@@ -254,6 +254,61 @@ public class CeoMypageController {
 		public ModelAndView qnA_Administer() {
 
 			ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer");
+				
+			// 처음 다섯개씩 뿌릴때 
+			HashMap<String, Object> map  = new HashMap<>();
+			map.put("PAGE_SIZE", "5");
+			map.put("PAGE_NUM", "1");
+			map.put("ITEM", "OUTER");
+			
+			List<CeoMypageDto> outerlist = ceoMypageSvc.do_search_QnA(map);
+			
+			map.put("ITEM", "TOP");
+			
+			List<CeoMypageDto> toplist = ceoMypageSvc.do_search_QnA(map);
+			
+			map.put("ITEM", "PANTS");
+			
+			List<CeoMypageDto> pantslist = ceoMypageSvc.do_search_QnA(map);
+			
+			map.put("ITEM", "SHOES");
+			
+			List<CeoMypageDto> shoeslist = ceoMypageSvc.do_search_QnA(map);
+			
+			map.put("ITEM", "BAGnACC");
+			
+			List<CeoMypageDto> baglist = ceoMypageSvc.do_search_QnA(map);
+			
+			mav.addObject("outerlist", outerlist);
+			mav.addObject("toplist", toplist);
+			mav.addObject("pantslist", pantslist);
+			mav.addObject("shoeslist", shoeslist);
+			mav.addObject("baglist", baglist);
+			
+			
+			return mav;
+			
+
+		}
+	// 문의 관리 더보기 
+		@RequestMapping("qnA_Administer_dt.mib")
+		public ModelAndView qnA_Administer_dt(HttpServletRequest res) {
+
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/QnA_Administer_dt");
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String ITEM = (res.getParameter("ITEM")==null ||res.getParameter("ITEM")=="")?"":res.getParameter("ITEM");
+		
+			HashMap<String, Object> map  = new HashMap<>();
+			map.put("PAGE_SIZE", PAGE_SIZE);
+			map.put("PAGE_NUM", PAGE_NUM);
+			map.put("ITEM", ITEM);
+			
+			List<CeoMypageDto> list = ceoMypageSvc.do_search_QnA(map);
+			
+			mav.addObject("list", list);
+			
 			
 			return mav;
 
@@ -274,11 +329,64 @@ public class CeoMypageController {
 
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/Reiview_Administer");
 		
+		// 처음 다섯개씩 뿌릴때 
+		HashMap<String, Object> map  = new HashMap<>();
+		map.put("PAGE_SIZE", "5");
+		map.put("PAGE_NUM", "1");
+		map.put("ITEM", "OUTER");
+		
+		List<CeoMypageDto> outerlist = ceoMypageSvc.do_search_review(map);
+		
+		map.put("ITEM", "TOP");
+		
+		List<CeoMypageDto> toplist = ceoMypageSvc.do_search_review(map);
+		
+		map.put("ITEM", "PANTS");
+		
+		List<CeoMypageDto> pantslist = ceoMypageSvc.do_search_review(map);
+		
+		map.put("ITEM", "SHOES");
+		
+		List<CeoMypageDto> shoeslist = ceoMypageSvc.do_search_review(map);
+		
+		map.put("ITEM", "BAGnACC");
+		
+		List<CeoMypageDto> baglist = ceoMypageSvc.do_search_review(map);
+		
+		mav.addObject("outerlist", outerlist);
+		mav.addObject("toplist", toplist);
+		mav.addObject("pantslist", pantslist);
+		mav.addObject("shoeslist", shoeslist);
+		mav.addObject("baglist", baglist);
+		
+		
 		return mav;
 
 	}
 	
-	
+	// 리뷰관리 더보기 
+	@RequestMapping("reiview_Administer_dt.mib")
+		public ModelAndView reiview_Administer_dt(HttpServletRequest res) {
+
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/Reiview_Administer_dt");
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String ITEM = (res.getParameter("ITEM")==null ||res.getParameter("ITEM")=="")?"":res.getParameter("ITEM");
+		
+			HashMap<String, Object> map  = new HashMap<>();
+			map.put("PAGE_SIZE", PAGE_SIZE);
+			map.put("PAGE_NUM", PAGE_NUM);
+			map.put("ITEM", ITEM);
+			
+			List<CeoMypageDto> list = ceoMypageSvc.do_search_review(map);
+			
+			mav.addObject("list", list);
+			
+			
+			return mav;
+
+		}
 	
 
 	

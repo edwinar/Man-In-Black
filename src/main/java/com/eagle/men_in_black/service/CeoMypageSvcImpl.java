@@ -41,4 +41,16 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return sumNum;
 	}
 
+	@Override
+	public List<CeoMypageDto> do_search_review(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_search_review(map);
+	}
+
+	@Override
+	public List<CeoMypageDto> do_search_QnA(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_search_QnA(map);
+	}
+
 }

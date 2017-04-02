@@ -31,4 +31,18 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.insert(statement, map);
 	}
 
+
+	@Override
+	public List<CeoMypageDto> do_search_review(Map<String, Object> map) {
+		String statement = namespace+".do_search_review";
+		return sqlSession.selectList(statement, map);
+	}
+
+
+	@Override
+	public List<CeoMypageDto> do_search_QnA(Map<String, Object> map) {
+		String statement = namespace+".do_search_QnA";
+		return sqlSession.selectList(statement, map);
+	}
+
 }
