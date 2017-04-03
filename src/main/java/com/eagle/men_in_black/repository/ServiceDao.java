@@ -13,4 +13,5 @@ public interface ServiceDao {
 	public void do_service_reg(HashMap<String, String> map);
 	public void do_service_update(HashMap<String, String> map);
 	public int do_service_delete(int seq);
+	public List<ServiceDto> do_event_main(HashMap<String, String> map); 
 }
