@@ -62,8 +62,10 @@
 </head>
 <body>
 <% String num = request.getParameter("PRO_SEQ"); %>
-
-<form action="reviewWrite.mib" method="post" enctype="multipart/form-data">
+<!-- onsubmit="return closeSelf()" 
+action="reviewWrite.mib"
+-->
+<form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
 	<div class="layout">
 		<div class="leftLayout">
 			<div class="thumbnail">
@@ -115,7 +117,7 @@
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="submit" value="리뷰 달기">
+						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
 					</div>
 
 				</div>
@@ -205,6 +207,39 @@
 			};
 
 		};
+		
+		function closeSelf(){
+		
+			var formData = $("#f1").serialize();
+
+			$.ajax({
+	 			type : "POST",
+	 			url : "reviewWrite.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : formData,
+	 			success : function(data) {
+	 				//alert("success " + data);
+	 				var flag = $.parseJSON(data);
+	 				
+	 				if(flag.result=='OK'){
+	 					window.close();
+	 				}else{
+	 					alert("리뷰등록실패");
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});		
+
+		
+		
+		
+		    		}
+		
 	</script>
 </body>
 </html>

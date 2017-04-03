@@ -41,8 +41,10 @@ public interface UserMypageDao {
 
 	public int do_member_update(HashMap<String, String> map);
 	
-	public void do_insert_review(HashMap<String, String> map);
+	public int do_insert_review(HashMap<String, String> map);
 	
-	public void do_insert_reviewphoto(HashMap<String, Object> map);
+	public int do_insert_reviewphoto(HashMap<String, Object> map);
+	
+	public int do_select_revseq();
 
 }

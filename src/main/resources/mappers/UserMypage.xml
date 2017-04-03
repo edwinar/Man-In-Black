@@ -433,15 +433,20 @@ INTO PHOTO
   (
     PHOTO_SEQ,
     STORED_NAME,
-    ORIGINAL_NAME
+    ORIGINAL_NAME,
+    REV_SEQ
   )
   VALUES
   (
    	PHOTO_SEQ.NEXTVAL,
     #{ORIGINAL_FILE_NAME},
-    #{STORED_FILE_NAME}
+    #{STORED_FILE_NAME},
+    #{REV_SEQ}
   )
 </insert>
 
+<select id="do_select_revseq" resultType="int">
+SELECT MAX(REV_SEQ) FROM REVIEW
+</select>
 
 </mapper>

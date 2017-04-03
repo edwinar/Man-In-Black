@@ -278,12 +278,17 @@ td, th {
 	
 
 	var SEL_SEQ = 1;
+	
 	function go(seq) {
 		var PRO_SEQ = seq;
 		window.open(
 						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ,
 						"pop",
 						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+						
+						
+		 
+	 			
 	}
 </script>
 <title>::구매내역::</title>

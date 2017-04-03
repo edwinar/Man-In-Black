@@ -132,15 +132,22 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 
 	@Override
-	public void do_insert_review(HashMap<String, String> map) {
-		userMypageDao.do_insert_review(map);
+	public int do_insert_review(HashMap<String, String> map) {
+		return userMypageDao.do_insert_review(map);
 		
 	}
 
 
 	@Override
-	public void do_insert_reviewphoto(HashMap<String, Object> map) {
-		userMypageDao.do_insert_reviewphoto(map);
+	public int do_insert_reviewphoto(HashMap<String, Object> map) {
+		return userMypageDao.do_insert_reviewphoto(map);
 		
+	}
+
+
+	@Override
+	public int do_select_revseq() {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_select_revseq();
 	}
 }
