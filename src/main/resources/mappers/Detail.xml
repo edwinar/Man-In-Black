@@ -61,4 +61,9 @@ FROM REVIEW
 WHERE REV_SEQ=#{REV_SEQ}
 </select>
 
+<!-- <select id="do_insertReviewAdmReply" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
+INSERT INTO REVIEW (REV_SEQ, REV_TIME, REV_TITLE, REV_CONTENT, SCORE, REV_REF, USER_ID, PRO_SEQ, REV_STEP)
+VALUES(REV_SEQ.NEXTVAL, SYSDATE, #{REV_TITLE}, #{REV_CONTENT}, NULL, #{REV_REF}, #{USER_ID}, #{PRO_SEQ}, 'N');
+</select> -->
+
 </mapper>

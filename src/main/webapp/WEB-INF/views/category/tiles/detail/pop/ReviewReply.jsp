@@ -27,7 +27,6 @@
 			today = tyear+"-"+tmonth+"-"+tday;
 		}
 	}
-	System.out.println(today);
 %>
 <html>
 <head>
@@ -64,7 +63,13 @@
 <body>
 <script type="text/javascript">
 function closePop(){
-	var title = document.getElement
+	var title = document.getElementById("review_title").value;
+	var content = document.getElementById("review_content").value;
+	
+	location.href("reviewReply.mib?REV_TITLE="+title+"&REV_CONTENT="+content+
+			"&REV_REF=<%=detailDto.getREV_REF()%>
+			&USER_ID=<%=detailDto.getUSER_ID()%>
+			&PRO_SEQ=<%=detailDto.getPRO_SEQ()%>");
 	
 	window.close();
 }
@@ -156,7 +161,6 @@ function closePop(){
 		</div>
 	</div>
 </div>
-
 
 </body>
 </html>

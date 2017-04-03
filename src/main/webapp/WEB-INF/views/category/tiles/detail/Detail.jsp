@@ -451,6 +451,9 @@ function QnADetail(){
 function QnAWrite(){
 	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
+function BuyPop(){
+	window.open("BuyPop.mib?<%=PRO_SEQ %>","pop","width=420 height=620 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
+}
 </script>
 <div>
 <div>
@@ -581,7 +584,7 @@ function QnAWrite(){
 		        	<% 	 
 					if(dto!=null){
 					%>
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="location.href='basketlist.mib'">구매하기</button>
+		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
 		        	<%
 		        	}else{ 
 		        	%>
