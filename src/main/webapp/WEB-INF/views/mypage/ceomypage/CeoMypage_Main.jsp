@@ -324,12 +324,21 @@ function delStep(SEQ) {
 
 	</center>
 	<!--엑셀로 다운받기-->
+	<form name="searchForm" method="POST" action="" >
 	<div align="right">
-		<button type="button" class="btn btn-success">
+		<button type="button" onclick="exportToExcel();" class="btn btn-success">
 			엑셀 다운로드 <span class="glyphicon glyphicon-download-alt"
 				aria-hidden="true"></span>
 		</button>
 	</div>
+	</form>
+<script type="text/javascript">
+function exportToExcel(){
+	document.searchForm.action="/exportToExcel";
+	document.searchForm.method="POST"
+	document.searchForm.submit();​
+	}
+</script>
 
 <%
 START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
