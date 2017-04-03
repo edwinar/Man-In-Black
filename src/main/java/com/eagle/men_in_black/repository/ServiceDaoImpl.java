@@ -50,6 +50,12 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.delete(statement, seq);
 	}
 
+	@Override
+	public List<ServiceDto> do_event_main(HashMap<String, String> map) {
+		String statement = namespace+".do_event_main";
+		return sqlSession.selectList(statement, map);
+	}
+
 	
 	
 	

@@ -38,4 +38,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectProductReviewList";
 		return sqlSession.selectList(statement, PRO_SEQ);
 	}
+
+	@Override
+	public DetailDto do_selectReviewDetail(int REV_SEQ) {
+		String statement = namespace+".do_selectReviewDetail";
+		return sqlSession.selectOne(statement, REV_SEQ);
+	}
 }
