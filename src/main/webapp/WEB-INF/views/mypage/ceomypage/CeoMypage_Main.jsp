@@ -284,7 +284,10 @@ function delStep(SEQ) {
 				var flag = $.parseJSON(data);
 				//alert(flag.check); 	
 				 $("#dels"+SEQ).html(flag.check);
-				
+				if(flag.check=='배송완료'){
+					$("#deltd"+SEQ).html('배송완료');	
+				}
+				 
 			},
 			complete : function(data) {
 			},
@@ -404,7 +407,11 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<td><%=list.get(i).getSTOCK() %></td>
 						<td><%=list.get(i).getFINAL_PRICE() %></td>
 						<td><%=list.get(i).getSELTIME() %></td>
-						<td><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
+						<td><%=list.get(i).getDEL_STEP() %></td>
+						<%}else{ %>
+						<td id="deltd<%=list.get(i).getDEL_SEQ()%>" ><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<%} %>
 					</tr>
 				<%}
 				
