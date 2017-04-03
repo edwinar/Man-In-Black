@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	ServiceDto serviceDto = (ServiceDto) request.getAttribute("detail");
+
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,18 +26,22 @@
 
 
 	<div class="jumbotron">
-		<h3><%=serviceDto.getNOTICE_TITLE() %></h3>
-		<br><br>
-		<div style="width: 80%" align="center" >
-		<h4><%=serviceDto.getNOTICE_CONTENT() %></h4>
+		<h3><%=serviceDto.getNOTICE_TITLE()%></h3>
+		<br>
+		<br>
+		<div style="width: 80%" align="center">
+			<h4><%=serviceDto.getNOTICE_CONTENT()%></h4>
 		</div>
 		<p align="right">
-			<a  class="btn btn-primary btn-sm" href="serviceupdate.mib?seq=<%=serviceDto.getNOTICE_SEQ() %>" role="button">수정</a>
-			<a  class="btn btn-primary btn-sm" href="" role="button">삭제</a>
-			<a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a>
+			<a class="btn btn-primary btn-sm"
+				href="CkeditorNoticeUpload.mib?seq=<%=serviceDto.getNOTICE_SEQ()%>"
+				role="button">수정</a> <a class="btn btn-primary btn-sm"
+				href="servicedelete.mib?seq=<%=serviceDto.getNOTICE_SEQ()%>"
+				role="button">삭제</a> <a class="btn btn-primary btn-sm"
+				href="servicenotice.mib" role="button">목록으로</a>
 			<!-- <a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a> -->
 		</p>
-	
+
 	</div>
 
 </body>

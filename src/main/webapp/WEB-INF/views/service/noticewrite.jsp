@@ -79,9 +79,11 @@
 	</center>
 	<h3>공지사항을 작성해주세요</h3>
 
-	<form action="servicereg.mib" method="post"
+	<form <%if(serviceDto==null){ %>action="servicereg.mib"<%}else{ %>action="serviceupdate.mib"<%} %> method="post"
 		enctype="multipart/form-data">
-
+		<%if(serviceDto!=null){ %>
+		<input type="hidden" name="seq" value="<%=serviceDto.getNOTICE_SEQ()%>">
+		<%} %>
 		<div class="wrap">
 
 			<div class="mat-div">

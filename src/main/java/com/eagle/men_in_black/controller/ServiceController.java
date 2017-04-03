@@ -90,7 +90,7 @@ public class ServiceController {
 		map.put("PAGE_NUM", "1");
 
 		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
-
+		
 		mav.addObject("noticelist", noticelist);
 		return mav;
 	}
@@ -99,11 +99,21 @@ public class ServiceController {
 	@RequestMapping("serviceupdate.mib")
 	public ModelAndView serviceupdate(HttpServletRequest res, HttpServletResponse rep){
 		
-		int seq = Integer.parseInt(res.getParameter("seq"));
+		String seq = res.getParameter("seq");
+		String editor = res.getParameter("editor");
+		String noticetitle = res.getParameter("noticetitle");
+						
+		HashMap<String, String> writemap = new HashMap<>();
+		writemap.put("content", editor);
+		writemap.put("noticetitle", noticetitle);
+		writemap.put("seq", seq);
 		
-		ModelAndView mav = new ModelAndView("service/noticewrite");
-		ServiceDto serviceDto = serviceSvc.do_service_detail(seq);
-		mav.addObject("update", serviceDto);
+		serviceSvc.do_service_update(writemap);
+		
+		ModelAndView mav = new ModelAndView("service/noticedetail");
+		ServiceDto dto = serviceSvc.do_service_detail(Integer.parseInt(seq));
+		mav.addObject("detail", dto);
+		
 		
 		return mav;
 		
@@ -111,18 +121,37 @@ public class ServiceController {
 	
 
 	// 공지사항삭제(관리자)
+	@RequestMapping("servicedelete.mib")
+	public ModelAndView servicedelete(HttpServletRequest res, HttpServletResponse rep){
+		
+		int seq = Integer.parseInt(res.getParameter("seq"));
+		
+		ModelAndView mav = new ModelAndView("service/notice");
+		int serviceDto = serviceSvc.do_service_delete(seq);
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", "10");
+		map.put("PAGE_NUM", "1");
+
+		List<ServiceDto> noticelist = serviceSvc.do_service_main(map);
+		
+		mav.addObject("noticelist", noticelist);
+		
+		return mav;
+		
+	}
+	
 	
 
 	/* FCK Editor */
 	@RequestMapping("CkeditorNoticeUpload.mib")
-	public ModelAndView register_Good() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "김옥지");
-		loger.debug("============================");
-
+	public ModelAndView register_Good(HttpServletRequest res) {
+ 
 		ModelAndView mav = new ModelAndView("/service/noticewrite");
-		mav.addObject("msg", "김옥지");
+		String seq = res.getParameter("seq")==null?"0":res.getParameter("seq");
+		int intseq = Integer.parseInt(seq);
+		ServiceDto dto = serviceSvc.do_service_detail(intseq);
+		mav.addObject("update", dto);
 
 		return mav;
 
