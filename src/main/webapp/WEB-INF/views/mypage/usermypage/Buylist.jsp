@@ -280,6 +280,12 @@ td, th {
 	function  go() {
 		document.location.href='reveiwwrite.mib';
 	}
+
+
+        function open_win()
+        {
+            window.open("buyCancel.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+        }
 </script>
 <title>::구매내역::</title>
 </head>
@@ -375,7 +381,13 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go()"> </td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
+						<input type="button" value="취소" onclick="location.href='buyCancel.mib'">
+						<input type="button" value="리뷰" onclick="go()">
+						<input type="button" value="반품" onclick="open_win()">
+						<input type="button" value="교환" onclick="open_win()">
+
+					</td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>

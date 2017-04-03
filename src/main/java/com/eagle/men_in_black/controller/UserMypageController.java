@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -144,6 +143,20 @@ public class UserMypageController {
 		return mav;
 		
 	}
+	// 구매목록 반품 교환 환불
+	@RequestMapping("buyCancel.mib")
+	public ModelAndView buyCancel(){
+
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("mypage/usermypage/pop//buyCancel");
+		mav.addObject("msg", "김옥지");
+
+		return mav;
+	}
+
 	// 장바구니 
 	@RequestMapping("basketlist.mib")
 	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep){
