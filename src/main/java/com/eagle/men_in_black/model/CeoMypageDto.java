@@ -49,9 +49,17 @@ private	String	NEW_ITEM;
 private int TOT_CNT;
 private int DEL_SEQ;
 private String DEL_STEP;
+private String SIZE;
 
 
 
+public String getSIZE() {
+	return SIZE;
+}
+
+public void setSIZE(String sIZE) {
+	SIZE = sIZE;
+}
 
 public String getDEL_STEP() {
 	return DEL_STEP;
