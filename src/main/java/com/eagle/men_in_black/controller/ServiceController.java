@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.w3c.dom.events.EventException;
 
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.ServiceDto;
@@ -142,6 +143,29 @@ public class ServiceController {
 	}
 	
 	
+	
+	//이벤트 
+	@RequestMapping("event.mib")
+	public ModelAndView event(HttpServletRequest res, HttpServletResponse rep){
+		
+		ModelAndView mav = new ModelAndView("service/event");
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM") == null || res.getParameter("PAGE_NUM") == "") ? "1"
+				: res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "10"
+				: res.getParameter("PAGE_SIZE");
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+
+		List<ServiceDto> eventlist = serviceSvc.do_event_main(map);
+
+		mav.addObject("eventlist", eventlist);
+		
+		return mav;
+		
+	}
 
 	/* FCK Editor */
 	@RequestMapping("CkeditorNoticeUpload.mib")

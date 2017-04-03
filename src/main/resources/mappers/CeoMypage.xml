@@ -50,22 +50,6 @@ NATURAL JOIN
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
-<insert id="do_insert_photo" parameterType="hashmap">
-INSERT
-INTO PHOTO
-  (
-    PHOTO_SEQ,
-    STORED_NAME,
-    ORIGINAL_NAME
-  )
-  VALUES
-  (
-    ${SEQ},
-    #{ORIGINAL_FILE_NAME},
-    #{STORED_FILE_NAME}
-  )
-</insert>
-
 <select id="do_search_review" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
 SELECT TT1.*
   FROM (
@@ -141,7 +125,7 @@ INTO PRODUCT
   )
   VALUES
   (
-    #{pro_seq},
+    PRO_SEQ.NEXTVAL,
     #{pro_detail},
     #{pro_name},
     #{item},
@@ -154,5 +138,46 @@ INTO PRODUCT
    	#{new_item}
   )
 </insert>
+
+<insert id="do_insert_product_detail" parameterType="com.eagle.men_in_black.model.CeoMypageDto">
+INSERT INTO PRO_DETAIL
+  (
+    DET_SEQ,
+    PRO_SEQ,
+    PRO_SIZE,
+    COLOR,
+    STOCK
+  )
+  VALUES
+  (
+    DET_SEQ.NEXTVAL,
+   #{PRO_SEQ},
+   #{SIZE},
+   #{COLOR},
+   #{STOCK}
+  )
+</insert>
+
+<insert id="do_insert_product_photo" parameterType="java.util.HashMap">
+  INSERT
+INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    PHOTO_SEQ.NEXTVAL,
+    #{STORED_FILE_NAME},
+    #{ORIGINAL_FILE_NAME},
+    PRO_SEQ.CURRVAL
+    )
+</insert>
+
+<select id="do_select_proseq" resultType="int">
+  SELECT MAX(PRO_SEQ) FROM PRODUCT
+</select>
 
 </mapper>

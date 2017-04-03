@@ -29,7 +29,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               <%}else{ %>
                               		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">마이페이지들어가기</a></li>
                               <%} %>
-                                    <li><a href="#" >products</a></li>
+                                    <li><a href="event.mib" >이벤트</a></li>
                                     <li><a href="#" >men</a></li>
                                     <li><a href="#" >women</a></li>
                                     <li><a href="#" >kids</a></li>

@@ -45,4 +45,10 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.do_service_delete(seq);
 	}
 
+	@Override
+	public List<ServiceDto> do_event_main(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_event_main(map);
+	}
+
 }
