@@ -45,7 +45,7 @@ public class CategoryController {
 
 	// 아우터/상의/하의/신발/가방&악세
 	@RequestMapping("category.mib")
-	public ModelAndView category(HttpServletRequest res, HttpServletResponse rep) {
+	public ModelAndView category(HttpServletRequest res, HttpServletResponse rep){
 		ModelAndView mav = new ModelAndView("category/Category");
 		
 		String ITEM = (res.getParameter("ITEM")==null||res.getParameter("ITEM").equals("") )?"OUTER":res.getParameter("ITEM");
@@ -73,13 +73,18 @@ public class CategoryController {
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
 		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
+		mav.addObject("ITEM",ITEM);//
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
 		/*for(int i=0; i<list.size(); i++){
-			System.out.println(list.get(i).getPRO_NAME());
-			System.out.println(list.get(i).getPRO_PRICE());
-			System.out.println(list.get(i).getPRO_SEQ());
+			System.out.println(" 프로네임 " + list.get(i).getPRO_NAME());
+			System.out.println(" 프로네임 " + list.get(i).getPRO_PRICE());
+			System.out.println(" 프로네임 " + list.get(i).getPRO_SEQ());
+			System.out.println(" 프로네임 " + listBest.get(i).getPRO_NAME());
+			System.out.println(" 프로네임 " + listBest.get(i).getPRO_PRICE());
+			System.out.println(" 프로네임 " + listBest.get(i).getPRO_SEQ());
+			
 		}*/
 		return mav;
 	}

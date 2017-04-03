@@ -4,14 +4,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
-	List<CategoryDto> listBtn = (List<CategoryDto>)request.getAttribute("listBtn");
-	List<CategoryDto> listBest = (List<CategoryDto>)request.getAttribute("listBest");
-	String SUB_ITEM = (request.getParameter("SUB_ITEM")==null||request.getParameter("SUB_ITEM").equals("") )?"ALL":request.getParameter("SUB_ITEM");
-	String ITEM = list.get(0).getITEM();
-	String centerName = "";
-	if(ITEM.equalsIgnoreCase("BAGnACC"))centerName="BAG&ACC";
-	else centerName=ITEM;
+   List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
+   List<CategoryDto> listBtn = (List<CategoryDto>)request.getAttribute("listBtn");
+   List<CategoryDto> listBest = (List<CategoryDto>)request.getAttribute("listBest");
+   String SUB_ITEM = (request.getParameter("SUB_ITEM")==null||request.getParameter("SUB_ITEM").equals("") )?"ALL":request.getParameter("SUB_ITEM");
+   String ITEM = request.getParameter("ITEM");
+   String centerName = "";
+   if(ITEM.equalsIgnoreCase("BAGnACC"))centerName="BAG&ACC";
+   else centerName=ITEM;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,10 +24,10 @@
  width: 100%;
 }
 .thumbnail{
-	opacity: 1;
+   opacity: 1;
 }
 .thumbnail:hover{
-	opacity: 0.5;
+   opacity: 0.5;
 }
 </style>
 </head>
@@ -84,7 +84,7 @@ function addCookie(pd_no) {
 
 <div class="row" align="center">
 <%
-	for(int i=0;i<listBest.size();i++){
+   for(int i=0;i<listBest.size();i++){
 %>
   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
@@ -96,63 +96,63 @@ function addCookie(pd_no) {
     </div>
   </div>
 <%
-	}
+   }
 %>
 </div>
 
 <hr style="border: solid black 2px;">
 
 <div class="row" align="center">
-	<div class="col-md-6 visible-md visible-lg" align="left">
-	<p>
-		<a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=ALL" class="btn btn-primary" role="button">전체보기</a>
-		<%
-			for(int i=0;i<listBtn.size();i++){
-		%>
-		<a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-primary" role="button"><%=listBtn.get(i).getSUB_ITEM() %></a>
-		<%
-			}
-		%>
-	</p>
-	</div>
-	<div class="col-md-6 visible-md visible-lg" align="right">
-	<p>
-		<a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">신상품순</a>
-		<a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">낮은가격순</a>
-		<a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">인기상품순</a>
-		<a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">리뷰수순</a>
-	</p>
-	</div>
-	<br></br><br></br>
+   <div class="col-md-6 visible-md visible-lg" align="left">
+   <p>
+      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=ALL" class="btn btn-primary" role="button">전체보기</a>
+      <%
+         for(int i=0;i<listBtn.size();i++){
+      %>
+      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-primary" role="button"><%=listBtn.get(i).getSUB_ITEM() %></a>
+      <%
+         }
+      %>
+   </p>
+   </div>
+   <div class="col-md-6 visible-md visible-lg" align="right">
+   <p>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">신상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">낮은가격순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">인기상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">리뷰수순</a>
+   </p>
+   </div>
+   <br></br><br></br>
 </div>
 
 <div class="row" align="center">
 <%
-	for(int i=0; i<list.size(); i++){
+   for(int i=0; i<list.size(); i++){
 %>
-	<div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
-		<div class="thumbnail">
-			<img src="../images/LOVE.jpg" alt="...">
-			<div class="caption">
-				<h5><%=list.get(i).getPRO_NAME() %></h5>
-				<p><%=list.get(i).getPRO_PRICE() %> Won</p>
-			</div>
-		</div>
-	</div>
+   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
+      <div class="thumbnail">
+         <img src="../images/LOVE.jpg" alt="...">
+         <div class="caption">
+            <h5><%=list.get(i).getPRO_NAME() %></h5>
+            <p><%=list.get(i).getPRO_PRICE() %> Won</p>
+         </div>
+      </div>
+   </div>
 <%
-	}
+   }
 %>
 
 </div>
 <div class="row" align="center">
-	<p>
-	<a href="#" class="btn btn-default" role="button"><</a>
-	<a href="#" class="btn btn-default" role="button">1</a>
-	<a href="#" class="btn btn-default" role="button">2</a>
-	<a href="#" class="btn btn-default" role="button">3</a>
-	<a href="#" class="btn btn-default" role="button">4</a>
-	<a href="#" class="btn btn-default" role="button">></a>
-	</p>
+   <p>
+   <a href="#" class="btn btn-default" role="button"><</a>
+   <a href="#" class="btn btn-default" role="button">1</a>
+   <a href="#" class="btn btn-default" role="button">2</a>
+   <a href="#" class="btn btn-default" role="button">3</a>
+   <a href="#" class="btn btn-default" role="button">4</a>
+   <a href="#" class="btn btn-default" role="button">></a>
+   </p>
 </div>
 
 </body>
