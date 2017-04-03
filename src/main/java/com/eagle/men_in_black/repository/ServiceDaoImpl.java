@@ -45,9 +45,13 @@ public class ServiceDaoImpl implements ServiceDao {
 	}
 
 	@Override
-	public void do_service_delete(int seq) {
+	public int do_service_delete(int seq) {
 		String statement = namespace+".do_service_delete";
-		sqlSession.delete(statement, seq);
+		return sqlSession.delete(statement, seq);
 	}
+
+	
+	
+	
 
 }

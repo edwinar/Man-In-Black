@@ -14,4 +14,10 @@ public interface CeoMypageDao {
 	public List<CeoMypageDto> do_search_review(Map<String, Object> map);
 	
 	public List<CeoMypageDto> do_search_QnA(Map<String, Object> map);
+	
+	public String do_search_delstep(int SEQ);
+	
+	public int do_update_delstep(HashMap<String, String> map);
+	
+	public int do_insert_product(HashMap<String, String> map);
 }

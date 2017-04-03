@@ -1,23 +1,32 @@
 package com.eagle.men_in_black.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.UserMypageSvc;
@@ -310,14 +319,114 @@ public class UserMypageController {
 	}
 	
 	
-	// 리뷰 쓰기
+	// 리뷰 쓰기 창열기
 	@RequestMapping("reveiwwrite.mib")
 	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		ModelAndView mav = new ModelAndView("mypage/usermypage/ReviewWrite");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/ReviewWrite");
 		mav.addObject("userdto",userdto);
 		return mav;
 
 	}
+	 /*리뷰쓰기버튼 눌렀을 때*/
+		@RequestMapping(value="reviewWrite.mib" , method=RequestMethod.POST)
+		public ModelAndView writeGood(HttpServletRequest res) throws Exception{
+			ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
+			
+			// form에서 넘어온 input
+			String id = res.getParameter("id");
+			String title= res.getParameter("title");
+			String content= res.getParameter("content");
+			String score= res.getParameter("score");
+			// 이걸로먼저 review table에 인설트
+			
+			//ehdkdkf  yk
+			
+			// 사진 파일 부분 
+			Map<String, Object> map =  parseInsertFileInfo(res);
+		
+				
+				 return mav;
+			}
+
+	
+		// 파일 이름 중복 방지 메소드
+		 public static String getRandomString(){
+
+			        return UUID.randomUUID().toString().replaceAll("-", "");
+
+		}
+		
+		// DB에 등록될 파일 메소드
+		public Map<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+			 
+				HttpSession session = request.getSession(); 
+		        
+				MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+
+		        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		        
+		        // 저장경로 
+		        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+				//String root_path = System.getProperty("catalina.home");
+		        String attach_path = "images\\"; 
+				String filePath = root_path+attach_path;
+		         
+				System.out.println("저장경로=========================================================================================="+filePath);
+
+		        MultipartFile multipartFile = null;
+
+		        String originalFileName = null;
+
+		        String originalFileExtension = null;
+
+		        String storedFileName = null;
+
+		         
+		        Map<String, Object> listMap = null; 
+
+		         
+		        File file = new File(filePath);
+		        // 폴더가없을경우 폴더생성 
+		        if(file.exists() == false){
+
+		            file.mkdirs();
+
+		        }
+
+		         
+		        int SEQ = 254;
+		        while(iterator.hasNext()){
+		        		SEQ++;
+		            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+
+		            if(multipartFile.isEmpty() == false){
+
+		                originalFileName = multipartFile.getOriginalFilename();
+
+		                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+		                storedFileName = getRandomString() + originalFileExtension;
+
+		                // 첨부한 파일 생성 
+		                file = new File(filePath + storedFileName);
+
+		                multipartFile.transferTo(file);
+
+		                listMap = new HashMap<String,Object>();
+
+		                listMap.put("SEQ", SEQ);
+		                
+		                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+		                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+
+		            }
+
+		        }
+
+		        return listMap;
+
+		    }
 	
 }

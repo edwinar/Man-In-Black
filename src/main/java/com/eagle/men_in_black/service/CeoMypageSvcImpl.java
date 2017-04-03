@@ -53,4 +53,23 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_search_QnA(map);
 	}
 
+	@Override
+	public String do_search_delstep(int SEQ) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_search_delstep(SEQ);
+	}
+
+	@Override
+	public int do_update_delstep(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_update_delstep(map);
+	}
+
+	@Override
+	public int do_insert_product(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_insert_product(map);
+	}
+	
+
 }
