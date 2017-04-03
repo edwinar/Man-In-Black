@@ -18,4 +18,6 @@ public interface CeoMypageDao {
 	public String do_search_delstep(int SEQ);
 	
 	public int do_update_delstep(HashMap<String, String> map);
+	
+	public int do_insert_product(HashMap<String, String> map);
 }

@@ -123,4 +123,36 @@ UPDATE DELIVERY SET DEL_STEP=#{delstep}
 WHERE DEL_SEQ = #{del_seq}
 </update>
 
+<insert id="do_insert_product" parameterType="hashmap">
+INSERT
+INTO PRODUCT
+  (
+    PRO_SEQ,
+    PRO_DETAIL,
+    PRO_NAME,
+    ITEM,
+    SUB_ITEM,
+    PRO_PRICE,
+    MATERIAL,
+    WASH,
+    BODYTYPE,
+    PRO_CONTENT,
+    NEW_ITEM
+  )
+  VALUES
+  (
+    #{pro_seq},
+    #{pro_detail},
+    #{pro_name},
+    #{item},
+    #{sub_item},
+    #{pro_price},
+  	#{material},
+    #{wash},
+    #{bodytype},
+    #{pro_content},
+   	#{new_item}
+  )
+</insert>
+
 </mapper>

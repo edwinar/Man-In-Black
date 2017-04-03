@@ -13,4 +13,5 @@ public interface CeoMypageSvc {
 	public List<CeoMypageDto> do_search_QnA(Map<String, Object> map);
 	public String do_search_delstep(int SEQ);
 	public int do_update_delstep(HashMap<String, String> map);
+	public int do_insert_product(HashMap<String, String> map);
 }

@@ -59,4 +59,11 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.update(statement, map);
 	}
 
+
+	@Override
+	public int do_insert_product(HashMap<String, String> map) {
+		String statement = namespace+".do_insert_product";
+		return sqlSession.insert(statement, map);
+	}
+
 }

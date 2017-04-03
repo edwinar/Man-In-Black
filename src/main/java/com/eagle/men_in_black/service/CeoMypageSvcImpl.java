@@ -64,6 +64,12 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		// TODO Auto-generated method stub
 		return ceoMypageDao.do_update_delstep(map);
 	}
+
+	@Override
+	public int do_insert_product(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_insert_product(map);
+	}
 	
 
 }

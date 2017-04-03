@@ -49,7 +49,6 @@ public class CeoMypageController {
 
 			ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
 			
-
 			return mav;
 
 	}
@@ -190,7 +189,21 @@ public class CeoMypageController {
 		String bodytype  =res.getParameter("bodytype")==null?"":res.getParameter("bodytype");
 		String pro_content=res.getParameter("pro_content")==null?"":res.getParameter("pro_content");
 		String new_item  = res.getParameter("new_item")==null?"N":res.getParameter("new_item");
-		                 
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("pro_detail", pro_detail);
+		map.put("pro_name", pro_name);
+		map.put("item", item);
+		map.put("sub_item", sub_item);
+		map.put("pro_price", pro_price);
+		map.put("material", material);
+		map.put("wash", wash);
+		map.put("bodytype", bodytype);
+		map.put("pro_content", pro_content);
+		map.put("new_item", new_item);
+		map.put("pro_seq", "100");
+		
+		//int insertPro = ceoMypageSvc.do_insert_product(map);
 		
 		// pro_detail 부분 
 		String color = res.getParameter("color")==null?"":res.getParameter("color");
@@ -215,6 +228,10 @@ public class CeoMypageController {
 			}
 		}
 		
+		//if(insertPro>0){
+			
+		//}
+		
 		/*System.out.println("count====="+count);
 		for(int i=1; i<=count; i++){
 			System.out.println("저장된 맵 칼라===" + detailMap.get("color"+i));
@@ -235,7 +252,7 @@ public class CeoMypageController {
 			 return mav;
 		}
 
-		/* 이미지업로드 */
+		/* 에디터 이미지업로드 */
 		@RequestMapping(value="ckeditorImageUpload.mib",  method = RequestMethod.POST)
 		public ModelAndView procFileUpload(FileModel fileBean,HttpServletRequest request, Model model) { 
 			HttpSession session = request.getSession(); 
