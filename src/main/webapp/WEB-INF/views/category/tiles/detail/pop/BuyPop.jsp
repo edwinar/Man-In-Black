@@ -14,7 +14,15 @@
 </style>
 </head>
 <body>
-
+<script type="text/javascript">
+function countplus(){
+	var num = $('#number').val();
+	alert(num);
+}
+function countminus(){
+	
+}
+</script>
 <div align="center" style="text-align: center;">
 	<div class="thumbnail" align="center" style="text-align: center;">
 		<div class="score" align="center" style="height: 20%; width: 100%; text-align: center;">
@@ -36,17 +44,17 @@
 		</div>
 		<div class="info" style="height: 15%; width: 100%; text-align: center;">
 			<h5>사이즈</h5><br>
-			<select name=color size=1>
-		        <option value="" selected="selected">칼라선택</option>
-		        <option value="BLACK">BLACK</option>
-		        <option value="WHITE">WHITE</option>
+			<select name=size size=1>
+		        <option value="" selected="selected">사이즈선택</option>
+		        <option value="S">S</option>
+		        <option value="M">M</option>
 	    	</select>
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">
 			<h5>수량</h5><br>
-			<button class="btn btn-default" type="submit" style="width: 30%; height: 100%;" onclick="">-</button>
-			<input type="text" size="5px" value="<%=count %>"/>
-			<button class="btn btn-default" type="submit" style="width: 30%; height: 100%;" onclick="">+</button>
+			<button class="btn btn-default" id="plus" type="submit" style="width: 15%; height: 100%;" onclick="countminus()">-</button>
+			<input type="text" id="number" size="5px" value="<%=count %>" style="text-align: center;"/>
+			<button class="btn btn-default" id="minus" type="submit" style="width: 15%; height: 100%;" onclick="countplus()">+</button>
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
 			<button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">장바구니</button>
