@@ -41,27 +41,25 @@ public class DetailController {
 	}
 	
 	@RequestMapping("review.mib")
-	public ModelAndView review() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView review(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Review");
-		mav.addObject("msg", "김옥지");
+		
+		int REV_SEQ = Integer.parseInt(res.getParameter("REV_SEQ"));
+		
+		DetailDto detaildto = detailSvc.do_selectReviewDetail(REV_SEQ);
+		mav.addObject("detaildto", detaildto);
 
 		return mav;
 	}
 	
 	@RequestMapping("reviewReply.mib")
-	public ModelAndView reviewReply() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView reviewReply(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/ReviewReply");
-		mav.addObject("msg", "김옥지");
+		
+		int REV_SEQ = Integer.parseInt(res.getParameter("REV_SEQ"));
+		
+		DetailDto detaildto = detailSvc.do_selectReviewDetail(REV_SEQ);
+		mav.addObject("detailDto", detaildto);
 
 		return mav;
 	}

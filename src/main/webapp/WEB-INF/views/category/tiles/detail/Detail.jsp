@@ -442,8 +442,8 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "../images/ss.jpg");
     });
 });
-function popup(){
-	window.open("review.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+function popup(REV_SEQ){
+	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnADetail(){
 	window.open("QnADetail.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
@@ -698,7 +698,7 @@ function QnAWrite(){
             	<img alt="" src="../images/arrow.PNG" class="imgr" width="200px">            
          	</td>
     		<td class="organisationname" width="60%">
-            	<a href="javascript:popup()">
+            	<a href="javascript:popup(<%=reviewList.get(i).getREV_SEQ()%>)">
              	<br><br>
 	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
 	            </a>
@@ -716,7 +716,7 @@ function QnAWrite(){
             	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
          	</td>
             <td class="organisationname" width="60%">
-            	<a href="javascript:popup()">
+            	<a href="javascript:popup(<%=reviewList.get(i).getREV_SEQ()%>)">
             <%
         		if(reviewList.get(i).getSCORE()==1){
         	%>

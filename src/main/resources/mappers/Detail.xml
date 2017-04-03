@@ -55,4 +55,10 @@ WHERE A.PRO_SEQ=#{PRO_SEQ}
 ORDER BY A.REV_REF DESC, A.REV_SEQ ASC
 </select>
 
+<select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT *
+FROM REVIEW
+WHERE REV_SEQ=#{REV_SEQ}
+</select>
+
 </mapper>
