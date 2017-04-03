@@ -40,9 +40,9 @@ public class ServiceSvcImpl implements ServiceSvc {
 	}
 
 	@Override
-	public void do_service_delete(int seq) {
+	public int do_service_delete(int seq) {
 		// TODO Auto-generated method stub
-		serviceDao.do_service_delete(seq);
+		return serviceDao.do_service_delete(seq);
 	}
 
 }
