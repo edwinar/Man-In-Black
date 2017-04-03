@@ -9,12 +9,12 @@ SELECT TT1.*
   FROM (
        SELECT ROWNUM RNUM,T1.*,T2.*
        FROM(
-            SELECT Z.*, Y.STORED_NAME, X.STOCK
+            SELECT Z.*, Y.STORED_NAME, X.STOCK, W.DEL_STEP
             FROM(
                  SELECT B.ITEM, B.PRO_NAME, B.PRO_PRICE 
                  , A.SEL_TIME SELTIME, A.SEL_COLOR SEL_COLOR,
                  A.SEL_SIZE SEL_SIZE, A.PRO_SEQ, A.SEL_SEQ,A.SEL_NUM 
-                 ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME  
+                 ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME,A.USER_ID,A.DEL_SEQ   
                  FROM SALES A LEFT OUTER JOIN PRODUCT B
                  ON A.PRO_SEQ=B.PRO_SEQ
                  WHERE B.PRO_NAME LIKE #{search}
@@ -23,6 +23,10 @@ SELECT TT1.*
                  ON Z.PRO_SEQ=Y.PRO_SEQ
              INNER JOIN PRO_DETAIL X
                  ON Z.PRO_SEQ=X.PRO_SEQ
+             INNER JOIN DELIVERY W
+                 ON Z.PRO_SEQ=W.PRO_SEQ 
+                 AND Z.USER_ID=W.USER_ID
+                 AND Z.DEL_SEQ = W.DEL_SEQ	
              WHERE Y.STORED_NAME LIKE 'MAIN%' 
              AND X.PRO_SIZE=Z.SEL_SIZE  
              AND X.COLOR=Z.SEL_COLOR
@@ -109,5 +113,14 @@ NATURAL JOIN
   	) TT1
 WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
+
+<select id="do_search_delstep" parameterType="int" resultType="String">
+SELECT DEL_STEP FROM DELIVERY WHERE DEL_SEQ = #{SEQ}
+</select>
+
+<update id="do_update_delstep" parameterType="hashmap" >
+UPDATE DELIVERY SET DEL_STEP=#{delstep} 
+WHERE DEL_SEQ = #{del_seq}
+</update>
 
 </mapper>

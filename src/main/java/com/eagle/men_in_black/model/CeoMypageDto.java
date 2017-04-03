@@ -14,8 +14,8 @@ private String REV_TITLE;
 private String REV_TIME;
 private String SCORE;
 private String SELTIME;
-private	String	BODYTYPE;
-private	String	COLOR;
+private	String BODYTYPE;
+private	String COLOR;
 private	int	COUPON;
 private	int	DET_SEQ;
 private	int	DISCOUNT;
@@ -47,8 +47,27 @@ private	String	USER_ID;
 private	String	WASH;
 private	String	NEW_ITEM;
 private int TOT_CNT;
+private int DEL_SEQ;
+private String DEL_STEP;
 
 
+
+
+public String getDEL_STEP() {
+	return DEL_STEP;
+}
+
+public void setDEL_STEP(String dEL_STEP) {
+	DEL_STEP = dEL_STEP;
+}
+
+public int getDEL_SEQ() {
+	return DEL_SEQ;
+}
+
+public void setDEL_SEQ(int dEL_SEQ) {
+	DEL_SEQ = dEL_SEQ;
+}
 
 public String getQNA_SEQ() {
 	return QNA_SEQ;
