@@ -278,9 +278,10 @@ td, th {
 	
 
 	var SEL_SEQ = 1;
-	function go() {
+	function go(seq) {
+		var PRO_SEQ = seq;
 		window.open(
-						"reveiwwrite.mib?SEL_SEQ=" + SEL_SEQ,
+						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ,
 						"pop",
 						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 	}
@@ -294,7 +295,7 @@ td, th {
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
-			<h3>MY Order</h3> 
+			<h3>MY Order</h3>
 			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
 		</div>
 	</center>
@@ -379,15 +380,12 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go()"> </td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go(<%=buyList.get(i).getPRO_SEQ()%>)"> </td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 				</tr>
-				<%
-					}
-				%>
-				
+		<%} %>
 			</table>
 			
 

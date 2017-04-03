@@ -40,5 +40,9 @@ public interface UserMypageDao {
 	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param);
 
 	public int do_member_update(HashMap<String, String> map);
+	
+	public void do_insert_review(HashMap<String, String> map);
+	
+	public void do_insert_reviewphoto(HashMap<String, Object> map);
 
 }

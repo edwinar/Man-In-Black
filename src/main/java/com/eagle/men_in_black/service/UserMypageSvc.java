@@ -2,6 +2,7 @@ package com.eagle.men_in_black.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.eagle.men_in_black.model.UserMypageDto;
 
@@ -40,5 +41,9 @@ public interface UserMypageSvc {
 	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param);
 	
 	public int do_member_update(HashMap<String, String> map);
+	
+	public void do_insert_review(HashMap<String, String> map);
+	
+	public void do_insert_reviewphoto(HashMap<String, Object> map);
 
 }

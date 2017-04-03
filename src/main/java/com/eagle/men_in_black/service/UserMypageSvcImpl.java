@@ -129,4 +129,18 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_member_update(map);
 	}
+
+
+	@Override
+	public void do_insert_review(HashMap<String, String> map) {
+		userMypageDao.do_insert_review(map);
+		
+	}
+
+
+	@Override
+	public void do_insert_reviewphoto(HashMap<String, Object> map) {
+		userMypageDao.do_insert_reviewphoto(map);
+		
+	}
 }

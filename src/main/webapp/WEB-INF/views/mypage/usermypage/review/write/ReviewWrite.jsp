@@ -8,7 +8,7 @@
 	Date now = new Date();
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
-	String num = request.getParameter("SEL_SEQ");
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,6 +61,8 @@
 </style>
 </head>
 <body>
+<% String num = request.getParameter("PRO_SEQ"); %>
+
 <form action="reviewWrite.mib" method="post" enctype="multipart/form-data">
 	<div class="layout">
 		<div class="leftLayout">
@@ -98,6 +100,7 @@
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
 						제목 : <input type="text" name="title">
+						<input type="hidden" name="pro_seq" value="<%=num%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">

@@ -332,19 +332,30 @@ public class UserMypageController {
 		@RequestMapping(value="reviewWrite.mib" , method=RequestMethod.POST)
 		public ModelAndView writeGood(HttpServletRequest res) throws Exception{
 			ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
-			
+			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 			// form에서 넘어온 input
-			String id = res.getParameter("id");
-			String title= res.getParameter("title");
-			String content= res.getParameter("content");
-			String score= res.getParameter("score");
-			// 이걸로먼저 review table에 인설트
+			String REV_TITLE= res.getParameter("title");
+			String REV_CONTENT= res.getParameter("content");
+			String SCORE= res.getParameter("score");
+			String PRO_SEQ= res.getParameter("pro_seq");
 			
-			//ehdkdkf  yk
+			// 이걸로먼저 review table에 인설트
+			HashMap<String, String> remap = new HashMap<>();
+			remap.put("REV_TITLE", REV_TITLE);
+			remap.put("REV_CONTENT", REV_CONTENT);
+			remap.put("SCORE", SCORE);
+			remap.put("PRO_SEQ", PRO_SEQ);
+			remap.put("USER_ID", userdto.getUSER_ID());
+			userMypageSvc.do_insert_review(remap);
+		
+			
+			
+			
 			
 			// 사진 파일 부분 
-			Map<String, Object> map =  parseInsertFileInfo(res);
-		
+			HashMap<String, Object> map =  parseInsertFileInfo(res);
+			
+			userMypageSvc.do_insert_reviewphoto(map);
 				
 				 return mav;
 			}
@@ -358,7 +369,7 @@ public class UserMypageController {
 		}
 		
 		// DB에 등록될 파일 메소드
-		public Map<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+		public HashMap<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
 			 
 				HttpSession session = request.getSession(); 
 		        
@@ -383,7 +394,7 @@ public class UserMypageController {
 		        String storedFileName = null;
 
 		         
-		        Map<String, Object> listMap = null; 
+		        HashMap<String, Object> listMap = null; 
 
 		         
 		        File file = new File(filePath);
@@ -394,10 +405,8 @@ public class UserMypageController {
 
 		        }
 
-		         
-		        int SEQ = 254;
+		   
 		        while(iterator.hasNext()){
-		        		SEQ++;
 		            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
 		            if(multipartFile.isEmpty() == false){
@@ -414,8 +423,6 @@ public class UserMypageController {
 		                multipartFile.transferTo(file);
 
 		                listMap = new HashMap<String,Object>();
-
-		                listMap.put("SEQ", SEQ);
 		                
 		                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
