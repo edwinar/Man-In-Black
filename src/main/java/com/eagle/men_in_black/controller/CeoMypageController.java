@@ -25,13 +25,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.FileModel;
+import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class CeoMypageController {
@@ -46,7 +49,6 @@ public class CeoMypageController {
 
 			ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_Good");
 			
-
 			return mav;
 
 	}
@@ -68,8 +70,8 @@ public class CeoMypageController {
 	        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 	        
 	        // 저장경로 
-	       // String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
-			String root_path = System.getProperty("catalina.home");
+	        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+			//String root_path = System.getProperty("catalina.home");
 	        String attach_path = "images\\"; 
 			String filePath = root_path+attach_path;
 	         
@@ -87,7 +89,7 @@ public class CeoMypageController {
 
 	        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 
-	        Map<String, Object> listMap = null; 
+	        HashMap<String,Object> listMap = null; 
 
 	         
 	        File file = new File(filePath);
@@ -99,27 +101,30 @@ public class CeoMypageController {
 	        }
 
 	         
-	        int SEQ = 254;
+	        int SEQ = 265;
+	        int fileCount = 0;
 	        while(iterator.hasNext()){
 	        		SEQ++;
-	            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+	        		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
 	            if(multipartFile.isEmpty() == false){
-
+	            	
+	            	if(fileCount==0){
 	                originalFileName = multipartFile.getOriginalFilename();
 
 	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-
-	                storedFileName = getRandomString() + originalFileExtension;
-
+	                
+	                storedFileName = "MAIN" + getRandomString() + originalFileExtension;
+	                
 	                 
 	                // 첨부한 파일 생성 
 	                file = new File(filePath + storedFileName);
 
 	                multipartFile.transferTo(file);
-
-	                listMap = new HashMap<String,Object>();
-
+	                
+	                System.out.println("SEQ사진1=="+SEQ);
+	                listMap = new HashMap<String,Object>(); 
+	                
 	                listMap.put("SEQ", SEQ);
 	                
 	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
@@ -129,7 +134,32 @@ public class CeoMypageController {
 	                //listMap.put("FILE_SIZE", multipartFile.getSize());  // 파일크기 
 
 	                list.add(listMap);
+	                fileCount++;
+	            	}else{
+	            	   originalFileName = multipartFile.getOriginalFilename();
 
+	 	               originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+	 	                
+	 	               storedFileName = getRandomString() + originalFileExtension;
+	 	                
+	 	                 
+	 	                // 첨부한 파일 생성 
+	 	               file = new File(filePath + storedFileName);
+
+	 	               multipartFile.transferTo(file);
+	 	               System.out.println("SEQ사진2부터=="+SEQ);
+	 	               listMap = new HashMap<String,Object>();  
+	 	               
+	 	               listMap.put("SEQ", SEQ);
+	 	                
+	 	               listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+	 	               listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+
+	 	               //listMap.put("FILE_SIZE", multipartFile.getSize());  // 파일크기 
+
+	 	               list.add(listMap);	
+	            	}
 	            }
 
 	        }
@@ -148,26 +178,81 @@ public class CeoMypageController {
 	public ModelAndView writeGood(HttpServletRequest res) throws Exception{
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 		
-		String color = res.getParameter("color");
-		String color1 = res.getParameter("color1");
-		String color2 = res.getParameter("color2");
-		String color3 = res.getParameter("color3");
+		// product 부분 
+		String pro_detail=res.getParameter("editor")==null?"":res.getParameter("editor");
+		String pro_name  =res.getParameter("pro_name")==null?"":res.getParameter("pro_name");
+		String item      =res.getParameter("item")==null?"":res.getParameter("item");
+		String sub_item  =res.getParameter("sub_item")==null?"":res.getParameter("sub_item");
+		String pro_price =res.getParameter("pro_price")==null?"":res.getParameter("pro_price");
+		String material  =res.getParameter("material")==null?"":res.getParameter("material");
+		String wash      =res.getParameter("wash")==null?"":res.getParameter("wash");
+		String bodytype  =res.getParameter("bodytype")==null?"":res.getParameter("bodytype");
+		String pro_content=res.getParameter("pro_content")==null?"":res.getParameter("pro_content");
+		String new_item  = res.getParameter("new_item")==null?"N":res.getParameter("new_item");
 		
-		System.out.println("칼라"+color+"칼라원=="+color1+"color2=="+color2+"color3=="+color3);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("pro_detail", pro_detail);
+		map.put("pro_name", pro_name);
+		map.put("item", item);
+		map.put("sub_item", sub_item);
+		map.put("pro_price", pro_price);
+		map.put("material", material);
+		map.put("wash", wash);
+		map.put("bodytype", bodytype);
+		map.put("pro_content", pro_content);
+		map.put("new_item", new_item);
+		map.put("pro_seq", "100");
+		
+		//int insertPro = ceoMypageSvc.do_insert_product(map);
+		
+		// pro_detail 부분 
+		String color = res.getParameter("color")==null?"":res.getParameter("color");
+		String size = res.getParameter("size")==null?"":res.getParameter("size");
+		String stock = res.getParameter("stock")==null?"":res.getParameter("stock");
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		detailMap.put("color", color);
+		detailMap.put("size", size);
+		detailMap.put("stock", stock);
+		int count = 0;
+		
+		for(int i=1; i<99; i++){
+			color = res.getParameter("color"+i)==null?"none":res.getParameter("color"+i);
+			size = res.getParameter("size"+i)==null?"none":res.getParameter("size"+i);
+			stock = res.getParameter("stock"+i)==null?"none":res.getParameter("stock"+i);
+			if(!color.equals("none")&&!size.equals("none")&&!stock.equals("none")){
+			count++;
+			detailMap.put("color"+i, color);
+			detailMap.put("size"+i, size);
+			detailMap.put("stock"+i, stock);
+			}
+		}
+		
+		//if(insertPro>0){
+			
+		//}
+		
+		/*System.out.println("count====="+count);
+		for(int i=1; i<=count; i++){
+			System.out.println("저장된 맵 칼라===" + detailMap.get("color"+i));
+			System.out.println("저장된 맵 사이즈===" + detailMap.get("size"+i));
+			System.out.println("저장된 맵 재고===" + detailMap.get("stock"+i));
+		}*/
+		
+		
 		
 		// 사진 파일 부분 
 		List<Map<String, Object>> list =  parseInsertFileInfo(res);
-		//ceoMypageSvc.do_insert_photo(list);
+		ceoMypageSvc.do_insert_photo(list);
 		
 		/*for(int i=0; i<list.size();i++){
 			System.out.println("파일이름"+list.get(i).get("ORIGINAL_FILE_NAME"));
 			System.out.println("파일이름"+list.get(i).get("STORED_FILE_NAME"));
 		}*/
-			
 			 return mav;
 		}
 
-		/* 이미지업로드 */
+		/* 에디터 이미지업로드 */
 		@RequestMapping(value="ckeditorImageUpload.mib",  method = RequestMethod.POST)
 		public ModelAndView procFileUpload(FileModel fileBean,HttpServletRequest request, Model model) { 
 			HttpSession session = request.getSession(); 
@@ -246,6 +331,39 @@ public class CeoMypageController {
 		return mav;
 
 	}
+	//배송 단계 아작스 부분 
+		@RequestMapping(value="del_step.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+		
+		public @ResponseBody String emailCheck(HttpServletRequest res){
+			Map<String, Object> resultMap = new HashMap<>();
+			
+			String SEQ = (res.getParameter("SEQ")==null || res.getParameter("SEQ")=="")?"":res.getParameter("SEQ");
+			
+			String del_step = ceoMypageSvc.do_search_delstep(Integer.parseInt(SEQ));
+			
+			HashMap<String, String> map = new HashMap<>();
+			int updateCom = 0;
+			if(del_step.equals("상품준비")){
+				map.put("delstep", "배송중");
+				map.put("del_seq", SEQ);
+				updateCom = ceoMypageSvc.do_update_delstep(map);
+			}else if(del_step.equals("배송중")){
+				map.put("delstep", "배송완료");
+				map.put("del_seq", SEQ);
+				updateCom = ceoMypageSvc.do_update_delstep(map);
+			}
+			
+			if(updateCom>0){
+			String update_del_step = ceoMypageSvc.do_search_delstep(Integer.parseInt(SEQ));
+			
+			resultMap.put("check", update_del_step);
+				
+			Gson gson = new Gson();
+			return gson.toJson(resultMap);
+			}
+			return null;
+			
+		}
 	
 	//메인 배너 등록
 	@RequestMapping("register_MainBanner.mib")

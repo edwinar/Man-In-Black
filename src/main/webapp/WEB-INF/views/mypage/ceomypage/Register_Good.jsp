@@ -115,16 +115,16 @@
 	<div class="wrap">
  	
  	<div class="mat-label-check" style="font-weight: bold;">카테고리 분류&nbsp;
- 	<select>
- 	<option>카테고리</option>
- 	<option>OUTER</option>	
+ 	<select name="item">
+ 	<option value="none">카테고리</option>
+ 	<option value="OUTER">OUTER</option>	
  	</select>
     &nbsp;
-    <select>
-    <option>서브 카테고리</option>
-    <option>COAT</option>				
+    <select name="sub_item">
+    <option value="none">서브 카테고리</option>
+    <option value="COAT">COAT</option>				
  	</select>
- 	&nbsp;&nbsp;&nbsp;&nbsp;NEW카테고리 적용 <input type="checkbox" style="height: 20px; width: 20px;">
+ 	&nbsp;&nbsp;&nbsp;&nbsp;NEW카테고리 적용 <input type="checkbox" style="height: 20px; width: 20px;" value="Y" name="new_item">
  	</div>
     <br><br><br>
     <div class="mat-label-check" style="font-weight: bold;"><p align="center">메인 사진 등록</p>
@@ -152,11 +152,11 @@
  	 </div>
  	 <div class="mat-div-color">
     <label  class="mat-label">사이즈</label>
-    <input type="text" class="mat-input-color" id="사이즈" >
+    <input type="text" class="mat-input-color" id="사이즈" name="size">
  	 </div>
  	 <div class="mat-div-color">
     <label  class="mat-label">재고</label>
-    <input type="text" class="mat-input-color" id="재고" >
+    <input type="text" class="mat-input-color" id="재고" name="stock">
  	 </div>
  	</div>
 
@@ -166,32 +166,32 @@
     
     <div class="mat-div" style="clear:left">
     <label  class="mat-label">상품이름</label>
-    <input type="text" class="mat-input" id="상품이름"> 
+    <input type="text" class="mat-input" id="상품이름" name="pro_name"> 
  	</div>
   
     <div class="mat-div">
     <label  class="mat-label">상품가격</label>
-    <input type="text" class="mat-input" id="상품가격" >
+    <input type="text" class="mat-input" id="상품가격" name="pro_price" >
  	 </div>
   
     <div class="mat-div">
     <label  class="mat-label">소재</label>
-    <input type="text" class="mat-input" id="소재">
+    <input type="text" class="mat-input" id="소재" name="material">
  	 </div>
   
     <div class="mat-div">
     <label  class="mat-label">세탁방법</label>
-    <input type="text" class="mat-input" id="세탁방법">
+    <input type="text" class="mat-input" id="세탁방법" name="wash">
  	 </div>
   
     <div class="mat-div">
     <label  class="mat-label">모델체형</label>
-    <input type="text" class="mat-input" id="모델체형">
+    <input type="text" class="mat-input" id="모델체형" name="bodytype">
   	</div>
   
     <div class="mat-div">
     <label  class="mat-label">간단설명</label>
-    <input type="text" class="mat-input" id="간단설명">
+    <input type="text" class="mat-input" id="간단설명" name="pro_content">
   	</div>
   
   
@@ -308,7 +308,9 @@ function addDetail() {
 	
 	alert("num="+num);
 	
-	 var cloneElements = $('#addDt').clone(true).find("input[name^=color]").attr("name", "color"+num).end();
+	 var cloneElements = $('#addDt').clone(true).find("input[name^=color]").attr("name", "color"+num).end()
+	 											.find("input[name^=size]").attr("name", "size"+num).end()
+	 											.find("input[name^=stock]").attr("name", "stock"+num).end();
 	// 변수 cloneElements를 만들어 복사된 요소들을 저장
 
 	cloneElements .appendTo('#add');

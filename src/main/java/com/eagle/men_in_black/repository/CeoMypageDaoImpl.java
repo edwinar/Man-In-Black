@@ -45,4 +45,25 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.selectList(statement, map);
 	}
 
+
+	@Override
+	public String do_search_delstep(int SEQ) {
+		String statement = namespace+".do_search_delstep";
+		return sqlSession.selectOne(statement, SEQ);
+	}
+
+
+	@Override
+	public int do_update_delstep(HashMap<String, String> map) {
+		String statement = namespace+".do_update_delstep";
+		return sqlSession.update(statement, map);
+	}
+
+
+	@Override
+	public int do_insert_product(HashMap<String, String> map) {
+		String statement = namespace+".do_insert_product";
+		return sqlSession.insert(statement, map);
+	}
+
 }

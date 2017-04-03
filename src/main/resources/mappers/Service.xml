@@ -45,7 +45,7 @@
 		NOTICE_BOARD
 		(NOTICE_SEQ,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_TIME)
 		<!--시퀀스 설정하고 등록  -->
-		VALUES(103,#{noticetitle},#{content},SYSDATE)
+		VALUES(104,#{noticetitle},#{content},SYSDATE)
 
 	</insert>
 
@@ -53,14 +53,14 @@
 	<update id="do_service_update" parameterType="hashmap" >
 		UPDATE NOTICE_BOARD
 		SET
-		NOTICE_TITLE=#{},NOTICE_CONTENT=#{},NOTICE_TIME=#{}
-		WHERE NOTICE_SEQ=#{}
+		NOTICE_TITLE=#{noticetitle},NOTICE_CONTENT=#{content},NOTICE_TIME=SYSDATE
+		WHERE NOTICE_SEQ=#{seq}
 
 
 	</update>
 
 	<!--공지사항 삭제 -->
-	<delete id="do_service_delete" parameterType="String">
+	<delete id="do_service_delete" parameterType="int">
 		DELETE
 		FROM NOTICE_BOARD
 		WHERE NOTICE_SEQ =#{seq}
