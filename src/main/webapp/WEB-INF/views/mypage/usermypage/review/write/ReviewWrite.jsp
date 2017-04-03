@@ -1,7 +1,16 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%
+	MainDto userdto = (MainDto) request.getAttribute("userdto");
+	Date now = new Date();
+	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
+	String time = fm.format(now);
+	String num  = request.getParameter("SEL_SEQ");
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,27 +47,36 @@
 	height: 100%;
 	text-align: center;
 }
+
+.non {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom: 0px;
+}
 </style>
 </head>
 <body>
-
+<form action="" method="post" enctype="multipart/form-data">
 	<div class="layout">
 		<div class="leftLayout">
+			<div class="thumbnail">
+				<div class="panel panel-default"
+					style="margin-left: 40px; margin-bottom: 30px">
+				
+						<input type="file" name="onefile" id="onefile">
 
-			<div>
-				<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-				<a class="panel-title" style="margin-left: 10px; margin-bottom: 5px">파일
-					업로드</a>
-			</div>
-			<div class="panel panel-default"
-				style="margin-left: 40px; margin-bottom: 30px">
-				<div class="panel-body">
-					<input type="file" name="uploadFile">
+						<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
+							id="imgone-div" ></div>
+
+					
 				</div>
 			</div>
-
 		</div>
+		
 		<div class="rightLayout">
+		
 			<div class="thumbnail">
 				<div class="score" align="center" style="height: 20%">
 					평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
@@ -75,26 +93,31 @@
 
 
 
-				<div class="title" align="center" style="height: 20%; width: 100%;">
-					<input type="text" id="title">
+				<div class="title" align="center" style="height: 10%; width: 100%;">
+					제목 : <input type="text" id="title">
 				</div>
 				<div class="info"
-					style="height: 15%; width: 100%; text-align: right;">
-					작성자 :  작성일 :
-					
+					style="height: 10%; width: 100%; text-align: right;">
+					작성자 :<input type="text" id="id" value="<%=userdto.getUSER_ID()%>님"
+						size="7" readonly="readonly" class="non"> 작성일 :<input
+						type="text" id="id" value="<%=time%>" size="7" readonly="readonly"
+						class="non">
+
 				</div>
 				<div class="content" align="center"
 					style="height: 28%; width: 100%; text-align: left;">
 					<input type="text" id="content" style="width: 100%; height: 100px">
 				</div>
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
-					<button style="width: 50%; height: 100%;"
-						onclick="insrt()">리뷰달기</button>
+				
+				<input type="submit" value="리뷰 달기">
 				</div>
+				
 			</div>
+			
 		</div>
 	</div>
-
+</form>
 
 
 
@@ -109,7 +132,7 @@
 				$("#star4").attr("src", "../images/scoreEmpty.png");
 				$("#star5").attr("src", "../images/scoreEmpty.png");
 				score = 1;
-				alert(score);
+
 			});
 
 			$("#star2").click(function() {
@@ -119,7 +142,7 @@
 				$("#star4").attr("src", "../images/scoreEmpty.png");
 				$("#star5").attr("src", "../images/scoreEmpty.png");
 				score = 2;
-				alert(score);
+
 			});
 			$("#star3").click(function() {
 				$("#star1").attr("src", "../images/scoreFull.png");
@@ -128,7 +151,7 @@
 				$("#star4").attr("src", "../images/scoreEmpty.png");
 				$("#star5").attr("src", "../images/scoreEmpty.png");
 				score = 3;
-				alert(score);
+
 			});
 			$("#star4").click(function() {
 				$("#star1").attr("src", "../images/scoreFull.png");
@@ -137,7 +160,7 @@
 				$("#star4").attr("src", "../images/scoreFull.png");
 				$("#star5").attr("src", "../images/scoreEmpty.png");
 				score = 4;
-				alert(score);
+
 			});
 			$("#star5").click(function() {
 
@@ -147,18 +170,35 @@
 				$("#star4").attr("src", "../images/scoreFull.png");
 				$("#star5").attr("src", "../images/scoreFull.png");
 				score = 5;
-				alert(score);
+
 			});
 
-		})
-	function insrt() {
-			
-			ocument.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ+'?';
-		
-	}	
-		
-		
-		       
+		});
+
+		// 파일 업로드 이미지 미리보기 	
+
+		$(function() {
+			$("#onefile").on('change', function() {
+				readURL(this, 'one');
+			})
+		});
+
+		function readURL(input, num) {
+			if (num == 'one') {
+				$("#imgone-div")
+						.html('<img id="oneblah" src="#" width="100%" height="100%"/>');
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+
+						$('#oneblah').attr('src', e.target.result);
+					}
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+		}
+
 	</script>
 </body>
 </html>

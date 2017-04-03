@@ -276,9 +276,13 @@ td, th {
 										});
 					});
 	
-	
-	function  go() {
-		document.location.href='reveiwwrite.mib';
+
+	var SEL_SEQ = 1;
+	function go() {
+		window.open(
+						"reveiwwrite.mib?SEL_SEQ=" + SEL_SEQ,
+						"pop",
+						"width=840 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 	}
 </script>
 <title>::구매내역::</title>
@@ -370,7 +374,7 @@ td, th {
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
 					<td><%=buyList.get(i).getPRO_NAME()%></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></th>
+					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPRO_PRICE()%></th>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON()%></th>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>

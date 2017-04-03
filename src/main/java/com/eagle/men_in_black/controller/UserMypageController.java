@@ -314,7 +314,7 @@ public class UserMypageController {
 	@RequestMapping("reveiwwrite.mib")
 	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		ModelAndView mav = new ModelAndView("mypage/usermypage/ReviewWrite");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/ReviewWrite");
 		mav.addObject("userdto",userdto);
 		return mav;
 
