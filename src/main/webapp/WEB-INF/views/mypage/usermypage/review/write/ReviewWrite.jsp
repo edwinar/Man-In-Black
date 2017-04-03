@@ -209,15 +209,21 @@ action="reviewWrite.mib"
 		};
 		
 		function closeSelf(){
-		
-			var formData = $("#f1").serialize();
-
+			var formData = new FormData(); 
+			formData.append("title", $("input[name=title]").val()); 
+			formData.append("content", $("input[name=content]").val()); 
+			formData.append("pro_seq", $("input[name=pro_seq]").val()); 
+			formData.append("score", $("input[name=score]").val()); 
+			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
+			
 			$.ajax({
 	 			type : "POST",
 	 			url : "reviewWrite.mib",
 	 			async : true,
 	 			dataType : "html",
 	 			data : formData,
+	 			processData: false,
+	 			contentType: false,
 	 			success : function(data) {
 	 				//alert("success " + data);
 	 				var flag = $.parseJSON(data);
@@ -235,10 +241,7 @@ action="reviewWrite.mib"
 	 			}
 	 		});		
 
-		
-		
-		
-		    		}
+	}
 		
 	</script>
 </body>

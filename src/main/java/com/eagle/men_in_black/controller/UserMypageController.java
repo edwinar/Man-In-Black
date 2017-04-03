@@ -457,7 +457,7 @@ public class UserMypageController {
 			remap.put("PRO_SEQ", PRO_SEQ);
 			remap.put("USER_ID", userdto.getUSER_ID());
 			int rev =  userMypageSvc.do_insert_review(remap);
-			HashMap<String, Object> map = null;
+			
 			HashMap<String, String> resultMap = new HashMap<>();
 			if(rev>0){
 				// 사진 파일 부분 
@@ -471,7 +471,7 @@ public class UserMypageController {
 			        String attach_path = "images\\"; 
 					String filePath = root_path+attach_path;
 			         
-					System.out.println("저장경로=========================================================================================="+filePath);
+					//System.out.println("저장경로=========================================================================================="+filePath);
 
 			        MultipartFile multipartFile = null;
 
@@ -515,7 +515,7 @@ public class UserMypageController {
 			                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
 			                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
-			                
+			                System.out.println("userMypageSvc.do_select_revseq()" +userMypageSvc.do_select_revseq());
 			                listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 			            }
 

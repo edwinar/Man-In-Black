@@ -138,6 +138,6 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	@Override
 	public int do_select_revseq() {
 		String statement = namespace+".do_select_revseq";
-		 return sqlSession.insert(statement);
+		 return sqlSession.selectOne(statement);
 	}
 }
