@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	
+	int count = 1;
 %>
 <html>
 <head>
@@ -10,43 +10,47 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::BuyPop:::</title>
 <style type="text/css">
-.thumbnail{
- width: 100%;
- height: 100%;
- text-align: center;
-}
+
 </style>
 </head>
 <body>
-<div>
-	<div class="thumbnail">
-		<div class="score" align="center" style="height: 20%; width: 100%;">
-			<div style="height: 60%; text-align: left;">
+
+<div align="center" style="text-align: center;">
+	<div class="thumbnail" align="center" style="text-align: center;">
+		<div class="score" align="center" style="height: 20%; width: 100%; text-align: center;">
+			<div style="height: 60%; text-align: center; width: 100%" align="center">
 				<h3>에디코치자켓</h3>
 			</div>
-			<div style="height: 40%; text-align: left;">
-				<h5>옵션과 수량을 선택해주세요.</h5>
+			<div style="height: 40%; text-align: center; width: 100%" align="center">
+				<h6>옵션과 수량을 선택해주세요.</h6>
 			</div>
-			<hr style="border: solid black 1px; width: 70%;">
+			<hr style="border: solid black 1px; width: 80%;">
 		</div>
-		<div align="center" style="height: 15%; width: 100%;">
-			<h5>색상</h5><br/>
-			<a class="btn btn-default" href="#" role="button">BLACK</a>
+		<div align="center" style="height: 15%; width: 100%; text-align: center;">
+			<h5>색상</h5>
+			<select name=color size=1>
+		        <option value="" selected="selected">칼라선택</option>
+		        <option value="BLACK">BLACK</option>
+		        <option value="WHITE">WHITE</option>
+	    	</select>
 		</div>
-		<div class="info" style="height: 15%; width: 100%;">
-			<h5>사이즈</h5><br/>
-			<a class="btn btn-default" href="#" role="button">S</a>
-			<a class="btn btn-default" href="#" role="button">M</a>
+		<div class="info" style="height: 15%; width: 100%; text-align: center;">
+			<h5>사이즈</h5><br>
+			<select name=color size=1>
+		        <option value="" selected="selected">칼라선택</option>
+		        <option value="BLACK">BLACK</option>
+		        <option value="WHITE">WHITE</option>
+	    	</select>
 		</div>
-		<div style="height: 15%; width: 100%; text-align: left;">
-			<h5>수량</h5><br/>
-			<button style="width: 50%; height: 100%;" onclick="">+</button>
-			<input type="text" size="10px"/>
-			<button style="width: 50%; height: 100%;" onclick="">-</button>
+		<div style="height: 15%; width: 100%; text-align: center;" align="center">
+			<h5>수량</h5><br>
+			<button class="btn btn-default" type="submit" style="width: 30%; height: 100%;" onclick="">-</button>
+			<input type="text" size="5px" value="<%=count %>"/>
+			<button class="btn btn-default" type="submit" style="width: 30%; height: 100%;" onclick="">+</button>
 		</div>
-		<div class="btn" align="center" style="height: 35%; width:100%;">
-			<button style="width: 100%; height: 50%;" onclick="">장바구니</button>
-			<button style="width: 100%; height: 50%;" onclick="">구매하기</button>
+		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
+			<button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">장바구니</button>
+			<button type="button" class="btn btn-default btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">구매하기</button>
 		</div>
 	</div>
 </div>
