@@ -3,6 +3,7 @@
 <%
 	
 String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
+String insert = (String)request.getAttribute("insert")==null?"noinsert":(String)request.getAttribute("insert");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,6 +25,11 @@ String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)re
 </style>
 </head>
 <body>
+<% if(insert.equals("insert")){ %>
+<script type="text/javascript"> alert("회원가입 성공!") </script>
+ <%} %> 
+
+
 <% if(loginInfo.equals("success")){ %>
 	<script type="text/javascript"> alert("로그인성공"); </script>
 <%}else if(loginInfo.equals("NotPwd")){ %>
@@ -66,7 +72,7 @@ String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)re
 <div class="row" align="center">
   <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
     <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
+      <img src="../images/7960d01b40644950beb90f0486f4bcc9.jpg" alt="...">
       <div class="caption">
         <h3>창거니가 어제 입던 소매티</h3>
         <p>19000 Won</p>

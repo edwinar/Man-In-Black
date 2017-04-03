@@ -16,4 +16,12 @@ FROM MEMBERS
 WHERE EMAIL=#{email}
 </select>
 
+<insert id="do_join_MIB" parameterType="hashmap">
+INSERT
+INTO MEMBERS(USER_ID, USER_PW, USER_NAME, TEL, ADDRESS, POSTCODE, SEX,BIRTH, EMAIL, DETAILADDRESS)
+  VALUES
+  (#{ID}, #{PW}, #{NAME}, #{TEL}, #{ADDRESS}, #{POSTCODE}, #{SEX},#{BIRTH}, #{EMAIL}, #{DETAILADDRESS} )
+
+</insert>
+
 </mapper>

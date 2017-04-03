@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -116,6 +117,12 @@ public class MainSvcImpl implements MainSvc {
 	public MainDto do_search_email(String email) {
 		// TODO Auto-generated method stub
 		return mainDao.do_search_email(email);
+	}
+
+	@Override
+	public int do_join_MIB(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return mainDao.do_join_MIB(map);
 	}
 
 	

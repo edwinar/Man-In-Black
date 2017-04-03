@@ -8,7 +8,7 @@
 SELECT TT1.*
   FROM (
        SELECT ROWNUM RNUM,T1.*,T2.*
-       from(
+       FROM(
             SELECT Z.*, Y.STORED_NAME, X.STOCK
             FROM(
                  SELECT B.ITEM, B.PRO_NAME, B.PRO_PRICE 
@@ -17,6 +17,8 @@ SELECT TT1.*
                  ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME  
                  FROM SALES A LEFT OUTER JOIN PRODUCT B
                  ON A.PRO_SEQ=B.PRO_SEQ
+                 WHERE B.PRO_NAME LIKE #{search}
+                 or A.USER_ID LIKE #{search}
                  ) Z INNER JOIN PHOTO Y
                  ON Z.PRO_SEQ=Y.PRO_SEQ
              INNER JOIN PRO_DETAIL X
@@ -35,11 +37,77 @@ NATURAL JOIN
      SELECT COUNT(*) TOT_CNT
      FROM SALES A LEFT OUTER JOIN PRODUCT B
      ON A.PRO_SEQ=B.PRO_SEQ
-     WHERE A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+     WHERE (B.PRO_NAME LIKE #{search}
+     or A.USER_ID LIKE #{search})
+     AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE}) 
      ) T2
   	) TT1
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
+
+<insert id="do_insert_photo" parameterType="hashmap">
+INSERT
+INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME
+  )
+  VALUES
+  (
+    ${SEQ},
+    #{ORIGINAL_FILE_NAME},
+    #{STORED_FILE_NAME}
+  )
+</insert>
+
+<select id="do_search_review" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT TT1.*
+  FROM (
+       SELECT ROWNUM RNUM,T1.*,T2.*
+       FROM(
+
+SELECT A.REV_SEQ,B.PRO_NAME,A.REV_TITLE,A.REV_TIME,A.SCORE,B.ITEM
+FROM REVIEW A INNER JOIN PRODUCT B
+ON A.PRO_SEQ = B.PRO_SEQ 
+WHERE A.REV_STEP = 'N' AND 
+B.ITEM=#{ITEM}
+) T1
+NATURAL JOIN
+(
+	SELECT COUNT(*) TOT_CNT
+	FROM REVIEW A INNER JOIN PRODUCT B
+	ON A.PRO_SEQ = B.PRO_SEQ 
+	WHERE A.REV_STEP = 'N' AND 
+	B.ITEM=#{ITEM} 
+) T2
+  	) TT1
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
+
+<select id="do_search_QnA" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT TT1.*
+  FROM (
+       SELECT ROWNUM RNUM,T1.*,T2.*
+       FROM(
+
+SELECT A.QNA_SEQ,B.PRO_NAME,A.QNA_TITLE,A.QNA_TIME,B.ITEM,A.QNA_TYPE
+FROM QNA A INNER JOIN PRODUCT B
+ON A.PRO_SEQ = B.PRO_SEQ 
+WHERE A.QNA_STEP = 'N' AND 
+B.ITEM=#{ITEM}
+) T1
+NATURAL JOIN
+(
+	SELECT COUNT(*) TOT_CNT
+	FROM QNA A INNER JOIN PRODUCT B
+	ON A.PRO_SEQ = B.PRO_SEQ 
+	WHERE A.QNA_STEP = 'N' AND 
+	B.ITEM=#{ITEM}
+) T2
+  	) TT1
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
 </mapper>

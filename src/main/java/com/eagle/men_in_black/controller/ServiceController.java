@@ -77,10 +77,7 @@ public class ServiceController {
 		// DB에 글등록
 		String editor = res.getParameter("editor");
 		String noticetitle = res.getParameter("noticetitle");
-		
-		System.out.println("내영"+editor);
-		System.out.println("제목"+noticetitle);
-		
+						
 		HashMap<String, String> writemap = new HashMap<>();
 		writemap.put("content", editor);
 		writemap.put("noticetitle", noticetitle);
@@ -99,8 +96,18 @@ public class ServiceController {
 	}
 
 	// 공지사항수정(관리자)
-	
-	
+	@RequestMapping("serviceupdate.mib")
+	public ModelAndView serviceupdate(HttpServletRequest res, HttpServletResponse rep){
+		
+		int seq = Integer.parseInt(res.getParameter("seq"));
+		
+		ModelAndView mav = new ModelAndView("service/noticewrite");
+		ServiceDto serviceDto = serviceSvc.do_service_detail(seq);
+		mav.addObject("update", serviceDto);
+		
+		return mav;
+		
+	}
 	
 
 	// 공지사항삭제(관리자)

@@ -123,7 +123,6 @@ public class MainController {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		String email = (res.getParameter("email")==null || res.getParameter("email")=="")?"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz":res.getParameter("email");
-		System.out.println("넘어오긴하냐TLqk??"+email);
 		
 		MainDto dto = mainSvc.do_search_email(email);
 		
@@ -131,12 +130,10 @@ public class MainController {
 			if(dto.getEMAIL().equals(email)){
 				resultMap.put("check", "중복된 이메일입니다.");
 				resultMap.put("success", "fail");
-				System.out.println("넘어오긴하냐??"+email);
 			}
 		}else{
 			resultMap.put("check", "사용가능한 이메일 입니다.");
 			resultMap.put("success", "success");
-			System.out.println("넘어오긴하냐2222??"+email);
 		}
 		
 		Gson gson = new Gson();
@@ -178,7 +175,7 @@ public class MainController {
 		//회원가입 완료 버튼 
 	 @RequestMapping("compl.mib")
 	 public ModelAndView completeJoin(HttpServletRequest res, HttpServletResponse rep){
-		 ModelAndView mav = new ModelAndView("main/Main");
+		 ModelAndView mav = new ModelAndView();
 		
 			String sign_email    = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
 			String id            = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
@@ -192,9 +189,31 @@ public class MainController {
 			String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 			String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
 			
-			System.out.println("완료!!"+sign_email+id+name+tel+sex+birth+postcode+password+jibunAddress+roadAddress+detailAddress);
-		
+			String fullAddress = jibunAddress+roadAddress+"";
+			
+			HashMap<String, String> map  = new HashMap<>();
+			map.put("EMAIL", sign_email);
+			map.put("ID", id);
+			map.put("NAME", name);
+			map.put("TEL", tel);
+			map.put("SEX", sex);
+			map.put("BIRTH", birth);
+			map.put("POSTCODE", postcode);
+			map.put("PW", password);
+			map.put("ADDRESS", fullAddress);
+			map.put("DETAILADDRESS", detailAddress);
 		 
+			int insert = mainSvc.do_join_MIB(map);
+			
+			if(insert==0){
+				mav.setViewName("main/MIB_SignUp");
+				mav.addObject("insert", "noinsert");
+			}else{
+				mav.setViewName("main/Main");
+				mav.addObject("insert", "insert");
+			}
+			
+			
 		 
 		 return mav;
 	 }
@@ -204,15 +223,16 @@ public class MainController {
 	 public ModelAndView send(HttpServletRequest res, HttpServletResponse rep){
 	     
 		 String email = res.getParameter("sign_email");
-		 System.out.println(email);
+		 String signupdate = (String)res.getParameter("signupdate")==null?"":(String)res.getParameter("signupdate");
 		 
 		 String authNum = RandomNum();
 		 
 		// mainSvc.sendEmail(email, authNum);
-		 System.out.println("모달컨트롤러"+email+authNum);
+		 System.out.println("모달컨트롤러"+email+authNum+signupdate);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
 		 mav.addObject("sign_email",email);
+		 mav.addObject("signupdate",signupdate);
 		 
 	     return mav;
 	        

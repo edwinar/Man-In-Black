@@ -6,6 +6,7 @@ public class MainDto implements Serializable {
 
     private static final long serialVersionUID = 1241920765761676713L;
 
+    private String DETAILADDRESS;
     private String ADDRESS;
     private String BIRTH;
     private String BODYTYPE;
@@ -38,7 +39,20 @@ public class MainDto implements Serializable {
     }
 
 
-    public MainDto(String uSER_ID) {
+    
+    public String getDETAILADDRESS() {
+		return DETAILADDRESS;
+	}
+
+
+
+	public void setDETAILADDRESS(String dETAILADDRESS) {
+		DETAILADDRESS = dETAILADDRESS;
+	}
+
+
+
+	public MainDto(String uSER_ID) {
         USER_ID = uSER_ID;
     }
 

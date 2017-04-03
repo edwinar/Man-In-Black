@@ -22,6 +22,7 @@
 	</center>
 	<h3>NOTICEDETAIL</h3>
 
+
 	<div class="jumbotron">
 		<h3><%=serviceDto.getNOTICE_TITLE() %></h3>
 		<br><br>
@@ -29,6 +30,8 @@
 		<h4><%=serviceDto.getNOTICE_CONTENT() %></h4>
 		</div>
 		<p align="right">
+			<a  class="btn btn-primary btn-sm" href="serviceupdate.mib?seq=<%=serviceDto.getNOTICE_SEQ() %>" role="button">수정</a>
+			<a  class="btn btn-primary btn-sm" href="" role="button">삭제</a>
 			<a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a>
 			<!-- <a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a> -->
 		</p>

@@ -70,8 +70,9 @@ td, th {
 							var date1 = $('#start_date').val();
 							var date2 = $('#end_date').val();
 
-							$("#end_date").attr('min', date1);
-							$("#start_date").attr('max', date2);
+							$("#end_date").attr( 'min', date1 );
+					    	//$("#start_date").attr( 'max', date2 );
+					    	$("#end_date").val(date1);
 
 						});
 
@@ -111,7 +112,7 @@ td, th {
 										if (day == i) {
 											var lastDay = (new Date(year,
 													(mon - 1), 0)).getDate();
-											lastDay = lastDay - i;
+											lastDay = (lastDay+i)-7;
 											weekDate = year + '' + (mon - 1)
 													+ '' + lastDay;
 											if (mon < 10) {
@@ -144,10 +145,10 @@ td, th {
 													+ (now.getMonth() + 1)
 													: '0'
 															+ (now.getMonth() + 1);
-											var monthdate_mon = (now.getMonth() + 1) > 9 ? ''
-													+ (now.getMonth() + 1)
+											var monthdate_mon = (now.getMonth()) > 9 ? ''
+													+ (now.getMonth())
 													: '0'
-															+ (now.getMonth() + 1);
+															+ (now.getMonth());
 											var day = now.getDate() > 9 ? ''
 													+ now.getDate() : '0'
 													+ now.getDate();
@@ -162,7 +163,7 @@ td, th {
 
 											// 전에 한달의 마지막 날보다 지금 날이 클경우 
 											// 연도 도 고려 
-											if (mon == 1) { //1월일때 
+											if (mon == 0) { //1월일때 
 												year = year - 1;
 												monthdate_mon = 12;
 												monthDate = year + ''
@@ -170,8 +171,8 @@ td, th {
 											}
 
 											if (monthdate_lastDay < day
-													&& mon != 1) { // 1월이아니고 전달보다 지금이 클때 
-												monthdate_mon = monthdate_mon - 1;
+													&& mon != 0) { // 1월이아니고 전달보다 지금이 클때 
+												
 												if (monthdate_mon > 9) {
 													monthDate = year + ''
 															+ (monthdate_mon)
@@ -274,6 +275,11 @@ td, th {
 													+ fullDate;
 										});
 					});
+	
+	
+	function  go() {
+		document.location.href='reveiwwrite.mib';
+	}
 </script>
 <title>::구매내역::</title>
 </head>
@@ -292,7 +298,7 @@ td, th {
 	<div align="right">
 		<p>
 			<input type="date" height="50px" name="start_date" id="start_date"
-				value="<%=START_DATE%>" max="<%=START_DATE%>">~<input
+				value="<%=START_DATE%>" >~<input
 				type="date" name="end_date" id="end_date" value="<%=END_DATE%>"
 				min="<%=END_DATE%>">
 			<button type="button" id="dateBtn">검색</button>
@@ -369,7 +375,7 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go()"> </td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>

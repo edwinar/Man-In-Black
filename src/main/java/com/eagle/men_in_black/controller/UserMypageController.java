@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +14,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.UserMypageSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class UserMypageController {
@@ -49,13 +53,72 @@ public class UserMypageController {
 		}
 	// 회원정보수정 
 	@RequestMapping("userup.mib")
-	public ModelAndView userupdate(){
+	public ModelAndView userupdate(HttpServletRequest res){
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
-		mav.addObject("msg", "김옥지");
+		String sign_email = (res.getParameter("sign_email")==null || res.getParameter("sign_email")=="")?"":res.getParameter("sign_email");
+		String tel           = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
+		String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
+		String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
+		String jibunAddress  = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
+		String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
+		String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
+		String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
+		
+		String fullAddress = jibunAddress+roadAddress+"";
+		
+		HashMap<String, String> map  = new HashMap<>();
+		map.put("EMAIL", sign_email);
+		map.put("TEL", tel);
+		map.put("POSTCODE", postcode);
+		map.put("PW", password);
+		map.put("ADDRESS", fullAddress);
+		map.put("DETAILADDRESS", detailAddress);
+		map.put("USER_ID", id);
+	 
+		String upda = (res.getParameter("upda")==null || res.getParameter("upda")=="")?"":res.getParameter("upda");
+		System.out.println("업다============="+upda);
+		mav.addObject("upda", upda);
+		mav.addObject("sign_email", sign_email);
+		
+		if(userMypageSvc.do_member_update(map)==0){
+			if(!id.equals(""))mav.addObject("updateResult", "NO");
+		}else{
+			mav.addObject("updateResult", "OK");
+			mav.addObject("upda", "NO");
+		}
+		
 		
 		return mav;
 		
 	}
+	
+	// 회원정보수정 비밀번호 체크 
+	@RequestMapping(value="pwdCheck.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	
+	public @ResponseBody String emailCheck(HttpServletRequest res){
+		
+		String pwd = res.getParameter("pwd");
+		MainDto dto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		
+		HashMap<String, String> map = new HashMap<>();
+		
+		if(pwd.equals(dto.getUSER_PW())){
+			
+			map.put("success", "success");
+
+		}else{
+			map.put("check", "비밀번호가 틀렸습니다.");
+			map.put("success", "fail");
+		}
+		
+		Gson gson = new Gson();
+		
+		
+		return gson.toJson(map);
+		
+	}
+	
+	
 	// 구매목록 
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
@@ -245,5 +308,16 @@ public class UserMypageController {
 		return mav;
 		
 	}
-		
+	
+	
+	// 리뷰 쓰기
+	@RequestMapping("reveiwwrite.mib")
+	public ModelAndView coupon_Administer(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/ReviewWrite");
+		mav.addObject("userdto",userdto);
+		return mav;
+
 	}
+	
+}
