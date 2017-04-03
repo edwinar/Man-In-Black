@@ -282,7 +282,7 @@ td, th {
 		window.open(
 						"reveiwwrite.mib?SEL_SEQ=" + SEL_SEQ,
 						"pop",
-						"width=840 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 	}
 </script>
 <title>::구매내역::</title>
@@ -294,7 +294,7 @@ td, th {
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
-			<h3>MY Order</h3>
+			<h3>MY Order</h3> 
 			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
 		</div>
 	</center>

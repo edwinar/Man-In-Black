@@ -51,7 +51,7 @@ public class CeoMypageController {
 
 	}
 	
-		// 파일 이름 중복 방지 메소드
+	// 파일 이름 중복 방지 메소드
 	 public static String getRandomString(){
 
 		        return UUID.randomUUID().toString().replaceAll("-", "");
