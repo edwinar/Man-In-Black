@@ -79,7 +79,7 @@
 					class="dropdown-toggle" role="button" aria-expanded="false">NEW
 				</a></li>
 				<li class="dropdown"><a href="category.mib?ITEM=OUTER"
-					class="dropdown-toggle" role="button" aria-expanded="false">OUTER</span></a>
+					class="dropdown-toggle" role="button" aria-expanded="false">OUTER</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">COAT</a></li>
 						<li><a href="#">JACKET</a></li>
@@ -118,11 +118,10 @@
 			<hr
 				style="border: solid black 1px; margin-right: 30px; display: inline-block; width: 65%; margin-top: -0px; margin-bottom: 0px;">
 		</div>
-		<!-- /.navbar-collapse -->
 
 
 	</div>
-	<!-- /.container-fluid --> </nav>
+</nav>
 
 	<!-- *********************************************************************************** -->
 

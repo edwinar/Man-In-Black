@@ -36,7 +36,7 @@ public class CategoryController {
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("PAGE_SIZE", PAGE_SIZE);
-		
+
 		List<CategoryDto> list = categorySvc.do_selectNewProductList(map);
 		mav.addObject("list", list);
 
