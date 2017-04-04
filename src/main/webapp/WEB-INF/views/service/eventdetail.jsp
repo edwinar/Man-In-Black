@@ -34,6 +34,10 @@
 			<h4><%=serviceDto.getEVENT_CONTENT()%></h4>
 		</div>
 		
+		
+		<p align="right">
+		<a class="btn btn-primary" href="event.mib" role="button">목록가기</a>
+	</p>
 
 	</div>
 	
