@@ -120,4 +120,36 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_member_update";
 		return sqlSession.update(statement,map);
 	}
+
+	@Override
+	public UserMypageDto do_search_cancel(String del_seq) {
+		String statement = namespace+".do_search_cancel";
+		return sqlSession.selectOne(statement,del_seq);
+	}
+
+	@Override
+	public int do_update_cancel(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_cancel";
+		return sqlSession.update(statement,map);
+	}
+
+	@Override
+	public int do_insert_review(HashMap<String, String> map) {
+		String statement = namespace+".do_insert_review";
+		return sqlSession.insert(statement,map);
+
+	}
+
+	@Override
+	public int do_insert_reviewphoto(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_reviewphoto";
+		 return sqlSession.insert(statement,map);
+
+	}
+
+	@Override
+	public int do_select_revseq() {
+		String statement = namespace+".do_select_revseq";
+		 return sqlSession.selectOne(statement);
+	}
 }

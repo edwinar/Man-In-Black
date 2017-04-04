@@ -278,12 +278,40 @@ td, th {
 	
 
 	var SEL_SEQ = 1;
-	function go() {
+
+	function go(seq) {
+		var PRO_SEQ = seq;
 		window.open(
-						"reveiwwrite.mib?SEL_SEQ=" + SEL_SEQ,
+						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ,
 						"pop",
 						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+
+
+
+
 	}
+
+
+        function open_win(SEQ)
+        {
+            var DEL_SEQ = SEQ;
+            alert(DEL_SEQ);
+
+            cw=screen.availWidth;     //화면 넓이
+            ch=screen.availHeight;    //화면 높이
+
+            sw=650;    //띄울 창의 넓이
+            sh=650;    //띄울 창의 높이
+
+            ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
+            mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
+
+
+            window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+        }
+
+
+
 </script>
 <title>::구매내역::</title>
 </head>
@@ -294,7 +322,7 @@ td, th {
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
-			<h3>MY Order</h3> 
+			<h3>MY Order</h3>
 			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
 		</div>
 	</center>
@@ -379,15 +407,15 @@ td, th {
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go()"> </td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
+						<input type="button" value="취소반품교환" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+					</td>
+					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go(<%=buyList.get(i).getPRO_SEQ()%>)"> </td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 				</tr>
-				<%
-					}
-				%>
-				
+		<%} %>
 			</table>
 			
 

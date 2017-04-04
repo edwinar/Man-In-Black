@@ -118,7 +118,7 @@ $(document).ready(function() {
 	
 	$("#signA-div").hide();
 	$("#signupdiv").hide();
-	alert("업다==" + $("#upda").val());
+	//alert("업다==" + $("#upda").val());
 	
 	if($("#upda").val()=='OK'){
 		$('#pwdCheck').hide(); 
@@ -206,7 +206,7 @@ $(document).ready(function() {
 function cl() {
 	var email = $("#sign_email-a").val();
 	var signupdate = 'update';
-	alert("씨엘"+email);
+	//alert("씨엘"+email);
 	$("#modal-email").modal({
         remote : 'mail.mib?signupdate='+signupdate+'&sign_email='+email,
         backdrop: 'static' // 배경누르고 닫힘 방지 
@@ -237,7 +237,7 @@ $(document).ready(function() {
 		 			success : function(data) {
 		 				//alert("success " + data);
 		 				var flag = $.parseJSON(data);
-		 				alert(flag.success);
+		 				//alert(flag.success);
 		 				if(flag.success==='success'){
 		 					
 		 					cl();
