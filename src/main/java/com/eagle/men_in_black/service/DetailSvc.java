@@ -24,4 +24,6 @@ public interface DetailSvc {
 	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map);
 	//구매팝업칼라로인한 사이즈로 인한 재고
 	public String do_buyProductStockPop(HashMap<String, Object> map);
+	//장바구니 추가
+	public int do_addBasket(HashMap<String, Object> map);
 }

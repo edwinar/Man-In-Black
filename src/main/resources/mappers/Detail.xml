@@ -69,6 +69,11 @@ FROM PRO_DETAIL
 WHERE PRO_SEQ=#{PRO_SEQ} AND COLOR=#{COLOR} AND PRO_SIZE=#{PRO_SIZE}
 </select>
 
+<insert id="do_addBasket" parameterType="hashmap">
+INSERT INTO BASKET (BAS_SEQ, PRO_SEQ, USER_ID, PRO_SIZE, COLOR, BAS_PRO_NUM)
+VALUES(BAS_SEQ.NEXTVAL,#{PRO_SEQ},#{USER_ID},#{PRO_SIZE},#{COLOR},#{BAS_PRO_NUM})
+</insert>
+
 <select id="do_selectProductReviewList" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT A.REV_SEQ
 	, A.USER_ID
