@@ -129,4 +129,16 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_member_update(map);
 	}
+
+	@Override
+	public UserMypageDto do_search_cancel(String del_seq) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_search_cancel(del_seq);
+	}
+
+	@Override
+	public int do_update_cancel(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_cancel(map);
+	}
 }

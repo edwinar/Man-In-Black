@@ -153,18 +153,55 @@ public class UserMypageController {
 		return mav;
 		
 	}
-	// 구매목록 반품 교환 환불
+	// 구매목록 반품 교환 환불 목록
 	@RequestMapping("buyCancel.mib")
-	public ModelAndView buyCancel(){
+	public ModelAndView buyCancel(HttpServletRequest res, HttpServletResponse rep){
+		String DEL_SEQ = res.getParameter("DEL_SEQ");
 
+		UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
 		loger.debug("=Controller ===========================");
 		loger.debug("codeMSvc === " + "앙 기무띠~");
 		loger.debug("============================");
 
-		ModelAndView mav = new ModelAndView("mypage/usermypage/pop//buyCancel");
-		mav.addObject("msg", "김옥지");
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
+		mav.addObject("cancelList", cancelList);
 
 		return mav;
+	}
+
+	// 구매목록 반품 교환 환불
+	@RequestMapping("cancel.mib")
+	public void cancel(HttpServletRequest res, HttpServletResponse rep){
+
+		HashMap<String, Object> update = new HashMap<String, Object>();
+		String commend = res.getParameter("commend");
+		String CA_REASON = new String();
+		String CA_ACCOUNT = new String();
+		String RE_OPTION = new String();
+
+
+		if(commend == "반품"){
+			CA_REASON = res.getParameter("CA_REASON");
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+
+		}else if(commend == "교환"){
+			RE_OPTION = res.getParameter("RE_OPTION");
+			CA_REASON = res.getParameter("CA_REASON");
+
+		}else if(commend == "취소"){
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+		}
+
+		update.put("status",commend);
+		update.put("CA_REASON",CA_REASON);
+		update.put("CA_ACCOUNT",CA_ACCOUNT);
+		update.put("RE_OPTION",RE_OPTION);
+
+		userMypageSvc.do_update_cancel(update);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
 	}
 
 	// 장바구니

@@ -149,7 +149,8 @@ FROM (
            A.SEL_SIZE,
            A.SEL_COLOR, 
            A.SEL_TIME, 
-           D.DEL_STEP
+           D.DEL_STEP,
+           D.DEL_SEQ
            FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ  
            JOIN PHOTO C
@@ -174,6 +175,37 @@ FROM (
 
 ]]>
 </select>
+
+    <!-- 취소,반품,교환할 상품목록  -->
+    <select id="do_search_cancel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+        <![CDATA[
+SELECT C.STORED_NAME,B.SUB_ITEM,B.PRO_NAME,B.PRO_PRICE,A.COUPON,A.POINT,A.FINAL_PRICE,A.SEL_TIME,D.DEL_STEP,A.SEL_SIZE,A.SEL_COLOR
+FROM SALES A JOIN PRODUCT B
+           ON A.PRO_SEQ = B.PRO_SEQ
+           JOIN PHOTO C
+           ON B.PRO_SEQ = C.PRO_SEQ
+           JOIN DELIVERY D
+           ON A.USER_ID = D.USER_ID
+           AND A.DEL_SEQ = D.DEL_SEQ
+           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE 'MAIN%'
+
+
+]]>
+    </select>
+
+    <!-- 취소,반품,교환  -->
+    <update id="do_update_delivery" parameterType="hashmap" >
+        UPDATE MEMBERS SET
+        ADDRESS = #{ADDRESS},
+        EMAIL = #{EMAIL},
+        TEL=#{TEL},
+        POSTCODE=#{POSTCODE},
+        USER_PW=#{POSTCODE},
+        DETAILADDRESS=#{DETAILADDRESS}
+        WHERE USER_ID = #{USER_ID}
+    </update>
+
+
 
 <!-- 포인트LIST -->
 <select id="do_search_pointlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -271,6 +303,8 @@ WHERE A.USER_ID = #{id}
 WHERE ROWNUM <=5
 ]]>
 </select>
+
+
 
 
 <!-- 내가쓴글리뷰 -->

@@ -41,4 +41,8 @@ public interface UserMypageSvc {
 	
 	public int do_member_update(HashMap<String, String> map);
 
+	public UserMypageDto do_search_cancel(String del_seq);
+
+	public int do_update_cancel(HashMap<String, Object> map);
+
 }
