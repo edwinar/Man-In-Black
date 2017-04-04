@@ -332,13 +332,6 @@ function delStep(SEQ) {
 		</button>
 	</div>
 	</form>
-<script type="text/javascript">
-function exportToExcel(){
-	document.searchForm.action="/exportToExcel";
-	document.searchForm.method="POST"
-	document.searchForm.submit();​
-	}
-</script>
 
 <%
 START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
