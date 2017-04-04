@@ -63,4 +63,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_buyProductSizePop";
 		return sqlSession.selectList(statement, map);
 	}
+
+	@Override
+	public String do_buyProductStockPop(HashMap<String, Object> map) {
+		String statement = namespace+".do_buyProductStockPop";
+		return sqlSession.selectOne(statement, map);
+	}
 }

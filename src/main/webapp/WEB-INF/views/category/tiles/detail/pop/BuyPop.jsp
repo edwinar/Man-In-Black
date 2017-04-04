@@ -22,10 +22,11 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
+var stockLimit;
 	$('#plus').on('click',function(){		
 		var num = $('#number').val();
 		num = Number(num);
-		num = num+1;
+		if(num<stockLimit)num = num+1;
 		$('#number').val(num);
 		//alert(num);
 	});
@@ -60,9 +61,45 @@ $(function() {
 	 				$("#sizeSelect").append("<option value='no' selected='selected'>사이즈선택</option>");
 
 	 				for(i=0;i<flag.length;i++){
-	 					console.log(flag[i]);
+	 					//console.log(flag[i]);
 	 					$("#sizeSelect option:eq(0)").after("<option value="+flag[i].PRO_SIZE+'>'+flag[i].PRO_SIZE+'</option>');
 	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});
+		}
+	});
+	$('#sizeSelect').change(function(){
+		var color = $('#colorSelect option:selected').val();
+		var size = $('#sizeSelect option:selected').val();
+		//alert(size);
+		if(color=='no'){
+			$('#minus').attr('disabled',true);
+			$('#plus').attr('disabled',true);
+			$('#number').attr('readonly',true);
+		}else{
+			$('#minus').attr('disabled',false);
+			$('#plus').attr('disabled',false);
+			$('#number').attr('readonly',false);
+			//아작스사용해야한다.
+			$.ajax({
+	 			type : "POST",
+	 			url : "stockLimit.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"PRO_SEQ" : <%=PRO_SEQ %>,
+	 				"COLOR" : color,
+	 				"PRO_SIZE" : size
+	 			},
+	 			success : function(data) {
+	 				var flag = $.parseJSON(data);
+	 				//console.log(flag);
+	 				stockLimit = flag;
 	 			},
 	 			complete : function(data) {
 	 			},

@@ -22,4 +22,6 @@ public interface DetailSvc {
 	public List<DetailDto> do_buyProductColorPop(int PRO_SEQ);
 	//구매팝업칼라로인한사이즈셀렉트리스트
 	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map);
+	//구매팝업칼라로인한 사이즈로 인한 재고
+	public String do_buyProductStockPop(HashMap<String, Object> map);
 }

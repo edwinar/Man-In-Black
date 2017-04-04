@@ -118,7 +118,6 @@ public class DetailController {
 	
 	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
 	@RequestMapping(value="selectSize.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
-	
 	public @ResponseBody String selectSize(HttpServletRequest res, HttpServletResponse rep){
 		
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
@@ -129,12 +128,28 @@ public class DetailController {
 		map.put("COLOR",COLOR);
 		
 		List<DetailDto> list = detailSvc.do_buyProductSizePop(map);
-		for(int i=0;i<list.size();i++){
-			System.out.println(list.get(i).getPRO_SIZE());
-			System.out.println(list.get(i).getSTOCK());
-		}
+		
 		Gson gson = new Gson();
 		return gson.toJson(list);
+	}
+	
+	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
+	@RequestMapping(value="stockLimit.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String stockLimit(HttpServletRequest res, HttpServletResponse rep){
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ",PRO_SEQ);
+		map.put("COLOR",COLOR);
+		map.put("PRO_SIZE",PRO_SIZE);
+		
+		String result = detailSvc.do_buyProductStockPop(map);
+		
+		Gson gson = new Gson();
+		return gson.toJson(result);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")

@@ -54,4 +54,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map) {
 		return detailDao.do_buyProductSizePop(map);
 	}
+
+	@Override
+	public String do_buyProductStockPop(HashMap<String, Object> map) {
+		return detailDao.do_buyProductStockPop(map);
+	}
 }
