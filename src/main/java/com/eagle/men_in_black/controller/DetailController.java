@@ -1,6 +1,5 @@
 package com.eagle.men_in_black.controller;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 import java.io.IOException;
 import java.util.List;
