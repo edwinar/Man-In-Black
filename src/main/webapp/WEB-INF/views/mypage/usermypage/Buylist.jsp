@@ -294,9 +294,9 @@ td, th {
  				var flag = $.parseJSON(data);
  				
  				if(flag.success=='success'){
- 					$("#btn").attr("value","리뷰쓰기");
- 					$("#btn").attr("onclick","go("+$('#proseqg').val()+")");
- 					$("#cancle").remove();
+ 					$("#btn"+SEQ).attr("value","리뷰쓰기");
+ 					$("#btn"+SEQ).attr("onclick","go("+$('#proseqg').val()+","+$('#delseqg').val()+ ")");
+ 					$("#cancle"+SEQ).remove();
  					
  				}else{
  					alert("실패");
@@ -428,10 +428,10 @@ td, th {
 				%>
 
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
-					<td><%=buyList.get(i).getPRO_NAME()%></td>
+					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPRO_PRICE()%></th>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON()%></th>
@@ -443,15 +443,14 @@ td, th {
 					%>
 					<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
-						<input type="button" value="취소반품교환" id="cancle"
-						onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
+						<input type="button" value="취소반품교환" id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+					</td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					<td><input type="hidden"
-						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> <input
-						type="button" value="구매확정" id="btn"
-						onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
+					<td><input type="hidden" value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg">
+					<input type="hidden" value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg"> 
+					<input type="button" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
 				</tr>
 
 				<%
