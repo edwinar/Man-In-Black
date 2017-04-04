@@ -267,7 +267,35 @@ $(document).ready(function(){
 		//alert(monthDate);	
 		location.href='ceoMypage_Main.mib?START_DATE='+monthDate+"&END_DATE="+fullDate;
 	});
+	
 });
+//배송상태 버튼 눌렀을 때
+function delStep(SEQ) {
+	$.ajax({
+			type : "POST",
+			url : "del_step.mib",
+			async : true,
+			dataType : "html",
+			data : {
+				"SEQ" : SEQ
+			},
+			success : function(data) {
+				//alert("success " + data);
+				var flag = $.parseJSON(data);
+				//alert(flag.check); 	
+				 $("#dels"+SEQ).html(flag.check);
+				if(flag.check=='배송완료'){
+					$("#deltd"+SEQ).html('배송완료');	
+				}
+				 
+			},
+			complete : function(data) {
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});		
+}
 </script>
 </head>
 <body>
@@ -376,10 +404,14 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<td><%=list.get(i).getITEM() %></td>
 						<td>컬러-<%=list.get(i).getSEL_COLOR() %>,사이즈-<%=list.get(i).getSEL_SIZE() %></td>
 						<td><%=list.get(i).getSEL_NUM() %></td>
-						<td>재고까먹음</td>
+						<td><%=list.get(i).getSTOCK() %></td>
 						<td><%=list.get(i).getFINAL_PRICE() %></td>
 						<td><%=list.get(i).getSELTIME() %></td>
-						<td>배송완료</td>
+						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
+						<td><%=list.get(i).getDEL_STEP() %></td>
+						<%}else{ %>
+						<td id="deltd<%=list.get(i).getDEL_SEQ()%>" ><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<%} %>
 					</tr>
 				<%}
 				
