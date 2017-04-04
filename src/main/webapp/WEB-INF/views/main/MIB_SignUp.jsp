@@ -210,7 +210,7 @@ $(document).ready(function() {
 	
 	$("#signA").click(function(){
 		var email = $("#sign_email").val();
-		alert(email);
+		//alert(email);
 		$.ajax({
 		 			type : "POST",
 		 			url : "emailCheck.mib",
@@ -222,7 +222,7 @@ $(document).ready(function() {
 		 			success : function(data) {
 		 				//alert("success " + data);
 		 				var flag = $.parseJSON(data);
-		 				alert(flag.success);
+		 				//alert(flag.success);
 		 				if(flag.success==='success'){
 		 					
 		 					//$("#signA").attr('data-target','#modal-email');

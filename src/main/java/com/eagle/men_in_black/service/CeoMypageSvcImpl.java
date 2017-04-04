@@ -92,6 +92,12 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_select_proseq();
 	}
 
+	@Override
+	public List<String> do_search_subitem(String item) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_search_subitem(item);
+	}
+
 	
 	
 
