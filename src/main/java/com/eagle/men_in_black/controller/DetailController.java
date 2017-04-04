@@ -1,5 +1,7 @@
 package com.eagle.men_in_black.controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -95,15 +97,17 @@ public class DetailController {
 	}
 	
 	@RequestMapping("BuyPop.mib")
-	public ModelAndView BuyPop() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView BuyPop(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/BuyPop");
-		mav.addObject("msg", "김옥지");
-
+		
+		int PRO_SEQ = Integer.parseInt(res.getParameter("PRO_SEQ"));
+		
+		List<DetailDto> list = detailSvc.do_buyProductPop(PRO_SEQ);
+		List<DetailDto> listColor = detailSvc.do_buyProductColorPop(PRO_SEQ);
+		mav.addObject("PRO_SEQ", PRO_SEQ);
+		mav.addObject("list", list);
+		mav.addObject("listColor", listColor);
+		
 		return mav;
 	}
 	

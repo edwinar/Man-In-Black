@@ -38,6 +38,25 @@ FROM PRO_DETAIL
 WHERE PRO_SEQ=#{PRO_SEQ}
 </select>
 
+<select id="do_buyProductPop" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.PRO_SEQ
+		, A.PRO_NAME
+		, A.PRO_CONTENT
+		,B.COLOR
+		,B.PRO_SIZE
+		,B.STOCK 
+FROM PRODUCT A INNER JOIN PRO_DETAIL B
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE A.PRO_SEQ=#{PRO_SEQ}
+</select>
+
+<select id="do_buyProductColorPop" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT DISTINCT B.COLOR 
+FROM PRODUCT A INNER JOIN PRO_DETAIL B
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE A.PRO_SEQ=#{PRO_SEQ}
+</select>
+
 <select id="do_selectProductReviewList" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT A.REV_SEQ
 	, A.USER_ID
