@@ -36,6 +36,9 @@ td, th {
 			<h4 style="margin-bottom: 50px">회원님의 장바구니 입니다.</h4>
 		</div>
 	</center>
+
+
+
 	<div id="total" style="height: margin-top: 150px">
 		<div id="table" style="width: 90%">
 

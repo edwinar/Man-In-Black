@@ -46,6 +46,23 @@ public class CeoMypageController {
 			return mav;
 
 	}
+	// 서브아이템 리스트 부분 
+	@RequestMapping(value="sub_item.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	
+	public @ResponseBody String sub_item(HttpServletRequest res){
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		String item = (res.getParameter("item")==null || res.getParameter("item")=="")?"":res.getParameter("item");
+		
+		List<String> list = ceoMypageSvc.do_search_subitem(item);
+		
+		
+		Gson gson = new Gson();
+		return gson.toJson(list);
+		
+		
+	}
+
 	
 	// 파일 이름 중복 방지 메소드
 	 public static String getRandomString(){

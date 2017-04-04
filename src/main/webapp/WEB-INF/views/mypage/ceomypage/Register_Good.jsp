@@ -109,25 +109,30 @@
 </style>
 
 <body>
-
 	<form action="writeGood.mib" id="writeform" method="post" enctype="multipart/form-data">
 
 	<div class="wrap">
  	
- 	<div class="mat-label-check" style="font-weight: bold;">카테고리 분류&nbsp;
- 	<select name="item">
+ 	<div class="mat-label-check" style="font-weight: bold;" id="cate-div"><p align="center">카테고리 분류</p>
+ 	<select name="item" id="item" style="float: left; width: 20%; height: 30px;">
  	<option value="none">카테고리</option>
- 	<option value="OUTER">OUTER</option>	
+ 	<option value="OUTER">OUTER</option>
+ 	<option value="TOP">TOP</option>
+ 	<option value="PANTS">PANTS</option>
+ 	<option value="SHOES">SHOES</option>
+ 	<option value="BAGnACC">BAG&ACC</option> 		
  	</select>
-    &nbsp;
-    <select name="sub_item">
+   	<div style="float: left; height: 30px; width: 20px;"></div>
+    <select name="sub_item" id="sub_item" style="float: left; width: 20%; height: 30px;">
     <option value="none">서브 카테고리</option>
-    <option value="COAT">COAT</option>				
+    <option value="add">추가</option>				
  	</select>
- 	&nbsp;&nbsp;&nbsp;&nbsp;NEW카테고리 적용 <input type="checkbox" style="height: 20px; width: 20px;" value="Y" name="new_item">
+ 	<div style="float: left; height: 30px; width: 20px;"></div>
+ 	<div id="input-sub-div" style="height: 30px; width:0; float:left;"></div>
+ 	NEW카테고리 적용 <input type="checkbox"  value="Y" name="new_item">	
  	</div>
     <br><br><br>
-    <div class="mat-label-check" style="font-weight: bold;"><p align="center">메인 사진 등록</p>
+    <div class="mat-label-check" style="font-weight: bold; clear: left; "><p align="center">메인 사진 등록</p>
   	<div style="float: left; width: 25%; height: " >메인<input type="file" name="onefile" id="onefile"></div>	
   	<div style="width: 12.5%; height:100px; float:left; " ></div>		
     <div style="width:25%; float: left;">서브메인<input type="file" name="twofile" id="twofile"></div>	
@@ -320,6 +325,61 @@ function addDetail() {
 	    
 }
     
+    $(document).ready(function() {
+		$("#sub_item").change(function() {
+			if($(this).val()=='add'){
+				$("#sub_item").removeAttr("name").attr({
+					name : "abcd" }) 
+				$("#input-sub-div").css('width','25%');
+				$("#input-sub-div").append('<input name="sub_item" id="input_sub" type="text" style="height: 30px;" placeholder="추가입력">');
+								
+			}else{
+				$("select[name=abcd]").removeAttr("name").attr({
+					name : "sub_item" }) 
+				
+				$("#input-sub-div").css('width','0');
+				$("#input_sub").remove();
+			}
+		});
+		
+		
+		$("#item").change(function() {
+			var item = $(this).val();
+			
+			$.ajax({
+	 			type : "POST",
+	 			url : "sub_item.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"item" : item
+	 			},
+	 			success : function(data) {
+	 				var flag = $.parseJSON(data);
+	 				
+	 				$("#sub_item").find("option").remove();
+	 				$("#sub_item").append("<option value='none'>서브 카테고리</option>");
+	 				$("#sub_item").append("<option value='add'>추가</option>");
+
+	 				
+	 				for(i=0;i<flag.length;i++){
+	 					
+	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+'</option>');
+
+	 				}
+	 				
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});		
+		});
+		
+		
+		
+	});
 	
 </script>
 

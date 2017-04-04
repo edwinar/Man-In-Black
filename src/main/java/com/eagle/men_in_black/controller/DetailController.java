@@ -29,9 +29,9 @@ public class DetailController {
 	@RequestMapping("detail.mib")
 	public ModelAndView detail(HttpServletRequest res,HttpServletResponse rep){
 		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail");
-		
+
 		int PRO_SEQ = Integer.parseInt(res.getParameter("PRO_SEQ"));
-		
+
 		List<DetailDto> list = detailSvc.do_selectProductDetail(PRO_SEQ);
 		List<DetailDto> listColor = detailSvc.do_selectProductColor(PRO_SEQ);
 		List<DetailDto> listSize = detailSvc.do_selectProductSize(PRO_SEQ);
@@ -43,7 +43,7 @@ public class DetailController {
 		
 		return mav;
 	}
-	
+
 	@RequestMapping("review.mib")
 	public ModelAndView review(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Review");

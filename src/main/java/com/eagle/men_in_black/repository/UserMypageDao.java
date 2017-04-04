@@ -47,4 +47,10 @@ public interface UserMypageDao {
 	
 	public int do_select_revseq();
 
+	public UserMypageDto do_search_cancel(String del_seq);
+
+	public int do_update_cancel(HashMap<String, Object> map);
+
+
+
 }

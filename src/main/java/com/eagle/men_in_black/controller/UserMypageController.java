@@ -153,7 +153,58 @@ public class UserMypageController {
 		return mav;
 		
 	}
-	// 장바구니 
+	// 구매목록 반품 교환 환불 목록
+	@RequestMapping("buyCancel.mib")
+	public ModelAndView buyCancel(HttpServletRequest res, HttpServletResponse rep){
+		String DEL_SEQ = res.getParameter("DEL_SEQ");
+
+		UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
+		mav.addObject("cancelList", cancelList);
+
+		return mav;
+	}
+
+	// 구매목록 반품 교환 환불
+	@RequestMapping("cancel.mib")
+	public void cancel(HttpServletRequest res, HttpServletResponse rep){
+
+		HashMap<String, Object> update = new HashMap<String, Object>();
+		String commend = res.getParameter("commend");
+		String CA_REASON = new String();
+		String CA_ACCOUNT = new String();
+		String RE_OPTION = new String();
+
+
+		if(commend == "반품"){
+			CA_REASON = res.getParameter("CA_REASON");
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+
+		}else if(commend == "교환"){
+			RE_OPTION = res.getParameter("RE_OPTION");
+			CA_REASON = res.getParameter("CA_REASON");
+
+		}else if(commend == "취소"){
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+		}
+
+		update.put("status",commend);
+		update.put("CA_REASON",CA_REASON);
+		update.put("CA_ACCOUNT",CA_ACCOUNT);
+		update.put("RE_OPTION",RE_OPTION);
+
+		userMypageSvc.do_update_cancel(update);
+		loger.debug("=Controller ===========================");
+		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("============================");
+
+	}
+
+	// 장바구니
 	@RequestMapping("basketlist.mib")
 	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep){
 
@@ -333,12 +384,13 @@ public class UserMypageController {
 		public ModelAndView writeGood(HttpServletRequest res) throws Exception{
 			ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
 			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+
 			// form에서 넘어온 input
 			String REV_TITLE= res.getParameter("title");
 			String REV_CONTENT= res.getParameter("content");
 			String SCORE= res.getParameter("score");
 			String PRO_SEQ= res.getParameter("pro_seq");
-			
+
 			// 이걸로먼저 review table에 인설트
 			HashMap<String, String> remap = new HashMap<>();
 			remap.put("REV_TITLE", REV_TITLE);
@@ -347,14 +399,14 @@ public class UserMypageController {
 			remap.put("PRO_SEQ", PRO_SEQ);
 			remap.put("USER_ID", userdto.getUSER_ID());
 			userMypageSvc.do_insert_review(remap);
-		
-			
-			
-			
-			
-			// 사진 파일 부분 
+
+
+
+
+
+			// 사진 파일 부분
 			HashMap<String, Object> map =  parseInsertFileInfo(res);
-			
+
 			userMypageSvc.do_insert_reviewphoto(map);
 				
 				 return mav;
@@ -394,7 +446,7 @@ public class UserMypageController {
 		        String storedFileName = null;
 
 		         
-		        HashMap<String, Object> listMap = null; 
+		        HashMap<String, Object> listMap = null;
 
 		         
 		        File file = new File(filePath);
@@ -405,7 +457,7 @@ public class UserMypageController {
 
 		        }
 
-		   
+
 		        while(iterator.hasNext()){
 		            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
@@ -423,11 +475,11 @@ public class UserMypageController {
 		                multipartFile.transferTo(file);
 
 		                listMap = new HashMap<String,Object>();
-		                
+
 		                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
 		                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
-		                
+
 		                listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 		            }
 
@@ -436,19 +488,19 @@ public class UserMypageController {
 		        return listMap;
 
 		    }
-		
-		// 자식창 
+
+		// 자식창
 		@RequestMapping(value="reviewWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
-		
+
 		public @ResponseBody String reviewWrite(MultipartHttpServletRequest res) throws Exception{
-			
+
 			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 			// form에서 넘어온 input
 			String REV_TITLE= res.getParameter("title");
 			String REV_CONTENT= res.getParameter("content");
 			String SCORE= res.getParameter("score");
 			String PRO_SEQ= res.getParameter("pro_seq");
-			
+
 			// 이걸로먼저 review table에 인설트
 			HashMap<String, String> remap = new HashMap<>();
 			remap.put("REV_TITLE", REV_TITLE);
@@ -457,20 +509,20 @@ public class UserMypageController {
 			remap.put("PRO_SEQ", PRO_SEQ);
 			remap.put("USER_ID", userdto.getUSER_ID());
 			int rev =  userMypageSvc.do_insert_review(remap);
-			
+
 			HashMap<String, String> resultMap = new HashMap<>();
 			if(rev>0){
-				// 사진 파일 부분 
-				
+				// 사진 파일 부분
+
 				 Iterator<String> iterator = res.getFileNames();
-			        
-			        // 저장경로 
-				 	HttpSession session = res.getSession(); 
+
+			        // 저장경로
+				 	HttpSession session = res.getSession();
 			        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
 					//String root_path = System.getProperty("catalina.home");
-			        String attach_path = "images\\"; 
+			        String attach_path = "images\\";
 					String filePath = root_path+attach_path;
-			         
+
 					//System.out.println("저장경로=========================================================================================="+filePath);
 
 			        MultipartFile multipartFile = null;
@@ -481,19 +533,19 @@ public class UserMypageController {
 
 			        String storedFileName = null;
 
-			         
-			        HashMap<String, Object> listMap = null; 
 
-			         
+			        HashMap<String, Object> listMap = null;
+
+
 			        File file = new File(filePath);
-			        // 폴더가없을경우 폴더생성 
+			        // 폴더가없을경우 폴더생성
 			        if(file.exists() == false){
 
 			            file.mkdirs();
 
 			        }
 
-			   
+
 			        while(iterator.hasNext()){
 			            multipartFile = res.getFile(iterator.next());
 
@@ -505,36 +557,36 @@ public class UserMypageController {
 
 			                storedFileName = getRandomString() + originalFileExtension;
 
-			                // 첨부한 파일 생성 
+			                // 첨부한 파일 생성
 			                file = new File(filePath + storedFileName);
 
 			                multipartFile.transferTo(file);
 
 			                listMap = new HashMap<String,Object>();
-			                
+
 			                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
-			                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+			                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
 			                System.out.println("userMypageSvc.do_select_revseq()" +userMypageSvc.do_select_revseq());
 			                listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 			            }
 
 			        }
-				
-				
+
+
 				int revp = userMypageSvc.do_insert_reviewphoto(listMap);
-				
+
 				if(revp>0){
 					resultMap.put("result", "OK");
 				}
 			}
-			
-			
+
+
 			Gson gson = new Gson();
-			
-			
+
+
 			return gson.toJson(resultMap);
-			
+
 		}
-	
+
 }
