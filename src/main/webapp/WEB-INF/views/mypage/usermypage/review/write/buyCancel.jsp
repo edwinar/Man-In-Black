@@ -97,8 +97,8 @@
     </div>
     <br>
 
-    <input class="button" type="button" value="확정" onclick="closeSelf()">
-    <input class="button" type="button" value="돌아가기" onclick="window.close()">
+    <input type="button" value="확정" onclick="closeSelf()">
+    <input  type="button" value="돌아가기" onclick="window.close()">
     <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
     <input type="hidden" name="commend" value="">
 
@@ -115,8 +115,8 @@
         inputBox.innerHTML = "";
 
         if (commend == '교환') {
-            strInput = "<label>원하는 옵션 작성<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea></label><br><br>" +
-                "<label>교환사유 작성해주세요<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> </label><br>" ;
+            strInput = "<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br><textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> <br>";
+
 
         } else if (commend == '반품') {
             strInput = "<label>반품 사유 작성<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
@@ -240,24 +240,28 @@
 
     function closeSelf(){
         var formData = new FormData();
-
+        var txt = document.getElementsByName("RE_REASON").innerText;
+        alert(txt);
         var commend = document.getElementsByName('commend').value;
         alert('커맨드 = '+ commend);
         if ('교환' == commend){
-            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
-            formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
+            formData.append("RE_REASON", document.getElementsByName('RE_REASON').html);
+            formData.append("RE_OPTION",document.getElementsByName('RE_OPTION').html);
+
 
         }else if ('반품' == commend){
-            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
-            formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
+            formData.append("RE_REASON", document.getElementsByName('RE_REASON').value);
+            formData.append("CA_ACCOUNT", document.getElementsByName('CA_ACCOUNT').value);
 
         }else if ('취소' == commend){
             formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
 
         }
         formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
-        formData.append("commend", $("input[name=commend]").val());
+        formData.append("commend", document.getElementsByName('commend').value);
 
+
+        alert(document.getElementsByName('commend').value);
 
 
 
@@ -265,12 +269,11 @@
             type : "POST",
             url : "cancel.mib",
             async : true,
-            dataType : "html",
             data : formData,
             processData: false,
             contentType: false,
             success : function(data) {
-                alert("success " + data);
+//                alert("success " + data);
                 var flag = $.parseJSON(data);
 
                 if(flag.result=='OK'){
