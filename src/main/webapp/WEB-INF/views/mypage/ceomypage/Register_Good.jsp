@@ -117,12 +117,16 @@
  	<div class="mat-label-check" style="font-weight: bold;">카테고리 분류&nbsp;
  	<select name="item">
  	<option value="none">카테고리</option>
- 	<option value="OUTER">OUTER</option>	
+ 	<option value="OUTER">OUTER</option>
+ 	<option value="TOP">TOP</option>
+ 	<option value="PANTS">PANTS</option>
+ 	<option value="SHOES">SHOES</option>
+ 	<option value="BAGnACC">BAG&ACC</option> 		
  	</select>
     &nbsp;
     <select name="sub_item">
     <option value="none">서브 카테고리</option>
-    <option value="COAT">COAT</option>				
+    <option value="add">추가</option>				
  	</select>
  	&nbsp;&nbsp;&nbsp;&nbsp;NEW카테고리 적용 <input type="checkbox" style="height: 20px; width: 20px;" value="Y" name="new_item">
  	</div>
@@ -320,6 +324,9 @@ function addDetail() {
 	    
 }
     
+    $(document).ready(function() {
+		$("#")
+	});
 	
 </script>
 
