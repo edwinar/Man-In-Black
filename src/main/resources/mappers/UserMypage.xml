@@ -180,8 +180,19 @@ FROM (
     <!-- 취소,반품,교환할 상품목록  -->
     <select id="do_search_cancel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
         <![CDATA[
-SELECT C.STORED_NAME,B.SUB_ITEM,B.PRO_NAME,B.PRO_PRICE,A.COUPON,A.POINT,A.FINAL_PRICE,A.SEL_TIME,D.DEL_STEP,A.SEL_SIZE,A.SEL_COLOR
-FROM SALES A JOIN PRODUCT B
+        SELECT C.STORED_NAME,
+            B.SUB_ITEM,
+            B.PRO_NAME,
+            B.PRO_PRICE,
+            A.COUPON,
+            A.POINT,
+            A.FINAL_PRICE,
+            A.SEL_TIME,
+            D.DEL_STEP,
+            A.SEL_SIZE,
+            A.SEL_COLOR,
+            D.DEL_SEQ
+        FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ
            JOIN PHOTO C
            ON B.PRO_SEQ = C.PRO_SEQ
@@ -195,15 +206,13 @@ FROM SALES A JOIN PRODUCT B
     </select>
 
     <!-- 취소,반품,교환  -->
-    <update id="do_update_delivery" parameterType="hashmap" >
-        UPDATE MEMBERS SET
-        ADDRESS = #{ADDRESS},
-        EMAIL = #{EMAIL},
-        TEL=#{TEL},
-        POSTCODE=#{POSTCODE},
-        USER_PW=#{POSTCODE},
-        DETAILADDRESS=#{DETAILADDRESS}
-        WHERE USER_ID = #{USER_ID}
+    <update id="do_update_cancel" parameterType="hashmap" >
+        UPDATE DELIVERY SET
+        RETURN = #{RETURN},
+        RE_OPTION = #{RE_OPTION},
+        CA_REASON=#{CA_REASON},
+        CA_ACCOUNT=#{CA_ACCOUNT},
+        WHERE DEL_SEQ = #{DEL_SEQ}
     </update>
 
 
