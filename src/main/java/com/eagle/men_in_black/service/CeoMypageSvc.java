@@ -16,4 +16,5 @@ public interface CeoMypageSvc {
 	public int do_insert_product_detail(List<CeoMypageDto> map);
 	public int do_insert_product_photo(List<HashMap<String, String>> map);
 	public int do_select_proseq();
+	public List<String> do_search_subitem(String item);
 }

@@ -24,4 +24,6 @@ public interface CeoMypageDao {
 	public int do_insert_product_photo(HashMap<String, String> map);
 	
 	public int do_select_proseq();
+	
+	public List<String> do_search_subitem(String item);
 }

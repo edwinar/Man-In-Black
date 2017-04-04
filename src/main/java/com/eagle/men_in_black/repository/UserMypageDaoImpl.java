@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +13,7 @@ import com.eagle.men_in_black.model.UserMypageDto;
 
 @Repository
 public class UserMypageDaoImpl implements UserMypageDao {
-
+	Logger loger = LoggerFactory.getLogger(this.getClass());
 	private final String namespace="com.eagle.repository.mapper.UserMypage";
 
 	@Autowired
@@ -151,5 +153,25 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	public int do_select_revseq() {
 		String statement = namespace+".do_select_revseq";
 		 return sqlSession.selectOne(statement);
+	}
+
+	@Override
+	public int do_insert_point(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_point";
+		 return sqlSession.insert(statement,map);
+	}
+
+	@Override
+	public int do_update_del_step(int del_seq) {
+		String statement = namespace+".do_update_del_step";
+		
+		 return sqlSession.update(statement,del_seq);
+	}
+	
+	@Override
+	public int do_update_del_step2(int del_seq) {
+		String statement = namespace+".do_update_del_step2";
+		
+		 return sqlSession.update(statement,del_seq);
 	}
 }

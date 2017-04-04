@@ -83,4 +83,10 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.selectOne(statement);
 	}
 
+	@Override
+	public List<String> do_search_subitem(String item) {
+		String statement = namespace+".do_search_subitem";
+		return sqlSession.selectList(statement,item);
+	}
+
 }
