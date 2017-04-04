@@ -176,6 +176,19 @@ public class ServiceController {
 		return mav;
 	}
 	
+	//이벤트 상세보기
+		@RequestMapping("eventdetail.mib")
+		public ModelAndView eventdetail(HttpServletRequest res) {
+			
+			ModelAndView mav = new ModelAndView("/service/eventdetail");
+			
+			return mav;
+		}
+	
+	
+	
+	
+	
 	/* FCK Editor */
 	@RequestMapping("CkeditorNoticeUpload.mib")
 	public ModelAndView register_Good(HttpServletRequest res) {

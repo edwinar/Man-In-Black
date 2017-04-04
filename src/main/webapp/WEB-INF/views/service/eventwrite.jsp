@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>:::EVENT REGISTER:::</title>
 <style type="text/css">
 section {
 	width: 95%;
@@ -110,7 +110,7 @@ body {
 	<br>
 	
 	
-
+<form>
 	<div class="preview"></div>
 	<div align="center">
 	<button id="triggerUpload" class="btn">이미지미리보기</button>
@@ -120,14 +120,7 @@ body {
 	<div class="fileName"></div>
 
 	
-	
-	
-
-	
-
-	
-	
-
+<!-- Editor -->
 	<textarea rows="10" cols="80" name="editor" id="editor1">
 			
 	</textarea>
@@ -145,6 +138,11 @@ body {
 
 		});
 	</script>
+		<p align="right">
+			<input type="submit" class="btn btn-primary" value="등록"> <a
+				class="btn btn-primary" href="event.mib" role="button">취소</a>
+		</p>
+</form>
 
 	<script type="text/javascript">
 		// 이미지 업로드	
