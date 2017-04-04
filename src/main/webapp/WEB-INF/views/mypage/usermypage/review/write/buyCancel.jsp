@@ -17,17 +17,26 @@
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<h1 align="center">교환 환불 취소</h1>
 
-<form action="cancel.mib" method="post">
-    <select onchange="selectForm(this.value);">
-        <option value="">구분</option>
+<%if(cancelList.getDEL_STEP().equals("배송준비중")){ %>
+<h1 align="center">상품 취소</h1>
+<%}else {%>
+<h1 align="center">상품 교환&환불</h1>
+<%
+    }
+%>
+<form>
+    <select id="sel" onchange="selectForm(this.value);">
+        <%if(cancelList.getDEL_STEP().equals("배송준비중")){ %>
         <option value="취소">취소</option>
+        <%}else {%>
         <option value="반품">반품</option>
         <option value="교환">교환</option>
+        <%
+            }
+        %>
     </select>
-
-    <div id="total" style="margin-top: 100px" align="center">
+    <div id="total" style="margin-top: 10px" align="center">
         <div id="table" style="width: 90%">
                 <table class="table">
                     <col width="9%">
@@ -107,7 +116,13 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function(){
 
+            selectForm($("#sel option:first").val());
+
+
+
+    });
 
 
     function selectForm(commend) {
@@ -115,12 +130,13 @@
         inputBox.innerHTML = "";
 
         if (commend == '교환') {
-            strInput = "<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br><textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> <br>";
+            strInput = "<label>교환받을 옵션<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea></label><br><br>" +
+                "<label>교환 사유<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> <br>";
 
 
         } else if (commend == '반품') {
-            strInput = "<label>반품 사유 작성<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
-                "<label>환불받을 계좌<br><select  class='product_iinput'>" +
+            strInput = "<label>반품 사유<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
+                "<label>환불 계좌<br><select name='bank'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
@@ -171,12 +187,12 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input name='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>";
+                "<label>환불 계좌<input name='CA_ACCOUNT' type='text' ></label>";
 
 
         } else if (commend == '취소') {
             strInput = "&nbsp;&nbsp;" +
-                "<label>환불받을 계좌<br><select name='used_bankname'  class='product_iinput'>" +
+                "<label>은행<br><select name='bank'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
@@ -227,7 +243,7 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input name='CA_ACCOUNT' type='text'>";
+                "<label>환불 계좌<input name='CA_ACCOUNT' type='text'></label>";
 
 
         }
@@ -240,28 +256,27 @@
 
     function closeSelf(){
         var formData = new FormData();
-        var txt = document.getElementsByName("RE_REASON").innerText;
-        alert(txt);
+        var txt = $("textarea[name=RE_REASON]").val();
         var commend = document.getElementsByName('commend').value;
-        alert('커맨드 = '+ commend);
+
         if ('교환' == commend){
-            formData.append("RE_REASON", document.getElementsByName('RE_REASON').html);
-            formData.append("RE_OPTION",document.getElementsByName('RE_OPTION').html);
+            alert('커맨드 = '+ commend);
+            formData.append("RE_REASON",$("textarea[name=RE_REASON]").val());
+            formData.append("RE_OPTION",$("textarea[name=RE_OPTION]").val());
 
 
         }else if ('반품' == commend){
-            formData.append("RE_REASON", document.getElementsByName('RE_REASON').value);
-            formData.append("CA_ACCOUNT", document.getElementsByName('CA_ACCOUNT').value);
+            formData.append("RE_REASON",  $("textarea[name=RE_REASON]").val());
+            formData.append("CA_ACCOUNT", $("select[name=bank]").val() + $("input[name=CA_ACCOUNT]").val());
 
         }else if ('취소' == commend){
-            formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
+            formData.append("CA_ACCOUNT", $("select[name=bank]").val() + $("input[name=CA_ACCOUNT]").val());
 
         }
         formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
         formData.append("commend", document.getElementsByName('commend').value);
 
 
-        alert(document.getElementsByName('commend').value);
 
 
 
@@ -270,16 +285,19 @@
             url : "cancel.mib",
             async : true,
             data : formData,
+            dataType : "html",
             processData: false,
             contentType: false,
             success : function(data) {
-//                alert("success " + data);
+//
                 var flag = $.parseJSON(data);
 
-                if(flag.result=='OK'){
+                if(flag.result=='success'){
+                    alert("반영되었습니다");
+                    opener.parent.location.reload();
                     window.close();
                 }else{
-                    alert("리뷰등록실패");
+                    alert("업뎃실패");
                 }
             },
             complete : function(data) {

@@ -606,12 +606,13 @@ public class UserMypageController {
 		}
 	// 구매목록 반품 교환 환불
 	@RequestMapping(value="cancel.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
-	public @ResponseBody String cancel(HttpServletRequest res, HttpServletResponse rep) {
 
+	public @ResponseBody String cancel(HttpServletRequest res, HttpServletResponse rep) {
+		HashMap<String, String> resultMap = new HashMap<>();
 		HashMap<String, Object> update = new HashMap<String, Object>();
 		String DEL_SEQ = res.getParameter("DEL_SEQ");
 		String commend = res.getParameter("commend");
-		String RE_REASON = "";
+		String RE_REASON ="";
 		String CA_ACCOUNT = "";
 		String RE_OPTION = "";
 		loger.debug("=Controller ===========================");
@@ -623,15 +624,15 @@ public class UserMypageController {
 		loger.debug("============================");
 
 
-		if(commend == "반품"){
+		if(commend.equals("반품") ){
 			RE_REASON = res.getParameter("RE_REASON");
 			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
 
-		}else if(commend == "교환"){
+		}else if(commend.equals("교환")){
 			RE_OPTION = res.getParameter("RE_OPTION");
 			RE_REASON = res.getParameter("RE_REASON");
 
-		}else if(commend == "취소"){
+		}else if(commend.equals("취소")){
 			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
 		}
 
@@ -650,10 +651,16 @@ public class UserMypageController {
 		loger.debug("============================");
 
 
-		userMypageSvc.do_update_cancel(update);
+		int suc = userMypageSvc.do_update_cancel(update);
+		loger.debug("suc === " + suc +  "ㅣㅣㅣㅣㅣ*************앙 기무띠~");
+		if(suc > 0){
+
+			resultMap.put("result", "success");
+
+		}
+		Gson gson = new Gson();
+		return gson.toJson(resultMap);
 
 
-
-		return null;
 	};
 }
