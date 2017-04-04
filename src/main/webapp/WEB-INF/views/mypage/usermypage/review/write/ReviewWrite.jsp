@@ -62,14 +62,10 @@
 </head>
 <body>
 <% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
-String DEL_SEQ= request.getParameter("DEL_SEQ"); 
-
-
+   String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
-<!-- onsubmit="return closeSelf()" 
-action="reviewWrite.mib"
--->
+
 <form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
 	<div class="layout">
 		<div class="leftLayout">
@@ -235,6 +231,7 @@ action="reviewWrite.mib"
 	 				
 	 				if(flag.result=='OK'){
 	 					window.close();
+	 					opener.parent.location.reload();
 	 				}else{
 	 					alert("리뷰등록실패");
 	 				}
