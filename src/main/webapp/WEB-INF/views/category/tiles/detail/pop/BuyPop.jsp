@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,15 +15,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::BuyPop:::</title>
-<style type="text/css">
-
-</style>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script> -->
 <script type="text/javascript">
 $(function() {
 var stockLimit;
+var color;
+var size;
+var bas_pro_num;
 	$('#plus').on('click',function(){		
 		var num = $('#number').val();
 		num = Number(num);
@@ -38,10 +41,12 @@ var stockLimit;
 		//alert(num);
 	});
 	$('#colorSelect').change(function(){
-		var color = $('#colorSelect option:selected').val();
+		color = $('#colorSelect option:selected').val();
 		//alert(color);
 		if(color=='no'){
 			$('#sizeSelect').attr('disabled',true);
+			$('#minus').attr('disabled',true);
+			$('#plus').attr('disabled',true);
 		}else{
 			$('#sizeSelect').attr('disabled',false);
 			//아작스사용해야한다.
@@ -74,17 +79,15 @@ var stockLimit;
 		}
 	});
 	$('#sizeSelect').change(function(){
-		var color = $('#colorSelect option:selected').val();
-		var size = $('#sizeSelect option:selected').val();
+		color = $('#colorSelect option:selected').val();
+		size = $('#sizeSelect option:selected').val();
 		//alert(size);
-		if(color=='no'){
+		if(size=='no'){
 			$('#minus').attr('disabled',true);
 			$('#plus').attr('disabled',true);
-			$('#number').attr('readonly',true);
 		}else{
 			$('#minus').attr('disabled',false);
 			$('#plus').attr('disabled',false);
-			$('#number').attr('readonly',false);
 			//아작스사용해야한다.
 			$.ajax({
 	 			type : "POST",
@@ -107,6 +110,46 @@ var stockLimit;
 	 				alert("에러발생");
 	 			}
 	 		});
+		}
+	});
+	
+	$('#basketBtn').on('click',function(){
+		color = $('#colorSelect option:selected').val();
+		size = $('#sizeSelect option:selected').val();
+		bas_pro_num = $('#number').val();
+		if((color!="no"&&color!=null)&&(size!="no"&&size!=null)){
+			console.log(color+size+bas_pro_num);
+			$.ajax({
+	 			type : "POST",
+	 			url : "BuyPopAjax.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"PRO_SEQ" : <%=PRO_SEQ %>,
+	 				"PRO_SIZE" : size,
+	 				"COLOR" : color,
+	 				"BAS_PRO_NUM" : bas_pro_num
+	 			},
+	 			processData: false,
+	 			contentType: false,
+	 			success : function(data) {
+	 				console.log(PRO_SEQ+PRO_SIZE+COLOR+BAS_PRO_NUM);
+	 				var flag = $.parseJSON(data);
+	 				if(flag>0){
+	 					opener.location = 'basketlist.mib';
+	 					window.close();
+	 				}else{
+	 					alert("장바구니등록실패");
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});
+		}else{
+			alert("옵션과 수량을 다시 한번 확인해주십시오.");
 		}
 	});
 });
@@ -139,8 +182,6 @@ var stockLimit;
 			<h5>사이즈</h5><br>
 			<select name=size size=1 id="sizeSelect" disabled="disabled">
 		        <option value="no" selected="selected">사이즈선택</option>
-		        <!-- <option value="S">S</option>
-		        <option value="M">M</option> -->
 	    	</select>
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">
@@ -150,8 +191,8 @@ var stockLimit;
 			<button class="btn btn-default" id="plus" style="width: 15%; height: 100%;" disabled="disabled">+</button>
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
-			<button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">장바구니</button>
-			<button type="button" class="btn btn-default btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">구매하기</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
+			<button type="button" class="btn btn-default btn-lg btn-block" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
 		</div>
 	</div>
 </div>
