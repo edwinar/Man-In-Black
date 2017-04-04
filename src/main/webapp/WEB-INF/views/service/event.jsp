@@ -188,7 +188,7 @@ h1 {
 			if (dto.getUSER_ID().equals("adm")) {
 	%>
 	<p align="right">
-		<a class="btn btn-primary" href="CkeditorNoticeUpload.mib"
+		<a class="btn btn-primary" href="eventwrite.mib"
 			role="button">이벤트등록</a>
 	</p>
 	<%
