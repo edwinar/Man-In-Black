@@ -162,4 +162,24 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_select_revseq();
 	}
+
+
+	@Override
+	public int do_insert_point(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_insert_point(map);
+	}
+
+
+	@Override
+	public int do_update_del_step(int del_seq) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_del_step(del_seq);
+	}
+	
+	@Override
+	public int do_update_del_step2(int del_seq) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_del_step2(del_seq);
+	}
 }

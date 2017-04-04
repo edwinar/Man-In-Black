@@ -127,7 +127,35 @@ public class UserMypageController {
 		
 	}
 	
-	
+			// delstep수정
+		@RequestMapping(value="delstep.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+		
+		public @ResponseBody String delstep(HttpServletRequest res){
+			
+			String DEL_SEQ = res.getParameter("DEL_SEQ");
+			
+			System.out.println("시퀀스"+DEL_SEQ);
+			
+			int delstep = 0;
+			delstep = userMypageSvc.do_update_del_step(Integer.parseInt(DEL_SEQ));
+			
+			HashMap<String, String> map = new HashMap<>();
+			
+			
+			if(delstep>0){
+				
+				map.put("success", "success");
+
+			}else{
+				map.put("success", "fail");
+			}
+			
+			Gson gson = new Gson();
+			
+			
+			return gson.toJson(map);
+			
+		}
 	// 구매목록 
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
@@ -138,6 +166,8 @@ public class UserMypageController {
 		String START_DATE = (res.getParameter("START_DATE")==null || res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
 		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
 		
+		
+		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
@@ -145,6 +175,7 @@ public class UserMypageController {
 		map.put("END_DATE",END_DATE);
 		map.put("id", userdto.getUSER_ID());
 		
+		//userMypageSvc.do_update_del_step(DEL_SEQ);
 		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(map);
 		
 		
@@ -499,8 +530,18 @@ public class UserMypageController {
 			String REV_TITLE= res.getParameter("title");
 			String REV_CONTENT= res.getParameter("content");
 			String SCORE= res.getParameter("score");
-			String PRO_SEQ= res.getParameter("pro_seq");
-
+			String PRO_SEQ= res.getParameter("PRO_SEQ");
+			String DEL_SEQ= res.getParameter("DEL_SEQ");
+			
+			/*
+			
+			//적립금 지급
+			HashMap<String, Object> pointmap = new HashMap<>();
+			pointmap.put("PRO_SEQ", PRO_SEQ);
+			pointmap.put("USER_ID", userdto.getUSER_ID());
+			userMypageSvc.do_insert_point(pointmap);*/
+			
+			
 			// 이걸로먼저 review table에 인설트
 			HashMap<String, String> remap = new HashMap<>();
 			remap.put("REV_TITLE", REV_TITLE);
@@ -575,12 +616,19 @@ public class UserMypageController {
 
 
 				int revp = userMypageSvc.do_insert_reviewphoto(listMap);
-
+				//딜리버리 배송상태를 리뷰작성완료 
+				int delstep = 0;
+				//userMypageSvc.do_update_del_step2(Integer.parseInt((DEL_SEQ)));
+				
 				if(revp>0){
 					resultMap.put("result", "OK");
+					userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
+					System.out.println("DEL_SEQ=========================:" +DEL_SEQ);
+					
 				}
 			}
 
+			
 
 			Gson gson = new Gson();
 
