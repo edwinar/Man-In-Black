@@ -178,12 +178,17 @@ public class ServiceController {
 	
 	//이벤트 상세보기
 		@RequestMapping("eventdetail.mib")
-		public ModelAndView eventdetail(HttpServletRequest res) {
+		public ModelAndView eventdetail(HttpServletRequest res, HttpServletResponse rep) {
+			
+			
+			int seq = Integer.parseInt(res.getParameter("SEQ"));
 			
 			ModelAndView mav = new ModelAndView("/service/eventdetail");
-			
+			ServiceDto dto = serviceSvc.do_event_detail(seq);
+			mav.addObject("eventdetail", dto);
 			return mav;
 		}
+	
 	
 	
 	

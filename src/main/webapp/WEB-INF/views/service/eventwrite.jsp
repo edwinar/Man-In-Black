@@ -7,92 +7,88 @@
 <title>:::EVENT REGISTER:::</title>
 <style type="text/css">
 section {
-	width: 95%;
-	max-width: 750px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	padding: 3.5em .75em;
-	border: 1px solid #e8e8e8;
-	border-radius: 6px;
-	background: #fff;
+  width: 95%;
+  max-width: 750px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 3.5em .75em;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fff;
 }
 
 .btn {
-	text-align: center;
-	padding: .5em .75em;
-	background: #3FBF7F;
-	background: linear-gradient(to right, #1CCEB0, #3FBF7F);
-	border: none;
-	font-weight: 300;
-	font-size: 1.25EM;
-	color: #fff;
-	border-radius: 4px;
-	transition: all 500ms;
+  text-align: center;
+  padding: .5em .75em;
+  background: #3FBF7F;
+  background: linear-gradient(to right, #1CCEB0, #3FBF7F);
+  border: none;
+  font-weight: 300;
+  font-size: 1.25EM;
+  color: #fff;
+  border-radius: 4px;
+  transition: all 500ms;
 }
-
 .btn:hover {
-	border-radius: 12px;
+  border-radius: 12px;
 }
 
 input[type=file] {
-	width: 0;
-	height: 0;
-	overflow: hidden;
-	visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 .fileName {
-	padding-top: 10px;
-	font-weight: 300;
+  padding-top: 10px;
+  font-weight: 300;
 }
 
 .preview {
-	position: relative;
-	width: 250px;
-	height: 250px;
-	background: #f2f2f2;
-	border-radius: 100%;
-	margin: 0 auto 25px auto;
-	overflow: hidden;
-	border: 8px solid #E0E0E0;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background: #f2f2f2;
+  border-radius: 100%;
+  margin: 0 auto 25px auto;
+  overflow: hidden;
+  border: 8px solid #E0E0E0;
 }
-
 .preview img {
-	width: 250px;
-	height: 250px;
-	object-fit: contain;
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
 }
-
 .preview .loadingLogo {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: -35px;
-	margin-top: -35px;
-	width: 70px;
-	height: 70px;
-	border: 5px solid #69CD9B;
-	border-top: 5px solid #2FDEC1;
-	border-radius: 100%;
-	animation: spin 500ms linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -35px;
+  margin-top: -35px;
+  width: 70px;
+  height: 70px;
+  border: 5px solid #69CD9B;
+  border-top: 5px solid #2FDEC1;
+  border-radius: 100%;
+  animation: spin 500ms linear infinite;
 }
 
-@
-keyframes spin {from { transform:rotate(0deg);
-	
-}
-
-to {
-	transform: rotate(360deg);
-}
-
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 body {
-	background: #f6f6f6;
+  background: #f6f6f6;
 }
+
 </style>
 <script src="../js/ckeditor/ckeditor.js"></script>
 </head>
@@ -113,8 +109,7 @@ body {
 <form>
 	<div class="preview"></div>
 	<div align="center">
-	<button id="triggerUpload" class="btn">이미지미리보기</button>
-	<button id="triggerreg" class="btn">이미지등록</button>
+	<button id="triggerUpload" class="btn">이미지업로드</button>
 	<input type="file" id="filePicker" />
 	</div>
 	<div class="fileName"></div>
@@ -143,6 +138,8 @@ body {
 				class="btn btn-primary" href="event.mib" role="button">취소</a>
 		</p>
 </form>
+
+
 
 	<script type="text/javascript">
 		// 이미지 업로드	

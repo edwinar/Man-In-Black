@@ -28,10 +28,11 @@
 </style>
 </head>
 <body>
+
+<!-- detail로 seq 보내기 -->
 <script type="text/javascript">
-function eventdetail() {
-    
-    location.href='eventdetail.mib';
+function eventdetail(seq) {
+    location.href='eventdetail.mib?SEQ='+seq;
 }
 
 </script>
@@ -59,17 +60,18 @@ function eventdetail() {
 		}
 		}
 	%>
-	
-	
+	<!-- list 뿌리기 -->
 <div>
-	<div class="preview" style="float: left"  onclick="eventdetail()" >
+	<%
+		for(int i=0; i<eventlist.size();i++){
+	%>
+	<div class="preview" style="margin-left: 20px; float: left"  
+	onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
+		
 	</div>
-	<div class="preview" style="margin-left: 20px; float: left" >
-	</div>
-	<div class="preview" style="margin-left: 20px; float: left" >
-	</div>
-	<div class="preview" style="margin-left: 20px; float: left" >
-	</div>
+	<%
+		}
+	%>
 </div>
 	
 

@@ -13,7 +13,7 @@ public class ServiceDto implements Serializable {
 	private	String	NOTICE_TIME;
 	private	int	EVENT_SEQ;
 	private	String	EVENT_TITLE;
-	private	int	EVENT_CONTENT;
+	private	String	EVENT_CONTENT;
 	private	String	EVENT_TIME;
 	private	String	STORED_NAME;
 	
@@ -65,12 +65,17 @@ public class ServiceDto implements Serializable {
 	public void setEVENT_TITLE(String eVENT_TITLE) {
 		EVENT_TITLE = eVENT_TITLE;
 	}
-	public int getEVENT_CONTENT() {
+	
+	public String getEVENT_CONTENT() {
 		return EVENT_CONTENT;
 	}
-	public void setEVENT_CONTENT(int eVENT_CONTENT) {
+
+
+	public void setEVENT_CONTENT(String eVENT_CONTENT) {
 		EVENT_CONTENT = eVENT_CONTENT;
 	}
+
+
 	public String getEVENT_TIME() {
 		return EVENT_TIME;
 	}
