@@ -1,12 +1,8 @@
 package com.eagle.men_in_black.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -24,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.FileModel;
-import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
 import com.google.gson.Gson;
 
@@ -61,7 +55,7 @@ public class CeoMypageController {
 	}
 	
 	// DB에 등록될 파일 메소드
-	public List<Map<String,Object>> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+	public List<HashMap<String,String>> parseInsertFileInfo(HttpServletRequest request) throws Exception{
 		 
 			HttpSession session = request.getSession(); 
 	        
@@ -87,9 +81,9 @@ public class CeoMypageController {
 
 	         
 
-	        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+	        List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 
-	        HashMap<String,Object> listMap = null; 
+	        HashMap<String,String> listMap = null; 
 
 	         
 	        File file = new File(filePath);
@@ -99,12 +93,9 @@ public class CeoMypageController {
 	            file.mkdirs();
 
 	        }
-
-	         
-	        int SEQ = 265;
+ 
 	        int fileCount = 0;
 	        while(iterator.hasNext()){
-	        		SEQ++;
 	        		multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
 	            if(multipartFile.isEmpty() == false){
@@ -122,10 +113,7 @@ public class CeoMypageController {
 
 	                multipartFile.transferTo(file);
 	                
-	                System.out.println("SEQ사진1=="+SEQ);
-	                listMap = new HashMap<String,Object>(); 
-	                
-	                listMap.put("SEQ", SEQ);
+	                listMap = new HashMap<String,String>(); 
 	                
 	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
@@ -147,11 +135,9 @@ public class CeoMypageController {
 	 	               file = new File(filePath + storedFileName);
 
 	 	               multipartFile.transferTo(file);
-	 	               System.out.println("SEQ사진2부터=="+SEQ);
-	 	               listMap = new HashMap<String,Object>();  
 	 	               
-	 	               listMap.put("SEQ", SEQ);
-	 	                
+	 	               listMap = new HashMap<String,String>();  
+	 	               
 	 	               listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
 	 	               listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
@@ -201,19 +187,25 @@ public class CeoMypageController {
 		map.put("bodytype", bodytype);
 		map.put("pro_content", pro_content);
 		map.put("new_item", new_item);
-		map.put("pro_seq", "100");
 		
-		//int insertPro = ceoMypageSvc.do_insert_product(map);
 		
-		// pro_detail 부분 
+		int insertPro = ceoMypageSvc.do_insert_product(map);
+		if(insertPro>0){
+			
+			// pro_detail 부분 
 		String color = res.getParameter("color")==null?"":res.getParameter("color");
 		String size = res.getParameter("size")==null?"":res.getParameter("size");
 		String stock = res.getParameter("stock")==null?"":res.getParameter("stock");
 		
-		HashMap<String, Object> detailMap = new HashMap<>();
-		detailMap.put("color", color);
-		detailMap.put("size", size);
-		detailMap.put("stock", stock);
+		List<CeoMypageDto> pro_detail_list = new ArrayList<>();
+	
+		CeoMypageDto detailDto=new CeoMypageDto();
+		detailDto.setCOLOR(color);
+		detailDto.setSIZE(size);
+		detailDto.setSTOCK(Integer.parseInt(stock));
+		detailDto.setPRO_SEQ(ceoMypageSvc.do_select_proseq());
+		
+		pro_detail_list.add(detailDto);
 		int count = 0;
 		
 		for(int i=1; i<99; i++){
@@ -222,16 +214,21 @@ public class CeoMypageController {
 			stock = res.getParameter("stock"+i)==null?"none":res.getParameter("stock"+i);
 			if(!color.equals("none")&&!size.equals("none")&&!stock.equals("none")){
 			count++;
-			detailMap.put("color"+i, color);
-			detailMap.put("size"+i, size);
-			detailMap.put("stock"+i, stock);
+			detailDto=new CeoMypageDto();
+			detailDto.setCOLOR(color);
+			detailDto.setSIZE(size);
+			detailDto.setSTOCK(Integer.parseInt(stock));
+			detailDto.setPRO_SEQ(ceoMypageSvc.do_select_proseq());
+			pro_detail_list.add(detailDto);
 			}
 		}
 		
-		//if(insertPro>0){
-			
-		//}
+			ceoMypageSvc.do_insert_product_detail(pro_detail_list);
+			// 사진 파일 부분 
+			List<HashMap<String, String>> list =  parseInsertFileInfo(res);
+			ceoMypageSvc.do_insert_product_photo(list);
 		
+		}
 		/*System.out.println("count====="+count);
 		for(int i=1; i<=count; i++){
 			System.out.println("저장된 맵 칼라===" + detailMap.get("color"+i));
@@ -241,9 +238,7 @@ public class CeoMypageController {
 		
 		
 		
-		// 사진 파일 부분 
-		List<Map<String, Object>> list =  parseInsertFileInfo(res);
-		ceoMypageSvc.do_insert_photo(list);
+		
 		
 		/*for(int i=0; i<list.size();i++){
 			System.out.println("파일이름"+list.get(i).get("ORIGINAL_FILE_NAME"));

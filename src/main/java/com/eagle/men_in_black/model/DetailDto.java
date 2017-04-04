@@ -46,6 +46,7 @@ public class DetailDto implements Serializable {
 	private	String	REV_STEP;
 	private	String	REV_TIME;
 	private	String	REV_TITLE;
+	private String  REV_CONTENT;
 	private	int	SCORE;
 	private	int	AVG_SCORE;
 	private	String	SEL_COLOR;
@@ -376,6 +377,12 @@ public class DetailDto implements Serializable {
 	public void setWASH(String wASH) {
 		WASH = wASH;
 	}
+	public String getREV_CONTENT() {
+		return REV_CONTENT;
+	}
+	public void setREV_CONTENT(String rEV_CONTENT) {
+		REV_CONTENT = rEV_CONTENT;
+	}
 	@Override
 	public String toString() {
 		return "DetailDto [BAS_PRO_NUM=" + BAS_PRO_NUM + ", BAS_SEQ=" + BAS_SEQ + ", BODYTYPE=" + BODYTYPE + ", CANCLE="
@@ -389,9 +396,9 @@ public class DetailDto implements Serializable {
 				+ ", QNA_SEQ=" + QNA_SEQ + ", QNA_STEP=" + QNA_STEP + ", QNA_TIME=" + QNA_TIME + ", QNA_TITLE="
 				+ QNA_TITLE + ", QNA_TYPE=" + QNA_TYPE + ", REC_NAME=" + REC_NAME + ", REC_TEL=" + REC_TEL
 				+ ", REV_REF=" + REV_REF + ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP + ", REV_TIME=" + REV_TIME
-				+ ", REV_TITLE=" + REV_TITLE + ", SCORE=" + SCORE + ", AVG_SCORE=" + AVG_SCORE + ", SEL_COLOR="
-				+ SEL_COLOR + ", SEL_NUM=" + SEL_NUM + ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE=" + SEL_SIZE + ", SEL_TIME="
-				+ SEL_TIME + ", STOCK=" + STOCK + ", STORED_NAME=" + STORED_NAME + ", SUB_ITEM=" + SUB_ITEM
-				+ ", USER_ID=" + USER_ID + ", WASH=" + WASH + "]";
+				+ ", REV_TITLE=" + REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE=" + SCORE + ", AVG_SCORE="
+				+ AVG_SCORE + ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM + ", SEL_SEQ=" + SEL_SEQ
+				+ ", SEL_SIZE=" + SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK + ", STORED_NAME="
+				+ STORED_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH=" + WASH + "]";
 	}
 }

@@ -379,50 +379,62 @@ public class UserMypageController {
 		return mav;
 
 	}
-	 /*리뷰쓰기버튼 눌렀을 때*/
+	 /*리뷰쓰기버튼 눌렀을 때
 		@RequestMapping(value="reviewWrite.mib" , method=RequestMethod.POST)
 		public ModelAndView writeGood(HttpServletRequest res) throws Exception{
 			ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
+			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 
 			// form에서 넘어온 input
-			String id = res.getParameter("id");
-			String title= res.getParameter("title");
-			String content= res.getParameter("content");
-			String score= res.getParameter("score");
-			// 이걸로먼저 review table에 인설트
+			String REV_TITLE= res.getParameter("title");
+			String REV_CONTENT= res.getParameter("content");
+			String SCORE= res.getParameter("score");
+			String PRO_SEQ= res.getParameter("pro_seq");
 
-			//ehdkdkf  yk
+			// 이걸로먼저 review table에 인설트
+			HashMap<String, String> remap = new HashMap<>();
+			remap.put("REV_TITLE", REV_TITLE);
+			remap.put("REV_CONTENT", REV_CONTENT);
+			remap.put("SCORE", SCORE);
+			remap.put("PRO_SEQ", PRO_SEQ);
+			remap.put("USER_ID", userdto.getUSER_ID());
+			userMypageSvc.do_insert_review(remap);
+
+
+
+
 
 			// 사진 파일 부분
-			Map<String, Object> map =  parseInsertFileInfo(res);
+			HashMap<String, Object> map =  parseInsertFileInfo(res);
 
-
+			userMypageSvc.do_insert_reviewphoto(map);
+				
 				 return mav;
-			}
+			}*/
 
-
+	
 		// 파일 이름 중복 방지 메소드
 		 public static String getRandomString(){
 
 			        return UUID.randomUUID().toString().replaceAll("-", "");
 
 		}
-
+		
 		// DB에 등록될 파일 메소드
-		public Map<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
-
-				HttpSession session = request.getSession();
-
+		public HashMap<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+			 
+				HttpSession session = request.getSession(); 
+		        
 				MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 
 		        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-
-		        // 저장경로
+		        
+		        // 저장경로 
 		        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
 				//String root_path = System.getProperty("catalina.home");
-		        String attach_path = "images\\";
+		        String attach_path = "images\\"; 
 				String filePath = root_path+attach_path;
-
+		         
 				System.out.println("저장경로=========================================================================================="+filePath);
 
 		        MultipartFile multipartFile = null;
@@ -433,12 +445,12 @@ public class UserMypageController {
 
 		        String storedFileName = null;
 
+		         
+		        HashMap<String, Object> listMap = null;
 
-		        Map<String, Object> listMap = null;
-
-
+		         
 		        File file = new File(filePath);
-		        // 폴더가없을경우 폴더생성
+		        // 폴더가없을경우 폴더생성 
 		        if(file.exists() == false){
 
 		            file.mkdirs();
@@ -446,9 +458,7 @@ public class UserMypageController {
 		        }
 
 
-		        int SEQ = 254;
 		        while(iterator.hasNext()){
-		        		SEQ++;
 		            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 
 		            if(multipartFile.isEmpty() == false){
@@ -459,19 +469,18 @@ public class UserMypageController {
 
 		                storedFileName = getRandomString() + originalFileExtension;
 
-		                // 첨부한 파일 생성
+		                // 첨부한 파일 생성 
 		                file = new File(filePath + storedFileName);
 
 		                multipartFile.transferTo(file);
 
 		                listMap = new HashMap<String,Object>();
 
-		                listMap.put("SEQ", SEQ);
-
 		                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
 
-		                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
+		                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
 
+		                listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
 		            }
 
 		        }
@@ -479,5 +488,105 @@ public class UserMypageController {
 		        return listMap;
 
 		    }
+
+		// 자식창
+		@RequestMapping(value="reviewWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+
+		public @ResponseBody String reviewWrite(MultipartHttpServletRequest res) throws Exception{
+
+			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+			// form에서 넘어온 input
+			String REV_TITLE= res.getParameter("title");
+			String REV_CONTENT= res.getParameter("content");
+			String SCORE= res.getParameter("score");
+			String PRO_SEQ= res.getParameter("pro_seq");
+
+			// 이걸로먼저 review table에 인설트
+			HashMap<String, String> remap = new HashMap<>();
+			remap.put("REV_TITLE", REV_TITLE);
+			remap.put("REV_CONTENT", REV_CONTENT);
+			remap.put("SCORE", SCORE);
+			remap.put("PRO_SEQ", PRO_SEQ);
+			remap.put("USER_ID", userdto.getUSER_ID());
+			int rev =  userMypageSvc.do_insert_review(remap);
+
+			HashMap<String, String> resultMap = new HashMap<>();
+			if(rev>0){
+				// 사진 파일 부분
+
+				 Iterator<String> iterator = res.getFileNames();
+
+			        // 저장경로
+				 	HttpSession session = res.getSession();
+			        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+					//String root_path = System.getProperty("catalina.home");
+			        String attach_path = "images\\";
+					String filePath = root_path+attach_path;
+
+					//System.out.println("저장경로=========================================================================================="+filePath);
+
+			        MultipartFile multipartFile = null;
+
+			        String originalFileName = null;
+
+			        String originalFileExtension = null;
+
+			        String storedFileName = null;
+
+
+			        HashMap<String, Object> listMap = null;
+
+
+			        File file = new File(filePath);
+			        // 폴더가없을경우 폴더생성
+			        if(file.exists() == false){
+
+			            file.mkdirs();
+
+			        }
+
+
+			        while(iterator.hasNext()){
+			            multipartFile = res.getFile(iterator.next());
+
+			            if(multipartFile.isEmpty() == false){
+
+			                originalFileName = multipartFile.getOriginalFilename();
+
+			                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+			                storedFileName = getRandomString() + originalFileExtension;
+
+			                // 첨부한 파일 생성
+			                file = new File(filePath + storedFileName);
+
+			                multipartFile.transferTo(file);
+
+			                listMap = new HashMap<String,Object>();
+
+			                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+			                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
+			                System.out.println("userMypageSvc.do_select_revseq()" +userMypageSvc.do_select_revseq());
+			                listMap.put("REV_SEQ", userMypageSvc.do_select_revseq());
+			            }
+
+			        }
+
+
+				int revp = userMypageSvc.do_insert_reviewphoto(listMap);
+
+				if(revp>0){
+					resultMap.put("result", "OK");
+				}
+			}
+
+
+			Gson gson = new Gson();
+
+
+			return gson.toJson(resultMap);
+
+		}
 
 }

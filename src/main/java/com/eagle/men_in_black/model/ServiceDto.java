@@ -16,6 +16,7 @@ public class ServiceDto implements Serializable {
 	private	int	EVENT_CONTENT;
 	private	String	EVENT_TIME;
 	private	String	STORED_NAME;
+	
 	public int getNOTICE_SEQ() {
 		return NOTICE_SEQ;
 	}

@@ -44,14 +44,15 @@
 		INSERT INTO
 		NOTICE_BOARD
 		(NOTICE_SEQ,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_TIME)
-		<!--시퀀스 설정하고 등록  -->
-		VALUES(104,#{noticetitle},#{content},SYSDATE)
+		<!--시퀀스 설정하고 등록 -->
+		VALUES(45,#{noticetitle},#{content},SYSDATE)
 
 	</insert>
 
 	<!--공지사항 수정 -->
-	<update id="do_service_update" parameterType="hashmap" >
-		UPDATE NOTICE_BOARD
+	<update id="do_service_update" parameterType="hashmap">
+		UPDATE
+		NOTICE_BOARD
 		SET
 		NOTICE_TITLE=#{noticetitle},NOTICE_CONTENT=#{content},NOTICE_TIME=SYSDATE
 		WHERE NOTICE_SEQ=#{seq}
@@ -62,10 +63,37 @@
 	<!--공지사항 삭제 -->
 	<delete id="do_service_delete" parameterType="int">
 		DELETE
-		FROM NOTICE_BOARD
+		FROM
+		NOTICE_BOARD
 		WHERE NOTICE_SEQ =#{seq}
 
 	</delete>
+
+	<!--이벤트 불러오기 -->
+	<select id="do_event_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.ServiceDto">
+		SELECT TT1.*
+		FROM (
+		SELECT ROWNUM RNUM,T1.*,T2.*
+		from(
+		
+		SELECT B.STORED_NAME,A.EVENT_SEQ
+		FROM EVENT_BOARD A INNER JOIN PHOTO B
+		ON(A.EVENT_SEQ = B.EVENT_SEQ)
+		WHERE B.STORED_NAME LIKE '%MAIN%'
+		ORDER BY PHOTO_SEQ DESC
+
+		) T1
+		NATURAL JOIN
+		(
+		SELECT
+		COUNT(EVENT_BOARD.EVENT_SEQ) TOT_CNT FROM EVENT_BOARD
+		) T2
+		) TT1
+		WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and
+		((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+		
+	</select>
+
 
 
 </mapper>

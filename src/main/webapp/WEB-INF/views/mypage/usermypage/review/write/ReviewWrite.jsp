@@ -8,7 +8,7 @@
 	Date now = new Date();
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
-	String num = request.getParameter("SEL_SEQ");
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,7 +61,11 @@
 </style>
 </head>
 <body>
-<form action="reviewWrite.mib" method="post" enctype="multipart/form-data">
+<% String num = request.getParameter("PRO_SEQ"); %>
+<!-- onsubmit="return closeSelf()" 
+action="reviewWrite.mib"
+-->
+<form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
 	<div class="layout">
 		<div class="leftLayout">
 			<div class="thumbnail">
@@ -98,6 +102,7 @@
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
 						제목 : <input type="text" name="title">
+						<input type="hidden" name="pro_seq" value="<%=num%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
@@ -112,7 +117,7 @@
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="submit" value="리뷰 달기">
+						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
 					</div>
 
 				</div>
@@ -202,6 +207,42 @@
 			};
 
 		};
+		
+		function closeSelf(){
+			var formData = new FormData(); 
+			formData.append("title", $("input[name=title]").val()); 
+			formData.append("content", $("input[name=content]").val()); 
+			formData.append("pro_seq", $("input[name=pro_seq]").val()); 
+			formData.append("score", $("input[name=score]").val()); 
+			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
+			
+			$.ajax({
+	 			type : "POST",
+	 			url : "reviewWrite.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : formData,
+	 			processData: false,
+	 			contentType: false,
+	 			success : function(data) {
+	 				//alert("success " + data);
+	 				var flag = $.parseJSON(data);
+	 				
+	 				if(flag.result=='OK'){
+	 					window.close();
+	 				}else{
+	 					alert("리뷰등록실패");
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});		
+
+	}
+		
 	</script>
 </body>
 </html>

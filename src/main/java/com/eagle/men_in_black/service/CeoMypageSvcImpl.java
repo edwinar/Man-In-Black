@@ -23,25 +23,6 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 	}
 
 	@Override
-	public int do_insert_photo(List<Map<String, Object>> map) {
-		// TODO Auto-generated method stub
-		
-		 List<Map<String,Object>> list = map;
-
-		 int sumNum = 0;
-		 
-	        for(int i=0, size=list.size(); i<size; i++){
-
-	        sumNum += ceoMypageDao.do_insert_photo(list.get(i));
-
-	        }
-
-
-		
-		return sumNum;
-	}
-
-	@Override
 	public List<CeoMypageDto> do_search_review(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return ceoMypageDao.do_search_review(map);
@@ -70,6 +51,48 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		// TODO Auto-generated method stub
 		return ceoMypageDao.do_insert_product(map);
 	}
+
+	@Override
+	public int do_insert_product_detail(List<CeoMypageDto> map) {
+		List<CeoMypageDto> list = map;
+
+		 int sumNum = 0;
+		 
+	        for(int i=0; i<list.size(); i++){
+
+	        sumNum += ceoMypageDao.do_insert_product_detail(list.get(i));
+
+	        }
+
+	        return sumNum;
+	}
+
+	@Override
+	public int do_insert_product_photo(List<HashMap<String, String>> map) {
+		
+		List<HashMap<String, String>> list = map;
+
+		 int sumNum = 0;
+		 
+	        for(int i=0, size=list.size(); i<size; i++){
+
+	        sumNum += ceoMypageDao.do_insert_product_photo(list.get(i));
+
+	        }
+
+
+		
+		return sumNum;
+		
+	}
+
+	@Override
+	public int do_select_proseq() {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_proseq();
+	}
+
+	
 	
 
 }
