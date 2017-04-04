@@ -533,13 +533,8 @@ public class UserMypageController {
 			String PRO_SEQ= res.getParameter("PRO_SEQ");
 			String DEL_SEQ= res.getParameter("DEL_SEQ");
 			
-			/*
 			
-			//적립금 지급
-			HashMap<String, Object> pointmap = new HashMap<>();
-			pointmap.put("PRO_SEQ", PRO_SEQ);
-			pointmap.put("USER_ID", userdto.getUSER_ID());
-			userMypageSvc.do_insert_point(pointmap);*/
+			
 			
 			
 			// 이걸로먼저 review table에 인설트
@@ -624,11 +619,17 @@ public class UserMypageController {
 					resultMap.put("result", "OK");
 					userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
 					System.out.println("DEL_SEQ=========================:" +DEL_SEQ);
+
+					
 					
 				}
 			}
 
-			
+			//적립금 지급
+			HashMap<String, Object> pointmap = new HashMap<>();
+			pointmap.put("PRO_SEQ", Integer.parseInt(PRO_SEQ));
+			pointmap.put("USER_ID", userdto.getUSER_ID());
+			userMypageSvc.do_insert_point(pointmap);
 
 			Gson gson = new Gson();
 

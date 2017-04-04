@@ -517,24 +517,26 @@ VALUES
       (
        SELECT (PRO_PRICE)/20 AS POINT 
        FROM PRODUCT 
-       WHERE PRO_SEQ=#{PRO_SEQ}),
-      (
-       (
-        SELECT MAX(POINT_FINAL) 
-        FROM POINTS 
-        WHERE USER_ID = #{USER_ID}
-        )
+       WHERE 
+       		PRO_SEQ= #{PRO_SEQ}),
+       		(
+       		 (
+       		  SELECT MAX(POINT_FINAL) 
+       		  FROM POINTS 
+       		  WHERE USER_ID = #{USER_ID}
+       		  )
        +
-       (
-        SELECT (PRO_PRICE)/10 AS POINT 
-        FROM PRODUCT 
-        WHERE PRO_SEQ=#{PRO_SEQ}
-       )
-     ) ,
-   'PLUS' ,
-   #{USER_ID},
-   #{PRO_SEQ})
-  )
+       		(
+       		 SELECT (PRO_PRICE)/20 AS POINT 
+       		 FROM PRODUCT 
+       		 WHERE PRO_SEQ= #{PRO_SEQ}
+       		)
+       		) ,
+       		'PLUS' ,
+       		#{USER_ID} ,
+       		#{PRO_SEQ}
+   )
+  
 ]]>
 </insert>
 
