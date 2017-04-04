@@ -43,7 +43,33 @@ $(function() {
 			$('#sizeSelect').attr('disabled',true);
 		}else{
 			$('#sizeSelect').attr('disabled',false);
-			location.href="BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>&COLOR="+color;//아작스사용해야한다.
+			//아작스사용해야한다.
+			$.ajax({
+	 			type : "POST",
+	 			url : "selectSize.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"PRO_SEQ" : <%=PRO_SEQ %>,
+	 				"COLOR" : color
+	 			},
+	 			success : function(data) {
+	 				var flag = $.parseJSON(data);
+	 				
+	 				$("#sizeSelect").find("option").remove();
+	 				$("#sizeSelect").append("<option value='no' selected='selected'>사이즈선택</option>");
+
+	 				for(i=0;i<flag.length;i++){
+	 					console.log(flag[i]);
+	 					$("#sizeSelect option:eq(0)").after("<option value="+flag[i].PRO_SIZE+'>'+flag[i].PRO_SIZE+'</option>');
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});
 		}
 	});
 });
@@ -75,9 +101,9 @@ $(function() {
 		<div class="info" style="height: 15%; width: 100%; text-align: center;">
 			<h5>사이즈</h5><br>
 			<select name=size size=1 id="sizeSelect" disabled="disabled">
-		        <option value="" selected="selected">사이즈선택</option>
-		        <option value="S">S</option>
-		        <option value="M">M</option>
+		        <option value="no" selected="selected">사이즈선택</option>
+		        <!-- <option value="S">S</option>
+		        <option value="M">M</option> -->
 	    	</select>
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">

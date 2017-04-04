@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.eagle.men_in_black.model.DetailDto;
@@ -19,4 +20,6 @@ public interface DetailSvc {
 	public List<DetailDto> do_buyProductPop(int PRO_SEQ);
 	//구매팝업칼라셀렉트
 	public List<DetailDto> do_buyProductColorPop(int PRO_SEQ);
+	//구매팝업칼라로인한사이즈셀렉트리스트
+	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map);
 }
