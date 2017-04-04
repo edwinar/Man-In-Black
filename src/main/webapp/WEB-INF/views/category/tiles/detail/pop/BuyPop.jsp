@@ -15,13 +15,16 @@
 </head>
 <body>
 <script type="text/javascript">
-function countplus(){
-	var num = $('#number').val();
-	alert(num);
-}
-function countminus(){
-	
-}
+$(function() {
+	$('#plus').on('click',function(){		
+		/* var num = $('#number').text(); */
+		alert("플러스");
+	});
+	$('#minus').on('click',function(){		
+		/* var num = $('#number').text(); */
+		alert("마이너스");
+	});
+});
 </script>
 <div align="center" style="text-align: center;">
 	<div class="thumbnail" align="center" style="text-align: center;">
@@ -52,9 +55,9 @@ function countminus(){
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">
 			<h5>수량</h5><br>
-			<button class="btn btn-default" id="plus" type="submit" style="width: 15%; height: 100%;" onclick="countminus()">-</button>
+			<button class="btn btn-default" id="minus" type="submit" style="width: 15%; height: 100%;">-</button>
 			<input type="text" id="number" size="5px" value="<%=count %>" style="text-align: center;"/>
-			<button class="btn btn-default" id="minus" type="submit" style="width: 15%; height: 100%;" onclick="countplus()">+</button>
+			<button class="btn btn-default" id="plus" style="width: 15%; height: 100%;">+</button>
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
 			<button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100%; height: 50%;" onclick="">장바구니</button>
