@@ -15,4 +15,8 @@ public interface DetailSvc {
 	public List<DetailDto> do_selectProductReviewList(int PRO_SEQ);
 	//클릭한 리뷰 디테일
 	public DetailDto do_selectReviewDetail(int REV_SEQ);
+	//구매팝업 정보
+	public List<DetailDto> do_buyProductPop(int PRO_SEQ);
+	//구매팝업칼라셀렉트
+	public List<DetailDto> do_buyProductColorPop(int PRO_SEQ);
 }
