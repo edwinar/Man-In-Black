@@ -35,14 +35,14 @@ import com.google.gson.Gson;
 @Controller
 public class UserMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private UserMypageSvc userMypageSvc;
-	
+
 	// 마이페이지 메인
 		@RequestMapping("mymain.mib")
 		public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
-			
+
 			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
 			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
@@ -58,9 +58,9 @@ public class UserMypageController {
 			mav.addObject("basket",basket);
 			mav.addObject("point5",point5);
 			return mav;
-			
+
 		}
-	// 회원정보수정 
+	// 회원정보수정
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(HttpServletRequest res){
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
@@ -72,9 +72,9 @@ public class UserMypageController {
 		String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
 		String detailAddress = (res.getParameter("detailAddress")==null || res.getParameter("detailAddress")=="")?"":res.getParameter("detailAddress");
 		String id = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
-		
+
 		String fullAddress = jibunAddress+roadAddress+"";
-		
+
 		HashMap<String, String> map  = new HashMap<>();
 		map.put("EMAIL", sign_email);
 		map.put("TEL", tel);
@@ -83,75 +83,75 @@ public class UserMypageController {
 		map.put("ADDRESS", fullAddress);
 		map.put("DETAILADDRESS", detailAddress);
 		map.put("USER_ID", id);
-	 
+
 		String upda = (res.getParameter("upda")==null || res.getParameter("upda")=="")?"":res.getParameter("upda");
 		System.out.println("업다============="+upda);
 		mav.addObject("upda", upda);
 		mav.addObject("sign_email", sign_email);
-		
+
 		if(userMypageSvc.do_member_update(map)==0){
 			if(!id.equals(""))mav.addObject("updateResult", "NO");
 		}else{
 			mav.addObject("updateResult", "OK");
 			mav.addObject("upda", "NO");
 		}
-		
-		
+
+
 		return mav;
-		
+
 	}
-	
+
 	// 회원정보수정 비밀번호 체크 
 	@RequestMapping(value="pwdCheck.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
-	
+
 	public @ResponseBody String emailCheck(HttpServletRequest res){
-		
+
 		String pwd = res.getParameter("pwd");
 		MainDto dto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		
+
 		HashMap<String, String> map = new HashMap<>();
-		
+
 		if(pwd.equals(dto.getUSER_PW())){
-			
+
 			map.put("success", "success");
 
 		}else{
 			map.put("check", "비밀번호가 틀렸습니다.");
 			map.put("success", "fail");
 		}
-		
+
 		Gson gson = new Gson();
-		
-		
+
+
 		return gson.toJson(map);
-		
+
 	}
-	
-	
+
+
 	// 구매목록 
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		
+
 		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
 		String START_DATE = (res.getParameter("START_DATE")==null || res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
 		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
-		
+
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("START_DATE",START_DATE);
 		map.put("END_DATE",END_DATE);
 		map.put("id", userdto.getUSER_ID());
-		
+
 		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(map);
-		
-		
+
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
 		mav.addObject("buyList",buyList);
 		return mav;
-		
+
 	}
 	// 구매목록 반품 교환 환불 목록
 	@RequestMapping("buyCancel.mib")
@@ -170,15 +170,23 @@ public class UserMypageController {
 	}
 
 	// 구매목록 반품 교환 환불
-	@RequestMapping("cancel.mib")
-	public void cancel(HttpServletRequest res, HttpServletResponse rep){
+	@RequestMapping(value="cancel.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+
+	public @ResponseBody String cancel(MultipartHttpServletRequest res) throws Exception{
 
 		HashMap<String, Object> update = new HashMap<String, Object>();
 		String DEL_SEQ = res.getParameter("DEL_SEQ");
 		String commend = res.getParameter("commend");
-		String CA_REASON = new String();
-		String CA_ACCOUNT = new String();
-		String RE_OPTION = new String();
+		String CA_REASON = "";
+		String CA_ACCOUNT = "";
+		String RE_OPTION = "";
+		loger.debug("=Controller ===========================");
+		loger.debug("RETURN === " + commend +  "l앙 기무띠~");
+		loger.debug("RE_OPTION === " + RE_OPTION +  "l앙 기무띠~");
+		loger.debug("CA_REASON === " + CA_REASON +  "l앙 기무띠~");
+		loger.debug("CA_ACCOUNT === " + CA_ACCOUNT +  "l앙 기무띠~");
+		loger.debug("DEL_SEQ === " + DEL_SEQ +  "l앙 기무띠~");
+		loger.debug("============================");
 
 
 		if(commend == "반품"){
@@ -199,13 +207,19 @@ public class UserMypageController {
 		update.put("CA_ACCOUNT",CA_ACCOUNT);
 		update.put("DEL_SEQ",DEL_SEQ);
 
-
-		userMypageSvc.do_update_cancel(update);
 		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
+		loger.debug("RETURN === " + commend +  "앙 기무띠~");
+		loger.debug("RE_OPTION === " + RE_OPTION +  "앙 기무띠~");
+		loger.debug("CA_REASON === " + CA_REASON +  "앙 기무띠~");
+		loger.debug("CA_ACCOUNT === " + CA_ACCOUNT +  "앙 기무띠~");
+		loger.debug("DEL_SEQ === " + DEL_SEQ +  "앙 기무띠~");
 		loger.debug("============================");
 
-	}
+
+        userMypageSvc.do_update_cancel(update);
+
+return null;
+    };
 
 	// 장바구니
 	@RequestMapping("basketlist.mib")
