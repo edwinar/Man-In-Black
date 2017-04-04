@@ -27,10 +27,10 @@
 	String sign_email = (String)request.getAttribute("sign_email");
 	String signupdate = (String)request.getAttribute("signupdate")==null?"":(String)request.getAttribute("signupdate");
 	
-	System.out.println("ㅇㅣ메일쳌쳌"+randomNum+sign_email+signupdate);
+	//System.out.println("ㅇㅣ메일쳌쳌"+randomNum+sign_email+signupdate);
 %>
 <input type="hidden" id="signupdate" value="<%=signupdate%>">
-<script type="text/javascript"> alert($("#signupdate").val());</script>
+
 <form action="" name="signinForm" id="signinForm">
  <div class="modal-header">
         <button type="button" id="close_Btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

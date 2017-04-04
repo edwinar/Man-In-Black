@@ -42,6 +42,10 @@
       <definition name="no-tiles" template="WEB-INF/views/noTemplate.jsp">
          <put-attribute name="noTemplate" value="" />
       </definition>
+
+
+
+
       <!-- 구매버튼 타일즈 -->
       <!-- Template // main이 우리가 만드는 부분  -->
 		<definition name="Detaillayout" template="/WEB-INF/views/layout.jsp">
