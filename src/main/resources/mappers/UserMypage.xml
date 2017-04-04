@@ -3,6 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eagle.repository.mapper.UserMypage">
+
+
 <!-- 메인최종포인트-->
 <select id="do_search_point" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 SELECT
@@ -15,6 +17,7 @@ ORDER BY PRO_SEQ DESC
 )
 WHERE ROWNUM = 1
 </select>
+
 
 <!-- 메인포인트-->
 <select id="do_search_point5" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -36,6 +39,7 @@ WHERE ROWNUM <=5
 ]]>
 </select>
 
+
 <!-- 메인쿠폰 -->
 <select id="do_search_coupon" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
@@ -54,6 +58,7 @@ AND COUP_LIMIT >  SYSDATE
 WHERE ROWNUM <=3
 ]]>
 </select>
+
 
 <!-- 구매한상품 -->
 <select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -82,6 +87,7 @@ WHERE ROWNUM <=5
 ]]>
 </select>
 
+
 <!-- 장바구니-->
 <select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
@@ -103,6 +109,7 @@ ORDER BY A.BAS_SEQ DESC
 WHERE ROWNUM <=5
 ]]>
 </select>
+
 
 <!-- qna -->
 <select id="do_search_qna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -177,11 +184,23 @@ FROM (
 ]]>
 </select>
 
+
     <!-- 취소,반품,교환할 상품목록  -->
-    <select id="do_search_cancel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_cancel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
         <![CDATA[
-SELECT C.STORED_NAME,B.SUB_ITEM,B.PRO_NAME,B.PRO_PRICE,A.COUPON,A.POINT,A.FINAL_PRICE,A.SEL_TIME,D.DEL_STEP,A.SEL_SIZE,A.SEL_COLOR
-FROM SALES A JOIN PRODUCT B
+        SELECT C.STORED_NAME,
+            B.SUB_ITEM,
+            B.PRO_NAME,
+            B.PRO_PRICE,
+            A.COUPON,
+            A.POINT,
+            A.FINAL_PRICE,
+            A.SEL_TIME,
+            D.DEL_STEP,
+            A.SEL_SIZE,
+            A.SEL_COLOR,
+            D.DEL_SEQ
+        FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ
            JOIN PHOTO C
            ON B.PRO_SEQ = C.PRO_SEQ
@@ -192,18 +211,17 @@ FROM SALES A JOIN PRODUCT B
 
 
 ]]>
-    </select>
+</select>
+
 
     <!-- 취소,반품,교환  -->
-    <update id="do_update_delivery" parameterType="hashmap" >
-        UPDATE MEMBERS SET
-        ADDRESS = #{ADDRESS},
-        EMAIL = #{EMAIL},
-        TEL=#{TEL},
-        POSTCODE=#{POSTCODE},
-        USER_PW=#{POSTCODE},
-        DETAILADDRESS=#{DETAILADDRESS}
-        WHERE USER_ID = #{USER_ID}
+    <update id="do_update_cancel" parameterType="hashmap" >
+        UPDATE DELIVERY SET
+        RETURN = #{RETURN},
+        RE_OPTION = #{RE_OPTION},
+        CA_REASON=#{CA_REASON},
+        CA_ACCOUNT=#{CA_ACCOUNT},
+        WHERE DEL_SEQ = #{DEL_SEQ}
     </update>
 
 
@@ -228,6 +246,7 @@ FROM (
             WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
+
 <!-- 쿠폰LIST  -->
 <select id="do_search_couponlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
@@ -246,6 +265,7 @@ FROM (
      WHERE RNUM BETWEEN (#{PAGE_SIZEC} * (#{PAGE_NUMC}-1)+1) and ((#{PAGE_SIZEC}*(#{PAGE_NUMC}-1))+#{PAGE_SIZEC})
 ]]>
 </select>
+
 
 <!-- 장바구니LIST  -->
     <select id="do_search_basketlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -277,15 +297,17 @@ WHERE RNUM BETWEEN 1 and 100
 ]]> 
 </select>
 
-    <!-- 장바구니 아이템 삭제  -->
-    <delete id="do_delete_basketlist" parameterType="java.util.List" >
+
+<!-- 장바구니 아이템 삭제  -->
+<delete id="do_delete_basketlist" parameterType="java.util.List" >
 
       DELETE BASKET WHERE BAS_SEQ IN 
       <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
             #{item.value}
         </foreach>
 
-    </delete>
+</delete>
+
 
 <!-- 내가쓴글QNA  -->
 <select id="do_search_myboradqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -309,7 +331,6 @@ WHERE ROWNUM <=5
 
 
 
-
 <!-- 내가쓴글리뷰 -->
 <select id="do_search_myboradreview" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
@@ -328,6 +349,7 @@ FROM (SELECT
 WHERE ROWNUM <=5
 ]]>
 </select>
+
 
 <!-- 리뷰 -->
 <select id="do_search_reviewlist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
@@ -352,6 +374,7 @@ FROM (
 ]]>
 </select>
 
+
 <!-- qna -->
 <select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
@@ -373,9 +396,7 @@ FROM (
 </select>
 
 
-
-    <select id="do_search_goods" parameterType="java.util.HashMap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-
+<select id="do_search_goods" parameterType="java.util.HashMap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 SELECT TT1.*
 FROM (
 SELECT ROWNUM RNUM,T1.*,T2.*
@@ -417,9 +438,7 @@ FROM(
          ) T2
 ) TT1
 WHERE RNUM BETWEEN 1 and 9
-
-
-    </select>
+</select>
 
 <update id="do_member_update" parameterType="hashmap" >
 UPDATE MEMBERS SET 
@@ -484,5 +503,67 @@ INTO PHOTO
 <select id="do_select_revseq" resultType="int">
 SELECT MAX(REV_SEQ) FROM REVIEW
 </select>
+
+
+<!-- 적릭금 지급 -->
+<insert id="do_insert_point" parameterType="hashmap">
+<![CDATA[
+INSERT
+INTO POINTS
+  		   (
+  		   POINT_SEQ,
+  		   POINT_TIME,
+  		   POINT_PRICE,
+  		   POINT_FINAL,
+  		   INCREASE,
+  		   USER_ID,
+  		   PRO_SEQ
+  		   )
+VALUES
+      (
+      POINT_SEQ.NEXTVAL,
+      SYSDATE,
+      (
+       SELECT (PRO_PRICE)/20 AS POINT
+       FROM PRODUCT
+       WHERE
+       		PRO_SEQ= #{PRO_SEQ}),
+       		(
+       		 (
+       		  SELECT MAX(POINT_FINAL)
+       		  FROM POINTS
+       		  WHERE USER_ID = #{USER_ID}
+       		  )
+       +
+       		(
+       		 SELECT (PRO_PRICE)/20 AS POINT
+       		 FROM PRODUCT
+       		 WHERE PRO_SEQ= #{PRO_SEQ}
+       		)
+       		) ,
+       		'PLUS' ,
+       		#{USER_ID} ,
+       		#{PRO_SEQ}
+   )
+
+]]>
+</insert>
+
+<!-- 구매확정  -->
+<update id="do_update_del_step" parameterType="int" >
+UPDATE DELIVERY
+SET DEL_STEP='구매확정'
+WHERE DEL_SEQ= #{del_seq}
+</update>
+
+
+<!-- 리뷰작성완료  -->
+<update id="do_update_del_step2" parameterType="int" >
+UPDATE DELIVERY
+SET DEL_STEP='리뷰완료'
+WHERE DEL_SEQ= #{DEL_SEQ}
+</update>
+
+
 
 </mapper>

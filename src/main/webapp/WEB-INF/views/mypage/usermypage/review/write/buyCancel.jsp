@@ -14,11 +14,12 @@
     UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/Mib.css">
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<h1>교환 환불 취소</h1>
+<h1 align="center">교환 환불 취소</h1>
 
-<form action="">
+<form action="cancel.mib" method="post">
     <select onchange="selectForm(this.value);">
         <option value="">구분</option>
         <option value="취소">취소</option>
@@ -26,7 +27,7 @@
         <option value="교환">교환</option>
     </select>
 
-    <div id="total" style="margin-top: 100px">
+    <div id="total" style="margin-top: 100px" align="center">
         <div id="table" style="width: 90%">
                 <table class="table">
                     <col width="9%">
@@ -43,7 +44,7 @@
                     <tr height="40px">
                         <th class="boardone">이미지</th>
                         <th class="boardone">분류</th>
-                        <th>상품이름1234512</th>
+                        <th>상품이름</th>
                         <th class="boardone">수량</th>
                         <th class="boardtwo">판매가</th>
                         <th class="boardtwo">쿠폰</th>
@@ -53,8 +54,8 @@
                         <th>상태</th>
                     </tr>
 
-               
-           
+
+
 
             <tr height="30px">
                 <td class="boardone" rowspan="2"><img alt="not found"
@@ -83,7 +84,7 @@
                 <td><%=cancelList.getSEL_SIZE()%> : <%=cancelList.getSEL_COLOR()%>
                 </td>
             </tr>
-         
+
 
         </table>
             </div>
@@ -96,8 +97,10 @@
     </div>
     <br>
 
-    <input type="submit" value="확정" >
-    <input type="button" value="돌아가기" onclick="window.close()">
+    <input class="button" type="button" value="확정" onclick="closeSelf()">
+    <input class="button" type="button" value="돌아가기" onclick="window.close()">
+    <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
+    <input type="hidden" name="commend" value="">
 
 </form>
 
@@ -113,10 +116,10 @@
 
         if (commend == '교환') {
             strInput = "<label>원하는 옵션 작성<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea></label><br><br>" +
-                "<label>교환사유 작성해주세요<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> </label><br>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+                "<label>교환사유 작성해주세요<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> </label><br>" ;
+
         } else if (commend == '반품') {
-            strInput = "<label>반품 사유 작성<textarea name='CA_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
+            strInput = "<label>반품 사유 작성<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
                 "<label>환불받을 계좌<br><select  class='product_iinput'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
@@ -168,8 +171,8 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input name='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+                "<input name='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>";
+
 
         } else if (commend == '취소') {
             strInput = "&nbsp;&nbsp;" +
@@ -224,14 +227,66 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input id='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+                "<input name='CA_ACCOUNT' type='text'>";
+
 
         }
+        document.getElementsByName('commend').value  = commend;
         inputBox.innerHTML = strInput;
     }
 
 
+
+
+    function closeSelf(){
+        var formData = new FormData();
+
+        var commend = document.getElementsByName('commend').value;
+        alert('커맨드 = '+ commend);
+        if ('교환' == commend){
+            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
+            formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
+
+        }else if ('반품' == commend){
+            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
+            formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
+
+        }else if ('취소' == commend){
+            formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
+
+        }
+        formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
+        formData.append("commend", $("input[name=commend]").val());
+
+
+
+
+        $.ajax({
+            type : "POST",
+            url : "cancel.mib",
+            async : true,
+            dataType : "html",
+            data : formData,
+            processData: false,
+            contentType: false,
+            success : function(data) {
+                alert("success " + data);
+                var flag = $.parseJSON(data);
+
+                if(flag.result=='OK'){
+                    window.close();
+                }else{
+                    alert("리뷰등록실패");
+                }
+            },
+            complete : function(data) {
+            },
+            error : function(xhr, status, error) {
+                alert("에러발생");
+            }
+        });
+
+    }
 
 </script>
 

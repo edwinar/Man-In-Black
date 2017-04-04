@@ -61,17 +61,17 @@
 </style>
 </head>
 <body>
-<% String num = request.getParameter("PRO_SEQ"); %>
-<!-- onsubmit="return closeSelf()" 
-action="reviewWrite.mib"
--->
+<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
+   String DEL_SEQ = request.getParameter("DEL_SEQ"); 
+%>
+
+
 <form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
 	<div class="layout">
 		<div class="leftLayout">
 			<div class="thumbnail">
 				<div class="panel panel-default"
 					style="margin-left: 40px; margin-bottom: 30px">
-
 					<input type="file" name="onefile" id="onefile">
 
 					<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
@@ -102,14 +102,15 @@ action="reviewWrite.mib"
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
 						제목 : <input type="text" name="title">
-						<input type="hidden" name="pro_seq" value="<%=num%>">
+						<input type="hidden" name="PRO_SEQ" value="<%=PRO_SEQ%>">
+						<input type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
 						작성자 :<input type="text" id="id" name="id" value="<%=userdto.getUSER_ID()%>님"
 							size="7" readonly="readonly" class="non"> 
 							작성일 <%=time%>
-
+						
 					</div>
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
@@ -212,10 +213,10 @@ action="reviewWrite.mib"
 			var formData = new FormData(); 
 			formData.append("title", $("input[name=title]").val()); 
 			formData.append("content", $("input[name=content]").val()); 
-			formData.append("pro_seq", $("input[name=pro_seq]").val()); 
+			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val()); 
 			formData.append("score", $("input[name=score]").val()); 
 			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
-			
+			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val()); 
 			$.ajax({
 	 			type : "POST",
 	 			url : "reviewWrite.mib",
@@ -230,6 +231,7 @@ action="reviewWrite.mib"
 	 				
 	 				if(flag.result=='OK'){
 	 					window.close();
+	 					opener.parent.location.reload();
 	 				}else{
 	 					alert("리뷰등록실패");
 	 				}

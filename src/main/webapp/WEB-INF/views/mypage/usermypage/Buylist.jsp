@@ -277,18 +277,50 @@ td, th {
 					});
 	
 
-	var SEL_SEQ = 1;
+	
+	
+	function change(SEQ) {
+		
+		
+		$.ajax({
+ 			type : "POST",
+ 			url : "delstep.mib",
+ 			dataType : "html",
+ 			data : {
+ 				"DEL_SEQ" : SEQ
+ 			},
+ 			success : function(data) {
+ 				
+ 				var flag = $.parseJSON(data);
+ 				
+ 				if(flag.success=='success'){
+ 					$("#btn"+SEQ).attr("value","리뷰쓰기");
+ 					$("#btn"+SEQ).attr("onclick","go("+$('#proseqg').val()+","+$('#delseqg').val()+ ")");
+ 					$("#cancle"+SEQ).remove();
+ 					
+ 				}else{
+ 					alert("실패");
+ 				}
+ 			},
+ 			complete : function(data) {
+ 			},
+ 			error : function(xhr, status, error) {
+ 				alert("에러발생");
+ 			}
+ 		});
+		
+	}
+	
+	
+	
+	
 
-	function go(seq) {
+	function go(seq, DEL_SEQ) {
 		var PRO_SEQ = seq;
 		window.open(
-						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ,
+						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ +"&DEL_SEQ=" + DEL_SEQ, +
 						"pop",
 						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
-
-
-
-
 	}
 
 
@@ -303,8 +335,8 @@ td, th {
             sw=650;    //띄울 창의 넓이
             sh=650;    //띄울 창의 높이
 
-            ml=(cw-sw)/2;        //가운데 띄우기위한 창의 x위치
-            mt=(ch-sh)/2;         //가운데 띄우기위한 창의 y위치
+            ml=(cw-sw)/2;        
+            mt=(ch-sh)/2;         
 
 
             window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
@@ -330,9 +362,8 @@ td, th {
 	<div align="right">
 		<p>
 			<input type="date" height="50px" name="start_date" id="start_date"
-				value="<%=START_DATE%>" >~<input
-				type="date" name="end_date" id="end_date" value="<%=END_DATE%>"
-				min="<%=END_DATE%>">
+				value="<%=START_DATE%>">~<input type="date" name="end_date"
+				id="end_date" value="<%=END_DATE%>" min="<%=END_DATE%>">
 			<button type="button" id="dateBtn">검색</button>
 			<button class="btn btn-success" id="week">1주</button>
 			<button class="btn btn-success" id="month">1개월</button>
@@ -389,35 +420,78 @@ td, th {
 
 		<div>
 			<table>
-				
-					<%
-						} else {
 
-							for (int i = 0; i < buyList.size(); i++) {
-					%>
-				
+				<%
+					} else {
+
+						for (int i = 0; i < buyList.size(); i++) {
+				%>
+
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found"
+						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
-					<td><%=buyList.get(i).getPRO_NAME()%></td>
+					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPRO_PRICE()%></th>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON()%></th>
 					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
 					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
-						<input type="button" value="취소반품교환" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+					<%
+						if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
+					%>
+					<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
+
+						<input type="button" value="취소반품교환" id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
 					</td>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP()%> <input type="button" value="리뷰" onclick="go(<%=buyList.get(i).getPRO_SEQ()%>)"> </td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+					<td><input type="hidden" value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg">
+					<input type="hidden" value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg"> 
+					<input type="button" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
 				</tr>
-		<%} %>
+
+				<%
+					} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {
+				%>
+				
+				
+				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
+				</tr>
+				<tr>
+					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+					<td><input type="hidden"
+						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> <input
+						type="button" value="리뷰쓰기" id="btn"
+						onclick="go(<%=buyList.get(i).getPRO_SEQ()%>,<%=buyList.get(i).getDEL_SEQ()%> )"></td>
+				</tr>
+
+
+
+
+
+				<%
+					} else {
+				%>
+
+
+
+				<td rowspan="2" valign="middle">구매확정</td>
+				</tr>
+				<tr>
+					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+
+				</tr>
+
+				<%
+					}
+						}
+				%>
+
 			</table>
-			
+
 
 
 		</div>
@@ -454,7 +528,7 @@ td, th {
 			%>
 		</p>
 	</div>
-	
+
 	<%
 		}
 	%>

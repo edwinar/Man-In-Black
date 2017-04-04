@@ -1,9 +1,10 @@
 package com.eagle.men_in_black.controller;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.DetailDto;
@@ -20,6 +23,7 @@ import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.DetailSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class DetailController {
@@ -109,6 +113,42 @@ public class DetailController {
 		mav.addObject("listColor", listColor);
 		
 		return mav;
+	}
+	
+	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
+	@RequestMapping(value="selectSize.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String selectSize(HttpServletRequest res, HttpServletResponse rep){
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ",PRO_SEQ);
+		map.put("COLOR",COLOR);
+		
+		List<DetailDto> list = detailSvc.do_buyProductSizePop(map);
+		
+		Gson gson = new Gson();
+		return gson.toJson(list);
+	}
+	
+	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
+	@RequestMapping(value="stockLimit.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String stockLimit(HttpServletRequest res, HttpServletResponse rep){
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ",PRO_SEQ);
+		map.put("COLOR",COLOR);
+		map.put("PRO_SIZE",PRO_SIZE);
+		
+		String result = detailSvc.do_buyProductStockPop(map);
+		
+		Gson gson = new Gson();
+		return gson.toJson(result);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")

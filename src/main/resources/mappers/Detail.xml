@@ -57,6 +57,18 @@ ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.PRO_SEQ=#{PRO_SEQ}
 </select>
 
+<select id="do_buyProductSizePop" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT DISTINCT PRO_SIZE, STOCK
+FROM PRO_DETAIL
+WHERE PRO_SEQ=#{PRO_SEQ} AND COLOR=#{COLOR}
+</select>
+
+<select id="do_buyProductStockPop" parameterType="hashmap" resultType="String">
+SELECT DISTINCT STOCK
+FROM PRO_DETAIL
+WHERE PRO_SEQ=#{PRO_SEQ} AND COLOR=#{COLOR} AND PRO_SIZE=#{PRO_SIZE}
+</select>
+
 <select id="do_selectProductReviewList" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT A.REV_SEQ
 	, A.USER_ID
