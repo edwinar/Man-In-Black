@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -55,5 +56,17 @@ public class DetailDaoImpl implements DetailDao {
 	public List<DetailDto> do_buyProductColorPop(int PRO_SEQ) {
 		String statement = namespace+".do_buyProductColorPop";
 		return sqlSession.selectList(statement, PRO_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map) {
+		String statement = namespace+".do_buyProductSizePop";
+		return sqlSession.selectList(statement, map);
+	}
+
+	@Override
+	public String do_buyProductStockPop(HashMap<String, Object> map) {
+		String statement = namespace+".do_buyProductStockPop";
+		return sqlSession.selectOne(statement, map);
 	}
 }
