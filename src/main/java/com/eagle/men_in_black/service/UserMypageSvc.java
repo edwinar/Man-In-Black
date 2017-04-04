@@ -51,5 +51,11 @@ public interface UserMypageSvc {
 	public UserMypageDto do_search_cancel(String del_seq);
 
 	public int do_update_cancel(HashMap<String, Object> map);
+	
+	public int do_insert_point(HashMap<String, Object> map);
+	
+	public int do_update_del_step(int del_seq );
+	
+	public int do_update_del_step2(int del_seq );
 
 }
