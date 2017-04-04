@@ -70,12 +70,13 @@
 	</delete>
 
 	<!--이벤트 불러오기 -->
-	<select id="do_event_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.ServiceDto">
+	<select id="do_event_main" parameterType="hashmap"
+		resultType="com.eagle.men_in_black.model.ServiceDto">
 		SELECT TT1.*
 		FROM (
 		SELECT ROWNUM RNUM,T1.*,T2.*
 		from(
-		
+
 		SELECT B.STORED_NAME,A.EVENT_SEQ
 		FROM EVENT_BOARD A INNER JOIN PHOTO B
 		ON(A.EVENT_SEQ = B.EVENT_SEQ)
@@ -90,12 +91,59 @@
 		) TT1
 		WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and
 		((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
-		
-	</select>
 
+	</select>
+	
+	<!--이벤트 디테일 -->
+	<select id="do_event_detail" parameterType="com.eagle.men_in_black.model.ServiceDto"
+		resultType="com.eagle.men_in_black.model.ServiceDto">
+		SELECT *
+		FROM EVENT_BOARD
+		WHERE EVENT_SEQ=#{EVENT_SEQ}
+
+
+	</select>
+	
+	<!--이벤트 등록 -->
+	<insert id="do_event_reg" parameterType="hashmap">
+		INSERT INTO
+		EVENT_BOARD
+		(EVENT_SEQ,EVENT_TITLE,EVENT_CONTENT,EVENT_TIME)
+		<!--시퀀스 설정하고 등록 -->
+		VALUES(10,#{eventtitle},#{content},SYSDATE)
+
+	</insert>
+	
+	
+	
+	
+	
+
+	<!--이벤트 수정 -->
+	<update id="do_event_update" parameterType="hashmap">
+		UPDATE
+		EVENT_BOARD
+		SET
+		EVENT_TITLE=#{eventtitle},EVENT_CONTENT=#{content},EVENT_TIME=SYSDATE
+		WHERE EVENT_SEQ=#{seq}
+
+	</update>
+	
+	<!--이벤트 삭제 -->
+	<delete id="do_event_delete" parameterType="int">
+		DELETE
+		FROM
+		NOTICE_BOARD
+		WHERE NOTICE_SEQ =#{seq}
+
+	</delete>
+	
 
 
 </mapper>
+
+	
+
 
 
 

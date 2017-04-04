@@ -56,6 +56,32 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.selectList(statement, map);
 	}
 
+	@Override
+	public ServiceDto do_event_detail(int seq) {
+		String statement = namespace+".do_event_detail";
+		return sqlSession.selectOne(statement, seq);
+	}
+
+	@Override
+	public void do_event_reg(HashMap<String, String> map) {
+		String statement = namespace+".do_event_reg";
+		sqlSession.insert(statement,map);
+		
+	}
+
+	@Override
+	public void do_event_update(HashMap<String, String> map) {
+		String statement = namespace+".do_event_update";
+		sqlSession.update(statement, map);
+		
+	}
+
+	@Override
+	public int do_event_delete(int seq) {
+		String statement = namespace+".do_event_delete";
+		return sqlSession.delete(statement, seq);
+	}
+
 	
 	
 	
