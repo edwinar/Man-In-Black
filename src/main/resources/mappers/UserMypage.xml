@@ -142,13 +142,13 @@ FROM (
            A.FINAL_PRICE,
            A.COUPON,
            A.POINT,
-           C.STORED_NAME, 
-           B.PRO_NAME, 
-           B.PRO_PRICE, 
-           B.PRO_CONTENT, 
            A.SEL_SIZE,
            A.SEL_COLOR, 
            A.SEL_TIME, 
+           B.PRO_NAME,
+           B.PRO_PRICE,
+           B.PRO_CONTENT,
+           C.STORED_NAME,
            D.DEL_STEP,
            D.DEL_SEQ,
            A.PRO_SEQ
@@ -276,6 +276,7 @@ WHERE RNUM BETWEEN 1 and 100
 
 ]]> 
 </select>
+
     <!-- 장바구니 아이템 삭제  -->
     <delete id="do_delete_basketlist" parameterType="java.util.List" >
 
@@ -285,6 +286,7 @@ WHERE RNUM BETWEEN 1 and 100
         </foreach>
 
     </delete>
+
 <!-- 내가쓴글QNA  -->
 <select id="do_search_myboradqna" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
