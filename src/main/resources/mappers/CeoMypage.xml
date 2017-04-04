@@ -180,4 +180,8 @@ INTO PHOTO
   SELECT MAX(PRO_SEQ) FROM PRODUCT
 </select>
 
+<select id="do_search_subitem" parameterType="String" resultType="String">
+select DISTINCT SUB_ITEM from PRODUCT where ITEM=#{item} ORDER BY SUB_ITEM
+</select>
+
 </mapper>
