@@ -149,7 +149,8 @@ FROM (
            A.SEL_SIZE,
            A.SEL_COLOR, 
            A.SEL_TIME, 
-           D.DEL_STEP
+           D.DEL_STEP,
+           A.PRO_SEQ
            FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ  
            JOIN PHOTO C
@@ -395,5 +396,57 @@ UPDATE MEMBERS SET
 	WHERE USER_ID = #{USER_ID}
 </update>
 
+<!-- 리뷰 -->
+<insert id="do_insert_review" parameterType="hashmap" >
+INSERT
+INTO REVIEW
+  (
+    REV_SEQ,
+    REV_TITLE,
+    REV_CONTENT,
+    REV_TIME,
+    SCORE,
+    REV_REF,
+    USER_ID,
+    PRO_SEQ,
+    REV_STEP
+  )
+  VALUES
+  (
+    REV_SEQ.NEXTVAL,
+    #{REV_TITLE},
+    #{REV_CONTENT},
+     SYSDATE,
+    #{SCORE},
+     REV_SEQ.currval,
+    #{USER_ID},
+    #{PRO_SEQ},
+    '답변중'
+  )
+</insert>
+
+
+<!-- 사진 -->
+<insert id="do_insert_reviewphoto" parameterType="hashmap">
+INSERT
+INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME,
+    REV_SEQ
+  )
+  VALUES
+  (
+   	PHOTO_SEQ.NEXTVAL,
+    #{ORIGINAL_FILE_NAME},
+    #{STORED_FILE_NAME},
+    #{REV_SEQ}
+  )
+</insert>
+
+<select id="do_select_revseq" resultType="int">
+SELECT MAX(REV_SEQ) FROM REVIEW
+</select>
 
 </mapper>
