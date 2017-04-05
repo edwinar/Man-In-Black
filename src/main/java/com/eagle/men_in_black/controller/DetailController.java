@@ -46,11 +46,9 @@ public class DetailController {
 		List<DetailDto> list = detailSvc.do_selectProductDetail(PRO_SEQ);
 		List<DetailDto> listColor = detailSvc.do_selectProductColor(PRO_SEQ);
 		List<DetailDto> listSize = detailSvc.do_selectProductSize(PRO_SEQ);
-		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(PRO_SEQ);
 		mav.addObject("list", list);
 		mav.addObject("listColor", listColor);
 		mav.addObject("listSize", listSize);
-		mav.addObject("reviewList", reviewList);
 		
 		return mav;
 	}
@@ -204,6 +202,19 @@ public class DetailController {
 		Gson gson = new Gson();
 		
 		return gson.toJson(result);
+	}
+	
+	//리뷰리스트아작스
+	@RequestMapping(value="ReviewListAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String ReviewListAjax(HttpServletRequest res) throws Exception{
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		
+		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(PRO_SEQ);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(reviewList);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")
