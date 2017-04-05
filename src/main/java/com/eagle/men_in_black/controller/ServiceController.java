@@ -3,7 +3,9 @@ package com.eagle.men_in_black.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -176,14 +178,97 @@ public class ServiceController {
 		return mav;
 	}
 	
+	
+	// 파일 이름 중복 방지 메소드
+	 public static String getRandomString(){
+
+		        return UUID.randomUUID().toString().replaceAll("-", "");
+
+	}
+	
+	// DB에 등록될 파일 메소드
+	public HashMap<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
+		 
+			HttpSession session = request.getSession(); 
+	        
+			MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+
+	        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	        
+	        // 저장경로 
+	        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+			//String root_path = System.getProperty("catalina.home");
+	        String attach_path = "images\\"; 
+			String filePath = root_path+attach_path;
+	         
+			System.out.println("저장경로=========================================================================================="+filePath);
+
+	        MultipartFile multipartFile = null;
+
+	        String originalFileName = null;
+
+	        String originalFileExtension = null;
+
+	        String storedFileName = null;
+
+	         
+	        HashMap<String, Object> listMap = null;
+
+	         
+	        File file = new File(filePath);
+	        // 폴더가없을경우 폴더생성 
+	        if(file.exists() == false){
+
+	            file.mkdirs();
+
+	        }
+
+
+	        while(iterator.hasNext()){
+	            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+
+	            if(multipartFile.isEmpty() == false){
+
+	                originalFileName = multipartFile.getOriginalFilename();
+
+	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+	                storedFileName = getRandomString() + originalFileExtension;
+
+	                // 첨부한 파일 생성 
+	                file = new File(filePath + storedFileName);
+
+	                multipartFile.transferTo(file);
+
+	                listMap = new HashMap<String,Object>();
+
+	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+	                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
+
+	               // listMap.put("EVENT_SEQ", serviceSvc.do_event_reg(map));
+	            }
+
+	        }
+
+	        return listMap;
+
+	    }
+
+	
 	//이벤트 상세보기
 		@RequestMapping("eventdetail.mib")
-		public ModelAndView eventdetail(HttpServletRequest res) {
+		public ModelAndView eventdetail(HttpServletRequest res, HttpServletResponse rep) {
+			
+			
+			int seq = Integer.parseInt(res.getParameter("SEQ"));
 			
 			ModelAndView mav = new ModelAndView("/service/eventdetail");
-			
+			ServiceDto dto = serviceSvc.do_event_detail(seq);
+			mav.addObject("eventdetail", dto);
 			return mav;
 		}
+	
 	
 	
 	

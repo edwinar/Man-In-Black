@@ -6,6 +6,7 @@ public class MainDto implements Serializable {
 
     private static final long serialVersionUID = 1241920765761676713L;
 
+    private int BAN_SEQ;
     private String DETAILADDRESS;
     private String ADDRESS;
     private String BIRTH;
@@ -34,8 +35,35 @@ public class MainDto implements Serializable {
     private String USER_NAME;
     private String USER_PW;
     private String WASH;
+    private String BAN_TIME;
+    
+    
+    
+    public int getBAN_SEQ() {
+		return BAN_SEQ;
+	}
 
-    public MainDto() {
+
+
+	public void setBAN_SEQ(int bAN_SEQ) {
+		BAN_SEQ = bAN_SEQ;
+	}
+
+
+
+	public String getBAN_TIME() {
+		return BAN_TIME;
+	}
+
+
+
+	public void setBAN_TIME(String bAN_TIME) {
+		BAN_TIME = bAN_TIME;
+	}
+
+
+
+	public MainDto() {
     }
 
 

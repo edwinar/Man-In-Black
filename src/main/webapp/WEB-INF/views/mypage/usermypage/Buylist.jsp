@@ -333,7 +333,7 @@ td, th {
             cw=screen.availWidth;     //화면 넓이
             ch=screen.availHeight;    //화면 높이
 
-            sw=650;    //띄울 창의 넓이
+            sw=1080;    //띄울 창의 넓이
             sh=650;    //띄울 창의 높이
 
             ml=(cw-sw)/2;        
@@ -444,7 +444,7 @@ td, th {
 					%>
 					<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
-						<input type="button" value="취소반품교환" id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+						<input type="button" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
 					</td>
 				</tr>
 				<tr>
@@ -470,9 +470,28 @@ td, th {
 				</tr>
 
 
+				<%
+				} else if (buyList.get(i).getDEL_STEP().equals("배송준비중")) {
+				%>
+				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
 
+				</tr>
+				<tr>
+					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+					<td><input type="button" value="취소" id="cancle"
+							   onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
+				</tr>
+						<%
+				} else if (buyList.get(i).getDEL_STEP().equals("변경사항 처리중")) {
+				%>
+				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
+
+					</tr>
+				<tr>
+					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+				</tr>
 				<%
 					} else {
 				%>

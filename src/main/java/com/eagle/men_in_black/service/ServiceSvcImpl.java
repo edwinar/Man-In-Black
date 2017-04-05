@@ -51,4 +51,28 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.do_event_main(map);
 	}
 
+	@Override
+	public ServiceDto do_event_detail(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_event_detail(seq);
+	}
+
+	@Override
+	public void do_event_reg(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		serviceDao.do_event_reg(map);
+	}
+
+	@Override
+	public void do_event_update(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		serviceDao.do_event_update(map);
+	}
+
+	@Override
+	public int do_event_delete(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_event_delete(seq);
+	}
+
 }

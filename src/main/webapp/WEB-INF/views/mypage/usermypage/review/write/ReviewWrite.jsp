@@ -10,7 +10,6 @@
 	String time = fm.format(now);
 
 %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -210,13 +209,14 @@
 		};
 		
 		function closeSelf(){
-			var formData = new FormData(); 
+			var formData = new FormData();
 			formData.append("title", $("input[name=title]").val()); 
 			formData.append("content", $("input[name=content]").val()); 
 			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val()); 
 			formData.append("score", $("input[name=score]").val()); 
 			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
-			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val()); 
+			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
+
 			$.ajax({
 	 			type : "POST",
 	 			url : "reviewWrite.mib",

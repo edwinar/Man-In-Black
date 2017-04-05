@@ -199,7 +199,8 @@ FROM (
             D.DEL_STEP,
             A.SEL_SIZE,
             A.SEL_COLOR,
-            D.DEL_SEQ
+            D.DEL_SEQ,
+            D.SEL_NUM
         FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ
            JOIN PHOTO C
@@ -216,12 +217,15 @@ FROM (
 
     <!-- 취소,반품,교환  -->
     <update id="do_update_cancel" parameterType="hashmap" >
+ <![CDATA[
         UPDATE DELIVERY SET
         RETURN = #{RETURN},
         RE_OPTION = #{RE_OPTION},
         CA_REASON=#{CA_REASON},
         CA_ACCOUNT=#{CA_ACCOUNT},
+        DEL_STEP='변경사항 처리중'
         WHERE DEL_SEQ = #{DEL_SEQ}
+        ]]>
     </update>
 
 
@@ -446,7 +450,7 @@ UPDATE MEMBERS SET
 	EMAIL = #{EMAIL},
 	TEL=#{TEL},
 	POSTCODE=#{POSTCODE},
-	USER_PW=#{POSTCODE},
+	USER_PW=#{PW},
 	DETAILADDRESS=#{DETAILADDRESS}
 	WHERE USER_ID = #{USER_ID}
 </update>
@@ -494,8 +498,8 @@ INTO PHOTO
   VALUES
   (
    	PHOTO_SEQ.NEXTVAL,
-    #{ORIGINAL_FILE_NAME},
     #{STORED_FILE_NAME},
+     #{ORIGINAL_FILE_NAME},
     #{REV_SEQ}
   )
 </insert>
