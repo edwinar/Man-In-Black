@@ -49,5 +49,8 @@ WHERE ROWNUM <=3
 ]]> 
 </select>
 
+<select id="do_select_subitemheader" resultType="com.eagle.men_in_black.model.MainDto">
+SELECT SUB_ITEM, ITEM FROM PRODUCT  GROUP BY SUB_ITEM,ITEM ORDER BY ITEM , SUB_ITEM
+</select>
 
 </mapper>

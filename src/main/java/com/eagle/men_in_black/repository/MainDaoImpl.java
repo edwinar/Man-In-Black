@@ -47,6 +47,12 @@ public class MainDaoImpl implements MainDao {
 		return sqlSession.selectList(statement,ITEM);
 	}
 
+	@Override
+	public List<MainDto> do_select_subitemheader() {
+		String statement = namespace+".do_select_subitemheader";
+		return sqlSession.selectList(statement);
+	}
+
 	
 
 }

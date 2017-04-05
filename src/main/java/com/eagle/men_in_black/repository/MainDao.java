@@ -16,4 +16,6 @@ public interface MainDao {
 	public List<MainDto> do_select_banner();
 	
 	public List<MainDto> do_select_bestItem(String ITEM);
+	
+	public List<MainDto> do_select_subitemheader();
 }

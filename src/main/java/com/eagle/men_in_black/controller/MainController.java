@@ -32,10 +32,12 @@ public class MainController {
 	
 	// 메인 화면 
 	@RequestMapping("meninblack.mib")
-	public ModelAndView meninblack(){
+	public ModelAndView meninblack(HttpServletRequest res){
 				
 		ModelAndView mav = new ModelAndView("main/Main");
 		
+		List<MainDto> subitemheader = mainSvc.do_select_subitemheader();
+		res.getSession().setAttribute("subitemheader", subitemheader);
 		
 		List<MainDto> list = mainSvc.do_select_banner(); // 베너 이미지 
 		List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
