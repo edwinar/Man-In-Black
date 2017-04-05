@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,8 +130,17 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 
 	@Override
 	public List<Integer> do_select_banseq(List<Integer> seqlist) {
-		// TODO Auto-generated method stub
-		return ceoMypageDao.do_select_banseq(seqlist);
+		List<Integer> list = new ArrayList<Integer>();
+		
+		for(int i=0; i<seqlist.size(); i++){
+			
+			list.add(ceoMypageDao.do_select_banseq(seqlist.get(i)));
+			
+		}
+		
+		
+		
+		return list;
 	}
 
 	@Override

@@ -108,9 +108,9 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 	}
 
 	@Override
-	public List<Integer> do_select_banseq(List<Integer> seqlist) {
+	public Integer do_select_banseq(Integer proseq) {
 		String statement = namespace+".do_select_banseq";
-		return sqlSession.selectList(statement,seqlist);
+		return sqlSession.selectOne(statement,proseq);
 	}
 
 	@Override

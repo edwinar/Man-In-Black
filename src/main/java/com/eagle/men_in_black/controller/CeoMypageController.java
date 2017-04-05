@@ -556,7 +556,7 @@ public class CeoMypageController {
 		return mav;
 	}
 	
-	// 자식창
+	// 자식창 메인배너 
 			@RequestMapping(value="mainbannerWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 
 			public @ResponseBody String mainbannerWrite(MultipartHttpServletRequest res) throws Exception{
@@ -567,14 +567,16 @@ public class CeoMypageController {
 				String pro_seq1=(res.getParameter("pro_seq1")==null||res.getParameter("pro_seq1").equals(""))?"none":res.getParameter("pro_seq1");
 				String pro_seq2=(res.getParameter("pro_seq2")==null||res.getParameter("pro_seq2").equals(""))?"none":res.getParameter("pro_seq2");
 				
+				// 메인배너 등록할 제품 시퀀스 받고 
+				
 				// 이걸로먼저 review table에 인설트
 				
 				//List<HashMap<String, String>> banlist = new ArrayList<>();
-				List<CeoMypageDto> banlist = new ArrayList<>();
-				List<Integer> proseqlist = new ArrayList<>(); 
+				List<CeoMypageDto> banlist = new ArrayList<>(); // 메인배너에 등록할 리스트 
+				List<Integer> proseqlist = new ArrayList<>(); // 
 				
 				if(!pro_seq0.equals("none")){
-					HashMap<String, String> remap = new HashMap<>();
+					//HashMap<String, String> remap = new HashMap<>();
 					//remap.put("pro_seq0", pro_seq0);
 					CeoMypageDto dto = new CeoMypageDto();
 					dto.setPRO_SEQ(Integer.parseInt(pro_seq0));
@@ -582,7 +584,7 @@ public class CeoMypageController {
 					proseqlist.add(Integer.parseInt(pro_seq0));
 				}
 				if(!pro_seq1.equals("none")){
-					HashMap<String, String> remap = new HashMap<>();
+					//HashMap<String, String> remap = new HashMap<>();
 					//remap.put("pro_seq1", pro_seq1);
 					CeoMypageDto dto = new CeoMypageDto();
 					dto.setPRO_SEQ(Integer.parseInt(pro_seq1));
@@ -590,7 +592,7 @@ public class CeoMypageController {
 					proseqlist.add(Integer.parseInt(pro_seq1));
 				}
 				if(!pro_seq2.equals("none")){
-					HashMap<String, String> remap = new HashMap<>();
+					//HashMap<String, String> remap = new HashMap<>();
 					//remap.put("pro_seq2", pro_seq2);
 					CeoMypageDto dto = new CeoMypageDto();
 					dto.setPRO_SEQ(Integer.parseInt(pro_seq2));
@@ -598,15 +600,15 @@ public class CeoMypageController {
 					proseqlist.add(Integer.parseInt(pro_seq2));
 				}
 				
-				System.out.println("프로시퀀스"+pro_seq0);
-				System.out.println("프로시퀀스"+pro_seq1);
-				System.out.println("프로시퀀스"+pro_seq2);
+				//System.out.println("프로시퀀스"+pro_seq0);
+				//System.out.println("프로시퀀스"+pro_seq1);
+				//System.out.println("프로시퀀스"+pro_seq2);
 				
-				System.out.println("리스트사이즈"+banlist.size());
+				//System.out.println("리스트사이즈"+banlist.size());
 				
-				for(int i=0; i<banlist.size(); i++){
-					System.out.println("맵에저장된거" + banlist.get(i).getPRO_SEQ());
-				}
+				//for(int i=0; i<banlist.size(); i++){
+				//	System.out.println("맵에저장된거" + banlist.get(i).getPRO_SEQ());
+				//}
 				
 				
 				
@@ -614,8 +616,9 @@ public class CeoMypageController {
 				
 				
 				
-				
+				// 방금위에서 등록한 banseq 
 				List<Integer> banseqlist = ceoMypageSvc.do_select_banseq(proseqlist);
+				
 				HashMap<String, String> resultMap = new HashMap<>();
 				if(bannum>0){
 					// 사진 파일 부분

@@ -37,7 +37,11 @@ public class MainController {
 		ModelAndView mav = new ModelAndView("main/Main");
 		
 		List<MainDto> list = mainSvc.do_select_banner();
+		
+		
+		
 		mav.addObject("list", list);
+	
 		return mav;
 		
 	}
@@ -47,7 +51,7 @@ public class MainController {
 	public ModelAndView login(){
 			
 		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignIn");
-		mav.addObject("msg", "김옥지");
+		
 		
 		return mav;
 		
@@ -63,18 +67,24 @@ public class MainController {
 		
 		MainDto dto =  mainSvc.do_search_pw(id);
 		ModelAndView mav = new ModelAndView("main/Main");
-		
+		List<MainDto> list = mainSvc.do_select_banner();
 		if(dto!=null){
 			if(pwd.equals(dto.getUSER_PW())){
 				// 로그인 됬을 때 
 				res.getSession().setAttribute("LoginInfo", dto);
 				mav.addObject("LoginInfo", "success");
+				
+				mav.addObject("list", list);
 			}else{
 				// 비밀번호 틀렸을 때 
 				mav.addObject("LoginInfo", "NotPwd");
+				
+				mav.addObject("list", list);
 			}
 		}else{
 			// 로그인 안됬을 때 
+			
+			mav.addObject("list", list);
 			mav.addObject("LoginInfo", "NoMember");
 		}
 		
@@ -86,9 +96,10 @@ public class MainController {
 		public ModelAndView logout(HttpServletRequest res, HttpServletResponse rep){
 									
 			ModelAndView mav = new ModelAndView("main/Main");
-			
+			List<MainDto> list = mainSvc.do_select_banner();
 					res.getSession().removeAttribute("LoginInfo");
 					mav.addObject("LoginInfo", "logout");
+					mav.addObject("list", list);
 			
 			return mav;		
 		}
@@ -214,6 +225,8 @@ public class MainController {
 				mav.addObject("insert", "noinsert");
 			}else{
 				mav.setViewName("main/Main");
+				List<MainDto> list = mainSvc.do_select_banner();
+				mav.addObject("list", list);
 				mav.addObject("insert", "insert");
 			}
 			

@@ -7,6 +7,7 @@
 String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
 String insert = (String)request.getAttribute("insert")==null?"noinsert":(String)request.getAttribute("insert");
 List<MainDto> list = (List<MainDto>)request.getAttribute("list");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,21 +45,27 @@ List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 
 <div class="main-slide-container">
   <div class="main-slide">
-
-    <div class="main-slide-content"><img src="../images/<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%"></div>
-
-  </div>
-
-  <div class="main-slide">
-
-    <div class="main-slide-content"><img src="../images/<%=list.get(1).getSTORED_NAME() %>" height="100%" width="100%"></div>
+<%if(list.get(0).getBAN_SEQ()!=0){ %>
+    <div class="main-slide-content">
+    <img src="../images/<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%">
+    </div>
 
   </div>
 
   <div class="main-slide">
 
-    <div class="main-slide-content"><img src="../images/<%=list.get(2).getSTORED_NAME() %>" height="100%" width="100%"></div>
+    <div class="main-slide-content">
+    <img src="../images/<%=list.get(1).getSTORED_NAME() %>" height="100%" width="100%">
+    </div>
 
+  </div>
+
+  <div class="main-slide">
+
+    <div class="main-slide-content">
+    <img src="../images/<%=list.get(2).getSTORED_NAME() %>" height="100%" width="100%">
+    </div>
+<%} %>
   </div>
   <div class="prev" onclick="plus(-1)">&#10094;</div>
   <div class="next" onclick="plus(1)">&#10095;</div>

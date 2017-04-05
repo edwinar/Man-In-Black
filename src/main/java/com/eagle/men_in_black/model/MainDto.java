@@ -300,17 +300,22 @@ public class MainDto implements Serializable {
         WASH = wASH;
     }
 
-    @Override
-    public String toString() {
-        return "MainDto [ADDRESS=" + ADDRESS + ", BIRTH=" + BIRTH + ", BODYTYPE=" + BODYTYPE + ", DISCOUNT=" + DISCOUNT
-                + ", EMAIL=" + EMAIL + ", EVENT_SEQ=" + EVENT_SEQ + ", ITEM=" + ITEM + ", MATERIAL=" + MATERIAL
-                + ", NEW_ITEM=" + NEW_ITEM + ", ORIGINAL_NAME=" + ORIGINAL_NAME + ", PHOTO_SEQ=" + PHOTO_SEQ
-                + ", POSTCODE=" + POSTCODE + ", PRO_CONTENT=" + PRO_CONTENT + ", PRO_DETAIL=" + PRO_DETAIL
-                + ", PRO_NAME=" + PRO_NAME + ", PRO_PRICE=" + PRO_PRICE + ", PRO_SEQ=" + PRO_SEQ + ", REV_SEQ="
-                + REV_SEQ + ", SALE_CNT=" + SALE_CNT + ", SEX=" + SEX + ", STORED_NAME=" + STORED_NAME + ", SUB_ITEM="
-                + SUB_ITEM + ", TEL=" + TEL + ", USER_ID=" + USER_ID + ", USER_NAME=" + USER_NAME + ", USER_PW="
-                + USER_PW + ", WASH=" + WASH + "]";
-    }
+
+
+	@Override
+	public String toString() {
+		return "MainDto [BAN_SEQ=" + BAN_SEQ + ", DETAILADDRESS=" + DETAILADDRESS + ", ADDRESS=" + ADDRESS + ", BIRTH="
+				+ BIRTH + ", BODYTYPE=" + BODYTYPE + ", DISCOUNT=" + DISCOUNT + ", EMAIL=" + EMAIL + ", EVENT_SEQ="
+				+ EVENT_SEQ + ", ITEM=" + ITEM + ", MATERIAL=" + MATERIAL + ", NEW_ITEM=" + NEW_ITEM
+				+ ", ORIGINAL_NAME=" + ORIGINAL_NAME + ", PHOTO_SEQ=" + PHOTO_SEQ + ", POSTCODE=" + POSTCODE
+				+ ", PRO_CONTENT=" + PRO_CONTENT + ", PRO_DETAIL=" + PRO_DETAIL + ", PRO_NAME=" + PRO_NAME
+				+ ", PRO_PRICE=" + PRO_PRICE + ", PRO_SEQ=" + PRO_SEQ + ", REV_SEQ=" + REV_SEQ + ", SALE_CNT="
+				+ SALE_CNT + ", SEX=" + SEX + ", STORED_NAME=" + STORED_NAME + ", SUB_ITEM=" + SUB_ITEM + ", TEL=" + TEL
+				+ ", USER_ID=" + USER_ID + ", USER_NAME=" + USER_NAME + ", USER_PW=" + USER_PW + ", WASH=" + WASH
+				+ ", BAN_TIME=" + BAN_TIME + "]";
+	}
+
+  
 
 
 }

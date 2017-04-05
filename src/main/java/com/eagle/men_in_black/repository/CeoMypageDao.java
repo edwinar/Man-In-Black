@@ -33,7 +33,7 @@ public interface CeoMypageDao {
 	
 	public int do_insert_mainbanner(CeoMypageDto map);
 	
-	public List<Integer> do_select_banseq(List<Integer> seqlist);
+	public Integer do_select_banseq(Integer proseq);
 	
 	public int do_insert_banpt(HashMap<String, String> map);
 }

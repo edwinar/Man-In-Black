@@ -234,10 +234,7 @@ INSERT INTO MAINBANNER
 </insert>
 
 <select id="do_select_banseq" parameterType="hashmap" resultType="Integer">
-SELECT BAN_SEQ FROM MAINBANNER WHERE PRO_SEQ = ANY
-<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
-   #{item.value}
-</foreach>
+SELECT MAX(BAN_SEQ) FROM MAINBANNER WHERE PRO_SEQ = #{proseq}
 </select>
 
 <insert id="do_insert_banpt" parameterType="hashmap">
