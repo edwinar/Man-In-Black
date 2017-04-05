@@ -167,7 +167,7 @@ function goreview(rseq) {
 
 function goqna(qseq) {
 	 window.open(
-				"review.mib?REV_SEQ=" + rseq,+
+				"qnadetail.mib?QNA_SEQ=" + qseq,+
 				"pop",
 				"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }

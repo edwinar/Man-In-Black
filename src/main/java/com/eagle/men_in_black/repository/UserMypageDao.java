@@ -57,6 +57,11 @@ public interface UserMypageDao {
 	public int do_update_del_step(int del_seq );
 	
 	public int do_update_del_step2(int del_seq );
-	
+
 	public DetailDto do_select_review(int REV_SEQ );
+
+	public UserMypageDto do_search_qnadetail(String qna_seq);
+
+
+
 }

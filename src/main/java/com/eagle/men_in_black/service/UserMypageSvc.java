@@ -61,4 +61,6 @@ public interface UserMypageSvc {
 	
 	public DetailDto do_select_review(int REV_SEQ );
 
+	public UserMypageDto do_search_qnadetail(String qna_seq);
+
 }

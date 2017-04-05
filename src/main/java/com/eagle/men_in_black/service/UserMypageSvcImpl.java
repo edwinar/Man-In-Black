@@ -190,4 +190,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_select_review(REV_SEQ);
 	}
+
+	@Override
+	public UserMypageDto do_search_qnadetail(String qna_seq) {
+		return userMypageDao.do_search_qnadetail(qna_seq);
+	}
 }
