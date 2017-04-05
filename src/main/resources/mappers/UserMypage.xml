@@ -541,6 +541,23 @@ UPDATE DELIVERY
 SET DEL_STEP='리뷰완료'
 WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
+<!-- 리뷰읽기  -->
+<select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.REV_SEQ REV_SEQ,
+A.REV_TITLE,
+A.REV_CONTENT,
+A.REV_TIME,
+A.SCORE,
+A.REV_REF,
+A.USER_ID,
+A.PRO_SEQ,
+A.REV_STEP,
+B.STORED_NAME,
+B.ORIGINAL_NAME
+FROM REVIEW A JOIN PHOTO B
+ON A.REV_SEQ = B.REV_SEQ
+WHERE A.REV_SEQ=#{REV_SEQ}
+</select>
 
     <!-- qna 상세  -->
     <select id="do_search_qnadatail" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">

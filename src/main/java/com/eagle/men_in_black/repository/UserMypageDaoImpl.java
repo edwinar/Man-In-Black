@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 
 @Repository
@@ -173,6 +174,13 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_update_del_step2";
 		
 		 return sqlSession.update(statement,del_seq);
+	}
+
+	@Override
+	public DetailDto do_select_review(int REV_SEQ) {
+		String statement = namespace+".do_selectReviewDetail";
+		return sqlSession.selectOne(statement, REV_SEQ);
+
 	}
 
 	@Override

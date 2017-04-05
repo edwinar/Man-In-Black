@@ -45,7 +45,7 @@
 
 <div class="layout">
 	<div class="leftLayout">
-		<img alt="..." src="../images/LOVE.jpg" width="100%">
+		<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%">
 	</div>
 	<div class="rightLayout">
 		<div class="thumbnail">
@@ -133,7 +133,8 @@ function reviewReplyPop(REV_SEQ){
 	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function reviewUpdate(REV_SEQ){
-	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	window.open("reviewupdate.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	window.colse();
 }
 function reviewdelete(REV_SEQ){
 	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
