@@ -399,8 +399,7 @@ FROM (
             WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
-
-    /*오늘본 상품 서치*/
+    <!-- 오늘본 상품 서치  -->
 <select id="do_search_goods" parameterType="java.util.HashMap" resultType="com.eagle.men_in_black.model.UserMypageDto">
     SELECT  A.PRO_NAME,
     A.PRO_CONTENT,
@@ -416,8 +415,7 @@ FROM (
     </foreach>
     AND B.STORED_NAME LIKE 'MAIN%'
 </select>
-
-    /*회원정보수정*/
+    <!-- 회원정보수정  -->
 <update id="do_member_update" parameterType="hashmap" >
 UPDATE MEMBERS SET 
 	ADDRESS = #{ADDRESS},
