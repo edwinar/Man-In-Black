@@ -82,7 +82,7 @@ public class UserMypageDto implements Serializable {
     private int POINT;
     private int FINAL_PRICE;
     private String CANCLE;
-
+    private String QNA_CONTENT;
     
     
     public int getTOT_CNT() {
@@ -619,5 +619,13 @@ public class UserMypageDto implements Serializable {
 
     public void setCANCLE(String CANCLE) {
         this.CANCLE = CANCLE;
+    }
+
+    public String getQNA_CONTENT() {
+        return QNA_CONTENT;
+    }
+
+    public void setQNA_CONTENT(String QNA_CONTENT) {
+        this.QNA_CONTENT = QNA_CONTENT;
     }
 }
