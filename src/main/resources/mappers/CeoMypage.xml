@@ -184,4 +184,78 @@ INTO PHOTO
 select DISTINCT SUB_ITEM from PRODUCT where ITEM=#{item} ORDER BY SUB_ITEM
 </select>
 
+<select id="do_select_mainbanner" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT TT1.*
+  FROM (
+       SELECT ROWNUM RNUM,T1.*,T2.*
+       FROM(
+select  PRO_SEQ,
+        PRO_NAME,
+        ITEM,
+        SUB_ITEM,
+        PRO_PRICE,
+        PRO_CONTENT
+from PRODUCT where NEW_ITEM='Y'
+) T1
+NATURAL JOIN
+(
+     SELECT COUNT(*) TOT_CNT
+     FROM PRODUCT where NEW_ITEM='Y'
+) T2
+) TT1
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
+
+<select id="do_select_mainbanpt" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT  PRO_SEQ,
+        PRO_NAME,
+        ITEM,
+        SUB_ITEM,
+        PRO_PRICE,
+        PRO_CONTENT
+FROM PRODUCT WHERE NEW_ITEM='Y'
+AND PRO_SEQ = ANY
+<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+   #{item.value}
+</foreach>
+
+</select>
+
+<insert id="do_insert_mainbanner" parameterType="com.eagle.men_in_black.model.CeoMypageDto">
+INSERT INTO MAINBANNER
+  (BAN_SEQ, 
+   PRO_SEQ, 
+   BAN_TIME
+  ) VALUES
+  (BAN_SEQ.NEXTVAL,
+  #{PRO_SEQ},
+  SYSDATE
+  )
+</insert>
+
+<select id="do_select_banseq" parameterType="hashmap" resultType="Integer">
+SELECT BAN_SEQ FROM MAINBANNER WHERE PRO_SEQ = ANY
+<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+   #{item.value}
+</foreach>
+</select>
+
+<insert id="do_insert_banpt" parameterType="hashmap">
+INSERT
+INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME,
+    BAN_SEQ
+  )
+  VALUES
+  (
+    PHOTO_SEQ.NEXTVAL,
+    #{STORED_FILE_NAME},
+    #{ORIGINAL_FILE_NAME},
+    #{BAN_SEQ}
+  )
+</insert>
+
 </mapper>

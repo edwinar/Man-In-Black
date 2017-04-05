@@ -1,6 +1,7 @@
 package com.eagle.men_in_black.repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class MainDaoImpl implements MainDao {
 		String statement = namespace+".do_join_MIB";
 		return sqlSession.insert(statement,map);
 		
+	}
+
+	@Override
+	public List<MainDto> do_select_banner() {
+		String statement = namespace+".do_select_banner";
+		return sqlSession.selectList(statement);
 	}
 
 	

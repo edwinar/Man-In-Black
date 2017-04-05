@@ -176,7 +176,7 @@ body {
 	<div class="preview"></div>
 	<div align="center">
 		<button id="triggerUpload" class="btn">메인이미지등록</button> 
-		<input type="file" id="filePicker" /> 
+		<input type="file" name="onefile" id="onefile" /> 
 	</div>
 	<div class="fileName"></div>
 	
@@ -221,62 +221,28 @@ body {
 
 
 <script type="text/javascript">
-		var triggerUpload = document.getElementById('triggerUpload'), upInput = document
-				.getElementById('filePicker'), preview = document
-				.querySelector('.preview');
 
-		//여기에 업로드실행
-		triggerUpload.onclick = function() {
-			upInput.click();
+$(function() {
+	$("#onefile").on('change', function() {
+		readURL(this);
+	});
+});
+
+function readURL(input) {
+
+	$("#preview").html(
+			'<img id="oneblah" src="#" width="100%" height="100%"/>');
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+
+			$('#oneblah').attr('src', e.target.result);
 		};
 
-		upInput.onchange = function(e) {
+		reader.readAsDataURL(input.files[0]);
+	};
 
-			var uploaded = this.value, ext = uploaded.substring(uploaded
-					.lastIndexOf('.') + 1), ext = ext.toLowerCase(), fileName = uploaded
-					.substring(uploaded.lastIndexOf("\\") + 1), accepted = [
-					"jpg", "png", "gif", "jpeg" ];
-
-			/*
-			  ::img태그 추가
-			  ::FileReader를 사용하여 img데이터 읽기
-			  ::이미지 원본을 FileReader데이터로 설정
-			 */
-			function showPreview() {
-				preview.innerHTML = "<div class='loadingLogo'></div>";
-				preview.innerHTML += '<img id="img-preview" />';
-				var reader = new FileReader();
-				reader.onload = function() {
-					var img = document.getElementById('img-preview');
-					img.src = reader.result;
-				};
-				reader.readAsDataURL(e.target.files[0]);
-				preview.removeChild(document.querySelector('.loadingLogo'));
-				document.querySelector('.fileName').innerHTML = fileName
-						+ "<b> Uploaded!</b>";
-			}
-			;
-
-			//지원이되는 이미지파일인 경우에만 수행
-			if (new RegExp(accepted.join("|")).test(ext)) {
-				showPreview();
-			} else {
-				preview.innerHTML = "";
-				document.querySelector('.fileName').innerHTML = "Hey! Upload an image file, not a <b>."
-						+ ext + "</b> file!";
-			}
-
-		}
-		//공지사항제목 스크립트 
-		$(".mat-input").focus(function() {
-			$(this).parent().addClass("is-active is-completed");
-		});
-
-		$(".mat-input").focusout(function() {
-			if ($(this).val() === "")
-				$(this).parent().removeClass("is-completed");
-			$(this).parent().removeClass("is-active");
-		});
+};
 	</script>
 	
 </body>
