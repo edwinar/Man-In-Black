@@ -466,15 +466,7 @@ public class CeoMypageController {
 			return mav;
 
 		}
-	// 쿠폰관리 
-	@RequestMapping("coupon_Administer.mib")
-	public ModelAndView coupon_Administer() {
-
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/Coupon_Administer");
-		
-		return mav;
-
-	}
+	
 	
 	// 리뷰관리 
 	@RequestMapping("reiview_Administer.mib")
