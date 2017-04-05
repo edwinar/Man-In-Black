@@ -288,7 +288,8 @@ SELECT
                A.PRO_SIZE,
                A.COLOR,
                A.BAS_PRO_NUM,
-               B.SUB_ITEM
+               B.SUB_ITEM,
+               C.STORED_NAME
                FROM BASKET A JOIN PRODUCT B
                ON A.PRO_SEQ = B.PRO_SEQ
                JOIN PHOTO C
