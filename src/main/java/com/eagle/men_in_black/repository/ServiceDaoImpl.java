@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,7 @@ import com.sun.mail.imap.protocol.Namespaces.Namespace;
 
 @Repository
 public class ServiceDaoImpl implements ServiceDao {
+	Logger loger = LoggerFactory.getLogger(this.getClass());
 
 	private final String namespace="com.eagle.repository.mapper.Service";
 	
@@ -63,9 +66,9 @@ public class ServiceDaoImpl implements ServiceDao {
 	}
 
 	@Override
-	public void do_event_reg(HashMap<String, String> map) {
+	public int do_event_reg(HashMap<String, String> map) {
 		String statement = namespace+".do_event_reg";
-		sqlSession.insert(statement,map);
+		return sqlSession.insert(statement,map);
 		
 	}
 
@@ -80,6 +83,50 @@ public class ServiceDaoImpl implements ServiceDao {
 	public int do_event_delete(int seq) {
 		String statement = namespace+".do_event_delete";
 		return sqlSession.delete(statement, seq);
+	}
+
+	@Override
+	public int do_select_eventseq() {
+		String statement = namespace+".do_select_eventseq";
+		return sqlSession.selectOne(statement);
+	}
+
+	@Override
+	public int do_event_photo(ServiceDto dto) {
+		String statement = namespace+".do_event_photo";
+		return sqlSession.insert(statement,dto);
+	}
+
+	@Override
+	public int do_insert_coupon(ServiceDto dto) {
+		String statement = namespace+".do_insert_coupon";
+		return sqlSession.insert(statement,dto);
+	}
+
+	@Override
+	public int do_select_couseq() {
+		String statement = namespace+".do_select_couseq";
+		return sqlSession.selectOne(statement);
+	}
+
+	@Override
+	public int do_inser_coupt(ServiceDto dto) {
+		String statement = namespace+".do_inser_coupt";
+		return sqlSession.insert(statement,dto);
+	}
+
+	@Override
+	public List<ServiceDto> do_select_couplist() {
+		String statement = namespace+".do_select_couplist";
+		return sqlSession.selectList(statement);
+	}
+
+	@Override
+	public ServiceDto do_selelct_coupdt(int seq) {
+		String statement = namespace+".do_selelct_coupdt";
+		//loger.debug(seq+"");
+	//	loger.debug(statement);
+		return sqlSession.selectOne(statement,seq);
 	}
 
 	
