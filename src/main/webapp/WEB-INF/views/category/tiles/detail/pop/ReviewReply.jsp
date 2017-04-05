@@ -33,6 +33,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::ReviewReply:::</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 .layout{
 	width: 790px;
@@ -62,17 +63,48 @@
 </head>
 <body>
 <script type="text/javascript">
-function closePop(){
-	var title = document.getElementById("review_title").value;
-	var content = document.getElementById("review_content").value;
-	
-	location.href("reviewReply.mib?REV_TITLE="+title+"&REV_CONTENT="+content+
-			"&REV_REF=<%=detailDto.getREV_REF()%>
-			&USER_ID=<%=detailDto.getUSER_ID()%>
-			&PRO_SEQ=<%=detailDto.getPRO_SEQ()%>");
-	
-	window.close();
-}
+$(function() {
+	$('#reply').on('click',function(){
+		var REV_TITLE = $('#review_title').val();
+		var REV_CONTENT = $('#review_content').val();
+		var REV_REF = <%=detailDto.getREV_REF() %>;
+		var PRO_SEQ = <%=detailDto.getPRO_SEQ() %>;
+		if((REV_TITLE!=""&&REV_TITLE!=null)&&(REV_CONTENT!=""&&REV_CONTENT!=null)){
+			$.ajax({
+	 			type : "POST",
+	 			url : "ReviewReplyAjax.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"REV_TITLE" : REV_TITLE,
+	 				"REV_CONTENT" : REV_CONTENT,
+	 				"REV_REF" : REV_REF,
+	 				"PRO_SEQ" : PRO_SEQ
+	 			},
+	 			success : function(data) {
+	 				var flag = $.parseJSON(data);
+	 				console.log(flag);
+	 				if(flag>0){
+	 					//opener.location = 'basketlist.mib';
+	 					//opener.parent.opener.parent.location = 'basketlist.mib';
+	 					//opener.opener.parent.location.reload();
+	 					//alert("리뷰답글달기성공");
+	 					window.close();
+	 				}else{
+	 					alert("리뷰답글달기실패");
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});
+		}else{
+			alert("제목과 내용을 입력하시오.");
+		}
+	});
+});
 </script>
 <div class="layout">
 	<div class="leftLayout">
@@ -156,7 +188,7 @@ function closePop(){
 				<textarea id="review_content" rows="5px" cols="50px"></textarea>
 			</div>
 			<div class="btn" align="center" style="height: 10%; width:100%;">
-				<button style="width: 50%; height: 100%;" onclick="closePop()">답글달기</button>
+				<button style="width: 50%; height: 100%;" id="reply">답글달기</button>
 			</div>
 		</div>
 	</div>

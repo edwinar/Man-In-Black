@@ -38,6 +38,7 @@ public class DetailDto implements Serializable {
 	private	String	QNA_STEP;
 	private	String	QNA_TIME;
 	private	String	QNA_TITLE;
+	private	String	QNA_CONTENT;
 	private	String	QNA_TYPE;
 	private	String	REC_NAME;
 	private	String	REC_TEL;
@@ -66,6 +67,12 @@ public class DetailDto implements Serializable {
 	private	String 	SUB_ITEM;
 	private	String	USER_ID;
 	private	String	WASH;
+	public String getQNA_CONTENT() {
+		return QNA_CONTENT;
+	}
+	public void setQNA_CONTENT(String qNA_CONTENT) {
+		QNA_CONTENT = qNA_CONTENT;
+	}
 	public int getBAS_PRO_NUM() {
 		return BAS_PRO_NUM;
 	}
@@ -401,11 +408,12 @@ public class DetailDto implements Serializable {
 				+ POINT + ", PRO_CONTENT=" + PRO_CONTENT + ", PRO_NAME=" + PRO_NAME + ", PRO_PRICE=" + PRO_PRICE
 				+ ", PRO_SEQ=" + PRO_SEQ + ", PRO_SIZE=" + PRO_SIZE + ", QNA_OPEN=" + QNA_OPEN + ", QNA_REF=" + QNA_REF
 				+ ", QNA_SEQ=" + QNA_SEQ + ", QNA_STEP=" + QNA_STEP + ", QNA_TIME=" + QNA_TIME + ", QNA_TITLE="
-				+ QNA_TITLE + ", QNA_TYPE=" + QNA_TYPE + ", REC_NAME=" + REC_NAME + ", REC_TEL=" + REC_TEL
-				+ ", REV_REF=" + REV_REF + ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP + ", REV_TIME=" + REV_TIME
-				+ ", REV_TITLE=" + REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE=" + SCORE + ", AVG_SCORE="
-				+ AVG_SCORE + ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM + ", SEL_SEQ=" + SEL_SEQ
-				+ ", SEL_SIZE=" + SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK + ", STORED_NAME="
-				+ STORED_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH=" + WASH + "]";
+				+ QNA_TITLE + ", QNA_CONTENT=" + QNA_CONTENT + ", QNA_TYPE=" + QNA_TYPE + ", REC_NAME=" + REC_NAME
+				+ ", REC_TEL=" + REC_TEL + ", REV_REF=" + REV_REF + ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP
+				+ ", REV_TIME=" + REV_TIME + ", REV_TITLE=" + REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE="
+				+ SCORE + ", AVG_SCORE=" + AVG_SCORE + ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM
+				+ ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE=" + SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK
+				+ ", STORED_NAME=" + STORED_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH=" + WASH
+				+ "]";
 	}
 }
