@@ -65,4 +65,6 @@ public interface UserMypageSvc {
 	
 	public int do_update_reviewphoto(HashMap<String, Object> map);
 
+	public UserMypageDto do_search_qnadetail(String qna_seq);
+
 }

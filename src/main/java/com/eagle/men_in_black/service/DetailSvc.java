@@ -13,7 +13,7 @@ public interface DetailSvc {
 	//상품 사이즈 종류
 	public List<DetailDto> do_selectProductSize(int PRO_SEQ);
 	//상품 리뷰 리스트
-	public List<DetailDto> do_selectProductReviewList(int PRO_SEQ);
+	public List<DetailDto> do_selectProductReviewList(HashMap<String, Object> map);
 	//클릭한 리뷰 디테일
 	public DetailDto do_selectReviewDetail(int REV_SEQ);
 	//구매팝업 정보
@@ -26,4 +26,10 @@ public interface DetailSvc {
 	public String do_buyProductStockPop(HashMap<String, Object> map);
 	//장바구니 추가
 	public int do_addBasket(HashMap<String, Object> map);
+	//관리자 리뷰 답글 달기
+	public int do_insertReviewAdmReply(HashMap<String, Object> map);
+	//QnA 리스트 
+	public List<DetailDto> do_selectProductQnAList(HashMap<String, Object> map);
+	/*//클릭한 QnA 디테일
+	public DetailDto do_selectQnADetail(int QNA_SEQ);*/
 }

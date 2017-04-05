@@ -180,10 +180,11 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	public DetailDto do_select_review(int REV_SEQ) {
 		String statement = namespace+".do_selectReviewDetail";
 		return sqlSession.selectOne(statement, REV_SEQ);
-	
+
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int do_update_review(HashMap<String, Object> map) {
 		String statement = namespace+".do_update_review";
 		return sqlSession.update(statement, map);
@@ -196,4 +197,13 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 	
 	
+=======
+	public UserMypageDto do_search_qnadetail(String qna_seq) {
+		String statement = namespace+".do_search_qnadatail";
+
+		return sqlSession.selectOne(statement,qna_seq);
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
 }
