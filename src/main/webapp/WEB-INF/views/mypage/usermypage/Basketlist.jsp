@@ -77,7 +77,7 @@ td, th {
 							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1"
 							class="chbox" style="width: 20px; height: 20px"></td>
 
-						<td rowspan="2"><%=i + 1%>
+						<td rowspan="2"><%=i + 1%><%=basketlist.get(i).getSTORED_NAME()%>
 						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>">
 						<img alt="not found" src="../images/<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
