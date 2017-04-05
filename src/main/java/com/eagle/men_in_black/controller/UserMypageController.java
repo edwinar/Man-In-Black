@@ -718,7 +718,7 @@ public class UserMypageController {
 	}*/
 
 
-	}
+	
 
 	
 	
