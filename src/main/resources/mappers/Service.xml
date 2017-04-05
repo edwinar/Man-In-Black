@@ -77,9 +77,10 @@
 		SELECT ROWNUM RNUM,T1.*,T2.*
 		from(
 
-		SELECT B.STORED_NAME,A.EVENT_SEQ
+		SELECT NVL(B.STORED_NAME,'none') STORED_NAME,NVL(A.EVENT_SEQ,0) EVENT_SEQ
 		FROM EVENT_BOARD A INNER JOIN PHOTO B
 		ON(A.EVENT_SEQ = B.EVENT_SEQ)
+    	RIGHT OUTER JOIN DUAL ON A.EVENT_SEQ = B.EVENT_SEQ
 		ORDER BY PHOTO_SEQ DESC
 
 		) T1
@@ -110,11 +111,35 @@
 		EVENT_BOARD
 		(EVENT_SEQ,EVENT_TITLE,EVENT_CONTENT,EVENT_TIME)
 		<!--시퀀스 설정하고 등록 -->
-		VALUES(10,#{eventtitle},#{content},SYSDATE)
+		VALUES(EVENT_SEQ.NEXTVAL,#{eventtitle},#{eventcontent},SYSDATE)
 
 	</insert>
 	
+	<!-- 이벤트 메인 사진 등록할때 event seq 가져오기  -->
+	<select id="do_select_eventseq" resultType="int">
+	select max(EVENT_SEQ) from EVENT_BOARD 
+	</select>
 	
+	
+	<!-- 이벤트 메인 사진 등록  -->
+	<insert id="do_event_photo" parameterType="com.eagle.men_in_black.model.ServiceDto">
+	INSERT
+	INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME,
+    EVENT_SEQ
+  )
+  VALUES
+  (
+    PHOTO_SEQ.NEXTVAL,
+    #{STORED_FILE_NAME},
+    #{ORIGINAL_FILE_NAME},
+    #{EVENT_SEQ}
+  )
+	
+	</insert>
 	
 	
 	
@@ -138,6 +163,86 @@
 
 	</delete>
 	
+	<!-- 쿠폰 등록  -->
+	<insert id="do_insert_coupon" parameterType="com.eagle.men_in_black.model.ServiceDto">
+	INSERT
+	INTO COUPON
+  	(
+    	COUP_SEQ,
+    	COUP_NAME,
+    	COUP_PRICE,
+    	CONDITION,
+    	COUP_TIME,
+    	COUP_LIMIT,
+    	COUP_USE,
+    	USER_ID
+ 	 )
+ 	 VALUES
+  	(
+    	COUP_SEQ.NEXTVAL,
+    	#{COUP_NAME},
+    	#{COUP_PRICE},
+    	#{CONDITION},
+    	SYSDATE,
+    	#{COUP_LIMIT},
+    	'가능',
+    	#{USER_ID}
+ 	)
+	</insert>
+
+<select id="do_select_couseq" resultType="int">
+SELECT MAX(COUP_SEQ)
+ FROM COUPON 
+</select>
+
+<insert id="do_inser_coupt" parameterType="com.eagle.men_in_black.model.ServiceDto">
+INSERT
+	INTO PHOTO
+  (
+    PHOTO_SEQ,
+    STORED_NAME,
+    ORIGINAL_NAME,
+    COUP_SEQ
+  )
+  VALUES
+  (
+    PHOTO_SEQ.NEXTVAL,
+    #{STORED_FILE_NAME},
+    #{ORIGINAL_FILE_NAME},
+    #{COUP_SEQ}
+  )
+</insert>
+
+<select id="do_select_couplist" resultType="com.eagle.men_in_black.model.ServiceDto">
+SELECT 
+	A.COUP_SEQ,
+	A.COUP_NAME,
+	A.COUP_PRICE,
+	A.CONDITION,
+	A.COUP_TIME,	
+	A.COUP_LIMIT,
+	A.COUP_USE,
+	A.USER_ID,
+  B.STORED_NAME
+ FROM COUPON A INNER JOIN PHOTO B
+ ON A.COUP_SEQ=B.COUP_SEQ
+ WHERE USER_ID='adm' 
+ AND COUP_LIMIT>SYSDATE
+</select>
+
+<select id="do_selelct_coupdt" parameterType="int" resultType="com.eagle.men_in_black.model.ServiceDto">
+SELECT 
+	COUP_SEQ,
+	COUP_NAME,
+	COUP_PRICE,
+	CONDITION,
+	COUP_TIME,	
+	COUP_LIMIT,
+	COUP_USE,
+	USER_ID
+FROM COUPON 
+WHERE COUP_SEQ = #{seq}
+</select>
 
 
 </mapper>

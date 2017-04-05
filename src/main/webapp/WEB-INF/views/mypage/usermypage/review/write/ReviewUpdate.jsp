@@ -141,7 +141,7 @@
 
 
 
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		var sc = $(".sc").val;
 		var score = 0;
 		
@@ -172,7 +172,7 @@
 		
 		
 		
-		$(function() {
+ 		$(function() {
 			$("#star1").click(function() {
 
 				$("#star1").attr("src", "../images/scoreFull.png");
@@ -287,6 +287,6 @@
 
 	}
 		
-	</script>
+	</script> -->
 </body>
 </html>

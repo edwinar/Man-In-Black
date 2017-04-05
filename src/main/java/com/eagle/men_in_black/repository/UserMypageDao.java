@@ -41,21 +41,34 @@ public interface UserMypageDao {
 	public List<UserMypageDto> do_search_goods(HashMap<String, Object> param);
 
 	public int do_member_update(HashMap<String, String> map);
-	
+
 	public int do_insert_review(HashMap<String, String> map);
-	
+
 	public int do_insert_reviewphoto(HashMap<String, Object> map);
-	
+
 	public int do_select_revseq();
 
 	public UserMypageDto do_search_cancel(String del_seq);
-	
+
 	public int do_update_cancel(HashMap<String, Object> map);
 
 	public int do_insert_point(HashMap<String, Object> map);
+
+	public int do_update_del_step(int del_seq);
+
+	public int do_update_del_step2(int del_seq);
+
+	public DetailDto do_select_review(int REV_SEQ);
+
+	public int do_update_review(HashMap<String, Object> map);
 	
-	public int do_update_del_step(int del_seq );
+	public int do_update_reviewphoto(HashMap<String, Object> map);
 	
+<<<<<<< HEAD
+	
+	
+	
+=======
 	public int do_update_del_step2(int del_seq );
 
 	public DetailDto do_select_review(int REV_SEQ );
@@ -64,4 +77,5 @@ public interface UserMypageDao {
 
 
 
+>>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
 }

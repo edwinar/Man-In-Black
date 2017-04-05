@@ -16,7 +16,121 @@ public class ServiceDto implements Serializable {
 	private	String	EVENT_CONTENT;
 	private	String	EVENT_TIME;
 	private	String	STORED_NAME;
+	private String ORIGINAL_FILE_NAME;
+	private String STORED_FILE_NAME;
+	private String COUP_NAME ;
+	private int COUP_PRICE;
+	private int CONDITION ;
+	private String COUP_TIME ;
+	private String COUP_LIMIT;
+	private String COUP_USE  ;
+	private String USER_ID   ;
+	private int COUP_SEQ;
 	
+	
+	
+	
+	
+	public String getCOUP_NAME() {
+		return COUP_NAME;
+	}
+
+
+	public void setCOUP_NAME(String cOUP_NAME) {
+		COUP_NAME = cOUP_NAME;
+	}
+
+
+	public int getCOUP_PRICE() {
+		return COUP_PRICE;
+	}
+
+
+	public void setCOUP_PRICE(int cOUP_PRICE) {
+		COUP_PRICE = cOUP_PRICE;
+	}
+
+
+	public int getCONDITION() {
+		return CONDITION;
+	}
+
+
+	public void setCONDITION(int cONDITION) {
+		CONDITION = cONDITION;
+	}
+
+
+	public String getCOUP_TIME() {
+		return COUP_TIME;
+	}
+
+
+	public void setCOUP_TIME(String cOUP_TIME) {
+		COUP_TIME = cOUP_TIME;
+	}
+
+
+	public String getCOUP_LIMIT() {
+		return COUP_LIMIT;
+	}
+
+
+	public void setCOUP_LIMIT(String cOUP_LIMIT) {
+		COUP_LIMIT = cOUP_LIMIT;
+	}
+
+
+	public String getCOUP_USE() {
+		return COUP_USE;
+	}
+
+
+	public void setCOUP_USE(String cOUP_USE) {
+		COUP_USE = cOUP_USE;
+	}
+
+
+	public String getUSER_ID() {
+		return USER_ID;
+	}
+
+
+	public void setUSER_ID(String uSER_ID) {
+		USER_ID = uSER_ID;
+	}
+
+
+	public int getCOUP_SEQ() {
+		return COUP_SEQ;
+	}
+
+
+	public void setCOUP_SEQ(int cOUP_SEQ) {
+		COUP_SEQ = cOUP_SEQ;
+	}
+
+
+	public String getORIGINAL_FILE_NAME() {
+		return ORIGINAL_FILE_NAME;
+	}
+
+
+	public void setORIGINAL_FILE_NAME(String oRIGINAL_FILE_NAME) {
+		ORIGINAL_FILE_NAME = oRIGINAL_FILE_NAME;
+	}
+
+
+	public String getSTORED_FILE_NAME() {
+		return STORED_FILE_NAME;
+	}
+
+
+	public void setSTORED_FILE_NAME(String sTORED_FILE_NAME) {
+		STORED_FILE_NAME = sTORED_FILE_NAME;
+	}
+
+
 	public int getNOTICE_SEQ() {
 		return NOTICE_SEQ;
 	}

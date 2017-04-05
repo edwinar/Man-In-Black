@@ -60,6 +60,10 @@ public interface UserMypageSvc {
 	public int do_update_del_step2(int del_seq );
 	
 	public DetailDto do_select_review(int REV_SEQ );
+	
+	public int do_update_review(HashMap<String, Object> map);
+	
+	public int do_update_reviewphoto(HashMap<String, Object> map);
 
 	public UserMypageDto do_search_qnadetail(String qna_seq);
 
