@@ -79,7 +79,7 @@ td, th {
 
 						<td rowspan="2"><%=i + 1%><%=basketlist.get(i).getSTORED_NAME()%>
 						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>">
-						<img alt="not found" src="../images/<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
+						<img alt="<%=basketlist.get(i).getSTORED_NAME()%>" src="<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
 						<td rowspan="2" id="num<%=i%>" valign="middle"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
 						<td rowspan="1" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>

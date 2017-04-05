@@ -6,6 +6,8 @@
 <%
 	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	List<ServiceDto> eventlist = (List<ServiceDto>) request.getAttribute("eventlist");
+	List<ServiceDto> imgurl = (List<ServiceDto>) request.getAttribute("imgurl");
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -66,8 +68,9 @@ function eventdetail(seq) {
 		for(int i=0; i<eventlist.size();i++){
 	%>
 	<div class="preview" style="margin-left: 20px; float: left"  
-	onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
-		
+	onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" 
+	<%-- <%=imgurl.get(i).getSTORED_NAME() %> --%>
+	>
 	</div>
 	<%
 		}

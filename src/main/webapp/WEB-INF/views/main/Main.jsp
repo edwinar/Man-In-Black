@@ -7,7 +7,9 @@
 String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
 String insert = (String)request.getAttribute("insert")==null?"noinsert":(String)request.getAttribute("insert");
 List<MainDto> list = (List<MainDto>)request.getAttribute("list");
-
+List<MainDto> outerlist = (List<MainDto>)request.getAttribute("outerlist");
+List<MainDto> toplist = (List<MainDto>)request.getAttribute("toplist");
+List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -49,9 +51,9 @@ List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 <%if(list!=null){ 
 	for(int i=0; i<3;i++){
 %>
-	<div class="main-slide">
+	<div class="main-slide" >
 	<div class="main-slide-content">
-    <img src="../images/<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%">
+    <img src="<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%" onclick="detail(<%=list.get(i).getPRO_SEQ() %>)">
     </div>
     </div>
 <%}
@@ -69,99 +71,52 @@ List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 
 <h1 style="font-size: 50px; font-weight: bold; " id="main-best-h1"  > OUTER </h1>
 <div class="row" align="center">
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
+  <%for(int i=0;i<outerlist.size();i++){ %>
+  <div class="col-xs-12 col-lg-4" onclick="detail(<%=outerlist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="../images/7960d01b40644950beb90f0486f4bcc9.jpg" alt="...">
+      <img src="<%=outerlist.get(i).getSTORED_NAME()%>" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
+        <h3><%=outerlist.get(i).getPRO_NAME()%></h3>
+        <p><%=outerlist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
+  <%} %>
 </div>
 
 <hr style="border: solid black 2px;">
 
 <h1 style="font-size: 50px; font-weight: bold; " > TOP </h1>
 <div class="row" align="center">
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
+   <%for(int i=0;i<toplist.size();i++){ %>
+  <div class="col-xs-12 col-lg-4" onclick="detail(<%=toplist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
+      <img src="<%=toplist.get(i).getSTORED_NAME()%>" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
+        <h3><%=toplist.get(i).getPRO_NAME()%></h3>
+        <p><%=toplist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
+  <%} %>
 </div>
 
 <hr style="border: solid black 2px;">
 
+
 <h1 style="font-size: 50px; font-weight: bold; " > PANTS </h1>
 <div class="row" align="center">
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
+   <%for(int i=0;i<pantslist.size();i++){ %>
+  <div class="col-xs-12 col-lg-4" onclick="detail(<%=pantslist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
+      <img src="<%=pantslist.get(i).getSTORED_NAME()%>" alt="...">
       <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
+        <h3><%=pantslist.get(i).getPRO_NAME()%></h3>
+        <p><%=pantslist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib'">
-    <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
-      <div class="caption">
-        <h3>창거니가 어제 입던 소매티</h3>
-        <p>19000 Won</p>
-      </div>
-    </div>
-  </div>
+  <%} %>
 </div>
 
 <hr style="border: solid black 2px;">
@@ -214,6 +169,10 @@ clickshow(slideIndex += n);
 function current(n) {
 "use strict";
 clickshow(slideIndex = n);
+}
+
+function detail(pro_seq) {
+	location.href = 'detail.mib?PRO_SEQ='+pro_seq;
 }
 
 </script>
