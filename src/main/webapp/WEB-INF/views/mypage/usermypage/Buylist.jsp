@@ -334,7 +334,7 @@ td, th {
             ch=screen.availHeight;    //화면 높이
 
             sw=1080;    //띄울 창의 넓이
-            sh=650;    //띄울 창의 높이
+            sh=700;    //띄울 창의 높이
 
             ml=(cw-sw)/2;        
             mt=(ch-sh)/2;         
@@ -429,8 +429,7 @@ td, th {
 				%>
 
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></a></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found" src="../images/<%=buyList.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>

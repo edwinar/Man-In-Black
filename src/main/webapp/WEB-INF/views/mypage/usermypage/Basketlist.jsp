@@ -78,10 +78,10 @@ td, th {
 							class="chbox" style="width: 20px; height: 20px"></td>
 
 						<td rowspan="2"><%=i + 1%>
-						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><img alt="not found" src="../images/LOVE.jpg"
-							style="width: 100px; height: 100px"></a></td>
+						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>">
+						<img alt="<%=basketlist.get(i).getSTORED_NAME()%>" src="../images/<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
-						<td rowspan="2" id="num<%=i%>"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
+						<td rowspan="2" id="num<%=i%>" valign="middle"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
 						<td rowspan="1" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>
 					</tr>
 					<tr>

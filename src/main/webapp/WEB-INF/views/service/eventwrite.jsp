@@ -175,11 +175,11 @@ body {
 	<!--메인 이미지등록  -->
 	<div class="preview"></div>
 	<div align="center">
-		<button id="triggerUpload" class="btn">메인이미지등록</button> 
-		<input type="file" name="onefile" id="onefile" /> 
+		<button id="triggerUpload" class="btn">메인이미지등록</button>
+		<input type="file" id="filePicker" value="fdsjkf"/>
 	</div>
 	<div class="fileName"></div>
-	
+
 
 	<!-- 제목 -->
 	<div class="wrap">
@@ -193,57 +193,128 @@ body {
 
 	<!-- Editor -->
 	<textarea rows="10" cols="80" name="editor" id="editor1">
-			
-	</textarea>
+         
+   </textarea>
 
-<script>
-		CKEDITOR.replace("editor", {
+	<script>
+      CKEDITOR.replace("editor", {
 
-			/* 이미파일 저장할 경로 */
-			filebrowserImageUploadUrl : 'CkeditorImgUpload.mib',
+         /* 이미파일 저장할 경로 */
+         filebrowserImageUploadUrl : 'CkeditorImgUpload.mib',
 
-			filebrowserWindowWidth : '500',
+         filebrowserWindowWidth : '500',
 
-			filebrowserWindowHeight : '380',
+         filebrowserWindowHeight : '380',
 
-			height : '600px'
+         height : '600px'
 
-		});
+      });
 </script>
-	
-	
-	<p align="right">
-		<input type="submit" class="btn btn-primary" value="등록"> <a
-			class="btn btn-primary" href="event.mib" role="button">취소</a>
-	</p>
+
+	<form name="myform" action="event.mib" method="post"
+		enctype="multipart/form-data">
+		<p align="right">
+			<input type="hidden" id="filePickertmp" name="filePickertmp" value=""> <input
+				type="button" class="btn btn-primary" id="regbtn"
+				value="등록"> <a class="btn btn-primary" href="event.mib"
+				role="button">취소</a>
+		</p>
+	</form>
 
 
 
-
-<script type="text/javascript">
-
-$(function() {
-	$("#onefile").on('change', function() {
-		readURL(this);
+	<script type="text/javascript">
+$(function(){
+	$("#regbtn").click(function(){
+		var frm = document.myform;
+		
+		frm.filePickertmp.value = $('#filePicker').val();
+		
+		//alert("나와랏!!!" +$('#filePickertmp').val());
+		 //frm.action = "/post/main.hi"; 액션 위치 바꿀때 쓰는 코드
+		 frm.submit();
+		 
+		 
+		/* var formData = new FormData();
+		formData.append("filePicker", $("input[name=filePicker]")[0].files[0]);
+		
+		$.ajax({ 
+			
+			type: 'POST',		
+			url: "event.mib",
+			async : true,
+ 			dataType : "html",
+			data: formData,
+			processData: false, 
+			contentType: false, 
+			success: function(data){
+				alert("success " + data); 
+				}
+			}); 
+		});  */
 	});
+
+
+	
 });
 
-function readURL(input) {
+      var triggerUpload = document.getElementById('triggerUpload'), upInput = document
+            .getElementById('filePicker'), preview = document
+            .querySelector('.preview');
 
-	$("#preview").html(
-			'<img id="oneblah" src="#" width="100%" height="100%"/>');
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
+      //여기에 업로드실행
+      triggerUpload.onclick = function() {
+         upInput.click();
+      };
 
-			$('#oneblah').attr('src', e.target.result);
-		};
+      upInput.onchange = function(e) {
 
-		reader.readAsDataURL(input.files[0]);
-	};
+         var uploaded = this.value, ext = uploaded.substring(uploaded
+               .lastIndexOf('.') + 1), ext = ext.toLowerCase(), fileName = uploaded
+               .substring(uploaded.lastIndexOf("\\") + 1), accepted = [
+               "jpg", "png", "gif", "jpeg" ];
 
-};
-	</script>
-	
+         /*
+           ::img태그 추가
+           ::FileReader를 사용하여 img데이터 읽기
+           ::이미지 원본을 FileReader데이터로 설정
+          */
+         function showPreview() {
+            preview.innerHTML = "<div class='loadingLogo'></div>";
+            preview.innerHTML += '<img id="img-preview" />';
+            var reader = new FileReader();
+            reader.onload = function() {
+               var img = document.getElementById('img-preview');
+               img.src = reader.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+            preview.removeChild(document.querySelector('.loadingLogo'));
+            document.querySelector('.fileName').innerHTML = fileName
+                  + "<b> Uploaded!</b>";
+         }
+         ;
+
+         //지원이되는 이미지파일인 경우에만 수행
+         if (new RegExp(accepted.join("|")).test(ext)) {
+            showPreview();
+         } else {
+            preview.innerHTML = "";
+            document.querySelector('.fileName').innerHTML = "Hey! Upload an image file, not a <b>."
+                  + ext + "</b> file!";
+         }
+
+      }
+      //공지사항제목 스크립트 
+      $(".mat-input").focus(function() {
+         $(this).parent().addClass("is-active is-completed");
+      });
+
+      $(".mat-input").focusout(function() {
+         if ($(this).val() === "")
+            $(this).parent().removeClass("is-completed");
+         $(this).parent().removeClass("is-active");
+      });
+   </script>
+
 </body>
 </html>
