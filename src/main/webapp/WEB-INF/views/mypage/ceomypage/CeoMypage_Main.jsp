@@ -381,6 +381,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<th>상품</th>
 						<th>분류</th>
 						<th>상품이름</th>
+						<th>구매자</th>
 						<th>수량</th>
 						<th>재고</th>
 						<th>가격</th>
@@ -401,10 +402,14 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				<%}else{
 				for(int i=0; i<list.size(); i++){ %>
 					<tr>
-						<td><img alt="not found" src="../images/LOVE.jpg"
+						<td><img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getITEM() %></td>
-						<td>컬러-<%=list.get(i).getSEL_COLOR() %>,사이즈-<%=list.get(i).getSEL_SIZE() %></td>
+						<td>
+						<p>상품이름 - <%= list.get(i).getPRO_NAME() %></p>
+						컬러-<%=list.get(i).getSEL_COLOR() %>,사이즈-<%=list.get(i).getSEL_SIZE() %>
+						</td>
+						<td>구매한 사람  <%=list.get(i).getUSER_ID() %></td>
 						<td><%=list.get(i).getSEL_NUM() %></td>
 						<td><%=list.get(i).getSTOCK() %></td>
 						<td><%=list.get(i).getFINAL_PRICE() %></td>

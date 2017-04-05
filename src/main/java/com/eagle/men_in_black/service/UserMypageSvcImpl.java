@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.repository.UserMypageDao;
 
@@ -181,5 +182,32 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 	public int do_update_del_step2(int del_seq) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_del_step2(del_seq);
+	}
+
+
+	@Override
+	public DetailDto do_select_review(int REV_SEQ) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_select_review(REV_SEQ);
+	}
+
+<<<<<<< HEAD
+
+	@Override
+	public int do_update_review(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_review(map);
+	}
+
+
+	@Override
+	public int do_update_reviewphoto(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_reviewphoto(map);
+=======
+	@Override
+	public UserMypageDto do_search_qnadetail(String qna_seq) {
+		return userMypageDao.do_search_qnadetail(qna_seq);
+>>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
 	}
 }

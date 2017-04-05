@@ -83,7 +83,7 @@ JOIN PRODUCT C
 ON A.PRO_SEQ = C.PRO_SEQ
 JOIN PHOTO D
 ON C.PRO_SEQ = D.PRO_SEQ
-WHERE A.USER_ID = #{id} AND D.STORED_NAME LIKE 'MAIN%'
+WHERE A.USER_ID = #{id} AND D.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.SEL_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -98,6 +98,7 @@ SELECT *
 FROM
 (
 SELECT
+A.PRO_SEQ,
 B.PRO_NAME,
 B.PRO_PRICE,
 A.PRO_SIZE,
@@ -109,7 +110,7 @@ FROM BASKET A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 JOIN PHOTO C
 ON A.PRO_SEQ = C.PRO_SEQ
-WHERE A.USER_ID =#{id}  AND C.STORED_NAME LIKE 'MAIN%'
+WHERE A.USER_ID =#{id}  AND C.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.BAS_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -128,7 +129,8 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME
+A.QNA_TIME,
+A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.USER_ID = #{id}
@@ -173,7 +175,7 @@ FROM (
            ON A.USER_ID = D.USER_ID 
            AND A.PRO_SEQ = D.PRO_SEQ
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE '%MAIN%'
            AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE})
               ORDER BY SEL_TIME DESC
@@ -215,7 +217,7 @@ FROM (
            JOIN DELIVERY D
            ON A.USER_ID = D.USER_ID
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE '%MAIN%'
 
 
 ]]>
@@ -283,17 +285,19 @@ FROM (
 <![CDATA[
 SELECT
                A.BAS_SEQ,
+               A.PRO_SEQ,
                B.PRO_NAME,
                B.PRO_PRICE,
                A.PRO_SIZE,
                A.COLOR,
                A.BAS_PRO_NUM,
-               B.SUB_ITEM
+               B.SUB_ITEM,
+               C.STORED_NAME
                FROM BASKET A JOIN PRODUCT B
                ON A.PRO_SEQ = B.PRO_SEQ
                JOIN PHOTO C
                ON A.PRO_SEQ = C.PRO_SEQ
-               WHERE A.USER_ID = #{id} AND  C.STORED_NAME LIKE 'MAIN%'
+               WHERE A.USER_ID = #{id} AND  C.STORED_NAME LIKE '%MAIN%'
                ORDER BY A.BAS_SEQ DESC
 
 ]]> 
@@ -322,7 +326,8 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME
+A.QNA_TIME,
+A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.USER_ID = #{id}
@@ -377,7 +382,7 @@ FROM (
 </select>
 
 
-<!-- qna -->
+<!-- qna LIST PAGEING -->
 <select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT TT1.*
@@ -410,7 +415,7 @@ FROM (
     <foreach collection="list1" item="item1" index="index" separator="," open="(" close=")">
         #{item1}
     </foreach>
-    AND B.STORED_NAME LIKE 'MAIN%'
+    AND B.STORED_NAME LIKE '%MAIN%'
 </select>
     <!-- 회원정보수정  -->
 <update id="do_member_update" parameterType="hashmap" >
@@ -536,6 +541,52 @@ UPDATE DELIVERY
 SET DEL_STEP='리뷰완료'
 WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
+<!-- 리뷰읽기  -->
+<select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.REV_SEQ,
+A.REV_TITLE,
+A.REV_CONTENT,
+A.REV_TIME,
+A.SCORE,
+A.REV_REF,
+A.USER_ID,
+A.PRO_SEQ,
+A.REV_STEP,
+B.STORED_NAME,
+B.ORIGINAL_NAME
+FROM REVIEW A JOIN PHOTO B
+ON A.REV_SEQ = B.REV_SEQ
+WHERE A.REV_SEQ=#{REV_SEQ}
+</select>
+
+<<<<<<< HEAD
+<update id="do_update_review" parameterType="hashmap" >
+UPDATE REVIEW
+SET 
+REV_TITLE   = #{REV_TITLE}
+,REV_CONTENT = #{REV_CONTENT}
+,SCORE       = #{SCORE}
+WHERE REV_SEQ = #{REV_SEQ}
+</update>
+
+<update id="do_update_reviewphoto" parameterType="hashmap" >
+UPDATE PHOTO
+SET
+STORED_NAME   =  #{STORED_FILE_NAME}
+,ORIGINAL_NAME = #{ORIGINAL_FILE_NAME}
+WHERE REV_SEQ  =   #{REV_SEQ}
+
+</update>
+=======
+    <!-- qna 상세  -->
+    <select id="do_search_qnadatail" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+        <![CDATA[
+        SELECT *
+        FROM QNA
+        WHERE QNA_SEQ = #{QNA_SEQ}
+]]>
+    </select>
+>>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
 
 
 

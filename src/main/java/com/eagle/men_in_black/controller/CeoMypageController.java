@@ -123,7 +123,7 @@ public class CeoMypageController {
 
 	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 	                
-	                storedFileName = "MAIN" + getRandomString() + originalFileExtension;
+	                storedFileName = "../images/MAIN" + getRandomString() + originalFileExtension;
 	                
 	                 
 	                // 첨부한 파일 생성 
@@ -146,7 +146,7 @@ public class CeoMypageController {
 
 	 	               originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 	 	                
-	 	               storedFileName = getRandomString() + originalFileExtension;
+	 	               storedFileName = "../images/" + getRandomString() + originalFileExtension;
 	 	                
 	 	                 
 	 	                // 첨부한 파일 생성 
@@ -280,21 +280,26 @@ public class CeoMypageController {
 			MultipartFile upload = fileBean.getUpload();
 			String filename = ""; 
 			String CKEditorFuncNum = "";
-			
+			String storedFileName = "";
 			if (upload != null) { 
 				filename = upload.getOriginalFilename(); 
 				fileBean.setFilename(filename); 
 				CKEditorFuncNum = fileBean.getCKEditorFuncNum(); 
 			
 			try { 
-				File file = new File(root_path + attach_path + filename);
+				
+				String originalFileExtension = filename.substring(filename.lastIndexOf("."));
+
+                storedFileName = getRandomString() + originalFileExtension;
+				
+				File file = new File(root_path + attach_path + storedFileName);
 				loger.info(root_path + attach_path + filename); 
 				upload.transferTo(file); 
 			} catch (IOException e) { 
 				e.printStackTrace(); } 
 			} 
 			
-			String file_path = "../" + "images/" + filename; 
+			String file_path = "../" + "images/" + storedFileName; 
 					
 			ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");
 			mov.addObject("file_path", file_path);
@@ -664,7 +669,7 @@ public class CeoMypageController {
 
 				                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-				                storedFileName = getRandomString() + originalFileExtension;
+				                storedFileName = "../images/" + getRandomString() + originalFileExtension;
 
 				                // 첨부한 파일 생성
 				                file = new File(filePath + storedFileName);

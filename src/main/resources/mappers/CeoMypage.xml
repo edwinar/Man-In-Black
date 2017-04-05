@@ -27,7 +27,7 @@ SELECT TT1.*
                  ON Z.PRO_SEQ=W.PRO_SEQ 
                  AND Z.USER_ID=W.USER_ID
                  AND Z.DEL_SEQ = W.DEL_SEQ	
-             WHERE Y.STORED_NAME LIKE 'MAIN%' 
+             WHERE Y.STORED_NAME LIKE '%MAIN%' 
              AND X.PRO_SIZE=Z.SEL_SIZE  
              AND X.COLOR=Z.SEL_COLOR
             
@@ -41,7 +41,11 @@ NATURAL JOIN
      SELECT COUNT(*) TOT_CNT
      FROM SALES A LEFT OUTER JOIN PRODUCT B
      ON A.PRO_SEQ=B.PRO_SEQ
-     WHERE (B.PRO_NAME LIKE #{search}
+     INNER JOIN PRO_DETAIL X
+     ON A.PRO_SEQ=X.PRO_SEQ
+     WHERE X.PRO_SIZE=A.SEL_SIZE  
+     AND X.COLOR=A.SEL_COLOR
+     AND (B.PRO_NAME LIKE #{search}
      or A.USER_ID LIKE #{search})
      AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE}) 
@@ -189,18 +193,23 @@ SELECT TT1.*
   FROM (
        SELECT ROWNUM RNUM,T1.*,T2.*
        FROM(
-select  PRO_SEQ,
-        PRO_NAME,
-        ITEM,
-        SUB_ITEM,
-        PRO_PRICE,
-        PRO_CONTENT
-from PRODUCT where NEW_ITEM='Y'
+select  A.PRO_SEQ,
+        A.PRO_NAME,
+        A.ITEM,
+        A.SUB_ITEM,
+        A.PRO_PRICE,
+        A.PRO_CONTENT,
+        B.STORED_NAME
+from PRODUCT A INNER JOIN PHOTO B
+ON A.PRO_SEQ=B.PRO_SEQ
+where A.NEW_ITEM='Y' and B.STORED_NAME like '%MAIN%'
 ) T1
 NATURAL JOIN
 (
      SELECT COUNT(*) TOT_CNT
-     FROM PRODUCT where NEW_ITEM='Y'
+     FROM PRODUCT A INNER JOIN PHOTO B
+     ON A.PRO_SEQ = B.PRO_SEQ
+     where NEW_ITEM='Y' AND B.STORED_NAME like '%MAIN%'
 ) T2
 ) TT1
 WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
