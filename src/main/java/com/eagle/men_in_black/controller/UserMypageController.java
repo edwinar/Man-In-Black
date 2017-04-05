@@ -826,8 +826,52 @@ public class UserMypageController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("qnaup.mib")
+	public ModelAndView qnaup(HttpServletRequest res, HttpServletResponse rep){
+		String QNA_SEQ =  res.getParameter("QNA_SEQ");
+		
+		UserMypageDto qnaDto = (UserMypageDto)userMypageSvc.do_search_qnadetail(QNA_SEQ);
+
+		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AUpdate");
+		mav.addObject("qnaDto",qnaDto);
+		return mav;
+		
+	}
+	
+	
+	
+	// 구매목록 반품 교환 환불
+		@RequestMapping(value="qnaupdate.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+		public @ResponseBody String qnaupdate(HttpServletRequest res, HttpServletResponse rep) {
+		
+			HashMap<String, String> resultMap = new HashMap<>();
+			HashMap<String, Object> update = new HashMap<String, Object>();
+			String QNA_SEQ = res.getParameter("QNA_SEQ");
+			String QNA_OPEN = res.getParameter("secret");
+			String QNA_TYPE = res.getParameter("secretz");
+			String QNA_TITLE = res.getParameter("title");
+			String QNA_CONTENT = res.getParameter("QNA_CONTENT");
+			
+			System.out.println("=============================="+QNA_SEQ);
+
+			update.put("QNA_SEQ",QNA_SEQ);
+			update.put("QNA_OPEN",QNA_OPEN);
+			update.put("CA_REASON",QNA_TYPE);
+			update.put("QNA_TITLE",QNA_TITLE);
+			update.put("QNA_CONTENT",QNA_CONTENT);
 
 
+			int suc = userMypageSvc.do_update_qna(update);
+			if(suc > 0){
+				resultMap.put("result", "success");
+			}
+			Gson gson = new Gson();
+			
+			return gson.toJson(resultMap);
+
+
+		};
 	
 
 	

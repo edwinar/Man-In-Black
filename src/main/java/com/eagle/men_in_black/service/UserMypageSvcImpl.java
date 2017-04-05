@@ -211,4 +211,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_qnadetail(qna_seq);
 
 	}
+
+
+	@Override
+	public int do_update_qna(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_qna(map);
+	}
 }

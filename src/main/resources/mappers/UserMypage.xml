@@ -587,7 +587,15 @@ WHERE REV_SEQ  =   #{REV_SEQ}
 ]]>
     </select>
 
-
+<update id="do_update_qna" parameterType="hashmap" >
+UPDATE QNA
+SET 
+QNA_TITLE   = #{QNA_TITLE}
+,QNA_CONTENT = #{QNA_CONTENT}
+,QNA_OPEN    = #{QNA_OPEN}
+,QNA_TYPE    = #{QNA_TYPE}
+WHERE QNA_SEQ   = #{QNA_SEQ}
+</update>
 
 
 </mapper>
