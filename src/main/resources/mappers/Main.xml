@@ -5,7 +5,7 @@
 <mapper namespace="com.eagle.repository.mapper.Main">
 
 <select id="do_search_pw" parameterType="String" resultType="com.eagle.men_in_black.model.MainDto">
-SELECT USER_ID, USER_PW, USER_NAME, TEL, ADDRESS, POSTCODE, SEX, BIRTH, EMAIL  
+SELECT USER_ID, USER_PW, USER_NAME, TEL, ADDRESS, POSTCODE, SEX, BIRTH, EMAIL, DETAILADDRESS  
 FROM MEMBERS 
 WHERE USER_ID=#{id}
 </select>
