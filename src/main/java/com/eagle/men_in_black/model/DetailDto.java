@@ -56,6 +56,13 @@ public class DetailDto implements Serializable {
 	private	String	SEL_TIME;
 	private	int	STOCK;
 	private	String	STORED_NAME;
+	private	String ORIGINAL_NAME;
+	public String getORIGINAL_NAME() {
+		return ORIGINAL_NAME;
+	}
+	public void setORIGINAL_NAME(String oRIGINAL_NAME) {
+		ORIGINAL_NAME = oRIGINAL_NAME;
+	}
 	private	String 	SUB_ITEM;
 	private	String	USER_ID;
 	private	String	WASH;

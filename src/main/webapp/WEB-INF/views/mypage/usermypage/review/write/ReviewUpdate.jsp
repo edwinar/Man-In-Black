@@ -77,11 +77,12 @@
 				<div class="thumbnail">
 					<div class="panel panel-default"
 						style="margin-left: 40px; margin-bottom: 30px">
-						<input type="file" name="onefile" id="onefile">
+						<input type="file" name="onefile" id="onefile"">
+						<img class="PP" alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%" >
 
 						<div
 							style="width: 100%; height: 100%; float: left; margin-top: 1%"
-							id="imgone-div"></div>
+							id="imgone-div" ></div>
 
 
 					</div>
@@ -89,42 +90,19 @@
 			</div>
 
 			<div class="rightLayout">
-
+					<input type="hidden" value="<%=detailDto.getSCORE()%>" class="sc">
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
-						<%if(detailDto.getSCORE()==1){ %>
-						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png">
-						<% }else if(detailDto.getSCORE()==2){ %>
-						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png">
-						<% }else if(detailDto.getSCORE()==3){ %>
-						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreEmpty.png"> <img alt="..."
-							src="../images/scoreEmpty.png">
-						<% }else if(detailDto.getSCORE()==4){ %>
-						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreEmpty.png">
-						<% }else if(detailDto.getSCORE()==5){ %>
-						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png"> <img alt="..."
-							src="../images/scoreFull.png">
-						<%}else{%>
-						<h4>평점 데이터가 없습니다.</h4>
-						<%}%>
+						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
+							onclick="star1()"> <img alt="..."
+							src="../images/scoreEmpty.png" id="star2" onclick="star2()">
+						<img alt="..." src="../images/scoreEmpty.png" id="star3"
+							onclick="star3()"> <img alt="..."
+							src="../images/scoreEmpty.png" id="star4" onclick="star4()">
+						<img alt="..." src="../images/scoreEmpty.png" id="star5"
+							onclick="star5()">
+
+						<hr style="border: solid black 1px; width: 70%;">
 					</div>
 					
 					
@@ -134,8 +112,7 @@
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title"> <input type="hidden"
-							name="PRO_SEQ" value="<%=PRO_SEQ%>"> <input type="hidden"
+						제목 : <input type="text" name="title" value="<%=detailDto.getREV_TITLE()%>"><input type="hidden"
 							name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
 					<div class="info"
@@ -149,11 +126,11 @@
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
 						<input type="text" name="content"
-							style="width: 100%; height: 100px">
+							style="width: 100%; height: 100px" value="<%=detailDto.getREV_CONTENT()%>">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" value="리뷰 달기" onclick="closeSelf()">
+						<input type="button" value="수정 하기" onclick="closeSelf()">
 					</div>
 
 				</div>
@@ -165,7 +142,36 @@
 
 
 	<script type="text/javascript">
+		var sc = $(".sc").val;
 		var score = 0;
+		
+		if(sc=1){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreEmpty.png");
+		$("#star3").attr("src", "../images/scoreEmpty.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 1;
+		$("#score").val(score);
+		}else if(sc=2){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreFull.png");
+		$("#star3").attr("src", "../images/scoreEmpty.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 2;
+		$("#score").val(score);
+		}else if(sc=3){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreFull.png");
+		$("#star3").attr("src", "../images/scoreFull.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 3;
+		$("#score").val(score);
+		}else if(sc=4){$("#star4").click(function();
+		}else if(sc=5){$("#star5").click(function();
+		}
+		
+		
+		
 		$(function() {
 			$("#star1").click(function() {
 
@@ -225,6 +231,7 @@
 		$(function() {
 			$("#onefile").on('change', function() {
 				readURL(this);
+				$(".PP").remove();
 			});
 		});
 
@@ -248,7 +255,6 @@
 			var formData = new FormData();
 			formData.append("title", $("input[name=title]").val()); 
 			formData.append("content", $("input[name=content]").val()); 
-			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val()); 
 			formData.append("score", $("input[name=score]").val()); 
 			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
 			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());

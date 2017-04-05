@@ -26,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
+import com.eagle.men_in_black.service.DetailSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
 import com.google.gson.Gson;
 
@@ -38,6 +40,8 @@ public class UserMypageController {
 
 	@Autowired
 	private UserMypageSvc userMypageSvc;
+	@Autowired
+	private DetailSvc detailSvc;
 
 	// 마이페이지 메인
 		@RequestMapping("mymain.mib")
@@ -665,34 +669,29 @@ public class UserMypageController {
 	};
 	
 	
-	//내가쓴 게시물 보기  리뷰
+	//리뷰수정
 	@RequestMapping("reviewupdate.mib")
 	public ModelAndView reviewupdate(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		int REV_SEQ = Integer.parseInt(res.getParameter("REV_SEQ"));
+		
+		DetailDto detaildto = userMypageSvc.do_select_review(REV_SEQ);
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/ReviewUpdate");
+		mav.addObject("detaildto", detaildto);
+		mav.addObject("userdto", userdto);
 		
 		
-		HashMap<String, String> map = new HashMap<>();
-		map.put("PAGE_SIZE", PAGE_SIZE);
-		map.put("PAGE_NUM", PAGE_NUM);
-		map.put("id", userdto.getUSER_ID());
-		
-		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
-		
-		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
-		mav.addObject("reviewlist",reviewlist);
 		return mav;
 		
 	}
 	
 	
-	//내가쓴 게시물 보기  리뷰
+	/*//리뷰 삭제
 	@RequestMapping("myboardreview.mib")
 	public ModelAndView myboardreview(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		
 		
 		
 		HashMap<String, String> map = new HashMap<>();
@@ -706,7 +705,7 @@ public class UserMypageController {
 		mav.addObject("reviewlist",reviewlist);
 		return mav;
 		
-	}
+	}*/
 	
 	
 	
