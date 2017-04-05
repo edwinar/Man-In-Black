@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
@@ -8,7 +9,11 @@
 	Date now = new Date();
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
-	
+
+	//리뷰읽기에서 끌거온거
+	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
+	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,29 +65,32 @@
 </style>
 </head>
 <body>
-<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
+	<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
    String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
 
-<form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
-	<div class="layout">
-		<div class="leftLayout">
-			<div class="thumbnail">
-				<div class="panel panel-default"
-					style="margin-left: 40px; margin-bottom: 30px">
-					<input type="file" name="onefile" id="onefile" >
+	<form id="f1" action="reviewWrite.mib" method="post"
+		enctype="multipart/form-data">
+		<div class="layout">
+			<div class="leftLayout">
+				<div class="thumbnail">
+					<div class="panel panel-default"
+						style="margin-left: 40px; margin-bottom: 30px">
+						<input type="file" name="onefile" id="onefile"">
+						<img class="PP" alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%" >
 
-					<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
-						id="imgone-div" ></div>
+						<div
+							style="width: 100%; height: 100%; float: left; margin-top: 1%"
+							id="imgone-div" ></div>
 
 
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="rightLayout">
-			
+			<div class="rightLayout">
+					<input type="hidden" value="<%=detailDto.getSCORE()%>" class="sc">
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
 						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
@@ -96,40 +104,74 @@
 
 						<hr style="border: solid black 1px; width: 70%;">
 					</div>
+					
+					
+					
+					
 					<input type="hidden" name="score" id="score">
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title">
-						<input type="hidden" name="PRO_SEQ" value="<%=PRO_SEQ%>">
-						<input type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>">
+						제목 : <input type="text" name="title" value="<%=detailDto.getREV_TITLE()%>"><input type="hidden"
+							name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
-						작성자 :<input type="text" id="id" name="id" value="<%=userdto.getUSER_ID()%>님"
-							size="7" readonly="readonly" class="non"> 
-							작성일 <%=time%>
-						
+						작성자 :<input type="text" id="id" name="id"
+							value="<%=userdto.getUSER_ID()%>님" size="7" readonly="readonly"
+							class="non"> 작성일
+						<%=time%>
+
 					</div>
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
-						<input type="text" name="content" style="width: 100%; height: 100px">
+						<input type="text" name="content"
+							style="width: 100%; height: 100px" value="<%=detailDto.getREV_CONTENT()%>">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" value="수정 하기" onclick="closeSelf()">
 					</div>
 
 				</div>
-		
+
+			</div>
 		</div>
-	</div>
 	</form>
 
 
 
 	<script type="text/javascript">
+		var sc = $(".sc").val;
 		var score = 0;
+		
+		if(sc=1){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreEmpty.png");
+		$("#star3").attr("src", "../images/scoreEmpty.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 1;
+		$("#score").val(score);
+		}else if(sc=2){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreFull.png");
+		$("#star3").attr("src", "../images/scoreEmpty.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 2;
+		$("#score").val(score);
+		}else if(sc=3){$("#star1").attr("src", "../images/scoreFull.png");
+		$("#star2").attr("src", "../images/scoreFull.png");
+		$("#star3").attr("src", "../images/scoreFull.png");
+		$("#star4").attr("src", "../images/scoreEmpty.png");
+		$("#star5").attr("src", "../images/scoreEmpty.png");
+		score = 3;
+		$("#score").val(score);
+		}else if(sc=4){$("#star4").click(function();
+		}else if(sc=5){$("#star5").click(function();
+		}
+		
+		
+		
 		$(function() {
 			$("#star1").click(function() {
 
@@ -189,6 +231,7 @@
 		$(function() {
 			$("#onefile").on('change', function() {
 				readURL(this);
+				$(".PP").remove();
 			});
 		});
 
@@ -212,7 +255,6 @@
 			var formData = new FormData();
 			formData.append("title", $("input[name=title]").val()); 
 			formData.append("content", $("input[name=content]").val()); 
-			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val()); 
 			formData.append("score", $("input[name=score]").val()); 
 			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
 			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());

@@ -149,6 +149,8 @@ public class ServiceController {
 	//이벤트 
 	@RequestMapping("event.mib")
 	public ModelAndView event(HttpServletRequest res, HttpServletResponse rep){
+		String url = res.getParameter("filePickertmp");
+		loger.debug("url 응답하라 :::" + url);
 		
 		ModelAndView mav = new ModelAndView("service/event");
 		
@@ -164,6 +166,7 @@ public class ServiceController {
 		List<ServiceDto> eventlist = serviceSvc.do_event_main(map);
 
 		mav.addObject("eventlist", eventlist);
+		mav.addObject("url", url);
 		
 		return mav;
 		
@@ -174,6 +177,8 @@ public class ServiceController {
 	public ModelAndView event_reg(HttpServletRequest res) {
 		
 		ModelAndView mav = new ModelAndView("/service/eventwrite");
+		
+		
 		
 		return mav;
 	}

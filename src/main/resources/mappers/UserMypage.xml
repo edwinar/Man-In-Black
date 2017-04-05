@@ -60,8 +60,8 @@ WHERE ROWNUM <=3
 </select>
 
 
-<!-- 구매한상품 -->
-<select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+    <!-- 구매한상품 -->
+    <select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT *
 FROM(
@@ -75,12 +75,15 @@ A.DEL_SEQ,
 A.SEL_SIZE,
 A.SEL_COLOR,
 B.DEL_STEP,
-C.SUB_ITEM
+C.SUB_ITEM,
+D.STORED_NAME
 FROM SALES A JOIN  DELIVERY B
 ON A.USER_ID = B.USER_ID AND A.PRO_SEQ=B.PRO_SEQ
 JOIN PRODUCT C
 ON A.PRO_SEQ = C.PRO_SEQ
-WHERE A.USER_ID = #{id}
+JOIN PHOTO D
+ON C.PRO_SEQ = D.PRO_SEQ
+WHERE A.USER_ID = #{id} AND D.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.SEL_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -88,22 +91,26 @@ WHERE ROWNUM <=5
 </select>
 
 
-<!-- 장바구니-->
-<select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+    <!-- 장바구니-->
+    <select id="do_search_basket" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT *
 FROM
 (
-SELECT 
-B.PRO_NAME, 
-B.PRO_PRICE, 
-A.PRO_SIZE, 
+SELECT
+A.PRO_SEQ,
+B.PRO_NAME,
+B.PRO_PRICE,
+A.PRO_SIZE,
 A.COLOR,
 A.BAS_PRO_NUM,
-B.SUB_ITEM
+B.SUB_ITEM,
+C.STORED_NAME
 FROM BASKET A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
-WHERE A.USER_ID = #{id}
+JOIN PHOTO C
+ON A.PRO_SEQ = C.PRO_SEQ
+WHERE A.USER_ID =#{id}  AND C.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.BAS_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -167,9 +174,10 @@ FROM (
            ON A.USER_ID = D.USER_ID 
            AND A.PRO_SEQ = D.PRO_SEQ
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE '%MAIN%'
            AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
-             AND TO_DATE(${END_DATE}) 
+             AND TO_DATE(${END_DATE})
+              ORDER BY SEL_TIME DESC
            ) T1
           NATURAL JOIN
           (
@@ -208,7 +216,7 @@ FROM (
            JOIN DELIVERY D
            ON A.USER_ID = D.USER_ID
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE '%MAIN%'
 
 
 ]]>
@@ -271,32 +279,25 @@ FROM (
 </select>
 
 
-<!-- 장바구니LIST  -->
+    <!-- 장바구니LIST  -->
     <select id="do_search_basketlist" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
-SELECT TT1.*
-FROM (
-       SELECT ROWNUM RNUM,T1.*,T2.*
-          FROM(
-               SELECT
+SELECT
                A.BAS_SEQ,
+               A.PRO_SEQ,
                B.PRO_NAME,
                B.PRO_PRICE,
                A.PRO_SIZE,
                A.COLOR,
                A.BAS_PRO_NUM,
-               B.SUB_ITEM
+               B.SUB_ITEM,
+               C.STORED_NAME
                FROM BASKET A JOIN PRODUCT B
                ON A.PRO_SEQ = B.PRO_SEQ
-               WHERE A.USER_ID = #{id}
+               JOIN PHOTO C
+               ON A.PRO_SEQ = C.PRO_SEQ
+               WHERE A.USER_ID = #{id} AND  C.STORED_NAME LIKE '%MAIN%'
                ORDER BY A.BAS_SEQ DESC
-            ) T1
-             NATURAL JOIN
-                        (
-                         SELECT COUNT(*) TOT_CNT FROM BASKET WHERE USER_ID=#{id}
-                        ) T2
-      ) TT1
-WHERE RNUM BETWEEN 1 and 100
 
 ]]> 
 </select>
@@ -398,52 +399,23 @@ FROM (
             WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 ]]>
 </select>
-
-
+    <!-- 오늘본 상품 서치  -->
 <select id="do_search_goods" parameterType="java.util.HashMap" resultType="com.eagle.men_in_black.model.UserMypageDto">
-SELECT TT1.*
-FROM (
-SELECT ROWNUM RNUM,T1.*,T2.*
-FROM(
-              SELECT C.SALE_CNT,C.PRO_NAME, C.PRO_CONTENT, C.PRO_SEQ, C.PRO_PRICE, C.ITEM,
-                           D.STORED_NAME, C.NEW_ITEM, COUNT(E.PRO_SEQ) AS REVIEW_CNT
-              FROM (
-                           SELECT COUNT(B.PRO_SEQ) AS SALE_CNT, A.PRO_NAME, A.PRO_CONTENT, A.PRO_SEQ,
-                                         A.PRO_PRICE, A.ITEM, A.NEW_ITEM
-                            FROM PRODUCT A LEFT JOIN SALES B
-                            ON A.PRO_SEQ=B.PRO_SEQ
-                           WHERE A.PRO_SEQ = ANY
-                                <foreach collection="list1" item="item1" index="index" separator="," open="(" close=")">
-                                      #{item1}
-                                 </foreach>
-                           GROUP BY    B.PRO_SEQ,A.PRO_NAME,A.PRO_CONTENT
-                                                 ,A.PRO_SEQ,A.PRO_PRICE,A.ITEM,A.NEW_ITEM
-                          )C LEFT JOIN PHOTO D ON C.PRO_SEQ = D.PRO_SEQ
-            LEFT JOIN REVIEW E ON C.PRO_SEQ = E.PRO_SEQ
-             WHERE D.STORED_NAME LIKE 'MAIN%'
-             GROUP BY C.SALE_CNT,C.PRO_NAME, C.PRO_CONTENT, C.PRO_SEQ, C.PRO_PRICE, C.ITEM,
-                                  D.STORED_NAME, C.NEW_ITEM, E.PRO_SEQ
-             ORDER BY C.SALE_CNT DESC
-
-) T1
-NATURAL JOIN(
-
-SELECT COUNT(*) TOT_CNT
-FROM(
-            SELECT COUNT(A.PRO_SEQ)
-            FROM  PRODUCT A LEFT JOIN SALES B
-            ON A.PRO_SEQ=B.PRO_SEQ
-            WHERE A.PRO_SEQ = ANY
-                          <foreach collection="list2" item="item2" index="index" separator="," open="(" close=")">
-                                      #{item2}
-                           </foreach>
-            GROUP BY A.PRO_SEQ
-             )
-         ) T2
-) TT1
-WHERE RNUM BETWEEN 1 and 9
+    SELECT  A.PRO_NAME,
+    A.PRO_CONTENT,
+    A.PRO_SEQ,
+    A.PRO_PRICE,
+    A.ITEM,
+    B.STORED_NAME
+    FROM PRODUCT A JOIN PHOTO B
+    ON   A.PRO_SEQ=B.PRO_SEQ
+    WHERE A.PRO_SEQ IN
+    <foreach collection="list1" item="item1" index="index" separator="," open="(" close=")">
+        #{item1}
+    </foreach>
+    AND B.STORED_NAME LIKE '%MAIN%'
 </select>
-
+    <!-- 회원정보수정  -->
 <update id="do_member_update" parameterType="hashmap" >
 UPDATE MEMBERS SET 
 	ADDRESS = #{ADDRESS},
@@ -567,6 +539,23 @@ UPDATE DELIVERY
 SET DEL_STEP='리뷰완료'
 WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
+<!-- 리뷰읽기  -->
+<select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.REV_SEQ REV_SEQ,
+A.REV_TITLE,
+A.REV_CONTENT,
+A.REV_TIME,
+A.SCORE,
+A.REV_REF,
+A.USER_ID,
+A.PRO_SEQ,
+A.REV_STEP,
+B.STORED_NAME,
+B.ORIGINAL_NAME
+FROM REVIEW A JOIN PHOTO B
+ON A.REV_SEQ = B.REV_SEQ
+WHERE A.REV_SEQ=#{REV_SEQ}
+</select>
 
 
 

@@ -32,16 +32,28 @@ public class MainController {
 	
 	// 메인 화면 
 	@RequestMapping("meninblack.mib")
-	public ModelAndView meninblack(){
+	public ModelAndView meninblack(HttpServletRequest res){
 				
 		ModelAndView mav = new ModelAndView("main/Main");
 		
-		List<MainDto> list = mainSvc.do_select_banner();
+		List<MainDto> subitemheader = mainSvc.do_select_subitemheader();
+		if(res.getSession().getAttribute("subitemheader")==null){
+		res.getSession().setAttribute("subitemheader", subitemheader);
+		}
 		
+		List<MainDto> list = mainSvc.do_select_banner(); // 베너 이미지 
+		List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
+		List<MainDto> toplist = mainSvc.do_select_bestItem("TOP");
+		List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
 		
+		mav.addObject("outerlist", outerlist);
+		mav.addObject("toplist", toplist);
+		mav.addObject("pantslist", pantslist);
+		
+		if(list.get(0).getBAN_SEQ()!=0){
 		
 		mav.addObject("list", list);
-	
+		}
 		return mav;
 		
 	}
@@ -68,23 +80,40 @@ public class MainController {
 		MainDto dto =  mainSvc.do_search_pw(id);
 		ModelAndView mav = new ModelAndView("main/Main");
 		List<MainDto> list = mainSvc.do_select_banner();
+		List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
+		List<MainDto> toplist = mainSvc.do_select_bestItem("TOP");
+		List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
+		
 		if(dto!=null){
 			if(pwd.equals(dto.getUSER_PW())){
 				// 로그인 됬을 때 
 				res.getSession().setAttribute("LoginInfo", dto);
 				mav.addObject("LoginInfo", "success");
-				
-				mav.addObject("list", list);
+				if(list.get(0).getBAN_SEQ()!=0){
+					mav.addObject("list", list);
+					mav.addObject("outerlist", outerlist);
+					mav.addObject("toplist", toplist);
+					mav.addObject("pantslist", pantslist);
+				}
 			}else{
 				// 비밀번호 틀렸을 때 
 				mav.addObject("LoginInfo", "NotPwd");
-				
-				mav.addObject("list", list);
+				if(list.get(0).getBAN_SEQ()!=0){
+					mav.addObject("list", list);
+					mav.addObject("outerlist", outerlist);
+					mav.addObject("toplist", toplist);
+					mav.addObject("pantslist", pantslist);
+				}
 			}
 		}else{
 			// 로그인 안됬을 때 
 			
-			mav.addObject("list", list);
+			if(list.get(0).getBAN_SEQ()!=0){
+				mav.addObject("list", list);
+				mav.addObject("outerlist", outerlist);
+				mav.addObject("toplist", toplist);
+				mav.addObject("pantslist", pantslist);
+			}
 			mav.addObject("LoginInfo", "NoMember");
 		}
 		
@@ -99,8 +128,16 @@ public class MainController {
 			List<MainDto> list = mainSvc.do_select_banner();
 					res.getSession().removeAttribute("LoginInfo");
 					mav.addObject("LoginInfo", "logout");
-					mav.addObject("list", list);
-			
+					if(list.get(0).getBAN_SEQ()!=0){
+						mav.addObject("list", list);
+					}
+					List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
+					List<MainDto> toplist = mainSvc.do_select_bestItem("TOP");
+					List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
+					
+					mav.addObject("outerlist", outerlist);
+					mav.addObject("toplist", toplist);
+					mav.addObject("pantslist", pantslist);
 			return mav;		
 		}
 	//회원가입 팝업창 
@@ -108,7 +145,7 @@ public class MainController {
 	public ModelAndView signup(){
 		
 		ModelAndView mav = new ModelAndView("main/empty/modal/modladla/SignUp");
-		mav.addObject("msg", "김옥지");
+		
 		
 		return mav;
 		
@@ -226,6 +263,13 @@ public class MainController {
 			}else{
 				mav.setViewName("main/Main");
 				List<MainDto> list = mainSvc.do_select_banner();
+				List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
+				List<MainDto> toplist = mainSvc.do_select_bestItem("TOP");
+				List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
+				
+				mav.addObject("outerlist", outerlist);
+				mav.addObject("toplist", toplist);
+				mav.addObject("pantslist", pantslist);
 				mav.addObject("list", list);
 				mav.addObject("insert", "insert");
 			}

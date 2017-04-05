@@ -72,7 +72,7 @@ td, th {
 						value="<%=list.get(i).getPRO_SEQ()%>" name="ch" id="check<%=list.get(i).getPRO_SEQ()%>" class="chbox" style="width: 20px; height: 20px"></td>
 
 						<td rowspan="2"><%=i + 1%>
-						<td rowspan="2"><img alt="not found" src="../images/LOVE.jpg"
+						<td rowspan="2"><img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
 						<td rowspan="2" id="price<%=i%>"><%=list.get(i).getPRO_PRICE()%></td>

@@ -262,8 +262,7 @@ td, th {
 					for (int i = 0; i < buy.size(); i++) {
 				%>
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><img alt="not found"
-						src="../images/LOVE.jpg" style="width: 100px; height: 100px"></a></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><img alt="not found" src="<%=buy.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><%=buy.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
@@ -322,11 +321,11 @@ td, th {
 
 				<tr>
 
-					<td class="boardone" rowspan="2" rowspan="2"><img
-						alt="not found" src="../images/LOVE.jpg"
-						style="width: 100px; height: 100px"></td>
+					<td class="boardone" rowspan="2" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><img
+						alt="not found" src="<%=basket.get(i).getSTORED_NAME()%>"
+						style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
-					<td><%=basket.get(i).getPRO_NAME()%></td>
+					<td><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><%=basket.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
 					<td class="boardtwo" rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE()%></td>
 				</tr>

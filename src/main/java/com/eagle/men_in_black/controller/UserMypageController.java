@@ -26,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
+import com.eagle.men_in_black.service.DetailSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
 import com.google.gson.Gson;
 
@@ -38,6 +40,8 @@ public class UserMypageController {
 
 	@Autowired
 	private UserMypageSvc userMypageSvc;
+	@Autowired
+	private DetailSvc detailSvc;
 
 	// 마이페이지 메인
 		@RequestMapping("mymain.mib")
@@ -254,7 +258,6 @@ public class UserMypageController {
 			HashMap<String, Object> param = new HashMap<String, Object>();
 			List<String> list = Arrays.asList(pro_seq.split(","));
 			param.put("list1", list);
-			param.put("list2", list);
 
 			loger.debug("=Controller ===========================");
 			loger.debug("codeMSvc === " + "주기");
@@ -465,7 +468,8 @@ public class UserMypageController {
 
 		                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-		                storedFileName = getRandomString() + originalFileExtension;
+		                storedFileName = "../images/" + getRandomString() + originalFileExtension;
+		              
 
 		                // 첨부한 파일 생성 
 		                file = new File(filePath + storedFileName);
@@ -558,7 +562,7 @@ public class UserMypageController {
 
 			                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-			                storedFileName = getRandomString() + originalFileExtension;
+			                storedFileName = "../images/"+ getRandomString() + originalFileExtension;
 
 			                // 첨부한 파일 생성
 			                file = new File(filePath + storedFileName);
@@ -663,4 +667,48 @@ public class UserMypageController {
 
 
 	};
+	
+	
+	//리뷰수정
+	@RequestMapping("reviewupdate.mib")
+	public ModelAndView reviewupdate(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		int REV_SEQ = Integer.parseInt(res.getParameter("REV_SEQ"));
+		
+		DetailDto detaildto = userMypageSvc.do_select_review(REV_SEQ);
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/ReviewUpdate");
+		mav.addObject("detaildto", detaildto);
+		mav.addObject("userdto", userdto);
+		
+		
+		return mav;
+		
+	}
+	
+	
+	/*//리뷰 삭제
+	@RequestMapping("myboardreview.mib")
+	public ModelAndView myboardreview(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		
+		
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("id", userdto.getUSER_ID());
+		
+		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
+		
+		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
+		mav.addObject("reviewlist",reviewlist);
+		return mav;
+		
+	}*/
+	
+	
+	
+	
+	
 }

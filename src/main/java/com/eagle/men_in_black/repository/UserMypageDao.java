@@ -3,6 +3,7 @@ package com.eagle.men_in_black.repository;
 import java.util.HashMap;
 import java.util.List;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 
 public interface UserMypageDao {
@@ -56,6 +57,6 @@ public interface UserMypageDao {
 	public int do_update_del_step(int del_seq );
 	
 	public int do_update_del_step2(int del_seq );
-
-
+	
+	public DetailDto do_select_review(int REV_SEQ );
 }

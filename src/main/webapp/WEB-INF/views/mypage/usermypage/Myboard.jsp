@@ -70,12 +70,13 @@
 					<%
 						for (int i = 0; i < review.size(); i++) {
 					%>
-					<tr>
+					<tr style="cursor: pointer;" onclick="goreview(<%=review.get(i).getREV_SEQ()%>)">
 						<td><%=review.get(i).getREV_SEQ()%></td>
 						<td><%=review.get(i).getPRO_NAME()%></td>
 						<td><%=review.get(i).getREV_TITLE()%></td>
 						<td><%=review.get(i).getREV_TIME()%></td>
 						<td><%=review.get(i).getSCORE()%></td>
+					
 					</tr>
 					<%
 						}
@@ -131,7 +132,7 @@
 					<%
 						for (int i = 0; i < qna.size(); i++) {
 					%>
-					<tr>
+					<tr style="cursor: pointer;" onclick="goqna(<%=qna.get(i).getQNA_SEQ()%>)">
 						<td><%=i + 1%></td>
 						<td><%=qna.get(i).getPRO_NAME()%></td>
 						<td><%=qna.get(i).getQNA_TITLE()%></td>
@@ -155,7 +156,26 @@
 
 			</table>
 
+<script type="text/javascript">
+function goreview(rseq) {
+		 window.open(
+					"review.mib?REV_SEQ=" + rseq,+
+					"pop",
+					"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
 
+
+function goqna(qseq) {
+	 window.open(
+				"review.mib?REV_SEQ=" + rseq,+
+				"pop",
+				"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+
+
+
+
+</script>
 
 	
 
