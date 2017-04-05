@@ -34,4 +34,8 @@ public interface DetailSvc {
 	public DetailDto do_selectQnADetail(int QNA_SEQ);*/
 	//최종 구매페이지 장바구니리스트
 	public List<DetailDto> do_selectFinalBuy(HashMap<String, Object> map);
+	//쿠폰리스트
+	public List<DetailDto> do_selectCouponList(HashMap<String, Object> map);
+	//사용가능한적립금
+	public int do_selectPointsList(String USER_ID);
 }

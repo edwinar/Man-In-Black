@@ -7,6 +7,9 @@
 <%
 	List<DetailDto> basketList = (List<DetailDto>)request.getAttribute("basketList");
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
+	int points = Integer.parseInt(request.getParameter("points"));
+	System.out.print(points);
 %>
 <html>
 <head>
@@ -57,26 +60,23 @@ $(function() {
 			var name = $("#orderName").text();	
 			var email = $("#orderEmail").text();
 			var phone = $("#orderPhone").text();
-			var num_1 = $("#orderNum_1").text();
-			var num_2 = $("#orderNum_2").text();
-			var address_1 = $("#orderAddress_1").text();
-			var address_2 = $("#orderAddress_2").text();
+			var num = $("#orderNum").val();
+			var address_1 = $("#orderAddress_1").val();
+			var address_2 = $("#orderAddress_2").val();
 			
 			$("#receiveName").text(name);
 			$("#receiveEmail").text(email);
 			$("#receivePhone").text(phone);
-			$("#receiveNum_1").text(num_1);
-			$("#receiveNum_2").text(num_2);
-			$("#receiveAddress_1").text(address_1);
-			$("#receiveAddress_2").text(address_2);	
+			$("#receiveNum").val(num);
+			$("#receiveAddress_1").val(address_1);
+			$("#receiveAddress_2").val(address_2);	
 		}else{
 			$("#receiveName").text('');
 			$("#receiveEmail").text('');
 			$("#receivePhone").text('');
-			$("#receiveNum_1").text('');
-			$("#receiveNum_2").text('');
-			$("#receiveAddress_1").text('');
-			$("#receiveAddress_2").text('');	
+			$("#receiveNum").val('');
+			$("#receiveAddress_1").val('');
+			$("#receiveAddress_2").val('');	
 		}
 	});
 });
@@ -155,7 +155,7 @@ function buy() {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" readonly="readonly" id="orderNum_1" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
+						<input type="text" size="10px" readonly="readonly" id="orderNum" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
@@ -195,7 +195,7 @@ function buy() {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum_1" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
@@ -231,8 +231,13 @@ function buy() {
 					<td colspan="2">
 						<select name=coupon size=1>
 					        <option value="미선택" selected="selected">미선택</option>
-					        <option value="5000">쿠폰 5000원</option>
-					        <option value="10000">쿠폰 10000원</option>
+					        <%
+					        	for(int i=0;i<couponList.size();i++){
+					        %>
+					        	<option value="<%=couponList.get(i).getCOUP_PRICE() %>"><%=couponList.get(i).getCOUP_NAME() %></option>
+					        <%
+					        	}
+					        %>
 				    	</select>
 					</td>
 				</tr>
@@ -246,7 +251,7 @@ function buy() {
 				</tr>
 				<tr>
 					<td>사용가능적립금</td>
-					<td>0</td>
+					<td><%=points %></td>
 					<td>Won 사용가능</td>
 				</tr>
 				<tr>

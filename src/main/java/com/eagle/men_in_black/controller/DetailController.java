@@ -249,6 +249,7 @@ public class DetailController {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail_Buy_Info");
 		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		int FINAL_PRICE = Integer.parseInt(res.getParameter("FINAL_PRICE"));
 		
 		String BAS_SEQ = (String)res.getParameter("BAS_SEQ");
 		String str[] = BAS_SEQ.split(",");
@@ -258,11 +259,18 @@ public class DetailController {
 		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> coupon_map = new HashMap<String, Object>();
 		map.put("USER_ID", userdto.getUSER_ID());
 		map.put("list", list);
+		coupon_map.put("USER_ID", userdto.getUSER_ID());
+		coupon_map.put("FINAL_PRICE", FINAL_PRICE);
 		
 		List<DetailDto> basketList = detailSvc.do_selectFinalBuy(map);
+		List<DetailDto> couponList = detailSvc.do_selectCouponList(coupon_map);
+		int points = detailSvc.do_selectPointsList(userdto.getUSER_ID());
 		mav.addObject("basketList", basketList);
+		mav.addObject("couponList", couponList);
+		mav.addObject("points", points);
 
 		return mav;
 	}

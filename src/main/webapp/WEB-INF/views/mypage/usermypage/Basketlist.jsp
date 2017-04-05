@@ -235,6 +235,7 @@ td, th {
         
         function buy() {
             var BAS_SEQ = "";
+            var FINAL_PRICE = document.getElementById('top').value;
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
@@ -253,7 +254,7 @@ td, th {
             alert(BAS_SEQ);
             BAS_SEQ = BAS_SEQ.slice(0,-1);
             alert(BAS_SEQ + 'end');
-            document.location.href='Detail_Buy_Info.mib?BAS_SEQ='+BAS_SEQ;
+            document.location.href='Detail_Buy_Info.mib?BAS_SEQ='+BAS_SEQ+'&FINAL_PRICE='+FINAL_PRICE;
 
         }
         }

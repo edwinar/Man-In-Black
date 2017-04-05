@@ -99,4 +99,16 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectFinalBuy";
 		return sqlSession.selectList(statement, map);
 	}
+
+	@Override
+	public List<DetailDto> do_selectCouponList(HashMap<String, Object> map) {
+		String statement = namespace+".do_selectCouponList";
+		return sqlSession.selectList(statement, map);
+	}
+
+	@Override
+	public int do_selectPointsList(String USER_ID) {
+		String statement = namespace+".do_selectPointsList";
+		return sqlSession.selectOne(statement, USER_ID);
+	}
 }

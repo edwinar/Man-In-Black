@@ -84,4 +84,14 @@ public class DetailSvcImpl implements DetailSvc {
 	public List<DetailDto> do_selectFinalBuy(HashMap<String, Object> map) {
 		return detailDao.do_selectFinalBuy(map);
 	}
+
+	@Override
+	public List<DetailDto> do_selectCouponList(HashMap<String, Object> map) {
+		return detailDao.do_selectCouponList(map);
+	}
+
+	@Override
+	public int do_selectPointsList(String USER_ID) {
+		return detailDao.do_selectPointsList(USER_ID);
+	}
 }
