@@ -14,8 +14,14 @@ public interface ServiceSvc {
 	public int do_service_delete(int seq);
 	public List<ServiceDto> do_event_main(HashMap<String, String> map); 
 	public ServiceDto do_event_detail(int seq);
-	public void do_event_reg(HashMap<String, String> map);
+	public int do_event_reg(HashMap<String, String> map);
 	public void do_event_update(HashMap<String, String> map);
 	public int do_event_delete(int seq); 
-	
+	public int do_select_eventseq();
+	public int do_event_photo(ServiceDto dto);
+	public int do_insert_coupon(ServiceDto dto);
+	public int do_select_couseq();
+	public int do_inser_coupt(ServiceDto dto);
+	public List<ServiceDto> do_select_couplist();
+	public ServiceDto do_selelct_coupdt(int seq);
 }

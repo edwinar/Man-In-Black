@@ -6,8 +6,8 @@
 <%
 	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	List<ServiceDto> eventlist = (List<ServiceDto>) request.getAttribute("eventlist");
-	List<ServiceDto> imgurl = (List<ServiceDto>) request.getAttribute("imgurl");
-
+	List<ServiceDto> couplist = (List<ServiceDto>) request.getAttribute("couplist");
+	MainDto userdto = (MainDto)request.getSession().getAttribute("LoginInfo");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,10 +18,20 @@
 <style type="text/css">
 .preview {
 	position: relative;
-	width: 250px;
+	width: 450px;
 	height: 250px;
 	background: #f2f2f2;
-	border-radius: 100%;
+	/* border-radius: 100%; */
+	margin: 0 auto 25px auto;
+	overflow: hidden;
+	border: 8px solid #E0E0E0;
+}
+.previewcoup {
+	position: relative;
+	width: 450px;
+	height: 250px;
+	background: #f2f2f2;
+	border-radius: 100%; 
 	margin: 0 auto 25px auto;
 	overflow: hidden;
 	border: 8px solid #E0E0E0;
@@ -35,6 +45,33 @@
 <script type="text/javascript">
 function eventdetail(seq) {
     location.href='eventdetail.mib?SEQ='+seq;
+}
+
+function coup(seq){
+	alert(seq);
+	var userid = $("#userid").val();
+	
+	$.ajax({
+			type : "POST",
+			url : "coupto.mib",
+			async : true,
+			dataType : "html",
+			data : {
+				"seq" : seq,
+				"userid" : userid
+			},
+			success : function(data) {
+				//alert("success " + data);
+				var flag = $.parseJSON(data);
+				alert(flag.check); 	
+				
+			},
+			complete : function(data) {
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});		
 }
 
 </script>
@@ -57,23 +94,42 @@ function eventdetail(seq) {
 	<p align="right">
 		<a class="btn btn-primary" href="eventwrite.mib"
 			role="button">이벤트등록</a>
+		<a class="btn btn-primary" href="couponwrite.mib"
+			role="button">쿠폰등록</a>
 	</p>
 	<%
 		}
-		}
+	}
+		
 	%>
 	<!-- list 뿌리기 -->
 <div>
+	<%for(int i=0;i<couplist.size();i++){
+	%>
+	<div class="previewcoup" style="margin-left: 20px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
+		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+	</div>
+	<% }
+	%>
+
+<input type="hidden" value="<%=userdto.getUSER_ID()%>" id="userid">
+
+
+
+
+
+
+
 	<%
+	if(eventlist.get(0).getEVENT_SEQ()!=0){
 		for(int i=0; i<eventlist.size();i++){
 	%>
-	<div class="preview" style="margin-left: 20px; float: left"  
-	onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" 
-	<%-- <%=imgurl.get(i).getSTORED_NAME() %> --%>
-	>
+	<div class="preview" style="margin-left: 20px; float: left" onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
+		<img alt="" src="<%=eventlist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%
 		}
+		
 	%>
 </div>
 	
@@ -87,7 +143,7 @@ function eventdetail(seq) {
 		String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
 				: request.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
-				? "10" : request.getParameter("PAGE_SIZE");
+				? "6" : request.getParameter("PAGE_SIZE");
 
 		int page_num = Integer.parseInt(PAGE_NUM);
 		int page_size = Integer.parseInt(PAGE_SIZE);
@@ -105,6 +161,7 @@ function eventdetail(seq) {
 				role="button"><%=i%></a>
 			<%
 				}
+	}
 			%>
 		</p>
 	</div>  

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +29,7 @@ import org.w3c.dom.events.EventException;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.ServiceDto;
 import com.eagle.men_in_black.service.ServiceSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class ServiceController {
@@ -149,14 +152,12 @@ public class ServiceController {
 	//이벤트 
 	@RequestMapping("event.mib")
 	public ModelAndView event(HttpServletRequest res, HttpServletResponse rep){
-		String url = res.getParameter("filePickertmp");
-		loger.debug("url 응답하라 :::" + url);
-		
+	
 		ModelAndView mav = new ModelAndView("service/event");
 		
 		String PAGE_NUM = (res.getParameter("PAGE_NUM") == null || res.getParameter("PAGE_NUM") == "") ? "1"
 				: res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "10"
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "6"
 				: res.getParameter("PAGE_SIZE");
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -164,9 +165,9 @@ public class ServiceController {
 		map.put("PAGE_NUM", PAGE_NUM);
 
 		List<ServiceDto> eventlist = serviceSvc.do_event_main(map);
-
+		List<ServiceDto> couplist = serviceSvc.do_select_couplist();
 		mav.addObject("eventlist", eventlist);
-		mav.addObject("url", url);
+		mav.addObject("couplist", couplist);
 		
 		return mav;
 		
@@ -182,23 +183,30 @@ public class ServiceController {
 		
 		return mav;
 	}
-	
-	
-	// 파일 이름 중복 방지 메소드
-	 public static String getRandomString(){
-
-		        return UUID.randomUUID().toString().replaceAll("-", "");
-
-	}
-	
-	// DB에 등록될 파일 메소드
-	public HashMap<String,Object> parseInsertFileInfo(HttpServletRequest request) throws Exception{
-		 
-			HttpSession session = request.getSession(); 
+	// 이벤트 글작성 
+	@RequestMapping("eventreg.mib")
+	public ModelAndView eventreg(MultipartHttpServletRequest res) throws IllegalStateException, IOException {
+		
+		ModelAndView mav = new ModelAndView("/service/event");
+		
+		String eventtitle = res.getParameter("eventtitle");
+		String eventcontent = res.getParameter("editor");
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("eventtitle", eventtitle);
+		map.put("eventcontent", eventcontent);
+		
+		int inser = 0;
+		
+		inser = serviceSvc.do_event_reg(map);
+		// 위까지가 이벤트 글 등록 끝 
+		int eventseq = 0;
+		if(inser>0){
+			eventseq = serviceSvc.do_select_eventseq();
+			//이벤트 시퀀스구하고 파일저장
+			HttpSession session = res.getSession(); 
 	        
-			MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-
-	        Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+			Iterator<String> iterator = res.getFileNames();
 	        
 	        // 저장경로 
 	        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
@@ -206,9 +214,7 @@ public class ServiceController {
 	        String attach_path = "images\\"; 
 			String filePath = root_path+attach_path;
 	         
-			System.out.println("저장경로=========================================================================================="+filePath);
-
-	        MultipartFile multipartFile = null;
+			MultipartFile multipartFile = null;
 
 	        String originalFileName = null;
 
@@ -217,7 +223,7 @@ public class ServiceController {
 	        String storedFileName = null;
 
 	         
-	        HashMap<String, Object> listMap = null;
+	        ServiceDto dto = null;
 
 	         
 	        File file = new File(filePath);
@@ -230,7 +236,7 @@ public class ServiceController {
 
 
 	        while(iterator.hasNext()){
-	            multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+	            multipartFile = res.getFile(iterator.next());
 
 	            if(multipartFile.isEmpty() == false){
 
@@ -238,28 +244,49 @@ public class ServiceController {
 
 	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-	                storedFileName = getRandomString() + originalFileExtension;
+	                storedFileName = "../images/"+getRandomString() + originalFileExtension;
 
 	                // 첨부한 파일 생성 
 	                file = new File(filePath + storedFileName);
 
 	                multipartFile.transferTo(file);
-
-	                listMap = new HashMap<String,Object>();
-
-	                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
-
-	                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름 
-
-	               // listMap.put("EVENT_SEQ", serviceSvc.do_event_reg(map));
+	                
+	                dto = new ServiceDto();
+	                
+	                dto.setEVENT_SEQ(eventseq);
+	                
+	                dto.setORIGINAL_FILE_NAME(originalFileName);
+	                
+	                dto.setSTORED_FILE_NAME(storedFileName);
+	                
+	                
 	            }
 
 	        }
+	        
+	        serviceSvc.do_event_photo(dto);
+	        
+		}
+		
+		HashMap<String, String> mapmain = new HashMap<String, String>();
+		mapmain.put("PAGE_SIZE", "10");
+		mapmain.put("PAGE_NUM", "1");
 
-	        return listMap;
+		List<ServiceDto> eventlist = serviceSvc.do_event_main(mapmain);
 
-	    }
+		mav.addObject("eventlist", eventlist);
+		
+		return mav;
+	}
+	
+	// 파일 이름 중복 방지 메소드
+	 public static String getRandomString(){
 
+		        return UUID.randomUUID().toString().replaceAll("-", "");
+
+	}
+	
+	
 	
 	//이벤트 상세보기
 		@RequestMapping("eventdetail.mib")
@@ -275,9 +302,159 @@ public class ServiceController {
 		}
 	
 	
+	// 쿠폰 글쓰기 창
+		@RequestMapping("couponwrite.mib")
+		public ModelAndView couponwrite(HttpServletRequest res, HttpServletResponse rep) {
+			ModelAndView mav = new ModelAndView("/service/couponwrite");
+			
+			
+			
+			return mav;
+		}
 	
-	
-	
+	// 쿠폰 글쓰기 버튼눌럿을때 
+		@RequestMapping("couponreg.mib")
+		public ModelAndView couponreg(MultipartHttpServletRequest res) throws IllegalStateException, IOException {
+			ModelAndView mav = new ModelAndView("/service/event");
+			
+			String couponname = res.getParameter("couponname");
+			String couponprice = res.getParameter("couponprice");
+			String couponcondition = res.getParameter("couponcondition");
+			String couponlimit = res.getParameter("couponlimit");
+			
+			ServiceDto dto = new ServiceDto();
+			dto.setCOUP_NAME(couponname);
+			dto.setCOUP_PRICE(Integer.parseInt(couponprice));
+			dto.setCONDITION(Integer.parseInt(couponcondition));
+			dto.setCOUP_LIMIT(couponlimit);
+			dto.setUSER_ID("adm");
+			
+			
+			int couinser=0;
+			couinser = serviceSvc.do_insert_coupon(dto);
+			int couseq = 0;
+			
+			if(couinser>0){
+				couseq = serviceSvc.do_select_couseq();
+				//이벤트 시퀀스구하고 파일저장
+				HttpSession session = res.getSession(); 
+		        
+				Iterator<String> iterator = res.getFileNames();
+		        
+		        // 저장경로 
+		        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+				//String root_path = System.getProperty("catalina.home");
+		        String attach_path = "images\\"; 
+				String filePath = root_path+attach_path;
+		         
+				MultipartFile multipartFile = null;
+
+		        String originalFileName = null;
+
+		        String originalFileExtension = null;
+
+		        String storedFileName = null;
+
+		         
+		        ServiceDto photodto = null;
+
+		         
+		        File file = new File(filePath);
+		        // 폴더가없을경우 폴더생성 
+		        if(file.exists() == false){
+
+		            file.mkdirs();
+
+		        }
+
+
+		        while(iterator.hasNext()){
+		            multipartFile = res.getFile(iterator.next());
+
+		            if(multipartFile.isEmpty() == false){
+
+		                originalFileName = multipartFile.getOriginalFilename();
+
+		                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+		                storedFileName = "../images/"+getRandomString() + originalFileExtension;
+
+		                // 첨부한 파일 생성 
+		                file = new File(filePath + storedFileName);
+
+		                multipartFile.transferTo(file);
+		                
+		                photodto = new ServiceDto();
+		                
+		                photodto.setCOUP_SEQ(couseq);
+		                
+		                photodto.setORIGINAL_FILE_NAME(originalFileName);
+		                
+		                photodto.setSTORED_FILE_NAME(storedFileName);
+		                
+		                
+		            }
+
+		        }
+		        
+		        serviceSvc.do_inser_coupt(photodto);
+		        
+			}
+			
+			HashMap<String, String> mapmain = new HashMap<String, String>();
+			mapmain.put("PAGE_SIZE", "10");
+			mapmain.put("PAGE_NUM", "1");
+
+			List<ServiceDto> eventlist = serviceSvc.do_event_main(mapmain);
+
+			mav.addObject("eventlist", eventlist);
+			
+			
+
+
+			
+			return mav;
+		}
+		
+		//쿠폰지급 
+		@RequestMapping(value="coupto.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+		public @ResponseBody String coupto(HttpServletRequest res){
+			Map<String, Object> resultMap = new HashMap<>();
+			
+			String seq = (res.getParameter("seq")==null || res.getParameter("seq")=="")?"":res.getParameter("seq");
+			String userid = (res.getParameter("userid")==null || res.getParameter("userid")=="")?"":res.getParameter("userid");
+			
+			System.out.println("seq = = " + seq);
+			
+			HashMap<String, String> map = new HashMap<>();
+			int updateCom = 0;
+			
+			ServiceDto dto = serviceSvc.do_selelct_coupdt(Integer.parseInt(seq));
+			
+			ServiceDto inserdto = new ServiceDto();
+			inserdto.setCONDITION(dto.getCONDITION());
+			inserdto.setCOUP_LIMIT(dto.getCOUP_LIMIT());
+			inserdto.setCOUP_NAME(dto.getCOUP_NAME());
+			inserdto.setCOUP_PRICE(dto.getCOUP_PRICE());
+			inserdto.setUSER_ID(userid);
+			
+			updateCom = serviceSvc.do_insert_coupon(inserdto);
+			
+			if(updateCom>0){
+				
+			resultMap.put("check", "등록성공");
+				
+			Gson gson = new Gson();
+			return gson.toJson(resultMap);
+			}else{
+				resultMap.put("check", "등록실패");
+				
+				Gson gson = new Gson();
+				return gson.toJson(resultMap);
+			}
+			
+			
+		}
 	
 	/* FCK Editor */
 	@RequestMapping("CkeditorNoticeUpload.mib")
@@ -331,3 +508,4 @@ public class ServiceController {
 		return mov;
 	}
 }
+

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 
 @Repository
@@ -174,4 +175,35 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		
 		 return sqlSession.update(statement,del_seq);
 	}
+
+	@Override
+	public DetailDto do_select_review(int REV_SEQ) {
+		String statement = namespace+".do_selectReviewDetail";
+		return sqlSession.selectOne(statement, REV_SEQ);
+
+	}
+
+	@Override
+<<<<<<< HEAD
+	public int do_update_review(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_review";
+		return sqlSession.update(statement, map);
+	}
+
+	@Override
+	public int do_update_reviewphoto(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_reviewphoto";
+		return sqlSession.update(statement, map);
+	}
+	
+	
+=======
+	public UserMypageDto do_search_qnadetail(String qna_seq) {
+		String statement = namespace+".do_search_qnadatail";
+
+		return sqlSession.selectOne(statement,qna_seq);
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
 }

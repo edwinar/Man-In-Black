@@ -9,13 +9,14 @@
 	List<DetailDto> list = (List<DetailDto>)request.getAttribute("list");
 	List<DetailDto> listColor = (List<DetailDto>)request.getAttribute("listColor");
 	List<DetailDto> listSize = (List<DetailDto>)request.getAttribute("listSize");
-	List<DetailDto> reviewList = (List<DetailDto>)request.getAttribute("reviewList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::Detail:::</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 #outerH1{
 margin-top: 150px;
@@ -441,12 +442,106 @@ $(document).ready(function () {
     $('.content3').hover(function () {
         $('#mainImage').attr("src", "../images/ss.jpg");
     });
+    $('#tab2').on('click',function(){
+    	var PRO_SEQ = <%=PRO_SEQ %>;
+    	var strInput = "";
+		$.ajax({
+ 			type : "POST",
+ 			url : "ReviewListAjax.mib",
+ 			async : true,
+ 			dataType : "html",
+ 			data : {
+ 				"PRO_SEQ" : PRO_SEQ
+ 			},
+ 			success : function(data) {
+ 				var flag = $.parseJSON(data);
+ 				reviewBody.innerHTML = "";
+ 				
+ 				for(i=0;i<flag.length;i++){
+ 					if(flag[i].USER_ID=="adm"){ 			        
+ 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
+ 						+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
+ 						+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+ 					}else{
+ 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
+ 						+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
+ 			       		if(flag[i].SCORE==1){
+ 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+ 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+ 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+ 			       		}else if(flag[i].SCORE==2){
+ 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+ 			       		}else if(flag[i].SCORE==3){
+	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+ 			       		}else if(flag[i].SCORE==4){
+	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+ 			       		}else if(flag[i].SCORE==5){
+	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
+ 			       		}else{
+ 			       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
+ 			       		}
+ 			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+ 					}
+ 				}
+ 				reviewBody.innerHTML = strInput;
+ 			},
+ 			complete : function(data) {
+ 			},
+ 			error : function(xhr, status, error) {
+ 				alert("에러발생");
+ 			}
+ 		});
+    });
+    $('#tab3').on('click',function(){
+    	var PRO_SEQ = <%=PRO_SEQ %>;
+    	var strInput = "";
+		$.ajax({
+ 			type : "POST",
+ 			url : "QnAListAjax.mib",
+ 			async : true,
+ 			dataType : "html",
+ 			data : {
+ 				"PRO_SEQ" : PRO_SEQ
+ 			},
+ 			success : function(data) {
+ 				var flag = $.parseJSON(data);
+ 				console.log(flag);
+
+ 				QnABody.innerHTML = "";
+ 				
+ 				for(i=0;i<flag.length;i++){
+ 					if(flag[i].USER_ID=="adm"){
+ 						strInput = strInput + "";
+ 					}else{
+ 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+ 						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+ 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
+ 			       	}
+ 				}
+ 					QnABody.innerHTML = strInput;
+ 			},
+ 			complete : function(data) {
+ 			},
+ 			error : function(xhr, status, error) {
+ 				alert("에러발생");
+ 			}
+ 		});
+    });
 });
+
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
-function QnADetail(){
-	window.open("QnADetail.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+function QnADetail(QNA_SEQ){
+	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnAWrite(){
 	window.open("QnAWrite.mib","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
@@ -691,95 +786,8 @@ function BuyPop(){
             </th>
         </tr>
     </thead>
-    <tbody>
-<%
-	for(int i=0;i<reviewList.size();i++){
-		if(reviewList.get(i).getUSER_ID().equalsIgnoreCase("adm")){
-%>
-    	<tr>
-    		<td class="organisationnumber" width="20%">
-            	<img alt="" src="../images/arrow.PNG" class="imgr" width="200px">            
-         	</td>
-    		<td class="organisationname" width="60%">
-            	<a href="javascript:popup(<%=reviewList.get(i).getREV_SEQ()%>)">
-             	<br><br>
-	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
-	            </a>
-	        </td>
-	        <td class="actions" width="20%">
-                        	작성자 : <%=reviewList.get(i).getUSER_ID() %><br>
-                         	작성일 : <%=reviewList.get(i).getREV_TIME() %>
-            </td>
-        </tr>
-<%
-		}else{
-%>
-        <tr>
-            <td class="organisationnumber" width="20%">
-            	<img alt="" src="../images/LOVE.jpg" class="imgr" width="200px">            
-         	</td>
-            <td class="organisationname" width="60%">
-            	<a href="javascript:popup(<%=reviewList.get(i).getREV_SEQ()%>)">
-            <%
-        		if(reviewList.get(i).getSCORE()==1){
-        	%>
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-       		<%
-        		}else if(reviewList.get(i).getSCORE()==2){
-       		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-       		<%
-        		}else if(reviewList.get(i).getSCORE()==3){
-       		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-       		<%
-        		}else if(reviewList.get(i).getSCORE()==4){
-       		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-       		<%
-        		}else if(reviewList.get(i).getSCORE()==5){
-       		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        	<%
-        		}else{
-       		%>
-       			<h4>평점 데이터가 없습니다.</h4>
-       		<%
-        		}
-       		%>
-             	<br><br>
-	            <h4><%=reviewList.get(i).getREV_TITLE() %></h4>
-	            </a>
-	        </td>
-            <td class="actions" width="20%">
-                        	작성자 : <%=reviewList.get(i).getUSER_ID() %><br>
-                         	작성일 : <%=reviewList.get(i).getREV_TIME() %>
-            </td>
-        </tr>
-<%
-		}
-	}
-%>    
+    <tbody id="reviewBody">
+ 
     </tbody>
 	</table>
 	</div>
@@ -797,66 +805,8 @@ function BuyPop(){
             <th style="text-align: center;">작성일</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="javascript:QnADetail()">그래서 사이즈 뭐입어?</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>배송문의</td>
-            <td class="organisationname">
-            	<a href="#">배솧ㅇ언제와요?</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>결제문의</td>
-            <td class="organisationname">
-            	<a href="#">삼성카드 결제 왜안됨??</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-          
-       <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="#">Stet clita kasd gubergren, no sea takimata sanctus est</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="#">Stet clita kasd gubergren, no sea takimata sanctus est</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
+    <tbody id="QnABody">
+       
     </tbody>
 	</table>
 		<p align="right" style="margin-right: 30px;">

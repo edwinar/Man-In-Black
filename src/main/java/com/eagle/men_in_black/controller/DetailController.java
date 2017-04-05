@@ -46,11 +46,9 @@ public class DetailController {
 		List<DetailDto> list = detailSvc.do_selectProductDetail(PRO_SEQ);
 		List<DetailDto> listColor = detailSvc.do_selectProductColor(PRO_SEQ);
 		List<DetailDto> listSize = detailSvc.do_selectProductSize(PRO_SEQ);
-		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(PRO_SEQ);
 		mav.addObject("list", list);
 		mav.addObject("listColor", listColor);
 		mav.addObject("listSize", listSize);
-		mav.addObject("reviewList", reviewList);
 		
 		return mav;
 	}
@@ -80,14 +78,13 @@ public class DetailController {
 	}
 	
 	@RequestMapping("QnADetail.mib")
-	public ModelAndView QnADetail() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView QnADetail(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&ADetail");
-		mav.addObject("msg", "김옥지");
+		
+		int QNA_SEQ = Integer.parseInt(res.getParameter("QNA_SEQ"));
+		
+		//DetailDto detailDto = detailSvc.do_selectQnADetail(QNA_SEQ);
+		//mav.addObject("detailDto", detailDto);
 
 		return mav;
 	}
@@ -160,17 +157,12 @@ public class DetailController {
 	@RequestMapping(value="BuyPopAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 	public @ResponseBody String AddBasket(HttpServletRequest res) throws Exception{
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		System.out.println("============="+res.getParameter("PRO_SEQ"));
-		System.out.println("============="+res.getParameter("PRO_SIZE"));
-		System.out.println("============="+res.getParameter("COLOR"));
-		System.out.println("============="+res.getParameter("BAS_PRO_NUM"));
 		// form에서 넘어온 input
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
 		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
 		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
 		int BAS_PRO_NUM = Integer.parseInt((res.getParameter("BAS_PRO_NUM")==null || res.getParameter("BAS_PRO_NUM")=="")?"":res.getParameter("BAS_PRO_NUM"));
-		
-		System.out.println("============="+PRO_SEQ+PRO_SIZE+COLOR+BAS_PRO_NUM);
+
 		// 이걸로먼저 review table에 인설트
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("PRO_SEQ", PRO_SEQ);
@@ -184,6 +176,71 @@ public class DetailController {
 		Gson gson = new Gson();
 		
 		return gson.toJson(result);
+	}
+	
+	//관리자 리뷰 답글 아작스
+	@RequestMapping(value="ReviewReplyAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String ReviewReplyAjax(HttpServletRequest res) throws Exception{
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String REV_TITLE = (res.getParameter("REV_TITLE")==null || res.getParameter("REV_TITLE")=="")?"":res.getParameter("REV_TITLE");
+		String REV_CONTENT = (res.getParameter("REV_CONTENT")==null || res.getParameter("REV_CONTENT")=="")?"":res.getParameter("REV_CONTENT");
+		int REV_REF = Integer.parseInt((res.getParameter("REV_REF")==null || res.getParameter("REV_REF")=="")?"":res.getParameter("REV_REF"));
+		
+		// 이걸로먼저 review table에 인설트
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("USER_ID", userdto.getUSER_ID());
+		map.put("REV_TITLE", REV_TITLE);
+		map.put("REV_CONTENT", REV_CONTENT);
+		map.put("REV_REF", REV_REF);
+		
+		int result = detailSvc.do_insertReviewAdmReply(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	//리뷰리스트아작스
+	@RequestMapping(value="ReviewListAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String ReviewListAjax(HttpServletRequest res) throws Exception{
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(reviewList);
+	}
+	
+	//리뷰리스트아작스
+	@RequestMapping(value="QnAListAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String QnAListAjax(HttpServletRequest res) throws Exception{
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<DetailDto> QnAList = detailSvc.do_selectProductQnAList(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(QnAList);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")

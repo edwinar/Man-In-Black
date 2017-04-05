@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:::EVENT REGISTER:::</title>
+<title>Insert title here</title>
 <style type="text/css">
 section {
 	width: 95%;
@@ -51,19 +51,19 @@ input[type=file] {
 
 .preview {
 	position: relative;
-	width: 450px;
+	width: 250px;
 	height: 250px;
 	background: #f2f2f2;
-	/* border-radius: 100%; */
+ 	border-radius: 100%;
 	margin: 0 auto 25px auto;
 	overflow: hidden;
 	border: 8px solid #E0E0E0;
 }
 
 .preview img {
-	width: 450px;
+	width: 250px;
 	height: 250px;
-	/* object-fit: contain; */
+	object-fit: contain;
 }
 
 .preview .loadingLogo {
@@ -151,11 +151,10 @@ body {
 	transform: translateY(0);
 }
 </style>
-<script src="../js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
-	<center>
+<center>
 		<div id="eventhead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
@@ -174,7 +173,7 @@ body {
 		<button id="triggerUpload" class="btn">메인이미지등록</button>
 	</div>
 	
-	<form name="myform" action="eventreg.mib" method="post" enctype="multipart/form-data">
+	<form name="myform" action="couponreg.mib" method="post" enctype="multipart/form-data">
 	<input type="file" id="filePicker" name="eventMainPT" value="fdsjkf"/>
 	
 
@@ -182,42 +181,26 @@ body {
 	<div class="wrap">
 
 		<div class="mat-div">
-			<label for="first-name" class="mat-label">제목</label> 
-			<input type="text" class="mat-input" name="eventtitle" id="제목">
+			<label for="first-name" class="mat-label">쿠폰이름</label> 
+			<input type="text" class="mat-input" name="couponname" id="제목">
 		</div>
+		<div class="mat-div">
+			<label for="first-name" class="mat-label">쿠폰가격</label> 
+			<input type="text" class="mat-input" name="couponprice" id="제목">
+		</div>
+		<div class="mat-div">
+			<label for="first-name" class="mat-label">쿠폰조건</label> 
+			<input type="text" class="mat-input" name="couponcondition" id="제목">
+		</div>
+		<div class="mat-div">
+			<label for="first-name" class="mat-label">쿠폰기간</label> 
+			<input type="text" class="mat-input" name="couponlimit" id="제목">
+		</div>
+		<input type="submit" value="등록">	
 	</div>
-
-<!-- Editor -->
-	<textarea rows="10" cols="80" name="editor" id="editor1">
-         
-   </textarea>
-
-	<script>
-      CKEDITOR.replace("editor", {
-
-         /* 이미파일 저장할 경로 */
-         filebrowserImageUploadUrl : 'CkeditorImgUpload.mib',
-
-         filebrowserWindowWidth : '500',
-
-         filebrowserWindowHeight : '380',
-
-         height : '600px'
-
-      });
-</script>
-
-	
-		<p align="right">
-			<input type="hidden" id="filePickertmp" name="filePickertmp" value=""> 
-			<input type="submit" class="btn btn-primary" id="regbtn" value="등록"> 
-			<a class="btn btn-primary" href="event.mib" role="button">취소</a>
-		</p>
 	</form>
 
-
-
-	<script type="text/javascript">
+<script type="text/javascript">
     var triggerUpload = document.getElementById('triggerUpload'), upInput = document
             .getElementById('filePicker'), preview = document
             .querySelector('.preview');

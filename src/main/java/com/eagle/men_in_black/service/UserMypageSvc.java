@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 
 public interface UserMypageSvc {
@@ -57,5 +58,13 @@ public interface UserMypageSvc {
 	public int do_update_del_step(int del_seq );
 	
 	public int do_update_del_step2(int del_seq );
+	
+	public DetailDto do_select_review(int REV_SEQ );
+	
+	public int do_update_review(HashMap<String, Object> map);
+	
+	public int do_update_reviewphoto(HashMap<String, Object> map);
+
+	public UserMypageDto do_search_qnadetail(String qna_seq);
 
 }
