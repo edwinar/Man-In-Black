@@ -334,7 +334,7 @@ td, th {
             ch=screen.availHeight;    //화면 높이
 
             sw=1080;    //띄울 창의 넓이
-            sh=650;    //띄울 창의 높이
+            sh=700;    //띄울 창의 높이
 
             ml=(cw-sw)/2;        
             mt=(ch-sh)/2;         
