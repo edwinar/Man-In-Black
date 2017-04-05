@@ -57,5 +57,8 @@ public interface UserMypageDao {
 	
 	public int do_update_del_step2(int del_seq );
 
+	public UserMypageDto do_search_qnadetail(String qna_seq);
+
+
 
 }

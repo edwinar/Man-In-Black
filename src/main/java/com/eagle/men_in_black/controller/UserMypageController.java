@@ -311,26 +311,26 @@ public class UserMypageController {
 		return mav;
 		
 	}
-	
+
 	//내가쓴 게시물 보기  리뷰
 	@RequestMapping("myboardreview.mib")
 	public ModelAndView myboardreview(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-		
-		
+
+
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("id", userdto.getUSER_ID());
-		
+
 		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
-		
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
 		mav.addObject("reviewlist",reviewlist);
 		return mav;
-		
+
 	}
 	
 	
@@ -663,49 +663,41 @@ public class UserMypageController {
 
 
 	};
-	
-	
+
+
 	//내가쓴 게시물 보기  리뷰
 	@RequestMapping("reviewupdate.mib")
 	public ModelAndView reviewupdate(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-		
-		
+
+
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("id", userdto.getUSER_ID());
-		
+
 		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
-		
+
 		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
 		mav.addObject("reviewlist",reviewlist);
 		return mav;
-		
+
 	}
-	
-	
-	//내가쓴 게시물 보기  리뷰
-	@RequestMapping("myboardreview.mib")
-	public ModelAndView myboardreview(HttpServletRequest res, HttpServletResponse rep){
-		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null || res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-		
-		
-		HashMap<String, String> map = new HashMap<>();
-		map.put("PAGE_SIZE", PAGE_SIZE);
-		map.put("PAGE_NUM", PAGE_NUM);
-		map.put("id", userdto.getUSER_ID());
-		
-		List<UserMypageDto> reviewlist = userMypageSvc.do_search_reviewlist(map);
-		
-		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
-		mav.addObject("reviewlist",reviewlist);
+
+
+	@RequestMapping("qnadetail.mib")
+	public ModelAndView qnadetail(HttpServletRequest res, HttpServletResponse rep){
+		String QNA_SEQ =  res.getParameter("QNA_SEQ");
+
+		UserMypageDto qnaDto = (UserMypageDto)userMypageSvc.do_search_qnadetail(QNA_SEQ);
+
+		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&ADetail");
+		mav.addObject("qnaDto",qnaDto);
 		return mav;
-		
+
+
 	}
 	
 	

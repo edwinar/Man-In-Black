@@ -174,4 +174,13 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		
 		 return sqlSession.update(statement,del_seq);
 	}
+
+	@Override
+	public UserMypageDto do_search_qnadetail(String qna_seq) {
+		String statement = namespace+".do_search_qnadatail";
+
+		return sqlSession.selectOne(statement,qna_seq);
+	}
+
+
 }

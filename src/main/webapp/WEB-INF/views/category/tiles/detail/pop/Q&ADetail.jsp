@@ -40,7 +40,7 @@
 				<p style="margin-left: 30px;">
 				공개설정 : 
 				<select name=secret size=1 disabled="disabled">
-			        <option value="" selected="selected"><%=qnaDto.getQNA_REF()%></option>
+			        <option value="" selected="selected"><%=qnaDto.getQNA_OPEN()%></option>
 			        <option value="공개">공개</option>
 			        <option value="비공개">비공개</option>
 		    	</select>

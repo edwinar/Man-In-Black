@@ -129,7 +129,8 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME
+A.QNA_TIME,
+A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.USER_ID = #{id}
@@ -325,7 +326,8 @@ A.PRO_SEQ,
 B.PRO_NAME, 
 A.QNA_TITLE, 
 A.QNA_STEP,
-A.QNA_TIME
+A.QNA_TIME,
+A.QNA_SEQ
 FROM QNA A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.USER_ID = #{id}
@@ -380,7 +382,7 @@ FROM (
 </select>
 
 
-<!-- qna -->
+<!-- qna LIST PAGEING -->
 <select id="do_search_qnalist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT TT1.*
@@ -539,6 +541,15 @@ UPDATE DELIVERY
 SET DEL_STEP='리뷰완료'
 WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
+
+    <!-- qna 상세  -->
+    <select id="do_search_qnadatail" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+        <![CDATA[
+        SELECT *
+        FROM QNA
+        WHERE QNA_SEQ = #{QNA_SEQ}
+]]>
+    </select>
 
 
 
