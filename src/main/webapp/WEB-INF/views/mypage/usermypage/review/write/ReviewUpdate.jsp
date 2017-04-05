@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
@@ -8,7 +9,11 @@
 	Date now = new Date();
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
-	
+
+	//리뷰읽기에서 끌거온거
+	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
+	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,70 +65,101 @@
 </style>
 </head>
 <body>
-<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
+	<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
    String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
 
-<form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
-	<div class="layout">
-		<div class="leftLayout">
-			<div class="thumbnail">
-				<div class="panel panel-default"
-					style="margin-left: 40px; margin-bottom: 30px">
-					<input type="file" name="onefile" id="onefile">
+	<form id="f1" action="reviewWrite.mib" method="post"
+		enctype="multipart/form-data">
+		<div class="layout">
+			<div class="leftLayout">
+				<div class="thumbnail">
+					<div class="panel panel-default"
+						style="margin-left: 40px; margin-bottom: 30px">
+						<input type="file" name="onefile" id="onefile">
 
-					<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
-						id="imgone-div"></div>
+						<div
+							style="width: 100%; height: 100%; float: left; margin-top: 1%"
+							id="imgone-div"></div>
 
 
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="rightLayout">
-			
+			<div class="rightLayout">
+
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
-						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
-							onclick="star1()"> <img alt="..."
-							src="../images/scoreEmpty.png" id="star2" onclick="star2()">
-						<img alt="..." src="../images/scoreEmpty.png" id="star3"
-							onclick="star3()"> <img alt="..."
-							src="../images/scoreEmpty.png" id="star4" onclick="star4()">
-						<img alt="..." src="../images/scoreEmpty.png" id="star5"
-							onclick="star5()">
-
-						<hr style="border: solid black 1px; width: 70%;">
+						<%if(detailDto.getSCORE()==1){ %>
+						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png">
+						<% }else if(detailDto.getSCORE()==2){ %>
+						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png">
+						<% }else if(detailDto.getSCORE()==3){ %>
+						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreEmpty.png"> <img alt="..."
+							src="../images/scoreEmpty.png">
+						<% }else if(detailDto.getSCORE()==4){ %>
+						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreEmpty.png">
+						<% }else if(detailDto.getSCORE()==5){ %>
+						<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png"> <img alt="..."
+							src="../images/scoreFull.png">
+						<%}else{%>
+						<h4>평점 데이터가 없습니다.</h4>
+						<%}%>
 					</div>
+					
+					
+					
+					
 					<input type="hidden" name="score" id="score">
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title">
-						<input type="hidden" name="PRO_SEQ" value="<%=PRO_SEQ%>">
-						<input type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>">
+						제목 : <input type="text" name="title"> <input type="hidden"
+							name="PRO_SEQ" value="<%=PRO_SEQ%>"> <input type="hidden"
+							name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
-						작성자 :<input type="text" id="id" name="id" value="<%=userdto.getUSER_ID()%>님"
-							size="7" readonly="readonly" class="non"> 
-							작성일 <%=time%>
-						
+						작성자 :<input type="text" id="id" name="id"
+							value="<%=userdto.getUSER_ID()%>님" size="7" readonly="readonly"
+							class="non"> 작성일
+						<%=time%>
+
 					</div>
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
-						<input type="text" name="content" style="width: 100%; height: 100px">
+						<input type="text" name="content"
+							style="width: 100%; height: 100px">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" value="리뷰 달기" onclick="closeSelf()">
 					</div>
 
 				</div>
-		
+
+			</div>
 		</div>
-	</div>
 	</form>
 
 

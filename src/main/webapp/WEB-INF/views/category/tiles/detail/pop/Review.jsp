@@ -116,6 +116,14 @@
 				<%
 					}
 				%>
+				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) ){ %>
+				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
+				<button style="width: 50%; height: 100%;" onclick="reviewdelete(<%=detailDto.getREV_SEQ() %>)">삭제하기</button>
+	
+				<%} %>
+				
+				
+				
 			</div>
 		</div>
 	</div>
@@ -124,6 +132,13 @@
 function reviewReplyPop(REV_SEQ){
 	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
+function reviewUpdate(REV_SEQ){
+	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+function reviewdelete(REV_SEQ){
+	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+
 </script>
 </body>
 </html>

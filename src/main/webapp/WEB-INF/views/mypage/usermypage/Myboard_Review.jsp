@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-    List<UserMypageDto> reviewlist= (List<UserMypageDto>)request.getAttribute("reviewlist");
+	List<UserMypageDto> reviewlist = (List<UserMypageDto>) request.getAttribute("reviewlist");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,78 +24,97 @@
 		</div>
 	</center>
 
-			<h3>상품 리뷰</h3>
-			<table class="table">
-				<col width="15%">
-				<col width="15%">
-				<col width="40%">
-				<col width="15%">
-				<col width="15%">
-				<thead>
-					<tr>
-						<th>글번호</th>
-						<th>게시판</th>
-						<th>글제목</th>
-						<th>날짜</th>
-						<th>추천</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						if (reviewlist == null || reviewlist.size() == 0) {
-					%>
-					<tr>
-						<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
-					</tr>
-					<%
-						} else {
-					%>
-					<%for(int i = 0; i < reviewlist.size(); i++){ %>
-					<tr>
-						<td><%=reviewlist.get(i).getREV_SEQ() %></td>
-						<td>리뷰</td>
-						<td><%=reviewlist.get(i).getREV_TITLE()%></td>
-						<td><%=reviewlist.get(i).getREV_TIME()%></td>
-						<td><%=reviewlist.get(i).getSCORE()%></td>
-					</tr>
-					<%} }%>
-				</tbody>
-			</table>
+	<h3>상품 리뷰</h3>
+	<table class="table">
+		<col width="15%">
+		<col width="15%">
+		<col width="40%">
+		<col width="15%">
+		<col width="15%">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>게시판</th>
+				<th>글제목</th>
+				<th>날짜</th>
+				<th>추천</th>
+			</tr>
+		</thead>
+		<tbody>
 			<%
-						if (reviewlist == null || reviewlist.size() == 0) {
+				if (reviewlist == null || reviewlist.size() == 0) {
 			%>
-			<div class="row" align="center"></div>
+			<tr>
+				<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+			</tr>
 			<%
-						} else {
+				} else {
 			%>
-			<div class="row" align="center">
+			<%
+				for (int i = 0; i < reviewlist.size(); i++) {
+			%>
+			<tr style="cursor: pointer;" onclick="goreview(<%=reviewlist.get(i).getREV_SEQ()%>)">
+				<td><%=reviewlist.get(i).getREV_SEQ()%></td>
+				<td>리뷰</td>
+				<td><%=reviewlist.get(i).getREV_TITLE()%></td>
+				<td><%=reviewlist.get(i).getREV_TIME()%></td>
+				<td><%=reviewlist.get(i).getSCORE()%></td>
+			</tr>
+			<%
+				}
+				}
+			%>
+		</tbody>
+	</table>
+	<%
+		if (reviewlist == null || reviewlist.size() == 0) {
+	%>
+	<div class="row" align="center"></div>
+	<%
+		} else {
+	%>
+	<div class="row" align="center">
 
+		<%
+			// 페이징 및 날짜 선택 
+				String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
+						? "1"
+						: request.getParameter("PAGE_NUM");
+				String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null
+						|| request.getParameter("PAGE_SIZE") == "") ? "10" : request.getParameter("PAGE_SIZE");
+
+				int page_num = Integer.parseInt(PAGE_NUM);
+				int page_size = Integer.parseInt(PAGE_SIZE);
+
+				int pageCount = reviewlist.get(0).getTOT_CNT() / page_size == 0
+						? reviewlist.get(0).getTOT_CNT() / page_size
+						: (reviewlist.get(0).getTOT_CNT() / page_size) + 1;
+		%>
+		<div class="row" align="center">
+			<p>
 				<%
-						// 페이징 및 날짜 선택 
-						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "") ? "1"
-								: request.getParameter("PAGE_NUM");
-						String PAGE_SIZE = (request.getParameter("PAGE_SIZE") == null || request.getParameter("PAGE_SIZE") == "")
-								? "10" : request.getParameter("PAGE_SIZE");
+					for (int i = 1; i <= pageCount; i++) {
+				%>
+				<a href="myboardreview.mib?PAGE_NUM=<%=i%>&" class="btn btn-default"
+					role="button"><%=i%></a>
+				<%
+					}
+					}
+				%>
+			
+		</div>
+	</div>
 
-						int page_num = Integer.parseInt(PAGE_NUM);
-						int page_size = Integer.parseInt(PAGE_SIZE);
+	<script type="text/javascript">
+	function goreview(rseq) {
+		 window.open(
+					"review.mib?REV_SEQ=" + rseq,+
+					"pop",
+					"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+			
+			
+			</script>
 
-						int pageCount = reviewlist.get(0).getTOT_CNT() / page_size == 0 ? reviewlist.get(0).getTOT_CNT() / page_size
-								: (reviewlist.get(0).getTOT_CNT() / page_size) + 1;
-					%>
-				<div class="row" align="center">
-					<p>
-						<%
-							for (int i = 1; i <= pageCount; i++) {
-						%>
-						<a href="myboardreview.mib?PAGE_NUM=<%=i%>&"
-							class="btn btn-default" role="button"><%=i%></a>
-						<%
-							}}
-						%>
-					
-				</div>
-			</div>
-	
 </body>
 </html>
