@@ -55,7 +55,7 @@
 
 		<div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
 			<div class="thumbnail">
-				<img src="../images/<%=goodslist.get(i).getSTORED_NAME()%>.jpg" alt="...">
+				<img <%=goodslist.get(i).getSTORED_NAME()%> alt="...">
 				<div class="caption">
 					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
 					<p><%=goodslist.get(i).getPRO_PRICE()%></p>
