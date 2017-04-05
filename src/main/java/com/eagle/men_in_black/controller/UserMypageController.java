@@ -35,14 +35,14 @@ import com.google.gson.Gson;
 @Controller
 public class UserMypageController {
 	Logger loger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private UserMypageSvc userMypageSvc;
-	
+
 	// 마이페이지 메인
 		@RequestMapping("mymain.mib")
 		public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
-			
+
 			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
 			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
@@ -127,7 +127,35 @@ public class UserMypageController {
 		
 	}
 	
-	
+			// delstep수정
+		@RequestMapping(value="delstep.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+
+		public @ResponseBody String delstep(HttpServletRequest res){
+
+			String DEL_SEQ = res.getParameter("DEL_SEQ");
+
+			System.out.println("시퀀스"+DEL_SEQ);
+
+			int delstep = 0;
+			delstep = userMypageSvc.do_update_del_step(Integer.parseInt(DEL_SEQ));
+
+			HashMap<String, String> map = new HashMap<>();
+
+
+			if(delstep>0){
+
+				map.put("success", "success");
+
+			}else{
+				map.put("success", "fail");
+			}
+
+			Gson gson = new Gson();
+
+
+			return gson.toJson(map);
+
+		}
 	// 구매목록 
 	@RequestMapping("buylist.mib")
 	public ModelAndView buylist(HttpServletRequest res, HttpServletResponse rep){
@@ -137,14 +165,17 @@ public class UserMypageController {
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null || res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
 		String START_DATE = (res.getParameter("START_DATE")==null || res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
 		String END_DATE = (res.getParameter("END_DATE")==null || res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
-		
+
+
+
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("START_DATE",START_DATE);
 		map.put("END_DATE",END_DATE);
 		map.put("id", userdto.getUSER_ID());
-		
+
+		//userMypageSvc.do_update_del_step(DEL_SEQ);
 		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(map);
 		
 		
@@ -169,40 +200,7 @@ public class UserMypageController {
 		return mav;
 	}
 
-	// 구매목록 반품 교환 환불
-	@RequestMapping("cancel.mib")
-	public void cancel(HttpServletRequest res, HttpServletResponse rep){
 
-		HashMap<String, Object> update = new HashMap<String, Object>();
-		String commend = res.getParameter("commend");
-		String CA_REASON = new String();
-		String CA_ACCOUNT = new String();
-		String RE_OPTION = new String();
-
-
-		if(commend == "반품"){
-			CA_REASON = res.getParameter("CA_REASON");
-			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
-
-		}else if(commend == "교환"){
-			RE_OPTION = res.getParameter("RE_OPTION");
-			CA_REASON = res.getParameter("CA_REASON");
-
-		}else if(commend == "취소"){
-			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
-		}
-
-		update.put("status",commend);
-		update.put("CA_REASON",CA_REASON);
-		update.put("CA_ACCOUNT",CA_ACCOUNT);
-		update.put("RE_OPTION",RE_OPTION);
-
-		userMypageSvc.do_update_cancel(update);
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
-	}
 
 	// 장바구니
 	@RequestMapping("basketlist.mib")
@@ -499,7 +497,12 @@ public class UserMypageController {
 			String REV_TITLE= res.getParameter("title");
 			String REV_CONTENT= res.getParameter("content");
 			String SCORE= res.getParameter("score");
-			String PRO_SEQ= res.getParameter("pro_seq");
+			String PRO_SEQ= res.getParameter("PRO_SEQ");
+			String DEL_SEQ= res.getParameter("DEL_SEQ");
+
+
+
+
 
 			// 이걸로먼저 review table에 인설트
 			HashMap<String, String> remap = new HashMap<>();
@@ -575,12 +578,25 @@ public class UserMypageController {
 
 
 				int revp = userMypageSvc.do_insert_reviewphoto(listMap);
+				//딜리버리 배송상태를 리뷰작성완료
+				int delstep = 0;
+				//userMypageSvc.do_update_del_step2(Integer.parseInt((DEL_SEQ)));
 
 				if(revp>0){
 					resultMap.put("result", "OK");
+					userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
+					System.out.println("DEL_SEQ=========================:" +DEL_SEQ);
+
+
+
 				}
 			}
 
+			//적립금 지급
+			HashMap<String, Object> pointmap = new HashMap<>();
+			pointmap.put("PRO_SEQ", Integer.parseInt(PRO_SEQ));
+			pointmap.put("USER_ID", userdto.getUSER_ID());
+			userMypageSvc.do_insert_point(pointmap);
 
 			Gson gson = new Gson();
 
@@ -588,5 +604,63 @@ public class UserMypageController {
 			return gson.toJson(resultMap);
 
 		}
+	// 구매목록 반품 교환 환불
+	@RequestMapping(value="cancel.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 
+	public @ResponseBody String cancel(HttpServletRequest res, HttpServletResponse rep) {
+		HashMap<String, String> resultMap = new HashMap<>();
+		HashMap<String, Object> update = new HashMap<String, Object>();
+		String DEL_SEQ = res.getParameter("DEL_SEQ");
+		String commend = res.getParameter("commend");
+		String RE_REASON ="";
+		String CA_ACCOUNT = "";
+		String RE_OPTION = "";
+		loger.debug("=Controller ===========================");
+		loger.debug("RETURN === " + commend +  "l앙 기무띠~");
+		loger.debug("RE_OPTION === " + RE_OPTION +  "l앙 기무띠~");
+		loger.debug("CA_REASON === " + RE_REASON +  "l앙 기무띠~");
+		loger.debug("CA_ACCOUNT === " + CA_ACCOUNT +  "l앙 기무띠~");
+		loger.debug("DEL_SEQ === " + DEL_SEQ +  "l앙 기무띠~");
+		loger.debug("============================");
+
+
+		if(commend.equals("반품") ){
+			RE_REASON = res.getParameter("RE_REASON");
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+
+		}else if(commend.equals("교환")){
+			RE_OPTION = res.getParameter("RE_OPTION");
+			RE_REASON = res.getParameter("RE_REASON");
+
+		}else if(commend.equals("취소")){
+			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
+		}
+
+		update.put("RETURN",commend);
+		update.put("RE_OPTION",RE_OPTION);
+		update.put("CA_REASON",RE_REASON);
+		update.put("CA_ACCOUNT",CA_ACCOUNT);
+		update.put("DEL_SEQ",DEL_SEQ);
+
+		loger.debug("=Controller ===========================");
+		loger.debug("RETURN === " + commend +  "앙 기무띠~");
+		loger.debug("RE_OPTION === " + RE_OPTION +  "앙 기무띠~");
+		loger.debug("CA_REASON === " + RE_REASON +  "앙 기무띠~");
+		loger.debug("CA_ACCOUNT === " + CA_ACCOUNT +  "앙 기무띠~");
+		loger.debug("DEL_SEQ === " + DEL_SEQ +  "앙 기무띠~");
+		loger.debug("============================");
+
+
+		int suc = userMypageSvc.do_update_cancel(update);
+		loger.debug("suc === " + suc +  "ㅣㅣㅣㅣㅣ*************앙 기무띠~");
+		if(suc > 0){
+
+			resultMap.put("result", "success");
+
+		}
+		Gson gson = new Gson();
+		return gson.toJson(resultMap);
+
+
+	};
 }

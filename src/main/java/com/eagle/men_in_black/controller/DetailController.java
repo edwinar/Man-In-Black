@@ -1,16 +1,26 @@
 package com.eagle.men_in_black.controller;
 
+
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.DetailDto;
@@ -18,6 +28,7 @@ import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.DetailSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
+import com.google.gson.Gson;
 
 @Controller
 public class DetailController {
@@ -95,16 +106,84 @@ public class DetailController {
 	}
 	
 	@RequestMapping("BuyPop.mib")
-	public ModelAndView BuyPop() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView BuyPop(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/BuyPop");
-		mav.addObject("msg", "김옥지");
-
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		
+		List<DetailDto> list = detailSvc.do_buyProductPop(PRO_SEQ);
+		List<DetailDto> listColor = detailSvc.do_buyProductColorPop(PRO_SEQ);
+		mav.addObject("PRO_SEQ", PRO_SEQ);
+		mav.addObject("list", list);
+		mav.addObject("listColor", listColor);
+		
 		return mav;
+	}
+	
+	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
+	@RequestMapping(value="selectSize.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String selectSize(HttpServletRequest res, HttpServletResponse rep){
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ",PRO_SEQ);
+		map.put("COLOR",COLOR);
+		
+		List<DetailDto> list = detailSvc.do_buyProductSizePop(map);
+		
+		Gson gson = new Gson();
+		return gson.toJson(list);
+	}
+	
+	// 구매팝업 칼라로 인한 사이즈 셀렉트 리스트
+	@RequestMapping(value="stockLimit.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String stockLimit(HttpServletRequest res, HttpServletResponse rep){
+		
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null||res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ",PRO_SEQ);
+		map.put("COLOR",COLOR);
+		map.put("PRO_SIZE",PRO_SIZE);
+		
+		String result = detailSvc.do_buyProductStockPop(map);
+		
+		Gson gson = new Gson();
+		return gson.toJson(result);
+	}
+	
+	//장바구니 등록 아작스
+	@RequestMapping(value="BuyPopAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String AddBasket(HttpServletRequest res) throws Exception{
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		System.out.println("============="+res.getParameter("PRO_SEQ"));
+		System.out.println("============="+res.getParameter("PRO_SIZE"));
+		System.out.println("============="+res.getParameter("COLOR"));
+		System.out.println("============="+res.getParameter("BAS_PRO_NUM"));
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
+		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
+		int BAS_PRO_NUM = Integer.parseInt((res.getParameter("BAS_PRO_NUM")==null || res.getParameter("BAS_PRO_NUM")=="")?"":res.getParameter("BAS_PRO_NUM"));
+		
+		System.out.println("============="+PRO_SEQ+PRO_SIZE+COLOR+BAS_PRO_NUM);
+		// 이걸로먼저 review table에 인설트
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("USER_ID", userdto.getUSER_ID());
+		map.put("PRO_SIZE", PRO_SIZE);
+		map.put("COLOR", COLOR);
+		map.put("BAS_PRO_NUM", BAS_PRO_NUM);
+		
+		int result = detailSvc.do_addBasket(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")

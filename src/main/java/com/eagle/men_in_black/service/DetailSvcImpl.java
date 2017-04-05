@@ -1,5 +1,6 @@
 package com.eagle.men_in_black.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,30 @@ public class DetailSvcImpl implements DetailSvc {
 	@Override
 	public DetailDto do_selectReviewDetail(int REV_SEQ) {
 		return detailDao.do_selectReviewDetail(REV_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_buyProductPop(int PRO_SEQ) {
+		return detailDao.do_buyProductPop(PRO_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_buyProductColorPop(int PRO_SEQ) {
+		return detailDao.do_buyProductColorPop(PRO_SEQ);
+	}
+
+	@Override
+	public List<DetailDto> do_buyProductSizePop(HashMap<String, Object> map) {
+		return detailDao.do_buyProductSizePop(map);
+	}
+
+	@Override
+	public String do_buyProductStockPop(HashMap<String, Object> map) {
+		return detailDao.do_buyProductStockPop(map);
+	}
+
+	@Override
+	public int do_addBasket(HashMap<String, Object> map) {
+		return detailDao.do_addBasket(map);
 	}
 }

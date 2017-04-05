@@ -14,97 +14,123 @@
     UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/Mib.css">
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<h1>교환 환불 취소</h1>
 
-<form action="">
-    <select onchange="selectForm(this.value);">
-        <option value="">구분</option>
+<%if (cancelList.getDEL_STEP().equals("배송준비중")) { %>
+<h1 align="center">상품 취소</h1>
+<%} else {%>
+<h1 align="center">상품 교환&환불</h1>
+<%
+    }
+%>
+<form>
+
+    <div id="total" style="margin-top: 10px" align="center">
+        <div id="table" style="width: 90%">
+            <table class="table">
+                <col width="9%">
+                <col width="7%">
+                <col width="23%">
+                <col width="6%">
+                <col width="6%">
+                <col width="7%">
+                <col width="7%">
+                <col width="7%">
+                <col width="9%">
+                <col width="12%">
+                <col width="7%">
+                <tr height="40px">
+                    <th class="boardone">이미지</th>
+                    <th class="boardone">분류</th>
+                    <th>상품이름</th>
+                    <th class="boardone">수량</th>
+                    <th class="boardtwo">판매가</th>
+                    <th class="boardtwo">쿠폰</th>
+                    <th class="boardtwo">적립금</th>
+                    <th>결제금액</th>
+                    <th class="#boardthree">판매일</th>
+                    <th>상태</th>
+                </tr>
+
+
+                <tr height="30px">
+                    <td class="boardone" rowspan="2"><img alt="not found"
+                                                          src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+                    </td>
+                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSUB_ITEM()%>
+                    </td>
+                    <td><%=cancelList.getPRO_NAME()%>
+                    </td>
+                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSEL_NUM()%>
+                    </td>
+                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPRO_PRICE()%>
+                    </th>
+                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getCOUPON()%>
+                    </th>
+                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPOINT()%>
+                    </th>
+                    <td rowspan="2" valign="middle"><%=cancelList.getFINAL_PRICE()%>
+                    </td>
+                    <th class="#boardthree" rowspan="2" valign="middle"><%=cancelList.getSEL_TIME()%>
+                    </th>
+                    <td rowspan="2" valign="middle"><%=cancelList.getDEL_STEP()%>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><%=cancelList.getSEL_SIZE()%> : <%=cancelList.getSEL_COLOR()%>
+                    </td>
+                </tr>
+                <tfoot>
+                <tr>
+                    <td colspan="20">
+
+                    </td>
+                </tr>
+                </tfoot>
+
+
+            </table>
+
+        </div>
+    </div>
+    <select class='form-control' id="sel" onchange="selectForm(this.value);" style="width: 100px">
+        <%if (cancelList.getDEL_STEP().equals("배송준비중")) { %>
         <option value="취소">취소</option>
+        <%} else {%>
         <option value="반품">반품</option>
         <option value="교환">교환</option>
+        <%
+            }
+        %>
     </select>
+    <br>
 
-    <div id="total" style="margin-top: 100px">
-        <div id="table" style="width: 90%">
-                <table class="table">
-                    <col width="9%">
-                    <col width="7%">
-                    <col width="23%">
-                    <col width="6%">
-                    <col width="6%">
-                    <col width="7%">
-                    <col width="7%">
-                    <col width="7%">
-                    <col width="9%">
-                    <col width="12%">
-                    <col width="7%">
-                    <tr height="40px">
-                        <th class="boardone">이미지</th>
-                        <th class="boardone">분류</th>
-                        <th>상품이름1234512</th>
-                        <th class="boardone">수량</th>
-                        <th class="boardtwo">판매가</th>
-                        <th class="boardtwo">쿠폰</th>
-                        <th class="boardtwo">적립금</th>
-                        <th>결제금액</th>
-                        <th class="#boardthree">판매일</th>
-                        <th>상태</th>
-                    </tr>
-
-               
-           
-
-            <tr height="30px">
-                <td class="boardone" rowspan="2"><img alt="not found"
-                                                      src="../images/LOVE.jpg" style="width: 100px; height: 100px"></td>
-                <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSUB_ITEM()%>
-                </td>
-                <td><%=cancelList.getPRO_NAME()%>
-                </td>
-                <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSEL_NUM()%>
-                </td>
-                <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPRO_PRICE()%>
-                </th>
-                <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getCOUPON()%>
-                </th>
-                <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPOINT()%>
-                </th>
-                <td rowspan="2" valign="middle"><%=cancelList.getFINAL_PRICE()%>
-                </td>
-                <th class="#boardthree" rowspan="2" valign="middle"><%=cancelList.getSEL_TIME()%>
-                </th>
-                <td rowspan="2" valign="middle"><%=cancelList.getDEL_STEP()%>
-
-                </td>
-            </tr>
-            <tr>
-                <td><%=cancelList.getSEL_SIZE()%> : <%=cancelList.getSEL_COLOR()%>
-                </td>
-            </tr>
-         
-
-        </table>
-            </div>
-    </div>
-
-
-    <div id="inputBox">
+    <div id="inputBox" align="center">
 
 
     </div>
     <br>
 
-    <input type="submit" value="확정" >
-    <input type="button" value="돌아가기" onclick="window.close()">
+    <input class="btn btn-success" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
+    <input class="btn btn-primary" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
+    <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
+    <input type="hidden" name="commend" value="">
+
 
 </form>
 
 
 <script type="text/javascript">
 
+    $(document).ready(function () {
 
+        selectForm($("#sel option:first").val());
+
+
+    });
 
 
     function selectForm(commend) {
@@ -112,12 +138,12 @@
         inputBox.innerHTML = "";
 
         if (commend == '교환') {
-            strInput = "<label>원하는 옵션 작성<textarea name='RE_OPTION' rows=10 , style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea></label><br><br>" +
-                "<label>교환사유 작성해주세요<textarea name='RE_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea> </label><br>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+            strInput = "<label style='width: 50%;height: 25%'>교환받을 옵션<textarea class='form-control' name='RE_OPTION' style='height: 100%'> </textarea></label><br><br>" +
+                "<label style='width: 50%;height: 25%'>교환 사유<textarea class='form-control' name='RE_REASON' rows='10'> </textarea> <br>";
+
         } else if (commend == '반품') {
-            strInput = "<label>반품 사유 작성<textarea name='CA_REASON' rows='10', style='width:100%;overflow:visible;text-overflow:ellipsis;resize: none;border: solid black 2px;'> </textarea><br><br>" +
-                "<label>환불받을 계좌<br><select  class='product_iinput'>" +
+            strInput = "<div><label>반품 사유<textarea class='form-control' name='RE_REASON' rows='10'> </textarea>" +
+                "<label>은행<select name='bank' class='form-control'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
@@ -168,12 +194,12 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input name='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' type='text' ></label></div>";
+
 
         } else if (commend == '취소') {
             strInput = "&nbsp;&nbsp;" +
-                "<label>환불받을 계좌<br><select name='used_bankname'  class='product_iinput'>" +
+                "<label>은행<br><select name='bank' class='form-control'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
@@ -224,14 +250,66 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<input id='CA_ACCOUNT' type='text' placeholder='계좌번호를 적으세요'>" +
-                "<input type='hidden' name='commend' value="+commend+">";
+                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' type='text'></label>";
+
 
         }
+        document.getElementsByName('commend').value = commend;
         inputBox.innerHTML = strInput;
     }
 
 
+    function closeSelf() {
+        var formData = new FormData();
+        var txt = $("textarea[name=RE_REASON]").val();
+        var commend = document.getElementsByName('commend').value;
+
+        if ('교환' == commend) {
+            alert('커맨드 = ' + commend);
+            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
+            formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
+
+
+        } else if ('반품' == commend) {
+            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
+            formData.append("CA_ACCOUNT", $("select[name=bank]").val() + " " + $("input[name=CA_ACCOUNT]").val());
+
+        } else if ('취소' == commend) {
+            formData.append("CA_ACCOUNT", $("select[name=bank]").val() + " " + $("input[name=CA_ACCOUNT]").val());
+
+        }
+        formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
+        formData.append("commend", document.getElementsByName('commend').value);
+
+
+        $.ajax({
+            type: "POST",
+            url: "cancel.mib",
+            async: true,
+            data: formData,
+            dataType: "html",
+            processData: false,
+            contentType: false,
+            success: function (data) {
+//
+                var flag = $.parseJSON(data);
+
+                if (flag.result == 'success') {
+                    alert("반영되었습니다");
+                    opener.parent.location.reload();
+                    window.close();
+                } else {
+                    alert("업뎃실패");
+                }
+            },
+            complete: function (data) {
+            },
+            error: function (xhr, status, error) {
+                alert("에러발생");
+            }
+        });
+
+    }
 
 </script>
 
