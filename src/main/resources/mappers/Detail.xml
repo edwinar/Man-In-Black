@@ -74,21 +74,42 @@ INSERT INTO BASKET (BAS_SEQ, PRO_SEQ, USER_ID, PRO_SIZE, COLOR, BAS_PRO_NUM)
 VALUES(BAS_SEQ.NEXTVAL,#{PRO_SEQ},#{USER_ID},#{PRO_SIZE},#{COLOR},#{BAS_PRO_NUM})
 </insert>
 
-<select id="do_selectProductReviewList" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
-SELECT A.REV_SEQ
-	, A.USER_ID
-	, A.REV_TIME
-	, A.REV_TITLE
-	, A.SCORE
-	, (SELECT ROUND(AVG(SCORE))
-  		FROM REVIEW
-  		WHERE PRO_SEQ=1
-		) AS AVG_SCORE
-	, B.STORED_NAME
+<select id="do_selectProductReviewList" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT TT1.*
+FROM (
+	SELECT ROWNUM RNUM,T1.*,T2.*
+	FROM(
+
+		SELECT A.REV_SEQ	
+			, A.USER_ID	
+			, A.REV_TIME	
+			, A.REV_TITLE	
+			, A.SCORE
+		    , (SELECT ROUND(AVG(SCORE))
+		  		FROM REVIEW
+		  		WHERE PRO_SEQ=#{PRO_SEQ}
+				) AS AVG_SCORE
+			, B.STORED_NAME
 FROM REVIEW A LEFT JOIN PHOTO B
 ON A.REV_SEQ = B.REV_SEQ
 WHERE A.PRO_SEQ=#{PRO_SEQ}
 ORDER BY A.REV_REF DESC, A.REV_SEQ ASC
+    
+	) T1 
+	NATURAL JOIN(
+
+		SELECT COUNT(*) TOT_CNT
+		FROM(
+			SELECT COUNT(A.REV_SEQ)
+			FROM  REVIEW A LEFT JOIN PHOTO B 
+			ON A.REV_SEQ=B.REV_SEQ 
+			WHERE A.PRO_SEQ=#{PRO_SEQ}                 
+			GROUP BY A.REV_SEQ
+		) 
+
+	) T2
+) TT1
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
@@ -101,5 +122,38 @@ WHERE REV_SEQ=#{REV_SEQ}
 INSERT INTO REVIEW (REV_SEQ, REV_TIME, REV_TITLE, REV_CONTENT, SCORE, REV_REF, USER_ID, PRO_SEQ, REV_STEP)
 VALUES(REV_SEQ.NEXTVAL, SYSDATE, #{REV_TITLE}, #{REV_CONTENT}, NULL, #{REV_REF}, #{USER_ID}, #{PRO_SEQ}, NULL)
 </insert>
+
+<select id="do_selectProductQnAList" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT TT1.*
+FROM (
+	SELECT ROWNUM RNUM,T1.*,T2.*
+	FROM(
+
+SELECT QNA_SEQ,QNA_OPEN,QNA_TYPE,QNA_TITLE,QNA_REF,USER_ID,QNA_TIME
+FROM QNA
+WHERE PRO_SEQ=#{PRO_SEQ}
+ORDER BY QNA_REF DESC, QNA_SEQ ASC
+    
+	) T1 
+	NATURAL JOIN(
+
+		SELECT COUNT(*) TOT_CNT
+		FROM(
+			SELECT COUNT(QNA_SEQ)
+			FROM  QNA
+			WHERE PRO_SEQ=#{PRO_SEQ}                 
+			GROUP BY QNA_SEQ
+		) 
+
+	) T2
+) TT1
+WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+</select>
+
+<!-- <select id="do_selectQnADetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT *
+FROM QNA
+WHERE QNA_SEQ=#{QNA_SEQ}
+</select> -->
 
 </mapper>

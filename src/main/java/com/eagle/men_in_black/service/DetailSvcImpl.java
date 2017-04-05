@@ -31,8 +31,8 @@ public class DetailSvcImpl implements DetailSvc {
 	}
 
 	@Override
-	public List<DetailDto> do_selectProductReviewList(int PRO_SEQ) {
-		return detailDao.do_selectProductReviewList(PRO_SEQ);
+	public List<DetailDto> do_selectProductReviewList(HashMap<String, Object> map) {
+		return detailDao.do_selectProductReviewList(map);
 	}
 
 	@Override
@@ -69,4 +69,14 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_insertReviewAdmReply(HashMap<String, Object> map) {
 		return detailDao.do_insertReviewAdmReply(map);
 	}
+
+	@Override
+	public List<DetailDto> do_selectProductQnAList(HashMap<String, Object> map) {
+		return detailDao.do_selectProductQnAList(map);
+	}
+
+	/*@Override
+	public DetailDto do_selectQnADetail(int QNA_SEQ) {
+		return detailDao.do_selectQnADetail(QNA_SEQ);
+	}*/
 }

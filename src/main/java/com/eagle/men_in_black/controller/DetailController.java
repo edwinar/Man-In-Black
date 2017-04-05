@@ -78,14 +78,13 @@ public class DetailController {
 	}
 	
 	@RequestMapping("QnADetail.mib")
-	public ModelAndView QnADetail() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView QnADetail(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&ADetail");
-		mav.addObject("msg", "김옥지");
+		
+		int QNA_SEQ = Integer.parseInt(res.getParameter("QNA_SEQ"));
+		
+		//DetailDto detailDto = detailSvc.do_selectQnADetail(QNA_SEQ);
+		//mav.addObject("detailDto", detailDto);
 
 		return mav;
 	}
@@ -209,12 +208,39 @@ public class DetailController {
 	public @ResponseBody String ReviewListAjax(HttpServletRequest res) throws Exception{
 		// form에서 넘어온 input
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
 		
-		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(PRO_SEQ);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<DetailDto> reviewList = detailSvc.do_selectProductReviewList(map);
 		
 		Gson gson = new Gson();
 		
 		return gson.toJson(reviewList);
+	}
+	
+	//리뷰리스트아작스
+	@RequestMapping(value="QnAListAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String QnAListAjax(HttpServletRequest res) throws Exception{
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<DetailDto> QnAList = detailSvc.do_selectProductQnAList(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(QnAList);
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")

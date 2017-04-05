@@ -455,8 +455,6 @@ $(document).ready(function () {
  			},
  			success : function(data) {
  				var flag = $.parseJSON(data);
- 				console.log(flag);
-
  				reviewBody.innerHTML = "";
  				
  				for(i=0;i<flag.length;i++){
@@ -502,7 +500,43 @@ $(document).ready(function () {
  			}
  		});
     });
+    $('#tab3').on('click',function(){
+    	var PRO_SEQ = <%=PRO_SEQ %>;
+    	var strInput = "";
+		$.ajax({
+ 			type : "POST",
+ 			url : "QnAListAjax.mib",
+ 			async : true,
+ 			dataType : "html",
+ 			data : {
+ 				"PRO_SEQ" : PRO_SEQ
+ 			},
+ 			success : function(data) {
+ 				var flag = $.parseJSON(data);
+ 				console.log(flag);
+
+ 				QnABody.innerHTML = "";
+ 				
+ 				for(i=0;i<flag.length;i++){
+ 					if(flag[i].USER_ID=="adm"){
+ 						strInput = strInput + "";
+ 					}else{
+ 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+ 						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+ 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
+ 			       	}
+ 				}
+ 					QnABody.innerHTML = strInput;
+ 			},
+ 			complete : function(data) {
+ 			},
+ 			error : function(xhr, status, error) {
+ 				alert("에러발생");
+ 			}
+ 		});
+    });
 });
+
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
@@ -771,66 +805,8 @@ function BuyPop(){
             <th style="text-align: center;">작성일</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="javascript:QnADetail()">그래서 사이즈 뭐입어?</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>배송문의</td>
-            <td class="organisationname">
-            	<a href="#">배솧ㅇ언제와요?</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>결제문의</td>
-            <td class="organisationname">
-            	<a href="#">삼성카드 결제 왜안됨??</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-          
-       <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="#">Stet clita kasd gubergren, no sea takimata sanctus est</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
-
-        <tr>
-            <td class="organisationnumber">비공개</td>
-            <td>상품문의</td>
-            <td class="organisationname">
-            	<a href="#">Stet clita kasd gubergren, no sea takimata sanctus est</a>
-            </td>
-         	<td>전창건</td>
-            <td>
-               2017-03-24
-            </td>
-        </tr>
+    <tbody id="QnABody">
+       
     </tbody>
 	</table>
 		<p align="right" style="margin-right: 30px;">
