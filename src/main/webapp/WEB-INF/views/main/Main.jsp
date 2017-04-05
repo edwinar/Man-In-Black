@@ -49,9 +49,9 @@ List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 <%if(list!=null){ 
 	for(int i=0; i<3;i++){
 %>
-	<div class="main-slide">
+	<div class="main-slide" >
 	<div class="main-slide-content">
-    <img src="../images/<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%">
+    <img src="<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%" onclick="detail(<%=list.get(i).getPRO_SEQ() %>)">
     </div>
     </div>
 <%}
@@ -214,6 +214,10 @@ clickshow(slideIndex += n);
 function current(n) {
 "use strict";
 clickshow(slideIndex = n);
+}
+
+function detail(pro_seq) {
+	location.href = 'detail.mib?PRO_SEQ='+pro_seq;
 }
 
 </script>
