@@ -10,39 +10,47 @@
 <form action="loginCheck.mib" id="signinForm">
   <h1>MEN IN BLACK</h1>
   <div class="inset">
-  <p style="margin-bottom: -13px; margin-top: 20px">
+  <p style="margin-bottom: -13px; margin-top: 0px">
     <input type="text" placeholder="아이디" name="id" id="email">
   </p>
   <p>
     <input type="password" placeholder="비밀번호" name="pwd" id="pwd">
   </p>
   </div>
-  <p class="signin-container">
+  <p class="signin-container" style="margin-top: -23px;">
     <input type="submit" name="go" id="go" value="로그인">
+  	<input type="button" id="signup" value="회원가입" style="width: 100%; background-color:white;border-radius: 0.3em; height:40px; margin-top: 5px; margin-bottom: 5px;">
+  	<a id="kakao" style="margin-left: 14px;"></a>
+  	
   </p>
+  
  
 </form>
  
-         <div>
-         <a href="#"
-            onclick="Common.hcLogTrace(208, 532); Common.openWindow('https://www.happycampus.com/oAuth/auth/?authType=naver&amp;parent=main', 444, 478, 'oAuth'); return false;">
-            <img alt="네이버 아이디로 로그인" src="../images/navermini.png">
-         </a>
-         </div>
-         <br>
-      <div>
-         <a href="#"
-            onclick="Common.hcLogTrace(208, 532); Common.openWindow('https://www.happycampus.com/oAuth/auth/?authType=naver&amp;parent=main', 444, 478, 'oAuth'); return false;">
-            <img alt="카카오톡 아이디로 로그인" src="../images/kakaomini.png">
-         </a>
-      </div>
-      <br>
-      	<div>
-         <a href="#"
-            onclick="Common.hcLogTrace(208, 532); Common.openWindow('https://www.happycampus.com/oAuth/auth/?authType=naver&amp;parent=main', 444, 478, 'oAuth'); return false;">
-            <img alt="페이스북" src="../images/facemini.png">
-         </a>
-        </div>
+<script type='text/javascript'>
+	
+	$(document).ready(function() {
+		$("#signup").click(function() {
+			location.href='mib_SignUp.mib';
+			
+		});
+	});
+
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('4f7736c38c63aa2f666d7083b9ea4605');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao',
+      success: function(authObj) {
+        alert(JSON.stringify(authObj));
+      },
+      fail: function(err) {
+         alert(JSON.stringify(err));
+      }
+    });
+  //]]>
+</script>     
       
 </body>
 </html>

@@ -1,6 +1,16 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	List<DetailDto> basketList = (List<DetailDto>)request.getAttribute("basketList");
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
+	int points = Integer.parseInt(request.getParameter("points"));
+	System.out.print(points);
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,26 +60,23 @@ $(function() {
 			var name = $("#orderName").text();	
 			var email = $("#orderEmail").text();
 			var phone = $("#orderPhone").text();
-			var num_1 = $("#orderNum_1").text();
-			var num_2 = $("#orderNum_2").text();
-			var address_1 = $("#orderAddress_1").text();
-			var address_2 = $("#orderAddress_2").text();
+			var num = $("#orderNum").val();
+			var address_1 = $("#orderAddress_1").val();
+			var address_2 = $("#orderAddress_2").val();
 			
 			$("#receiveName").text(name);
 			$("#receiveEmail").text(email);
 			$("#receivePhone").text(phone);
-			$("#receiveNum_1").text(num_1);
-			$("#receiveNum_2").text(num_2);
-			$("#receiveAddress_1").text(address_1);
-			$("#receiveAddress_2").text(address_2);	
+			$("#receiveNum").val(num);
+			$("#receiveAddress_1").val(address_1);
+			$("#receiveAddress_2").val(address_2);	
 		}else{
 			$("#receiveName").text('');
 			$("#receiveEmail").text('');
 			$("#receivePhone").text('');
-			$("#receiveNum_1").text('');
-			$("#receiveNum_2").text('');
-			$("#receiveAddress_1").text('');
-			$("#receiveAddress_2").text('');	
+			$("#receiveNum").val('');
+			$("#receiveAddress_1").val('');
+			$("#receiveAddress_2").val('');	
 		}
 	});
 });
@@ -96,35 +103,29 @@ function buy() {
 					<th>가격</th>
 				</tr>
 				
-				<tr>
-					<td rowspan="2">1번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
-					</td>
-					<td>창거니가 어제 입던 양말</td>
-					<td>수량 : 1개</td>
-					<td>10000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-					<td>상품 합계</td>
-					<td>10000 Won</td>
-				</tr>
+				<%
+					for(int i=0;i<basketList.size();i++){
+						int count = i+1;
+				%>
+					<tr>
+						<td rowspan="2"><%=count %>번</td>
+						<td rowspan="2">
+							<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+						</td>
+						<td><%=basketList.get(i).getPRO_NAME() %></td>
+						<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
+						<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
+					</tr>
+					<tr>
+						<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
+						<td>상품 합계</td>
+						<td><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+					</tr>
+				<%
+					}
+				%>
 				
-				<tr>
-					<td rowspan="2">2번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
-					</td>
-					<td>창거니가 어제 입던 양말</td>
-					<td>수량 : 1개</td>
-					<td>10000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-					<td>상품 합계</td>
-					<td>10000 Won</td>
-				</tr>
+				
 			</table>
 		</form>
 	</div>
@@ -141,30 +142,30 @@ function buy() {
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td colspan="2" id="orderName">황인배</td>
+					<td colspan="2" id="orderName"><%=dto.getUSER_NAME() %></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td colspan="2" id="orderEmail">hinbae2002@naver.com</td>
+					<td colspan="2" id="orderEmail"><%=dto.getEMAIL() %></td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
-					<td colspan="2" id="orderPhone">010-7536-7209</td>
+					<td colspan="2" id="orderPhone"><%=dto.getTEL() %></td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" readonly="readonly" id="orderNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" readonly="readonly" id="orderNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
+						<input type="text" size="10px" readonly="readonly" id="orderNum" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_1"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_1" value="<%=dto.getADDRESS() %>"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_2"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_2" value="<%=dto.getDETAILADDRESS() %>"/>
 					</td>
 				</tr>
 			</table>
@@ -194,7 +195,7 @@ function buy() {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" id="receiveNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
@@ -230,8 +231,13 @@ function buy() {
 					<td colspan="2">
 						<select name=coupon size=1>
 					        <option value="미선택" selected="selected">미선택</option>
-					        <option value="5000">쿠폰 5000원</option>
-					        <option value="10000">쿠폰 10000원</option>
+					        <%
+					        	for(int i=0;i<couponList.size();i++){
+					        %>
+					        	<option value="<%=couponList.get(i).getCOUP_PRICE() %>"><%=couponList.get(i).getCOUP_NAME() %></option>
+					        <%
+					        	}
+					        %>
 				    	</select>
 					</td>
 				</tr>
@@ -245,7 +251,7 @@ function buy() {
 				</tr>
 				<tr>
 					<td>사용가능적립금</td>
-					<td>0</td>
+					<td><%=points %></td>
 					<td>Won 사용가능</td>
 				</tr>
 				<tr>

@@ -12,6 +12,11 @@ public class DetailDto implements Serializable {
 	private	String	COLOR;
 	private	String	COUP_LIMIT;
 	private	String	COUP_USE;
+	private	String	COUP_NAME;
+	private	int 	COUP_SEQ;
+	private	int 	COUP_PRICE;
+	private	int 	CONDITION;
+	private	String 	COUP_TIME;
 	private	int	COUPON;
 	private	String	DEL_ADDRESS;
 	private	String	DEL_CONTENT;
@@ -58,6 +63,37 @@ public class DetailDto implements Serializable {
 	private	int	STOCK;
 	private	String	STORED_NAME;
 	private	String ORIGINAL_NAME;
+	
+	public String getCOUP_NAME() {
+		return COUP_NAME;
+	}
+	public void setCOUP_NAME(String cOUP_NAME) {
+		COUP_NAME = cOUP_NAME;
+	}
+	public int getCOUP_SEQ() {
+		return COUP_SEQ;
+	}
+	public void setCOUP_SEQ(int cOUP_SEQ) {
+		COUP_SEQ = cOUP_SEQ;
+	}
+	public int getCOUP_PRICE() {
+		return COUP_PRICE;
+	}
+	public void setCOUP_PRICE(int cOUP_PRICE) {
+		COUP_PRICE = cOUP_PRICE;
+	}
+	public int getCONDITION() {
+		return CONDITION;
+	}
+	public void setCONDITION(int cONDITION) {
+		CONDITION = cONDITION;
+	}
+	public String getCOUP_TIME() {
+		return COUP_TIME;
+	}
+	public void setCOUP_TIME(String cOUP_TIME) {
+		COUP_TIME = cOUP_TIME;
+	}
 	public String getORIGINAL_NAME() {
 		return ORIGINAL_NAME;
 	}
@@ -400,20 +436,22 @@ public class DetailDto implements Serializable {
 	@Override
 	public String toString() {
 		return "DetailDto [BAS_PRO_NUM=" + BAS_PRO_NUM + ", BAS_SEQ=" + BAS_SEQ + ", BODYTYPE=" + BODYTYPE + ", CANCLE="
-				+ CANCLE + ", COLOR=" + COLOR + ", COUP_LIMIT=" + COUP_LIMIT + ", COUP_USE=" + COUP_USE + ", COUPON="
-				+ COUPON + ", DEL_ADDRESS=" + DEL_ADDRESS + ", DEL_CONTENT=" + DEL_CONTENT + ", DEL_NUMBER="
-				+ DEL_NUMBER + ", DEL_POSTCODE=" + DEL_POSTCODE + ", DEL_PRICE=" + DEL_PRICE + ", DEL_SEQ=" + DEL_SEQ
-				+ ", DEL_STEP=" + DEL_STEP + ", DEL_TIME=" + DEL_TIME + ", FINAL_PRICE=" + FINAL_PRICE + ", ITEM="
-				+ ITEM + ", MATERIAL=" + MATERIAL + ", NEW_ITEM=" + NEW_ITEM + ", PHOTO_SEQ=" + PHOTO_SEQ + ", POINT="
-				+ POINT + ", PRO_CONTENT=" + PRO_CONTENT + ", PRO_NAME=" + PRO_NAME + ", PRO_PRICE=" + PRO_PRICE
-				+ ", PRO_SEQ=" + PRO_SEQ + ", PRO_SIZE=" + PRO_SIZE + ", QNA_OPEN=" + QNA_OPEN + ", QNA_REF=" + QNA_REF
-				+ ", QNA_SEQ=" + QNA_SEQ + ", QNA_STEP=" + QNA_STEP + ", QNA_TIME=" + QNA_TIME + ", QNA_TITLE="
-				+ QNA_TITLE + ", QNA_CONTENT=" + QNA_CONTENT + ", QNA_TYPE=" + QNA_TYPE + ", REC_NAME=" + REC_NAME
-				+ ", REC_TEL=" + REC_TEL + ", REV_REF=" + REV_REF + ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP
-				+ ", REV_TIME=" + REV_TIME + ", REV_TITLE=" + REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE="
-				+ SCORE + ", AVG_SCORE=" + AVG_SCORE + ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM
-				+ ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE=" + SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK
-				+ ", STORED_NAME=" + STORED_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH=" + WASH
-				+ "]";
+				+ CANCLE + ", COLOR=" + COLOR + ", COUP_LIMIT=" + COUP_LIMIT + ", COUP_USE=" + COUP_USE + ", COUP_NAME="
+				+ COUP_NAME + ", COUP_SEQ=" + COUP_SEQ + ", COUP_PRICE=" + COUP_PRICE + ", CONDITION=" + CONDITION
+				+ ", COUP_TIME=" + COUP_TIME + ", COUPON=" + COUPON + ", DEL_ADDRESS=" + DEL_ADDRESS + ", DEL_CONTENT="
+				+ DEL_CONTENT + ", DEL_NUMBER=" + DEL_NUMBER + ", DEL_POSTCODE=" + DEL_POSTCODE + ", DEL_PRICE="
+				+ DEL_PRICE + ", DEL_SEQ=" + DEL_SEQ + ", DEL_STEP=" + DEL_STEP + ", DEL_TIME=" + DEL_TIME
+				+ ", FINAL_PRICE=" + FINAL_PRICE + ", ITEM=" + ITEM + ", MATERIAL=" + MATERIAL + ", NEW_ITEM="
+				+ NEW_ITEM + ", PHOTO_SEQ=" + PHOTO_SEQ + ", POINT=" + POINT + ", PRO_CONTENT=" + PRO_CONTENT
+				+ ", PRO_NAME=" + PRO_NAME + ", PRO_PRICE=" + PRO_PRICE + ", PRO_SEQ=" + PRO_SEQ + ", PRO_SIZE="
+				+ PRO_SIZE + ", QNA_OPEN=" + QNA_OPEN + ", QNA_REF=" + QNA_REF + ", QNA_SEQ=" + QNA_SEQ + ", QNA_STEP="
+				+ QNA_STEP + ", QNA_TIME=" + QNA_TIME + ", QNA_TITLE=" + QNA_TITLE + ", QNA_CONTENT=" + QNA_CONTENT
+				+ ", QNA_TYPE=" + QNA_TYPE + ", REC_NAME=" + REC_NAME + ", REC_TEL=" + REC_TEL + ", REV_REF=" + REV_REF
+				+ ", REV_SEQ=" + REV_SEQ + ", REV_STEP=" + REV_STEP + ", REV_TIME=" + REV_TIME + ", REV_TITLE="
+				+ REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE=" + SCORE + ", AVG_SCORE=" + AVG_SCORE
+				+ ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM + ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE="
+				+ SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK + ", STORED_NAME=" + STORED_NAME
+				+ ", ORIGINAL_NAME=" + ORIGINAL_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH="
+				+ WASH + "]";
 	}
 }
