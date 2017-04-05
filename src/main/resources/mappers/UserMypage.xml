@@ -283,6 +283,7 @@ FROM (
 <![CDATA[
 SELECT
                A.BAS_SEQ,
+               A.PRO_SEQ,
                B.PRO_NAME,
                B.PRO_PRICE,
                A.PRO_SIZE,
