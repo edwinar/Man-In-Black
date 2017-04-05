@@ -138,11 +138,11 @@
         inputBox.innerHTML = "";
 
         if (commend == '교환') {
-            strInput = "<label style='width: 50%;height: 25%'>교환받을 옵션<textarea class='form-control' name='RE_OPTION' style='height: 100%'> </textarea></label><br><br>" +
-                "<label style='width: 50%;height: 25%'>교환 사유<textarea class='form-control' name='RE_REASON' rows='10'> </textarea> <br>";
+            strInput = "<label style='width: 50%;height: 20%'>교환받을 옵션<textarea class='form-control' name='RE_OPTION' style='height: 100%;resize: none; wrap:hard;'> </textarea></label><br><br>" +
+                "<label style='width: 50%;height: 20%'>교환 사유<textarea class='form-control' name='RE_REASON' rows='10' style='height: 100%;resize: none; wrap:hard;'> </textarea> <br>";
 
         } else if (commend == '반품') {
-            strInput = "<div><label>반품 사유<textarea class='form-control' name='RE_REASON' rows='10'> </textarea>" +
+            strInput = "<div><label>반품 사유<textarea class='form-control' name='RE_REASON' rows='10' style='resize: none; wrap:hard;'> </textarea>" +
                 "<label>은행<select name='bank' class='form-control'>" +
                 "<option value=''>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +

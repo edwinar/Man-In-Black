@@ -254,7 +254,6 @@ public class UserMypageController {
 			HashMap<String, Object> param = new HashMap<String, Object>();
 			List<String> list = Arrays.asList(pro_seq.split(","));
 			param.put("list1", list);
-			param.put("list2", list);
 
 			loger.debug("=Controller ===========================");
 			loger.debug("codeMSvc === " + "주기");
