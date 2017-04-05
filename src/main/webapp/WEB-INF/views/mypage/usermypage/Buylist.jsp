@@ -317,6 +317,7 @@ td, th {
 
 	function go(seq, DEL_SEQ) {
 		var PRO_SEQ = seq;
+		
 		window.open(
 						"reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ +"&DEL_SEQ=" + DEL_SEQ, +
 						"pop",

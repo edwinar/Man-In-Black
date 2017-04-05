@@ -118,7 +118,6 @@ var bas_pro_num;
 		size = $('#sizeSelect option:selected').val();
 		bas_pro_num = $('#number').val();
 		if((color!="no"&&color!=null)&&(size!="no"&&size!=null)){
-			console.log(color+size+bas_pro_num);
 			$.ajax({
 	 			type : "POST",
 	 			url : "BuyPopAjax.mib",
@@ -132,7 +131,42 @@ var bas_pro_num;
 	 			},
 	 			success : function(data) {
 	 				var flag = $.parseJSON(data);
-	 				console.log(flag);
+	 				if(flag>0){
+	 					alert("장바구니에 등록하였습니다!");
+	 					window.close();
+	 				}else{
+	 					alert("장바구니등록실패");
+	 				}
+	 			},
+	 			complete : function(data) {
+	 			},
+	 			error : function(xhr, status, error) {
+	 				alert("에러발생");
+	 			}
+	 		});
+		}else{
+			alert("옵션과 수량을 다시 한번 확인해주십시오.");
+		}
+	});
+	
+	$('#buyBtn').on('click',function(){
+		color = $('#colorSelect option:selected').val();
+		size = $('#sizeSelect option:selected').val();
+		bas_pro_num = $('#number').val();
+		if((color!="no"&&color!=null)&&(size!="no"&&size!=null)){
+			$.ajax({
+	 			type : "POST",
+	 			url : "BuyPopAjax.mib",
+	 			async : true,
+	 			dataType : "html",
+	 			data : {
+	 				"PRO_SEQ" : <%=PRO_SEQ %>,
+	 				"PRO_SIZE" : size,
+	 				"COLOR" : color,
+	 				"BAS_PRO_NUM" : bas_pro_num
+	 			},
+	 			success : function(data) {
+	 				var flag = $.parseJSON(data);
 	 				if(flag>0){
 	 					opener.location = 'basketlist.mib';
 	 					window.close();
