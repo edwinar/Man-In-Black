@@ -83,7 +83,7 @@ JOIN PRODUCT C
 ON A.PRO_SEQ = C.PRO_SEQ
 JOIN PHOTO D
 ON C.PRO_SEQ = D.PRO_SEQ
-WHERE A.USER_ID = #{id} AND D.STORED_NAME LIKE 'MAIN%'
+WHERE A.USER_ID = #{id} AND D.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.SEL_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -109,7 +109,7 @@ FROM BASKET A JOIN PRODUCT B
 ON A.PRO_SEQ = B.PRO_SEQ
 JOIN PHOTO C
 ON A.PRO_SEQ = C.PRO_SEQ
-WHERE A.USER_ID =#{id}  AND C.STORED_NAME LIKE 'MAIN%'
+WHERE A.USER_ID =#{id}  AND C.STORED_NAME LIKE '%MAIN%'
 ORDER BY A.BAS_SEQ DESC
 )
 WHERE ROWNUM <=5
@@ -173,7 +173,7 @@ FROM (
            ON A.USER_ID = D.USER_ID 
            AND A.PRO_SEQ = D.PRO_SEQ
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE '%MAIN%'
            AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE})
               ORDER BY SEL_TIME DESC
@@ -215,7 +215,7 @@ FROM (
            JOIN DELIVERY D
            ON A.USER_ID = D.USER_ID
            AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE 'MAIN%'
+           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE '%MAIN%'
 
 
 ]]>
@@ -294,7 +294,7 @@ SELECT
                ON A.PRO_SEQ = B.PRO_SEQ
                JOIN PHOTO C
                ON A.PRO_SEQ = C.PRO_SEQ
-               WHERE A.USER_ID = #{id} AND  C.STORED_NAME LIKE 'MAIN%'
+               WHERE A.USER_ID = #{id} AND  C.STORED_NAME LIKE '%MAIN%'
                ORDER BY A.BAS_SEQ DESC
 
 ]]> 
@@ -411,7 +411,7 @@ FROM (
     <foreach collection="list1" item="item1" index="index" separator="," open="(" close=")">
         #{item1}
     </foreach>
-    AND B.STORED_NAME LIKE 'MAIN%'
+    AND B.STORED_NAME LIKE '%MAIN%'
 </select>
     <!-- 회원정보수정  -->
 <update id="do_member_update" parameterType="hashmap" >
