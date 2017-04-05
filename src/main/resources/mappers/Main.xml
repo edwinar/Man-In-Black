@@ -24,4 +24,11 @@ INTO MEMBERS(USER_ID, USER_PW, USER_NAME, TEL, ADDRESS, POSTCODE, SEX,BIRTH, EMA
 
 </insert>
 
+<select id="do_select_banner" resultType="com.eagle.men_in_black.model.MainDto">
+SELECT B.BAN_SEQ, B.STORED_NAME,A.PRO_SEQ,A.BAN_TIME 
+FROM MAINBANNER A INNER JOIN PHOTO B 
+ON A.BAN_SEQ=B.BAN_SEQ
+ORDER BY A.BAN_SEQ DESC
+</select>
+
 </mapper>

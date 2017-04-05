@@ -89,4 +89,34 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.selectList(statement,item);
 	}
 
+	@Override
+	public List<CeoMypageDto> do_select_mainbanner(HashMap<String, String> map) {
+		String statement = namespace+".do_select_mainbanner";
+		return sqlSession.selectList(statement,map);
+	}
+
+	@Override
+	public List<CeoMypageDto> do_select_mainbanpt(List<Integer> seqlist) {
+		String statement = namespace+".do_select_mainbanpt";
+		return sqlSession.selectList(statement,seqlist);
+	}
+
+	@Override
+	public int do_insert_mainbanner(CeoMypageDto map) {
+		String statement = namespace+".do_insert_mainbanner";
+		return sqlSession.insert(statement,map);
+	}
+
+	@Override
+	public List<Integer> do_select_banseq(List<Integer> seqlist) {
+		String statement = namespace+".do_select_banseq";
+		return sqlSession.selectList(statement,seqlist);
+	}
+
+	@Override
+	public int do_insert_banpt(HashMap<String, String> map) {
+		String statement = namespace+".do_insert_banpt";
+		return sqlSession.insert(statement,map);
+	}
+
 }

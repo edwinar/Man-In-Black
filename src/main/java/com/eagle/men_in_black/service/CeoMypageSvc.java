@@ -17,4 +17,9 @@ public interface CeoMypageSvc {
 	public int do_insert_product_photo(List<HashMap<String, String>> map);
 	public int do_select_proseq();
 	public List<String> do_search_subitem(String item);
+	public List<CeoMypageDto> do_select_mainbanner(HashMap<String, String> map);
+	public List<CeoMypageDto> do_select_mainbanpt(List<Integer> seqlist);
+	public int do_insert_mainbanner(List<CeoMypageDto> map);
+	public List<Integer> do_select_banseq(List<Integer> seqlist);
+	public int do_insert_banpt(List<HashMap<String, String>> map);
 }

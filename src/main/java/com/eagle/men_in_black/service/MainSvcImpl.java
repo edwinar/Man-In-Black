@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -123,6 +124,12 @@ public class MainSvcImpl implements MainSvc {
 	public int do_join_MIB(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return mainDao.do_join_MIB(map);
+	}
+
+	@Override
+	public List<MainDto> do_select_banner() {
+		// TODO Auto-generated method stub
+		return mainDao.do_select_banner();
 	}
 
 	

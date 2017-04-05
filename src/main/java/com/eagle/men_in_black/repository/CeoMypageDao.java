@@ -26,4 +26,14 @@ public interface CeoMypageDao {
 	public int do_select_proseq();
 	
 	public List<String> do_search_subitem(String item);
+	
+	public List<CeoMypageDto> do_select_mainbanner(HashMap<String, String> map);
+	
+	public List<CeoMypageDto> do_select_mainbanpt(List<Integer> seqlist);
+	
+	public int do_insert_mainbanner(CeoMypageDto map);
+	
+	public List<Integer> do_select_banseq(List<Integer> seqlist);
+	
+	public int do_insert_banpt(HashMap<String, String> map);
 }
