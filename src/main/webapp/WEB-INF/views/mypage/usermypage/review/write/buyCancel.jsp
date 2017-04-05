@@ -242,10 +242,13 @@
         var formData = new FormData();
 
         var commend = document.getElementsByName('commend').value;
+        
         alert('커맨드 = '+ commend);
+        
         if ('교환' == commend){
             formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
             formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
+          
 
         }else if ('반품' == commend){
             formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
@@ -253,11 +256,15 @@
 
         }else if ('취소' == commend){
             formData.append("CA_ACCOUNT", $("input[name=CA_ACCOUNT]").val());
-
+           
         }
+      
+        
         formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
         formData.append("commend", $("input[name=commend]").val());
-
+        alert('RE_REASON = '+ $("textarea[name=RE_REASON]").val());
+        alert('RE_OPTION = '+ $("textarea[name=RE_OPTION]").val());
+        alert('CA_ACCOUNT = '+ $("input[name=CA_ACCOUNT]").val());
 
 
 
