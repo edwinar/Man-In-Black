@@ -56,7 +56,8 @@ td, th {
 						<th>번호</th>
 						<th>이미지</th>
 						<th>상품정보</th>
-						<th>가격</th>
+						<th>수량</th>
+						<th>가격</th>	
 					</tr>
 					<%
 						if (basketlist == null || basketlist.size() == 0) {
@@ -80,10 +81,12 @@ td, th {
 						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><img alt="not found" src="../images/LOVE.jpg"
 							style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
-						<td rowspan="2" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>
+						<td rowspan="2" id="num<%=i%>"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
+						<td rowspan="1" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>
 					</tr>
 					<tr>
 						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR()%></td>
+						<td>총:<%=basketlist.get(i).getPRO_PRICE()*basketlist.get(i).getBAS_PRO_NUM()%></td>
 					</tr>
 					<%
 						}
@@ -134,7 +137,7 @@ td, th {
 
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
-				b += Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
+				b += Number(Number(document.getElementById('num'+[n]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[n]).childNodes[0].nodeValue));
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -145,7 +148,8 @@ td, th {
 				}
 
 			} else if (document.f1.elements[n].checked == false) {
-				b -= Number(document.getElementById('price'+[n]).childNodes[0].nodeValue);
+				b -= Number(Number(document.getElementById('num'+[n]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[n]).childNodes[0].nodeValue));
+					/* Number(document.getElementById('price'+[n]).childNodes[0].nodeValue) */;
 				document.getElementById('pay').value = b;
 				if (b < 50000) {
 					document.getElementById('top').value = b + 2500;
@@ -167,7 +171,7 @@ td, th {
 				}
 				for (var i =0 ; i < list; i++) {
 					if (document.f1.elements[i].checked == true) {
-						b += Number(document.getElementById('price'+[i]).childNodes[0].nodeValue);
+						b += Number(Number(document.getElementById('num'+[i]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[i]).childNodes[0].nodeValue));
 						document.getElementById('pay').value = b;
 						if (b < 50000) {
 							document.getElementById('tag').value = 2500;
