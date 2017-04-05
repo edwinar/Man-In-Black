@@ -83,59 +83,68 @@
 				</a></li>
 				<li class="dropdown"><a href="category.mib?ITEM=OUTER"
 					class="dropdown-toggle" role="button" aria-expanded="false">OUTER</a>
+					<ul class="dropdown-menu" role="menu">
+					<%
 					
-					<%for(int i=0; i<subitemheader.size();i++){ 
+						for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("OUTER")){
-					%>	<ul class="dropdown-menu" role="menu">
+					%>	
+						
 						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
-						</ul>
+						
 					<%} 
 					}%>
+					</ul>
 					</li>
 				<li class="dropdown"><a href="category.mib?ITEM=TOP"
 					class="dropdown-toggle" role="button" aria-expanded="false">TOP</a>
-					
+					<ul class="dropdown-menu" role="menu">
+						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("TOP")){
-					%>	<ul class="dropdown-menu" role="menu">
-						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
-						</ul>
+					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						
 					<%} 
 					}%>
+					</ul>
 					</li>
 				<li class="dropdown"><a href="category.mib?ITEM=PANTS"
 					class="dropdown-toggle" role="button" aria-expanded="false">PANTS</a>
-					
-						<%for(int i=0; i<subitemheader.size();i++){ 
-						if(subitemheader.get(i).getITEM().equals("PANTS")){
-					%>	
 						<ul class="dropdown-menu" role="menu">
+						<%
+						for(int i=0; i<subitemheader.size();i++){ 
+						if(subitemheader.get(i).getITEM().equals("PANTS")){
+						%>	
+						
 						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						
+						<%} 
+						}%>
 						</ul>
-					<%} 
-					}%>
 					</li>
 				<li class="dropdown"><a href="category.mib?ITEM=SHOES"
 					class="dropdown-toggle" role="button" aria-expanded="false">SHOES</a>
-					
+					<ul class="dropdown-menu" role="menu">
+						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("SHOES")){
-					%>	<ul class="dropdown-menu" role="menu">
-						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
-						</ul>
+					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						
 					<%} 
 					}%>
+					</ul>
 					</li>
 				<li class="dropdown"><a href="category.mib?ITEM=BAGnACC"
 					class="dropdown-toggle" role="button" aria-expanded="false">BAG&ACC</a>
-					
+					<ul class="dropdown-menu" role="menu">
+						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("BAGnACC")){
-					%>	<ul class="dropdown-menu" role="menu">
-						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
-						</ul>
+					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						
 					<%} 
 					}%>
+					</ul>
 					</li> <br>
 
 			</div>

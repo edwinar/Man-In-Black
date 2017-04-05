@@ -184,11 +184,26 @@ public class UserMypageDaoImpl implements UserMypageDao {
 	}
 
 	@Override
+
+	public int do_update_review(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_review";
+		return sqlSession.update(statement, map);
+	}
+
+	@Override
+	public int do_update_reviewphoto(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_reviewphoto";
+		return sqlSession.update(statement, map);
+	}
+	
+	
+
 	public UserMypageDto do_search_qnadetail(String qna_seq) {
 		String statement = namespace+".do_search_qnadatail";
 
 		return sqlSession.selectOne(statement,qna_seq);
 	}
+
 
 
 }

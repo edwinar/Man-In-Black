@@ -543,7 +543,7 @@ WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
 <!-- 리뷰읽기  -->
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
-SELECT A.REV_SEQ REV_SEQ,
+SELECT A.REV_SEQ,
 A.REV_TITLE,
 A.REV_CONTENT,
 A.REV_TIME,
@@ -559,6 +559,25 @@ ON A.REV_SEQ = B.REV_SEQ
 WHERE A.REV_SEQ=#{REV_SEQ}
 </select>
 
+
+<update id="do_update_review" parameterType="hashmap" >
+UPDATE REVIEW
+SET 
+REV_TITLE   = #{REV_TITLE}
+,REV_CONTENT = #{REV_CONTENT}
+,SCORE       = #{SCORE}
+WHERE REV_SEQ = #{REV_SEQ}
+</update>
+
+<update id="do_update_reviewphoto" parameterType="hashmap" >
+UPDATE PHOTO
+SET
+STORED_NAME   =  #{STORED_FILE_NAME}
+,ORIGINAL_NAME = #{ORIGINAL_FILE_NAME}
+WHERE REV_SEQ  =   #{REV_SEQ}
+
+</update>
+
     <!-- qna 상세  -->
     <select id="do_search_qnadatail" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
         <![CDATA[
@@ -567,6 +586,7 @@ WHERE A.REV_SEQ=#{REV_SEQ}
         WHERE QNA_SEQ = #{QNA_SEQ}
 ]]>
     </select>
+
 
 
 
