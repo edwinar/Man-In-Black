@@ -160,17 +160,12 @@ public class DetailController {
 	@RequestMapping(value="BuyPopAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 	public @ResponseBody String AddBasket(HttpServletRequest res) throws Exception{
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-		System.out.println("============="+res.getParameter("PRO_SEQ"));
-		System.out.println("============="+res.getParameter("PRO_SIZE"));
-		System.out.println("============="+res.getParameter("COLOR"));
-		System.out.println("============="+res.getParameter("BAS_PRO_NUM"));
 		// form에서 넘어온 input
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
 		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
 		String COLOR = (res.getParameter("COLOR")==null || res.getParameter("COLOR")=="")?"":res.getParameter("COLOR");
 		int BAS_PRO_NUM = Integer.parseInt((res.getParameter("BAS_PRO_NUM")==null || res.getParameter("BAS_PRO_NUM")=="")?"":res.getParameter("BAS_PRO_NUM"));
-		
-		System.out.println("============="+PRO_SEQ+PRO_SIZE+COLOR+BAS_PRO_NUM);
+
 		// 이걸로먼저 review table에 인설트
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("PRO_SEQ", PRO_SEQ);
@@ -180,6 +175,31 @@ public class DetailController {
 		map.put("BAS_PRO_NUM", BAS_PRO_NUM);
 		
 		int result = detailSvc.do_addBasket(map);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	//관리자 리뷰 답글 아작스
+	@RequestMapping(value="ReviewReplyAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+	public @ResponseBody String ReviewReplyAjax(HttpServletRequest res) throws Exception{
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		// form에서 넘어온 input
+		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+		String REV_TITLE = (res.getParameter("REV_TITLE")==null || res.getParameter("REV_TITLE")=="")?"":res.getParameter("REV_TITLE");
+		String REV_CONTENT = (res.getParameter("REV_CONTENT")==null || res.getParameter("REV_CONTENT")=="")?"":res.getParameter("REV_CONTENT");
+		int REV_REF = Integer.parseInt((res.getParameter("REV_REF")==null || res.getParameter("REV_REF")=="")?"":res.getParameter("REV_REF"));
+		
+		// 이걸로먼저 review table에 인설트
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("PRO_SEQ", PRO_SEQ);
+		map.put("USER_ID", userdto.getUSER_ID());
+		map.put("REV_TITLE", REV_TITLE);
+		map.put("REV_CONTENT", REV_CONTENT);
+		map.put("REV_REF", REV_REF);
+		
+		int result = detailSvc.do_insertReviewAdmReply(map);
 		
 		Gson gson = new Gson();
 		

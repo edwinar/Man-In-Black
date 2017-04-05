@@ -64,4 +64,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_addBasket(HashMap<String, Object> map) {
 		return detailDao.do_addBasket(map);
 	}
+
+	@Override
+	public int do_insertReviewAdmReply(HashMap<String, Object> map) {
+		return detailDao.do_insertReviewAdmReply(map);
+	}
 }

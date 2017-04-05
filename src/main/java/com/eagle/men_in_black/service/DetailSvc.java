@@ -26,4 +26,6 @@ public interface DetailSvc {
 	public String do_buyProductStockPop(HashMap<String, Object> map);
 	//장바구니 추가
 	public int do_addBasket(HashMap<String, Object> map);
+	//관리자 리뷰 답글 달기
+	public int do_insertReviewAdmReply(HashMap<String, Object> map);
 }
