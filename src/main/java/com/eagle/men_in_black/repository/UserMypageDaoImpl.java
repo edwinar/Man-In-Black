@@ -182,4 +182,18 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.selectOne(statement, REV_SEQ);
 	
 	}
+
+	@Override
+	public int do_update_review(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_review";
+		return sqlSession.update(statement, map);
+	}
+
+	@Override
+	public int do_update_reviewphoto(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_reviewphoto";
+		return sqlSession.update(statement, map);
+	}
+	
+	
 }

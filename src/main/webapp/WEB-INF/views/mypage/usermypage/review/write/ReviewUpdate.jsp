@@ -69,7 +69,7 @@
    String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
-
+<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
 	<form id="f1" action="reviewWrite.mib" method="post"
 		enctype="multipart/form-data">
 		<div class="layout">
@@ -90,7 +90,7 @@
 			</div>
 
 			<div class="rightLayout">
-					<input type="hidden" value="<%=detailDto.getSCORE()%>" class="sc">
+					<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
 						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
@@ -112,8 +112,9 @@
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title" value="<%=detailDto.getREV_TITLE()%>"><input type="hidden"
-							name="DEL_SEQ" value="<%=DEL_SEQ%>">
+						제목 : <input type="text" name="title" value="<%=detailDto.getREV_TITLE()%>">
+						<input type="hidden"name="DEL_SEQ" value="<%=DEL_SEQ%>">
+						<input type="hidden"name="REV_SEQ" value="<%=detailDto.getREV_SEQ()%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
@@ -142,34 +143,54 @@
 
 
 	<script type="text/javascript">
-		var sc = $(".sc").val;
+		var sc = $(".scqqq").val();
 		var score = 0;
 		
-		if(sc=1){$("#star1").attr("src", "../images/scoreFull.png");
-		$("#star2").attr("src", "../images/scoreEmpty.png");
-		$("#star3").attr("src", "../images/scoreEmpty.png");
-		$("#star4").attr("src", "../images/scoreEmpty.png");
-		$("#star5").attr("src", "../images/scoreEmpty.png");
-		score = 1;
-		$("#score").val(score);
-		}else if(sc=2){$("#star1").attr("src", "../images/scoreFull.png");
-		$("#star2").attr("src", "../images/scoreFull.png");
-		$("#star3").attr("src", "../images/scoreEmpty.png");
-		$("#star4").attr("src", "../images/scoreEmpty.png");
-		$("#star5").attr("src", "../images/scoreEmpty.png");
-		score = 2;
-		$("#score").val(score);
-		}else if(sc=3){$("#star1").attr("src", "../images/scoreFull.png");
-		$("#star2").attr("src", "../images/scoreFull.png");
-		$("#star3").attr("src", "../images/scoreFull.png");
-		$("#star4").attr("src", "../images/scoreEmpty.png");
-		$("#star5").attr("src", "../images/scoreEmpty.png");
-		score = 3;
-		$("#score").val(score);
-		}else if(sc=4){$("#star4").click(function();
-		}else if(sc=5){$("#star5").click(function();
+		if(sc==1){
+			$("#star1").attr("src", "../images/scoreFull.png");
+			$("#star2").attr("src", "../images/scoreEmpty.png");
+			$("#star3").attr("src", "../images/scoreEmpty.png");
+			$("#star4").attr("src", "../images/scoreEmpty.png");
+			$("#star5").attr("src", "../images/scoreEmpty.png");
+			score = 1;
+			$("#score").val(score);
+			
+		}else if(sc==2){
+			$("#star1").attr("src", "../images/scoreFull.png");
+			$("#star2").attr("src", "../images/scoreFull.png");
+			$("#star3").attr("src", "../images/scoreEmpty.png");
+			$("#star4").attr("src", "../images/scoreEmpty.png");
+			$("#star5").attr("src", "../images/scoreEmpty.png");
+			score = 2;
+			$("#score").val(score);
+			
+		}else if(sc==3){
+			$("#star1").attr("src", "../images/scoreFull.png");
+			$("#star2").attr("src", "../images/scoreFull.png");
+			$("#star3").attr("src", "../images/scoreFull.png");
+			$("#star4").attr("src", "../images/scoreEmpty.png");
+			$("#star5").attr("src", "../images/scoreEmpty.png");
+			score = 3;
+			$("#score").val(score);
+			
+		}else if(sc==4){
+			$("#star1").attr("src", "../images/scoreFull.png");
+			$("#star2").attr("src", "../images/scoreFull.png");
+			$("#star3").attr("src", "../images/scoreFull.png");
+			$("#star4").attr("src", "../images/scoreFull.png");
+			$("#star5").attr("src", "../images/scoreEmpty.png");
+			score = 4;
+			$("#score").val(score);
+			
+		}else if(sc==5){
+			$("#star1").attr("src", "../images/scoreFull.png");
+			$("#star2").attr("src", "../images/scoreFull.png");
+			$("#star3").attr("src", "../images/scoreFull.png");
+			$("#star4").attr("src", "../images/scoreFull.png");
+			$("#star5").attr("src", "../images/scoreFull.png");
+			score = 5;
+			$("#score").val(score);
 		}
-		
 		
 		
 		$(function() {
@@ -252,16 +273,26 @@
 		};
 		
 		function closeSelf(){
+			
 			var formData = new FormData();
+		
 			formData.append("title", $("input[name=title]").val()); 
 			formData.append("content", $("input[name=content]").val()); 
 			formData.append("score", $("input[name=score]").val()); 
+			alert($("#onefile").val());
+			if($("#onefile")==null){
+				formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
+				formData.append("REV_SEQ", $("input[name=REV_SEQ]").val());	
+				
+			}else{
 			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
 			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
-
+			formData.append("REV_SEQ", $("input[name=REV_SEQ]").val());
+			}
+			
 			$.ajax({
 	 			type : "POST",
-	 			url : "reviewWrite.mib",
+	 			url : "reviewUpdate.mib",
 	 			async : true,
 	 			dataType : "html",
 	 			data : formData,
@@ -273,8 +304,8 @@
 	 				
 	 				if(flag.result=='OK'){
 	 					window.close();
-	 					opener.parent.location.reload();
-	 				}else{
+	 					opener.parent.location.close();
+	 				}else if(flag.result=='NO'){
 	 					alert("리뷰등록실패");
 	 				}
 	 			},
