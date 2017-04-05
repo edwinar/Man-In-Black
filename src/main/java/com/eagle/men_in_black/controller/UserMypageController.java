@@ -464,7 +464,8 @@ public class UserMypageController {
 
 		                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-		                storedFileName = getRandomString() + originalFileExtension;
+		                storedFileName = "../images/" + getRandomString() + originalFileExtension;
+		              
 
 		                // 첨부한 파일 생성 
 		                file = new File(filePath + storedFileName);
@@ -557,7 +558,7 @@ public class UserMypageController {
 
 			                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-			                storedFileName = getRandomString() + originalFileExtension;
+			                storedFileName = "../images/"+ getRandomString() + originalFileExtension;
 
 			                // 첨부한 파일 생성
 			                file = new File(filePath + storedFileName);

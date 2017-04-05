@@ -112,13 +112,12 @@
 
 
     </div>
-    <br>
-
+<center>
     <input class="btn btn-success" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
     <input class="btn btn-primary" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
     <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
     <input type="hidden" name="commend" value="">
-
+</center>
 
 </form>
 
@@ -138,8 +137,8 @@
         inputBox.innerHTML = "";
 
         if (commend == '교환') {
-            strInput = "<label style='width: 50%;height: 20%'>교환받을 옵션<textarea class='form-control' name='RE_OPTION' style='height: 100%;resize: none; wrap:hard;'> </textarea></label><br><br>" +
-                "<label style='width: 50%;height: 20%'>교환 사유<textarea class='form-control' name='RE_REASON' rows='10' style='height: 100%;resize: none; wrap:hard;'> </textarea> <br>";
+            strInput = "<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' name='RE_OPTION' rows='10'> </textarea></div>" +
+                "<div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' name='RE_REASON' rows='10'> </textarea></div>";
 
         } else if (commend == '반품') {
             strInput = "<div><label>반품 사유<textarea class='form-control' name='RE_REASON' rows='10' style='resize: none; wrap:hard;'> </textarea>" +
