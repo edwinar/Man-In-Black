@@ -704,7 +704,7 @@ public class UserMypageController {
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Myboard_Review");
 		mav.addObject("reviewlist",reviewlist);
 
-
+*/
 	@RequestMapping("qnadetail.mib")
 	public ModelAndView qnadetail(HttpServletRequest res, HttpServletResponse rep){
 		String QNA_SEQ =  res.getParameter("QNA_SEQ");
@@ -715,7 +715,7 @@ public class UserMypageController {
 		mav.addObject("qnaDto",qnaDto);
 		return mav;
 		
-	}*/
+	}
 
 
 	
