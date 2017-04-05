@@ -37,9 +37,8 @@ public class MainController {
 		ModelAndView mav = new ModelAndView("main/Main");
 		
 		List<MainDto> subitemheader = mainSvc.do_select_subitemheader();
-		if(res.getSession().getAttribute("subitemheader")==null){
 		res.getSession().setAttribute("subitemheader", subitemheader);
-		}
+		
 		
 		List<MainDto> list = mainSvc.do_select_banner(); // 베너 이미지 
 		List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");

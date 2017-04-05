@@ -191,7 +191,7 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_select_review(REV_SEQ);
 	}
 
-<<<<<<< HEAD
+
 
 	@Override
 	public int do_update_review(HashMap<String, Object> map) {
@@ -204,10 +204,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 	public int do_update_reviewphoto(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_reviewphoto(map);
-=======
+	}
+
 	@Override
 	public UserMypageDto do_search_qnadetail(String qna_seq) {
 		return userMypageDao.do_search_qnadetail(qna_seq);
->>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
+
 	}
 }
