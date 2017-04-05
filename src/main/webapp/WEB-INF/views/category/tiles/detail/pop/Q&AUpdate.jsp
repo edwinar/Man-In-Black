@@ -10,6 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::Q&AUpdate:::</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <style type="text/css">
 .layout{
 	width: 790px;
@@ -30,7 +32,7 @@
 
 <div class="layout">
 	<div class="thumbnail">
-		<form>
+		<form id="form1">
 		<div align="center" style="height: 15%;">
 			<h3>Q&A 수정</h3>
 		</div>
@@ -39,9 +41,9 @@
 			<div style="float: left; width: 50%; height: 100%;" align="left">
 				<p style="margin-left: 30px;">
 				공개설정 : 
-				<select name=secret size=1>
+				<select name=secret size=1 id="secret">
 				
-			        <option  value=""  selected="selected"><%=qnaDto.getQNA_OPEN()%></option>	   
+			        <option  value="<%=qnaDto.getQNA_OPEN()%>"  ><%=qnaDto.getQNA_OPEN()%></option>	   
 			        <option value="공개">공개</option>
 			        <option value="비공개">비공개</option>
 		    	</select>
@@ -50,8 +52,8 @@
 			<div style="float: right; width: 50%; height: 100%;" align="left">
 				<p style="margin-left: 30px;">
 				문의설정 : 
-				<select name=secretz size=1>
-			        <option value="" selected="selected" ><%=qnaDto.getQNA_TYPE()%></option>
+				<select name=secretz size=1 id="secretz">
+			        <option value="<%=qnaDto.getQNA_TYPE()%>"><%=qnaDto.getQNA_TYPE()%></option>
 			        <option value="배송문의">배송문의</option>
 			        <option value="상품/교환/환불문의">상품/교환/환불문의</option>
 		    	</select>
@@ -91,7 +93,7 @@
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
 			
-				<button style="width: 50%; height: 100%;" onclick="update()">수정저장</button>
+				<button style="width: 50%; height: 100%;" onclick="update()" type="button">수정저장</button>
 				
 			</div>
 			<div style="float: right; width: 50%;">
@@ -104,13 +106,12 @@
 
 <script type="text/javascript">
 function update() {
-	alert("ㅇㅅㅇ");
 
-var secretz = $("#secretz").val();
-var secret = $("#secret").val();
 var QNA_SEQ =$("#QNA_SEQ").val();
 var title = $("#title").val();
 var QNA_CONTENT= $("#QNA_CONTENT").val();
+var secretz = $("#secretz").find(":selected").val();
+var secret = $("#secret").find(":selected").val();
 
 
 $.ajax({

@@ -853,9 +853,13 @@ public class UserMypageController {
 			String QNA_TITLE = res.getParameter("title");
 			String QNA_CONTENT = res.getParameter("QNA_CONTENT");
 			
-			System.out.println("=============================="+QNA_SEQ);
+			//System.out.println("=============================="+QNA_SEQ);
+			//System.out.println("=============================="+QNA_OPEN);
+		    //System.out.println("=============================="+QNA_TYPE);
+			//System.out.println("=============================="+QNA_TITLE);
+			//System.out.println("=============================="+QNA_CONTENT);
 
-			update.put("QNA_SEQ",QNA_SEQ);
+			update.put("QNA_SEQ",Integer.parseInt(QNA_SEQ));
 			update.put("QNA_OPEN",QNA_OPEN);
 			update.put("CA_REASON",QNA_TYPE);
 			update.put("QNA_TITLE",QNA_TITLE);
