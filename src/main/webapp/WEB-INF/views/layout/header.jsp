@@ -51,7 +51,7 @@
  %> <a href="mymain.mib">마이페이지</a> <%
  	}
  	} else {
- %> <a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a>
+ %> <a href="mib_SignUp.mib">회원가입</a>
 						<%
 							}
 						%>
