@@ -3,6 +3,7 @@ package com.eagle.men_in_black.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -244,14 +245,24 @@ public class DetailController {
 	}
 	
 	@RequestMapping("Detail_Buy_Info.mib")
-	public ModelAndView Detail_Buy_Info() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
-
+	public ModelAndView Detail_Buy_Info(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail_Buy_Info");
-		mav.addObject("msg", "김옥지");
+		
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		
+		String BAS_SEQ = (String)res.getParameter("BAS_SEQ");
+		String str[] = BAS_SEQ.split(",");
+		List<Integer> list= new ArrayList<>();
+		for(int i=0; i<str.length; i++){
+			list.add(Integer.parseInt(str[i]));
+		}
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("USER_ID", userdto.getUSER_ID());
+		map.put("list", list);
+		
+		List<DetailDto> basketList = detailSvc.do_selectFinalBuy(map);
+		mav.addObject("basketList", basketList);
 
 		return mav;
 	}

@@ -167,4 +167,24 @@ FROM QNA
 WHERE QNA_SEQ=#{QNA_SEQ}
 </select> -->
 
+<select id="do_selectFinalBuy" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
+SELECT A.PRO_SEQ
+	, B.PRO_NAME
+	, B.PRO_PRICE
+	, A.PRO_SIZE
+	, A.COLOR
+	, C.STORED_NAME
+	, A.BAS_PRO_NUM
+FROM BASKET A INNER JOIN PRODUCT B
+ON A.PRO_SEQ = B.PRO_SEQ
+INNER JOIN PHOTO C
+ON A.PRO_SEQ = C.PRO_SEQ 
+WHERE C.STORED_NAME LIKE '%MAIN%' AND
+A.USER_ID = #{USER_ID} AND A.BAS_SEQ IN 
+	<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item.value}
+	</foreach>
+ORDER BY A.BAS_SEQ DESC
+</select>
+
 </mapper>

@@ -1,6 +1,13 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
+<%@page import="com.eagle.men_in_black.model.DetailDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	List<DetailDto> basketList = (List<DetailDto>)request.getAttribute("basketList");
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -96,35 +103,29 @@ function buy() {
 					<th>가격</th>
 				</tr>
 				
-				<tr>
-					<td rowspan="2">1번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
-					</td>
-					<td>창거니가 어제 입던 양말</td>
-					<td>수량 : 1개</td>
-					<td>10000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-					<td>상품 합계</td>
-					<td>10000 Won</td>
-				</tr>
+				<%
+					for(int i=0;i<basketList.size();i++){
+						int count = i+1;
+				%>
+					<tr>
+						<td rowspan="2"><%=count %>번</td>
+						<td rowspan="2">
+							<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+						</td>
+						<td><%=basketList.get(i).getPRO_NAME() %></td>
+						<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
+						<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
+					</tr>
+					<tr>
+						<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
+						<td>상품 합계</td>
+						<td><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+					</tr>
+				<%
+					}
+				%>
 				
-				<tr>
-					<td rowspan="2">2번</td>
-					<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
-					</td>
-					<td>창거니가 어제 입던 양말</td>
-					<td>수량 : 1개</td>
-					<td>10000 Won</td>
-				</tr>
-				<tr>
-					<td>SIZE:L, COLOR: green</td>
-					<td>상품 합계</td>
-					<td>10000 Won</td>
-				</tr>
+				
 			</table>
 		</form>
 	</div>
@@ -141,30 +142,30 @@ function buy() {
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td colspan="2" id="orderName">황인배</td>
+					<td colspan="2" id="orderName"><%=dto.getUSER_NAME() %></td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td colspan="2" id="orderEmail">hinbae2002@naver.com</td>
+					<td colspan="2" id="orderEmail"><%=dto.getEMAIL() %></td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
-					<td colspan="2" id="orderPhone">010-7536-7209</td>
+					<td colspan="2" id="orderPhone"><%=dto.getTEL() %></td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" readonly="readonly" id="orderNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" readonly="readonly" id="orderNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
+						<input type="text" size="10px" readonly="readonly" id="orderNum_1" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_1"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_1" value="<%=dto.getADDRESS() %>"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_2"/>
+						<input type="text" size="42px" readonly="readonly" id="orderAddress_2" value="<%=dto.getDETAILADDRESS() %>"/>
 					</td>
 				</tr>
 			</table>
@@ -194,7 +195,7 @@ function buy() {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum_1"/>&nbsp&nbsp&nbsp-&nbsp&nbsp&nbsp<input type="text" size="10px" id="receiveNum_2"/>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum_1" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>

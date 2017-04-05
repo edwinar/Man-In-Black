@@ -93,4 +93,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectQnADetail";
 		return sqlSession.selectOne(statement, QNA_SEQ);
 	}*/
+	
+	@Override
+	public List<DetailDto> do_selectFinalBuy(HashMap<String, Object> map) {
+		String statement = namespace+".do_selectFinalBuy";
+		return sqlSession.selectList(statement, map);
+	}
 }

@@ -79,4 +79,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public DetailDto do_selectQnADetail(int QNA_SEQ) {
 		return detailDao.do_selectQnADetail(QNA_SEQ);
 	}*/
+	
+	@Override
+	public List<DetailDto> do_selectFinalBuy(HashMap<String, Object> map) {
+		return detailDao.do_selectFinalBuy(map);
+	}
 }
