@@ -129,6 +129,12 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.selectOne(statement,seq);
 	}
 
+	@Override
+	public int check_coupon(HashMap<String, String> map) {
+		String statement = namespace+".check_coupon";
+		return sqlSession.selectOne(statement,map);
+	}
+
 	
 	
 	

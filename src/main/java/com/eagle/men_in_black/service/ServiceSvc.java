@@ -24,4 +24,5 @@ public interface ServiceSvc {
 	public int do_inser_coupt(ServiceDto dto);
 	public List<ServiceDto> do_select_couplist();
 	public ServiceDto do_selelct_coupdt(int seq);
+	public int check_coupon(HashMap<String, String> map);
 }

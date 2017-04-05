@@ -700,8 +700,38 @@ public class CeoMypageController {
 				return gson.toJson(resultMap);
 
 			}
+			
+			// 공지사항 글쓰기 
+			@RequestMapping("notiwri.mib")
+				public ModelAndView notiwri(HttpServletRequest res) {
+
+				ModelAndView mav = new ModelAndView("/service/noticewrite");
+					
+					
+					return mav;
+
+				}
 	
-	
+			// 이벤트 글쓰기 
+			@RequestMapping("eventwri.mib")
+				public ModelAndView eventwri(HttpServletRequest res) {
+
+				ModelAndView mav = new ModelAndView("/service/eventwrite");
+								
+								
+					return mav;
+
+			}
+			// 쿠폰 등록 글쓰기 
+			@RequestMapping("couwri.mib")
+			public ModelAndView couwri(HttpServletRequest res) {
+
+							ModelAndView mav = new ModelAndView("/service/couponwrite");
+											
+											
+								return mav;
+
+			}
 }
 	
 	

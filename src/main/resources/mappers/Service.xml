@@ -175,7 +175,8 @@
     	COUP_TIME,
     	COUP_LIMIT,
     	COUP_USE,
-    	USER_ID
+    	USER_ID,
+    	COUP_RECV
  	 )
  	 VALUES
   	(
@@ -186,7 +187,8 @@
     	SYSDATE,
     	#{COUP_LIMIT},
     	'가능',
-    	#{USER_ID}
+    	#{USER_ID},
+    	#{COUP_RECV}
  	)
 	</insert>
 
@@ -244,6 +246,9 @@ FROM COUPON
 WHERE COUP_SEQ = #{seq}
 </select>
 
+<select id="check_coupon" parameterType="hashmap" resultType="int">
+select count(*) from COUPON where USER_ID=#{userid} and COUP_RECV=#{seq}
+</select>
 
 </mapper>
 
