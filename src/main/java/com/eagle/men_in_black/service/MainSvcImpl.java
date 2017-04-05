@@ -132,6 +132,12 @@ public class MainSvcImpl implements MainSvc {
 		return mainDao.do_select_banner();
 	}
 
+	@Override
+	public List<MainDto> do_select_bestItem(String ITEM) {
+		// TODO Auto-generated method stub
+		return mainDao.do_select_bestItem(ITEM);
+	}
+
 	
 
 

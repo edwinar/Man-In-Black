@@ -41,6 +41,12 @@ public class MainDaoImpl implements MainDao {
 		return sqlSession.selectList(statement);
 	}
 
+	@Override
+	public List<MainDto> do_select_bestItem(String ITEM) {
+		String statement = namespace+".do_select_bestItem";
+		return sqlSession.selectList(statement,ITEM);
+	}
+
 	
 
 }

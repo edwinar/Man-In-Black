@@ -18,5 +18,7 @@ public interface MainSvc {
 	public int do_join_MIB(HashMap<String, String> map);
 	
 	public List<MainDto> do_select_banner();
+	
+	public List<MainDto> do_select_bestItem(String ITEM);
 
 }
