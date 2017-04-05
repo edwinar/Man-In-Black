@@ -559,7 +559,7 @@ ON A.REV_SEQ = B.REV_SEQ
 WHERE A.REV_SEQ=#{REV_SEQ}
 </select>
 
-<<<<<<< HEAD
+
 <update id="do_update_review" parameterType="hashmap" >
 UPDATE REVIEW
 SET 
@@ -577,7 +577,7 @@ STORED_NAME   =  #{STORED_FILE_NAME}
 WHERE REV_SEQ  =   #{REV_SEQ}
 
 </update>
-=======
+
     <!-- qna 상세  -->
     <select id="do_search_qnadatail" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
         <![CDATA[
@@ -586,7 +586,7 @@ WHERE REV_SEQ  =   #{REV_SEQ}
         WHERE QNA_SEQ = #{QNA_SEQ}
 ]]>
     </select>
->>>>>>> branch 'master' of https://github.com/sistfers/Man-In-Black
+
 
 
 
