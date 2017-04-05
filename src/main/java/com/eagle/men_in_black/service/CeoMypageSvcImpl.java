@@ -98,6 +98,58 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_search_subitem(item);
 	}
 
+	@Override
+	public List<CeoMypageDto> do_select_mainbanner(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_mainbanner(map);
+	}
+
+	@Override
+	public List<CeoMypageDto> do_select_mainbanpt(List<Integer> seqlist) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_mainbanpt(seqlist);
+	}
+
+	@Override
+	public int do_insert_mainbanner(List<CeoMypageDto> map) {
+		List<CeoMypageDto> list = map;
+
+		 int sumNum = 0;
+		 
+	        for(int i=0, size=list.size(); i<size; i++){
+
+	        sumNum += ceoMypageDao.do_insert_mainbanner(list.get(i));
+
+	        }
+
+
+		
+		return sumNum;
+	}
+
+	@Override
+	public List<Integer> do_select_banseq(List<Integer> seqlist) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_banseq(seqlist);
+	}
+
+	@Override
+	public int do_insert_banpt(List<HashMap<String, String>> map) {
+		List<HashMap<String, String>> list = map;
+
+		 int sumNum = 0;
+		 
+	        for(int i=0, size=list.size(); i<size; i++){
+
+	        sumNum += ceoMypageDao.do_insert_banpt(list.get(i));
+
+	        }
+
+
+		
+		return sumNum;
+	}
+
 	
 	
 

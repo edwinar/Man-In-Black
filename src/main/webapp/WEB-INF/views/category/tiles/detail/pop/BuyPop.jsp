@@ -130,11 +130,9 @@ var bas_pro_num;
 	 				"COLOR" : color,
 	 				"BAS_PRO_NUM" : bas_pro_num
 	 			},
-	 			processData: false,
-	 			contentType: false,
 	 			success : function(data) {
-	 				console.log(PRO_SEQ+PRO_SIZE+COLOR+BAS_PRO_NUM);
 	 				var flag = $.parseJSON(data);
+	 				console.log(flag);
 	 				if(flag>0){
 	 					opener.location = 'basketlist.mib';
 	 					window.close();

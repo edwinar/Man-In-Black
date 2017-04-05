@@ -3,6 +3,7 @@ package com.eagle.men_in_black.controller;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class MainController {
 	public ModelAndView meninblack(){
 				
 		ModelAndView mav = new ModelAndView("main/Main");
+		
+		List<MainDto> list = mainSvc.do_select_banner();
+		mav.addObject("list", list);
 		return mav;
 		
 	}

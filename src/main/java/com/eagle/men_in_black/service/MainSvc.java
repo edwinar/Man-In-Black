@@ -3,6 +3,7 @@ package com.eagle.men_in_black.service;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 
 import com.eagle.men_in_black.model.MainDto;
 
@@ -15,5 +16,7 @@ public interface MainSvc {
 	public MainDto do_search_email(String email);
 	//회원가입
 	public int do_join_MIB(HashMap<String, String> map);
+	
+	public List<MainDto> do_select_banner();
 
 }

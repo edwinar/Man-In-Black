@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.FileModel;
+import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
 import com.google.gson.Gson;
 
@@ -379,8 +380,20 @@ public class CeoMypageController {
 	
 	//메인 배너 등록
 	@RequestMapping("register_MainBanner.mib")
-	public ModelAndView register_MainBanner(){
+	public ModelAndView register_MainBanner(HttpServletRequest res){
 		ModelAndView mav = new ModelAndView("mypage/ceomypage/Register_MainBanner");
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		
+		HashMap<String, String> map= new HashMap<>();
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		
+		List<CeoMypageDto> list = ceoMypageSvc.do_select_mainbanner(map);
+		
+		mav.addObject("list", list);
+		
 		
 		return mav;
 	}
@@ -523,7 +536,171 @@ public class CeoMypageController {
 
 		}
 	
+	@RequestMapping("mainBPT.mib")
+	public ModelAndView mainBPT(HttpServletRequest res){
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/main/banner/MainBannerPT");
+		String PRO_SEQ_A = res.getParameter("PRO_SEQ_A"); 
+		String PRO_SEQ[] = PRO_SEQ_A.split(",");
+		
+		System.out.println(PRO_SEQ[0]);
+		
+		List<Integer> seqlist = new ArrayList<>();
+		for(int i=0;i<PRO_SEQ.length;i++){
+			seqlist.add(Integer.parseInt(PRO_SEQ[i]));
+		}
+		
+		List<CeoMypageDto> list =ceoMypageSvc.do_select_mainbanpt(seqlist);
+		
+		mav.addObject("list", list);
+		
+		return mav;
+	}
+	
+	// 자식창
+			@RequestMapping(value="mainbannerWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 
+			public @ResponseBody String mainbannerWrite(MultipartHttpServletRequest res) throws Exception{
+
+				MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+				// form에서 넘어온 input
+				String pro_seq0=(res.getParameter("pro_seq0")==null||res.getParameter("pro_seq0").equals(""))?"none":res.getParameter("pro_seq0");
+				String pro_seq1=(res.getParameter("pro_seq1")==null||res.getParameter("pro_seq1").equals(""))?"none":res.getParameter("pro_seq1");
+				String pro_seq2=(res.getParameter("pro_seq2")==null||res.getParameter("pro_seq2").equals(""))?"none":res.getParameter("pro_seq2");
+				
+				// 이걸로먼저 review table에 인설트
+				
+				//List<HashMap<String, String>> banlist = new ArrayList<>();
+				List<CeoMypageDto> banlist = new ArrayList<>();
+				List<Integer> proseqlist = new ArrayList<>(); 
+				
+				if(!pro_seq0.equals("none")){
+					HashMap<String, String> remap = new HashMap<>();
+					//remap.put("pro_seq0", pro_seq0);
+					CeoMypageDto dto = new CeoMypageDto();
+					dto.setPRO_SEQ(Integer.parseInt(pro_seq0));
+					banlist.add(dto);
+					proseqlist.add(Integer.parseInt(pro_seq0));
+				}
+				if(!pro_seq1.equals("none")){
+					HashMap<String, String> remap = new HashMap<>();
+					//remap.put("pro_seq1", pro_seq1);
+					CeoMypageDto dto = new CeoMypageDto();
+					dto.setPRO_SEQ(Integer.parseInt(pro_seq1));
+					banlist.add(dto);
+					proseqlist.add(Integer.parseInt(pro_seq1));
+				}
+				if(!pro_seq2.equals("none")){
+					HashMap<String, String> remap = new HashMap<>();
+					//remap.put("pro_seq2", pro_seq2);
+					CeoMypageDto dto = new CeoMypageDto();
+					dto.setPRO_SEQ(Integer.parseInt(pro_seq2));
+					banlist.add(dto);
+					proseqlist.add(Integer.parseInt(pro_seq2));
+				}
+				
+				System.out.println("프로시퀀스"+pro_seq0);
+				System.out.println("프로시퀀스"+pro_seq1);
+				System.out.println("프로시퀀스"+pro_seq2);
+				
+				System.out.println("리스트사이즈"+banlist.size());
+				
+				for(int i=0; i<banlist.size(); i++){
+					System.out.println("맵에저장된거" + banlist.get(i).getPRO_SEQ());
+				}
+				
+				
+				
+				int bannum = ceoMypageSvc.do_insert_mainbanner(banlist);
+				
+				
+				
+				
+				List<Integer> banseqlist = ceoMypageSvc.do_select_banseq(proseqlist);
+				HashMap<String, String> resultMap = new HashMap<>();
+				if(bannum>0){
+					// 사진 파일 부분
+
+					 Iterator<String> iterator = res.getFileNames();
+
+				        // 저장경로
+					 	HttpSession session = res.getSession();
+				        String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
+						//String root_path = System.getProperty("catalina.home");
+				        String attach_path = "images\\";
+						String filePath = root_path+attach_path;
+
+						//System.out.println("저장경로=========================================================================================="+filePath);
+
+				        MultipartFile multipartFile = null;
+
+				        String originalFileName = null;
+
+				        String originalFileExtension = null;
+
+				        String storedFileName = null;
+
+
+				        HashMap<String, String> listMap = null;
+				        List<HashMap<String, String>> banptlist = new ArrayList<>();
+
+				        File file = new File(filePath);
+				        // 폴더가없을경우 폴더생성
+				        if(file.exists() == false){
+
+				            file.mkdirs();
+
+				        }
+				        
+				        int w=0;
+				        while(iterator.hasNext()){
+				            multipartFile = res.getFile(iterator.next());
+
+				            if(multipartFile.isEmpty() == false){
+
+				                originalFileName = multipartFile.getOriginalFilename();
+
+				                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+				                storedFileName = getRandomString() + originalFileExtension;
+
+				                // 첨부한 파일 생성
+				                file = new File(filePath + storedFileName);
+
+				                multipartFile.transferTo(file);
+
+				                listMap = new HashMap<String,String>();
+
+				                listMap.put("ORIGINAL_FILE_NAME", originalFileName); //원래 파일이름
+
+				                listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
+				                
+				                listMap.put("BAN_SEQ", String.valueOf(banseqlist.get(w))); 
+				                
+				                banptlist.add(listMap);
+				             
+				                w++;
+				                
+				            }
+
+				        }
+				        int revp = ceoMypageSvc.do_insert_banpt(banptlist);
+
+						if(revp>0){
+							resultMap.put("result", "OK");
+						}
+					
+
+					
+				}
+
+
+				Gson gson = new Gson();
+
+
+				return gson.toJson(resultMap);
+
+			}
+	
 	
 }
 	

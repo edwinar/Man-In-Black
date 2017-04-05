@@ -160,6 +160,10 @@ public class DetailController {
 	@RequestMapping(value="BuyPopAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 	public @ResponseBody String AddBasket(HttpServletRequest res) throws Exception{
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		System.out.println("============="+res.getParameter("PRO_SEQ"));
+		System.out.println("============="+res.getParameter("PRO_SIZE"));
+		System.out.println("============="+res.getParameter("COLOR"));
+		System.out.println("============="+res.getParameter("BAS_PRO_NUM"));
 		// form에서 넘어온 input
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
 		String PRO_SIZE = (res.getParameter("PRO_SIZE")==null || res.getParameter("PRO_SIZE")=="")?"":res.getParameter("PRO_SIZE");
