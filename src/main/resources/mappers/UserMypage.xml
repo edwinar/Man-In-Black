@@ -597,6 +597,11 @@ QNA_TITLE   = #{QNA_TITLE}
 WHERE QNA_SEQ   = ${QNA_SEQ}
 </update>
 
+<delete id="do_delete_qna" parameterType="int" >
+DELETE
+FROM QNA
+WHERE QNA_SEQ   = #{QNA_SEQ}
+</delete>
 
     <delete id="do_delete_reviewList" parameterType="int" >
 

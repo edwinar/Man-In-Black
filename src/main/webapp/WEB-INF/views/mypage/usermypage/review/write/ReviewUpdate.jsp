@@ -34,39 +34,39 @@
 			margin-top: 10px;
 		}
 
-		.leftLayout {
-			float: left;
-			width: 49.5%;
-			height: 490px;
-			position: relative;
-			margin-left: 5px;
-		}
+.leftLayout {
+	float: left;
+	width: 49.5%;
+	height: 490px;
+	position: relative;
+	margin-left: 5px;
+}
 
-		.rightLayout {
-			float: right;
-			width: 49.5%;
-			height: 490px;
-			position: relative;
-		}
+.rightLayout {
+	float: right;
+	width: 49.5%;
+	height: 490px;
+	position: relative;
+}
 
-		.thumbnail {
-			width: 100%;
-			height: 490px;
-			text-align: center;
-		}
+.thumbnail {
+	width: 100%;
+	height: 490px;
+	text-align: center;
+}
 
-		.non {
-			border: none;
-			border-right: 0px;
-			border-top: 0px;
-			boder-left: 0px;
-			boder-bottom: 0px;
-		}
-	</style>
+.non {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom: 0px;
+}
+</style>
 </head>
 <body>
-<% String PRO_SEQ = request.getParameter("PRO_SEQ");
-	String DEL_SEQ = request.getParameter("DEL_SEQ");
+	<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
+   String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
 <input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
@@ -318,8 +318,8 @@
             }
         });
 
-    }
-
-</script> -->
+	}
+		
+	</script>
 </body>
 </html>

@@ -209,6 +209,12 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.update(statement, map);
 	}
 
+	@Override
+	public int do_delete_qna(int qna) {
+		String statement = namespace+".do_delete_qna";
+		return sqlSession.delete(statement, qna);
+	}
+
 
 	@Override
 	public int do_delete_reviewList(String REV_SEQ) {
