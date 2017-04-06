@@ -36,4 +36,6 @@ public interface CeoMypageDao {
 	public Integer do_select_banseq(Integer proseq);
 	
 	public int do_insert_banpt(HashMap<String, String> map);
+	
+	public int do_update_admre(CeoMypageDto dto);
 }

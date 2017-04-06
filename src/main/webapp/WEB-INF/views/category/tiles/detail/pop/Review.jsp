@@ -36,6 +36,12 @@
 	height: 100%;
 	position: relative;
 }
+.fullLayout{
+	float: right;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
 .thumbnail{
  width: 100%;
  height: 100%;
@@ -46,10 +52,16 @@
 <body>
 
 <div class="layout">
+	<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 	<div class="leftLayout">
 		<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%">
 	</div>
 	<div class="rightLayout">
+	<%
+	}else{
+	%>
+	<div class="fullLayout">
+	<%} %>
 		<div class="thumbnail">
 			<div class="score" align="center" style="height: 20%"> 평점 
 				<%
@@ -60,6 +72,7 @@
 	        		<img alt="..." src="../images/scoreEmpty.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==2){
         		%>
@@ -68,6 +81,7 @@
 	        		<img alt="..." src="../images/scoreEmpty.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==3){
         		%>
@@ -76,6 +90,7 @@
 	        		<img alt="..." src="../images/scoreFull.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==4){
         		%>
@@ -84,6 +99,7 @@
 	        		<img alt="..." src="../images/scoreFull.png">
 	        		<img alt="..." src="../images/scoreFull.png">
 	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==5){
         		%>
@@ -92,14 +108,15 @@
 	        		<img alt="..." src="../images/scoreFull.png">
 	        		<img alt="..." src="../images/scoreFull.png">
 	        		<img alt="..." src="../images/scoreFull.png">
+	        		<hr style="border: solid black 1px; width: 70%;">
 	        	<%
 	        		}else{
         		%>
-        			<h4>평점 데이터가 없습니다.</h4>
+        			
         		<%
 	        		}
         		%>
-				<hr style="border: solid black 1px; width: 70%;">
+				
 			</div>
 			<div class="title" align="center" style="height: 20%; width: 100%;">
 				<h3><%=detailDto.getREV_TITLE() %></h3>
@@ -108,17 +125,23 @@
 				<h5>작성자:<%=detailDto.getUSER_ID() %><br/>작성날짜:<%=detailDto.getREV_TIME() %></h5>
 			</div>
 			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
+			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 				<textarea rows="5px" cols="50px" readonly="readonly"><%=detailDto.getREV_CONTENT() %></textarea>
+			<%}else{ %>
+			<textarea rows="5px" cols="100px" readonly="readonly" style="margin-left: 20px;"><%=detailDto.getREV_CONTENT() %></textarea>
+			<%} %>
 			</div>
 			<div class="btn" align="center" style="height: 10%; width:100%;">
 				<%
-					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
+					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")&&dto.getUSER_ID().equals(detailDto.getUSER_ID())){
 				%>
-				<button style="width: 50%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				<button style="width: 100%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<%
-					}
-				%>
-				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) ){ %>
+					}else if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
+				%><button style="width: 100%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				
+				<%} %>
+				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) && dto!=null && !dto.getUSER_ID().equalsIgnoreCase("adm")){ %>
 				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<input type="button" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
 	
@@ -132,7 +155,7 @@
 </div>
 <script type="text/javascript">
 function reviewReplyPop(REV_SEQ){
-	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	location.href="reviewReply.mib?REV_SEQ="+REV_SEQ;
 }
 function reviewUpdate(REV_SEQ){
 	location.href = "reviewupdate.mib?REV_SEQ="+REV_SEQ;

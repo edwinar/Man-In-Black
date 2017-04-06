@@ -160,6 +160,12 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return sumNum;
 	}
 
+	@Override
+	public int do_update_admre(CeoMypageDto dto) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_update_admre(dto);
+	}
+
 	
 	
 

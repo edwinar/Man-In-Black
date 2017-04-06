@@ -198,10 +198,13 @@ public class DetailController {
 		map.put("REV_REF", REV_REF);
 		
 		int result = detailSvc.do_insertReviewAdmReply(map);
-		
+		int step = 0;
+		if(result>0){
+			step = detailSvc.do_updateReviewFlag(REV_REF);
+		}
 		Gson gson = new Gson();
 		
-		return gson.toJson(result);
+		return gson.toJson(step);
 	}
 	
 	//리뷰리스트아작스
@@ -224,7 +227,7 @@ public class DetailController {
 		return gson.toJson(reviewList);
 	}
 	
-	//리뷰리스트아작스
+	//QnA리스트아작스
 	@RequestMapping(value="QnAListAjax.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 	public @ResponseBody String QnAListAjax(HttpServletRequest res) throws Exception{
 		// form에서 넘어온 input

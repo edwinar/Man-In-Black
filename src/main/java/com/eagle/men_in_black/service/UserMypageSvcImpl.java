@@ -230,4 +230,10 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_delete_qna(qna);
 	}
+
+	@Override
+	public int do_delete_reviewPhoto(String REV_SEQ) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_delete_reviewPhoto(REV_SEQ);
+	}
 }

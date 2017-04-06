@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class CeoMypageDto implements Serializable {
 
 	private static final long serialVersionUID = 3677511154849423670L;
-
+private String REV_CONTENT;
 private String QNA_SEQ;
 private String QNA_TITLE;
 private String QNA_TIME;
@@ -52,6 +52,15 @@ private String DEL_STEP;
 private String SIZE;
 
 
+
+
+public String getREV_CONTENT() {
+	return REV_CONTENT;
+}
+
+public void setREV_CONTENT(String rEV_CONTENT) {
+	REV_CONTENT = rEV_CONTENT;
+}
 
 public String getSIZE() {
 	return SIZE;

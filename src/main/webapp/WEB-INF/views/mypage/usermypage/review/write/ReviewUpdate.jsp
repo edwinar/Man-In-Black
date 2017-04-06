@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -10,6 +11,26 @@
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
 
+	Calendar cal = Calendar.getInstance();
+	int tyear = cal.get(Calendar.YEAR);
+	int tmonth = cal.get(Calendar.MONTH)+1;
+	int tday = cal.get(Calendar.DATE);
+	String today = "";
+
+	if(tmonth<10){
+		if(tday<10){
+			today = tyear+"-0"+tmonth+"-0"+tday;
+		}else{
+			today = tyear+"-0"+tmonth+"-"+tday;
+		}
+	}else{
+		if(tday<10){
+			today = tyear+"-"+tmonth+"-0"+tday;
+		}else{
+			today = tyear+"-"+tmonth+"-"+tday;
+		}
+	}
+	
 	//리뷰읽기에서 끌거온거
 	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
 	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
@@ -33,7 +54,13 @@
 			position: relative;
 			margin-top: 10px;
 		}
-
+.photoLayout{
+background-color:red;
+	width: 370px;
+	height: 250px;
+	margin-top: -40px;
+	
+}
 .leftLayout {
 	float: left;
 	width: 49.5%;
@@ -68,6 +95,109 @@
 	<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
    String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
+
+<% if(userdto.getUSER_ID().equals("adm")){ %>
+<div class="layout">
+	<div class="leftLayout">
+		<div class="thumbnail">
+			<div class="score" align="center" style="height: 20%"> 평점 
+				<%
+	        		if(detailDto.getSCORE()==1){
+	        	%>
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+        		<%
+	        		}else if(detailDto.getSCORE()==2){
+        		%>
+        			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+        		<%
+	        		}else if(detailDto.getSCORE()==3){
+        		%>
+        			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+        		<%
+	        		}else if(detailDto.getSCORE()==4){
+        		%>
+        			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreEmpty.png">
+        		<%
+	        		}else if(detailDto.getSCORE()==5){
+        		%>
+        			<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        		<img alt="..." src="../images/scoreFull.png">
+	        	<%
+	        		}else{
+        		%>
+        			<h4>평점 데이터가 없습니다.</h4>
+        		<%
+	        		}
+        		%>
+				<hr style="border: solid black 1px; width: 70%;">
+			</div>
+			<div class="title" align="center" style="height: 20%; width: 100%;">
+				<h5><%=detailDto.getREV_TITLE() %></h5>
+			</div>
+			<div class="info" style="height: 15%; width: 100%; text-align: right; margin-top: -70px;">
+				<h6>작성자:<%=detailDto.getUSER_ID() %><br/>작성날짜:<%=detailDto.getREV_TIME() %></h6>
+			</div>
+			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
+			
+			<div class="photoLayout" >
+				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
+				<textarea rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
+			</div>
+			
+			<%
+			}else{
+			%>
+			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
+            <textarea rows="5px" cols="50px" readonly="readonly"></textarea>
+        	</div>
+			<%} %>
+			
+			
+			<div class="btn" align="center" style="height: 10%; width:100%;">
+			</div>
+		</div>
+	</div>
+	<div class="rightLayout">
+		<div class="thumbnail">
+			<div class="score" align="center" style="height: 20%"> 
+			<h4>< 답글 ></h4>
+				<hr style="border: solid black 1px; width: 70%;">
+			</div>
+			<div class="title" align="center" style="height: 20%; width: 100%;">
+				제목 : <input type="text" id="review_title" size="30px" value="<%=detailDto.getREV_TITLE() %>" />
+			</div>
+			<div class="info" style="height: 15%; width: 100%; text-align: right;">
+				<h5>작성자:<%=userdto.getUSER_ID() %><br/>작성날짜:<%=today %></h5>
+			</div>
+			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
+				<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
+			</div>
+			<div class="btn" align="center" style="height: 10%; width:100%;">
+				<button style="width: 50%; height: 100%;" id="admup">수정하기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<%}else{ %>
 
 <input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
 <form id="f1" action="reviewWrite.mib" method="post"
@@ -140,7 +270,7 @@
 		</div>
 	</div>
 </form>
-
+<%} %>
 
 
 <script type="text/javascript">
@@ -320,6 +450,45 @@
 
 	}
 		
+    $(document).ready(function() {
+		$("#admup").click(function() {
+			var REV_TITLE = $('#review_title').val();
+			var REV_CONTENT = $('#review_content').val();
+			var REV_SEQ = <%=detailDto.getREV_SEQ() %>;
+			var PRO_SEQ = <%=detailDto.getPRO_SEQ() %>;
+			
+			alert("ASDasdasd");
+			
+				$.ajax({
+		 			type : "POST",
+		 			url : "reviewadmup.mib",
+		 			async : true,
+		 			dataType : "html",
+		 			data : {
+		 				"REV_TITLE" : REV_TITLE,
+		 				"REV_CONTENT" : REV_CONTENT,
+		 				"REV_SEQ" : REV_SEQ,
+		 				"PRO_SEQ" : PRO_SEQ
+		 			},
+		 			success : function(data) {
+		 				var flag = $.parseJSON(data);
+		 				//console.log(flag);
+		 				if(flag>0){
+		 					window.close();
+		 				}else{
+		 					alert("리뷰수정실패");
+		 				}
+		 			},
+		 			complete : function(data) {
+		 			},
+		 			error : function(xhr, status, error) {
+		 				alert("에러발생");
+		 			}
+		 		});
+			
+		});
+	});
+    
 	</script>
 </body>
 </html>

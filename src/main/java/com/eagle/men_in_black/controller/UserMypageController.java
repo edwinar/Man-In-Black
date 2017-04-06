@@ -696,10 +696,14 @@ public class UserMypageController {
 		loger.debug("=Controller ===========================");
 		loger.debug("REV_SEQ === " + REV_SEQ +  "앙 기무띠~");
 		loger.debug("============================");
-		int suc = userMypageSvc.do_delete_reviewList(REV_SEQ);
+		int delreview = userMypageSvc.do_delete_reviewList(REV_SEQ);
+		int delphoto = userMypageSvc.do_delete_reviewPhoto(REV_SEQ);
 		loger.debug("=Controller ===========================");
-		loger.debug("suc === " + suc +  "앙 기무띠~");
+		loger.debug("suc === " + delreview +  " 앙 기무띠~");
+		loger.debug("suc === " + delphoto +  " 앙 기무띠~");
 		loger.debug("============================");
+
+
 			resultMap.put("result", "success");
 
 		Gson gson = new Gson();

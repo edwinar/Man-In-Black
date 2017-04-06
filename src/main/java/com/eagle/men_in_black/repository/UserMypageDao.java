@@ -71,5 +71,8 @@ public interface UserMypageDao {
 	public int do_update_qna(HashMap<String, Object> map);
 	
 	public int do_delete_qna(int qna);
+
+	public int do_delete_reviewPhoto(String REV_SEQ);
+
 	
 }
