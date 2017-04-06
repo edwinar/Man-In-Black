@@ -161,7 +161,7 @@
  	 </div>
  	 <div class="mat-div-color">
     <label  class="mat-label">재고</label>
-    <input type="text" class="mat-input-color" id="재고" name="stock">
+    <input type="text" class="mat-input-color" id="stock" name="stock"  onkeyup="stockKeyCode(event)" >
  	 </div>
  	</div>
 
@@ -176,7 +176,7 @@
   
     <div class="mat-div">
     <label  class="mat-label">상품가격</label>
-    <input type="text" class="mat-input" id="상품가격" name="pro_price" >
+    <input type="text" class="mat-input" id="pro_price" name="pro_price" onkeyup="pro_priceKeyCode(event)">
  	 </div>
   
     <div class="mat-div">
@@ -381,6 +381,38 @@ function addDetail() {
 		
 	});
 	
+ // 가격,재고 숫자만  제한
+    function stockKeyCode(event) {
+    			event = event || window.event;
+    			var keyID = (event.which) ? event.which : event.keyCode;
+    			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+    			{
+    				
+    			}
+    			else
+    			{
+    				alert("숫자만 입력해주세요");
+    				$("#stock").val('');
+    			}
+    			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+    			
+    		}
+    function pro_priceKeyCode(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+		if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+		{
+			
+		}
+		else
+		{
+			alert("숫자만 입력해주세요");
+			$("#pro_price").val('');
+		}
+		/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+		
+	}
+    
 </script>
 
 

@@ -302,8 +302,8 @@ function delStep(SEQ) {
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="mymain.mib">MY PAGE</a> >
-				<a href="ceoMypage_Main.mib">구매내역</a>
+				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="ceoMypage_Main.mib">판매내역</a>
 			</h4>
 			<h4>M.I.B 판매 내역입니다.</h4>
 		</div>

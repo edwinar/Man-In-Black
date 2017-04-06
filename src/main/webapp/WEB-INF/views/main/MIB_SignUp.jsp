@@ -109,14 +109,18 @@ color:white;
 </div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
-<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" class="lock"/></div>
+<div class="inputsnlables"><label>TEL</label>
+<input type="text" placeholder="TEL" id="tel" name="tel" class="lock" value="010-" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" />
+</div>
 <div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
 <button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
 <div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; class="lock"/></div>
-<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; class="lock" /></div>
+<div class="inputsnlables"><label>BIRTH</label>
+<input type="text" placeholder="900411" name="birth"; id="birth"; class="lock" onkeyup="showKeyCode(event)"/>
+</div>
 
 
 <input type="button" id="complete" value="회원가입하기">
@@ -249,6 +253,64 @@ $(document).ready(function() {
         	
     });
 });
+// 전화번호 제한
+function telKeyCode(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+			{
+				
+			}
+			else
+			{
+				alert("숫자만 입력해주세요");
+				//$("#tel").val($("#tel").val().substring(0,($("#tel").val().length-1)));
+			}
+			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+			
+			//앞에 010 은 고정 
+			if($("#tel").val().length == 0 || $("#tel").val().length>13) {
+				
+				$("#tel").val('010-');
+			
+       		 }
+			
+			if($("#tel").val().length == 3 && keyID==8) {
+				
+				$("#tel").val('010-');
+			
+       		 }
+			
+			if($("#tel").val().length == 8 && keyID !=8){
+				var tel = $("#tel").val();
+				$("#tel").val(tel+'-');
+			}
+
+
+		}
+// 생일 숫자입력, 글자수제한 
+function showKeyCode(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+			{
+				
+			}
+			else
+			{
+				alert("900411 양식을 지켜주세요");
+				$("#birth").val('');
+			}
+			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+			
+			if($("#birth").val().length == 7) {
+
+            $("#birth").val($("#birth").val().substring(0, 6));
+
+        }
+
+
+		}
 
 function Postcode() {
     new daum.Postcode({
