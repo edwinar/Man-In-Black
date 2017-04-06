@@ -350,6 +350,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 
 	<!--수량 총매출액 순이익 -->
 
+	<div>
 	<div style="width: 100%; padding-left: 1044px">
 
 		<table class="table table-condensed">
@@ -431,7 +432,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 		</div>
 
 	</div>
-
+</div>
 <%  
 				// 페이징 및 날짜 선택 
 	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");

@@ -33,7 +33,7 @@
                     <tiles:insertAttribute name="left" />
                 </div>
 
-                <div class="col-md-8 main">
+                <div class="col-md-8 main" style="background-color: white;">
                     <tiles:insertAttribute name="main" />
                 </div>
                 <div class="col-md-2">
