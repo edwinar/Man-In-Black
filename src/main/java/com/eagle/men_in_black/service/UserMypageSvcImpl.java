@@ -216,4 +216,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 	public int do_delete_reviewList(String REV_SEQ) {
 		return userMypageDao.do_delete_reviewList(REV_SEQ);
 	}
+
+
+	@Override
+	public int do_update_qna(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_update_qna(map);
+	}
 }

@@ -234,26 +234,27 @@ td, th {
         }
         
         function buy() {
-            var PRO_SEQ = "";
+            var BAS_SEQ = "";
+            var FINAL_PRICE = document.getElementById('top').value;
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
                // alert("start");
 
                 if (document.f1.elements[i].checked == true) {
-                	PRO_SEQ += document.f1.elements[i].value + ",";
+                	BAS_SEQ += document.f1.elements[i].value + ",";
                    // alert(BAS_SEQ+'중간');
                 }
 
             }
-            if(PRO_SEQ == null || PRO_SEQ == ""){
+            if(BAS_SEQ == null || BAS_SEQ == ""){
             	alert("결제할 상품이 없습니다.");
             }else{
             
-            alert(PRO_SEQ);
-            PRO_SEQ = PRO_SEQ.slice(0,-1);
-            alert(PRO_SEQ + 'end');
-            document.location.href='Detail_Buy_Info.mib?PRO_SEQ='+PRO_SEQ;
+            alert(BAS_SEQ);
+            BAS_SEQ = BAS_SEQ.slice(0,-1);
+            alert(BAS_SEQ + 'end');
+            document.location.href='Detail_Buy_Info.mib?BAS_SEQ='+BAS_SEQ+'&FINAL_PRICE='+FINAL_PRICE;
 
         }
         }

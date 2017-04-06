@@ -30,10 +30,16 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
     <li onclick="location.href='register_MainBanner.mib'">메인 배너등록</li>
     
     <li onclick="location.href='qnA_Administer.mib'">문의게시판 관리</li>
-          
-    <li onclick="location.href='coupon_Administer.mib'">쿠폰관리</li>
     
     <li onclick="location.href='reiview_Administer.mib'">리뷰관리</li>
+    
+    <li onclick="location.href='notiwri.mib'">공지사항 글쓰기</li>
+    
+    <li onclick="location.href='eventwri.mib'">이벤트 글쓰기</li>
+    
+    <li onclick="location.href='couwri.mib'">쿠폰등록하기</li>
+    
+    
     
   </ul>
   <%}else{ %>

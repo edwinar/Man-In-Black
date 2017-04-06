@@ -37,21 +37,20 @@
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-5">
-				<div class="nav navbar-nav navbar-right topnav" style="width: 100px">
-					<li style="width: 100%"><a href="servicenotice.mib">고객센터</a></li>
-				</div>
+				
 				<div class="nav navbar-nav  navbar-right topnav"
 					style="width: 100px">
 					<li style="width: 100%">
 						<%
 							if (dto != null) {
 								if (dto.getUSER_ID().equals("adm")) {
-						%> <a href="ceoMypage_Main.mib">마이페이지</a> <%
- 	} else {
- %> <a href="mymain.mib">마이페이지</a> <%
- 	}
- 	} else {
- %> <a href="signup.mib" data-toggle="modal" data-target="#modal-signup">회원가입</a>
+								%> <a href="ceoMypage_Main.mib" >마이페이지</a> <%
+ 								} else {
+ 								%> <a href="mymain.mib">마이페이지</a> <%
+ 								}
+ 						} else {
+ 						%> 
+ 						<a href="mib_SignUp.mib">회원가입</a>
 						<%
 							}
 						%>

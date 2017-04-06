@@ -4,10 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
+	MainDto userdto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	List<ServiceDto> eventlist = (List<ServiceDto>) request.getAttribute("eventlist");
 	List<ServiceDto> couplist = (List<ServiceDto>) request.getAttribute("couplist");
-	MainDto userdto = (MainDto)request.getSession().getAttribute("LoginInfo");
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,7 +48,7 @@ function eventdetail(seq) {
 }
 
 function coup(seq){
-	alert(seq);
+	//alert(seq);
 	var userid = $("#userid").val();
 	
 	$.ajax({
@@ -88,8 +88,11 @@ function coup(seq){
 
 	<!-- CEO 글쓰기 버튼  -->
 	<%
-		if (dto != null) {
-			if (dto.getUSER_ID().equals("adm")) {
+		if (userdto != null) {
+			%>
+			<input type="hidden" value="<%=userdto.getUSER_ID()%>" id="userid">
+			<%
+			if (userdto.getUSER_ID().equals("adm")) {
 	%>
 	<p align="right">
 		<a class="btn btn-primary" href="eventwrite.mib"
@@ -102,17 +105,29 @@ function coup(seq){
 	}
 		
 	%>
-	<!-- list 뿌리기 -->
-<div>
-	<%for(int i=0;i<couplist.size();i++){
+	<!-- 쿠폰list 뿌리기 -->
+	
+	
+	<div>
+	<%
+	if(userdto!=null && !userdto.getUSER_ID().equals("adm")){ // 로그인했는데 회원일때 
+	for(int i=0;i<couplist.size();i++){
 	%>
 	<div class="previewcoup" style="margin-left: 20px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
+	}else{ // 로그인안하고 어드민 아닌 회원일때 
+		for(int i=0;i<couplist.size();i++){
+			
+	%>
+	<div class="previewcoup" style="margin-left: 20px; float: left" >
+		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+	</div>
+	<%}
+	}
 	%>
 
-<input type="hidden" value="<%=userdto.getUSER_ID()%>" id="userid">
 
 
 

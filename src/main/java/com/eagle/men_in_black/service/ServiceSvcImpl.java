@@ -117,4 +117,10 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.do_selelct_coupdt(seq);
 	}
 
+	@Override
+	public int check_coupon(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return serviceDao.check_coupon(map);
+	}
+
 }

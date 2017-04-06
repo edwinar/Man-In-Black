@@ -68,5 +68,5 @@ public interface UserMypageDao {
 
 	public int do_delete_reviewList(String REV_SEQ);
 
-
+	public int do_update_qna(HashMap<String, Object> map);
 }

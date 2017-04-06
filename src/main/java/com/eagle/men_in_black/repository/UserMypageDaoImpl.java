@@ -203,6 +203,12 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.selectOne(statement,qna_seq);
 	}
 
+	@Override
+	public int do_update_qna(HashMap<String, Object> map) {
+		String statement = namespace+".do_update_qna";
+		return sqlSession.update(statement, map);
+	}
+
 
 	@Override
 	public int do_delete_reviewList(String REV_SEQ) {

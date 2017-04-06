@@ -26,11 +26,22 @@ public class ServiceDto implements Serializable {
 	private String COUP_USE  ;
 	private String USER_ID   ;
 	private int COUP_SEQ;
+	private String COUP_RECV;
 	
 	
 	
 	
 	
+	public String getCOUP_RECV() {
+		return COUP_RECV;
+	}
+
+
+	public void setCOUP_RECV(String cOUP_RECV) {
+		COUP_RECV = cOUP_RECV;
+	}
+
+
 	public String getCOUP_NAME() {
 		return COUP_NAME;
 	}

@@ -24,13 +24,19 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                   <div class="right-content">
                         <nav id="right-nav">
                               <ul>
-                              <%if(dto!=null){ %>
-                                    <li><a href="mymain.mib" >마이페이지들어가기</a></li>
-                              <%}else{ %>
-                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">마이페이지들어가기</a></li>
+                              <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="ceoMypage_Main.mib">마이페이지</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">마이페이지</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">마이페이지</a></li>
                               <%} %>
                                     <li><a href="event.mib" >이벤트</a></li>
-                                    <li><a href="#" >men</a></li>
+                                    <li><a href="servicenotice.mib" >공지사항</a></li>
                                     <li><a href="#" >women</a></li>
                                     <li><a href="#" >kids</a></li>
                                     <li><a href="#" >accessoires</a></li>
@@ -39,7 +45,6 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               </ul>
                         </nav>
                         
-                     
                   </div>
             </div>
             <!-- 앞에 <이거부분 -->

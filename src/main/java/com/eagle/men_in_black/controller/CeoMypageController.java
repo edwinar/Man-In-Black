@@ -466,15 +466,7 @@ public class CeoMypageController {
 			return mav;
 
 		}
-	// 쿠폰관리 
-	@RequestMapping("coupon_Administer.mib")
-	public ModelAndView coupon_Administer() {
-
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/Coupon_Administer");
-		
-		return mav;
-
-	}
+	
 	
 	// 리뷰관리 
 	@RequestMapping("reiview_Administer.mib")
@@ -708,8 +700,38 @@ public class CeoMypageController {
 				return gson.toJson(resultMap);
 
 			}
+			
+			// 공지사항 글쓰기 
+			@RequestMapping("notiwri.mib")
+				public ModelAndView notiwri(HttpServletRequest res) {
+
+				ModelAndView mav = new ModelAndView("/service/noticewrite");
+					
+					
+					return mav;
+
+				}
 	
-	
+			// 이벤트 글쓰기 
+			@RequestMapping("eventwri.mib")
+				public ModelAndView eventwri(HttpServletRequest res) {
+
+				ModelAndView mav = new ModelAndView("/service/eventwrite");
+								
+								
+					return mav;
+
+			}
+			// 쿠폰 등록 글쓰기 
+			@RequestMapping("couwri.mib")
+			public ModelAndView couwri(HttpServletRequest res) {
+
+							ModelAndView mav = new ModelAndView("/service/couponwrite");
+											
+											
+								return mav;
+
+			}
 }
 	
 	
