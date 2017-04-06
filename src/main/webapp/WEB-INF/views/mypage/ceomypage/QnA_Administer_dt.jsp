@@ -20,8 +20,8 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 <center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> 
-				<a href="reiview_Administer.mib">리뷰관리</a>
+				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> 
+				<a href="qnA_Administer.mib">문의글관리</a>
 			</h4>
 			<h3><%=list.get(0).getITEM() %></h3>
 			</div>
