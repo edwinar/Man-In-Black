@@ -186,7 +186,9 @@ $(document).ready(function() {
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock" readonly="readonly" value="<%=userinfo.getUSER_ID()%>"/></div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" /></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" readonly="readonly" value="<%=userinfo.getUSER_NAME()%>"/></div>
-<div class="inputsnlables"><label>TEL</label><input type="text" placeholder="TEL" id="tel" name="tel" value="<%=userinfo.getTEL()%>"/></div>
+<div class="inputsnlables"><label>TEL</label>
+<input type="text" placeholder="TEL" id="tel" name="tel" value="<%=userinfo.getTEL()%>" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)"/>
+</div>
 <div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
 <button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
@@ -283,7 +285,41 @@ $("#complete").click(function() {
 
 });
 });
+//전화번호 제한
+function telKeyCode(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
+			{
+				
+			}
+			else
+			{
+				alert("숫자만 입력해주세요");
+				$("#tel").val('010-');
+			}
+			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+			
+			//앞에 010 은 고정 
+			if($("#tel").val().length == 0 || $("#tel").val().length>13) {
+				
+				$("#tel").val('010-');
+			
+       		 }
+			
+			if($("#tel").val().length == 3 && keyID==8) {
+				
+				$("#tel").val('010-');
+			
+       		 }
+			
+			if($("#tel").val().length == 8 && keyID !=8){
+				var tel = $("#tel").val();
+				$("#tel").val(tel+'-');
+			}
 
+
+		}
 function Postcode() {
     new daum.Postcode({
         oncomplete: function(data) {
