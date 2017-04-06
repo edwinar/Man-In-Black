@@ -132,6 +132,7 @@
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
 
 					<input type="button" value="수정 하기" onclick="closeSelf()">
+					<input type="button" value="닫기" onclick="window.close()">
 				</div>
 
 			</div>
@@ -279,7 +280,6 @@
         formData.append("title", $("input[name=title]").val());
         formData.append("content", $("input[name=content]").val());
         formData.append("score", $("input[name=score]").val());
-        alert($("#onefile").val());
         if($("#onefile")==null){
             formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
             formData.append("REV_SEQ", $("input[name=REV_SEQ]").val());

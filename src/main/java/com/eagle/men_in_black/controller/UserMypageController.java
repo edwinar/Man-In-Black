@@ -744,7 +744,6 @@ public class UserMypageController {
             // 저장경로
             HttpSession session = res.getSession();
             String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
-            //String root_path = System.getProperty("catalina.home");
             String attach_path = "images\\";
             String filePath = root_path+attach_path;
 
@@ -770,7 +769,6 @@ public class UserMypageController {
 
             }
 
-            int revp = 0;
             while(iterator.hasNext()){
                 multipartFile = res.getFile(iterator.next());
 
@@ -794,18 +792,16 @@ public class UserMypageController {
                     listMap.put("STORED_FILE_NAME", storedFileName);  // 저장될 파일이름
                     System.out.println("userMypageSvc.do_select_revseq()" + Integer.parseInt(REV_SEQ));
                     listMap.put("REV_SEQ", Integer.parseInt(REV_SEQ));
-                    revp = userMypageSvc.do_update_reviewphoto(listMap);
+                    userMypageSvc.do_update_reviewphoto(listMap);
                 }
 
             }
 
 
 
-            //딜리버리 배송상태를 리뷰작성완료
-            int delstep = 0;
 
 
-            if(revp>0){
+            if(rev>0){
                 resultMap.put("result", "OK");
 
             }else{
