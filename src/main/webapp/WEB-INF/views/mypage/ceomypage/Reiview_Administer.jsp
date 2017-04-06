@@ -71,7 +71,8 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=outerlist.get(i).getREV_SEQ() %></td>
 						<td><%=outerlist.get(i).getPRO_NAME() %></td>
-						<td><%=outerlist.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=outerlist.get(i).getREV_SEQ()%>)">
+						<%=outerlist.get(i).getREV_TITLE() %></td>
 						<td><%=outerlist.get(i).getREV_TIME() %></td>
 						<td><%=outerlist.get(i).getSCORE() %></td>
 					</tr>
@@ -83,7 +84,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;"><span class="mypage-link"><a
 								href='reiview_Administer_dt.mib?ITEM=OUTER'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -121,7 +122,9 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=toplist.get(i).getREV_SEQ() %></td>
 						<td><%=toplist.get(i).getPRO_NAME() %></td>
-						<td><%=toplist.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=toplist.get(i).getREV_SEQ()%>)">
+						<%=toplist.get(i).getREV_TITLE() %>
+						</td>
 						<td><%=toplist.get(i).getREV_TIME() %></td>
 						<td><%=toplist.get(i).getSCORE() %></td>
 					</tr>
@@ -133,8 +136,11 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
-								href='reiview_Administer_dt.mib?ITEM=TOP'>더 보기</a></span></td>
+						<td colspan="6" align="center">
+						<span class="mypage-link">
+						<a href='reiview_Administer_dt.mib?ITEM=TOP' style="cursor: pointer;">더 보기</a>
+						</span>
+						</td>
 					</tr>
 				</tfoot>
 				<%} 
@@ -170,7 +176,8 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=pantslist.get(i).getREV_SEQ() %></td>
 						<td><%=pantslist.get(i).getPRO_NAME() %></td>
-						<td><%=pantslist.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=pantslist.get(i).getREV_SEQ()%>)">
+						<%=pantslist.get(i).getREV_TITLE() %></td>
 						<td><%=pantslist.get(i).getREV_TIME() %></td>
 						<td><%=pantslist.get(i).getSCORE() %></td>
 					</tr>
@@ -182,8 +189,10 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
-								href='reiview_Administer_dt.mib?ITEM=PANTS'>더 보기</a></span></td>
+						<td colspan="6" align="center" style="cursor: pointer;">
+						<span class="mypage-link"><a href='reiview_Administer_dt.mib?ITEM=PANTS'>더 보기</a>
+						</span>
+						</td>
 					</tr>
 				</tfoot>
 				<%} 
@@ -219,7 +228,8 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=shoeslist.get(i).getREV_SEQ() %></td>
 						<td><%=shoeslist.get(i).getPRO_NAME() %></td>
-						<td><%=shoeslist.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=shoeslist.get(i).getREV_SEQ()%>)">
+						<%=shoeslist.get(i).getREV_TITLE() %></td>
 						<td><%=shoeslist.get(i).getREV_TIME() %></td>
 						<td><%=shoeslist.get(i).getSCORE() %></td>
 					</tr>
@@ -230,9 +240,10 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<%if(shoeslist.get(0).getTOT_CNT()>5){ %>
 				<tfoot>
 					<tr>
-						
-						<td colspan="6" align="center"><span class="mypage-link"><a
-								href='reiview_Administer_dt.mib?ITEM=SHOES'>더 보기</a></span></td>
+						<td colspan="6" align="center" style="cursor: pointer;">
+						<span class="mypage-link"><a href='reiview_Administer_dt.mib?ITEM=SHOES'>더 보기</a>
+						</span>
+						</td>
 					</tr>
 				</tfoot>
 				<%} 
@@ -268,7 +279,8 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=baglist.get(i).getREV_SEQ() %></td>
 						<td><%=baglist.get(i).getPRO_NAME() %></td>
-						<td><%=baglist.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=baglist.get(i).getREV_SEQ()%>)">
+						<%=baglist.get(i).getREV_TITLE() %></td>
 						<td><%=baglist.get(i).getREV_TIME() %></td>
 						<td><%=baglist.get(i).getSCORE() %></td>
 					</tr>
@@ -280,8 +292,8 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
-								href='reiview_Administer_dt.mib?ITEM=BAGnACC'>더 보기</a></span></td>
+						<td colspan="6" align="center"  style="cursor: pointer;">
+						<span class="mypage-link"><a href='reiview_Administer_dt.mib?ITEM=BAGnACC'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
 				<%} 
@@ -290,7 +302,14 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 			<br> <br> <br> <br>
 
 
-			
+			<script type="text/javascript">
+			function goreview(rseq) {
+				 window.open(
+							"review.mib?REV_SEQ=" + rseq,+
+							"pop",
+							"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+		}
+			</script>
 
 </body>
 </html>
