@@ -179,7 +179,7 @@ $(function() {
 			}else{
 			%>
 			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
-            <textarea id="review_content" rows="5px" cols="50px"></textarea>
+            <textarea rows="5px" cols="50px" readonly="readonly"></textarea>
         	</div>
 			<%} %>
 			

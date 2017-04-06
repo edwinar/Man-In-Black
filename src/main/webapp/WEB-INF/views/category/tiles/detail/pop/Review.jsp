@@ -133,11 +133,13 @@
 				<%
 					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
 				%>
-				<button style="width: 50%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				<button style="width: 30%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
+				<input type="button" value="삭제하기" style="width: 30%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
+				<button style="width: 30%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
 				<%
 					}
 				%>
-				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) ){ %>
+				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) && dto!=null && !dto.getUSER_ID().equalsIgnoreCase("adm")){ %>
 				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<input type="button" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
 	
