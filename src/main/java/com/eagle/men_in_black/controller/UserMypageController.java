@@ -949,6 +949,40 @@ public @ResponseBody String qnareps(HttpServletRequest res, HttpServletResponse 
 
 
 };
+
+//qna 답글
+@RequestMapping(value="qnaWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+public @ResponseBody String qnaWrite(HttpServletRequest res, HttpServletResponse rep) {
+
+	HashMap<String, String> resultMap = new HashMap<>();
+	HashMap<String, Object> update = new HashMap<String, Object>();
+	
+	String QNA_OPEN = res.getParameter("secret");
+	String QNA_TYPE = res.getParameter("secretz");
+	String QNA_TITLE = res.getParameter("title");
+	String QNA_CONTENT = res.getParameter("QNA_CONTENT");
+	String PRO_SEQ = res.getParameter("PRO_SEQ");
+	String USER_ID = res.getParameter("USER_ID");
+	
+
+	update.put("PRO_SEQ",Integer.parseInt(PRO_SEQ));
+	update.put("QNA_OPEN",QNA_OPEN);
+	update.put("QNA_TYPE",QNA_TYPE);
+	update.put("QNA_TITLE",QNA_TITLE);
+	update.put("QNA_CONTENT",QNA_CONTENT);
+	update.put("USER_ID",USER_ID);
+	
+	
+	int suc = userMypageSvc.do_insert_qna(update);
+	if(suc > 0){
+		resultMap.put("result", "success");
+	}
+	Gson gson = new Gson();
+	
+	return gson.toJson(resultMap);
+
+
+};
 		
 	
 	

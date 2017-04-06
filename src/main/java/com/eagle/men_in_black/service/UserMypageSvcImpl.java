@@ -250,4 +250,10 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		userMypageDao.do_update_qnastep(QNA_REF);
 		
 	}
+	
+	@Override
+	public int do_insert_qna(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_insert_qna(map);
+	}
 }

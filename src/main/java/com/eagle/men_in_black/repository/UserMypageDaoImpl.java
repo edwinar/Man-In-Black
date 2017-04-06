@@ -240,4 +240,10 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		sqlSession.insert(statement,QNA_REF);
 		
 	}
+	
+	@Override
+	public int do_insert_qna(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_qna";
+		return sqlSession.insert(statement,map);
+	}
 }

@@ -649,6 +649,35 @@ SET
 QNA_STEP ='Y'
 WHERE QNA_REF = #{QNA_REF}
 </update>
-
+<!-- 문의 답글  -->
+<insert id="do_insert_qna" parameterType="hashmap">
+INSERT
+INTO QNA
+  (
+    QNA_SEQ,
+    QNA_TITLE,
+    QNA_CONTENT,
+    QNA_TIME,
+    QNA_OPEN,
+    QNA_REF,
+    QNA_TYPE,
+    QNA_STEP,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    QNA_SEQ.NEXTVAL,
+     #{QNA_TITLE},
+     #{QNA_CONTENT},
+    SYSDATE,
+     #{QNA_OPEN},
+     QNA_SEQ.CURRVAL,
+     #{QNA_TYPE},
+     'N',
+     #{USER_ID},
+     #{PRO_SEQ}
+  )
+</insert>
 
 </mapper>
