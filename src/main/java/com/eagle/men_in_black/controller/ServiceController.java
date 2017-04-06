@@ -177,7 +177,7 @@ public class ServiceController {
 	@RequestMapping("eventwrite.mib")
 	public ModelAndView event_reg(HttpServletRequest res) {
 		
-		ModelAndView mav = new ModelAndView("service/eventwrite");
+		ModelAndView mav = new ModelAndView("/service/eventwrite");
 		
 		
 		
@@ -307,7 +307,7 @@ public class ServiceController {
 	// 쿠폰 글쓰기 창
 		@RequestMapping("couponwrite.mib")
 		public ModelAndView couponwrite(HttpServletRequest res, HttpServletResponse rep) {
-			ModelAndView mav = new ModelAndView("service/couponwrite");
+			ModelAndView mav = new ModelAndView("/service/couponwrite");
 			
 			
 			
@@ -478,7 +478,7 @@ public class ServiceController {
 	@RequestMapping("CkeditorNoticeUpload.mib")
 	public ModelAndView register_Good(HttpServletRequest res) {
  
-		ModelAndView mav = new ModelAndView("service/noticewrite");
+		ModelAndView mav = new ModelAndView("/service/noticewrite");
 		String seq = res.getParameter("seq")==null?"0":res.getParameter("seq");
 		int intseq = Integer.parseInt(seq);
 		ServiceDto dto = serviceSvc.do_service_detail(intseq);
