@@ -135,12 +135,7 @@ function reviewReplyPop(REV_SEQ){
 	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function reviewUpdate(REV_SEQ){
-	window.open("reviewupdate.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
-	window.colse();
-}
-function reviewdelete(REV_SEQ){
-	location.href = "reviewDel.mib?REV_SEQ="+REV_SEQ;
-    window.colse();
+	location.href = "reviewupdate.mib?REV_SEQ="+REV_SEQ;
 }
 
 function closeSelf(REV_SEQ) {
