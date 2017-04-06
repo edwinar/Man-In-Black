@@ -92,8 +92,9 @@
 		</div>
 		
 		<%}else if(dto.getUSER_ID().equals("adm")){ %>
-		<div style="float: right; width: 50%;">
-				<button style="width: 100%; height: 100%;" onclick="rep()">답글달기</button>
+		
+		<div align="center">
+				<button style="width: 80%; height: 100%;" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
 			</div>
 		<%} %>
 		

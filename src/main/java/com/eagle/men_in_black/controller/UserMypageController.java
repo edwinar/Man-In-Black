@@ -898,8 +898,30 @@ public class UserMypageController {
 
 
 		};
-	
+		
+		@RequestMapping("qnarep.mib")
+		public ModelAndView qnareply(HttpServletRequest res, HttpServletResponse rep){
+			String QNA_SEQ =  res.getParameter("QNA_SEQ");
+			System.out.println("=======qnarep======="+QNA_SEQ);
+			UserMypageDto qnaDto = (UserMypageDto)userMypageSvc.do_search_qnadetail(QNA_SEQ);
 
+			ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AReply");
+			mav.addObject("qnaDto",qnaDto);
+			return mav;
+			
+		}
+		
+		/*@RequestMapping("qnaup.mib")
+		public ModelAndView qnaup(HttpServletRequest res, HttpServletResponse rep){
+			String QNA_SEQ =  res.getParameter("QNA_SEQ");
+			
+			UserMypageDto qnaDto = (UserMypageDto)userMypageSvc.do_search_qnadetail(QNA_SEQ);
+
+			ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AUpdate");
+			mav.addObject("qnaDto",qnaDto);
+			return mav;
+			
+		}*/
 	
 	
 	
