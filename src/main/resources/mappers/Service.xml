@@ -99,9 +99,10 @@
 	<select id="do_event_detail" parameterType="com.eagle.men_in_black.model.ServiceDto"
 		resultType="com.eagle.men_in_black.model.ServiceDto">
 		SELECT *
-		FROM EVENT_BOARD
-		WHERE EVENT_SEQ=#{EVENT_SEQ}
-
+		FROM EVENT_BOARD A INNER JOIN PHOTO B
+		ON(A.EVENT_SEQ = B.EVENT_SEQ)
+  		 WHERE A.EVENT_SEQ=#{seq}
+    
 
 	</select>
 	
@@ -154,8 +155,22 @@
 
 	</update>
 	
+	<!--이벤트 사진수정 -->
+	<update id="do_photo_update" parameterType="com.eagle.men_in_black.model.ServiceDto">
+		UPDATE
+		PHOTO
+		SET
+		STORED_NAME=#{STORED_FILE_NAME},ORIGINAL_NAME=#{ORIGINAL_FILE_NAME}
+		WHERE EVENT_SEQ=#{EVENT_SEQ}
+	</update>
 	
-	
+	<!--이벤트 사진삭제  -->
+	<delete id="do_photo_delete" parameterType="int">
+		DELETE
+		FROM
+		PHOTO
+		WHERE EVENT_SEQ =#{SEQ}
+	</delete>
 	
 	<!--이벤트 삭제 -->
 	<delete id="do_event_delete" parameterType="int">

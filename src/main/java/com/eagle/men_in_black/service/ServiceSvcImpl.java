@@ -123,4 +123,16 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.check_coupon(map);
 	}
 
+	@Override
+	public void do_photo_update(ServiceDto dto) {
+		// TODO Auto-generated method stub
+		serviceDao.do_photo_update(dto);
+	}
+
+	@Override
+	public int do_photo_delete(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_photo_delete(seq);
+	}
+
 }

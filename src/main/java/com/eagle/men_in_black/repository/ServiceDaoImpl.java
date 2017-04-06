@@ -135,6 +135,18 @@ public class ServiceDaoImpl implements ServiceDao {
 		return sqlSession.selectOne(statement,map);
 	}
 
+	@Override
+	public void do_photo_update(ServiceDto dto) {
+		String statement = namespace+".do_photo_update";
+		sqlSession.update(statement, dto);
+	}
+
+	@Override
+	public int do_photo_delete(int seq) {
+		String statement = namespace+".do_photo_delete";
+		return sqlSession.delete(statement, seq);
+	}
+
 	
 	
 	
