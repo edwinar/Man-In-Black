@@ -212,6 +212,9 @@ td, th {
 				    	</select>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="3">* 쿠폰을 고르시고 적용하기버튼을 눌러주세요!</td>
+				</tr>
 			</table>
 		</div>
 		<div id="rightGift">
@@ -227,11 +230,14 @@ td, th {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="30px" id="pointValue"/>
+						<input type="text" size="30px" id="pointValue" disabled="disabled" onkeypress="onlyNumber();"/>
 					</td>
 					<td>
-						<button id="pointBtn">Won 사용하기</button>
+						<button id="pointBtn" disabled="disabled">Won 사용하기</button>
 					</td>
+				</tr>
+				<tr>
+					<td colspan="3">* 쿠폰선택을 먼저 하셔야합니다!</td>
 				</tr>
 			</table>
 		</div>
@@ -287,9 +293,17 @@ $(function() {
 		var finalPrice = "<%=finalPrice %>";
 		if(couponValue=="no"){
 			$('#final').text(finalPrice+" Won");
+			$('#pointValue').attr('disabled',false);
+			$('#pointBtn').attr('disabled',false);
+			$('#couponBtn').attr('disabled',true);
+			$('#couponChoice').attr('disabled',true);
 		}else{
 			finalPrice = finalPrice - couponValue;
 			$('#final').text(finalPrice+" Won");
+			$('#pointValue').attr('disabled',false);
+			$('#pointBtn').attr('disabled',false);
+			$('#couponBtn').attr('disabled',true);
+			$('#couponChoice').attr('disabled',true);
 		}
 	});
 	$('#pointBtn').on('click',function(){
@@ -297,10 +311,12 @@ $(function() {
 		var pointsValue = $('#pointValue').val();
 		var finalPrice = "<%=finalPrice %>";
 		if(pointsValue==""||pointsValue==null){
-			
+			$('#final').text(finalPrice+" Won");
 		}else{
 			if(pointsValue>useablePoints){
 				alert(useablePoints+"를 넘습니다.");
+				$('#final').text(finalPrice+" Won");
+				$('#pointValue').text("0");
 			}else{
 				finalPrice = finalPrice - pointsValue;
 				$('#final').text(finalPrice+" Won");
@@ -310,6 +326,10 @@ $(function() {
 });
 function buy() {
 	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
+}
+function onlyNumber(){
+    if((event.keyCode<48)||(event.keyCode>57))
+       event.returnValue=false;
 }
 </script>
 </body>
