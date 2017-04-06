@@ -141,7 +141,7 @@
 
 
 
-	<!--<script type="text/javascript">
+	<script type="text/javascript">
 		var sc = $(".sc").val;
 		var score = 0;
 		
@@ -287,6 +287,6 @@
 
 	}
 		
-	</script> -->
+	</script>
 </body>
 </html>
