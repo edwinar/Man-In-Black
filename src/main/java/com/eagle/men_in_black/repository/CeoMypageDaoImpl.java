@@ -119,4 +119,10 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.insert(statement,map);
 	}
 
+	@Override
+	public int do_update_admre(CeoMypageDto dto) {
+		String statement = namespace+".do_update_admre";
+		return sqlSession.update(statement, dto);
+	}
+
 }

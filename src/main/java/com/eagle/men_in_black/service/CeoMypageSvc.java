@@ -22,4 +22,5 @@ public interface CeoMypageSvc {
 	public int do_insert_mainbanner(List<CeoMypageDto> map);
 	public List<Integer> do_select_banseq(List<Integer> seqlist);
 	public int do_insert_banpt(List<HashMap<String, String>> map);
+	public int do_update_admre(CeoMypageDto dto);
 }

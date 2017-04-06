@@ -127,18 +127,20 @@
 			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
 			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 				<textarea rows="5px" cols="50px" readonly="readonly"><%=detailDto.getREV_CONTENT() %></textarea>
+			<%}else{ %>
+			<textarea rows="5px" cols="100px" readonly="readonly" style="margin-left: 20px;"><%=detailDto.getREV_CONTENT() %></textarea>
 			<%} %>
 			</div>
 			<div class="btn" align="center" style="height: 10%; width:100%;">
 				<%
-					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
+					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")&&dto.getUSER_ID().equals(detailDto.getUSER_ID())){
 				%>
-				<button style="width: 30%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
-				<input type="button" value="삭제하기" style="width: 30%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
-				<button style="width: 30%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				<button style="width: 100%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<%
-					}
-				%>
+					}else{
+				%><button style="width: 100%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				
+				<%} %>
 				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) && dto!=null && !dto.getUSER_ID().equalsIgnoreCase("adm")){ %>
 				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<input type="button" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">

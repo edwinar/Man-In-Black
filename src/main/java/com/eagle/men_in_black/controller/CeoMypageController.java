@@ -732,7 +732,42 @@ public class CeoMypageController {
 								return mav;
 
 			}
+
+			// 사장 리뷰 답변달기 
+			@RequestMapping(value="reviewadmup.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+			public @ResponseBody String reviewadmup(HttpServletRequest res) throws Exception{
+				MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+				// form에서 넘어온 input
+				int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
+				String REV_TITLE = (res.getParameter("REV_TITLE")==null || res.getParameter("REV_TITLE")=="")?"":res.getParameter("REV_TITLE");
+				String REV_CONTENT = (res.getParameter("REV_CONTENT")==null || res.getParameter("REV_CONTENT")=="")?"":res.getParameter("REV_CONTENT");
+				int REV_SEQ = Integer.parseInt((res.getParameter("REV_SEQ")==null || res.getParameter("REV_SEQ")=="")?"":res.getParameter("REV_SEQ"));
+				
+				System.out.println("넘어오니?"+REV_TITLE);
+				
+				// 이걸로먼저 review table에 인설트
+				
+				CeoMypageDto dto = new CeoMypageDto();
+				dto.setPRO_SEQ(PRO_SEQ);
+				dto.setREV_SEQ(REV_SEQ);
+				dto.setREV_TITLE(REV_TITLE);
+				dto.setREV_CONTENT(REV_CONTENT);
+				
+				int step = ceoMypageSvc.do_update_admre(dto);
+				
+				
+				
+				Gson gson = new Gson();
+				
+				return gson.toJson(step);
+			}
+			
+			
+				
 }
+
+			
+			
 	
 	
 	

@@ -264,4 +264,12 @@ INTO PHOTO
   )
 </insert>
 
+<update id="do_update_admre" parameterType="com.eagle.men_in_black.model.CeoMypageDto">
+UPDATE REVIEW
+SET  REV_TITLE   = #{REV_TITLE},
+     REV_CONTENT = #{REV_CONTENT},
+     REV_TIME    = SYSDATE
+WHERE REV_SEQ   = #{REV_SEQ}
+</update>
+
 </mapper>
