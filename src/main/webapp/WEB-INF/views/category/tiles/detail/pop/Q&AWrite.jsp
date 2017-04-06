@@ -16,6 +16,7 @@ System.out.println(today);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>:::Q&ADetail:::</title>
 <style type="text/css">
 .layout {
@@ -79,14 +80,14 @@ function windowClose(){
 		<div style="height: 10%; width: 100%;">
 			<div style="height: 100%; width: 50%; float: left;">
 				<p align="left" style="margin-left: 30px;">
-					작성자 : <input type="text" id="USER_ID" name="USER_ID" value="<%=dto.getUSER_ID() %>>" readonly="readonly">
+					작성자 : <input type="text" id="USER_ID" name="USER_ID" value="<%=dto.getUSER_ID() %>" readonly="readonly">
 				<input type="hidden" value="<%=PRO_SEQ%>" id="PRO_SEQ" name="PRO_SEQ">
 				
 				</p>
 			</div>
 			<div style="height: 100%; width: 50%; float: right;">
 				<p align="left" style="margin-left: 30px;">
-					작성일 : <input type="text" value="<%=today %>>" readonly="readonly">
+					작성일 : <input type="text" value="<%=today %>" readonly="readonly">
 				</p>
 			</div>
 		</div>
@@ -97,7 +98,7 @@ function windowClose(){
 		</div>
 		<div style="height: 35%; width: 100%;">
 			<p><h5 align="left" style="margin-left: 30px;">내용</h5></p>
-			<textarea rows="5px" cols="100px" id="content" name="content"></textarea>
+			<textarea rows="5px" cols="100px" id="QNA_CONTENT" name="QNA_CONTENT"></textarea>
 		</div>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
@@ -112,7 +113,7 @@ function windowClose(){
 </div>
 <script type="text/javascript">
 	
-function qnawrite() {
+function qnawrite(){
 			var secretz = $("#secretz").find(":selected").val();
 			var secret = $("#secret").find(":selected").val();
 			var title = $("#title").val();
@@ -126,10 +127,7 @@ function qnawrite() {
 					"QNA_CONTENT:"+QNA_CONTENT+" : "+
 					"USER_ID:"+USER_ID+" : "+
 					"PRO_SEQ:"+PRO_SEQ);
-			
-
-			
-			
+					
 			$.ajax({
 					type : "POST",
 					url : "qnaWrite.mib",
@@ -147,6 +145,7 @@ function qnawrite() {
 						//alert("success " + data);
 						var flag = $.parseJSON(data);
 						if(flag.result=='success'){
+							alert("성공");
 							opener.parent.location.reload();
 							windowClose();
 						} 	
