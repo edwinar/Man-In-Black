@@ -90,12 +90,8 @@ $(function() {
 	 			},
 	 			success : function(data) {
 	 				var flag = $.parseJSON(data);
-	 				console.log(flag);
+	 				//console.log(flag);
 	 				if(flag>0){
-	 					//opener.location = 'basketlist.mib';
-	 					//opener.parent.opener.parent.location = 'basketlist.mib';
-	 					//opener.opener.parent.location.reload();
-	 					//alert("리뷰답글달기성공");
 	 					window.close();
 	 				}else{
 	 					alert("리뷰답글달기실패");
