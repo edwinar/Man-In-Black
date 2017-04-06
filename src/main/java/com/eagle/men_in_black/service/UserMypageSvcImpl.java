@@ -218,4 +218,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_qna(map);
 	}
+
+
+	@Override
+	public int do_delete_qna(int qna) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_delete_qna(qna);
+	}
 }

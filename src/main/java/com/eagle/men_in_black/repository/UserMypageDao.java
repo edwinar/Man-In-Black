@@ -67,4 +67,7 @@ public interface UserMypageDao {
 	public UserMypageDto do_search_qnadetail(String qna_seq);
 	
 	public int do_update_qna(HashMap<String, Object> map);
+	
+	public int do_delete_qna(int qna);
+	
 }

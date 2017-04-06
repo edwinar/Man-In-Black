@@ -876,7 +876,32 @@ public class UserMypageController {
 
 
 		};
+		
+		//리뷰삭제
+		@RequestMapping(value="qnadel.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+		public @ResponseBody String qnadel(HttpServletRequest res, HttpServletResponse rep) {
+		
+			HashMap<String, String> resultMap = new HashMap<>();
+			//HashMap<String, Object> update = new HashMap<String, Object>();
+			String QNA_SEQ = res.getParameter("QNA_SEQ");
+			
+			
+			System.out.println("=============================="+QNA_SEQ);
+		
+
+			//update.put("QNA_SEQ",Integer.parseInt(QNA_SEQ));
 	
+
+			int suc = userMypageSvc.do_delete_qna(Integer.parseInt(QNA_SEQ));
+			if(suc > 0){
+				resultMap.put("result", "success");
+			}
+			Gson gson = new Gson();
+			
+			return gson.toJson(resultMap);
+
+
+		};
 
 	
 	
