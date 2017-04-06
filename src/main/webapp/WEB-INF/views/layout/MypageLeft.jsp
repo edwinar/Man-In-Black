@@ -19,8 +19,9 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 <img src="../images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
 </nav>
 <div class="mypage-side-menu mypage-side-menu-click">
- <span class="mypage-logo"><a href="ceoMypage_Main.mib">MyPage</a></span>
   <%if(dto.getUSER_ID().equals("adm")){ %>
+  <span class="mypage-logo"><a href="ceoMypage_Main.mib">MyPage</a></span>
+ 
  <ul>
     
     <li onclick="location.href='register_Good.mib'">제품등록</li>
@@ -43,6 +44,8 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
     
   </ul>
   <%}else{ %>
+  <span class="mypage-logo"><a href="mymain.mib">MyPage</a></span>
+ 
   <ul>
     
     <li onclick="location.href='userup.mib'">정보수정</li>
