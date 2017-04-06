@@ -137,7 +137,7 @@
 				%>
 				<button style="width: 100%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<%
-					}else{
+					}else if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
 				%><button style="width: 100%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
 				
 				<%} %>
