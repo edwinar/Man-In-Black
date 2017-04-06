@@ -221,4 +221,10 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_delete_reviewList";
 		return sqlSession.delete(statement,REV_SEQ);
 	}
+
+	@Override
+	public int do_delete_reviewPhoto(String REV_SEQ) {
+		String statement = namespace+".do_delete_reviewPhoto";
+		return sqlSession.delete(statement,REV_SEQ);
+	}
 }

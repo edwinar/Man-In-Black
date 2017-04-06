@@ -73,4 +73,6 @@ public interface UserMypageSvc {
 
 	public int do_delete_reviewList(String REV_SEQ);
 
+	public int do_delete_reviewPhoto(String REV_SEQ);
+
 }

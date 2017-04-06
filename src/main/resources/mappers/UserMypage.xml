@@ -609,5 +609,13 @@ WHERE QNA_SEQ   = #{QNA_SEQ}
 
     </delete>
 
+    <delete id="do_delete_reviewPhoto" parameterType="int" >
+        DELETE PHOTO WHERE REV_SEQ = #{REV_SEQ}
+
+
+    </delete>
+
+
+
 
 </mapper>
