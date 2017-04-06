@@ -288,7 +288,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				 window.open(
 							"qnadetail.mib?QNA_SEQ=" + qseq,+
 							"pop",
-							"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+							"width=900 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 			}
 			</script>
 

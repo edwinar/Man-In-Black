@@ -92,8 +92,9 @@
 		</div>
 		
 		<%}else if(dto.getUSER_ID().equals("adm")){ %>
-		<div style="float: right; width: 50%;">
-				<button style="width: 100%; height: 100%;" onclick="rep()">답글달기</button>
+		
+		<div align="center">
+				<button style="width: 80%; height: 100%;" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
 			</div>
 		<%} %>
 		
@@ -101,11 +102,11 @@
 </div>
 <script type="text/javascript">
 function update(QNA_SEQ){
-	location.href="qnaup.mib?QNA_SEQ="+QNA_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
+	location.href="qnaup.mib?QNA_SEQ="+QNA_SEQ,"pop","width=900 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
 	window.colse();
 };
 function rep(QNA_SEQ){
-	location.href="qnarep.mib?QNA_SEQ="+QNA_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
+	location.href="qnarep.mib?QNA_SEQ="+QNA_SEQ,"pop","width=900 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
 	window.colse();
 };
 
