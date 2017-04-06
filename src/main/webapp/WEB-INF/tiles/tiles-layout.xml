@@ -3,10 +3,10 @@
  
 <tiles-definitions>
 		<!-- Template // main이 우리가 만드는 부분  -->
-		<definition name="layout" template="/WEB-INF/views/layout2.jsp">
+		<definition name="layout" template="/WEB-INF/views/layout.jsp">
 			<put-attribute name="title" value="메인페이지"/>
 			<put-attribute name="top" value="/WEB-INF/views/layout/top.jsp"/>
-			<put-attribute name="header" value="/WEB-INF/views/layout/header2.jsp"/>
+			<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
 			<put-attribute name="left" value="/WEB-INF/views/layout/left.jsp"/>
 			<put-attribute name="main" />
 			<put-attribute name="right" value="/WEB-INF/views/layout/right.jsp"/>
@@ -22,10 +22,10 @@
 		
       <!-- 마이페이지 부분  -->
       <!-- Template // main이 우리가 만드는 부분  -->
-		<definition name="mypagelayout" template="/WEB-INF/views/layout2.jsp">
+		<definition name="mypagelayout" template="/WEB-INF/views/layout.jsp">
 			<put-attribute name="title" value="메인페이지"/>
 			<put-attribute name="top" value="/WEB-INF/views/layout/top.jsp"/>
-			<put-attribute name="header" value="/WEB-INF/views/layout/header2.jsp"/>
+			<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
 			<put-attribute name="left" value="/WEB-INF/views/layout/MypageLeft.jsp"/>
 			<put-attribute name="main" />
 			<put-attribute name="right" value="/WEB-INF/views/layout/right.jsp"/>
