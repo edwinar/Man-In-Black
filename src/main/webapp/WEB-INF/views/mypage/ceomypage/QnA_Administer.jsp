@@ -66,7 +66,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=outerlist.get(i).getQNA_SEQ() %></td>
 						<td><%=outerlist.get(i).getPRO_NAME() %></td>
-						<td><%=outerlist.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=outerlist.get(i).getQNA_SEQ()%>)"><%=outerlist.get(i).getQNA_TITLE() %></td>
 						<td><%=outerlist.get(i).getQNA_TYPE() %></td>
 						<td><%=outerlist.get(i).getQNA_TIME() %></td>
 					</tr>
@@ -78,7 +78,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;"><span class="mypage-link"><a
 								href='qnA_Administer_dt.mib?ITEM=OUTER'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -116,7 +116,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=toplist.get(i).getQNA_SEQ() %></td>
 						<td><%=toplist.get(i).getPRO_NAME() %></td>
-						<td><%=toplist.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=toplist.get(i).getQNA_SEQ()%>)"><%=toplist.get(i).getQNA_TITLE() %></td>
 						<td><%=toplist.get(i).getQNA_TYPE() %></td>
 						<td><%=toplist.get(i).getQNA_TIME() %></td>
 					</tr>
@@ -128,7 +128,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;" ><span class="mypage-link"><a
 								href='qnA_Administer_dt.mib?ITEM=TOP'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -164,7 +164,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=pantslist.get(i).getQNA_SEQ() %></td>
 						<td><%=pantslist.get(i).getPRO_NAME() %></td>
-						<td><%=pantslist.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=pantslist.get(i).getQNA_SEQ()%>)"><%=pantslist.get(i).getQNA_TITLE() %></td>
 						<td><%=pantslist.get(i).getQNA_TYPE() %></td>
 						<td><%=pantslist.get(i).getQNA_TIME() %></td>
 					</tr>
@@ -176,7 +176,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;" ><span class="mypage-link"><a
 								href='qnA_Administer_dt.mib?ITEM=PANTS'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -213,7 +213,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=shoeslist.get(i).getQNA_SEQ() %></td>
 						<td><%=shoeslist.get(i).getPRO_NAME() %></td>
-						<td><%=shoeslist.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=shoeslist.get(i).getQNA_SEQ()%>)"><%=shoeslist.get(i).getQNA_TITLE() %></td>
 						<td><%=shoeslist.get(i).getQNA_TYPE() %></td>
 						<td><%=shoeslist.get(i).getQNA_TIME() %></td>
 					</tr>
@@ -225,7 +225,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;"><span class="mypage-link"><a
 								href='qnA_Administer_dt.mib?ITEM=SHOES'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -262,7 +262,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 					<tr>
 						<td><%=baglist.get(i).getQNA_SEQ() %></td>
 						<td><%=baglist.get(i).getPRO_NAME() %></td>
-						<td><%=baglist.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=baglist.get(i).getQNA_SEQ()%>)"><%=baglist.get(i).getQNA_TITLE() %></td>
 						<td><%=baglist.get(i).getQNA_TYPE() %></td>
 						<td><%=baglist.get(i).getQNA_TIME() %></td>
 					</tr>
@@ -274,7 +274,7 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				<tfoot>
 					<tr>
 						
-						<td colspan="6" align="center"><span class="mypage-link"><a
+						<td colspan="6" align="center" style="cursor: pointer;"><span class="mypage-link"><a
 								href='qnA_Administer_dt.mib?ITEM=BAGnACC'>더 보기</a></span></td>
 					</tr>
 				</tfoot>
@@ -282,6 +282,15 @@ List<CeoMypageDto> baglist = (List<CeoMypageDto>)request.getAttribute("baglist")
 				}%>
 			</table>
 			<br> <br> <br> <br>
+
+			<script type="text/javascript">
+			function goqna(qseq) {
+				 window.open(
+							"qnadetail.mib?QNA_SEQ=" + qseq,+
+							"pop",
+							"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+			}
+			</script>
 
 
 </body>

@@ -53,7 +53,7 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 					<tr>
 						<td><%=i+1%></td>
 						<td><%=list.get(i).getPRO_NAME() %></td>
-						<td><%=list.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=list.get(i).getQNA_SEQ()%>)"><%=list.get(i).getREV_TITLE() %></td>
 						<td><%=list.get(i).getREV_TIME()%></td>
 						<td><%=list.get(i).getSCORE()%></td>
 				</tr>
@@ -96,5 +96,16 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 					
 				</div>
 			</div>
+			
+			<script type="text/javascript">
+			function goreview(rseq) {
+				 window.open(
+							"review.mib?REV_SEQ=" + rseq,+
+							"pop",
+							"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+		}
+			</script>
+			
+			
 </body>
 </html>

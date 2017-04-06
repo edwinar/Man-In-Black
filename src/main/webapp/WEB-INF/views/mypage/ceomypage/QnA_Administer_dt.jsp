@@ -53,7 +53,7 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 					<tr>
 						<td><%=i+1%></td>
 						<td><%=list.get(i).getPRO_NAME() %></td>
-						<td><%=list.get(i).getQNA_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goqna(<%=list.get(i).getQNA_SEQ()%>)"><%=list.get(i).getQNA_TITLE() %></td>
 						<td><%=list.get(i).getQNA_TYPE() %></td>
 						<td><%=list.get(i).getQNA_TIME() %></td>
 				</tr>
@@ -96,5 +96,15 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 					
 				</div>
 			</div>
+			
+			<script type="text/javascript">
+			function goqna(qseq) {
+				 window.open(
+							"qnadetail.mib?QNA_SEQ=" + qseq,+
+							"pop",
+							"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+			}
+			</script>
+			
 </body>
 </html>
