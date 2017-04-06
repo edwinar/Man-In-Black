@@ -123,7 +123,7 @@ SELECT
 	USER_ID,
 	PRO_SEQ,
 	REV_STEP,
-NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=41), 'none') STORED_NAME
+NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=#{REV_SEQ}), 'none') STORED_NAME
 FROM REVIEW 
 WHERE REV_SEQ=#{REV_SEQ}
 </select>
