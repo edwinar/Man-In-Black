@@ -99,4 +99,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_updateReviewFlag(int REV_REF) {
 		return detailDao.do_updateReviewFlag(REV_REF);
 	}
+
+	/*@Override
+	public int do_insertBuyDel(HashMap<String, Object> map) {
+		return detailDao.do_insertBuyDel(map);
+	}*/
 }

@@ -44,26 +44,28 @@ public class UserMypageController {
 	private DetailSvc detailSvc;
 
 	// 마이페이지 메인
-		@RequestMapping("mymain.mib")
-		public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
+	@RequestMapping("mymain.mib")
+	public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
 
-			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
-			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
-			List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
-			List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
-			List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
-			List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
-			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
-			mav.addObject("point",mypageDto);
-			mav.addObject("coupon",coupon);
-			mav.addObject("buy",buy);
-			mav.addObject("qna",qna);
-			mav.addObject("basket",basket);
-			mav.addObject("point5",point5);
-			return mav;
-			
-		}
+		
+		
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
+		List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
+		List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
+		List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+		List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
+		List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
+		ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
+		mav.addObject("point",mypageDto);
+		mav.addObject("coupon",coupon);
+		mav.addObject("buy",buy);
+		mav.addObject("qna",qna);
+		mav.addObject("basket",basket);
+		mav.addObject("point5",point5);
+		return mav;
+		
+	}
 	// 회원정보수정 
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(HttpServletRequest res){
