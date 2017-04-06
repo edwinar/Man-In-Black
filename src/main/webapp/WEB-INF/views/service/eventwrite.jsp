@@ -1,5 +1,9 @@
+<%@page import="com.eagle.men_in_black.model.ServiceDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ServiceDto serviceDto = (ServiceDto)request.getAttribute("write");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -169,12 +173,18 @@ body {
 
 
 	<!--메인 이미지등록  -->
-	<div class="preview"></div>
+	<div class="preview">
+	<img src="<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
+	</div>
 	<div align="center">
 		<button id="triggerUpload" class="btn">메인이미지등록</button>
 	</div>
 	
-	<form name="myform" action="eventreg.mib" method="post" enctype="multipart/form-data">
+	<form <%if(serviceDto==null){%> action="eventreg.mib"<%}else{ %> action="eventupdate.mib" <%} %>
+	 method="post" enctype="multipart/form-data">
+	<%if(serviceDto!=null){ %>
+	<input type="hidden" name="seq" value="<%=serviceDto.getEVENT_SEQ()%>">
+	<%} %> 
 	<input type="file" id="filePicker" name="eventMainPT" value="fdsjkf"/>
 	
 
@@ -183,13 +193,15 @@ body {
 
 		<div class="mat-div">
 			<label for="first-name" class="mat-label">제목</label> 
-			<input type="text" class="mat-input" name="eventtitle" id="제목">
+			<input type="text" class="mat-input" name="eventtitle" id="제목"
+			<%if(serviceDto!=null){ %>value="<%=serviceDto.getEVENT_TITLE() %>"<%} %>
+			>
 		</div>
 	</div>
 
 <!-- Editor -->
 	<textarea rows="10" cols="80" name="editor" id="editor1">
-         
+        <%if(serviceDto!=null){ %><%=serviceDto.getEVENT_CONTENT() %><%} %> 
    </textarea>
 
 	<script>
