@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>:::Review:::</title>
 
 <style type="text/css">
@@ -118,7 +120,7 @@
 				%>
 				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) ){ %>
 				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
-				<button style="width: 50%; height: 100%;" onclick="reviewdelete(<%=detailDto.getREV_SEQ() %>)">삭제하기</button>
+				<input type="button" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
 	
 				<%} %>
 				
@@ -137,7 +139,44 @@ function reviewUpdate(REV_SEQ){
 	window.colse();
 }
 function reviewdelete(REV_SEQ){
-	window.open("reviewReply.mib?REV_SEQ="+REV_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	location.href = "reviewDel.mib?REV_SEQ="+REV_SEQ;
+    window.colse();
+}
+
+function closeSelf(REV_SEQ) {
+    var REV_SEQs = REV_SEQ;
+
+    var formData = new FormData();
+
+    formData.append("REV_SEQ",REV_SEQs);
+    alert(REV_SEQs);
+    $.ajax({
+        type: "POST",
+        url: "reviewDel.mib",
+        async: true,
+        data: formData,
+        dataType: "html",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+//
+            var flag = $.parseJSON(data);
+
+            if (flag.result == 'success') {
+                alert("삭제되었습니다");
+                opener.parent.location.reload();
+                window.close();
+            } else {
+                alert("업뎃실패");
+            }
+        },
+        complete: function (data) {
+        },
+        error: function (xhr, status, error) {
+            alert("에러발생");
+        }
+    });
+
 }
 
 </script>

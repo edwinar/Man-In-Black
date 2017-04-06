@@ -67,4 +67,6 @@ public interface UserMypageSvc {
 
 	public UserMypageDto do_search_qnadetail(String qna_seq);
 
+	public int do_delete_reviewList(String REV_SEQ);
+
 }

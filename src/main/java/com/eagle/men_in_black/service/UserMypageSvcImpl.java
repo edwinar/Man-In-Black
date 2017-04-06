@@ -211,4 +211,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_qnadetail(qna_seq);
 
 	}
+
+	@Override
+	public int do_delete_reviewList(String REV_SEQ) {
+		return userMypageDao.do_delete_reviewList(REV_SEQ);
+	}
 }

@@ -590,4 +590,12 @@ WHERE REV_SEQ  =   #{REV_SEQ}
 
 
 
+    <delete id="do_delete_reviewList" parameterType="int" >
+
+       DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+
+
+    </delete>
+
+
 </mapper>
