@@ -130,7 +130,8 @@ $.ajax({
 			//alert("success " + data);
 			var flag = $.parseJSON(data);
 			if(flag.result=='success'){
-				windowClose();	
+				opener.parent.location.reload();
+				windowClose();
 			} 	
 			
 			

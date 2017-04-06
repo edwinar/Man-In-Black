@@ -200,7 +200,6 @@ public class UserMypageDaoImpl implements UserMypageDao {
 
 	public UserMypageDto do_search_qnadetail(String qna_seq) {
 		String statement = namespace+".do_search_qnadatail";
-
 		return sqlSession.selectOne(statement,qna_seq);
 	}
 
@@ -210,6 +209,16 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		return sqlSession.update(statement, map);
 	}
 
+	@Override
+	public int do_delete_qna(int qna) {
+		String statement = namespace+".do_delete_qna";
+		return sqlSession.delete(statement, qna);
+	}
 
 
+	@Override
+	public int do_delete_reviewList(String REV_SEQ) {
+		String statement = namespace+".do_delete_reviewList";
+		return sqlSession.delete(statement,REV_SEQ);
+	}
 }

@@ -589,13 +589,26 @@ WHERE REV_SEQ  =   #{REV_SEQ}
 
 <update id="do_update_qna" parameterType="hashmap" >
 UPDATE QNA
-SET 
+SET
 QNA_TITLE   = #{QNA_TITLE}
 ,QNA_CONTENT = #{QNA_CONTENT}
 ,QNA_OPEN    = #{QNA_OPEN}
 ,QNA_TYPE    = #{CA_REASON}
 WHERE QNA_SEQ   = ${QNA_SEQ}
 </update>
+
+<delete id="do_delete_qna" parameterType="int" >
+DELETE
+FROM QNA
+WHERE QNA_SEQ   = #{QNA_SEQ}
+</delete>
+
+    <delete id="do_delete_reviewList" parameterType="int" >
+
+       DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+
+
+    </delete>
 
 
 </mapper>

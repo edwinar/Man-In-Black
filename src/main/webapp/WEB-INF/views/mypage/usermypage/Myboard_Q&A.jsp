@@ -53,7 +53,7 @@
 						} else {
 					%>
 					<%for(int i = 0; i < qnaList.size(); i++){ %>
-					<tr>
+					<tr style="cursor: pointer;" onclick="goqna(<%=qnaList.get(i).getQNA_SEQ()%>)" >
 						<td><%=i+1%></td>
 						<td><%=qnaList.get(i).getPRO_NAME() %></td>
 						<td><%=qnaList.get(i).getQNA_TITLE()%></td>
@@ -106,6 +106,13 @@
 	
 </body>
 
-
+<script type="text/javascript">
+function goqna(qseq) {
+	 window.open(
+				"qnadetail.mib?QNA_SEQ=" + qseq,+
+				"pop",
+				"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+}
+</script>
 
 </html>
