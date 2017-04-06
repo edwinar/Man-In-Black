@@ -286,7 +286,7 @@ $(function() {
 		var couponValue = $("#couponChoice option:selected").val();
 		var finalPrice = "<%=finalPrice %>";
 		if(couponValue=="no"){
-			
+			$('#final').text(finalPrice+" Won");
 		}else{
 			finalPrice = finalPrice - couponValue;
 			$('#final').text(finalPrice+" Won");
