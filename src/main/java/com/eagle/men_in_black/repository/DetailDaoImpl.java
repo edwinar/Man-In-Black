@@ -118,9 +118,15 @@ public class DetailDaoImpl implements DetailDao {
 		return sqlSession.update(statement, REV_REF);
 	}
 
-	/*@Override
+	@Override
 	public int do_insertBuyDel(HashMap<String, Object> map) {
 		String statement = namespace+".do_insertBuyDel";
 		return sqlSession.insert(statement, map);
-	}*/
+	}
+
+	@Override
+	public DetailDto do_selectBasketInfo(int BAS_SEQ) {
+		String statement = namespace+".do_selectBasketInfo";
+		return sqlSession.selectOne(statement, BAS_SEQ);
+	}
 }

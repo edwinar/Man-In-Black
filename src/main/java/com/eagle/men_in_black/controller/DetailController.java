@@ -38,6 +38,9 @@ public class DetailController {
 	@Autowired
 	private DetailSvc detailSvc;
 	
+	@Autowired
+	private UserMypageSvc userMypageSvc;
+	
 	@RequestMapping("detail.mib")
 	public ModelAndView detail(HttpServletRequest res,HttpServletResponse rep){
 		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail");
@@ -276,5 +279,56 @@ public class DetailController {
 		mav.addObject("points", points);
 
 		return mav;
+	}
+	
+	@RequestMapping("buymymain.mib")
+	public ModelAndView buymymain(HttpServletRequest res, HttpServletResponse rep){
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		
+		int DEL_PRICE = Integer.parseInt(res.getParameter("DEL_PRICE"));
+		String DEL_ADDRESS = res.getParameter("receiveAddress_1");
+		String DEL_POSTCODE = res.getParameter("receiveNum");
+		String REC_NAME = res.getParameter("receiveName");
+		String REC_TEL = res.getParameter("receivePhone");
+		String DEL_DETAIL_ADDRESS = res.getParameter("receiveAddress_2");
+		int basketListSize = Integer.parseInt(res.getParameter("basketListSize"));
+		List<Integer> BAS_SEQList = new ArrayList<>();
+		List<DetailDto> basketInfoList = new ArrayList<>();
+		List<HashMap<String, Object>> basketMapList = new ArrayList<>();
+		for(int i=0;i<basketListSize;i++){
+			BAS_SEQList.add(Integer.parseInt(res.getParameter("BAS_SEQ"+i)));
+			basketInfoList.add(detailSvc.do_selectBasketInfo(BAS_SEQList.get(i)));
+			System.out.println("0000000"+i+basketInfoList.get(i));
+			
+			basketMapList.get(i).put("DEL_PRICE", DEL_PRICE);
+			basketMapList.get(i).put("DEL_ADDRESS", DEL_ADDRESS);
+			basketMapList.get(i).put("DEL_POSTCODE", DEL_POSTCODE);
+			basketMapList.get(i).put("REC_NAME", REC_NAME);
+			basketMapList.get(i).put("REC_TEL", REC_TEL);
+			basketMapList.get(i).put("DEL_DETAIL_ADDRESS", DEL_DETAIL_ADDRESS);
+			basketMapList.get(i).put("USER_ID", userdto.getUSER_ID());
+			basketMapList.get(i).put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			basketMapList.get(i).put("SEL_NUM", basketInfoList.get(i).getSEL_NUM());
+			System.out.println("================"+basketMapList.get(i));
+		}
+		
+		
+		//////////////////////////////////////////////////////////////////////////////
+		
+		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
+		List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
+		List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
+		List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+		List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
+		List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
+		ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
+		mav.addObject("point",mypageDto);
+		mav.addObject("coupon",coupon);
+		mav.addObject("buy",buy);
+		mav.addObject("qna",qna);
+		mav.addObject("basket",basket);
+		mav.addObject("point5",point5);
+		return mav;
+		
 	}
 }

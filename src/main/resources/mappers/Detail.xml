@@ -174,6 +174,7 @@ WHERE QNA_SEQ=#{QNA_SEQ}
 
 <select id="do_selectFinalBuy" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT A.PRO_SEQ
+	, A.BAS_SEQ
 	, B.PRO_NAME
 	, B.PRO_PRICE
 	, A.PRO_SIZE
@@ -215,7 +216,7 @@ FROM (SELECT POINT_FINAL FROM POINTS
 WHERE ROWNUM =1
 </select>
 
-<!-- <insert id="do_insertBuyDel" parameterType="hashmap">
+<insert id="do_insertBuyDel" parameterType="hashmap">
 INSERT INTO DELIVERY
 (
     DEL_SEQ
@@ -240,6 +241,12 @@ INSERT INTO DELIVERY
 VALUES
 (DEL_SEQ.NEXTVAL,#{DEL_ADDRESS},#{DEL_POSTCODE}
 ,0,NULL,#{REC_NAME},#{REC_TEL},SYSDATE,#{DEL_PRICE},'상품준비중',#{PRO_SEQ},#{USER_ID},#{SEL_NUM},NULL,NULL,NULL,NULL,#{DEL_DETAIL_ADDRESS});  
-</insert> -->
+</insert>
+
+<select id="do_selectBasketInfo" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto" > 
+SELECT BAS_SEQ, PRO_SEQ, USER_ID, PRO_SIZE, COLOR, BAS_PRO_NUM
+FROM BASKET
+WHERE BAS_SEQ=#{BAS_SEQ}
+</select>
 
 </mapper>

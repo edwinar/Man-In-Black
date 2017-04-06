@@ -146,8 +146,16 @@ td, th {
 			</table>
 		</div>
 		<div id="rightOrder">
-		<form action="dsmldmib">
-		<input type="hidden" value=""/>
+		<form action="buymymain.mib" id="form">
+		<%
+			for(int i = 0; i<basketList.size();i++){
+		%>
+			<input type="hidden" value="<%=basketList.get(i).getBAS_SEQ()%>" name="BAS_SEQ<%=i%>"/>
+		<%
+			}
+		%>
+			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
+			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
 			<table class="orderTable" width="90%" height="400px">
 			<col width="20%"/><col width="50%"/><col width="30%"/>
 				<tr>
@@ -160,35 +168,35 @@ td, th {
 				<tr>
 					<td>이름</td>
 					<td colspan="2">
-					<input type="text" id="receiveName"/>
+					<input type="text" id="receiveName" name="receiveName"/>
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td colspan="2">
-					<input type="text" id="receiveEmail"/>
+					<input type="text" id="receiveEmail" name="receiveEmail"/>
 					</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
 					<td colspan="2">
-					<input type="text" id="receivePhone"/>
+					<input type="text" id="receivePhone" name="receivePhone"/>
 					</td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum" name="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_1"/>
+						<input type="text" size="42px" id="receiveAddress_1" name="receiveAddress_1"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_2"/>
+						<input type="text" size="42px" id="receiveAddress_2" name="receiveAddress_2"/>
 					</td>
 				</tr>
 			</table>
@@ -353,26 +361,9 @@ var midPrice;
 		}
 		deliveryFeeChange();
 	});
-	<%-- $('#buy').on('click',function(){
-	<%
-		for(int i=0;i<basketList.size();i++){
-	%>
-		var DEL_ADDRESS = $('#receiveAddress_1').val();
-		var DEL_POSTCODE = $('#receiveNum').val();
-		var REC_NAME = $('#receiveName').text();
-		var REC_TEL = $('#receivePhone').text();
-		var DEL_PRICE = $('#deliveryFee').text();
-		var PRO_SEQ = <%=basketList.get(i).getPRO_SEQ() %>;
-		var USER_ID = '<%=dto.getUSER_ID() %>';
-		var SEL_NUM = <%=basketList.get(i).getBAS_PRO_NUM() %>;
-		var DEL_DETAIL_ADDRESS = $('#receiveAddress_2').val();
-	<%
-		}
-	%>
-		alert(USER_ID);
-		//location.href="mymain.mib?DEL_ADDRESS="+;
-		alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
-	}); --%>
+	$('#buy').on('click',function(){
+		$('#form').submit();
+	});
 });
 function onlyNumber(){
     if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;
@@ -385,6 +376,7 @@ function deliveryFeeChange(){
 		$('#deliveryFee').text("0");
 	}
 	var deliveryFee = $('#deliveryFee').text();
+	$("#DEL_PRICE").val(deliveryFee);
 	$('#final').text(parseInt(deliveryFee)+parseInt(value));
 }
 </script>
