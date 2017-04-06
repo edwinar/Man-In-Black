@@ -94,4 +94,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_selectPointsList(String USER_ID) {
 		return detailDao.do_selectPointsList(USER_ID);
 	}
+
+	@Override
+	public int do_updateReviewFlag(int REV_REF) {
+		return detailDao.do_updateReviewFlag(REV_REF);
+	}
 }

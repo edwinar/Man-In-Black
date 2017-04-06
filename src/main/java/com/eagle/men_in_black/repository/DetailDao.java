@@ -16,6 +16,8 @@ public interface DetailDao {
 	public List<DetailDto> do_selectProductReviewList(HashMap<String, Object> map);
 	//클릭한 리뷰 디테일
 	public DetailDto do_selectReviewDetail(int REV_SEQ);
+	//리뷰 step 수정
+	public int do_updateReviewFlag(int REV_REF);
 	//구매팝업 정보
 	public List<DetailDto> do_buyProductPop(int PRO_SEQ);
 	//구매팝업칼라셀렉트리스트
