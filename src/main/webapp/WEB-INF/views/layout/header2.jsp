@@ -42,14 +42,26 @@ request.setCharacterEncoding("UTF-8");
 	margin-right: 15px;
 }
 /*a링크들 글자색 */
-.dropDownMenu a {
+.cateA {
 	padding: 10px 20px;
 	display: block;
 	text-decoration: none;
 	color: red;
 }
-.dropDownMenu a:hover {
+
+.cateA:hover {
 	background: #000;
+	text-decoration: none;
+}
+
+.subA{
+	padding : 10px 25px 5px 0;
+}
+
+.subA:hover{
+	background: black;
+	color: white;
+	text-decoration: none;
 }
 
 
@@ -73,18 +85,24 @@ request.setCharacterEncoding("UTF-8");
 .dropDownMenu ul {
 	box-shadow: 2px 2px 15px 0 rgba(0,0,0, 0.5);
 }
+/*서브메뉴*/
 .dropDownMenu > li > ul {
-	text-align: left;
+	
 	display: none;
 	/* background:transparent; */
 	position: absolute;
 	top:100%;
-	width: 200px;
 	z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
-	height: 164px;
-	height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;
-	margin-left: -40px;
+	padding-top: 0px; 
+	margin-top: 0px; 
+	padding-bottom: 0px; 
+	margin-bottom: 0px;
+	background-color: olive;
+	list-style: none;
+	width: 150px;	
+	height: 200px;
 }
+
 
 
 </style>
@@ -109,33 +127,33 @@ request.setCharacterEncoding("UTF-8");
 <nav>
 
 <ul class="dropDownMenu">
-			<li class="cate"><a href="#">NEW</a></li>
-			<li class="cate"><a href="#">OUTER</a>
-				<ul style="display: none; ">
-					<li><a href="#">HTML</a></li>
-					<li><a href="#">CSS</a></li>
-					<li><a href="#">JS</a></li>
+			<li class="cate"><a href="#" class="cateA">NEW</a></li>
+			<li class="cate"><a href="#" class="cateA">OUTER</a>
+				<ul style="">
+					<li class="sub"><a href="#" class="subA">HTML</a></li>
+					<li class="sub"><a href="#" class="subA">CSS</a></li>
+					<li class="sub"><a href="#" class="subA">JS</a></li>
 				</ul>
 			</li>
-			<li class="cate"><a href="#">TOP</a>
+			<li class="cate"><a href="#" class="cateA">TOP</a>
 				<ul style="display: none; ">
-					<li><a href="#">C++</a></li>
-					<li><a href="#">WordPress</a>
+					<li class="sub"><a href="#" class="subA">C++</a></li>
+					<li class="sub"><a href="#" class="subA">WordPress</a>
 					</li>
-					<li><a href="#">PHP</a></li>
-					<li><a href="#">jQuery</a></li>
+					<li class="sub"><a href="#" class="subA">PHP</a></li>
+					<li class="sub"><a href="#" class="subA">jQuery</a></li>
 				</ul>
 			</li>
-			<li class="cate"><a href="#">PANTS</a>
+			<li class="cate"><a href="#" class="cateA">PANTS</a>
 				<ul>
-					<li><a href="#">Icons</a></li>
-					<li><a href="#">Fonts</a></li>
-					<li><a href="#">Wallpapers</a></li>
+					<li class="sub"><a href="#" class="subA">Icons</a></li>
+					<li class="sub"><a href="#" class="subA">Fonts</a></li>
+					<li class="sub"><a href="#" class="subA">Wallpapers</a></li>
 				</ul>
 			</li>
-			<li class="cate"><a href="#">SHOES</a></li>
+			<li class="cate"><a href="#" class="cateA">SHOES</a></li>
 			
-			<li class="cate"><a href="#">BAG&ACC</a></li>
+			<li class="cate"><a href="#" class="cateA">BAG&ACC</a></li>
 			
 		</ul>
 	</nav>
