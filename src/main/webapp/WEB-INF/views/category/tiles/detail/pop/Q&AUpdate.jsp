@@ -1,8 +1,11 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	UserMypageDto qnaDto = (UserMypageDto) request.getAttribute("qnaDto");
+	
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

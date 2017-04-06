@@ -236,4 +236,24 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_delete_reviewPhoto(REV_SEQ);
 	}
+
+
+	@Override
+	public int do_insert_qnareply(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_insert_qnareply(map);
+	}
+
+
+	@Override
+	public void do_update_qnastep(int QNA_REF) {
+		userMypageDao.do_update_qnastep(QNA_REF);
+		
+	}
+	
+	@Override
+	public int do_insert_qna(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_insert_qna(map);
+	}
 }

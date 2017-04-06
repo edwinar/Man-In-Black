@@ -40,4 +40,8 @@ public interface DetailSvc {
 	public List<DetailDto> do_selectCouponList(HashMap<String, Object> map);
 	//사용가능한적립금
 	public int do_selectPointsList(String USER_ID);
+	//구매버튼 배달 등록
+	public int do_insertBuyDel(HashMap<String, Object> map);
+	//결제버튼시필요한장바구니정보가져오기
+	public DetailDto do_selectBasketInfo(int BAS_SEQ);
 }

@@ -10,6 +10,8 @@
 	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
 	Object points = (Object)request.getAttribute("points");
 	int finalPrice = 0;
+	int deliveryFee = 0;
+	int finalFee = 0;
 %>
 <html>
 <head>
@@ -94,6 +96,8 @@ td, th {
 				<%
 						finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 					}
+					if(finalPrice<124950)deliveryFee = 2500;
+					else deliveryFee = 0;
 				%>
 				
 				
@@ -142,6 +146,16 @@ td, th {
 			</table>
 		</div>
 		<div id="rightOrder">
+		<form action="buymymain.mib" id="form">
+		<%
+			for(int i = 0; i<basketList.size();i++){
+		%>
+			<input type="hidden" value="<%=basketList.get(i).getBAS_SEQ()%>" name="BAS_SEQ<%=i%>"/>
+		<%
+			}
+		%>
+			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
+			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
 			<table class="orderTable" width="90%" height="400px">
 			<col width="20%"/><col width="50%"/><col width="30%"/>
 				<tr>
@@ -153,33 +167,40 @@ td, th {
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td colspan="2" id="receiveName"></td>
+					<td colspan="2">
+					<input type="text" id="receiveName" name="receiveName"/>
+					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td colspan="2" id="receiveEmail"></td>
+					<td colspan="2">
+					<input type="text" id="receiveEmail" name="receiveEmail"/>
+					</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
-					<td colspan="2" id="receivePhone"></td>
+					<td colspan="2">
+					<input type="text" id="receivePhone" name="receivePhone"/>
+					</td>
 				</tr>
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum" name="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_1"/>
+						<input type="text" size="42px" id="receiveAddress_1" name="receiveAddress_1"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_2"/>
+						<input type="text" size="42px" id="receiveAddress_2" name="receiveAddress_2"/>
 					</td>
 				</tr>
 			</table>
+			</form>
 		</div>
 	</div>
 </div>
@@ -212,6 +233,9 @@ td, th {
 				    	</select>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="3">* 쿠폰을 고르시고 적용하기버튼을 눌러주세요!</td>
+				</tr>
 			</table>
 		</div>
 		<div id="rightGift">
@@ -227,11 +251,14 @@ td, th {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="30px" id="pointValue"/>
+						<input type="text" size="30px" id="pointValue" disabled="disabled" onkeypress="onlyNumber();"/>
 					</td>
 					<td>
-						<button id="pointBtn">Won 사용하기</button>
+						<button id="pointBtn" disabled="disabled">Won 사용하기</button>
 					</td>
+				</tr>
+				<tr>
+					<td colspan="3">* 쿠폰선택을 먼저 하셔야합니다!</td>
 				</tr>
 			</table>
 		</div>
@@ -240,24 +267,40 @@ td, th {
 <div style="margin-top: 250px; margin-bottom: 50px;" align="center">
 	<hr style="border: solid black 1px; width: 90%;" align="center">
 	<table width="30%" height="100px">
-	<col width="50%"/><col width="50%"/>
+	<col width="50%"/><col width="40%"/><col width="10%"/>
 		<tr>
 			<td>배송비</td>
-			<td>3000 Won</td>
+			<td id="deliveryFee"><%=deliveryFee %></td>
+			<td>Won</td>
 		</tr>
 		<tr>
 			<td>총 결제 금액</td>
-			<td id="final"><%=finalPrice %> Won</td>
+			<td id="final">
+			<%
+				if(deliveryFee==2500){
+			%>
+			<%=finalPrice + deliveryFee%>
+			<%
+				}else{
+			%>
+			<%=finalPrice%>
+			<%
+				}
+			%>
+			</td>
+			<td>Won</td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<button style="width: 80%; height: 100%" onclick="buy()">결제하기</button>
+			<td colspan="3">
+				<button style="width: 80%; height: 100%" id="buy">결제하기</button>
 			</td>
 		</tr>
 	</table>
 </div>
 <script type="text/javascript">
 $(function() {
+var finalPrice = "<%=finalPrice %>";
+var midPrice;
 	$('#ch').on('click',function(){
 		if($("#ch").is(':checked')){		
 			var name = $("#orderName").text();	
@@ -267,16 +310,16 @@ $(function() {
 			var address_1 = $("#orderAddress_1").val();
 			var address_2 = $("#orderAddress_2").val();
 			
-			$("#receiveName").text(name);
-			$("#receiveEmail").text(email);
-			$("#receivePhone").text(phone);
+			$("#receiveName").val(name);
+			$("#receiveEmail").val(email);
+			$("#receivePhone").val(phone);
 			$("#receiveNum").val(num);
 			$("#receiveAddress_1").val(address_1);
 			$("#receiveAddress_2").val(address_2);	
 		}else{
-			$("#receiveName").text('');
-			$("#receiveEmail").text('');
-			$("#receivePhone").text('');
+			$("#receiveName").val('');
+			$("#receiveEmail").val('');
+			$("#receivePhone").val('');
 			$("#receiveNum").val('');
 			$("#receiveAddress_1").val('');
 			$("#receiveAddress_2").val('');	
@@ -284,32 +327,57 @@ $(function() {
 	});
 	$('#couponBtn').on('click',function(){
 		var couponValue = $("#couponChoice option:selected").val();
-		var finalPrice = "<%=finalPrice %>";
+		midPrice = finalPrice;
 		if(couponValue=="no"){
-			$('#final').text(finalPrice+" Won");
+			$('#final').text(midPrice);
+			$('#pointValue').attr('disabled',false);
+			$('#pointBtn').attr('disabled',false);
+			$('#couponBtn').attr('disabled',true);
+			$('#couponChoice').attr('disabled',true);
 		}else{
-			finalPrice = finalPrice - couponValue;
-			$('#final').text(finalPrice+" Won");
+			midPrice = midPrice - couponValue;
+			$('#final').text(midPrice);
+			$('#pointValue').attr('disabled',false);
+			$('#pointBtn').attr('disabled',false);
+			$('#couponBtn').attr('disabled',true);
+			$('#couponChoice').attr('disabled',true);
 		}
+		deliveryFeeChange();
 	});
 	$('#pointBtn').on('click',function(){
 		var useablePoints = <%=points %>;
 		var pointsValue = $('#pointValue').val();
-		var finalPrice = "<%=finalPrice %>";
 		if(pointsValue==""||pointsValue==null){
-			
+			$('#final').text(midPrice);
 		}else{
 			if(pointsValue>useablePoints){
 				alert(useablePoints+"를 넘습니다.");
+				$('#final').text(midPrice);
+				$('#pointValue').val("0");
 			}else{
-				finalPrice = finalPrice - pointsValue;
-				$('#final').text(finalPrice+" Won");
+				finalPrice = midPrice - pointsValue;
+				$('#final').text(finalPrice);
 			}
 		}
+		deliveryFeeChange();
+	});
+	$('#buy').on('click',function(){
+		$('#form').submit();
 	});
 });
-function buy() {
-	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
+function onlyNumber(){
+    if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;
+}
+function deliveryFeeChange(){
+	var value=$('#final').text();
+	if(value<50000){
+		$('#deliveryFee').text("2500");
+	}else{
+		$('#deliveryFee').text("0");
+	}
+	var deliveryFee = $('#deliveryFee').text();
+	$("#DEL_PRICE").val(deliveryFee);
+	$('#final').text(parseInt(deliveryFee)+parseInt(value));
 }
 </script>
 </body>

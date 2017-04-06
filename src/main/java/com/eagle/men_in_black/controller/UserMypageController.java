@@ -44,26 +44,28 @@ public class UserMypageController {
 	private DetailSvc detailSvc;
 
 	// 마이페이지 메인
-		@RequestMapping("mymain.mib")
-		public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
+	@RequestMapping("mymain.mib")
+	public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep){
 
-			MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
-			UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
-			List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
-			List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
-			List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
-			List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
-			List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
-			ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
-			mav.addObject("point",mypageDto);
-			mav.addObject("coupon",coupon);
-			mav.addObject("buy",buy);
-			mav.addObject("qna",qna);
-			mav.addObject("basket",basket);
-			mav.addObject("point5",point5);
-			return mav;
-			
-		}
+		
+		
+		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
+		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
+		List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
+		List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
+		List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
+		List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
+		List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
+		ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
+		mav.addObject("point",mypageDto);
+		mav.addObject("coupon",coupon);
+		mav.addObject("buy",buy);
+		mav.addObject("qna",qna);
+		mav.addObject("basket",basket);
+		mav.addObject("point5",point5);
+		return mav;
+		
+	}
 	// 회원정보수정 
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(HttpServletRequest res){
@@ -898,10 +900,92 @@ public class UserMypageController {
 
 
 		};
+		
+		@RequestMapping("qnarep.mib")
+		public ModelAndView qnareply(HttpServletRequest res, HttpServletResponse rep){
+			String QNA_SEQ =  res.getParameter("QNA_SEQ");
+			System.out.println("=======qnarep======="+QNA_SEQ);
+			UserMypageDto qnaDto = (UserMypageDto)userMypageSvc.do_search_qnadetail(QNA_SEQ);
+
+			ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AReply");
+			mav.addObject("qnaDto",qnaDto);
+			return mav;
+			
+		}
+		
+		
+		
+// qna 답글
+@RequestMapping(value="qnareps.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+public @ResponseBody String qnareps(HttpServletRequest res, HttpServletResponse rep) {
+
+	HashMap<String, String> resultMap = new HashMap<>();
+	HashMap<String, Object> update = new HashMap<String, Object>();
+	
+	String QNA_OPEN = res.getParameter("secret");
+	String QNA_TYPE = res.getParameter("secretz");
+	String QNA_TITLE = res.getParameter("title");
+	String QNA_CONTENT = res.getParameter("QNA_CONTENT");
+	String PRO_SEQ = res.getParameter("PRO_SEQ");
+	String USER_ID = res.getParameter("USER_ID");
+	String QNA_REF = res.getParameter("QNA_REF");
 	
 
+	update.put("PRO_SEQ",Integer.parseInt(PRO_SEQ));
+	update.put("QNA_OPEN",QNA_OPEN);
+	update.put("QNA_TYPE",QNA_TYPE);
+	update.put("QNA_TITLE",QNA_TITLE);
+	update.put("QNA_CONTENT",QNA_CONTENT);
+	update.put("USER_ID",USER_ID);
+	update.put("QNA_REF",Integer.parseInt(QNA_REF));
 	
 	
+	int suc = userMypageSvc.do_insert_qnareply(update);
+	if(suc > 0){
+		resultMap.put("result", "success");
+		userMypageSvc.do_update_qnastep(Integer.parseInt(QNA_REF));
+	}
+	Gson gson = new Gson();
+	
+	return gson.toJson(resultMap);
+
+
+};
+
+//qna 답글
+@RequestMapping(value="qnaWrite.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+public @ResponseBody String qnaWrite(HttpServletRequest res, HttpServletResponse rep) {
+
+	HashMap<String, String> resultMap = new HashMap<>();
+	HashMap<String, Object> update = new HashMap<String, Object>();
+	
+	String QNA_OPEN = res.getParameter("secret");
+	String QNA_TYPE = res.getParameter("secretz");
+	String QNA_TITLE = res.getParameter("title");
+	String QNA_CONTENT = res.getParameter("QNA_CONTENT");
+	String PRO_SEQ = res.getParameter("PRO_SEQ");
+	String USER_ID = res.getParameter("USER_ID");
+	
+
+	update.put("PRO_SEQ",Integer.parseInt(PRO_SEQ));
+	update.put("QNA_OPEN",QNA_OPEN);
+	update.put("QNA_TYPE",QNA_TYPE);
+	update.put("QNA_TITLE",QNA_TITLE);
+	update.put("QNA_CONTENT",QNA_CONTENT);
+	update.put("USER_ID",USER_ID);
+	
+	
+	int suc = userMypageSvc.do_insert_qna(update);
+	if(suc > 0){
+		resultMap.put("result", "success");
+	}
+	Gson gson = new Gson();
+	
+	return gson.toJson(resultMap);
+
+
+};
+		
 	
 	
 }

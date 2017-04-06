@@ -602,20 +602,82 @@ FROM QNA
 WHERE QNA_SEQ   = #{QNA_SEQ}
 </delete>
 
-    <delete id="do_delete_reviewList" parameterType="int" >
+ <delete id="do_delete_reviewList" parameterType="int" >
+    DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+ </delete>
 
-       DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+ <delete id="do_delete_reviewPhoto" parameterType="int" >
+     DELETE PHOTO WHERE REV_SEQ = #{REV_SEQ}
+ </delete>
+    
+    
+    
+<!-- 문의 답글  -->
+<insert id="do_insert_qnareply" parameterType="hashmap">
+INSERT
+INTO QNA
+  (
+    QNA_SEQ,
+    QNA_TITLE,
+    QNA_CONTENT,
+    QNA_TIME,
+    QNA_OPEN,
+    QNA_REF,
+    QNA_TYPE,
+    QNA_STEP,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    QNA_SEQ.NEXTVAL,
+    #{QNA_TITLE},
+    #{QNA_CONTENT},
+    SYSDATE,
+    #{QNA_OPEN},
+    #{QNA_REF},
+    #{QNA_TYPE},
+    'Y',
+    #{USER_ID},
+    #{PRO_SEQ}
+  )
+</insert>
+<update id="do_update_qnastep" parameterType="int" >
 
-
-    </delete>
-
-    <delete id="do_delete_reviewPhoto" parameterType="int" >
-        DELETE PHOTO WHERE REV_SEQ = #{REV_SEQ}
-
-
-    </delete>
-
-
-
+UPDATE QNA
+SET 
+QNA_STEP ='Y'
+WHERE QNA_REF = #{QNA_REF}
+</update>
+<!-- 문의 답글  -->
+<insert id="do_insert_qna" parameterType="hashmap">
+INSERT
+INTO QNA
+  (
+    QNA_SEQ,
+    QNA_TITLE,
+    QNA_CONTENT,
+    QNA_TIME,
+    QNA_OPEN,
+    QNA_REF,
+    QNA_TYPE,
+    QNA_STEP,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    QNA_SEQ.NEXTVAL,
+     #{QNA_TITLE},
+     #{QNA_CONTENT},
+    SYSDATE,
+     #{QNA_OPEN},
+     QNA_SEQ.CURRVAL,
+     #{QNA_TYPE},
+     'N',
+     #{USER_ID},
+     #{PRO_SEQ}
+  )
+</insert>
 
 </mapper>

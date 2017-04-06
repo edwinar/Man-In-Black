@@ -15,7 +15,7 @@
   display: block;
   font-size: 16px;
   transform: translateY(25px);
-  color: #e2e2e2;
+  color: black;
   transition: all 0.5s;
 }
 .mat-label-check{
@@ -112,8 +112,8 @@
 	<form action="writeGood.mib" id="writeform" method="post" enctype="multipart/form-data">
 
 	<div class="wrap">
- 	
- 	<div class="mat-label-check" style="font-weight: bold;" id="cate-div"><p align="center">카테고리 분류</p>
+ 	<p align="center" style="margin-top: 15px;">카테고리 분류</p>
+ 	<div class="mat-label-check" style="font-weight: bold; margin-left: 25%" id="cate-div">
  	<select name="item" id="item" style="float: left; width: 20%; height: 30px;">
  	<option value="none">카테고리</option>
  	<option value="OUTER">OUTER</option>
@@ -131,20 +131,31 @@
  	<div id="input-sub-div" style="height: 30px; width:0; float:left;"></div>
  	NEW카테고리 적용 <input type="checkbox"  value="Y" name="new_item">	
  	</div>
+    
+    
     <br><br><br>
+    
+    
     <div class="mat-label-check" style="font-weight: bold; clear: left; "><p align="center">메인 사진 등록</p>
-  	<div style="float: left; width: 25%; height: " >메인<input type="file" name="onefile" id="onefile"></div>	
+  	<div style="float: left; width: 25%; background: #f2f2f2; border: 8px solid #E0E0E0; " >메인<input type="file" name="onefile" id="onefile"></div>	
   	<div style="width: 12.5%; height:100px; float:left; " ></div>		
-    <div style="width:25%; float: left;">서브메인<input type="file" name="twofile" id="twofile"></div>	
+    
+    <div style="width:25%; float: left; background: #f2f2f2; border: 8px solid #E0E0E0;">서브메인<input type="file" name="twofile" id="twofile"></div>	
+  	
   	<div style="width: 12.5%; height:100px;  float:left; " ></div>		
-    <div style="width:25%; float: left;">서브메인<input type="file" name="threefile" id="threefile"></div>
+    
+    <div style="width:25%; float: left; background: #f2f2f2; border: 8px solid #E0E0E0;">서브메인<input type="file" name="threefile" id="threefile"></div>
+    
+   
+	
+    
     </div>
 	<div style="clear: left; ">
-    	<div style="width: 25%; height: 200px; float:left; ;" id="imgone-div" ></div>
+    	<div style="width: 25%; height: 200px; float:left; background: #f2f2f2; border: 8px solid #E0E0E0;" id="imgone-div" ></div>
     	<div style="width: 12.5%; height: 200px; float:left; " ></div>		
-    	<div style="width: 25%; height: 200px; float:left; " id="imgtwo-div"></div>
+    	<div style="width: 25%; height: 200px; float:left;background: #f2f2f2; border: 8px solid #E0E0E0; " id="imgtwo-div"></div>
     	<div style="width: 12.5%; height: 200px; float:left; " ></div>		
-    	<div style="width: 25%; height: 200px; float:left;" id="imgthree-div"></div>	
+    	<div style="width: 25%; height: 200px; float:left; background: #f2f2f2; border: 8px solid #E0E0E0;" id="imgthree-div"></div>	
     </div>
     
     <button type="button" onclick="addDetail()">추가</button>
@@ -210,7 +221,7 @@
   
   	<br>
 		<textarea rows="10" cols="80" name="editor" id="editor1">
-		텍스트 아레아 
+		
 	</textarea>
 		<script>
 			CKEDITOR
@@ -360,7 +371,7 @@ function addDetail() {
 	 				$("#sub_item").find("option").remove();
 	 				$("#sub_item").append("<option value='none'>서브 카테고리</option>");
 	 				$("#sub_item").append("<option value='add'>추가</option>");
-
+	 				$("#input_sub").remove();
 	 				
 	 				for(i=0;i<flag.length;i++){
 	 					
@@ -385,7 +396,7 @@ function addDetail() {
     function stockKeyCode(event) {
     			event = event || window.event;
     			var keyID = (event.which) ? event.which : event.keyCode;
-    			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+    			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
     			{
     				
     			}
@@ -400,7 +411,7 @@ function addDetail() {
     function pro_priceKeyCode(event) {
 		event = event || window.event;
 		var keyID = (event.which) ? event.which : event.keyCode;
-		if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+		if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13 )
 		{
 			
 		}

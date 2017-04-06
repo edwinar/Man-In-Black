@@ -227,4 +227,23 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace+".do_delete_reviewPhoto";
 		return sqlSession.delete(statement,REV_SEQ);
 	}
+
+	@Override
+	public int do_insert_qnareply(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_qnareply";
+		return sqlSession.insert(statement,map);
+	}
+
+	@Override
+	public void do_update_qnastep(int QNA_REF) {
+		String statement = namespace+".do_update_qnastep";
+		sqlSession.insert(statement,QNA_REF);
+		
+	}
+	
+	@Override
+	public int do_insert_qna(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_qna";
+		return sqlSession.insert(statement,map);
+	}
 }

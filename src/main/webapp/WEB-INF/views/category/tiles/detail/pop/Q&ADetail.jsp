@@ -1,9 +1,10 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%
-
+	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	UserMypageDto qnaDto = (UserMypageDto)request.getAttribute("qnaDto");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -80,6 +81,7 @@
 			<p><h5 align="left" style="margin-left: 30px;">내용</h5></p>
 			<textarea rows="5px" cols="100px" readonly="readonly"><%=qnaDto.getQNA_CONTENT()%></textarea>
 		</div>
+		<%if(dto.getUSER_ID().equals(qnaDto.getUSER_ID())){ %>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
 				<button style="width: 50%; height: 100%;" onclick="update(<%=qnaDto.getQNA_SEQ()%>)">수정하기</button>
@@ -88,11 +90,23 @@
 				<button style="width: 50%; height: 100%;" onclick="del()">삭제하기</button>
 			</div>
 		</div>
+		
+		<%}else if(dto.getUSER_ID().equals("adm")){ %>
+		
+		<div align="center">
+				<button style="width: 80%; height: 100%;" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
+			</div>
+		<%} %>
+		
 	</div>
 </div>
 <script type="text/javascript">
 function update(QNA_SEQ){
-	location.href="qnaup.mib?QNA_SEQ="+QNA_SEQ,"pop","width=810 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
+	location.href="qnaup.mib?QNA_SEQ="+QNA_SEQ,"pop","width=900 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
+	window.colse();
+};
+function rep(QNA_SEQ){
+	location.href="qnarep.mib?QNA_SEQ="+QNA_SEQ,"pop","width=900 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no";
 	window.colse();
 };
 
