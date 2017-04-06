@@ -30,8 +30,8 @@ td, th {
 	<center>
 		<div id="mypagehead" >
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
-				<a href="list.mib">장바구니</a>
+				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="register_MainBanner.mib">메인배너등록</a>
 			</h4>
 		</div>
 	</center>

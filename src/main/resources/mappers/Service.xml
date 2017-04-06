@@ -154,12 +154,15 @@
 
 	</update>
 	
+	
+	
+	
 	<!--이벤트 삭제 -->
 	<delete id="do_event_delete" parameterType="int">
 		DELETE
 		FROM
-		NOTICE_BOARD
-		WHERE NOTICE_SEQ =#{seq}
+		EVENT_BOARD
+		WHERE EVENT_SEQ =#{seq}
 
 	</delete>
 	
@@ -192,11 +195,14 @@
  	)
 	</insert>
 
+
 <select id="do_select_couseq" resultType="int">
 SELECT MAX(COUP_SEQ)
  FROM COUPON 
 </select>
 
+
+<!-- 쿠폰등록 -->
 <insert id="do_inser_coupt" parameterType="com.eagle.men_in_black.model.ServiceDto">
 INSERT
 	INTO PHOTO
@@ -215,6 +221,7 @@ INSERT
   )
 </insert>
 
+<!--쿠폰 리스트 불로오기  -->
 <select id="do_select_couplist" resultType="com.eagle.men_in_black.model.ServiceDto">
 SELECT 
 	A.COUP_SEQ,

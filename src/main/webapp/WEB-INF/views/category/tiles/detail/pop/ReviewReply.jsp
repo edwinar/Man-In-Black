@@ -35,9 +35,16 @@
 <title>:::ReviewReply:::</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
+.photoLayout{
+background-color:red;
+	width: 370px;
+	height: 250px;
+	margin-top: -40px;
+	
+}
 .layout{
-	width: 790px;
-	height: 390px;
+	width: 780px;
+	height: 450px;
 	position: relative;
 	margin-top: 10px;
 }
@@ -83,12 +90,8 @@ $(function() {
 	 			},
 	 			success : function(data) {
 	 				var flag = $.parseJSON(data);
-	 				console.log(flag);
+	 				//console.log(flag);
 	 				if(flag>0){
-	 					//opener.location = 'basketlist.mib';
-	 					//opener.parent.opener.parent.location = 'basketlist.mib';
-	 					//opener.opener.parent.location.reload();
-	 					//alert("리뷰답글달기성공");
 	 					window.close();
 	 				}else{
 	 					alert("리뷰답글달기실패");
@@ -160,14 +163,27 @@ $(function() {
 				<hr style="border: solid black 1px; width: 70%;">
 			</div>
 			<div class="title" align="center" style="height: 20%; width: 100%;">
-				<h3><%=detailDto.getREV_TITLE() %></h3>
+				<h5><%=detailDto.getREV_TITLE() %></h5>
 			</div>
-			<div class="info" style="height: 15%; width: 100%; text-align: right;">
-				<h5>작성자:<%=detailDto.getUSER_ID() %><br/>작성날짜:<%=detailDto.getREV_TIME() %></h5>
+			<div class="info" style="height: 15%; width: 100%; text-align: right; margin-top: -70px;">
+				<h6>작성자:<%=detailDto.getUSER_ID() %><br/>작성날짜:<%=detailDto.getREV_TIME() %></h6>
 			</div>
+			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
+			
+			<div class="photoLayout" >
+				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
+				<textarea rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
+			</div>
+			
+			<%
+			}else{
+			%>
 			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
-				<textarea rows="5px" cols="50px" readonly="readonly"><%=detailDto.getREV_CONTENT() %></textarea>
-			</div>
+            <textarea id="review_content" rows="5px" cols="50px"></textarea>
+        	</div>
+			<%} %>
+			
+			
 			<div class="btn" align="center" style="height: 10%; width:100%;">
 			</div>
 		</div>

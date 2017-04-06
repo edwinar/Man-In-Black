@@ -8,14 +8,15 @@
 	List<DetailDto> basketList = (List<DetailDto>)request.getAttribute("basketList");
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
-	int points = Integer.parseInt(request.getParameter("points"));
-	System.out.print(points);
+	Object points = (Object)request.getAttribute("points");
+	int finalPrice = 0;
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>:::Detail_Buy_Info:::</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 //체크박스 싸이즈 크게
 .chbox {
@@ -53,37 +54,6 @@ td, th {
 </style>
 </head>
 <body>
-<script type="text/javascript">
-$(function() {
-	$('#ch').on('click',function(){
-		if($("#ch").is(':checked')){		
-			var name = $("#orderName").text();	
-			var email = $("#orderEmail").text();
-			var phone = $("#orderPhone").text();
-			var num = $("#orderNum").val();
-			var address_1 = $("#orderAddress_1").val();
-			var address_2 = $("#orderAddress_2").val();
-			
-			$("#receiveName").text(name);
-			$("#receiveEmail").text(email);
-			$("#receivePhone").text(phone);
-			$("#receiveNum").val(num);
-			$("#receiveAddress_1").val(address_1);
-			$("#receiveAddress_2").val(address_2);	
-		}else{
-			$("#receiveName").text('');
-			$("#receiveEmail").text('');
-			$("#receivePhone").text('');
-			$("#receiveNum").val('');
-			$("#receiveAddress_1").val('');
-			$("#receiveAddress_2").val('');	
-		}
-	});
-});
-function buy() {
-	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
-}
-</script>
 <center>
 <div id="mypagehead">
 	<h3 style="margin-top: 50px;">결제/주문</h3>
@@ -119,9 +89,10 @@ function buy() {
 					<tr>
 						<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 						<td>상품 합계</td>
-						<td><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+						<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
 					</tr>
 				<%
+						finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 					}
 				%>
 				
@@ -224,13 +195,13 @@ function buy() {
 				<tr>
 					<td colspan="2">쿠폰선택</td>
 					<td rowspan="2">
-						<button style="width: 80%; height: 80%;">적용하기</button>
+						<button style="width: 80%; height: 80%;" id="couponBtn">적용하기</button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<select name=coupon size=1>
-					        <option value="미선택" selected="selected">미선택</option>
+						<select name=coupon size=1 id="couponChoice">
+					        <option value="no" selected="selected">미선택</option>
 					        <%
 					        	for(int i=0;i<couponList.size();i++){
 					        %>
@@ -256,10 +227,10 @@ function buy() {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="30px"/>
+						<input type="text" size="30px" id="pointValue"/>
 					</td>
 					<td>
-						<button>Won 사용하기</button>
+						<button id="pointBtn">Won 사용하기</button>
 					</td>
 				</tr>
 			</table>
@@ -276,7 +247,7 @@ function buy() {
 		</tr>
 		<tr>
 			<td>총 결제 금액</td>
-			<td>23000 Won</td>
+			<td id="final"><%=finalPrice %> Won</td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -285,5 +256,61 @@ function buy() {
 		</tr>
 	</table>
 </div>
+<script type="text/javascript">
+$(function() {
+	$('#ch').on('click',function(){
+		if($("#ch").is(':checked')){		
+			var name = $("#orderName").text();	
+			var email = $("#orderEmail").text();
+			var phone = $("#orderPhone").text();
+			var num = $("#orderNum").val();
+			var address_1 = $("#orderAddress_1").val();
+			var address_2 = $("#orderAddress_2").val();
+			
+			$("#receiveName").text(name);
+			$("#receiveEmail").text(email);
+			$("#receivePhone").text(phone);
+			$("#receiveNum").val(num);
+			$("#receiveAddress_1").val(address_1);
+			$("#receiveAddress_2").val(address_2);	
+		}else{
+			$("#receiveName").text('');
+			$("#receiveEmail").text('');
+			$("#receivePhone").text('');
+			$("#receiveNum").val('');
+			$("#receiveAddress_1").val('');
+			$("#receiveAddress_2").val('');	
+		}
+	});
+	$('#couponBtn').on('click',function(){
+		var couponValue = $("#couponChoice option:selected").val();
+		var finalPrice = "<%=finalPrice %>";
+		if(couponValue=="no"){
+			$('#final').text(finalPrice+" Won");
+		}else{
+			finalPrice = finalPrice - couponValue;
+			$('#final').text(finalPrice+" Won");
+		}
+	});
+	$('#pointBtn').on('click',function(){
+		var useablePoints = <%=points %>;
+		var pointsValue = $('#pointValue').val();
+		var finalPrice = "<%=finalPrice %>";
+		if(pointsValue==""||pointsValue==null){
+			
+		}else{
+			if(pointsValue>useablePoints){
+				alert(useablePoints+"를 넘습니다.");
+			}else{
+				finalPrice = finalPrice - pointsValue;
+				$('#final').text(finalPrice+" Won");
+			}
+		}
+	});
+});
+function buy() {
+	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
+}
+</script>
 </body>
 </html>

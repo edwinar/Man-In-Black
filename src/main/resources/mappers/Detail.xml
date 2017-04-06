@@ -114,20 +114,25 @@ WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE
 
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT 
-A.REV_SEQ,
-A.REV_TITLE,
-A.REV_CONTENT,
-A.REV_TIME,
-A.SCORE,
-A.REV_REF,
-A.USER_ID,
-A.PRO_SEQ,
-A.REV_STEP,
-B.STORED_NAME
-FROM REVIEW A JOIN PHOTO B
-ON A.REV_SEQ = B.REV_SEQ
-WHERE A.REV_SEQ=#{REV_SEQ}
+	REV_SEQ,
+	REV_TITLE,
+	REV_CONTENT,
+	REV_TIME,
+	NVL(SCORE,0) SCORE,
+	REV_REF,
+	USER_ID,
+	PRO_SEQ,
+	REV_STEP,
+NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=#{REV_SEQ}), 'none') STORED_NAME
+FROM REVIEW 
+WHERE REV_SEQ=#{REV_SEQ}
 </select>
+
+<update id="do_updateReviewFlag" parameterType="int">
+UPDATE REVIEW
+SET REV_STEP = 'Y'
+WHERE REV_SEQ   = #{REV_REF}
+</update>
 
 <insert id="do_insertReviewAdmReply" parameterType="hashmap">
 INSERT INTO REVIEW (REV_SEQ, REV_TIME, REV_TITLE, REV_CONTENT, SCORE, REV_REF, USER_ID, PRO_SEQ, REV_STEP)

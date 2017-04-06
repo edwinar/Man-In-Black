@@ -111,4 +111,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectPointsList";
 		return sqlSession.selectOne(statement, USER_ID);
 	}
+
+	@Override
+	public int do_updateReviewFlag(int REV_REF) {
+		String statement = namespace+".do_updateReviewFlag";
+		return sqlSession.update(statement, REV_REF);
+	}
 }
