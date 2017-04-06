@@ -9,7 +9,6 @@
 <html>    
 
 <head>  
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon M4.png" />
@@ -27,25 +26,24 @@
 
     <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
 
-        <tr style="background-color: green;" height="30px">          
+        <tr style="background-color: green;" height="30px"  >          
 
-            <td height="20px" colspan="3" style="background-color: aqua;">
+            <td height="40px" colspan="3"  style="background-color: aqua;">
 
             	 <tiles:insertAttribute name="header" />
 
             </td>
 
         </tr>
-
         <tr>
 
-            <td height="300" style="width:10%; background-color: red;" >
+            <td height="700" style="width:10%; background-color: red; " >
 
             	<tiles:insertAttribute name="left" />
 
             </td>
 
-            <td width="100" style=" padding:5%; background-color: maroon;">
+            <td width="80%"  style=" padding:3%; background-color: maroon;">
 
             	<tiles:insertAttribute name="main" />
 
@@ -61,7 +59,7 @@
 
     <tr>
 
-        <td height="30" colspan="2">
+        <td height="100" colspan="3" style="background-color:olive; text-align: center;">
 
         	<tiles:insertAttribute name="footer" />
 

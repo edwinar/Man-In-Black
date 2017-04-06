@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 /* layout.jsp */
-body {
+/* body {
 	padding-top: 102px;
 }
 
@@ -25,9 +25,12 @@ body {
 #layoutWrap .container {
 	width: 100%;
 	background: white;
-}
+} */
 
 /* header.jsp */
+body{
+	padding-top: 3%;
+}
 @media ( min-width : 768px) { /* 최소 768 사이즈때 보이는 크기 */
 	.navbar-nav {
 		text-align: center;
@@ -87,10 +90,10 @@ body {
 	flex-wrap: wrap;
 	background: white;
 	height: 100%;
-	width: 225px;
+	width: 180px;
 	position: fixed;
-	padding-top: 20px;
-	left: 0;
+	padding-top: 40px;
+	left: -40;
 	z-index: 10;
 	transform: translateX(-100%) translateZ(0);
 	transition: .3s;
@@ -99,8 +102,9 @@ body {
 	-webkit-overflow-scrolling: touch;
 	display: block;
 	color: black;
-	padding-left: 35px;
+	margin-top:75px;
 	border-radius: 3px;
+	top: 0;
 }
 
 .mypage-side-menu.active {
@@ -113,7 +117,7 @@ body {
 	border-radius: 50%;
 	transition: background-color .2s;
 	text-align: center;
-	margin-left: 30%;
+	margin-left: -20px;
 	font-weight: bold;
 	font-size: 30px;
 
@@ -163,31 +167,34 @@ body {
 
 
 .mypage-side-menu ul {
-	margin-top: 30px;
+	margin-top: 25px;
 }
 
 .mypage-side-menu li {
 	list-style: none;
 	color: black;
-	padding: 10px 0 10px 18px;
+	padding: 10px 20px 20px 0px;
 	cursor: pointer;
 	white-space: nowrap;
 	line-height: 30px;
 	transition: .2s;
 	font-size: 15px;
 	font-weight: bold;
+	margin-left: -60px;
+	text-align: center;
 }
 
 .mypage-side-menu li:hover {
 	background: #EEE;
 }
 
+/*유저마이페이지 부분 전체가로크기 */
 .mypage-side-menu-click{
 	justify-content: center;
 	flex-wrap: wrap;
 	background: white;
 	height: 100%;
-	width: 225px;
+	width: 180px;
 	position: fixed;
 	padding-top: 20px;
 	left: 0;

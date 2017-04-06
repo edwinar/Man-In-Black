@@ -16,21 +16,30 @@ request.setCharacterEncoding("UTF-8");
 <script>
 </script>
 <style>
+
 /* General Styles for Menu  */
 .menuBackground {
 	background: yellow;
 	text-align: center;
-	height: 70px;
-	margin-top: -100px;
+	height: 81px;
+	top: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
 }
 .dropDownMenu,
-.dropDownMenu ul {
+.cate {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	margin-top: 10px;
 }
-.dropDownMenu li {
+.cate {
+	width: 130px;
 	position: relative;
+	background-color: green;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 /*a링크들 글자색 */
 .dropDownMenu a {
@@ -46,16 +55,18 @@ request.setCharacterEncoding("UTF-8");
 
 /* Level 1 Drop Down */
 /* 카테고리 부분  */
-.dropDownMenu > li {
+.cate {
 	margin-top:15px;
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 20px; /* solve the 4 pixels spacing between list-items */
+	margin-left: 20px; 
+	
+	/* solve the 4 pixels spacing between list-items */
 }
 /* NEW 아이템 부분 */
 .dropDownMenu > li:first-child {
 	margin-top:15px;
-	margin-left: 250px;
+	margin-left: 20px;
 }
 
 /* Level 2 */
@@ -65,24 +76,17 @@ request.setCharacterEncoding("UTF-8");
 .dropDownMenu > li > ul {
 	text-align: left;
 	display: none;
-	background:transparent;
+	/* background:transparent; */
 	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 240px;
+	top:100%;
+	width: 200px;
 	z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+	height: 164px;
+	height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;
+	margin-left: -40px;
 }
 
-/* Level 3 */
-.dropDownMenu > li > ul > li > ul {
-	text-align: left;
-	display: none;
-	background: darkcyan;
-	position: absolute;
-	left: 100%;
-	top: 0;
-	z-index: 9999999;
-}
+
 </style>
 </head>
 <body>
@@ -98,41 +102,40 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 </div>
-	<div class="center myMenu">
+<div style="width: 150px; height: 80px; float: left; background-color: purple;" >
+<img alt="" src="../images/zu.jpg" style="float: left; margin-left: 20px;" width="100%" height="100%">
+</div>
+<div class="center myMenu">
 <nav>
+
 <ul class="dropDownMenu">
-			<li><a href="#">NEW</a></li>
-			<li><a href="#">OUTER</a>
-				<ul style="display: none;">
+			<li class="cate"><a href="#">NEW</a></li>
+			<li class="cate"><a href="#">OUTER</a>
+				<ul style="display: none; ">
 					<li><a href="#">HTML</a></li>
 					<li><a href="#">CSS</a></li>
 					<li><a href="#">JS</a></li>
 				</ul>
 			</li>
-			<li><a href="#">TOP</a>
-				<ul style="display: none; height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+			<li class="cate"><a href="#">TOP</a>
+				<ul style="display: none; ">
 					<li><a href="#">C++</a></li>
 					<li><a href="#">WordPress</a>
-						<ul>
-							<li><a href="#">Hacks</a></li>
-							<li><a href="#">Plugins</a></li>
-							<li><a href="#">Shortcodes</a></li>
-						</ul>
 					</li>
 					<li><a href="#">PHP</a></li>
 					<li><a href="#">jQuery</a></li>
 				</ul>
 			</li>
-			<li><a href="#">PANTS</a>
+			<li class="cate"><a href="#">PANTS</a>
 				<ul>
 					<li><a href="#">Icons</a></li>
 					<li><a href="#">Fonts</a></li>
 					<li><a href="#">Wallpapers</a></li>
 				</ul>
 			</li>
-			<li><a href="#">SHOES</a></li>
+			<li class="cate"><a href="#">SHOES</a></li>
 			
-			<li><a href="#">BAG&ACC</a></li>
+			<li class="cate"><a href="#">BAG&ACC</a></li>
 			
 		</ul>
 	</nav>
