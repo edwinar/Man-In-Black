@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="com.eagle.men_in_black.model.ServiceDto"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%
+	ServiceDto serviceDto = (ServiceDto) request.getAttribute("coupdetail");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>:::COUPON:::</title>
 <style type="text/css">
 section {
 	width: 95%;
@@ -153,50 +157,75 @@ body {
 </style>
 </head>
 <body>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#coupupdate").click(function() {
+		$("#myform").attr('action','coupupdate.mib');
+		$("#myform").submit();
+		
+	});
+	
+	$("#coupdelete").click(function() {
+		$("#myform").attr('action','coupdelete.mib');
+		$("#myform").submit();
+	});
+});
 
+</script>
 <center>
 		<div id="eventhead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">í™ˆ</a> > <a href="event.mib">ì¿ í°</a>
+				<a href="meninblack.mib">È¨</a> > <a href="event.mib">ÄíÆù</a>
 			</h4>
 		</div>
 	</center>
-	<h3>ì¿ í°ì„ ë“±ë¡í•´ì£¼ì„¸ìš”</h3>
+	<h3>ÄíÆù Á¤º¸</h3>
 	<br>
 	<br>
 	<br>
-
-
-	<!--ë©”ì¸ ì´ë¯¸ì§€ë“±ë¡  -->
-	<div class="preview"></div>
+	
+	<!--¸ŞÀÎ ÀÌ¹ÌÁöµî·Ï  -->
+	<div class="preview">
+	<img src="<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
+	</div>
 	<div align="center">
-		<button id="triggerUpload" class="btn">ì¿ í°ë©”ì¸ì´ë¯¸ì§€ë“±ë¡</button>
+		<button id="triggerUpload" class="btn">ÄíÆù¸ŞÀÎÀÌ¹ÌÁöµî·Ï</button>
 	</div>
 	
-	<form name="myform" action="couponreg.mib" method="post" enctype="multipart/form-data">
+	<form name="myform" id="myform" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="seq" value="<%=serviceDto.getCOUP_SEQ()%>">
 	<input type="file" id="filePicker" name="eventMainPT" value="fdsjkf"/>
 	
 
-	<!-- ì œëª© -->
+	<!-- Á¦¸ñ -->
 	<div class="wrap">
 
 		<div class="mat-div">
-			<label for="first-name" class="mat-label">ì¿ í°ì´ë¦„</label> 
-			<input type="text" class="mat-input" name="couponname" id="ì œëª©">
+			<label for="first-name" class="mat-label">ÄíÆùÀÌ¸§</label> 
+			<input type="text" class="mat-input" name="couponname" id="Á¦¸ñ"
+			<%if(serviceDto!=null){ %>value="<%=serviceDto.getCOUP_NAME() %>"<%} %>
+			>
 		</div>
 		<div class="mat-div">
-			<label for="first-name" class="mat-label">ì¿ í°ê°€ê²©</label> 
-			<input type="text" class="mat-input" name="couponprice" id="ì œëª©">
+			<label for="first-name" class="mat-label">ÄíÆù°¡°İ</label> 
+			<input type="text" class="mat-input" name="couponprice" id="Á¦¸ñ"
+			<%if(serviceDto!=null){ %>value="<%=serviceDto.getCOUP_PRICE() %>"<%} %>
+			>
 		</div>
 		<div class="mat-div">
-			<label for="first-name" class="mat-label">ì¿ í°ì¡°ê±´</label> 
-			<input type="text" class="mat-input" name="couponcondition" id="ì œëª©">
+			<label for="first-name" class="mat-label">ÄíÆùÁ¶°Ç</label> 
+			<input type="text" class="mat-input" name="couponcondition" id="Á¦¸ñ"
+			<%if(serviceDto!=null){ %>value="<%=serviceDto.getCONDITION() %>"<%} %>
+			>
 		</div>
 		<div class="mat-div">
-			<label for="first-name" class="mat-label">ì¿ í°ê¸°ê°„</label> 
-			<input type="text" class="mat-input" name="couponlimit" id="ì œëª©">
+			<label for="first-name" class="mat-label">ÄíÆù±â°£</label> 
+			<input type="text" class="mat-input" name="couponlimit" id="Á¦¸ñ"
+			<%if(serviceDto!=null){ %>value="<%=serviceDto.getCOUP_LIMIT() %>"<%} %>
+			>
 		</div>
-		<input type="submit" value="ë“±ë¡">	
+		<input type="button" id="coupupdate" value="¼öÁ¤">
+		<input type="button" id="coupdelete" value="»èÁ¦">	
 	</div>
 	</form>
 
@@ -205,7 +234,7 @@ body {
             .getElementById('filePicker'), preview = document
             .querySelector('.preview');
 
-      //ì—¬ê¸°ì— ì—…ë¡œë“œì‹¤í–‰
+      //¿©±â¿¡ ¾÷·Îµå½ÇÇà
       triggerUpload.onclick = function() {
          upInput.click();
       };
@@ -218,9 +247,9 @@ body {
                "jpg", "png", "gif", "jpeg" ];
 
          /*
-           ::imgíƒœê·¸ ì¶”ê°€
-           ::FileReaderë¥¼ ì‚¬ìš©í•˜ì—¬ imgë°ì´í„° ì½ê¸°
-           ::ì´ë¯¸ì§€ ì›ë³¸ì„ FileReaderë°ì´í„°ë¡œ ì„¤ì •
+           ::imgÅÂ±× Ãß°¡
+           ::FileReader¸¦ »ç¿ëÇÏ¿© imgµ¥ÀÌÅÍ ÀĞ±â
+           ::ÀÌ¹ÌÁö ¿øº»À» FileReaderµ¥ÀÌÅÍ·Î ¼³Á¤
           */
          function showPreview() {
             preview.innerHTML = "<div class='loadingLogo'></div>";
@@ -237,7 +266,7 @@ body {
          }
          ;
 
-         //ì§€ì›ì´ë˜ëŠ” ì´ë¯¸ì§€íŒŒì¼ì¸ ê²½ìš°ì—ë§Œ ìˆ˜í–‰
+         //Áö¿øÀÌµÇ´Â ÀÌ¹ÌÁöÆÄÀÏÀÎ °æ¿ì¿¡¸¸ ¼öÇà
          if (new RegExp(accepted.join("|")).test(ext)) {
             showPreview();
          } else {
@@ -247,7 +276,7 @@ body {
          }
 
       }
-      //ê³µì§€ì‚¬í•­ì œëª© ìŠ¤í¬ë¦½íŠ¸ 
+      //°øÁö»çÇ×Á¦¸ñ ½ºÅ©¸³Æ® 
       $(".mat-input").focus(function() {
          $(this).parent().addClass("is-active is-completed");
       });

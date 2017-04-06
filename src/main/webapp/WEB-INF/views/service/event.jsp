@@ -46,6 +46,10 @@
 function eventdetail(seq) {
     location.href='eventdetail.mib?SEQ='+seq;
 }
+function coupdetail(seq) {
+    location.href='coupdetail.mib?seq='+seq;
+}
+
 
 function coup(seq){
 	//alert(seq);
@@ -117,6 +121,14 @@ function coup(seq){
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
+	}else if(userdto.getUSER_ID().equals("adm")){
+		for(int i=0;i<couplist.size();i++){
+	%>
+	<div class="previewcoup" style="margin-left: 20px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
+		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+	</div>
+	<%}
+	
 	}else{ // 로그인안하고 어드민 아닌 회원일때 
 		for(int i=0;i<couplist.size();i++){
 			

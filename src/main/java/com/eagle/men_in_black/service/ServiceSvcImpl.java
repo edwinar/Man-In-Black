@@ -135,4 +135,30 @@ public class ServiceSvcImpl implements ServiceSvc {
 		return serviceDao.do_photo_delete(seq);
 	}
 
+	@Override
+	public void do_coup_update(ServiceDto dto) {
+		// TODO Auto-generated method stub
+		serviceDao.do_coup_update(dto);
+	}
+
+	@Override
+	public void do_coupphoto_update(ServiceDto dto) {
+		// TODO Auto-generated method stub
+		serviceDao.do_coupphoto_update(dto);
+	}
+
+	@Override
+	public int do_coupphoto_delete(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_coupphoto_delete(seq);
+	}
+
+	@Override
+	public int do_coup_delete(int seq) {
+		// TODO Auto-generated method stub
+		return serviceDao.do_coup_delete(seq);
+	}
+
 }
+
+
