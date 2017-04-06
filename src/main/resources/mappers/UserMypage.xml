@@ -13,7 +13,7 @@ FROM(
      SELECT POINT_FINAL
      FROM POINTS
 WHERE USER_ID = #{id}
-ORDER BY PRO_SEQ DESC
+ORDER BY POINT_SEQ DESC
 )
 WHERE ROWNUM = 1
 </select>
@@ -543,20 +543,19 @@ WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
 <!-- 리뷰읽기  -->
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
-SELECT A.REV_SEQ,
-A.REV_TITLE,
-A.REV_CONTENT,
-A.REV_TIME,
-A.SCORE,
-A.REV_REF,
-A.USER_ID,
-A.PRO_SEQ,
-A.REV_STEP,
-B.STORED_NAME,
-B.ORIGINAL_NAME
-FROM REVIEW A JOIN PHOTO B
-ON A.REV_SEQ = B.REV_SEQ
-WHERE A.REV_SEQ=#{REV_SEQ}
+SELECT 
+REV_SEQ,
+REV_TITLE,
+REV_CONTENT,
+REV_TIME,
+NVL(SCORE,0) SCORE,
+REV_REF,
+USER_ID,
+PRO_SEQ,
+REV_STEP,
+NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=41), 'none') STORED_NAME
+FROM REVIEW 
+WHERE REV_SEQ=#{REV_SEQ}
 </select>
 
 
@@ -603,12 +602,82 @@ FROM QNA
 WHERE QNA_SEQ   = #{QNA_SEQ}
 </delete>
 
-    <delete id="do_delete_reviewList" parameterType="int" >
+ <delete id="do_delete_reviewList" parameterType="int" >
+    DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+ </delete>
 
-       DELETE REVIEW WHERE REV_REF = #{REV_SEQ}
+ <delete id="do_delete_reviewPhoto" parameterType="int" >
+     DELETE PHOTO WHERE REV_SEQ = #{REV_SEQ}
+ </delete>
+    
+    
+    
+<!-- 문의 답글  -->
+<insert id="do_insert_qnareply" parameterType="hashmap">
+INSERT
+INTO QNA
+  (
+    QNA_SEQ,
+    QNA_TITLE,
+    QNA_CONTENT,
+    QNA_TIME,
+    QNA_OPEN,
+    QNA_REF,
+    QNA_TYPE,
+    QNA_STEP,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    QNA_SEQ.NEXTVAL,
+    #{QNA_TITLE},
+    #{QNA_CONTENT},
+    SYSDATE,
+    #{QNA_OPEN},
+    #{QNA_REF},
+    #{QNA_TYPE},
+    'Y',
+    #{USER_ID},
+    #{PRO_SEQ}
+  )
+</insert>
+<update id="do_update_qnastep" parameterType="int" >
 
-
-    </delete>
-
+UPDATE QNA
+SET 
+QNA_STEP ='Y'
+WHERE QNA_REF = #{QNA_REF}
+</update>
+<!-- 문의 답글  -->
+<insert id="do_insert_qna" parameterType="hashmap">
+INSERT
+INTO QNA
+  (
+    QNA_SEQ,
+    QNA_TITLE,
+    QNA_CONTENT,
+    QNA_TIME,
+    QNA_OPEN,
+    QNA_REF,
+    QNA_TYPE,
+    QNA_STEP,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    QNA_SEQ.NEXTVAL,
+     #{QNA_TITLE},
+     #{QNA_CONTENT},
+    SYSDATE,
+     #{QNA_OPEN},
+     QNA_SEQ.CURRVAL,
+     #{QNA_TYPE},
+     'N',
+     #{USER_ID},
+     #{PRO_SEQ}
+  )
+</insert>
 
 </mapper>

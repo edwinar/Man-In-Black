@@ -189,7 +189,7 @@ public class ServiceController {
 
 	// 이벤트 수정(수정버튼 눌렀을때)관리자
 	@RequestMapping("eventupdate.mib")
-		public ModelAndView eventupdate(HttpServletRequest res, HttpServletResponse rep){
+		public ModelAndView eventupdate(MultipartHttpServletRequest res) throws IllegalStateException, IOException{
 		
 		String seq = res.getParameter("seq");
 		String editor = res.getParameter("editor");
@@ -202,10 +202,73 @@ public class ServiceController {
 		
 		serviceSvc.do_event_update(map);
 		
-		ServiceDto dto = serviceSvc.do_event_detail(Integer.parseInt(seq));
+			
+			// 이벤트 시퀀스구하고 파일저장
+			HttpSession session = res.getSession();
+
+			Iterator<String> iterator = res.getFileNames();
+
+			// 저장경로
+			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
+																				// root
+																				// 경로
+			// String root_path = System.getProperty("catalina.home");
+			String attach_path = "images\\";
+			String filePath = root_path + attach_path;
+
+			MultipartFile multipartFile = null;
+
+			String originalFileName = null;
+
+			String originalFileExtension = null;
+
+			String storedFileName = null;
+
+			ServiceDto dto = null;
+
+			File file = new File(filePath);
+			// 폴더가없을경우 폴더생성
+			if (file.exists() == false) {
+
+				file.mkdirs();
+
+			}
+
+			while (iterator.hasNext()) {
+				multipartFile = res.getFile(iterator.next());
+
+				if (multipartFile.isEmpty() == false) {
+
+					originalFileName = multipartFile.getOriginalFilename();
+
+					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+					storedFileName = "../images/" + getRandomString() + originalFileExtension;
+
+					// 첨부한 파일 생성
+					file = new File(filePath + storedFileName);
+
+					multipartFile.transferTo(file);
+
+					dto = new ServiceDto();
+
+					dto.setEVENT_SEQ(Integer.parseInt(seq));
+
+					dto.setORIGINAL_FILE_NAME(originalFileName);
+
+					dto.setSTORED_FILE_NAME(storedFileName);
+					
+					serviceSvc.do_photo_update(dto);
+
+				}
+
+			}
+		
+		
+		ServiceDto dedto = serviceSvc.do_event_detail(Integer.parseInt(seq));
 		ModelAndView mav = new ModelAndView("service/eventdetail");
 		
-		mav.addObject("eventdetail", dto);
+		mav.addObject("eventdetail", dedto);
 		
 		return mav;
 	
@@ -495,19 +558,19 @@ public class ServiceController {
 
 			if (updateCom > 0) {
 
-				resultMap.put("check", "등록성공");
+				resultMap.put("check", "쿠폰등록성공!");
 
 				Gson gson = new Gson();
 				return gson.toJson(resultMap);
 			} else {
-				resultMap.put("check", "등록실패");
+				resultMap.put("check", "쿠폰등록실패!");
 
 				Gson gson = new Gson();
 				return gson.toJson(resultMap);
 			}
 
 		} else {
-			resultMap.put("check", "이미발급받음");
+			resultMap.put("check", "쿠폰을이미발급받았습니다.");
 
 			Gson gson = new Gson();
 			return gson.toJson(resultMap);

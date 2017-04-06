@@ -110,7 +110,7 @@ color:white;
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
 <div class="inputsnlables"><label>TEL</label>
-<input type="text" placeholder="TEL" id="tel" name="tel" class="lock" value="010-" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" />
+<input type="text" placeholder="TEL" id="tel" name="tel" class="lock" value="010-" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)" />
 </div>
 <div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
 <button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
@@ -257,14 +257,14 @@ $(document).ready(function() {
 function telKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
-			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
 			{
 				
 			}
 			else
 			{
 				alert("숫자만 입력해주세요");
-				//$("#tel").val($("#tel").val().substring(0,($("#tel").val().length-1)));
+				$("#tel").val('010-');
 			}
 			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
 			
@@ -292,7 +292,7 @@ function telKeyCode(event) {
 function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
-			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 )
+			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
 			{
 				
 			}

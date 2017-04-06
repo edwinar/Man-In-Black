@@ -133,7 +133,7 @@ function coup(seq){
 
 
 
-
+<!-- 이벤트 list 뿌리기 -->
 
 	<%
 	if(eventlist.get(0).getEVENT_SEQ()!=0){

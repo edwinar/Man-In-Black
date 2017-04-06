@@ -26,4 +26,7 @@ public interface ServiceDao {
 	public List<ServiceDto> do_select_couplist();
 	public ServiceDto do_selelct_coupdt(int seq);
 	public int check_coupon(HashMap<String, String> map);
+	public void do_photo_update(ServiceDto dto);
+	public int do_photo_delete(int seq);
+	
 }
