@@ -103,7 +103,7 @@
 						</select>
 					</p>
 					<p>
-						작성자 : <input type="text" value="<%=dto.getUSER_ID()%>>" style="width: 100%" >
+						작성자 : <input type="text" value="<%=dto.getUSER_ID()%>" style="width: 100%" >
 					</p>
 					<p>
 						작성일 : <input type="text" value="" style="width: 100%">
