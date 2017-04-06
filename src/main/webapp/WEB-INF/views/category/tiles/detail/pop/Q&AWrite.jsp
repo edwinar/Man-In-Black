@@ -1,5 +1,16 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
+SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+
+Date date = new Date(); // 현재 날짜 생성
+String today = df.format(date);
+System.out.println(today);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

@@ -74,5 +74,9 @@ public interface UserMypageSvc {
 	public int do_delete_reviewList(String REV_SEQ);
 
 	public int do_delete_reviewPhoto(String REV_SEQ);
+	
+	public int do_insert_qnareply(HashMap<String, Object> map);
+	
+	public void do_update_qnastep(int QNA_REF);
 
 }
