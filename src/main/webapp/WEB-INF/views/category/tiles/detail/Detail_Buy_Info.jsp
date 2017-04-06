@@ -8,14 +8,15 @@
 	List<DetailDto> basketList = (List<DetailDto>)request.getAttribute("basketList");
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
-	int points = Integer.parseInt(request.getParameter("points"));
-	System.out.print(points);
+	Object points = (Object)request.getAttribute("points");
+	int finalPrice = 0;
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>:::Detail_Buy_Info:::</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 //체크박스 싸이즈 크게
 .chbox {
@@ -79,6 +80,11 @@ $(function() {
 			$("#receiveAddress_2").val('');	
 		}
 	});
+	$('#couponBtn').on('click',function(){
+		var value = $("#couponChoice option:selected").val();
+		/* var finalPrice = "";
+		alert(finalPrice); */
+	});
 });
 function buy() {
 	alert("결제가 완료되었습니다! 호갱님ㅎㅎ");
@@ -119,9 +125,10 @@ function buy() {
 					<tr>
 						<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 						<td>상품 합계</td>
-						<td><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+						<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
 					</tr>
 				<%
+						finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 					}
 				%>
 				
@@ -224,12 +231,12 @@ function buy() {
 				<tr>
 					<td colspan="2">쿠폰선택</td>
 					<td rowspan="2">
-						<button style="width: 80%; height: 80%;">적용하기</button>
+						<button style="width: 80%; height: 80%;" id="couponBtn">적용하기</button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<select name=coupon size=1>
+						<select name=coupon size=1 id="couponChoice">
 					        <option value="미선택" selected="selected">미선택</option>
 					        <%
 					        	for(int i=0;i<couponList.size();i++){
