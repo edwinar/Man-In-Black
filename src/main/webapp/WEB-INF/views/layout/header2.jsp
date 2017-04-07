@@ -1,13 +1,16 @@
+<%@page import="java.util.List"%>
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<%!//
-//%>
-<%//
-//%>
+<%
+		MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
+		List<MainDto> subitemheader = (List<MainDto>)request.getSession().getAttribute("subitemheader");
+		
+	%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,129 +19,381 @@ request.setCharacterEncoding("UTF-8");
 <script>
 </script>
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 /* General Styles for Menu  */
 .menuBackground {
-	background: yellow;
+	background: black;
 	text-align: center;
-	height: 70px;
-	margin-top: -100px;
+	height: 81px;
+	top: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
 }
 .dropDownMenu,
-.dropDownMenu ul {
+.cate {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	margin-top: 10px;
 }
-.dropDownMenu li {
-	position: relative;
-}
+
 /*a링크들 글자색 */
-.dropDownMenu a {
+.cateA {
 	padding: 10px 20px;
 	display: block;
 	text-decoration: none;
-	color: red;
+	color: white;
+	font-size: 20px;
+	font-family:  Nanum Gothic Coding;
+	font-weight: bold;
 }
-.dropDownMenu a:hover {
-	background: #000;
+
+.cateA:hover {
+	/* background: #000; */
+	color:red;
+	text-decoration: none;
+}
+
+.subA{
+	left: 0;
+	position: relative;
+	top: 0px;
+	display: block;
+	color : white;
+	/* background-color: gray; */
+	z-index: 1;
+	padding: 15px 20px 20px 20px;
+	margin-left: -40px;
+	width: 130px;
+	font-family:  Nanum Gothic Coding;
+	font-size: 13px;
+	background-color: black;
+}
+
+.subA:hover{
+	/* background: black; */
+	color: red;
+	text-decoration: none;
 }
 
 
 /* Level 1 Drop Down */
 /* 카테고리 부분  */
-.dropDownMenu > li {
+.cate {
 	margin-top:15px;
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 20px; /* solve the 4 pixels spacing between list-items */
+	margin-left: 20px;
+	width: 130px;
+	position: relative;
+	margin-right: 15px; 
+	/* background-color: orange; */
+	/* solve the 4 pixels spacing between list-items */
 }
 /* NEW 아이템 부분 */
 .dropDownMenu > li:first-child {
 	margin-top:15px;
-	margin-left: 250px;
+	margin-left: 20px;
 }
 
 /* Level 2 */
-.dropDownMenu ul {
+/* .dropDownMenu ul {
 	box-shadow: 2px 2px 15px 0 rgba(0,0,0, 0.5);
-}
+} */
+/*서브메뉴*/
 .dropDownMenu > li > ul {
-	text-align: left;
+	
 	display: none;
-	background:transparent;
+	/* background:transparent; */
 	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 240px;
+	top:100%;
 	z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
+	padding-top: 0px; 
+	margin-top: 0px; 
+	padding-bottom: 0px; 
+	margin-bottom: 0px;
+	background-color: transparent; 
+	list-style: none;
+	width: 130px;	
+	height: 300px;
+	
 }
 
-/* Level 3 */
-.dropDownMenu > li > ul > li > ul {
-	text-align: left;
-	display: none;
-	background: darkcyan;
-	position: absolute;
-	left: 100%;
-	top: 0;
-	z-index: 9999999;
+.logsi{
+text-align: right; 
+width: 100%;
 }
+
+.icon-name{
+	color: #fff;
+   	font-size: 2em;
+   	background-color: black;
+   	width: 200px;
+   	height: 40px;
+   	cursor: pointer;
+   	display: none;
+   	margin: 10px auto;
+  
+   	
+   	
+}
+.icon-name:HOVER {
+	background-color: red;
+}
+
+.dropac{
+	display: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	top:100%;
+	background-color: black;
+	color: white;
+	width: 1000px;
+	margin-left: -400px;
+}
+
+.dropacli{
+display:block;
+border-bottom-color:gray;
+height: 40px; 
+padding: 15px 20px 20px 20px;
+top:100%;
+z-index: 999999;
+width: 100%;
+
+}
+
+@media ( max-width : 1400px) { /* 최소 768 사이즈때 보이는 크기 */
+	.cate{
+	width: 8%;
+	/* background-color: green; */
+	}
+}
+/*1024가 1200px임*/
+@media ( max-width : 1200px) { /* 최소 768 사이즈때 보이는 크기 */
+	.cate{
+	margin-left: 8px;
+	margin-right: 8px;
+	/* background-color: cyan; */
+	}
+	
+	.subouter{
+	}
+	
+	.outerul{
+	margin-left: -22px;
+	}
+	
+	.topul{
+	margin-left: -24px;
+	}
+	
+	.pantsul{
+	margin-left: -24px;
+	}
+	.shoesul{
+	margin-left: -24px;
+	}
+	.bagul{
+	margin-left: -18px;
+	}
+	.logsi{
+	margin-left: 20px;
+	}
+	
+}
+
+@media ( max-width : 1100px) {
+.cateA {
+	font-size: 16px;
+	padding: 10px 10px 0px -10px;
+}
+}
+
+
+@media ( max-width : 990px) { /* 최소 768 사이즈때 보이는 크기 */
+	.cate{ 
+	margin-left: 5px;
+	margin-right: 5px; 
+	/* background-color: blue; */
+	
+	}
+	.logsi{
+	
+	margin-bottom: 30px;
+	}
+	.dropDownMenu > li:first-child {
+	margin-left: -100px;
+	}
+	
+	.topA{
+	padding: 10px 0px 0px 30px;
+	}
+	.lologo{
+	display: none;
+	}
+	
+	
+}
+
+@media ( max-width : 800px) { /* 최소 768 사이즈때 보이는 크기 */
+	
+	.logsi{
+	display: none;
+	}
+	.lologo{
+	display: none;
+	}
+	.icon-name{
+	display: block;
+	}
+	.menuBackground{
+	height: 70px;
+	
+	}
+	.ac{
+	display: none;
+	}
+	
+}
+
 </style>
 </head>
 <body>
 
 <div class="menuBackground">
-<div style="text-align: right; width: 100%; background-color: blue;"> 
-	<div style="background-color: navy; float: right;">
-		<div style="background-color: fuchsia; margin-right: 50px; float: left;">
-			<li style="list-style: none; " ><a href="login.mib" data-toggle="modal" data-target="#modal-login">로그인</a></li> 
+
+<div class="logsi"> 
+	<div class="loglog" style=" float: right; margin-top: 10px;">
+		<div style="margin-right: 50px; float: left;">
+			<li style="list-style: none; " >
+			
+			<%
+			if (dto != null) {
+			%> <a href="logout.mib" style="color: white;">로그아웃</a> <%
+ 			} else {
+ 			%> <a href="login.mib" data-toggle="modal" data-target="#modal-login" style="color: white;">로그인</a>
+			<%
+			}
+			%>
+			</li> 
 		</div>
-		<div style="float: left; background-color: cyan; margin-right: 80px;">
-			<li style="list-style: none;"><a href="mymain.mib">회원가입</a></li>
+		<div style="float: left;  margin-right: 80px;">
+			<li style="list-style: none;">
+			<%
+							if (dto != null) {
+								if (dto.getUSER_ID().equals("adm")) {
+								%> <a href="ceoMypage_Main.mib" style="color: white;">마이페이지</a> <%
+ 								} else {
+ 								%> <a href="mymain.mib" style="color: white;">마이페이지</a> <%
+ 								}
+ 						} else {
+ 						%> 
+ 						<a href="mib_SignUp.mib" style="color: white;">회원가입</a>
+						<%
+							}
+						%>			
+			</li>
 		</div>
+		
 	</div>
+	
 </div>
-	<div class="center myMenu">
-<nav>
+
+<div class="lologo" style="width: 150px; height: 80px; float: left; " >
+<a href="meninblack.mib">
+<img alt="" src="../images/zu.jpg" style="float: left; margin-left: 20px;" width="100%" height="100%">
+</a>
+</div>
+
+
+<div class="center myMenu">
+
+<nav class="ac" id="navdrop">
+ 
 <ul class="dropDownMenu">
-			<li><a href="#">NEW</a></li>
-			<li><a href="#">OUTER</a>
-				<ul style="display: none;">
-					<li><a href="#">HTML</a></li>
-					<li><a href="#">CSS</a></li>
-					<li><a href="#">JS</a></li>
+			<li class="cate"><a href="NewCategory.mib" class="cateA">NEW</a></li>
+			<li class="cate "><a href="category.mib?ITEM=OUTER" class="cateA">OUTER</a>
+				<ul class="outerul">
+				<%
+					for(int i=0; i<subitemheader.size();i++){ 
+					if(subitemheader.get(i).getITEM().equals("OUTER")){
+				%>	
+					<li><a  href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>" class="subA"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+				<%} 
+				}%>	
 				</ul>
 			</li>
-			<li><a href="#">TOP</a>
-				<ul style="display: none; height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-					<li><a href="#">C++</a></li>
-					<li><a href="#">WordPress</a>
-						<ul>
-							<li><a href="#">Hacks</a></li>
-							<li><a href="#">Plugins</a></li>
-							<li><a href="#">Shortcodes</a></li>
-						</ul>
-					</li>
-					<li><a href="#">PHP</a></li>
-					<li><a href="#">jQuery</a></li>
+			<li class="cate TOPli"><a href="category.mib?ITEM=TOP" class="cateA topA">TOP</a>
+				<ul class="topul">
+				<%for(int i=0; i<subitemheader.size();i++){ 
+				  if(subitemheader.get(i).getITEM().equals("TOP")){
+				%>	
+					<li class="sub"><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>" class="subA"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+				<%} 
+				}%>	
 				</ul>
 			</li>
-			<li><a href="#">PANTS</a>
-				<ul>
-					<li><a href="#">Icons</a></li>
-					<li><a href="#">Fonts</a></li>
-					<li><a href="#">Wallpapers</a></li>
+			<li class="cate PANTli"><a href="category.mib?ITEM=PANTS" class="cateA ">PANTS</a>
+				<ul class="pantsul">
+					<%
+					for(int i=0; i<subitemheader.size();i++){ 
+					if(subitemheader.get(i).getITEM().equals("PANTS")){
+					%>	
+					<li class="sub"><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>" class="subA"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+					<%} 
+					}%>
 				</ul>
 			</li>
-			<li><a href="#">SHOES</a></li>
-			
-			<li><a href="#">BAG&ACC</a></li>
-			
+			<li class="cate SHOESli"><a href="category.mib?ITEM=SHOES" class="cateA ">SHOES</a>
+				<ul class="shoesul">
+					<%for(int i=0; i<subitemheader.size();i++){ 
+					if(subitemheader.get(i).getITEM().equals("SHOES")){
+					%>
+					<li class="sub"><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>" class="subA"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+					<%} 
+					}%>
+				</ul>
+				</li>
+			<li class="cate BAGli"><a href="category.mib?ITEM=BAGnACC" class="cateA ">BAG&ACC</a>
+				<ul class="bagul">
+					<%for(int i=0; i<subitemheader.size();i++){ 
+					if(subitemheader.get(i).getITEM().equals("BAGnACC")){
+					%>
+					<li class="sub"><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>" class="subA"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+					<%} 
+					}%>
+				</ul>
+			</li>
+				
 		</ul>
 	</nav>
 		
 	</div>
-</div>
+	
+	<!-- 줄어들었을때 -->
+
+
+		<nav style="position: relative; width: 100%">
+			<div class="icon-name" id="menusize">
+				MENU
+				<ul class=dropac>
+
+
+					<li class="dropacli"><a href="#" style="color: white; font-size: 20px;">NEW</a></li>
+					<li class="dropacli"><a href="#" style="color: white; font-size: 20px;">OUTER</a></li>
+					<li class="dropacli"><a href="#" style="color: white; font-size: 20px;">TOP</a></li>
+					<li class="dropacli"><a href="#" style="color: white; font-size: 20px;">PANTS</a></li>
+					<li class="dropacli"><a href="#" style="color: white;font-size: 20px;">SHOES</a></li>
+					<li class="dropacli"><a href="#" style="color: white;font-size: 20px;">BAG&ACC</a></li>
+			
+			</ul>
+			</div>
+		</nav>
+	</div>
+
 
 	<!-- Modal Login -->
 	<div class="modal fade bs-example-modal-sm" id="modal-login"
@@ -185,6 +440,16 @@ $(document).ready(function() {
        $(this).children('ul').removeClass('fadeInUp animated ').css({'display' : 'none'});
 			
     });
+    
+    $("#menusize").hover(function() {
+  	
+    	$(".dropac").addClass('fadeInUp animated ').css({'display' : 'block'});
+    	
+    },function() {
+    		$(".dropac").removeClass('fadeInUp animated ').css({'display' : 'none'});
+    				
+    	    });
+    
 }); 
 </script>
 </body>

@@ -283,6 +283,9 @@ public class ServiceController {
 		
 		ModelAndView mav = new ModelAndView("service/event");
 		int serviceDto = serviceSvc.do_event_delete(seq);
+		if(serviceDto>0){
+			serviceSvc.do_photo_delete(seq);
+		}
 		
 		HashMap<String, String> map = new HashMap<>();
 		map.put("PAGE_SIZE", "10");
@@ -412,15 +415,166 @@ public class ServiceController {
 		return mav;
 	}
 
+	
+	//-------------------쿠폰
+	
 	// 쿠폰 글쓰기 창
 	@RequestMapping("couponwrite.mib")
 	public ModelAndView couponwrite(HttpServletRequest res, HttpServletResponse rep) {
 		ModelAndView mav = new ModelAndView("/service/couponwrite");
 
+		
 		return mav;
 	}
+	
+	//쿠폰 상세보기
+	@RequestMapping("coupdetail.mib")
+	public ModelAndView coupdetail(HttpServletRequest res, HttpServletResponse rep) {
+		
+		
+		String seq = res.getParameter("seq") == null ? "0" : res.getParameter("seq");
+		
+		int intseq = Integer.parseInt(seq);
+		ModelAndView mav = new ModelAndView("/service/coupdetail");
+		ServiceDto dto = serviceSvc.do_selelct_coupdt(intseq);
+	
+		mav.addObject("coupdetail", dto);
+	
+		return mav;
+		
+	}
+	
+	//쿠폰 수정
+	@RequestMapping("coupupdate.mib")
 
-	// 쿠폰 글쓰기 버튼눌럿을때
+	public ModelAndView coupupdate(MultipartHttpServletRequest res) throws IllegalStateException, IOException{
+	
+	String seq = res.getParameter("seq");
+	String couponname = res.getParameter("couponname");
+	String couponprice = res.getParameter("couponprice");
+	String couponcondition = res.getParameter("couponcondition");
+	String couponlimit = res.getParameter("couponlimit");
+			
+	
+	ServiceDto dto = new ServiceDto();
+	dto.setCOUP_NAME(couponname);
+	dto.setCOUP_PRICE(Integer.parseInt(couponprice));
+	dto.setCONDITION(Integer.parseInt(couponcondition));
+	dto.setCOUP_LIMIT(couponlimit);
+	dto.setCOUP_SEQ(Integer.parseInt(seq));
+	
+	serviceSvc.do_coup_update(dto);
+	
+		
+		// 이벤트 시퀀스구하고 파일저장
+		HttpSession session = res.getSession();
+
+		Iterator<String> iterator = res.getFileNames();
+
+		// 저장경로
+		String root_path = session.getServletContext().getRealPath("/"); // 웹서비스
+																			// root
+																			// 경로
+		// String root_path = System.getProperty("catalina.home");
+		String attach_path = "images\\";
+		String filePath = root_path + attach_path;
+
+		MultipartFile multipartFile = null;
+
+		String originalFileName = null;
+
+		String originalFileExtension = null;
+
+		String storedFileName = null;
+
+		ServiceDto photodto = null;
+
+		File file = new File(filePath);
+		// 폴더가없을경우 폴더생성
+		if (file.exists() == false) {
+
+			file.mkdirs();
+
+		}
+
+		while (iterator.hasNext()) {
+			multipartFile = res.getFile(iterator.next());
+
+			if (multipartFile.isEmpty() == false) {
+
+				originalFileName = multipartFile.getOriginalFilename();
+
+				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+
+				storedFileName = "../images/" + getRandomString() + originalFileExtension;
+
+				// 첨부한 파일 생성
+				file = new File(filePath + storedFileName);
+
+				multipartFile.transferTo(file);
+
+				photodto = new ServiceDto();
+
+				photodto.setCOUP_SEQ(Integer.parseInt(seq));
+
+				photodto.setORIGINAL_FILE_NAME(originalFileName);
+
+				photodto.setSTORED_FILE_NAME(storedFileName);
+				
+				serviceSvc.do_coupphoto_update(photodto);
+
+			}
+
+		}
+	
+	
+		HashMap<String, String> mapp = new HashMap<String, String>();
+		mapp.put("PAGE_SIZE", "10");
+		mapp.put("PAGE_NUM", "1");
+
+		List<ServiceDto> eventlist = serviceSvc.do_event_main(mapp);
+		List<ServiceDto> couplist = serviceSvc.do_select_couplist();
+	
+		ModelAndView mav = new ModelAndView("service/event");
+	
+		mav.addObject("eventlist", eventlist);
+		mav.addObject("couplist", couplist);
+	
+	
+		return mav;
+		
+
+}
+	
+	//쿠폰 삭제
+	@RequestMapping("coupdelete.mib")
+	public ModelAndView coupdelete(HttpServletRequest res, HttpServletResponse rep) {
+		
+		int seq = Integer.parseInt(res.getParameter("seq"));
+		
+		ModelAndView mav = new ModelAndView("service/event");
+		int serviceDto = serviceSvc.do_coup_delete(seq);
+		if(serviceDto>0){
+			serviceSvc.do_coupphoto_delete(seq);
+		}
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", "10");
+		map.put("PAGE_NUM", "1");
+		
+		List<ServiceDto> eventlist = serviceSvc.do_event_main(map);
+		List<ServiceDto> couplist = serviceSvc.do_select_couplist();
+		
+		mav.addObject("eventlist", eventlist);
+		mav.addObject("couplist", couplist);
+		return mav;
+	}
+	
+
+
+
+
+	// 쿠폰 작성후 등록 버튼눌럿을때
 	@RequestMapping("couponreg.mib")
 	public ModelAndView couponreg(MultipartHttpServletRequest res) throws IllegalStateException, IOException {
 		ModelAndView mav = new ModelAndView("service/event");
@@ -590,6 +744,16 @@ public class ServiceController {
 		return mav;
 
 	}
+	
+	// 테스트용p태그
+	@RequestMapping("test.mib")
+	public ModelAndView test() {
+
+		ModelAndView mav = new ModelAndView("/service/test");
+	
+		return mav;
+	}
+	
 
 	/* FCK 이미지업로드 */
 	@RequestMapping(value = "CkeditorImgUpload.mib", method = RequestMethod.POST)

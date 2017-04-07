@@ -28,5 +28,9 @@ public interface ServiceDao {
 	public int check_coupon(HashMap<String, String> map);
 	public void do_photo_update(ServiceDto dto);
 	public int do_photo_delete(int seq);
+	public void do_coup_update(ServiceDto dto);
+	public void do_coupphoto_update(ServiceDto dto);
+	public int do_coupphoto_delete(int seq); 
+	public int do_coup_delete(int seq);
 	
 }

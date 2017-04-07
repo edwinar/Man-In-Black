@@ -60,10 +60,11 @@ body {
 </style>
 </head>
 <body>
+<div style="background-color: gray;">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> <a
+				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> > <a
 					href="coupon_Mileage.mib">쿠폰&적립금</a>
 			</h4>
 			<h3>MY Order</h3>
@@ -262,6 +263,7 @@ body {
 			</div>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>

@@ -488,15 +488,15 @@ SELECT MAX(REV_SEQ) FROM REVIEW
 <![CDATA[
 INSERT
 INTO POINTS
-  		   (
-  		   POINT_SEQ,
-  		   POINT_TIME,
-  		   POINT_PRICE,
-  		   POINT_FINAL,
-  		   INCREASE,
-  		   USER_ID,
-  		   PRO_SEQ
-  		   )
+           (
+           POINT_SEQ,
+           POINT_TIME,
+           POINT_PRICE,
+           POINT_FINAL,
+           INCREASE,
+           USER_ID,
+           PRO_SEQ
+           )
 VALUES
       (
       POINT_SEQ.NEXTVAL,
@@ -504,24 +504,27 @@ VALUES
       (
        SELECT (PRO_PRICE)/20 AS POINT
        FROM PRODUCT
-       WHERE
-       		PRO_SEQ= #{PRO_SEQ}),
-       		(
-       		 (
-       		  SELECT MAX(POINT_FINAL)
-       		  FROM POINTS
-       		  WHERE USER_ID = #{USER_ID}
-       		  )
-       +
-       		(
-       		 SELECT (PRO_PRICE)/20 AS POINT
-       		 FROM PRODUCT
-       		 WHERE PRO_SEQ= #{PRO_SEQ}
-       		)
-       		) ,
-       		'PLUS' ,
-       		#{USER_ID} ,
-       		#{PRO_SEQ}
+       WHERE PRO_SEQ= #{PRO_SEQ}),
+             ((
+                SELECT * 
+                FROM 
+                    (SELECT POINT_FINAL
+                     FROM POINTS
+                      WHERE USER_ID =#{USER_ID}
+                      ORDER BY POINT_SEQ DESC
+                      )
+                WHERE ROWNUM =1}
+               )
+      -
+             (
+              SELECT (PRO_PRICE)/20 AS POINT
+              FROM PRODUCT
+              WHERE PRO_SEQ= #{PRO_SEQ}
+             )
+             ) ,
+             'MINUS' ,
+             #{USER_ID} ,
+             #{PRO_SEQ}
    )
 
 ]]>
