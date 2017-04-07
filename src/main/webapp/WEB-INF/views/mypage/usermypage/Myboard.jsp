@@ -27,9 +27,9 @@
 	</center>
 
 	
-			<span class="mypage-link" style="font-size: 19px;"><a
+			<span class="mypage-link" style="font-size: 19px;width: 95%; margin-left: 5%"><a
 				href='myboardreview.mib'>My Review</a></span>
-			<table class="table">
+			<table class="table" style="width: 95%; margin-left: 5%">
 				<tfoot>
 					<tr>
 						<%
@@ -90,7 +90,7 @@
 			<br> <br> <br> <br>
 
 
-			<table class="table">
+			<table class="table" style="width: 95%; margin-left: 5%">
 				<tfoot>
 					<tr>
 						<%
@@ -108,7 +108,7 @@
 					</tr>
 				</tfoot>
 
-				<span class="mypage-link" style="font-size: 19px;"><a
+				<span class="mypage-link" style="font-size: 19px;width: 95%; margin-left: 5%"><a
 					href='myboardqna.mib'>My Q&A</a></span>
 				<thead>
 					<tr>

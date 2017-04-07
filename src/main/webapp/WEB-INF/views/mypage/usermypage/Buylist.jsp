@@ -57,11 +57,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	
 <style type="text/css">
 td, th {
 	text-align: center;
-
+}
 
 input{
   border: 1px solid #ccc;
@@ -69,19 +68,50 @@ input{
   border-radius: 3px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
+@media only screen and (max-width: 1400px) {
+	#boardone, .boardone {
+		display: none;
+		visibility: hidden;
+	}
+}
 
+@media only screen and (max-width: 1100px) {
+	#boardone, .boardone {
+		display: none;
+		visibility: hidden;
+	}
+	#boardtwo, .boardtwo {
+		display: none;
+		visibility: hidden;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	#boardone, .boardone {
+		display: none;
+		visibility: hidden;
+		
+		
+		
+	}
+	#boardtwo, .boardtwo {
+		display: none;
+		visibility: hidden;
+	}
+	#boardthree, .boardthree {
+		display: none;
+		visibility: hidden;
+	}
 
 
 </style>
 <title>::구매내역::</title>
 </head>
 <body>
-
-<div style="background-color: gray;">
-
-	 <center>
+<div style="width: 90%">
+	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 270px">
+			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
@@ -91,7 +121,7 @@ input{
 	</center>
 
 	<div align="center" style="margin-top: 50px">
- 	<p>
+		<p>
 			<input type="date" height="50px" name="start_date" id="start_date"
 				value="<%=START_DATE%>">~<input type="date" name="end_date"
 				id="end_date" value="<%=END_DATE%>" min="<%=END_DATE%>">
@@ -102,54 +132,45 @@ input{
 		</p>
 	</div>
 
-	<!-- <div align="center" style="width: 90%">
+
+
+	<div align="center">
+
+
+
 		<div id="total" style="margin-top: 50px">
-			<div id="table" style="width: 90%"> -->
+			<div id="table" style="width: 90%">
 				<form name="f1">
 					<table class="table">
-						<col width="9%">
-						<col width="7%">
-						<col width="23%">
-						<col width="6%">
-						<col width="6%">
-						<col width="7%">
-						<col width="7%">
-						<col width="7%">
-						<col width="9%">
-						<col width="12%">
-						<col width="7%">
-						<thead>
 						<tr height="40px">
-							<th class="boardone" style="width: ">이미지</th>
-							<th class="boardone"style="width: ">분류</th>
-							<thstyle="width: ">상품이름1234512</th>
-							<th class="boardone"style="width: ">수량</th>
-							<th class="boardtwo"style="width: ">판매가</th>
-							<th class="boardtwo"style="width: ">쿠폰</th>
-							<th class="boardtwo"style="width: ">적립금</th>
-							<th>결제금액</th>
-							<th class="#boardthree">판매일</th>
-							<th>상태</th>
+							<th class="boardone" style="width: 9%">이미지</th>
+							<th class="boardone"style="width: 7%">분류</th>
+							<th style="width: 23%">상품이름1234512</th>
+							<th class="boardone"style="width: 8%">수량</th>
+							<th class="boardtwo"style="width: 9%">판매가</th>
+							<th class="boardtwo"style="width: 8%">쿠폰</th>
+							<th class="boardtwo"style="width: 8%">적립금</th>
+							<th style="width: 9%">결제금액</th>
+							<th class="#boardthree"style="width: 12%">판매일</th>
+							<th style="width: 7%">상태</th>
 						</tr>
-						</thead>
-						<tbody>
-					 	<%
+						<%
 							if (buyList == null || buyList.size() == 0) {
-						%> 
+						%>
 						<tr>
-							<td colspan="9999">내역이 없습니다.</td>
+							<td colspan="11">내역이 없습니다.</td>
 						</tr>
-						</tbody>
+						
 					</table>
-
+						<div style="height: 300px"></div>
 				</form>
 
-	<!-- 		</div>
+			</div>
 
 		</div>
 
-	 <div> -->
-			 <table width="80%">
+		<div>
+			<table>
 
 				<%
 					} else {
@@ -169,7 +190,7 @@ input{
 					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
 					<%
 						if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
-					%> 
+					%>
 					<td rowspan="1" valign="middle"> <%=buyList.get(i).getDEL_STEP()%>
 
 						<input type="button" class="btn btn-default" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
@@ -182,9 +203,9 @@ input{
 					<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
 				</tr>
 
- 				<%
+				<%
 					} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {
-				%> 
+				%>
 				
 				
 				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
@@ -192,14 +213,15 @@ input{
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 					<td><input type="hidden"
-						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> 
-						<input type="button" value="리뷰쓰기" id="btn" onclick="go(<%=buyList.get(i).getPRO_SEQ()%>,<%=buyList.get(i).getDEL_SEQ()%> )"></td>
+						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> <input
+						type="button" value="리뷰쓰기" id="btn"
+						onclick="go(<%=buyList.get(i).getPRO_SEQ()%>,<%=buyList.get(i).getDEL_SEQ()%> )"></td>
 				</tr>
 
 
- 				<%
+				<%
 				} else if (buyList.get(i).getDEL_STEP().equals("배송준비중")) {
-				%> 
+				%>
 				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
 
@@ -211,7 +233,7 @@ input{
 				</tr>
 						<%
 				} else if (buyList.get(i).getDEL_STEP().equals("변경사항 처리중")) {
-				%> 
+				%>
 				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
 
@@ -219,9 +241,9 @@ input{
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 				</tr>
- 				<%
+				<%
 					} else {
-				%> 
+				%>
 
 
 
@@ -232,12 +254,12 @@ input{
 
 				</tr>
 
-			<%
+				<%
 					}
 						}
-				%> 
-					</tboby>
-			</table> 
+				%>
+
+			</table>
 
 
 
@@ -245,7 +267,7 @@ input{
 
 	</div>
 
- 	 <%
+	<%
 		// 페이징 및 날짜 선택 
 			String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
 					? "1" : request.getParameter("PAGE_NUM");
@@ -257,30 +279,29 @@ input{
 
 			int pageCount = buyList.get(0).getTOT_CNT() % page_size == 0 ? buyList.get(0).getTOT_CNT() / page_size
 					: (buyList.get(0).getTOT_CNT() / page_size) + 1;
-	%> 
+	%>
 	<div class="row" align="center">
 		<p>
- 			<%
+			<%
 				START_DATE = START_DATE.substring(2, 4) + START_DATE.substring(5, 7) + START_DATE.substring(8, 10);
 
 					END_DATE = END_DATE.substring(2, 4) + END_DATE.substring(5, 7) + END_DATE.substring(8, 10);
 
 					for (int i = 1; i <= pageCount; i++) {
-			%> 
+			%>
 			<a
 				href="buylist.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE%>&END_DATE=<%=END_DATE%>"
 				class="btn btn-default" role="button"><%=i%></a>
- 			<%
+			<%
 				}
-			%> 
+			%>
 		</p>
 	</div>
 
- 	<%
+	<%
 		}
-	 	
-	%> 
-	
+	%>
+	</div>
 	<script type="text/javascript">
 	$(document)
 			.ready(
@@ -564,7 +585,6 @@ input{
 
 
 
-</script>  
-</div>
+</script>
 </body>
 </html>

@@ -24,8 +24,8 @@
 		</div>
 	</center>
 
-	<h3>상품 리뷰</h3>
-	<table class="table">
+	<h3 style="width: 95%; margin-left: 5%">상품 리뷰</h3>
+	<table class="table" style="width: 95%; margin-left: 5%">
 		<col width="15%">
 		<col width="15%">
 		<col width="40%">

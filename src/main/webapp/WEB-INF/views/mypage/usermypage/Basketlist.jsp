@@ -24,7 +24,8 @@ td, th {
 </style>
 <title>::장바구니::</title>
 </head>
-<body>
+<body style="margin-left: 5%">
+
 	<input type="hidden" value="<%=basketlist.size()%>" id="list">
 	<center>
 		<div id="mypagehead">
@@ -40,10 +41,11 @@ td, th {
 
 
 	<div id="total" style="height: margin-top: 150px">
-		<div id="table" style="width: 90%">
-
+		<div  style="width: 90%">
+			<div align="left">
 			<input type="checkbox" id="allCheck" class="chbox"
-				style="width: 20px; height: 20px; margin-left: 1.911577%">
+				style="width: 20px; height: 20px; " >
+				</div>
 			<form name="f1">
 				<table class="table">
 					<col width="5%">

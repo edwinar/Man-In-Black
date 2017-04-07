@@ -24,10 +24,10 @@
 	</center>
 
 	
-			<h3>Q&A</h3>
+			<h3 style="width: 95%; margin-left: 5%">Q&A</h3>
 
 
-			<table class="table">
+			<table class="table"style="width: 95%; margin-left: 5%"> 
 				<col width="15%">
 				<col width="15%">
 				<col width="40%">

@@ -60,7 +60,7 @@ body {
 </style>
 </head>
 <body>
-<div style="background-color: gray;">
+
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -263,7 +263,6 @@ body {
 			</div>
 		</div>
 
-	</div>
 	</div>
 </body>
 </html>

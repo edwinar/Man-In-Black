@@ -83,14 +83,14 @@ td, th {
 	text-align: center;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1400px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
 	}
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1100px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
@@ -101,7 +101,7 @@ td, th {
 	}
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 900px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
@@ -226,28 +226,18 @@ td, th {
 			<!--onclick="location.href='buyList.mib'"-->
 			<p style="background-color: #696969">주문내용</p>
 			<table class="table">
-				<col width="9%">
-				<col width="7%">
-				<col width="23%">
-				<col width="6%">
-				<col width="6%">
-				<col width="7%">
-				<col width="7%">
-				<col width="7%">
-				<col width="9%">
-				<col width="12%">
-				<col width="7%">
+	
 				<tr height="40px">
-					<th class="boardone">이미지</th>
-					<th class="boardone">분류</th>
-					<th>상품이름1234512</th>
-					<th class="boardone">수량</th>
-					<th class="boardtwo">판매가</th>
-					<th class="boardtwo">쿠폰</th>
-					<th class="boardtwo">적립금</th>
-					<th>결제금액</th>
-					<th class="#boardthree">판매일</th>
-					<th>상태</th>
+					<th class="boardone" style="width: 9%">이미지</th>
+					<th class="boardone"style="width: 7%">분류</th>
+					<th style="width: 23%">상품이름1234512</th>
+					<th class="boardone"style="width: 8%">수량</th>
+					<th class="boardtwo"style="width: 9%">판매가</th>
+					<th class="boardtwo"style="width: 8%">쿠폰</th>
+					<th class="boardtwo"style="width: 8%">적립금</th>
+					<th style="width: 9%">결제금액</th>
+					<th class="#boardthree"style="width: 12%">판매일</th>
+					<th style="width: 7%">상태</th>
 				</tr>
 				<%
 					if (buy == null || buy.size() == 0) {
