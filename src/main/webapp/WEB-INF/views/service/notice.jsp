@@ -20,7 +20,7 @@ td, th {
 }
 
 .table {
-	margin-left: 120px;
+	margin-left: 144px;
 	width: 86%;
 }
 </style>
@@ -30,13 +30,13 @@ td, th {
 	<center>
 		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">고객센터</a>
+				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">공지사항</a>
 			</h4>
-			<h3>고객센터</h3>
-			<h4>MIB 공지사항입니다</h4>
+			<h3>공지사항</h3>
+		
 		</div>
 	</center>
-	<h3>NOTICE</h3>
+	
 	
 	<!-- CEO 글쓰기 버튼  -->
 	<%if(dto!=null){

@@ -95,9 +95,10 @@ body {
 }
 
 .wrap {
-	width: 100%;
+	width: 20%;
+	text-align: center;
+	margin-left: 560px;
 }
-
 .mat-label {
 	display: block;
 	font-size: 16px;
@@ -121,29 +122,30 @@ body {
 	position: relative;
 }
 
+/* 밑줄 before */
 .mat-div:after, .mat-div:before {
 	content: "";
 	position: absolute;
 	display: block;
 	width: 100%;
 	height: 2px;
-	background-color: #e2e2e2;
+	background-color: #d1d1d1;
 	bottom: 0;
 	left: 0;
 	transition: all 0.5s;
 }
-
+/* 밑줄 */
 .mat-div::after {
-	background-color: #8E8DBE;
+	background-color: #000000;
 	transform: scaleX(0);
 }
 
 .is-active::after {
 	transform: scaleX(1);
 }
-
+/* 밑줄라벨 */
 .is-active .mat-label {
-	color: #8E8DBE;
+	color: #000000;
 }
 
 .is-completed .mat-label {
@@ -196,6 +198,7 @@ body {
 			<label for="first-name" class="mat-label">쿠폰기간</label> 
 			<input type="text" class="mat-input" name="couponlimit" id="제목">
 		</div>
+		<br>
 		<input type="submit" value="등록">	
 	</div>
 	</form>
