@@ -97,7 +97,7 @@ function addCookie(pd_no) {
   %>
   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="../images/LOVE.jpg" alt="...">
+      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="...">
       <div class="caption">
         <h5><%=list.get(i).getPRO_NAME() %></h5>
         <p><%=list.get(i).getPRO_PRICE() %> Won</p>
