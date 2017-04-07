@@ -28,7 +28,7 @@
 
         <tr>          
 
-            <td height="40px" colspan="3"  >
+            <td height="40px" colspan="3"   >
 
                 <tiles:insertAttribute name="header" />
 
@@ -43,7 +43,7 @@
 
             </td>
 
-            <td width="80%"  style="  background-color: white;">
+            <td width="80%"  style="background-color: white;">
 
                <tiles:insertAttribute name="main" />
 
