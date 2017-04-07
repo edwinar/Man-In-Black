@@ -434,13 +434,13 @@ table.responsive-table{
 <script type="text/javascript">
 $(document).ready(function () {
     $('.content1').hover(function () {
-        $('#mainImage').attr("src", "../images/aa.jpg");
+        $('#mainImage').attr("src", "<%=list.get(0).getSTORED_NAME() %>");
     });
     $('.content2').hover(function () {
-        $('#mainImage').attr("src", "../images/dd.jpg");
+        $('#mainImage').attr("src", "<%=list.get(1).getSTORED_NAME() %>");
     });
     $('.content3').hover(function () {
-        $('#mainImage').attr("src", "../images/ss.jpg");
+        $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
     	var PRO_SEQ = <%=PRO_SEQ %>;
@@ -556,23 +556,23 @@ function BuyPop(){
 		<div class="sub-slide visible-lg">
 			<div class="sub-photo">
 				<div class="content1">
-		    		<img src="../images/aa.jpg" height="100%" width="100%">
+		    		<img src="<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
 				<div class="content2">
-		    		<img src="../images/dd.jpg" height="100%" width="100%">
+		    		<img src="<%=list.get(1).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
 				<div class="content3">
-		    		<img src="../images/ss.jpg" height="100%" width="100%">
+		    		<img src="<%=list.get(2).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 		</div>
 	  	<div class="slide">
 		    <div class="content">
-		    	<img src="../images/aa.jpg" height="100%" width="100%" id="mainImage">
+		    	<img src="<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%" id="mainImage">
 		    </div>
 	  	</div>	
 	</div>
@@ -580,7 +580,6 @@ function BuyPop(){
 	<div class="productExplain" align="center">
 		<div class="" >
 		    <div class="thumbnail">
-		      <!-- <img src="../images/LOVE.jpg" alt="..."> -->
 		      <div class="caption">
 		      	<div class="productName" style="height: 20%;">
 					<h2><b><%=list.get(0).getPRO_NAME() %></b></h2>
@@ -722,10 +721,6 @@ function BuyPop(){
     <div class="tab__content">
      <center>
      <h1>상품상세 TEST</h1>
-     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
-     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
-     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
-     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
      <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
      </center>
     </div>

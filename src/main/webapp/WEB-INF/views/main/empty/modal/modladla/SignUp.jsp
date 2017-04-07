@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>SignUp</title>
 </head>
 <body>
    <script type="text/javascript" src="http://wcs.naver.net/wcslog.js">

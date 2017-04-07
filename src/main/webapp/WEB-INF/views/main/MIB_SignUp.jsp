@@ -13,9 +13,8 @@ System.out.println(success);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>MIB_SignUp</title>
 <style>
-#Registration{font-size:1em;color:black;text-align:center;font-weight:normal;}
 
 #signupdiv
 {
@@ -24,7 +23,10 @@ height:auto;
 margin:1% auto;
 }
 
-#inputlbl{padding:0px 0px 0px 20px;
+#inputlbl
+{
+
+padding:0px 0px 0px 55px;
 background:rgba(255,255,255,0.8);
 border-radius:5px;
 
@@ -41,7 +43,7 @@ border-bottom:1px solid #dedede;
 #MIBsignupform label
 {
 display:block;
-font-size:0.9em;
+font-size:1.2em;
 color:#767676;
 padding:20px 0px;
 width:100px;
@@ -49,14 +51,23 @@ float:left;
 font-weight:bold;
 }
 
-#MIBsignupform input
+ #MIBsignupform input
 {
 border:none;
 padding:20px 0px;
 background:transparent;
 width:230px;
-font-size:0.9em;
+font-size:1.2em;
+
 }
+
+input:focus, textarea:focus
+{     
+outline: none;
+}
+
+
+
 
 
 #MIBsignupform input[type=button]
@@ -97,15 +108,17 @@ color:white;
 
 <form id="MIBsignupform" action="compl.mib" method="post">
 <div id="signupdiv">
-<h1 id="Registration">회원 가입</h1>
+<h3 style="text-align: center">회원가입</h3>
+<br><br>
 <div id="inputlbl">
-<div class="inputsnlables"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
+<div class="inputsnlables"><label>EMAIL</label>
+<input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
 <a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >
  EMAIL인증</a></div> 
 
 
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock"/>
-	<button type="button" id="IDBtn">ID중복확인</button>
+   <button type="button" id="IDBtn">ID중복확인</button>
 </div>
 <div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
@@ -130,187 +143,187 @@ color:white;
 
 <script type="text/javascript">
  function cl() {
-	var email1 = $("#sign_email").val();
-	$("#modal-email").modal({
+   var email1 = $("#sign_email").val();
+   $("#modal-email").modal({
         remote : 'mail.mib?sign_email='+email1,
         backdrop: 'static' // 배경누르고 닫힘 방지 
     });
-	
-	
-	
-		
+   
+   
+   
+      
 }
 
 $(document).ready(function() {
-	
-	var lock = $("#success").val();
-	if(lock=='fail'){
-		$(".lock").attr('disabled',true);
-	}else{
-		$(".lock").attr('disabled',false);
-	}
-	
-	
-	$("#complete").click(function() {
-		
-		var sign_email    = $("#sign_email").val();
-		var id            = $("#id").val();
-		var name          = $("#name").val();
-		var tel           = $("#tel").val();
-		var sex           = $("#sex").val();
-		var birth         = $("#birth").val();
-		var postcode      = $("#postcode").val();
-		var password      = $("#password").val();
-		var jibunAddress  = $("#jibunAddress").val();
-		var roadAddress   = $("#roadAddress").val();
-		var detailAddress = $("#detailAddress").val();
-		
-		if(sign_email == "") {alert("EMAIL을 작성해주세요"); }   
-		else if(id            == "") {alert("ID를 작성해주세요"); }
-		else if(password      == "") {alert("PASSWORD을 작성해주세요");  }
-		else if(name          == "") {alert("NAME을 작성해주세요");      }
-		else if(tel           == "") {alert("TEL을 작성해주세요");       }
-		else if(postcode      == "") {alert("POSTCODE을 작성해주세요");  }
-		else if(detailAddress == "") {alert("주소정보를 입력해주세요");      }
-		else if(sex           == "") {alert("SEX을 작성해주세요");       }
-		else if(birth         == "") {alert("BIRTH을 작성해주세요");     }
-		else{
-			
-			$("#MIBsignupform").submit();
-		}
-	
-	
-	});
-	
-	
-	$("#IDBtn").click(function() {
-		
-		var id = $('#id').val();
-		
-		$.ajax({
-			 			type : "POST",
-			 			url : "idCheck.mib",
-			 			async : true,
-			 			dataType : "html",
-			 			data : {
-			 				"id" : id
-			 			},
-			 			success : function(data) {
-			 				//alert("success " + data);
-			 				var flag = $.parseJSON(data);
-			 				alert(flag.check); 	
-			 				if(flag.result=='NO'){
-			 					$("#id").val('');
-			 				}
-			 			},
-			 			complete : function(data) {
-			 			},
-			 			error : function(xhr, status, error) {
-			 				alert("에러발생");
-			 			}
-			 		});		
-			 
-	});
-	
-	$("#signA").click(function(){
-		var email = $("#sign_email").val();
-		//alert(email);
-		$.ajax({
-		 			type : "POST",
-		 			url : "emailCheck.mib",
-		 			async : true,
-		 			dataType : "html",
-		 			data : {
-		 				"email" : email
-		 			},
-		 			success : function(data) {
-		 				//alert("success " + data);
-		 				var flag = $.parseJSON(data);
-		 				//alert(flag.success);
-		 				if(flag.success==='success'){
-		 					
-		 					//$("#signA").attr('data-target','#modal-email');
-		 					//$("#signA").attr('href','mail.mib?sign_email='+email);
-		 					cl();
-		 					//return false;
-		 				}else{
+   
+   var lock = $("#success").val();
+   if(lock=='fail'){
+      $(".lock").attr('disabled',true);
+   }else{
+      $(".lock").attr('disabled',false);
+   }
+   
+   
+   $("#complete").click(function() {
+      
+      var sign_email    = $("#sign_email").val();
+      var id            = $("#id").val();
+      var name          = $("#name").val();
+      var tel           = $("#tel").val();
+      var sex           = $("#sex").val();
+      var birth         = $("#birth").val();
+      var postcode      = $("#postcode").val();
+      var password      = $("#password").val();
+      var jibunAddress  = $("#jibunAddress").val();
+      var roadAddress   = $("#roadAddress").val();
+      var detailAddress = $("#detailAddress").val();
+      
+      if(sign_email == "") {alert("EMAIL을 작성해주세요"); }   
+      else if(id            == "") {alert("ID를 작성해주세요"); }
+      else if(password      == "") {alert("PASSWORD을 작성해주세요");  }
+      else if(name          == "") {alert("NAME을 작성해주세요");      }
+      else if(tel           == "") {alert("TEL을 작성해주세요");       }
+      else if(postcode      == "") {alert("POSTCODE을 작성해주세요");  }
+      else if(detailAddress == "") {alert("주소정보를 입력해주세요");      }
+      else if(sex           == "") {alert("SEX을 작성해주세요");       }
+      else if(birth         == "") {alert("BIRTH을 작성해주세요");     }
+      else{
+         
+         $("#MIBsignupform").submit();
+      }
+   
+   
+   });
+   
+   
+   $("#IDBtn").click(function() {
+      
+      var id = $('#id').val();
+      
+      $.ajax({
+                   type : "POST",
+                   url : "idCheck.mib",
+                   async : true,
+                   dataType : "html",
+                   data : {
+                      "id" : id
+                   },
+                   success : function(data) {
+                      //alert("success " + data);
+                      var flag = $.parseJSON(data);
+                      alert(flag.check);    
+                      if(flag.result=='NO'){
+                         $("#id").val('');
+                      }
+                   },
+                   complete : function(data) {
+                   },
+                   error : function(xhr, status, error) {
+                      alert("에러발생");
+                   }
+                });      
+          
+   });
+   
+   $("#signA").click(function(){
+      var email = $("#sign_email").val();
+      //alert(email);
+      $.ajax({
+                type : "POST",
+                url : "emailCheck.mib",
+                async : true,
+                dataType : "html",
+                data : {
+                   "email" : email
+                },
+                success : function(data) {
+                   //alert("success " + data);
+                   var flag = $.parseJSON(data);
+                   //alert(flag.success);
+                   if(flag.success==='success'){
+                      
+                      //$("#signA").attr('data-target','#modal-email');
+                      //$("#signA").attr('href','mail.mib?sign_email='+email);
+                      cl();
+                      //return false;
+                   }else{
 
-		 					$("#sign_email").val('');
-		 					alert(flag.check); 
-		 					//return false;
-		 					
-		 				
-		 				}
-		 					
-		 				
-		 			},
-		 			complete : function(data) {
-		 			},
-		 			error : function(xhr, status, error) {
-		 				alert("에러발생");
-		 			}
-		 		});		
-        	
+                      $("#sign_email").val('');
+                      alert(flag.check); 
+                      //return false;
+                      
+                   
+                   }
+                      
+                   
+                },
+                complete : function(data) {
+                },
+                error : function(xhr, status, error) {
+                   alert("에러발생");
+                }
+             });      
+           
     });
 });
 // 전화번호 제한
 function telKeyCode(event) {
-			event = event || window.event;
-			var keyID = (event.which) ? event.which : event.keyCode;
-			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
-			{
-				
-			}
-			else
-			{
-				alert("숫자만 입력해주세요");
-				$("#tel").val('010-');
-			}
-			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
-			
-			//앞에 010 은 고정 
-			if($("#tel").val().length == 0 || $("#tel").val().length>13) {
-				
-				$("#tel").val('010-');
-			
-       		 }
-			
-			if($("#tel").val().length == 3 && keyID==8) {
-				
-				$("#tel").val('010-');
-			
-       		 }
-			
-			if($("#tel").val().length == 8 && keyID !=8){
-				var tel = $("#tel").val();
-				$("#tel").val(tel+'-');
-			}
+         event = event || window.event;
+         var keyID = (event.which) ? event.which : event.keyCode;
+         if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
+         {
+            
+         }
+         else
+         {
+            alert("숫자만 입력해주세요");
+            $("#tel").val('010-');
+         }
+         /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+         
+         //앞에 010 은 고정 
+         if($("#tel").val().length == 0 || $("#tel").val().length>13) {
+            
+            $("#tel").val('010-');
+         
+              }
+         
+         if($("#tel").val().length == 3 && keyID==8) {
+            
+            $("#tel").val('010-');
+         
+              }
+         
+         if($("#tel").val().length == 8 && keyID !=8){
+            var tel = $("#tel").val();
+            $("#tel").val(tel+'-');
+         }
 
 
-		}
+      }
 // 생일 숫자입력, 글자수제한 
 function showKeyCode(event) {
-			event = event || window.event;
-			var keyID = (event.which) ? event.which : event.keyCode;
-			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
-			{
-				
-			}
-			else
-			{
-				alert("900411 양식을 지켜주세요");
-				$("#birth").val('');
-			}
-			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
-			
-			if($("#birth").val().length == 7) {
+         event = event || window.event;
+         var keyID = (event.which) ? event.which : event.keyCode;
+         if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
+         {
+            
+         }
+         else
+         {
+            alert("900411 양식을 지켜주세요");
+            $("#birth").val('');
+         }
+         /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+         
+         if($("#birth").val().length == 7) {
 
             $("#birth").val($("#birth").val().substring(0, 6));
 
         }
 
 
-		}
+      }
 
 function Postcode() {
     new daum.Postcode({
@@ -344,8 +357,8 @@ function Postcode() {
             document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
             
             if(fullRoadAddr!=null&&fullRoadAddr!=""){
-            	document.getElementById('jibunAddressdiv').innerHTML = '';
-            	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress" readonly="readonly" />';
+               document.getElementById('jibunAddressdiv').innerHTML = '';
+               document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress" readonly="readonly" />';
                 document.getElementById('roadAddress').value = fullRoadAddr;
                 document.getElementById('detailAddressdiv').innerHTML = '<label>나머지주소</label><input type="text" placeholder="ADDRESS" id="detailAddress" name="detailAddress"/>';
                
@@ -374,7 +387,10 @@ function Postcode() {
 
     }).open();
 }
+
+
 </script>
+
 
 </body>
 </html>

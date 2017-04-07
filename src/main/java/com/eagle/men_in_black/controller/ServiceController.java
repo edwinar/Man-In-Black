@@ -744,6 +744,16 @@ public class ServiceController {
 		return mav;
 
 	}
+	
+	// 테스트용p태그
+	@RequestMapping("test.mib")
+	public ModelAndView test() {
+
+		ModelAndView mav = new ModelAndView("/service/test");
+	
+		return mav;
+	}
+	
 
 	/* FCK 이미지업로드 */
 	@RequestMapping(value = "CkeditorImgUpload.mib", method = RequestMethod.POST)

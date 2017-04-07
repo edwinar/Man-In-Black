@@ -156,6 +156,10 @@ td, th {
 		%>
 			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
 			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
+			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE"/>
+			<input type="hidden" name="POINT" id="POINT"/>
+			<input type="hidden" name="COUPON" id="COUPON"/>
+			<input type="hidden" name="COUP_SEQ" id="COUP_SEQ"/>
 			<table class="orderTable" width="90%" height="400px">
 			<col width="20%"/><col width="50%"/><col width="30%"/>
 				<tr>
@@ -226,7 +230,7 @@ td, th {
 					        <%
 					        	for(int i=0;i<couponList.size();i++){
 					        %>
-					        	<option value="<%=couponList.get(i).getCOUP_PRICE() %>"><%=couponList.get(i).getCOUP_NAME() %></option>
+					        	<option value="<%=couponList.get(i).getCOUP_PRICE()%>,<%=couponList.get(i).getCOUP_SEQ()%>"><%=couponList.get(i).getCOUP_NAME() %></option>
 					        <%
 					        	}
 					        %>
@@ -327,15 +331,16 @@ var midPrice;
 	});
 	$('#couponBtn').on('click',function(){
 		var couponValue = $("#couponChoice option:selected").val();
+		var array = couponValue.split(",");
 		midPrice = finalPrice;
-		if(couponValue=="no"){
+		if(array[0]=="no"){
 			$('#final').text(midPrice);
 			$('#pointValue').attr('disabled',false);
 			$('#pointBtn').attr('disabled',false);
 			$('#couponBtn').attr('disabled',true);
 			$('#couponChoice').attr('disabled',true);
 		}else{
-			midPrice = midPrice - couponValue;
+			midPrice = midPrice - array[0];
 			$('#final').text(midPrice);
 			$('#pointValue').attr('disabled',false);
 			$('#pointBtn').attr('disabled',false);
@@ -362,7 +367,16 @@ var midPrice;
 		deliveryFeeChange();
 	});
 	$('#buy').on('click',function(){
-		$('#form').submit();
+		if($('#receiveName').val()==""||$('#receiveName').val()==null||
+			$('#receiveEmail').val()==""||$('#receiveEmail').val()==null||
+			$('#receivePhone').val()==""||$('#receivePhone').val()==null||
+			$('#receiveNum').val()==""||$('#receiveNum').val()==null||
+			$('#receiveAddress_1').val()==""||$('#receiveAddress_1').val()==null||
+			$('#receiveAddress_2').val()==""||$('#receiveAddress_2').val()==null){
+			alert("수령인의 정보를 모두 채우시오");
+		}else{
+			$('#form').submit();
+		}
 	});
 });
 function onlyNumber(){
@@ -376,8 +390,17 @@ function deliveryFeeChange(){
 		$('#deliveryFee').text("0");
 	}
 	var deliveryFee = $('#deliveryFee').text();
-	$("#DEL_PRICE").val(deliveryFee);
 	$('#final').text(parseInt(deliveryFee)+parseInt(value));
+	//////////////////////////////////
+	$("#DEL_PRICE").val(deliveryFee);
+	var fp = $('#final').text();
+	var couponTwo = $("#couponChoice option:selected").val();
+	var point = $("#pointValue").val();
+	$("#FINAL_PRICE").val(fp);
+	$("#POINT").val(point);
+	var array = couponTwo.split(",");
+	$("#COUPON").val(array[0]);
+	$("#COUP_SEQ").val(array[1]);
 }
 </script>
 </body>
