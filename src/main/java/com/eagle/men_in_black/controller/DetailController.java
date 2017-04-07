@@ -285,34 +285,63 @@ public class DetailController {
 	public ModelAndView buymymain(HttpServletRequest res, HttpServletResponse rep){
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		
-		int DEL_PRICE = Integer.parseInt(res.getParameter("DEL_PRICE"));
-		String DEL_ADDRESS = res.getParameter("receiveAddress_1");
-		String DEL_POSTCODE = res.getParameter("receiveNum");
-		String REC_NAME = res.getParameter("receiveName");
-		String REC_TEL = res.getParameter("receivePhone");
-		String DEL_DETAIL_ADDRESS = res.getParameter("receiveAddress_2");
-		int basketListSize = Integer.parseInt(res.getParameter("basketListSize"));
+		int DEL_PRICE = Integer.parseInt((res.getParameter("DEL_PRICE")==null||res.getParameter("DEL_PRICE").equals("") )?"2500":res.getParameter("DEL_PRICE"));
+		String DEL_ADDRESS = (res.getParameter("receiveAddress_1")==null||res.getParameter("receiveAddress_1").equals("") )?"error":res.getParameter("receiveAddress_1");
+		String DEL_POSTCODE = (res.getParameter("receiveNum")==null||res.getParameter("receiveNum").equals("") )?"error":res.getParameter("receiveNum");
+		String REC_NAME = (res.getParameter("receiveName")==null||res.getParameter("receiveName").equals("") )?"error":res.getParameter("receiveName");
+		String REC_TEL = (res.getParameter("receivePhone")==null||res.getParameter("receivePhone").equals("") )?"error":res.getParameter("receivePhone");
+		String DEL_DETAIL_ADDRESS = (res.getParameter("receiveAddress_2")==null||res.getParameter("receiveAddress_2").equals("") )?"error":res.getParameter("receiveAddress_2");
+		int basketListSize = Integer.parseInt((res.getParameter("basketListSize")==null||res.getParameter("basketListSize").equals("") )?"0":res.getParameter("basketListSize"));
+		int FINAL_PRICE = Integer.parseInt((res.getParameter("FINAL_PRICE")==null||res.getParameter("FINAL_PRICE").equals("") )?"0":res.getParameter("FINAL_PRICE"));
+		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("no")||res.getParameter("COUPON").equals("") )?"0":res.getParameter("COUPON"));
+		int POINT = Integer.parseInt((res.getParameter("POINT")==null||res.getParameter("POINT").equals("") )?"0":res.getParameter("POINT"));
+		int COUP_SEQ = Integer.parseInt((res.getParameter("COUP_SEQ")==null||res.getParameter("COUP_SEQ").equals("undefined")||res.getParameter("COUP_SEQ").equals("") )?"0":res.getParameter("COUP_SEQ"));
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();
-		List<HashMap<String, Object>> basketMapList = new ArrayList<>();
 		for(int i=0;i<basketListSize;i++){
 			BAS_SEQList.add(Integer.parseInt(res.getParameter("BAS_SEQ"+i)));
 			basketInfoList.add(detailSvc.do_selectBasketInfo(BAS_SEQList.get(i)));
-			System.out.println("0000000"+i+basketInfoList.get(i));
 			
-			basketMapList.get(i).put("DEL_PRICE", DEL_PRICE);
-			basketMapList.get(i).put("DEL_ADDRESS", DEL_ADDRESS);
-			basketMapList.get(i).put("DEL_POSTCODE", DEL_POSTCODE);
-			basketMapList.get(i).put("REC_NAME", REC_NAME);
-			basketMapList.get(i).put("REC_TEL", REC_TEL);
-			basketMapList.get(i).put("DEL_DETAIL_ADDRESS", DEL_DETAIL_ADDRESS);
-			basketMapList.get(i).put("USER_ID", userdto.getUSER_ID());
-			basketMapList.get(i).put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
-			basketMapList.get(i).put("SEL_NUM", basketInfoList.get(i).getSEL_NUM());
-			System.out.println("================"+basketMapList.get(i));
+			HashMap<String, Object> deliveryMap = new HashMap<>();
+			HashMap<String, Object> salesMap = new HashMap<>();
+			
+			deliveryMap.put("DEL_PRICE", DEL_PRICE);
+			deliveryMap.put("DEL_ADDRESS", DEL_ADDRESS);
+			deliveryMap.put("DEL_POSTCODE", DEL_POSTCODE);
+			deliveryMap.put("REC_NAME", REC_NAME);
+			deliveryMap.put("REC_TEL", REC_TEL);
+			deliveryMap.put("DEL_DETAIL_ADDRESS", DEL_DETAIL_ADDRESS);
+			deliveryMap.put("USER_ID", userdto.getUSER_ID());
+			deliveryMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			deliveryMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
+			int deliveryFlag = detailSvc.do_insertBuyDel(deliveryMap);
+			
+			int DEL_SEQ = detailSvc.do_selectBuyDEL_SEQ(basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("USER_ID", userdto.getUSER_ID());
+			salesMap.put("DEL_SEQ", DEL_SEQ);
+			salesMap.put("SEL_SIZE", basketInfoList.get(i).getPRO_SIZE());
+			salesMap.put("SEL_COLOR", basketInfoList.get(i).getCOLOR());
+			salesMap.put("COUPON", COUPON);
+			salesMap.put("POINT", POINT);
+			salesMap.put("FINAL_PRICE", FINAL_PRICE);
+			salesMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
+			int salesFlag = detailSvc.do_insertBuySales(salesMap);
+			
+			int basketDeleteFlag = detailSvc.do_deleteBuyBasket(BAS_SEQList.get(i));
 		}
-		
-		
+		if(COUP_SEQ!=0){
+			int couponFlag = detailSvc.do_updateBuyCouponState(COUP_SEQ);
+		}
+		if(POINT!=0){
+			int PRO_SEQ = basketInfoList.get(0).getPRO_SEQ();
+			HashMap<String, Object> pointMap = new HashMap<>();
+			pointMap.put("POINT_PRICE", POINT);
+			pointMap.put("USER_ID", userdto.getUSER_ID());
+			pointMap.put("POINT_PRICE", POINT);
+			pointMap.put("PRO_SEQ", PRO_SEQ);
+			int pointFlag = detailSvc.do_insertBuyPoint(pointMap);
+		}
 		//////////////////////////////////////////////////////////////////////////////
 		
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
@@ -329,6 +358,5 @@ public class DetailController {
 		mav.addObject("basket",basket);
 		mav.addObject("point5",point5);
 		return mav;
-		
 	}
 }

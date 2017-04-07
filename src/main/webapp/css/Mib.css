@@ -77,20 +77,22 @@ body{
 .side-menusize{
 	width: 40px;
 	height: 35px;
-	background-color: red;
+	background-color: white;
 	visibility: hidden;
+	margin-left: 80%;
 	
 }
 .mobile-only {
 	display: none;
 }
-
+/*튀어나오는애 */
 .mypage-side-menu {
+	margin-top : 60px;
 	justify-content: center;
 	flex-wrap: wrap;
-	background: white;
+	background: transparent;
 	height: 100%;
-	width: 180px;
+	width: 250px;
 	position: fixed;
 	padding-top: 40px;
 	left: -40;
@@ -114,16 +116,12 @@ body{
 .mypage-logo {
 	width: 100%;
 	height: 40px;
-	border-radius: 50%;
+	background-color:blue;
 	transition: background-color .2s;
 	text-align: center;
-	margin-left: -20px;
 	font-weight: bold;
 	font-size: 30px;
-
-
-
-
+	
 
 }
 .mypage-logo> a:link {
@@ -180,8 +178,9 @@ body{
 	transition: .2s;
 	font-size: 15px;
 	font-weight: bold;
-	margin-left: -60px;
+	/* margin-left: -60px; */
 	text-align: center;
+	width: 30px;
 }
 
 .mypage-side-menu li:hover {
@@ -192,9 +191,9 @@ body{
 .mypage-side-menu-click{
 	justify-content: center;
 	flex-wrap: wrap;
-	background: white;
+	background: transparent;
 	height: 100%;
-	width: 180px;
+	width: 250px;
 	position: fixed;
 	padding-top: 20px;
 	left: 0;
@@ -211,9 +210,9 @@ body{
 }
 
 @media screen and (max-width: 70em) {
-   .mypage-side-menu-click{
+   .mypage-side-menu{
     
-    left: -20em;
+    left: -200px;
   }
   .side-menusize{
   visibility: visible;

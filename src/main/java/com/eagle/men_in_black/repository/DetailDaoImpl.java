@@ -129,4 +129,34 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectBasketInfo";
 		return sqlSession.selectOne(statement, BAS_SEQ);
 	}
+
+	@Override
+	public int do_insertBuySales(HashMap<String, Object> map) {
+		String statement = namespace+".do_insertBuySales";
+		return sqlSession.insert(statement, map);
+	}
+
+	@Override
+	public int do_selectBuyDEL_SEQ(int PRO_SEQ) {
+		String statement = namespace+".do_selectBuyDEL_SEQ";
+		return sqlSession.selectOne(statement, PRO_SEQ);
+	}
+
+	@Override
+	public int do_updateBuyCouponState(int COUP_SEQ) {
+		String statement = namespace+".do_updateBuyCouponState";
+		return sqlSession.update(statement, COUP_SEQ);
+	}
+
+	@Override
+	public int do_insertBuyPoint(HashMap<String, Object> map) {
+		String statement = namespace+".do_insertBuyPoint";
+		return sqlSession.insert(statement, map);
+	}
+
+	@Override
+	public int do_deleteBuyBasket(int BAS_SEQ) {
+		String statement = namespace+".do_deleteBuyBasket";
+		return sqlSession.delete(statement, BAS_SEQ);
+	}
 }

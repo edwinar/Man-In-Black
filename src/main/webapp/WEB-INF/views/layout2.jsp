@@ -35,10 +35,11 @@
             </td>
 
         </tr>
+	
+		
         <tr>
-
             <td width="10%">
-
+			
                <tiles:insertAttribute name="left" />
 
             </td>

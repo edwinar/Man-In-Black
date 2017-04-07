@@ -204,7 +204,7 @@ SELECT COUP_SEQ
 	, COUP_USE
 	, USER_ID
 FROM COUPON 
-WHERE USER_ID=#{USER_ID} AND COUP_LIMIT>SYSDATE AND CONDITION<#{FINAL_PRICE}
+WHERE USER_ID=#{USER_ID} AND COUP_LIMIT>SYSDATE AND CONDITION<#{FINAL_PRICE} AND COUP_USE='가능'
 ]]>
 </select>
 
@@ -239,8 +239,7 @@ INSERT INTO DELIVERY
     , DEL_DETAIL_ADDRESS
 )
 VALUES
-(DEL_SEQ.NEXTVAL,#{DEL_ADDRESS},#{DEL_POSTCODE}
-,0,NULL,#{REC_NAME},#{REC_TEL},SYSDATE,#{DEL_PRICE},'상품준비중',#{PRO_SEQ},#{USER_ID},#{SEL_NUM},NULL,NULL,NULL,NULL,#{DEL_DETAIL_ADDRESS});  
+(DEL_SEQ.NEXTVAL,#{DEL_ADDRESS},#{DEL_POSTCODE},0,NULL,#{REC_NAME},#{REC_TEL},SYSDATE,#{DEL_PRICE},'상품준비중',#{PRO_SEQ},#{USER_ID},#{SEL_NUM},NULL,NULL,NULL,NULL,#{DEL_DETAIL_ADDRESS})  
 </insert>
 
 <select id="do_selectBasketInfo" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto" > 
@@ -248,5 +247,72 @@ SELECT BAS_SEQ, PRO_SEQ, USER_ID, PRO_SIZE, COLOR, BAS_PRO_NUM
 FROM BASKET
 WHERE BAS_SEQ=#{BAS_SEQ}
 </select>
+
+<insert id="do_insertBuySales" parameterType="hashmap">
+INSERT INTO SALES
+(
+  SEL_SEQ
+  , SEL_TIME
+  , PRO_SEQ
+  , USER_ID
+  , DEL_SEQ
+  , SEL_SIZE
+  , SEL_COLOR
+  , COUPON
+  , POINT
+  , FINAL_PRICE
+  , SEL_NUM
+  , CANCLE
+)
+VALUES
+(SEL_SEQ.NEXTVAL,SYSDATE,#{PRO_SEQ},#{USER_ID},#{DEL_SEQ},#{SEL_SIZE},#{SEL_COLOR},#{COUPON},#{POINT},#{FINAL_PRICE},#{SEL_NUM},NULL)
+</insert>
+
+<select id="do_selectBuyDEL_SEQ" parameterType="int" resultType="int" > 
+SELECT DEL_SEQ
+FROM
+(SELECT DEL_SEQ
+FROM DELIVERY
+WHERE PRO_SEQ=#{PRO_SEQ}
+ORDER BY DEL_SEQ DESC)
+WHERE ROWNUM =1
+</select>
+
+<update id="do_updateBuyCouponState" parameterType="int">
+UPDATE COUPON
+SET COUP_USE = '불가능'
+WHERE COUP_SEQ=#{COUP_SEQ}
+</update>
+
+<insert id="do_insertBuyPoint" parameterType="hashmap">
+INSERT INTO POINTS(
+	POINT_SEQ,
+	POINT_TIME,
+	POINT_PRICE,
+	POINT_FINAL,
+	INCREASE,
+	USER_ID,
+	PRO_SEQ)
+VALUES(
+	POINT_SEQ.NEXTVAL,
+	SYSDATE, 
+	#{POINT_PRICE},((
+  		SELECT POINT_FINAL
+  		FROM(
+  			SELECT POINT_FINAL
+  			FROM POINTS
+  			WHERE USER_ID = #{USER_ID}
+  			ORDER BY POINT_SEQ DESC)
+  		WHERE ROWNUM =1
+  	)-(#{POINT_PRICE})),
+       		'MINUS',
+       		#{USER_ID},
+       		#{PRO_SEQ})
+</insert>
+
+<delete id="do_deleteBuyBasket" parameterType="int">
+DELETE FROM BASKET
+WHERE BAS_SEQ=#{BAS_SEQ}
+</delete>
 
 </mapper>

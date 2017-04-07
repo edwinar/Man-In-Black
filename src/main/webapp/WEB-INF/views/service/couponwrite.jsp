@@ -202,6 +202,13 @@ body {
 		<input type="submit" value="등록">	
 	</div>
 	</form>
+	
+	
+	
+	<!-- 테스트용p태그 -->
+	<p align="right">
+			<a  class="btn btn-primary" href="test.mib" role="button">회원가입테스트</a>
+	</p>
 
 <script type="text/javascript">
     var triggerUpload = document.getElementById('triggerUpload'), upInput = document
