@@ -16,9 +16,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::EVENT:::</title>
 <style type="text/css">
+#container { 
+	width:100%; 
+	height:600px;
+	background-color:#191970; 
+	padding-top: 20px;
+}
+
 .preview {
 	position: relative;
-	width: 450px;
+	width: 250px;
 	height: 250px;
 	background: #f2f2f2;
 	/* border-radius: 100%; */
@@ -28,7 +35,7 @@
 }
 .previewcoup {
 	position: relative;
-	width: 450px;
+	width: 250px;
 	height: 250px;
 	background: #f2f2f2;
 	border-radius: 100%; 
@@ -84,11 +91,11 @@ function coup(seq){
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
 			</h4>
-			<h3>고객센터</h3>
-			<h4>MIB 이벤트입니다</h4>
+			<h3>진행중인 이벤트</h3>
+			
 		</div>
 	</center>
-	<h3>EVENT</h3>
+	
 
 	<!-- CEO 글쓰기 버튼  -->
 	<%
@@ -111,20 +118,20 @@ function coup(seq){
 	%>
 	<!-- 쿠폰list 뿌리기 -->
 	
-	
-	<div>
+<h3>COUPON</h3>
+<div id="container">
 	<%
 	if(userdto!=null && !userdto.getUSER_ID().equals("adm")){ // 로그인했는데 회원일때 
 	for(int i=0;i<couplist.size();i++){
 	%>
-	<div class="previewcoup" style="margin-left: 20px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
+	<div class="previewcoup" style="margin-left: 21px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
 	}else if(userdto.getUSER_ID().equals("adm")){
 		for(int i=0;i<couplist.size();i++){
 	%>
-	<div class="previewcoup" style="margin-left: 20px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
+	<div class="previewcoup" style="margin-left: 21px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%}
@@ -133,31 +140,34 @@ function coup(seq){
 		for(int i=0;i<couplist.size();i++){
 			
 	%>
-	<div class="previewcoup" style="margin-left: 20px; float: left" >
+	<div class="previewcoup" style="margin-left: 21px; float: left" >
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%}
 	}
 	%>
 
+</div>
 
-
+<h3>EVENT</h3>
 
 
 
 <!-- 이벤트 list 뿌리기 -->
-
+<div id="container">
+	<div>
 	<%
 	if(eventlist.get(0).getEVENT_SEQ()!=0){
 		for(int i=0; i<eventlist.size();i++){
 	%>
-	<div class="preview" style="margin-left: 20px; float: left" onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
+	<div class="preview" style="margin-left: 21px; float: left" onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
 		<img alt="" src="<%=eventlist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%
 		}
 		
 	%>
+	</div>
 </div>
 	
 
