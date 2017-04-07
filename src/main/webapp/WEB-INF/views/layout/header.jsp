@@ -77,7 +77,8 @@
 		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1" align="center">
 			<div class="nav navbar-nav" align="center" style="width: 60%;">
-				<li class="dropdown"><a href="NewCategory.mib"
+				<li class="dropdown">
+				<a href="NewCategory.mib"
 					class="dropdown-toggle" role="button" aria-expanded="false">NEW
 				</a></li>
 				<li class="dropdown"><a href="category.mib?ITEM=OUTER"
@@ -101,7 +102,8 @@
 						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("TOP")){
-					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						%>	
+						<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
 						
 					<%} 
 					}%>
@@ -127,7 +129,7 @@
 						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("SHOES")){
-					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
 						
 					<%} 
 					}%>
@@ -139,7 +141,7 @@
 						
 						<%for(int i=0; i<subitemheader.size();i++){ 
 						if(subitemheader.get(i).getITEM().equals("BAGnACC")){
-					%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
+						%>	<li><a href="category.mib?ITEM=<%=subitemheader.get(i).getITEM() %>&SUB_ITEM=<%=subitemheader.get(i).getSUB_ITEM() %>"><%=subitemheader.get(i).getSUB_ITEM()%></a></li>
 						
 					<%} 
 					}%>
