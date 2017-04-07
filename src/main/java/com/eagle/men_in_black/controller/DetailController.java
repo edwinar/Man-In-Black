@@ -342,8 +342,6 @@ public class DetailController {
 			pointMap.put("PRO_SEQ", PRO_SEQ);
 			int pointFlag = detailSvc.do_insertBuyPoint(pointMap);
 		}
-		
-		
 		//////////////////////////////////////////////////////////////////////////////
 		
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
@@ -360,6 +358,5 @@ public class DetailController {
 		mav.addObject("basket",basket);
 		mav.addObject("point5",point5);
 		return mav;
-		
 	}
 }

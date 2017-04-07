@@ -54,8 +54,6 @@ public class CategoryController {
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
 		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
 		
-		/*System.out.println("서브아이템"+SUB_ITEM);*/
-		
 		// 메소드 실행시 필요한 키값들의 해시맵
 		HashMap<String, String> map = new HashMap<String, String>();
 		HashMap<String, String> mapBest = new HashMap<String, String>();
@@ -77,15 +75,7 @@ public class CategoryController {
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
-		/*for(int i=0; i<list.size(); i++){
-			System.out.println(" 프로네임 " + list.get(i).getPRO_NAME());
-			System.out.println(" 프로네임 " + list.get(i).getPRO_PRICE());
-			System.out.println(" 프로네임 " + list.get(i).getPRO_SEQ());
-			System.out.println(" 프로네임 " + listBest.get(i).getPRO_NAME());
-			System.out.println(" 프로네임 " + listBest.get(i).getPRO_PRICE());
-			System.out.println(" 프로네임 " + listBest.get(i).getPRO_SEQ());
-			
-		}*/
+		
 		return mav;
 	}
 }
