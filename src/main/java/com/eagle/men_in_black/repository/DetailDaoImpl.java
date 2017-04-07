@@ -141,4 +141,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectBuyDEL_SEQ";
 		return sqlSession.selectOne(statement, PRO_SEQ);
 	}
+
+	@Override
+	public int do_updateBuyCouponState(int COUP_SEQ) {
+		String statement = namespace+".do_updateBuyCouponState";
+		return sqlSession.update(statement, COUP_SEQ);
+	}
 }

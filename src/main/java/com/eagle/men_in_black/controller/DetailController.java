@@ -320,10 +320,13 @@ public class DetailController {
 			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
 			salesMap.put("USER_ID", userdto.getUSER_ID());
 			salesMap.put("DEL_SEQ", DEL_SEQ);
-			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
-			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
-			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
-			
+			salesMap.put("SEL_SIZE", basketInfoList.get(i).getPRO_SIZE());
+			salesMap.put("SEL_COLOR", basketInfoList.get(i).getCOLOR());
+			salesMap.put("COUPON", COUPON);
+			salesMap.put("POINT", POINT);
+			salesMap.put("FINAL_PRICE", FINAL_PRICE);
+			salesMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
+			int salesFlag = detailSvc.do_insertBuySales(salesMap);
 		}
 		
 		
