@@ -43,7 +43,7 @@
 
             </td>
 
-            <td width="80%"  style=" padding:3%; background-color: maroon;">
+            <td width="80%"  style=" padding:3%; background-color: white;">
 
             	<tiles:insertAttribute name="main" />
 

@@ -37,11 +37,29 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               <%} %>
                                     <li><a href="event.mib" >이벤트</a></li>
                                     <li><a href="servicenotice.mib" >공지사항</a></li>
-                                    <li><a href="#" >women</a></li>
-                                    <li><a href="#" >kids</a></li>
-                                    <li><a href="#" >accessoires</a></li>
-                                    <li><a href="#" >terms & conditions</a></li>
-                                    <li><a href="#" >imprint</a></li>
+                                     <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="ceoMypage_Main.mib">판매내역</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">오늘본상품</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">오늘본상품</a></li>
+                              <%} %> 
+                              
+                              <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="qnA_Administer.mib">문의글관리</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">내가쓴게시물</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">내가쓴게시물</a></li>
+                              <%} %>
                               </ul>
                         </nav>
                         
