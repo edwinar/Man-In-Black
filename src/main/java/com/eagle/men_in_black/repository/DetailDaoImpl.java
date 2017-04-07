@@ -147,4 +147,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_updateBuyCouponState";
 		return sqlSession.update(statement, COUP_SEQ);
 	}
+
+	@Override
+	public int do_insertBuyPoint(HashMap<String, Object> map) {
+		String statement = namespace+".do_insertBuyPoint";
+		return sqlSession.insert(statement, map);
+	}
 }

@@ -124,4 +124,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_updateBuyCouponState(int COUP_SEQ) {
 		return detailDao.do_updateBuyCouponState(COUP_SEQ);
 	}
+
+	@Override
+	public int do_insertBuyPoint(HashMap<String, Object> map) {
+		return detailDao.do_insertBuyPoint(map);
+	}
 }

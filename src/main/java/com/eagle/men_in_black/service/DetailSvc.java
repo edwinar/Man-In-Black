@@ -50,4 +50,6 @@ public interface DetailSvc {
 	public int do_selectBuyDEL_SEQ(int PRO_SEQ);
 	//결제버튼 클릭시 사용한 쿠폰 상태 업데이트
 	public int do_updateBuyCouponState(int COUP_SEQ);
+	//결제버튼 클릭시 사용한 포인트 디비 등록
+	public int do_insertBuyPoint(HashMap<String, Object> map);
 }

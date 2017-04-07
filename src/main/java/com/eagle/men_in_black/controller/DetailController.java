@@ -296,7 +296,6 @@ public class DetailController {
 		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("no")||res.getParameter("COUPON").equals("") )?"0":res.getParameter("COUPON"));
 		int POINT = Integer.parseInt((res.getParameter("POINT")==null||res.getParameter("POINT").equals("") )?"0":res.getParameter("POINT"));
 		int COUP_SEQ = Integer.parseInt((res.getParameter("COUP_SEQ")==null||res.getParameter("COUP_SEQ").equals("undefined")||res.getParameter("COUP_SEQ").equals("") )?"0":res.getParameter("COUP_SEQ"));
-		System.out.println("==============="+COUP_SEQ);
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();
 		for(int i=0;i<basketListSize;i++){
@@ -332,6 +331,16 @@ public class DetailController {
 		if(COUP_SEQ!=0){
 			int couponFlag = detailSvc.do_updateBuyCouponState(COUP_SEQ);
 		}
+		if(POINT!=0){
+			int PRO_SEQ = basketInfoList.get(0).getPRO_SEQ();
+			HashMap<String, Object> pointMap = new HashMap<>();
+			pointMap.put("POINT_PRICE", POINT);
+			pointMap.put("USER_ID", userdto.getUSER_ID());
+			pointMap.put("POINT_PRICE", POINT);
+			pointMap.put("PRO_SEQ", PRO_SEQ);
+			int pointFlag = detailSvc.do_insertBuyPoint(pointMap);
+		}
+		
 		
 		//////////////////////////////////////////////////////////////////////////////
 		
