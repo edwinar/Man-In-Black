@@ -239,8 +239,7 @@ INSERT INTO DELIVERY
     , DEL_DETAIL_ADDRESS
 )
 VALUES
-(DEL_SEQ.NEXTVAL,#{DEL_ADDRESS},#{DEL_POSTCODE}
-,0,NULL,#{REC_NAME},#{REC_TEL},SYSDATE,#{DEL_PRICE},'상품준비중',#{PRO_SEQ},#{USER_ID},#{SEL_NUM},NULL,NULL,NULL,NULL,#{DEL_DETAIL_ADDRESS});  
+(DEL_SEQ.NEXTVAL,#{DEL_ADDRESS},#{DEL_POSTCODE},0,NULL,#{REC_NAME},#{REC_TEL},SYSDATE,#{DEL_PRICE},'상품준비중',#{PRO_SEQ},#{USER_ID},#{SEL_NUM},NULL,NULL,NULL,NULL,#{DEL_DETAIL_ADDRESS})  
 </insert>
 
 <select id="do_selectBasketInfo" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto" > 
@@ -248,5 +247,25 @@ SELECT BAS_SEQ, PRO_SEQ, USER_ID, PRO_SIZE, COLOR, BAS_PRO_NUM
 FROM BASKET
 WHERE BAS_SEQ=#{BAS_SEQ}
 </select>
+
+<insert id="do_insertBuySales" parameterType="hashmap">
+INSERT INTO SALES
+(
+  SEL_SEQ
+  , SEL_TIME
+  , PRO_SEQ
+  , USER_ID
+  , DEL_SEQ
+  , SEL_SIZE
+  , SEL_COLOR
+  , COUPON
+  , POINT
+  , FINAL_PRICE
+  , SEL_NUM
+  , CANCLE
+)
+VALUES
+(SEL_SEQ.NEXTVAL,SYSDATE,#{PRO_SEQ},#{USER_ID},#{DEL_SEQ},#{SEL_SIZE},#{SEL_COLOR},#{COUPON},#{POINT},#{FINAL_PRICE},#{SEL_NUM},NULL)
+</insert>
 
 </mapper>

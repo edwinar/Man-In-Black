@@ -156,6 +156,9 @@ td, th {
 		%>
 			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
 			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
+			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE"/>
+			<input type="hidden" name="POINT" id="POINT"/>
+			<input type="hidden" name="COUPON" id="COUPON"/>
 			<table class="orderTable" width="90%" height="400px">
 			<col width="20%"/><col width="50%"/><col width="30%"/>
 				<tr>
@@ -376,8 +379,15 @@ function deliveryFeeChange(){
 		$('#deliveryFee').text("0");
 	}
 	var deliveryFee = $('#deliveryFee').text();
-	$("#DEL_PRICE").val(deliveryFee);
 	$('#final').text(parseInt(deliveryFee)+parseInt(value));
+	//////////////////////////////////
+	$("#DEL_PRICE").val(deliveryFee);
+	var fp = $('#final').text();
+	var coupon = $("#couponChoice option:selected").val();
+	var point = $("#pointValue").val();
+	$("#FINAL_PRICE").val(fp);
+	$("#COUPON").val(coupon);
+	$("#POINT").val(point);
 }
 </script>
 </body>

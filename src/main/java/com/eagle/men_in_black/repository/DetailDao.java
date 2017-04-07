@@ -44,4 +44,6 @@ public interface DetailDao {
 	public int do_insertBuyDel(HashMap<String, Object> map);
 	//결제버튼시필요한장바구니정보가져오기
 	public DetailDto do_selectBasketInfo(int BAS_SEQ);
+	//구매버튼 구매내역등록
+	public int do_insertBuySales(HashMap<String, Object> map);
 }

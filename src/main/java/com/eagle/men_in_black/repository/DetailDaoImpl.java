@@ -129,4 +129,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_selectBasketInfo";
 		return sqlSession.selectOne(statement, BAS_SEQ);
 	}
+
+	@Override
+	public int do_insertBuySales(HashMap<String, Object> map) {
+		String statement = namespace+".do_insertBuySales";
+		return sqlSession.insert(statement, map);
+	}
 }
