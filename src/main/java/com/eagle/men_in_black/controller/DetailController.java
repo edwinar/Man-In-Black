@@ -293,9 +293,10 @@ public class DetailController {
 		String DEL_DETAIL_ADDRESS = (res.getParameter("receiveAddress_2")==null||res.getParameter("receiveAddress_2").equals("") )?"error":res.getParameter("receiveAddress_2");
 		int basketListSize = Integer.parseInt((res.getParameter("basketListSize")==null||res.getParameter("basketListSize").equals("") )?"0":res.getParameter("basketListSize"));
 		int FINAL_PRICE = Integer.parseInt((res.getParameter("FINAL_PRICE")==null||res.getParameter("FINAL_PRICE").equals("") )?"0":res.getParameter("FINAL_PRICE"));
-		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("")||res.getParameter("COUPON").equals("no"))?"0":res.getParameter("COUPON"));
+		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("no")||res.getParameter("COUPON").equals("") )?"0":res.getParameter("COUPON"));
 		int POINT = Integer.parseInt((res.getParameter("POINT")==null||res.getParameter("POINT").equals("") )?"0":res.getParameter("POINT"));
-		//System.out.println("==============="+FINAL_PRICE+COUPON+POINT);
+		int COUP_SEQ = Integer.parseInt((res.getParameter("COUP_SEQ")==null||res.getParameter("COUP_SEQ").equals("undefined")||res.getParameter("COUP_SEQ").equals("") )?"0":res.getParameter("COUP_SEQ"));
+		System.out.println("==============="+COUP_SEQ);
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();
 		for(int i=0;i<basketListSize;i++){
@@ -328,7 +329,9 @@ public class DetailController {
 			salesMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
 			int salesFlag = detailSvc.do_insertBuySales(salesMap);
 		}
-		
+		if(COUP_SEQ!=0){
+			int couponFlag = detailSvc.do_updateBuyCouponState(COUP_SEQ);
+		}
 		
 		//////////////////////////////////////////////////////////////////////////////
 		

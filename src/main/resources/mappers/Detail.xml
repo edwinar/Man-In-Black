@@ -281,7 +281,7 @@ WHERE ROWNUM =1
 <update id="do_updateBuyCouponState" parameterType="int">
 UPDATE COUPON
 SET COUP_USE = '불가능'
-WHERE COUP_SEQ=#{COUP_SEQ};
+WHERE COUP_SEQ=#{COUP_SEQ}
 </update>
 
 </mapper>
