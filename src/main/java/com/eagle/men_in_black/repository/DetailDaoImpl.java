@@ -135,4 +135,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_insertBuySales";
 		return sqlSession.insert(statement, map);
 	}
+
+	@Override
+	public int do_selectBuyDEL_SEQ(int PRO_SEQ) {
+		String statement = namespace+".do_selectBuyDEL_SEQ";
+		return sqlSession.selectOne(statement, PRO_SEQ);
+	}
 }

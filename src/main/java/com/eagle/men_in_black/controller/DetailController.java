@@ -295,7 +295,7 @@ public class DetailController {
 		int FINAL_PRICE = Integer.parseInt((res.getParameter("FINAL_PRICE")==null||res.getParameter("FINAL_PRICE").equals("") )?"0":res.getParameter("FINAL_PRICE"));
 		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("")||res.getParameter("COUPON").equals("no"))?"0":res.getParameter("COUPON"));
 		int POINT = Integer.parseInt((res.getParameter("POINT")==null||res.getParameter("POINT").equals("") )?"0":res.getParameter("POINT"));
-		System.out.println("==============="+FINAL_PRICE+COUPON+POINT);
+		//System.out.println("==============="+FINAL_PRICE+COUPON+POINT);
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();
 		for(int i=0;i<basketListSize;i++){
@@ -303,6 +303,7 @@ public class DetailController {
 			basketInfoList.add(detailSvc.do_selectBasketInfo(BAS_SEQList.get(i)));
 			
 			HashMap<String, Object> deliveryMap = new HashMap<>();
+			HashMap<String, Object> salesMap = new HashMap<>();
 			
 			deliveryMap.put("DEL_PRICE", DEL_PRICE);
 			deliveryMap.put("DEL_ADDRESS", DEL_ADDRESS);
@@ -314,6 +315,15 @@ public class DetailController {
 			deliveryMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
 			deliveryMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
 			int deliveryFlag = detailSvc.do_insertBuyDel(deliveryMap);
+			
+			int DEL_SEQ = detailSvc.do_selectBuyDEL_SEQ(basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("USER_ID", userdto.getUSER_ID());
+			salesMap.put("DEL_SEQ", DEL_SEQ);
+			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
+			
 		}
 		
 		

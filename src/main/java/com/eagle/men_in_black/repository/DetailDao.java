@@ -46,4 +46,6 @@ public interface DetailDao {
 	public DetailDto do_selectBasketInfo(int BAS_SEQ);
 	//구매버튼 구매내역등록
 	public int do_insertBuySales(HashMap<String, Object> map);
+	//구매내역디비등록시 필요한 DEL_SEQ 가져오는 쿼리
+	public int do_selectBuyDEL_SEQ(int PRO_SEQ);
 }

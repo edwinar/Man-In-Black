@@ -268,4 +268,14 @@ VALUES
 (SEL_SEQ.NEXTVAL,SYSDATE,#{PRO_SEQ},#{USER_ID},#{DEL_SEQ},#{SEL_SIZE},#{SEL_COLOR},#{COUPON},#{POINT},#{FINAL_PRICE},#{SEL_NUM},NULL)
 </insert>
 
+<select id="do_selectBuyDEL_SEQ" parameterType="int" resultType="int" > 
+SELECT DEL_SEQ
+FROM
+(SELECT DEL_SEQ
+FROM DELIVERY
+WHERE PRO_SEQ=#{PRO_SEQ}
+ORDER BY DEL_SEQ DESC)
+WHERE ROWNUM =1
+</select>
+
 </mapper>
