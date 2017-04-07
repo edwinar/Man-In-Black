@@ -367,7 +367,16 @@ var midPrice;
 		deliveryFeeChange();
 	});
 	$('#buy').on('click',function(){
-		$('#form').submit();
+		if($('#receiveName').val()==""||$('#receiveName').val()==null||
+			$('#receiveEmail').val()==""||$('#receiveEmail').val()==null||
+			$('#receivePhone').val()==""||$('#receivePhone').val()==null||
+			$('#receiveNum').val()==""||$('#receiveNum').val()==null||
+			$('#receiveAddress_1').val()==""||$('#receiveAddress_1').val()==null||
+			$('#receiveAddress_2').val()==""||$('#receiveAddress_2').val()==null){
+			alert("수령인의 정보를 모두 채우시오");
+		}else{
+			$('#form').submit();
+		}
 	});
 });
 function onlyNumber(){

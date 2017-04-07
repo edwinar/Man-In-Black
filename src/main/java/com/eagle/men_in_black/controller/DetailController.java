@@ -327,6 +327,8 @@ public class DetailController {
 			salesMap.put("FINAL_PRICE", FINAL_PRICE);
 			salesMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
 			int salesFlag = detailSvc.do_insertBuySales(salesMap);
+			
+			int basketDeleteFlag = detailSvc.do_deleteBuyBasket(BAS_SEQList.get(i));
 		}
 		if(COUP_SEQ!=0){
 			int couponFlag = detailSvc.do_updateBuyCouponState(COUP_SEQ);

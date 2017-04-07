@@ -129,4 +129,9 @@ public class DetailSvcImpl implements DetailSvc {
 	public int do_insertBuyPoint(HashMap<String, Object> map) {
 		return detailDao.do_insertBuyPoint(map);
 	}
+
+	@Override
+	public int do_deleteBuyBasket(int BAS_SEQ) {
+		return detailDao.do_deleteBuyBasket(BAS_SEQ);
+	}
 }

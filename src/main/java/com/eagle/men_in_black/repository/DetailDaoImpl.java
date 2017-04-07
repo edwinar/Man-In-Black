@@ -153,4 +153,10 @@ public class DetailDaoImpl implements DetailDao {
 		String statement = namespace+".do_insertBuyPoint";
 		return sqlSession.insert(statement, map);
 	}
+
+	@Override
+	public int do_deleteBuyBasket(int BAS_SEQ) {
+		String statement = namespace+".do_deleteBuyBasket";
+		return sqlSession.delete(statement, BAS_SEQ);
+	}
 }

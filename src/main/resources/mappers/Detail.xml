@@ -310,4 +310,9 @@ VALUES(
        		#{PRO_SEQ})
 </insert>
 
+<delete id="do_deleteBuyBasket" parameterType="int">
+DELETE FROM BASKET
+WHERE BAS_SEQ=#{BAS_SEQ}
+</delete>
+
 </mapper>

@@ -52,4 +52,6 @@ public interface DetailSvc {
 	public int do_updateBuyCouponState(int COUP_SEQ);
 	//결제버튼 클릭시 사용한 포인트 디비 등록
 	public int do_insertBuyPoint(HashMap<String, Object> map);
+	//결제버튼 클릭시 결제상품을 장바구니에서 삭제
+	public int do_deleteBuyBasket(int BAS_SEQ);
 }
