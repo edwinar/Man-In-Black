@@ -12,8 +12,11 @@
 <title>:::공지사항 글쓰기:::</title>
 <script src="../js/ckeditor/ckeditor.js"></script>
 <style type="text/css">
+
 .wrap {
-	width: 100%;
+	width: 20%;
+	text-align: center;
+	margin-left: 560px;
 }
 
 .mat-label {
@@ -29,6 +32,7 @@
 	background: transparent;
 	width: 100%;
 	border: none;
+	text-align: center;
 	outline: none;
 	padding: 8px 0;
 	font-size: 16px;
@@ -39,31 +43,31 @@
 	position: relative;
 }
 
+/* 밑줄 before */
 .mat-div:after, .mat-div:before {
 	content: "";
 	position: absolute;
 	display: block;
 	width: 100%;
 	height: 2px;
-	background-color: #e2e2e2;
+	background-color: #d1d1d1;
 	bottom: 0;
 	left: 0;
 	transition: all 0.5s;
 }
-
+/* 밑줄 */
 .mat-div::after {
-	background-color: #8E8DBE;
+	background-color: #000000;
 	transform: scaleX(0);
 }
 
 .is-active::after {
 	transform: scaleX(1);
 }
-
+/* 밑줄라벨 */
 .is-active .mat-label {
-	color: #8E8DBE;
+	color: #000000;
 }
-
 .is-completed .mat-label {
 	font-size: 12px;
 	transform: translateY(0);
