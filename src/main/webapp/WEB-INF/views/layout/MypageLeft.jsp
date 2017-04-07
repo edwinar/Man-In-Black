@@ -15,14 +15,16 @@ request.setCharacterEncoding("UTF-8");
 MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 
 %>
-<nav class="side-menusize" >
-<img src="../images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
-</nav>
-<div class="mypage-side-menu mypage-side-menu-click">
+
+<div class="mypage-side-menu ">
+ 		 
   <%if(dto.getUSER_ID().equals("adm")){ %>
-  <span class="mypage-logo"><a href="ceoMypage_Main.mib">MyPage</a></span>
+  <nav class="side-menusize" >
+         <img src="../images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
+  </nav>
  
  <ul>
+ 	<li><a href="ceoMypage_Main.mib" style="color: black; font-size: 30px;">MyPage</a></li>
     
     <li onclick="location.href='register_Good.mib'">제품등록</li>
     
@@ -63,7 +65,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
   </ul>
   <%} %>
   
-  
+ 
 </div>
 
 <script>

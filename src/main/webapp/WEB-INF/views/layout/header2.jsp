@@ -259,6 +259,10 @@ width: 100%;
 	
 }
 
+.loginma{
+
+}
+
 </style>
 </head>
 <body>
@@ -272,9 +276,9 @@ width: 100%;
 			
 			<%
 			if (dto != null) {
-			%> <a href="logout.mib" style="color: white;">로그아웃</a> <%
+			%> <a href="logout.mib" class="loginma" style="color: white; font-size: 13px;">로그아웃</a> <%
  			} else {
- 			%> <a href="login.mib" data-toggle="modal" data-target="#modal-login" style="color: white;">로그인</a>
+ 			%> <a href="login.mib" class="loginma" data-toggle="modal" data-target="#modal-login" style="color: white; font-size: 13px;">로그인</a>
 			<%
 			}
 			%>
@@ -285,13 +289,13 @@ width: 100%;
 			<%
 							if (dto != null) {
 								if (dto.getUSER_ID().equals("adm")) {
-								%> <a href="ceoMypage_Main.mib" style="color: white;">마이페이지</a> <%
+								%> <a href="ceoMypage_Main.mib" class="loginma" style="color: white;font-size: 13px;">마이페이지</a> <%
  								} else {
- 								%> <a href="mymain.mib" style="color: white;">마이페이지</a> <%
+ 								%> <a href="mymain.mib" class="loginma" style="color: white;font-size: 13px;">마이페이지</a> <%
  								}
  						} else {
  						%> 
- 						<a href="mib_SignUp.mib" style="color: white;">회원가입</a>
+ 						<a href="mib_SignUp.mib" class="loginma" style="color: white;font-size: 13px;">회원가입</a>
 						<%
 							}
 						%>			
@@ -304,7 +308,7 @@ width: 100%;
 
 <div class="lologo" style="width: 150px; height: 80px; float: left; " >
 <a href="meninblack.mib">
-<img alt="" src="../images/zu.jpg" style="float: left; margin-left: 20px;" width="100%" height="100%">
+<img alt="" src="../images/LOGO1.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
 </a>
 </div>
 
