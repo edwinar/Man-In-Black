@@ -9,16 +9,16 @@
 <html>    
 
 <head>  
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon M4.png" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  	<link rel="stylesheet" href="../css/Mib.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+     <link rel="stylesheet" href="../css/Mib.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 </head>
 
@@ -26,42 +26,42 @@
 
     <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
 
-        <tr style="background-color: green;" height="30px"  >          
+        <tr>          
 
-            <td height="40px" colspan="3"  style="background-color: aqua;">
+            <td height="40px" colspan="3"   >
 
-            	 <tiles:insertAttribute name="header" />
+                <tiles:insertAttribute name="header" />
 
             </td>
 
         </tr>
         <tr>
 
-            <td height="700" style="width:10%; background-color: red; " >
+            <td width="10%">
 
-            	<tiles:insertAttribute name="left" />
-
-            </td>
-
-            <td width="80%"  style=" padding:3%; background-color: white;">
-
-            	<tiles:insertAttribute name="main" />
+               <tiles:insertAttribute name="left" />
 
             </td>
-			
-			<td height="300" style="width:10%; background-color: blue;">
-			 
+
+            <td width="80%"  style="background-color: white;">
+
+               <tiles:insertAttribute name="main" />
+
+            </td>
+         
+         <td width="10%" >
+          
                  <tiles:insertAttribute name="right" />
            
-			</td>
-			
+         </td>
+         
         </tr>
 
     <tr>
 
-        <td height="100" colspan="3" style="background-color:olive; text-align: center;">
+        <td height="100" colspan="3" style=" text-align: center;">
 
-        	<tiles:insertAttribute name="footer" />
+           <tiles:insertAttribute name="footer" />
 
         </td>
 
