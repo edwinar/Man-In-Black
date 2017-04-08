@@ -397,7 +397,7 @@ width: 100%;
 			</div>
 		</nav>
 	</div>
-
+	
 
 	<!-- Modal Login -->
 	<div class="modal fade bs-example-modal-sm" id="modal-login"
