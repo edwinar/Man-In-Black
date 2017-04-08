@@ -491,9 +491,8 @@ $(document).ready(function () {
  			       		}
  			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
  					}
- 					
- 					/* strInput = strInput + "<tr><td colspan='3'><a href='category.mib' class='btn btn-default' role='button'>1</a></td></tr>"; */
  				}
+ 				/* strInput = strInput + "<tr><td colspan='3'><a href='category.mib' class='btn btn-default' role='button'>1</a></td></tr>"; */
  				reviewBody.innerHTML = strInput;
  			},
  			complete : function(data) {
@@ -516,7 +515,7 @@ $(document).ready(function () {
  			},
  			success : function(data) {
  				var flag = $.parseJSON(data);
- 				console.log(flag);
+ 				//console.log(flag);
 
  				QnABody.innerHTML = "";
  				
