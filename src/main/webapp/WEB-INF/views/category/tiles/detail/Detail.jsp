@@ -443,45 +443,13 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
-    	 page(1);
+    	reviewPage(1);
     });
     $('#tab3').on('click',function(){
-    	var PRO_SEQ = <%=PRO_SEQ %>;
-    	var strInput = "";
-		$.ajax({
- 			type : "POST",
- 			url : "QnAListAjax.mib",
- 			async : true,
- 			dataType : "html",
- 			data : {
- 				"PRO_SEQ" : PRO_SEQ
- 			},
- 			success : function(data) {
- 				var flag = $.parseJSON(data);
- 				//console.log(flag);
-
- 				QnABody.innerHTML = "";
- 				
- 				for(i=0;i<flag.length;i++){
- 					if(flag[i].USER_ID=="adm"){
- 						strInput = strInput + "";
- 					}else{
- 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
- 						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
- 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
- 			       	}
- 				}
- 					QnABody.innerHTML = strInput;
- 			},
- 			complete : function(data) {
- 			},
- 			error : function(xhr, status, error) {
- 				alert("에러발생");
- 			}
- 		});
+    	QnAPage(1);
     });
 });
-function page(page){
+function reviewPage(page){
 	var PRO_SEQ = <%=PRO_SEQ %>;
 	var PAGE_NUM = page;
 	var strInput = "";
@@ -497,7 +465,6 @@ function page(page){
 		success : function(data) {
 			var flag = $.parseJSON(data);
 			reviewBody.innerHTML = "";
-			console.log(flag);
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
@@ -532,12 +499,11 @@ function page(page){
 		       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
 				}
 			}
-			var PAGE_SIZE = 2;
+			var PAGE_SIZE = 15;
 			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-			//console.log(flag[0].TOT_CNT);
 			strInput = strInput + "<tr><td colspan='3'>";
 			for(var j=1;j<=pageCount;j++){
- 				strInput = strInput + "<a href='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+ 				strInput = strInput + "<a onclick='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 			}
 			strInput = strInput + "</td></tr>";
 			reviewBody.innerHTML = strInput;
@@ -548,6 +514,41 @@ function page(page){
 			alert("에러발생");
 		}
 	});
+}
+function QnAPage(page){
+	var PRO_SEQ = <%=PRO_SEQ %>;
+	var PAGE_NUM = page;
+	var strInput = "";
+	$.ajax({
+			type : "POST",
+			url : "QnAListAjax.mib",
+			async : true,
+			dataType : "html",
+			data : {
+				"PRO_SEQ" : PRO_SEQ,
+				"PAGE_NUM" : PAGE_NUM
+			},
+			success : function(data) {
+				var flag = $.parseJSON(data);
+				QnABody.innerHTML = "";
+				for(i=0;i<flag.length;i++){
+					if(flag[i].USER_ID=="adm"){
+						strInput = strInput + "";
+					}else{
+						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
+			       	}
+				}
+				
+				QnABody.innerHTML = strInput;
+			},
+			complete : function(data) {
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});
 }
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
