@@ -14,6 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <title>:::BuyPop:::</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -218,13 +219,13 @@ var bas_pro_num;
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">
 			<h5>수량</h5><br>
-			<button class="btn btn-default" id="minus" type="submit" style="width: 15%; height: 100%;" disabled="disabled">-</button>
+			<button class="mbtn" id="minus" type="submit" style="width: 15%; height: 100%;" disabled="disabled">-</button>
 			<input type="text" id="number" size="5px" value="<%=count %>" style="text-align: center;" readonly="readonly"/>
-			<button class="btn btn-default" id="plus" style="width: 15%; height: 100%;" disabled="disabled">+</button>
+			<button class="mbtn" id="plus" style="width: 15%; height: 100%;" disabled="disabled">+</button>
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
-			<button type="button" class="btn btn-primary btn-lg btn-block" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
-			<button type="button" class="btn btn-default btn-lg btn-block" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
+			<button type="button" class="mbtn" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
+			<button type="button" cclass="mbtn" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
 		</div>
 	</div>
 </div>

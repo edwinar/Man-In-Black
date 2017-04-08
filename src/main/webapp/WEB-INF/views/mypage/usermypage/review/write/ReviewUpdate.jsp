@@ -4,7 +4,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	MainDto userdto = (MainDto) request.getAttribute("userdto");
 	Date now = new Date();
@@ -40,27 +40,28 @@
 <html>
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../css/Mib.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<title>:::Review:::</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style type="text/css">
+.layout {
+	width: 790px;
+	height: 390px;
+	position: relative;
+	margin-top: 10px;
+}
 
-	<link rel="stylesheet"
-		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<title>:::Review:::</title>
-	<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<style type="text/css">
-		.layout {
-			width: 790px;
-			height: 390px;
-			position: relative;
-			margin-top: 10px;
-		}
-.photoLayout{
-background-color:red;
+.photoLayout {
+	background-color: red;
 	width: 370px;
 	height: 250px;
 	margin-top: -40px;
-	
 }
+
 .leftLayout {
 	float: left;
 	width: 49.5%;
@@ -96,184 +97,198 @@ background-color:red;
    String DEL_SEQ = request.getParameter("DEL_SEQ"); 
 %>
 
-<% if(userdto.getUSER_ID().equals("adm")){ %>
-<div class="layout">
-	<div class="leftLayout">
-		<div class="thumbnail">
-			<div class="score" align="center" style="height: 20%"> 평점 
-				<%
-	        		if(detailDto.getSCORE()==1){
-	        	%>
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-        		<%
-	        		}else if(detailDto.getSCORE()==2){
-        		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-        		<%
-	        		}else if(detailDto.getSCORE()==3){
-        		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-        		<%
-	        		}else if(detailDto.getSCORE()==4){
-        		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-        		<%
-	        		}else if(detailDto.getSCORE()==5){
-        		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        	<%
-	        		}else{
-        		%>
-        			<h4>평점 데이터가 없습니다.</h4>
-        		<%
-	        		}
-        		%>
-				<hr style="border: solid black 1px; width: 70%;">
-			</div>
-			<div class="title" align="center" style="height: 20%; width: 100%;">
-				<h5><%=detailDto.getREV_TITLE() %></h5>
-			</div>
-			<div class="info" style="height: 15%; width: 100%; text-align: right; margin-top: -70px;">
-				<h6>작성자:<%=detailDto.getUSER_ID() %><br/>작성날짜:<%=detailDto.getREV_TIME() %></h6>
-			</div>
-			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
-			
-			<div class="photoLayout" >
-				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
-				<textarea rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
-			</div>
-			
-			<%
-			}else{
-			%>
-			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
-            <textarea rows="5px" cols="50px" readonly="readonly"></textarea>
-        	</div>
-			<%} %>
-			
-			
-			<div class="btn" align="center" style="height: 10%; width:100%;">
-			</div>
-		</div>
-	</div>
-	<div class="rightLayout">
-		<div class="thumbnail">
-			<div class="score" align="center" style="height: 20%"> 
-			<h4>< 답글 ></h4>
-				<hr style="border: solid black 1px; width: 70%;">
-			</div>
-			<div class="title" align="center" style="height: 20%; width: 100%;">
-				제목 : <input type="text" id="review_title" size="30px" value="<%=detailDto.getREV_TITLE() %>" />
-			</div>
-			<div class="info" style="height: 15%; width: 100%; text-align: right;">
-				<h5>작성자:<%=userdto.getUSER_ID() %><br/>작성날짜:<%=today %></h5>
-			</div>
-			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
-				<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
-			</div>
-			<div class="btn" align="center" style="height: 10%; width:100%;">
-				<button class="mbtn" style="width: 50%; height: 100%;" id="admup">수정하기</button>
-			</div>
-		</div>
-	</div>
-</div>
-<%}else{ %>
-
-<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
-<form id="f1" action="reviewWrite.mib" method="post"
-	  enctype="multipart/form-data">
+	<% if(userdto.getUSER_ID().equals("adm")){ %>
 	<div class="layout">
 		<div class="leftLayout">
 			<div class="thumbnail">
-				<div class="panel panel-default"
-					 style="margin-left: 40px; margin-bottom: 30px">
-					<input type="file" name="onefile" id="onefile">
-					<img class="PP" alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%" >
-
-					<div
-							style="width: 100%; height: 100%; float: left; margin-top: 1%"
-							id="imgone-div" ></div>
-
-
-				</div>
-			</div>
-		</div>
-
-		<div class="rightLayout">
-			<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
-			<div class="thumbnail">
 				<div class="score" align="center" style="height: 20%">
-					평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
-							onclick="star1()"> <img alt="..."
-													src="../images/scoreEmpty.png" id="star2" onclick="star2()">
-					<img alt="..." src="../images/scoreEmpty.png" id="star3"
-						 onclick="star3()"> <img alt="..."
-												 src="../images/scoreEmpty.png" id="star4" onclick="star4()">
-					<img alt="..." src="../images/scoreEmpty.png" id="star5"
-						 onclick="star5()">
-
+					평점
+					<%
+	        		if(detailDto.getSCORE()==1){
+	        	%>
+					<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png">
+					<%
+	        		}else if(detailDto.getSCORE()==2){
+        		%>
+					<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png">
+					<%
+	        		}else if(detailDto.getSCORE()==3){
+        		%>
+					<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreEmpty.png"> <img alt="..."
+						src="../images/scoreEmpty.png">
+					<%
+	        		}else if(detailDto.getSCORE()==4){
+        		%>
+					<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreEmpty.png">
+					<%
+	        		}else if(detailDto.getSCORE()==5){
+        		%>
+					<img alt="..." src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png"> <img alt="..."
+						src="../images/scoreFull.png">
+					<%
+	        		}else{
+        		%>
+					<h4>평점 데이터가 없습니다.</h4>
+					<%
+	        		}
+        		%>
 					<hr style="border: solid black 1px; width: 70%;">
 				</div>
-
-
-
-
-				<input type="hidden" name="score" id="score">
-
-
-				<div class="title" align="center" style="height: 10%; width: 100%;">
-					제목 : <input type="text" name="title" value="<%=detailDto.getREV_TITLE()%>">
-					<input type="hidden"name="DEL_SEQ" value="<%=DEL_SEQ%>">
-					<input type="hidden"name="REV_SEQ" value="<%=detailDto.getREV_SEQ()%>">
+				<div class="title" align="center" style="height: 20%; width: 100%;">
+					<h5><%=detailDto.getREV_TITLE() %></h5>
 				</div>
 				<div class="info"
-					 style="height: 10%; width: 100%; text-align: right;">
-					작성자 :<input type="text" id="id" name="id"
-								value="<%=userdto.getUSER_ID()%>님" size="7" readonly="readonly"
-								class="non"> 작성일
-					<%=time%>
+					style="height: 15%; width: 100%; text-align: right; margin-top: -70px;">
+					<h6>
+						작성자:<%=detailDto.getUSER_ID() %><br />작성날짜:<%=detailDto.getREV_TIME() %></h6>
+				</div>
+				<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 
+				<div class="photoLayout">
+					<img alt="..." src="<%=detailDto.getSTORED_NAME()%>"
+						style="float: left; width: 48%; height: 100%;">
+					<textarea rows="5px" cols="10px" readonly="readonly"
+						style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
+				</div>
+
+				<%
+			}else{
+			%>
+				<div class="content" align="center"
+					style="height: 28%; width: 100%; text-align: left;">
+					<textarea rows="5px" cols="50px" readonly="readonly"></textarea>
+				</div>
+				<%} %>
+
+
+				<div class="btn" align="center" style="height: 10%; width: 100%;">
+				</div>
+			</div>
+		</div>
+		<div class="rightLayout">
+			<div class="thumbnail">
+				<div class="score" align="center" style="height: 20%">
+					<h4>< 답글 ></h4>
+					<hr style="border: solid black 1px; width: 70%;">
+				</div>
+				<div class="title" align="center" style="height: 20%; width: 100%;">
+					제목 : <input type="text" id="review_title" size="30px"
+						value="<%=detailDto.getREV_TITLE() %>" />
+				</div>
+				<div class="info"
+					style="height: 15%; width: 100%; text-align: right;">
+					<h5>
+						작성자:<%=userdto.getUSER_ID() %><br />작성날짜:<%=today %></h5>
 				</div>
 				<div class="content" align="center"
-					 style="height: 38%; width: 100%; text-align: left;">
-					<input type="text" name="content"
-						   style="width: 100%; height: 100px" value="<%=detailDto.getREV_CONTENT()%>">
+					style="height: 28%; width: 100%; text-align: left;">
+					<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
 				</div>
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
+					<button class="mbtn" style="width: 50%; height: 100%;" id="admup">수정하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%}else{ %>
 
-					<input type="button" class="mbtn"  value="수정 하기" onclick="closeSelf()">
-					<input type="button" class="mbtn"  value="닫기" onclick="window.close()">
+	<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
+	<form id="f1" action="reviewWrite.mib" method="post"
+		enctype="multipart/form-data">
+		<div class="layout">
+			<div class="leftLayout">
+				<div class="thumbnail">
+					<div class="panel panel-default"
+						style="margin-left: 40px; margin-bottom: 30px">
+						<input type="file" name="onefile" id="onefile"> <img
+							class="PP" alt="..." src="<%=detailDto.getSTORED_NAME()%>"
+							width="100%">
+
+						<div
+							style="width: 100%; height: 100%; float: left; margin-top: 1%"
+							id="imgone-div"></div>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="rightLayout">
+				<input type="hidden" value="<%=detailDto.getSCORE()%>" class="scqqq">
+				<div class="thumbnail">
+					<div class="score" align="center" style="height: 20%">
+						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
+							onclick="star1()"> <img alt="..."
+							src="../images/scoreEmpty.png" id="star2" onclick="star2()">
+						<img alt="..." src="../images/scoreEmpty.png" id="star3"
+							onclick="star3()"> <img alt="..."
+							src="../images/scoreEmpty.png" id="star4" onclick="star4()">
+						<img alt="..." src="../images/scoreEmpty.png" id="star5"
+							onclick="star5()">
+
+						<hr style="border: solid black 1px; width: 70%;">
+					</div>
+
+
+
+
+					<input type="hidden" name="score" id="score">
+
+
+					<div class="title" align="center" style="height: 10%; width: 100%;">
+						제목 : <input type="text" name="title"
+							value="<%=detailDto.getREV_TITLE()%>"> <input
+							type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>"> <input
+							type="hidden" name="REV_SEQ" value="<%=detailDto.getREV_SEQ()%>">
+					</div>
+					<div class="info"
+						style="height: 10%; width: 100%; text-align: right;">
+						작성자 :<input type="text" id="id" name="id"
+							value="<%=userdto.getUSER_ID()%>님" size="7" readonly="readonly"
+							class="non"> 작성일
+						<%=time%>
+
+					</div>
+					<div class="content" align="center"
+						style="height: 38%; width: 100%; text-align: left;">
+						<input type="text" name="content"
+							style="width: 100%; height: 100px"
+							value="<%=detailDto.getREV_CONTENT()%>">
+					</div>
+					<div class="btn" align="center" style="height: 10%; width: 100%;">
+
+						<input type="button" class="mbtn" value="수정 하기"
+							onclick="closeSelf()"> <input type="button" class="mbtn"
+							value="닫기" onclick="window.close()">
+					</div>
+
 				</div>
 
 			</div>
-
 		</div>
-	</div>
-</form>
-<%} %>
+	</form>
+	<%} %>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
     var sc = $(".scqqq").val();
         var score = 0;
 

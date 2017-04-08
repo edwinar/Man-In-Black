@@ -25,6 +25,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <title>:::Q&ADetail:::</title>
 <style type="text/css">
 .layout {
@@ -140,9 +141,9 @@ input, select, textarea {
 				</div>
 
 				<div align="center" style="width: 100%;">
-					<button class="btn btn-default" style="width: 85%;"
+					<button class="mbtn" style="width: 85%;"
 						onclick="reps()">답글저장</button>
-					<button class="btn btn-default" style="width: 85%;"
+					<button class="mbtn" style="width: 85%;"
 						onclick="windowClose()">취소</button>
 				</div>
 			</div>

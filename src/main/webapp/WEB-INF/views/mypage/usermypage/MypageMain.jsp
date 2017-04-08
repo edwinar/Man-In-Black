@@ -327,7 +327,7 @@ td, th {
 				%>
 			</table>
 			<button type="button" onclick="location.href='basketlist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 94%" class="mbtn">더보기</button>
 		</div>
 
 
