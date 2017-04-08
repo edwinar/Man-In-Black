@@ -118,7 +118,7 @@ td, th {
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: 5%"></div>
+<div style="width: 90%; margin-left: -5%"></div>
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
