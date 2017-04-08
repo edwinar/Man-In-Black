@@ -6,28 +6,24 @@
 <%
 	List<UserMypageDto> goodslist= (List<UserMypageDto>)request.getAttribute("goodslist");
 %>
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::오늘본 상품::</title>
 <style>
-
 .thumbnail {
 	width: 100%;
 }
-
 .thumbnail {
 	opacity: 1;
 }
-
 .thumbnail:hover {
 	opacity: 0.5;
 }
 </style>
 </head>
 <body>
+<div style="width: 90%; margin-left: 5%">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -43,9 +39,12 @@
 		<%
 			if (goodslist == null || goodslist.size() == 0) {
 		%>
-		<tr>
-			<td colspan="9999">내역이 없습니다.</td>
-		</tr>
+		<p style="height: 300px">내역이 없습니다.</p>
+		
+		
+		
+		
+		
 		<%
 		} else {
 		%>
@@ -68,6 +67,7 @@
 			%>
 
 				</div>
-				<div style="height: 500px"></div>
+				</div>
+				
 </body>
 </html>

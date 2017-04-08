@@ -255,7 +255,7 @@ public class UserMypageController {
 			return mav;
 		}else {
 			loger.debug("=Controller ===========================");
-			loger.debug("codeMSvc === " + pro_seq + "받기완");
+			loger.debug("codeMSvc === " + pro_seq + "받기완료");
 			loger.debug("============================");
 			HashMap<String, Object> param = new HashMap<String, Object>();
 			List<String> list = Arrays.asList(pro_seq.split(","));
