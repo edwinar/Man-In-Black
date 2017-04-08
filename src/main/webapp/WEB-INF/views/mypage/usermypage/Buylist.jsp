@@ -108,14 +108,14 @@ input{
 <title>::구매내역::</title>
 </head>
 <body>
-<div style="margin-left: -5%">
+<div style="width: 90%">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
-			<h3>MY Order</h3>
+			<h3 style="margin-left: -3%">MY Order</h3>
 			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
 		</div>
 	</center>

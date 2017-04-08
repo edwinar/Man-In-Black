@@ -15,8 +15,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>::마이 페이지::</title>
 <style type="text/css">
 body {
@@ -118,7 +116,7 @@ td, th {
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: -5%"></div>
+<div style=" ">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -384,6 +382,7 @@ td, th {
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>
