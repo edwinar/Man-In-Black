@@ -67,6 +67,9 @@ td, th {
 					<tr>
 						<td colspan="9999">내역이 없습니다.</td>
 					</tr>
+					
+					
+					<tr height="200px"></tr>
 					<%
 						} else {
 					%>
