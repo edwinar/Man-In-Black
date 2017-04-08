@@ -768,53 +768,30 @@ public class CeoMypageController {
 			}
 			
 			
-			//excel down
+			//Excel down
 			@RequestMapping("exceldown.mib")
-			public void home(Locale locale, Model model) {
-				/*loger.info("Welcome home! The client locale is {}.", locale);*/
-				
-				System.out.println("sadas");
-				
-				/*List<CeoMypageDto> lists = new ArrayList<CeoMypageDto>();
-				lists.add(new CeoMypageDto(lists.get, "김현룡1", "jamesol@paran.com", "1234"));
-				////////////////////////////////////////////
-				String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-				String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-				String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
-				String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
-				String search = (res.getParameter("search")==null ||res.getParameter("PRO_NAME")=="")?"%%":"%"+res.getParameter("search")+"%";
+			public ModelAndView ceoMypage_Main(HttpServletRequest res, HttpServletResponse rep) {
 
+				ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
+				
 				HashMap<String, String> map = new HashMap<>();
-				map.put("PAGE_SIZE", PAGE_SIZE);
-				map.put("PAGE_NUM", PAGE_NUM);
-				map.put("START_DATE",START_DATE);
-				map.put("END_DATE",END_DATE);
-				map.put("search", search);
-			
-				System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
-				System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
-				System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
-				System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
-				System.out.println("컨트롤러 ======== search"+search);
-				
-				
-				List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);*/
-				/////////////////////////////////////////////
-				
-				
-				
-				/*ExcelWriter eWriter=new ExcelWriter();
-				int flag = eWriter.xlsWriter(lists, "멤버");
-				System.out.println("excel 생성 "+flag);
-				
-				
-				Date date = new Date();
-				DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-				
-				String formattedDate = dateFormat.format(date);
-				
-				model.addAttribute("serverTime", formattedDate );*/
-				
+			      map.put("PAGE_SIZE", PAGE_SIZE);
+			      map.put("PAGE_NUM", PAGE_NUM);
+			      map.put("START_DATE",START_DATE);
+			      map.put("END_DATE",END_DATE);
+			      map.put("search", search);
+			   
+			      System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
+			      System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
+			      System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
+			      System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
+			      System.out.println("컨트롤러 ======== search"+search);
+			      
+			      
+			      List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
+
+				return mav;
+
 			}
 				
 }
