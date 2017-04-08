@@ -147,14 +147,21 @@ function addCookie(pd_no, id) {
 %>
 
 </div>
+
+<%
+	int PAGE_SIZE = 9;
+	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
+%>
+	
 <div class="row" align="center">
    <p>
-   <a href="#" class="btn btn-default" role="button"><</a>
-   <a href="#" class="btn btn-default" role="button">1</a>
-   <a href="#" class="btn btn-default" role="button">2</a>
-   <a href="#" class="btn btn-default" role="button">3</a>
-   <a href="#" class="btn btn-default" role="button">4</a>
-   <a href="#" class="btn btn-default" role="button">></a>
+   <%
+		for (int i = 1; i <= pageCount; i++) {
+	%>
+	<a href="category.mib?PAGE_NUM=<%=i%>&ITEM=<%=ITEM %>" class="btn btn-default" role="button"><%=i%></a>
+	<%
+		}
+	%>
    </p>
 </div>
 
