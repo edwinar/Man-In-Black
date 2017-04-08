@@ -20,7 +20,7 @@ body {
 #contain {
 	margin: 0 auto;
 	width: 100%;
-	height: 800px;
+	height: 700px;
 	margin-top: 70px;
 }
 
@@ -196,7 +196,7 @@ body {
 				%>
 
 
-				<tr>
+				<tr style="height: 27px">
 					<td><%=pointList.get(i).getPOINT_TIME()%></td>
 					<td><%=pointList.get(i).getPRO_NAME()%></td>
 					<%
