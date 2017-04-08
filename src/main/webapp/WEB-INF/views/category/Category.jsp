@@ -1,9 +1,11 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.service.CategorySvc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+   MainDto userinfo  =(MainDto)session.getAttribute("LoginInfo");
    List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
    List<CategoryDto> listBtn = (List<CategoryDto>)request.getAttribute("listBtn");
    List<CategoryDto> listBest = (List<CategoryDto>)request.getAttribute("listBest");
@@ -35,7 +37,8 @@
 <script type="text/javascript">
 function movedetail(pd_no) {
     var pro_seq = pd_no;
-         addCookie(pro_seq);
+    var id = <%=userinfo.getUSER_ID()%>;
+         addCookie(pro_seq, id);
      location.href='detail.mib?PRO_SEQ='+pro_seq;
 }
 /*-------------------------------------------------쿠키만들기*/
@@ -61,7 +64,7 @@ function getCookie(cookie_name) {
     }
 }
 /* ----------------------------------------쿠키 값 추가*/
-function addCookie(pd_no) {
+function addCookie(pd_no, id) {
     var maxitem = 7; // 최대 유지할 수 있는 상품 개수-2개
     var prev_pd_no = getCookie('recentitems');
     if ((prev_pd_no == '') || (prev_pd_no == null)) {

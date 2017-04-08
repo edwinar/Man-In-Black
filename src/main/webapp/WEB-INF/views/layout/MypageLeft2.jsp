@@ -144,7 +144,7 @@ cursor: pointer;
 		<p style="text-align: center;cursor: pointer; font-size: 2em;" onclick="location.href='mymain.mib'">MY PAGE</p>
 		</li>
 		<li>
-		<a href='userup.mib' style="background-color: yellow;">정보수정</a>
+		<a href='userup.mib'>정보수정</a>
 		</li>
 		<li>
 		<a href='buylist.mib'>구매내역</a>
@@ -153,7 +153,7 @@ cursor: pointer;
 		<a href='basketlist.mib'>장바구니</a>
 		</li>
 		<li>
-		<a href='movegoods()'>오늘본 상품</a>
+		<a onclick='movegoods()' style="cursor: pointer;">오늘본 상품</a>
 		</li>
 		<li>
 		<a href='myboard.mib'>내가 쓴 게시물</a>
