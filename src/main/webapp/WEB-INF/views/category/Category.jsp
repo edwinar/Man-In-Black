@@ -37,8 +37,8 @@
 <script type="text/javascript">
 function movedetail(pd_no) {
     var pro_seq = pd_no;
-    var id = <%=userinfo.getUSER_ID()%>;
-         addCookie(pro_seq, id);
+
+         addCookie(pro_seq);
      location.href='detail.mib?PRO_SEQ='+pro_seq;
 }
 /*-------------------------------------------------쿠키만들기*/
@@ -64,7 +64,7 @@ function getCookie(cookie_name) {
     }
 }
 /* ----------------------------------------쿠키 값 추가*/
-function addCookie(pd_no, id) {
+function addCookie(pd_no) {
     var maxitem = 7; // 최대 유지할 수 있는 상품 개수-2개
     var prev_pd_no = getCookie('recentitems');
     if ((prev_pd_no == '') || (prev_pd_no == null)) {
@@ -147,21 +147,14 @@ function addCookie(pd_no, id) {
 %>
 
 </div>
-
-<%
-	int PAGE_SIZE = 9;
-	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
-%>
-	
 <div class="row" align="center">
    <p>
-   <%
-		for (int i = 1; i <= pageCount; i++) {
-	%>
-	<a href="category.mib?PAGE_NUM=<%=i%>&ITEM=<%=ITEM %>" class="btn btn-default" role="button"><%=i%></a>
-	<%
-		}
-	%>
+   <a href="#" class="btn btn-default" role="button"><</a>
+   <a href="#" class="btn btn-default" role="button">1</a>
+   <a href="#" class="btn btn-default" role="button">2</a>
+   <a href="#" class="btn btn-default" role="button">3</a>
+   <a href="#" class="btn btn-default" role="button">4</a>
+   <a href="#" class="btn btn-default" role="button">></a>
    </p>
 </div>
 

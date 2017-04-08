@@ -108,7 +108,7 @@ input{
 <title>::구매내역::</title>
 </head>
 <body>
-<div style="width: 90%">
+<div style="margin-left: -5%">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">

@@ -98,7 +98,7 @@ cursor: pointer;
 </head>
 <body>
 
-	<div style="width: 100%; position: fixed;" align="left">
+	<div style="width: 10%; position: fixed; align="left">
 	<button id='togg_menu'>
 	<span class='bar'></span>
 	<span class='bar'></span>
