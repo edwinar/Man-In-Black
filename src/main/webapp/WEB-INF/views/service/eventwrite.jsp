@@ -287,9 +287,21 @@ body {
       });
 
       $(".mat-input").focusout(function() {
-         if ($(this).val() === "")
+         if ($(this).val() === ""){
             $(this).parent().removeClass("is-completed");
          $(this).parent().removeClass("is-active");
+         }
+      });
+      $(document).ready(function() {
+		
+    	  alert("밸류1212"+$(".mat-input").val());
+		
+      if($(".mat-input").val()===''){
+    	  }else{
+    		  $(".mat-input").parent().addClass("is-active is-completed");
+    	      
+      }
+      
       });
    </script>
 

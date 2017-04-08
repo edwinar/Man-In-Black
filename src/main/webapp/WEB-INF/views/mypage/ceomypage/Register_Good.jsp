@@ -250,23 +250,26 @@
 <script type="text/javascript">
 var num = 0;
 
-$(".mat-input").focus(function(){
+	$(".mat-input").focus(function(){
 	  $(this).parent().addClass("is-active is-completed");
 	});
 
 	$(".mat-input").focusout(function(){
-	  if($(this).val() === "")
+	  if($(this).val() === ""){
 	    $(this).parent().removeClass("is-completed");
 	  $(this).parent().removeClass("is-active");
+	  }
 	});
-$(".mat-input-color").focus(function(){
+		
+		$(".mat-input-color").focus(function(){
 		  $(this).parent().addClass("is-active is-completed");
 		});
 
 		$(".mat-input-color").focusout(function(){
-		  if($(this).val() === "")
+		  if($(this).val() === ""){
 		    $(this).parent().removeClass("is-completed");
 		  $(this).parent().removeClass("is-active");
+		  }
 		});	
 
 // 파일 업로드 이미지 미리보기 	
@@ -375,7 +378,7 @@ function addDetail() {
 	 				
 	 				for(i=0;i<flag.length;i++){
 	 					
-	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+'</option>');
+	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+"</option>");
 
 	 				}
 	 				

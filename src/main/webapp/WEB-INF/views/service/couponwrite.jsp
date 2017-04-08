@@ -267,6 +267,8 @@ body {
             $(this).parent().removeClass("is-completed");
          $(this).parent().removeClass("is-active");
       });
+      
+      
    </script>
 
 </body>
