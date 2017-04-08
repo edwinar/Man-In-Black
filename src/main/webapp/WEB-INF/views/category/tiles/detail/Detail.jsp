@@ -443,71 +443,7 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
-    	var PRO_SEQ = <%=PRO_SEQ %>;
-    	var strInput = "";
-		$.ajax({
- 			type : "POST",
- 			url : "ReviewListAjax.mib",
- 			async : true,
- 			dataType : "html",
- 			data : {
- 				"PRO_SEQ" : PRO_SEQ
- 			},
- 			success : function(data) {
- 				var flag = $.parseJSON(data);
- 				reviewBody.innerHTML = "";
- 				console.log(flag);
- 				for(var i=0;i<flag.length;i++){
- 					if(flag[i].USER_ID=="adm"){ 			        
- 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
- 						+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
- 						+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
- 					}else{
- 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
- 						+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
- 			       		if(flag[i].SCORE==1){
- 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
- 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
- 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==2){
- 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
-			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==3){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==4){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==5){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
- 			       		}else{
- 			       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
- 			       		}
- 			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
- 					}
- 				}
- 				var PAGE_SIZE = 2;
- 				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
- 				console.log(flag[0].TOT_CNT);
- 				console.log(pageCount);
- 				strInput = strInput + "<tr><td colspan='3'>";
- 				for(var j=1;j<=pageCount;j++){
- 	 				strInput = strInput + "<a href='ReviewListAjax.mib?PRO_SEQ="+PRO_SEQ+"&PAGE_NUM="+j+"' class='btn btn-default' role='button'>"+j+"</a>";
- 				}
- 				strInput = strInput + "</td></tr>";
- 				reviewBody.innerHTML = strInput;
- 			},
- 			complete : function(data) {
- 			},
- 			error : function(xhr, status, error) {
- 				alert("에러발생");
- 			}
- 		});
+    	 page(1);
     });
     $('#tab3').on('click',function(){
     	var PRO_SEQ = <%=PRO_SEQ %>;
@@ -545,7 +481,74 @@ $(document).ready(function () {
  		});
     });
 });
-
+function page(page){
+	var PRO_SEQ = <%=PRO_SEQ %>;
+	var PAGE_NUM = page;
+	var strInput = "";
+	$.ajax({
+		type : "POST",
+		url : "ReviewListAjax.mib",
+		async : true,
+		dataType : "html",
+		data : {
+			"PRO_SEQ" : PRO_SEQ,
+			"PAGE_NUM" : PAGE_NUM
+		},
+		success : function(data) {
+			var flag = $.parseJSON(data);
+			reviewBody.innerHTML = "";
+			console.log(flag);
+			for(var i=0;i<flag.length;i++){
+				if(flag[i].USER_ID=="adm"){ 			        
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
+					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
+					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+				}else{
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
+					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
+		       		if(flag[i].SCORE==1){
+		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==2){
+		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==3){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==4){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==5){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
+		       		}else{
+		       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
+		       		}
+		       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+				}
+			}
+			var PAGE_SIZE = 2;
+			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+			//console.log(flag[0].TOT_CNT);
+			strInput = strInput + "<tr><td colspan='3'>";
+			for(var j=1;j<=pageCount;j++){
+ 				strInput = strInput + "<a href='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+			}
+			strInput = strInput + "</td></tr>";
+			reviewBody.innerHTML = strInput;
+		},
+		complete : function(data) {
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});
+}
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
