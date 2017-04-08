@@ -144,7 +144,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -157,7 +157,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -170,7 +170,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -183,7 +183,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -196,7 +196,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -456,9 +456,8 @@ $(document).ready(function () {
  			success : function(data) {
  				var flag = $.parseJSON(data);
  				reviewBody.innerHTML = "";
- 				
- 				for(i=0;i<flag.length;i++){
- 					console.log(flag);
+ 				console.log(flag);
+ 				for(var i=0;i<flag.length;i++){
  					if(flag[i].USER_ID=="adm"){ 			        
  						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
  						+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
@@ -492,7 +491,15 @@ $(document).ready(function () {
  			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
  					}
  				}
- 				/* strInput = strInput + "<tr><td colspan='3'><a href='category.mib' class='btn btn-default' role='button'>1</a></td></tr>"; */
+ 				var PAGE_SIZE = 2;
+ 				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+ 				console.log(flag[0].TOT_CNT);
+ 				console.log(pageCount);
+ 				strInput = strInput + "<tr><td colspan='3'>";
+ 				for(var j=1;j<=pageCount;j++){
+ 	 				strInput = strInput + "<a href='ReviewListAjax.mib?PRO_SEQ="+PRO_SEQ+"&PAGE_NUM="+j+"' class='btn btn-default' role='button'>"+j+"</a>";
+ 				}
+ 				strInput = strInput + "</td></tr>";
  				reviewBody.innerHTML = strInput;
  			},
  			complete : function(data) {
@@ -784,22 +791,6 @@ function BuyPop(){
         </tr>
     </thead>
     <tbody id="reviewBody">
-    
- 	<%-- <tr>
- 	<td colspan="3">
- 	<%
-	int PAGE_SIZE = 9;
-	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
-	%>
- 	<%
-		for (int i = 1; i <= pageCount; i++) {
-	%>
-	<a href="category.mib?" class="btn btn-default" role="button">1</a>
-	<%
-		}
-	%>
- 	</td>
- 	</tr> --%>
  	
     </tbody>
 	</table>
