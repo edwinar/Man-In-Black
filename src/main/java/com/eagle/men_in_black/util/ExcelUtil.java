@@ -5,7 +5,7 @@ import java.util.UUID;
 import com.fasterxml.uuid.Generators;
 import com.fasterxml.uuid.NoArgGenerator;
 
-public  class Util {
+public  class ExcelUtil {
 	
 	public static long getPK()
 	{
