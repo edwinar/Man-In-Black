@@ -47,13 +47,13 @@
 						if (qnaList == null || qnaList.size() == 0) {
 					%>
 					<tr>
-						<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+						<td colspan="5" style="text-align: center; height: 300px">내역이 없습니다.</td>
 					</tr>
 					<%
 						} else {
 					%>
 					<%for(int i = 0; i < qnaList.size(); i++){ %>
-					<tr style="cursor: pointer;" onclick="goqna(<%=qnaList.get(i).getQNA_SEQ()%>)" >
+					<tr style="cursor: pointer; height: 40px;" onclick="goqna(<%=qnaList.get(i).getQNA_SEQ()%>)" >
 						<td><%=i+1%></td>
 						<td><%=qnaList.get(i).getPRO_NAME() %></td>
 						<td><%=qnaList.get(i).getQNA_TITLE()%></td>

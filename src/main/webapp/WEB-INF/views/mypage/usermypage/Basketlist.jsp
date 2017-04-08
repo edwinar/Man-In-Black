@@ -40,8 +40,8 @@ td, th {
 
 
 
-	<div id="total" style="height: margin-top: 150px">
-		<div  style="width: 90%">
+	<div id="total" style="height: margin-top: 150px;margin-left: 3%">
+		<div>
 			<div align="left">
 			<input type="checkbox" id="allCheck" class="chbox"
 				style="width: 20px; height: 20px; " >
