@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::Q&AUpdate:::</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -96,11 +97,11 @@
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
 			
-				<button style="width: 50%; height: 100%;" onclick="update()" type="button">수정저장</button>
+				<button style="width: 50%;  height: 100%;" class="mbtn"onclick="update()" type="button">수정저장</button>
 				
 			</div>
 			<div style="float: right; width: 50%;">
-				<button style="width: 50%; height: 100%;" onclick="windowClose()">취소하기</button>
+				<button style="width: 50%; height: 100%;"  class="mbtn" onclick="windowClose()">취소하기</button>
 			</div>
 		</div>
 		</form>
