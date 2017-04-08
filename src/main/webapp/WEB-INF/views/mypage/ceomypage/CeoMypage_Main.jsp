@@ -108,7 +108,6 @@ td, th {
 	height: 40px;
 	width: 120px;
 	color: #fff;
-	background: #6ac56d;
 	border-left: 15px solid #fff;
 	border-radius: 0 3px 3px 0;
 }
@@ -313,10 +312,10 @@ function delStep(SEQ) {
 			<p>
 			<br><br>
 				<h5>날짜별 검색</h5>
-				<button class="btn btn-success" id="week">1주</button> 
-				<button class="btn btn-success" id="month">1개월</button> 
-				<button class="btn btn-success" id="threeMonth">3개월</button> <br> <br> 
-		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
+				<button class="mbtn" id="week">1주</button> 
+				<button class="mbtn" id="month">1개월</button> 
+				<button class="mbtn" id="threeMonth">3개월</button> <br> <br> 
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn" class="mbtn">검색</button>
 				<br>
 			</p>
 		</div>
@@ -326,7 +325,7 @@ function delStep(SEQ) {
 	<!--엑셀로 다운받기-->
 	<form name="searchForm" method="POST" action="" >
 	<div align="right">
-	<a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
+	<a  class="mbtn" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
 				aria-hidden="true"></span></a>
 		
 	</div>
@@ -344,7 +343,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
 		<input type="hidden" name="START_DATE" value="<%=START_DATE %>">
 		<input type="hidden" name="END_DATE" value="<%=END_DATE %>">
-		<button type="submit">검색</button>
+		<button type="submit" class="mbtn">검색</button>
 	</form>
 
 	<!--수량 총매출액 순이익 -->
