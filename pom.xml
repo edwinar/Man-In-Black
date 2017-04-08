@@ -40,26 +40,7 @@
  
  
  <dependencies>
- 
- <!-- excel -->
- <dependency>
-		<groupId>com.fasterxml.uuid</groupId>
-		<artifactId>java-uuid-generator</artifactId>
-		<version>3.1.3</version>
-	</dependency>
- 
-	<dependency>
-	   <groupId>org.apache.poi</groupId>
-	   <artifactId>poi</artifactId>
-	   <version>3.11</version>
-	</dependency>
-	<dependency>
-	   <groupId>org.apache.poi</groupId>
-	   <artifactId>poi-ooxml</artifactId>
-	   <version>3.11</version>
-	</dependency>
- 
- 
+
 <!--  이메일 인증  -->
  <dependency>
   <groupId>javax.mail</groupId>
