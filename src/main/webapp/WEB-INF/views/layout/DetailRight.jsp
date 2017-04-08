@@ -1,13 +1,15 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<%!//
-//%>
-<%//
-//%>
+
+<%
+MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,28 +25,68 @@ request.setCharacterEncoding("UTF-8");
                   <div class="right-content">
                         <nav id="right-nav">
                               <ul>
-                                    <li><a href="#">home</a></li>
-                                    <li><a href="#">products</a></li>
-                                    <li><a href="#">men</a></li>
-                                    <li><a href="#">women</a></li>
-                                    <li><a href="#">kids</a></li>
-                                    <li><a href="#">accessoires</a></li>
-                                    <li><a href="#">terms & conditions</a></li>
-                                    <li><a href="#">imprint</a></li>
+                              <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="ceoMypage_Main.mib" >마이페이지</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">마이페이지</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">마이페이지</a></li>
+                              <%} %>
+                                    <li><a href="event.mib" >이벤트</a></li>
+                                    <li><a href="servicenotice.mib" >공지사항</a></li>
+                                     <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="ceoMypage_Main.mib">판매내역</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">오늘본상품</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">오늘본상품</a></li>
+                              <%} %> 
+                              
+                              <%if(dto!=null){ 
+                            	  if (dto.getUSER_ID().equals("adm")) {
+                              %>
+                                    <li><a href="qnA_Administer.mib">문의글관리</a></li>
+                              <%  }else {
+   							  %>    <li><a href="mymain.mib">내가쓴게시물</a></li> 
+   								<%
+   								  }
+                               }else{ %>
+                              		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">내가쓴게시물</a></li>
+                              <%} %>
                               </ul>
                         </nav>
                         
-                     
                   </div>
             </div>
             <!-- 앞에 <이거부분 -->
-            <label class="opener" for="right-toggle"></label>
+            <label class="opener" for="right-toggle" ></label>
       </article>
-</aside>
-<aside id="buyaside" class="buyaside">
-   <img alt="" src="../images/buybtn.png" width="50px" height="50px">
-</aside>
-
+      </aside>
+					<% 	 
+					if(dto!=null){
+					%>
+		        		<aside id="buyaside" class="buyaside" onclick="BuyPop()">
+   						<img alt="" src="../images/buybtn.png" width="50px" height="50px">
+						</aside>
+		        	<%
+		        	}else{ 
+		        	%>
+		        	<aside id="buyaside" class="buyaside" >
+		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
+		        		<img alt="" src="../images/buybtn.png" width="50px" height="50px">	
+		        		</a>
+		        	</aside>
+		        	<%
+		        	}
+		        	%>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -52,11 +94,11 @@ $(document).ready(function() {
    $("#right-toggle").click(function(){
    if($("#right-toggle").prop("checked")) {
    
-      $("#buyaside").css('margin-top','820px');
+      $("#buyaside").css('margin-top','380px');
    
    }else{
       
-         $("#buyaside").css('margin-top','630px');
+         $("#buyaside").css('margin-top','200px');
    
    }
    });

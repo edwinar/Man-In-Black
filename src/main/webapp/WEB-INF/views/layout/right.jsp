@@ -15,6 +15,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 <meta charset="UTF-8">
 </head>
 <body>
+
 <!-- 앞에 튀어나와있는 < 이부분  -->
 <input type="checkbox" name="right-toggle" id="right-toggle" />
 <aside id="right-aside">
@@ -27,7 +28,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               <%if(dto!=null){ 
                             	  if (dto.getUSER_ID().equals("adm")) {
                               %>
-                                    <li><a href="ceoMypage_Main.mib">마이페이지</a></li>
+                                    <li><a href="ceoMypage_Main.mib" >마이페이지</a></li>
                               <%  }else {
    							  %>    <li><a href="mymain.mib">마이페이지</a></li> 
    								<%
@@ -68,6 +69,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
             <!-- 앞에 <이거부분 -->
             <label class="opener" for="right-toggle" ></label>
       </article>
+      </aside>
 
 </body>
 </html>

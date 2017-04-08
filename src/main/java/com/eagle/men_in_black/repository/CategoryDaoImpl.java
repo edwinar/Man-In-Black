@@ -17,7 +17,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<CategoryDto> do_selectCategoryProductList(HashMap<String, String> map) {
+	public List<CategoryDto> do_selectCategoryProductList(HashMap<String, Object> map) {
 		String statement = namespace+".do_selectCategoryProductList";
 		return sqlSession.selectList(statement,map);
 	}
@@ -29,13 +29,13 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public List<CategoryDto> do_bestList(HashMap<String, String> map) {
+	public List<CategoryDto> do_bestList(HashMap<String, Object> map) {
 		String statement = namespace+".do_selectCategoryProductList";
 		return sqlSession.selectList(statement,map);
 	}
 
 	@Override
-	public List<CategoryDto> do_selectNewProductList(HashMap<String, String> map) {
+	public List<CategoryDto> do_selectNewProductList(HashMap<String, Object> map) {
 		String statement = namespace+".do_selectNewProductList";
 		return sqlSession.selectList(statement,map);
 	}

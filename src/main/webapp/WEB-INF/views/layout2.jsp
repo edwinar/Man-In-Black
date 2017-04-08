@@ -38,13 +38,13 @@
 	
 		
         <tr>
-            <td width="10%">
+            <td width="10%" style="vertical-align: top;">
 			
                <tiles:insertAttribute name="left" />
 
             </td>
 
-            <td width="80%"  style="background-color: white;">
+            <td id="layouttablemain" width="80%"  style="background-color: white;">
 
                <tiles:insertAttribute name="main" />
 

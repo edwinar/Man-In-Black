@@ -1,9 +1,11 @@
+<%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.service.CategorySvc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+   MainDto userinfo  =(MainDto)session.getAttribute("LoginInfo");
    List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
    List<CategoryDto> listBtn = (List<CategoryDto>)request.getAttribute("listBtn");
    List<CategoryDto> listBest = (List<CategoryDto>)request.getAttribute("listBest");
@@ -35,6 +37,7 @@
 <script type="text/javascript">
 function movedetail(pd_no) {
     var pro_seq = pd_no;
+
          addCookie(pro_seq);
      location.href='detail.mib?PRO_SEQ='+pro_seq;
 }
@@ -144,14 +147,21 @@ function addCookie(pd_no) {
 %>
 
 </div>
+
+<%
+	int PAGE_SIZE = 9;
+	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
+%>
+
 <div class="row" align="center">
    <p>
-   <a href="#" class="btn btn-default" role="button"><</a>
-   <a href="#" class="btn btn-default" role="button">1</a>
-   <a href="#" class="btn btn-default" role="button">2</a>
-   <a href="#" class="btn btn-default" role="button">3</a>
-   <a href="#" class="btn btn-default" role="button">4</a>
-   <a href="#" class="btn btn-default" role="button">></a>
+   <%
+		for (int i = 1; i <= pageCount; i++) {
+	%>
+	<a href="category.mib?PAGE_NUM=<%=i%>&ITEM=<%=ITEM %>" class="btn btn-default" role="button"><%=i%></a>
+	<%
+		}
+	%>
    </p>
 </div>
 
