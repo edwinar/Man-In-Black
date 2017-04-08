@@ -92,7 +92,7 @@ td, th {
 		</div>
 		<div align="right">
 			<input type="button" id="addBanner"  align="right" value="배너등록" 
-				class="btn btn-default" style="width: 15%; margin-right: 10.5%">
+				class="mbtn" style="width: 15%; margin-right: 10.5%">
 		</div>
 	</div>
 	<script type="text/javascript">

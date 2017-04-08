@@ -14,10 +14,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <title>:::Q&ADetail:::</title>
 <style type="text/css">
 .layout{
-	width: 790px;
+	width: 800px;
 	height: 390px;
 	position: relative;
 	margin-top: 10px;
@@ -84,17 +85,17 @@
 		<%if(dto.getUSER_ID().equals(qnaDto.getUSER_ID())){ %>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
-				<button style="width: 50%; height: 100%;" onclick="update(<%=qnaDto.getQNA_SEQ()%>)">수정하기</button>
+				<button style="width: 50%; height: 100%;" class="mbtn" onclick="update(<%=qnaDto.getQNA_SEQ()%>)">수정하기</button>
 			</div>
 			<div style="float: right; width: 50%;">
-				<button style="width: 50%; height: 100%;" onclick="del()">삭제하기</button>
+				<button style="width: 50%; height: 100%;" class="mbtn" onclick="del()">삭제하기</button>
 			</div>
 		</div>
 		
 		<%}else if(dto.getUSER_ID().equals("adm")){ %>
 		
 		<div align="center">
-				<button style="width: 80%; height: 100%;" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
+				<button style="width: 80%; height: 100%;"class="mbtn" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
 			</div>
 		<%} %>
 		
