@@ -23,6 +23,7 @@
 </style>
 </head>
 <body>
+<div style="width: 90%; margin-left: 5%">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -38,9 +39,7 @@
 		<%
 			if (goodslist == null || goodslist.size() == 0) {
 		%>
-		<tr>
-			<td colspan="9999" style="margin-bottom: 400px">내역이 없습니다.</td>
-		</tr>
+		<p style="height: 300px">내역이 없습니다.</p>
 		
 		
 		
@@ -67,6 +66,7 @@
 				}
 			%>
 
+				</div>
 				</div>
 				
 </body>

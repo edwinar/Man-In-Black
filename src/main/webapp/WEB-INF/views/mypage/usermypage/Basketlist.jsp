@@ -24,7 +24,7 @@ td, th {
 </style>
 <title>::장바구니::</title>
 </head>
-<body style="margin-left: 5%">
+<body>
 
 	<input type="hidden" value="<%=basketlist.size()%>" id="list">
 	<center>
