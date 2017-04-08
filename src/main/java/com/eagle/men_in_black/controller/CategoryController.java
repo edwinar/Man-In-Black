@@ -71,7 +71,7 @@ public class CategoryController {
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
 		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
 		System.out.println(list);
-		mav.addObject("ITEM",ITEM);//
+		mav.addObject("ITEM",ITEM);
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
