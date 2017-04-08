@@ -418,7 +418,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else{ %>
-						<td id="deltd<%=list.get(i).getDEL_SEQ()%>" ><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<td id="deltd<%=list.get(i).getDEL_SEQ()%>"><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						<%} %>
 					</tr>
 				<%}

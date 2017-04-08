@@ -69,6 +69,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
             <!-- 앞에 <이거부분 -->
             <label class="opener" for="right-toggle" ></label>
       </article>
+      </aside>
 
 </body>
 </html>
