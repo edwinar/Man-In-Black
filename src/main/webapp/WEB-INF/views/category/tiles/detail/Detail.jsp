@@ -458,6 +458,7 @@ $(document).ready(function () {
  				reviewBody.innerHTML = "";
  				
  				for(i=0;i<flag.length;i++){
+ 					console.log(flag);
  					if(flag[i].USER_ID=="adm"){ 			        
  						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
  						+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
@@ -490,6 +491,8 @@ $(document).ready(function () {
  			       		}
  			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
  					}
+ 					
+ 					/* strInput = strInput + "<tr><td colspan='3'><a href='category.mib' class='btn btn-default' role='button'>1</a></td></tr>"; */
  				}
  				reviewBody.innerHTML = strInput;
  			},
@@ -782,7 +785,23 @@ function BuyPop(){
         </tr>
     </thead>
     <tbody id="reviewBody">
- 
+    
+ 	<%-- <tr>
+ 	<td colspan="3">
+ 	<%
+	int PAGE_SIZE = 9;
+	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
+	%>
+ 	<%
+		for (int i = 1; i <= pageCount; i++) {
+	%>
+	<a href="category.mib?" class="btn btn-default" role="button">1</a>
+	<%
+		}
+	%>
+ 	</td>
+ 	</tr> --%>
+ 	
     </tbody>
 	</table>
 	</div>
