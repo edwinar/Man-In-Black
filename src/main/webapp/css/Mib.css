@@ -235,8 +235,14 @@ body{
 	min-height: 25em;
 	border-radius: .5em;
 	pointer-events: none;
+	-ms-transition: all 0.45s ease-in;
+  	-o-transition: all 0.45s ease-in;
+  	-moz-transition: all 0.45s ease-in;
 	-webkit-transition: all 0.45s ease-in;
 	transition: all 0.45s ease-in;
+	-ms-transform: translateX(calc(100% - .75em));
+ 	 -o-transform: translateX(calc(100% - .75em));
+  	-moz-transform: translateX(calc(100% - .75em));
 	-webkit-transform: translateX(calc(100% - .75em));
 	transform: translateX(calc(100% - .75em));
 }
@@ -271,6 +277,10 @@ body{
 	border-radius: 100%;
 	mix-blend-mode: darken;
 	box-shadow: 0 0 0 0 rgba(17, 141, 240, 0.5), 0 0 0 0 #fff;
+	-ms-transition: all 0.6s ease-out;
+ 	 -o-transition:all 0.6s ease-out;
+  	-moz-transition: all 0.6s ease-out;
+	
 	-webkit-transition: all 0.6s ease-out;
 	transition: all 0.6s ease-out;
 }
@@ -298,21 +308,38 @@ body{
 	vertical-align: middle;
 	border-radius: 100%;
 	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+ 	 -o-transition:all 0.3s ease-in-out;
+  	-moz-transition:all 0.3s ease-in-out;
+	
 	transition: all 0.3s ease-in-out;
 }
 
 #right-art .opener:hover {
 	box-shadow: 0.1em 0 0 rgba(0, 0, 0, 0.2);
 	-webkit-transform: translateX(-25%);
+	-ms-transform: translateX(-25%);
+ 	-o-transform: translateX(-25%);
+  	-moz-transform: translateX(-25%);
+	-ms-transition: all 0.3s ease-in-out;
+ 	-o-transition:all 0.3s ease-in-out;
+  	-moz-transition:all 0.3s ease-in-out;
 	transform: translateX(-25%);
 	-webkit-transition: all 0.3s ease-in-out;
+	
 	transition: all 0.3s ease-in-out;
 }
 
 #right-art .opener:focus {
 	-webkit-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+ 	-o-transform: scale(0.9);
+  	-moz-transform: scale(0.9);
 	transform: scale(0.9);
 	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+ 	-o-transition:all 0.3s ease-in-out;
+  	-moz-transition:all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
 /* 여기색상이 < 이거색상 */
@@ -324,17 +351,29 @@ body{
 	height: .656em;
 	left: .6em;
 	-webkit-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+ 	-o-transition:all 0.3s;
+  	-moz-transition:all 0.3s;
+	
 	transition: all 0.3s;
 }
 
 #right-art .opener:before {
 	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+ 	-o-transform: rotate(45deg);
+  	-moz-transform: rotate(45deg);
+	
 	transform: rotate(45deg);
 	top: .25em;
 }
 
 #right-art .opener:after {
 	-webkit-transform: rotate(-45deg);
+	
+	-ms-transform: rotate(45deg);
+ 	-o-transform: rotate(45deg);
+  	-moz-transform: rotate(45deg);
 	transform: rotate(-45deg);
 	bottom: .25em;
 }
@@ -359,9 +398,15 @@ body{
 	border-radius: 100%;
 	pointer-events: none;
 	-webkit-transform: translateX(95%);
+	-ms-transform:  translateX(95%);
+ 	-o-transform:  translateX(95%);
+  	-moz-transform:  translateX(95%);
 	transform: translateX(95%);
 	box-shadow: inset 0 0 0 0 transparent;
 	-webkit-transition: all 0.6s ease-out;
+	-ms-transition:  all 0.6s ease-out;
+ 	-o-transition:  all 0.6s ease-out;
+  	-moz-transition:  all 0.6s ease-out;
 	transition: all 0.6s ease-out;
 }
 /* #toggle:checked:after {
@@ -378,8 +423,14 @@ body{
 #right-toggle:checked+#right-aside {
 	pointer-events: all;
 	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+ 	-o-transform:  translateY(0%);
+  	-moz-transform:  translateY(0%);
 	transform: translateY(0%);
 	-webkit-transition: all 0.6s ease-in 0.3s;
+	-ms-transition:  all 0.6s ease-in 0.3s;
+ 	-o-transition:  all 0.6s ease-in 0.3s;
+  	-moz-transition:  all 0.6s ease-in 0.3s;
 	transition: all 0.6s ease-in 0.3s;
 }
 /* #right-toggle:checked + #right-aside .right-spacer {
@@ -391,28 +442,43 @@ body{
 #right-toggle:checked+#right-aside .opener {
 	background-color: black;
 	-webkit-transition: all 0.1s ease-in-out 0.1s;
+	-ms-transition:  all 0.1s ease-in-out 0.1s;
+ 	-o-transition:  all 0.1s ease-in-out 0.1s;
+  	-moz-transition:  all 0.1s ease-in-out 0.1s;
 	transition: all 0.1s ease-in-out 0.1s;
 }
 
 #right-toggle:checked+#right-aside .opener:hover {
 	box-shadow: 0 0 0 0.5em #eee;
 	-webkit-transform: rotate(360deg) scale(1.2);
+	-ms-transform: rotate(360deg) scale(1.2);
+ 	-o-transform:  rotate(360deg) scale(1.2);
+  	-moz-transform:  rotate(360deg) scale(1.2);
 	transform: rotate(360deg) scale(1.2);
 }
 /*나오고 들어가는시간??*/
 #right-toggle:checked+#right-aside .opener:before, #right-toggle:checked+#right-aside .opener:after
 	{
 	-webkit-transition: all 0.1s 0.1s;
+	-ms-transition: all 0.1s 0.1s;
+ 	-o-transition:  all 0.1s 0.1s;
+  	-moz-transition:  all 0.1s 0.1s;
 	transition: all 0.1s 0.1s;
 }
 
 #right-toggle:checked+#right-aside .opener:before {
 	-webkit-transform: rotate(-45deg) translate(-40%, 25%);
+	-ms-transform: rotate(-45deg) translate(-40%, 25%);
+ 	-o-transform: rotate(-45deg) translate(-40%, 25%);
+  	-moz-transform: rotate(-45deg) translate(-40%, 25%);
 	transform: rotate(-45deg) translate(-40%, 25%);
 }
 
 #right-toggle:checked+#right-aside .opener:after {
 	-webkit-transform: rotate(45deg) translate(-40%, -25%);
+	-ms-transform: rotate(-45deg) translate(-40%, -25%);
+ 	-o-transform: rotate(-45deg) translate(-40%, -25%);
+  	-moz-transform: rotate(-45deg) translate(-40%, -25%);
 	transform: rotate(45deg) translate(-40%, -25%);
 }
 /*들어갈수있는 메뉴 수정*/
@@ -431,10 +497,17 @@ body{
 	text-transform: capitalize;
 }
 /*목록 마우스 오버 색 */
-#right-nav ul li a:hover {
+/* #right-nav ul li a:hover {
 	background-color: #eee;
 	color: black;
 	border-radius: .5em;
+} */
+#right-nav ul li a:hover {
+  color: #51e980;
+  text-decoration: none;
+}
+#right-nav ul li:hover {
+  border-left: 5px solid #51e980;
 }
 /*디테일 오른쪽 메뉴*/
 #buyaside {
@@ -447,6 +520,10 @@ body{
 	border-radius: .5em;
 	pointer-events: none;
 	-webkit-transition: all 0.45s ease-in;
+	-ms-transition: all 0.45s ease-in;
+ 	-o-transition: all 0.45s ease-in;
+  	-moz-transition: all 0.45s ease-in;
+	
 	transition: all 0.45s ease-in;
 }
 
