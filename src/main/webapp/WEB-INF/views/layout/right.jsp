@@ -15,6 +15,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 <meta charset="UTF-8">
 </head>
 <body>
+
 <!-- 앞에 튀어나와있는 < 이부분  -->
 <input type="checkbox" name="right-toggle" id="right-toggle" />
 <aside id="right-aside">
