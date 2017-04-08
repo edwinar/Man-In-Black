@@ -519,6 +519,7 @@ function QnAPage(page){
 	var PRO_SEQ = <%=PRO_SEQ %>;
 	var PAGE_NUM = page;
 	var strInput = "";
+	var strInput2 = "";
 	$.ajax({
 			type : "POST",
 			url : "QnAListAjax.mib",
@@ -531,6 +532,7 @@ function QnAPage(page){
 			success : function(data) {
 				var flag = $.parseJSON(data);
 				QnABody.innerHTML = "";
+				QnAPage.innerHTML = "";
 				for(i=0;i<flag.length;i++){
 					if(flag[i].USER_ID=="adm"){
 						strInput = strInput + "";
@@ -541,7 +543,14 @@ function QnAPage(page){
 			       	}
 				}
 				
+				var PAGE_SIZE = 2;
+				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+				console.log(flag[0].TOT_CNT);
+				for(var j=1;j<=pageCount;j++){
+					strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+				}
 				QnABody.innerHTML = strInput;
+				QnAPage.innerHTML = strInput2;
 			},
 			complete : function(data) {
 			},
@@ -817,8 +826,13 @@ function BuyPop(){
        
     </tbody>
 	</table>
-		<p align="right" style="margin-right: 30px;">
-			<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+		<p align="center">
+			<p align="center" id="QnAPage" style="background: RED;">
+			dssdf
+			</p>
+			<p align="right" style="margin-right: 30px;">
+				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			</p>
 		</p>
     </div>
 	</div>

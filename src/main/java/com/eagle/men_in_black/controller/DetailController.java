@@ -236,7 +236,7 @@ public class DetailController {
 		// form에서 넘어온 input
 		int PRO_SEQ = Integer.parseInt((res.getParameter("PRO_SEQ")==null || res.getParameter("PRO_SEQ")=="")?"":res.getParameter("PRO_SEQ"));
 		int PAGE_NUM = Integer.parseInt((res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM"));
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"5":res.getParameter("PAGE_SIZE");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"2":res.getParameter("PAGE_SIZE");
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("PRO_SEQ", PRO_SEQ);
