@@ -29,10 +29,10 @@ public class CategoryController {
 		ModelAndView mav = new ModelAndView("category/CategoryNew");
 		
 		String ORDER = (res.getParameter("ORDER")==null||res.getParameter("ORDER").equals("") )?"C.PRO_SEQ DESC":res.getParameter("ORDER");
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		int PAGE_NUM = Integer.parseInt((res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM"));
+		int PAGE_SIZE = Integer.parseInt((res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"15":res.getParameter("PAGE_SIZE"));
 		
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("PAGE_SIZE", PAGE_SIZE);
@@ -50,13 +50,12 @@ public class CategoryController {
 		
 		String ITEM = (res.getParameter("ITEM")==null||res.getParameter("ITEM").equals("") )?"OUTER":res.getParameter("ITEM");
 		String ORDER = (res.getParameter("ORDER")==null||res.getParameter("ORDER").equals("") )?"C.PRO_SEQ DESC":res.getParameter("ORDER");
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE");
+		int PAGE_NUM = Integer.parseInt((res.getParameter("PAGE_NUM")==null||res.getParameter("PAGE_NUM").equals("") )?"1":res.getParameter("PAGE_NUM"));
+		int PAGE_SIZE = Integer.parseInt((res.getParameter("PAGE_SIZE")==null||res.getParameter("PAGE_SIZE").equals("") )?"9":res.getParameter("PAGE_SIZE"));
 		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
-		
 		// 메소드 실행시 필요한 키값들의 해시맵
-		HashMap<String, String> map = new HashMap<String, String>();
-		HashMap<String, String> mapBest = new HashMap<String, String>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> mapBest = new HashMap<String, Object>();
 		map.put("ITEM", ITEM);
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
@@ -71,11 +70,11 @@ public class CategoryController {
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
 		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
+		System.out.println(list);
 		mav.addObject("ITEM",ITEM);//
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
-		
 		return mav;
 	}
 }
