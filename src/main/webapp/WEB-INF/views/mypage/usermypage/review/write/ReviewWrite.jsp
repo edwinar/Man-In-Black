@@ -117,7 +117,7 @@
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" class="mbtn" value="리뷰 달기"  onclick="closeSelf()">
 					</div>
 
 				</div>

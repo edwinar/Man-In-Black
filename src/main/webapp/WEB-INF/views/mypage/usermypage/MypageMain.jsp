@@ -215,7 +215,7 @@ td, th {
 
 				</table>
 			</div>
-			<button type="button" onclick="location.href='coupon_Mileage.mib'"
+			<button class="mbtn" type="button" onclick="location.href='coupon_Mileage.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
@@ -272,7 +272,7 @@ td, th {
 			</table>
 
 
-			<button type="button" onclick="location.href='buylist.mib'"
+			<button class="mbtn" type="button" onclick="location.href='buylist.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
@@ -378,7 +378,7 @@ td, th {
 					}
 				%>
 			</table>
-			<button type="button" onclick="location.href='myboard.mib'"
+			<button type="button" class="mbtn" onclick="location.href='myboard.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 

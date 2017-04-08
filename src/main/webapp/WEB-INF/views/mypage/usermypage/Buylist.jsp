@@ -125,10 +125,10 @@ input{
 			<input type="date" height="50px" name="start_date" id="start_date"
 				value="<%=START_DATE%>">~<input type="date" name="end_date"
 				id="end_date" value="<%=END_DATE%>" min="<%=END_DATE%>">
-			<button type="button" id="dateBtn" class="btn btn-default" style="height: 38px">검색</button><br>
-			<button class="btn btn-default" id="week"  >1주</button>
-			<button class="btn btn-default" id="month"  >1개월</button>
-			<button class="btn btn-default" id="threeMonth"  >3개월</button>
+			<button type="button" id="dateBtn" class="mbtn" style="height: 38px">검색</button><br>
+			<button class="mbtn" id="week"  >1주</button>
+			<button class="mbtn" id="month"  >1개월</button>
+			<button class="mbtn" id="threeMonth"  >3개월</button>
 		</p>
 	</div>
 
@@ -193,14 +193,14 @@ input{
 					%>
 					<td rowspan="1" valign="middle"> <%=buyList.get(i).getDEL_STEP()%>
 
-						<input type="button" class="btn btn-default" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+						<input type="button" class="mbtn"" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
 					</td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 					<td><input type="hidden" value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg">
 					<input type="hidden" value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg"> 
-					<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
+					<input type="button" class="mbtn" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
 				</tr>
 
 				<%
@@ -214,7 +214,7 @@ input{
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
 					<td><input type="hidden"
 						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> <input
-						type="button" value="리뷰쓰기" id="btn"
+						type="button" value="리뷰쓰기" id="btn"class="mbtn"
 						onclick="go(<%=buyList.get(i).getPRO_SEQ()%>,<%=buyList.get(i).getDEL_SEQ()%> )"></td>
 				</tr>
 
@@ -228,7 +228,7 @@ input{
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					<td><input type="button" value="취소" id="cancle"
+					<td><input type="button" class="mbtn" value="취소" id="cancle"
 							   onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
 				</tr>
 						<%

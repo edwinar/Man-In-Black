@@ -113,8 +113,8 @@
 
     </div>
 <center>
-    <input class="btn btn-success" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
-    <input class="btn btn-primary" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
+    <input class="mbtn" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
+    <input class="mbtn" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
     <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
     <input type="hidden" name="commend" value="">
 </center>

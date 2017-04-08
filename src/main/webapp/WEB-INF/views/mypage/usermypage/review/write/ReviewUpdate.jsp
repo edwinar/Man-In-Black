@@ -192,7 +192,7 @@ background-color:red;
 				<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
 			</div>
 			<div class="btn" align="center" style="height: 10%; width:100%;">
-				<button style="width: 50%; height: 100%;" id="admup">수정하기</button>
+				<button class="mbtn" style="width: 50%; height: 100%;" id="admup">수정하기</button>
 			</div>
 		</div>
 	</div>
@@ -261,8 +261,8 @@ background-color:red;
 				</div>
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-					<input type="button" value="수정 하기" onclick="closeSelf()">
-					<input type="button" value="닫기" onclick="window.close()">
+					<input type="button" class="mbtn"  value="수정 하기" onclick="closeSelf()">
+					<input type="button" class="mbtn"  value="닫기" onclick="window.close()">
 				</div>
 
 			</div>

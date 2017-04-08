@@ -9,8 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <style type="text/css">
 /*체크박스 싸이즈 크게*/
 .chbox {
@@ -21,6 +20,9 @@
 td, th {
 	text-align: center;
 }
+
+
+
 </style>
 <title>::장바구니::</title>
 </head>
@@ -127,12 +129,11 @@ td, th {
 
 		</div>
 		<div align="right">
-			<input type="button" id="delete"  value="삭제하기"
-				onclick="deletes()" class="btn btn-default"
+			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="mbtn"
 				style="width: 15%; margin-right: 1% ">
 		
 			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
-				class="btn btn-default" style="width: 15%; margin-right: 10.5%">
+				class="mbtn" style="width: 15%; margin-right: 3%">
 		</div>
 	</div>
 	<script type="text/javascript">
