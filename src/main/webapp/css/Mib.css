@@ -222,6 +222,7 @@ body{
 
 /*오른쪽 메뉴 기본*/
 #right-aside {
+	
 	position: absolute;
 	position: fixed;
 	right: 0;
