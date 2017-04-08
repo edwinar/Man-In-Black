@@ -326,10 +326,9 @@ function delStep(SEQ) {
 	<!--엑셀로 다운받기-->
 	<form name="searchForm" method="POST" action="" >
 	<div align="right">
-		<button type="button" onclick="exportToExcel();" class="btn btn-success">
-			엑셀 다운로드 <span class="glyphicon glyphicon-download-alt"
-				aria-hidden="true"></span>
-		</button>
+	<a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
+				aria-hidden="true"></span></a>
+		
 	</div>
 	</form>
 
