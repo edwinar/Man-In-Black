@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8");
 	display: block;
 	color : white;
 	/* background-color: gray; */
-	z-index: 1;
+	z-index: 999999999999;
 	padding: 15px 20px 20px 20px;
 	margin-left: -40px;
 	width: 130px;
@@ -106,6 +106,7 @@ request.setCharacterEncoding("UTF-8");
 	
 	display: none;
 	/* background:transparent; */
+	position:fixed;
 	position: absolute;
 	top:100%;
 	z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */

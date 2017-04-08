@@ -516,14 +516,13 @@ body{
 	right: 0;
 	top: 0;
 	bottom: 0;
-	margin-top: 630px;
+	margin-top: 200px;
 	border-radius: .5em;
-	pointer-events: none;
+	cursor:pointer;
 	-webkit-transition: all 0.45s ease-in;
 	-ms-transition: all 0.45s ease-in;
  	-o-transition: all 0.45s ease-in;
   	-moz-transition: all 0.45s ease-in;
-	
 	transition: all 0.45s ease-in;
 }
 
