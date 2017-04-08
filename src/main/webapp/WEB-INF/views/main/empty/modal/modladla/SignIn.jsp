@@ -18,9 +18,10 @@
   </p>
   </div>
   <p class="signin-container" style="margin-top: -23px;">
-    <input type="submit" name="go" id="go" value="로그인">
-  	<input type="button" id="signup" value="회원가입" style="width: 100%; background-color:white;border-radius: 0.3em; height:40px; margin-top: 5px; margin-bottom: 5px;">
-  	<a id="kakao" style="margin-left: 14px;"></a>
+    <input class="btn btn-default" type="submit" name="go" id="go" value="로그인"style="width: 54%; float:left; border-radius: 0.3em; height:50px; margin-top: 5px; margin-bottom: 17px; margin-left: 18px">
+
+  	<input type="button" class="btn btn-default" id="signup" value="회원가입" style="width: 31%; float:left; border-radius: 0.3em; height:50px; margin-top: 5px; margin-left: 5px; font-weight:bold">
+  	<a id="kakao" style="margin-left: 18px"></a>
   	
   </p>
   
