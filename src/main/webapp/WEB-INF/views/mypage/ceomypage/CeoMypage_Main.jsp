@@ -295,6 +295,8 @@ function delStep(SEQ) {
 			}
 		});		
 }
+
+
 </script>
 </head>
 <body>
@@ -319,21 +321,6 @@ function delStep(SEQ) {
 				<br>
 			</p>
 		</div>
-
-
-	</center>
-	<!--엑셀로 다운받기-->
-	<form name="excel" method="POST" action="exceldown.mib" >
-	<div align="right">
-	<input type="submit" name="excel" value="엑셀다운">
-	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
-				aria-hidden="true"></span></a> -->
-	<a  class="mbtn" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
-				aria-hidden="true"></span></a>
-		
-	</div>
-	</form>
-
 <%
 START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
 
@@ -341,6 +328,22 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 
 %>
 
+	</center>
+	<!--엑셀로 다운받기-->
+	<form id="excel" method="POST" action="toExcel.mib" >
+	<input type="hidden" name="PAGE_SIZE" value="10">
+	<input type="hidden" name="PAGE_NUM" value="1">
+	<input type="hidden" name="START_DATE" value="<%=START_DATE%>">
+	<input type="hidden" name="END_DATE" value="<%=END_DATE%>">
+	<input type="hidden" name="search" value="<%=search%>">
+	
+	<div align="right">
+	<input type="submit" onclick="exportToExcel();" value="엑셀다운">
+	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
+				aria-hidden="true"></span></a> -->
+	</div>
+	</form>
+	
 	<!--검색(유저ID,상품이름)-->
 	<form class="search" action="ceoMypage_Main.mib">
 		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
