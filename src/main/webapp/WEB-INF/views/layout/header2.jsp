@@ -307,9 +307,9 @@ width: 100%;
 	
 </div>
 
-<div class="lologo" style="width: 150px; height: 80px; float: left; " >
+<div class="lologo" style="width: 180px; height: 80px; float: left; " >
 <a href="meninblack.mib">
-<img alt="" src="../images/LOGO1.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
+<img alt="" src="../images/MIBlogo.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
 </a>
 </div>
 
