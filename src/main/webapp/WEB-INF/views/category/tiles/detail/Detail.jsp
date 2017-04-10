@@ -469,7 +469,6 @@ function reviewPage(page){
 			var reviewPage = document.getElementById("reviewPage");
 			reviewBody.innerHTML = "";
 			reviewPage.innerHTML = "";
-			console.log(flag);
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
@@ -541,7 +540,9 @@ function QnAPage(page){
 				QnAPage.innerHTML = "";
 				for(i=0;i<flag.length;i++){
 					if(flag[i].USER_ID=="adm"){
-						strInput = strInput + "";
+						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
 					}else{
 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
 						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
