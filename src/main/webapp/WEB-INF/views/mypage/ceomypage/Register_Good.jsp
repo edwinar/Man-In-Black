@@ -109,10 +109,19 @@
 </style>
 
 <body>
+	<center>
+	<div id="mypagehead">
+			<h4 align="right" style="margin-right: 100px">
+				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="register_Good.mib">제품등록</a>
+			</h4>
+			<h3>새로운 제품을 등록하세요.</h3>
+		</div>
+	</center>
+	<br><br>
 	<form action="writeGood.mib" id="writeform" method="post" enctype="multipart/form-data">
 
 	<div class="wrap">
- 	<p align="center" style="margin-top: 15px;">카테고리 분류</p>
  	<div class="mat-label-check" style="font-weight: bold; margin-left: 25%" id="cate-div">
  	<select name="item" id="item" style="float: left; width: 20%; height: 30px;">
  	<option value="none">카테고리</option>
@@ -157,8 +166,7 @@
     	<div style="width: 12.5%; height: 200px; float:left; " ></div>		
     	<div style="width: 25%; height: 200px; float:left; background: #f2f2f2; border: 8px solid #E0E0E0;" id="imgthree-div"></div>	
     </div>
-    
-    <button type="button" onclick="addDetail()" class="mbtn">추가</button>
+    <button type="button" onclick="addDetail()" class="btn btn-default" style="margin-top: 20px">상품추가</button>
     <div style="clear: left; width: 100%; height: 300px;" id="add" >
     
     <div style="float:left; width: 20%; height: 300px;" id="addDt">
@@ -240,9 +248,10 @@
 
 							});
 		</script>
-		
-		<input type="submit" value="글올리기" class="reg_good mbtn"  >
-		<input type="button" value="취소" class="reg_good mbtn">
+		<div align="right">
+		<input type="submit" class="btn btn-default" value="글올리기" class="reg_good mbtn">
+		<input type="button" class="btn btn-default" value="취소" class="reg_good mbtn">
+		</div>
 	</form>
 
 
@@ -250,29 +259,29 @@
 <script type="text/javascript">
 var num = 0;
 
-	$(".mat-input").focus(function(){
-	  $(this).parent().addClass("is-active is-completed");
-	});
+   $(".mat-input").focus(function(){
+     $(this).parent().addClass("is-active is-completed");
+   });
 
-	$(".mat-input").focusout(function(){
-	  if($(this).val() === ""){
-	    $(this).parent().removeClass("is-completed");
-	  $(this).parent().removeClass("is-active");
-	  }
-	});
-		
-		$(".mat-input-color").focus(function(){
-		  $(this).parent().addClass("is-active is-completed");
-		});
+   $(".mat-input").focusout(function(){
+     if($(this).val() === ""){
+       $(this).parent().removeClass("is-completed");
+     $(this).parent().removeClass("is-active");
+     }
+   });
+      
+      $(".mat-input-color").focus(function(){
+        $(this).parent().addClass("is-active is-completed");
+      });
 
-		$(".mat-input-color").focusout(function(){
-		  if($(this).val() === ""){
-		    $(this).parent().removeClass("is-completed");
-		  $(this).parent().removeClass("is-active");
-		  }
-		});	
+      $(".mat-input-color").focusout(function(){
+        if($(this).val() === ""){
+          $(this).parent().removeClass("is-completed");
+        $(this).parent().removeClass("is-active");
+        }
+      });   
 
-// 파일 업로드 이미지 미리보기 	
+// 파일 업로드 이미지 미리보기    
 $(function() {
         $("#onefile").on('change', function(){
             readURL(this,'one');
@@ -286,34 +295,34 @@ $(function() {
     });
 
     function readURL(input,num) {
-    	if(num=='one'){
-    		$("#imgone-div").html('<img id="oneblah" src="#" width="100%" height="100%"/>')	
-    	if (input.files && input.files[0]) {
+       if(num=='one'){
+          $("#imgone-div").html('<img id="oneblah" src="#" width="100%" height="100%"/>')   
+       if (input.files && input.files[0]) {
         var reader = new FileReader();
-	    reader.onload = function (e) {
-        		
+       reader.onload = function (e) {
+              
                 $('#oneblah').attr('src', e.target.result);
             }
 
           reader.readAsDataURL(input.files[0]);
         }
         }else if(num=='two'){
-        	$("#imgtwo-div").html('<img id="twoblah" src="#" width="100%" height="100%"/>')	
-        	if (input.files && input.files[0]) {
+           $("#imgtwo-div").html('<img id="twoblah" src="#" width="100%" height="100%"/>')   
+           if (input.files && input.files[0]) {
             var reader = new FileReader();
-    	    reader.onload = function (e) {
-        	
+           reader.onload = function (e) {
+           
                 $('#twoblah').attr('src', e.target.result);
             }
 
           reader.readAsDataURL(input.files[0]);
-        }        	
+        }           
         }else if(num=='three'){
-        	$("#imgthree-div").html('<img id="threeblah" src="#" width="100%" height="100%"/>')	
-        	if (input.files && input.files[0]) {
+           $("#imgthree-div").html('<img id="threeblah" src="#" width="100%" height="100%"/>')   
+           if (input.files && input.files[0]) {
             var reader = new FileReader();
-    	    reader.onload = function (e) {
-         		
+           reader.onload = function (e) {
+               
                  $('#threeblah').attr('src', e.target.result);
              }
 
@@ -323,109 +332,109 @@ $(function() {
     }
 
 function addDetail() {
-	num++;
-	
-	alert("num="+num);
-	
-	 var cloneElements = $('#addDt').clone(true).find("input[name^=color]").attr("name", "color"+num).end()
-	 											.find("input[name^=size]").attr("name", "size"+num).end()
-	 											.find("input[name^=stock]").attr("name", "stock"+num).end();
-	// 변수 cloneElements를 만들어 복사된 요소들을 저장
+   num++;
+   
+   alert("num="+num);
+   
+    var cloneElements = $('#addDt').clone(true).find("input[name^=color]").attr("name", "color"+num).end()
+                                     .find("input[name^=size]").attr("name", "size"+num).end()
+                                     .find("input[name^=stock]").attr("name", "stock"+num).end();
+   // 변수 cloneElements를 만들어 복사된 요소들을 저장
 
-	cloneElements .appendTo('#add');
-	// 복사한 요소들을 buttons2 클래스명의 자식요소로 넣기
-	
-	 
-	    
+   cloneElements .appendTo('#add');
+   // 복사한 요소들을 buttons2 클래스명의 자식요소로 넣기
+   
+    
+       
 }
     
     $(document).ready(function() {
-		$("#sub_item").change(function() {
-			if($(this).val()=='add'){
-				$("#sub_item").removeAttr("name").attr({
-					name : "abcd" }) 
-				$("#input-sub-div").css('width','25%');
-				$("#input-sub-div").append('<input name="sub_item" id="input_sub" type="text" style="height: 30px;" placeholder="추가입력">');
-								
-			}else{
-				$("select[name=abcd]").removeAttr("name").attr({
-					name : "sub_item" }) 
-				
-				$("#input-sub-div").css('width','0');
-				$("#input_sub").remove();
-			}
-		});
-		
-		
-		$("#item").change(function() {
-			var item = $(this).val();
-			
-			$.ajax({
-	 			type : "POST",
-	 			url : "sub_item.mib",
-	 			async : true,
-	 			dataType : "html",
-	 			data : {
-	 				"item" : item
-	 			},
-	 			success : function(data) {
-	 				var flag = $.parseJSON(data);
-	 				
-	 				$("#sub_item").find("option").remove();
-	 				$("#sub_item").append("<option value='none'>서브 카테고리</option>");
-	 				$("#sub_item").append("<option value='add'>추가</option>");
-	 				$("#input_sub").remove();
-	 				
-	 				for(i=0;i<flag.length;i++){
-	 					
-	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+"</option>");
+      $("#sub_item").change(function() {
+         if($(this).val()=='add'){
+            $("#sub_item").removeAttr("name").attr({
+               name : "abcd" }) 
+            $("#input-sub-div").css('width','25%');
+            $("#input-sub-div").append('<input name="sub_item" id="input_sub" type="text" style="height: 30px;" placeholder="추가입력">');
+                        
+         }else{
+            $("select[name=abcd]").removeAttr("name").attr({
+               name : "sub_item" }) 
+            
+            $("#input-sub-div").css('width','0');
+            $("#input_sub").remove();
+         }
+      });
+      
+      
+      $("#item").change(function() {
+         var item = $(this).val();
+         
+         $.ajax({
+             type : "POST",
+             url : "sub_item.mib",
+             async : true,
+             dataType : "html",
+             data : {
+                "item" : item
+             },
+             success : function(data) {
+                var flag = $.parseJSON(data);
+                
+                $("#sub_item").find("option").remove();
+                $("#sub_item").append("<option value='none'>서브 카테고리</option>");
+                $("#sub_item").append("<option value='add'>추가</option>");
+                $("#input_sub").remove();
+                
+                for(i=0;i<flag.length;i++){
+                   
+                   $("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+"</option>");
 
-	 				}
-	 				
-	 			},
-	 			complete : function(data) {
-	 			},
-	 			error : function(xhr, status, error) {
-	 				alert("에러발생");
-	 			}
-	 		});		
-		});
-		
-		
-		
-	});
-	
+                }
+                
+             },
+             complete : function(data) {
+             },
+             error : function(xhr, status, error) {
+                alert("에러발생");
+             }
+          });      
+      });
+      
+      
+      
+   });
+   
  // 가격,재고 숫자만  제한
     function stockKeyCode(event) {
-    			event = event || window.event;
-    			var keyID = (event.which) ? event.which : event.keyCode;
-    			if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
-    			{
-    				
-    			}
-    			else
-    			{
-    				alert("숫자만 입력해주세요");
-    				$("#stock").val('');
-    			}
-    			/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
-    			
-    		}
+             event = event || window.event;
+             var keyID = (event.which) ? event.which : event.keyCode;
+             if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13)
+             {
+                
+             }
+             else
+             {
+                alert("숫자만 입력해주세요");
+                $("#stock").val('');
+             }
+             /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+             
+          }
     function pro_priceKeyCode(event) {
-		event = event || window.event;
-		var keyID = (event.which) ? event.which : event.keyCode;
-		if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13 )
-		{
-			
-		}
-		else
-		{
-			alert("숫자만 입력해주세요");
-			$("#pro_price").val('');
-		}
-		/* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
-		
-	}
+      event = event || window.event;
+      var keyID = (event.which) ? event.which : event.keyCode;
+      if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID ==8 || keyID ==9 || keyID ==13 )
+      {
+         
+      }
+      else
+      {
+         alert("숫자만 입력해주세요");
+         $("#pro_price").val('');
+      }
+      /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 */
+      
+   }
     
 </script>
 
