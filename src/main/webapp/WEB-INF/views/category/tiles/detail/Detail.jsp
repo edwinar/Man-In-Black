@@ -442,7 +442,6 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
-    	alert("ASdsad");
     	reviewPage(1);
     });
     $('#tab3').on('click',function(){
