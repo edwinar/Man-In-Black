@@ -469,13 +469,14 @@ function reviewPage(page){
 			var reviewPage = document.getElementById("reviewPage");
 			reviewBody.innerHTML = "";
 			reviewPage.innerHTML = "";
+			console.log(flag);
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
 					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
 					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
 				}else{
-					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='"+flag[i].STORED_NAME+"' class='imgr' width='200px'></td>"
 					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
 		       		if(flag[i].SCORE==1){
 		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
@@ -505,11 +506,9 @@ function reviewPage(page){
 			}
 			var PAGE_SIZE = 15;
 			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-			//strInput2 = strInput2 + "<tr><td colspan='3'>";
 			for(var j=1;j<=pageCount;j++){
 				strInput2 = strInput2 + "<a onclick='reviewPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 			}
-			//strInput = strInput + "</td></tr>";
 			reviewBody.innerHTML = strInput;
 			reviewPage.innerHTML = strInput2;
 		},
