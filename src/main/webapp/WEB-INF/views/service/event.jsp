@@ -19,7 +19,6 @@
 #container { 
 	width:100%; 
 	height:600px;
-	background-color:#191970; 
 	padding-top: 20px;
 }
 
@@ -92,6 +91,7 @@ function coup(seq){
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
 			</h4>
 			<h3>진행중인 이벤트</h3>
+			<h4>진행중인 이벤트를 확인하시고 클릭하면 쿠폰이 받아집니다.</h4>
 			
 		</div>
 	</center>
@@ -106,9 +106,9 @@ function coup(seq){
 			if (userdto.getUSER_ID().equals("adm")) {
 	%>
 	<p align="right">
-		<a class="btn btn-primary" href="eventwrite.mib"
+		<a class="btn btn-default" href="eventwrite.mib"
 			role="button">이벤트등록</a>
-		<a class="btn btn-primary" href="couponwrite.mib"
+		<a class="btn btn-default" href="couponwrite.mib"
 			role="button">쿠폰등록</a>
 	</p>
 	<%

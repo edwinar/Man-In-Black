@@ -21,8 +21,7 @@
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
 			</h4>
-			<h3>고객센터</h3>
-			<h4>MIB 이벤트입니다</h4>
+			<h4>이벤트정보를 수정하세요.</h4>
 		</div>
 	</center>
 	<h3>EVENT DETAIL</h3>
@@ -39,15 +38,15 @@
 			<%
 				if (userdto != null && userdto.getUSER_ID().equals("adm")) {
 			%>
-			<a class="btn btn-primary btn-sm"
+			<a class="btn btn-default btn-sm"
 				href="eventwrite.mib?seq=<%=serviceDto.getEVENT_SEQ()%>"
-				role="button">수정</a> <a class="btn btn-primary btn-sm"
+				role="button">수정</a> <a class="btn btn-default btn-sm"
 				href="eventdelete.mib?seq=<%=serviceDto.getEVENT_SEQ()%>"
 				role="button">삭제</a>
 			<%
 				}
 			%>
-			<a class="btn btn-primary btn-sm" href="event.mib" role="button">목록가기</a>
+			<a class="btn btn-default btn-sm" href="event.mib" role="button">목록가기</a>
 		</p>
 
 	</div>
