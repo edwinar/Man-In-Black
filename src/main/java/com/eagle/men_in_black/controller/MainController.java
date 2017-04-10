@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +30,8 @@ public class MainController {
 	
 	@Autowired
 	private MainSvc mainSvc;
-	@Autowired
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	//@Autowired
+	//private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	// 메인 화면 
 	@RequestMapping("meninblack.mib")
@@ -87,9 +87,9 @@ public class MainController {
 		List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
 		
 		if(dto!=null){
-			//if(pwd.equals(dto.getUSER_PW())){
+			if(pwd.equals(dto.getUSER_PW())){
 			//if(bcryptPasswordEncoder.matches(rawPassword, encodedPassword )){
-			if(bcryptPasswordEncoder.matches(pwd, dto.getUSER_PW() )){
+			//if(bcryptPasswordEncoder.matches(pwd, dto.getUSER_PW() )){
 				// 로그인 됬을 때 
 				//System.out.println("계정정보 일치");
 				
@@ -245,10 +245,10 @@ public class MainController {
 			String birth         = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
 			String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
 			String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
-			String encryptPassword = bcryptPasswordEncoder.encode(password);
-			loger.debug("============================");
-			loger.debug("encryptPassword="+encryptPassword);
-			loger.debug("============================");
+			//String encryptPassword = bcryptPasswordEncoder.encode(password);
+			//loger.debug("============================");
+			//loger.debug("encryptPassword="+encryptPassword);
+			//loger.debug("============================");
 			
 			String jibunAddress  = (res.getParameter("jibunAddress")==null || res.getParameter("jibunAddress")=="")?"":res.getParameter("jibunAddress");
 			String roadAddress   = (res.getParameter("roadAddress")==null || res.getParameter("roadAddress")=="")?"":res.getParameter("roadAddress");
@@ -264,8 +264,8 @@ public class MainController {
 			map.put("SEX", sex);
 			map.put("BIRTH", birth);
 			map.put("POSTCODE", postcode);
-			//map.put("PW", password);
-			map.put("PW", encryptPassword);
+			map.put("PW", password);
+			//map.put("PW", encryptPassword);
 			map.put("ADDRESS", fullAddress);
 			map.put("DETAILADDRESS", detailAddress);
 		 
