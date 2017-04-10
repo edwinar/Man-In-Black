@@ -103,7 +103,7 @@ outline: none;
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
 <div class="inputsnlables"><label>SEX</label>
-<input type="text" placeholder="ex)남자" name="sex"; id="sex"; class="lock"/></div>
+<input type="text" placeholder="ex)남자" name="sex" id="sex" class="lock"/></div>
 <div class="inputsnlables"><label>BIRTH</label>
 <input type="text" placeholder="ex)900411" name="birth" id="birth" class="lock" onkeyup="showKeyCode(event)"/>
 </div>

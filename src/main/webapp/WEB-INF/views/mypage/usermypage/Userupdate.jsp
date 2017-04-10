@@ -16,7 +16,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::회원정보 수정::</title>
 <style>
-#Registration{font-size:1em;color:black;text-align:center;font-weight:normal;}
 
 #signupdiv
 {
@@ -25,7 +24,10 @@ height:auto;
 margin:1% auto;
 }
 
-#inputlbl{padding:0px 0px 0px 20px;
+#inputlbl
+{
+
+padding:0px 0px 0px 55px;
 background:rgba(255,255,255,0.8);
 border-radius:5px;
 
@@ -42,7 +44,7 @@ border-bottom:1px solid #dedede;
 #MIBsignupform label
 {
 display:block;
-font-size:0.9em;
+font-size:1.2em;
 color:#767676;
 padding:20px 0px;
 width:100px;
@@ -50,62 +52,21 @@ float:left;
 font-weight:bold;
 }
 
-#MIBsignupform input
+ #MIBsignupform input[type=text]
 {
 border:none;
 padding:20px 0px;
 background:transparent;
 width:230px;
-font-size:0.9em;
-}
-
-
-#MIBsignupform input[type=button]
-{
-background:#fff;
-text-align:center;
-width:100%;
-border-radius:10px;
-border-style:groove;
-border-color:#f2f2f2;
 font-size:1.2em;
-color:black;
-margin-top:10px;
-cursor:pointer;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
-height: 15px;
 
 }
-#MIBsignupform button{
-background:#fff;
-text-align:center;
-border-radius:5px;
-font-size:1em;
-color:black;
-margin-top:10px;
-cursor:pointer;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
-height: 30px;
-}
-#MIBsignupform button:hover{
-background:black;
-color:white;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;}
-#mypageheada{
-margin-right: 100px;
+
+input:focus, textarea:focus
+{     
+outline: none;
 }
 
-@media ( max-width : 1200px) { 
-#mypagehead{
-margin-top:30px;
-margin-right: -50px;
-}
-
-#mypageheada{
-margin-right: -10px
-}
-
-}
 </style>
 </head>
 <body>
@@ -123,10 +84,10 @@ if(updateResult.equals("OK")){
 <h4 id="mypageheada" align="right" ><a href="meninblack.mib">홈</a> > 
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="userup.mib">회원정보수정</a></h4>
-<h3>MY Order</h3>
 <h4>회원님의 정보를 수정하세요</h4>
 </div>
 </center>
+<br><br>
 <input type="hidden" id="upda" value="<%=upda%>">
 <script type="text/javascript">
 $(document).ready(function() {
@@ -191,32 +152,41 @@ $(document).ready(function() {
 <form id="MIBsignupform" action="" method="post">
 <div id="inputlbl">
 
-<div class="inputsnlables" id="signB-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email-b" id="sign_email-b" value="<%=userinfo.getEMAIL()%>" readonly="readonly" /> 
-<a href="" id="signB" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL바꾸기</a></div> 
+<div class="inputsnlables" id="signB-div"><label>EMAIL</label><input type="text" placeholder="EMAIL" name="sign_email-b" id="sign_email-b" value="<%=userinfo.getEMAIL()%>" readonly="readonly" /> 
+<a href="" id="signB" data-toggle="modal" data-target="" class="btn btn-default" >
+<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+수정</a></div> 
 
-<div class="inputsnlables" id="signA-div"><label>EMAIL</label><input type="email" placeholder="EMAIL" name="sign_email-a" id="sign_email-a" value="<%=sign_email%>" /> 
-<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >EMAIL인증</a></div> 
+<div class="inputsnlables" id="signA-div"><label>EMAIL</label><input type="text" placeholder="EMAIL" name="sign_email-a" id="sign_email-a" value="<%=sign_email%>" /> 
+<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >
+<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+인증받기</a></div> 
 
 
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock" readonly="readonly" value="<%=userinfo.getUSER_ID()%>"/></div>
-<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" /></div>
+<div class="inputsnlables"><label>PassWord</label><input type="text" placeholder="PassWord" id="password" name="password" /></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" readonly="readonly" value="<%=userinfo.getUSER_NAME()%>"/></div>
 <div class="inputsnlables"><label>TEL</label>
 <input type="text" placeholder="TEL" id="tel" name="tel" value="<%=userinfo.getTEL()%>" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)"/>
 </div>
-<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
-<button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
+<div class="inputsnlables"><label>POSTCODE</label>
+<input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
+<button onclick="Postcode()" type="button" class="btn btn-default">
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>검색하기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; readonly="readonly" value="<%=userinfo.getSEX()%>"/></div>
+<div class="inputsnlables"><label>SEX</label>
+<input type="text" placeholder="SEX" name="sex" id="sex" readonly="readonly" value="<%=userinfo.getSEX()%>"/></div>
 <div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
 
-
-<input type="button" id="complete"  value="정보수정하기">
+<br>
+<div align="center">
+<input type="button" id="complete"  value="정보수정하기" class="btn btn-default" style="font-weight:bold">
+</div>
 </div>
 
-</form></div>
+</form>
 
 
 <script type="text/javascript">
