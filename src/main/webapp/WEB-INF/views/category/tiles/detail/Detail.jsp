@@ -568,11 +568,11 @@ function QnADetail(QNA_SEQ){
 	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnAWrite(){
-	if(dto!=null){
+	//if(dto!=null){
 		window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
-	}else{
-		alert("로그인을 하셔야합니다!고갱님");
-	}
+	//}else{
+	//	alert("로그인을 하셔야합니다!고갱님");
+	//}
 }
 function BuyPop(){
 	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
