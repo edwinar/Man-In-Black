@@ -9,9 +9,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+@media ( max-width : 1200px) { 
+	.ty{
+	margin-top: 30px;
+	}
+    }
+
+
+</style>
 <title>::Q&A::</title>
 </head>
 <body>
+<div class="ty">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -103,7 +113,7 @@
 					
 				</div>
 			</div>
-	
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -114,5 +124,4 @@ function goqna(qseq) {
 				"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 </script>
-
 </html>

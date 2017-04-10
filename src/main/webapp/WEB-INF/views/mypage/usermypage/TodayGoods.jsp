@@ -20,10 +20,15 @@
 .thumbnail:hover {
 	opacity: 0.5;
 }
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: 5%">
+<div style="width: 90%; margin-left: 5%" class="ty">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">

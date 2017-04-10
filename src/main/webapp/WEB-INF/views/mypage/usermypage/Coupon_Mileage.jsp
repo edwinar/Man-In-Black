@@ -59,10 +59,26 @@ body {
 .gray {
 	border-bottom: 5px solid #696969;
 }
+/*1024해상도가 1200px임*/
+@media ( max-width : 1200px) { 
+#divl{
+width: 43%;
+height: 90%
+}
+#boardone, .boardone {
+		display: none;
+		visibility: hidden;
+	}
+.ty{
+	margin-top: 30px;
+	}
+	
+}
+
 </style>
 </head>
 <body>
-
+	<div class="ty">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -80,7 +96,7 @@ body {
 			<div class="head gray">사용가능한 쿠폰</div>
 
 			<div class="offer" align="center">
-				<table style="text-align: center; width: 90%">
+				<table class="ta" style="text-align: center; width: 90%">
 					<col width="40%">
 					<col width="30%">
 					<col width="30%">
@@ -174,16 +190,13 @@ body {
 				현재<%=mypageDto.getPOINT_FINAL()%>
 				<%} %>
 			</p>
-			<table style="text-align: center; width: 90%">
-				<col width="20%">
-				<col width="40%">
-				<col width="20%">
-				<col width="20%">
+			<table class="ta" style="text-align: center; width: 90%">
+		
 				<tr>
-					<th style="text-align: center; margin-top: 5px">날짜</th>
-					<th style="text-align: center; margin-top: 5px">상품명</th>
-					<th style="text-align: center; margin-top: 5px">금액</th>
-					<th style="text-align: center; margin-top: 5px">최종</th>
+					<th style="text-align: center; margin-top: 5px; width: 20%" class="boardone">날짜</th>
+					<th style="text-align: center; margin-top: 5px; width: 40%">상품명</th>
+					<th style="text-align: center; margin-top: 5px; width: 20%">금액</th>
+					<th style="text-align: center; margin-top: 5px; width: 20%">최종</th>
 				</tr>
 				<%
 					if (pointList == null || pointList.size() == 0) {
@@ -199,7 +212,7 @@ body {
 
 
 				<tr style="height: 27px">
-					<td><%=pointList.get(i).getPOINT_TIME()%></td>
+					<td class="boardone"><%=pointList.get(i).getPOINT_TIME()%></td>
 					<td><%=pointList.get(i).getPRO_NAME()%></td>
 					<%
 						if (pointList.get(i).getINCREASE().equals("PLUS")) {
@@ -265,6 +278,7 @@ body {
 			</div>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>
