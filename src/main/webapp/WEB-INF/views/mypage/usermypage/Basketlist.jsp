@@ -20,9 +20,24 @@
 td, th {
 	text-align: center;
 }
+#mypageheada{
+ style="margin-right: 70px"
+}
 @media ( max-width : 1200px) { 
 .ty{
 margin-top: 30px;
+}
+#mypagehead{
+width: 94.5%
+}
+#mypageheada{
+margin-right: -20px
+}
+#budiv{
+margin-right: -5px;
+
+
+
 }
 }
 </style>
@@ -35,7 +50,7 @@ margin-top: 30px;
 	<input type="hidden" value="<%=basketlist.size()%>" id="list">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="basketlist.mib">장바구니</a>
 			</h4>
@@ -124,7 +139,7 @@ margin-top: 30px;
 						<td><input type="text" id="tag" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>=</td>
-						<td><input type="text" id="top" value="" readonly="readonly" class="form-control" style="text-align: center;">
+						<td><input type="text" id="top" svalue="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 					</tr>
 				</table>
@@ -133,7 +148,7 @@ margin-top: 30px;
 			</form>
 
 		</div>
-		<div align="right" >
+		<div align="right" id="budiv" >
 			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="btn btn-default"
 				style="width: 14.35%; margin-right: 1% ">
 		

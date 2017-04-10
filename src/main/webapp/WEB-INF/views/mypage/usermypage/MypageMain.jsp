@@ -117,13 +117,19 @@ td, th {
 @media ( max-width : 1200px) { 
 .ty{
 margin-top: 30px;
+margin-left: -50px;
 
 }   
 #버튼{
 margin-right: 33px;
 
 }   
-   
+#mypagehead{
+margin-right: -60px;
+}   
+#boarddiv{
+width: 94.5%
+}
 }
 
 
@@ -135,7 +141,7 @@ margin-right: 33px;
 <div class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 align="right" style="margin-right: 70px">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a>
 			</h4>
 			<h3>MY Order</h3>
@@ -287,7 +293,7 @@ margin-right: 33px;
 
 			<div id="버튼">
 			<button class="btn btn-default" type="button" onclick="location.href='buylist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
 			</div>
 		</div>
 		<br> <br> <br> <br> <br> <br>
@@ -343,7 +349,7 @@ margin-right: 33px;
 			</table>
 			<div id="버튼">
 			<button type="button" onclick="location.href='basketlist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
 			</div>	
 		</div>
 
@@ -397,7 +403,7 @@ margin-right: 33px;
 			</table>
 			<div id="버튼">
 			<button type="button" class="btn btn-default" onclick="location.href='myboard.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
 			</div>
 		</div>
 

@@ -59,6 +59,9 @@ body {
 .gray {
 	border-bottom: 5px solid #696969;
 }
+#mypageheada{
+margin-right: 100px
+}	
 /*1024해상도가 1200px임*/
 @media ( max-width : 1200px) { 
 #divl{
@@ -73,6 +76,11 @@ height: 90%
 	margin-top: 30px;
 	}
 	
+#mypageheada{
+margin-right: -20px
+}	
+	
+	
 }
 
 </style>
@@ -81,7 +89,7 @@ height: 90%
 	<div class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> > <a
 					href="coupon_Mileage.mib">쿠폰&적립금</a>
 			</h4>
