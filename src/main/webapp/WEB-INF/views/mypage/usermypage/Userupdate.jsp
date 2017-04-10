@@ -67,6 +67,13 @@ input:focus, textarea:focus
 outline: none;
 }
 
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+
+
 </style>
 </head>
 <body>
@@ -79,7 +86,7 @@ if(updateResult.equals("OK")){
 <script type="text/javascript">alert("회원정보수정 실패!");</script>
 <%} %>
 
-<center>
+<center class="ty">
 <div id="mypagehead">
 <h4 id="mypageheada" align="right" ><a href="meninblack.mib">홈</a> > 
 <a href="mymain.mib">MY PAGE</a> > 
@@ -136,12 +143,12 @@ $(document).ready(function() {
 });
 </script>
 
-	<div style="width: 100%; height: 700px; " id="pwdCheck" >
+	<div style="width: 100%; height: 700px;" id="pwdCheck">
 		<center>
 			<form style="margin-top: 200px">
 				비밀 번호 확인 <br>
 				<input type="password" size="30" style="background-color: white;" class="" name="pw" id="pw"><br>
-				<input type="button" value="확인" class="checkbtn" id="checkbtn">
+				<input type="button" class="btn btn-default" value="확인" class="checkbtn" id="checkbtn">
 			</form>
 		</center>
 	</div>
