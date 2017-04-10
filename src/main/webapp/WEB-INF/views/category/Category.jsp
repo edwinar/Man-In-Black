@@ -24,13 +24,20 @@
 /* 베스트 상품 부분, 카테고리부분 */
 .thumbnail{
  width: 100%;
- height: 400px;
+ height: 600px;
 }
 .thumbnail{
-   opacity: 1;
+	opacity: 1;
 }
 .thumbnail:hover{
-   opacity: 0.5;
+	opacity: 0.5;
+}
+/*1024해상도가 1200px임*/
+@media ( max-width : 1200px) { 
+	.thumbnail{
+		width: 100%;
+	 	height: 330px;
+	}
 }
 </style>
 </head>
@@ -92,7 +99,7 @@ function addCookie(pd_no) {
 %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=listBest.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 300px;">
+      <img src="<%=listBest.get(i).getSTORED_NAME()%>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=listBest.get(i).getPRO_NAME() %></h5>
         <p><%=listBest.get(i).getPRO_PRICE() %> Won</p>
@@ -136,7 +143,7 @@ function addCookie(pd_no) {
 %>
    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
       <div class="thumbnail">
-         <img src="<%=list.get(i).getSTORED_NAME()%>" alt="..."  style="width: 100%; height: 300px;">
+         <img src="<%=list.get(i).getSTORED_NAME()%>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
          <div class="caption">
             <h5><%=list.get(i).getPRO_NAME() %></h5>
             <p><%=list.get(i).getPRO_PRICE() %> Won</p>
