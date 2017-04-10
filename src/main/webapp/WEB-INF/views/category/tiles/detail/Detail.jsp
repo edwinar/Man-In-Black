@@ -453,6 +453,7 @@ function reviewPage(page){
 	var PRO_SEQ = <%=PRO_SEQ %>;
 	var PAGE_NUM = page;
 	var strInput = "";
+	var strInput2 = "";
 	$.ajax({
 		type : "POST",
 		url : "ReviewListAjax.mib",
@@ -464,7 +465,10 @@ function reviewPage(page){
 		},
 		success : function(data) {
 			var flag = $.parseJSON(data);
+			var reviewBody = document.getElementById("reviewBody");
+			var reviewPage = document.getElementById("reviewPage");
 			reviewBody.innerHTML = "";
+			reviewPage.innerHTML = "";
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
@@ -501,12 +505,13 @@ function reviewPage(page){
 			}
 			var PAGE_SIZE = 15;
 			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-			strInput = strInput + "<tr><td colspan='3'>";
+			//strInput2 = strInput2 + "<tr><td colspan='3'>";
 			for(var j=1;j<=pageCount;j++){
- 				strInput = strInput + "<a onclick='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+				strInput2 = strInput2 + "<a onclick='reviewPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 			}
-			strInput = strInput + "</td></tr>";
+			//strInput = strInput + "</td></tr>";
 			reviewBody.innerHTML = strInput;
+			reviewPage.innerHTML = strInput2;
 		},
 		complete : function(data) {
 		},
@@ -547,7 +552,6 @@ function QnAPage(page){
 				
 				var PAGE_SIZE = 15;
 				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-				console.log(flag[0].TOT_CNT);
 				for(var j=1;j<=pageCount;j++){
 					strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 				}
@@ -568,11 +572,11 @@ function QnADetail(QNA_SEQ){
 	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnAWrite(){
-	//if(dto!=null){
+	if(<%=dto%>!=null){
 		window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
-	//}else{
-	//	alert("로그인을 하셔야합니다!고갱님");
-	//}
+	}else{
+		alert("로그인을 하셔야합니다!고갱님");
+	}
 }
 function BuyPop(){
 	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
@@ -813,7 +817,9 @@ function BuyPop(){
  	
     </tbody>
 	</table>
-	
+	<div id="reviewPage" align="center">
+		
+	</div>
 	</div>
 	
     <!-- QNA -->
