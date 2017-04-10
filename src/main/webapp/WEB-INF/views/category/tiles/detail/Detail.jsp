@@ -16,7 +16,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::Detail:::</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 #outerH1{
 margin-top: 150px;
@@ -453,6 +452,7 @@ function reviewPage(page){
 	var PRO_SEQ = <%=PRO_SEQ %>;
 	var PAGE_NUM = page;
 	var strInput = "";
+	var strInput2 = "";
 	$.ajax({
 		type : "POST",
 		url : "ReviewListAjax.mib",
@@ -464,14 +464,17 @@ function reviewPage(page){
 		},
 		success : function(data) {
 			var flag = $.parseJSON(data);
+			var reviewBody = document.getElementById("reviewBody");
+			var reviewPage = document.getElementById("reviewPage");
 			reviewBody.innerHTML = "";
+			reviewPage.innerHTML = "";
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
 					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
 					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
 				}else{
-					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='"+flag[i].STORED_NAME+"' class='imgr' width='200px'></td>"
 					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
 		       		if(flag[i].SCORE==1){
 		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
@@ -501,12 +504,11 @@ function reviewPage(page){
 			}
 			var PAGE_SIZE = 15;
 			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-			strInput = strInput + "<tr><td colspan='3'>";
 			for(var j=1;j<=pageCount;j++){
- 				strInput = strInput + "<a onclick='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+				strInput2 = strInput2 + "<a onclick='reviewPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 			}
-			strInput = strInput + "</td></tr>";
 			reviewBody.innerHTML = strInput;
+			reviewPage.innerHTML = strInput2;
 		},
 		complete : function(data) {
 		},
@@ -535,19 +537,31 @@ function QnAPage(page){
 				var QnAPage = document.getElementById("QnAPage");
 				QnABody.innerHTML = "";
 				QnAPage.innerHTML = "";
+				var openNum = -1;
+				
+				
 				for(i=0;i<flag.length;i++){
+					if(flag[i].QNA_OPEN=='비공개'){
+						 openNum = 0
+						}else{
+					     openNum = 1
+						}
+				
 					if(flag[i].USER_ID=="adm"){
-						strInput = strInput + "";
+						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
 					}else{
 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'>"+flag[i].QNA_TITLE+"</a></td>"
 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
-			       	}
+			       	
+					}
+				
 				}
 				
 				var PAGE_SIZE = 15;
 				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-				console.log(flag[0].TOT_CNT);
 				for(var j=1;j<=pageCount;j++){
 					strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
 				}
@@ -564,20 +578,42 @@ function QnAPage(page){
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
-function QnADetail(QNA_SEQ){
-	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
+	//alert("QNA_OPEN"+QNA_OPEN);
+	//alert($("#userIdlog").val());
+	if(QNA_OPEN==0){ //비공개일때
+		if($("#userIdlog").val()=='nolog' ){ //로그인 안했거나 글쓴이와 다를때 
+			alert("비공개글입니다."); 
+			return;
+		}else if(USER_ID==$("#userIdlog").val() || $("#userIdlog").val()=='adm'){
+			window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+			return;
+		}
+		alert("비공개글입니다."); 
+		return;
+	}else{ // 공개일때 
+		
+		window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+	} 
+			
+	
+	
 }
 function QnAWrite(){
-	if(dto!=null){
-		window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
-	}else{
-		alert("로그인을 하셔야합니다!고갱님");
-	}
+	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
 }
 function BuyPop(){
 	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
 }
+function QnAWrite2(){
+	alert("로그인을 하셔야합니다!");
+}
 </script>
+<%if(dto!=null){ %>
+<input type="hidden" id="userIdlog" value="<%=dto.getUSER_ID() %>" >
+<%}else{ %>
+<input type="hidden" id="userIdlog" value="nolog" >
+<%} %>
 <div>
 <div>
 	<div class="slide-container">
@@ -706,12 +742,12 @@ function BuyPop(){
 		        	<% 	 
 					if(dto!=null){
 					%>
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
+		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
 		        	<%
 		        	}else{ 
 		        	%>
 		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
+		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
 		        		구매하기
 		        		</button>	
 		        		</a>
@@ -813,7 +849,9 @@ function BuyPop(){
  	
     </tbody>
 	</table>
-	
+	<div id="reviewPage" align="center">
+		
+	</div>
 	</div>
 	
     <!-- QNA -->
@@ -837,7 +875,17 @@ function BuyPop(){
 			<div align="center" id="QnAPage">
 			</div>
 			<div align="right" style="margin-right: 30px;">
-				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			<%
+				if(dto!=null){
+			%>
+				<button class="btn btn-default" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			<%
+				}else{
+			%>
+				<button class="btn btn-default" style="width: 10%;" onclick="QnAWrite2()">글쓰기</button>
+			<%
+				}
+			%>
 			</div>
 		</div>
     </div>
