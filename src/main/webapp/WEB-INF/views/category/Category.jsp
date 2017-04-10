@@ -90,7 +90,7 @@ function addCookie(pd_no) {
 <%
    for(int i=0;i<listBest.size();i++){
 %>
-  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
       <img src="<%=listBest.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 300px;">
       <div class="caption">
@@ -134,7 +134,7 @@ function addCookie(pd_no) {
 <%
    for(int i=0; i<list.size(); i++){
 %>
-   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
+   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
       <div class="thumbnail">
          <img src="<%=list.get(i).getSTORED_NAME()%>" alt="..."  style="width: 100%; height: 300px;">
          <div class="caption">

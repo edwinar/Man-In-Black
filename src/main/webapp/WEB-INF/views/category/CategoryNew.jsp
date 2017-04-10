@@ -22,6 +22,21 @@
 .thumbnail:hover{
 	opacity: 0.5;
 }
+.thumbnailImg{
+	width: 100%;
+	height: 300px;
+}
+/*1024해상도가 1200px임*/
+/*@media ( max-width : 1200px) { 
+	.thumbnail{
+	 height: 200px;
+	}
+	.thumbnailImg{
+	width: 100%;
+	height: 100px;
+	background: red;
+	}
+} */
 </style>
 </head>
 <body>
@@ -96,9 +111,9 @@ function addCookie(pd_no) {
   <%
   	for(int i=0;i<list.size();i++){
   %>
-  <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-md-4 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="..." style="width: 100%; height: 300px;">
+      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="..." class="thumbnailImg">
       <div class="caption">
         <h5><%=list.get(i).getPRO_NAME() %></h5>
         <p><%=list.get(i).getPRO_PRICE() %> Won</p>
