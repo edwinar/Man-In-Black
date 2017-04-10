@@ -55,22 +55,15 @@ public class CategoryController {
 		String SUB_ITEM = (res.getParameter("SUB_ITEM")==null||res.getParameter("SUB_ITEM").equals("") )?"ALL":res.getParameter("SUB_ITEM");
 		// 메소드 실행시 필요한 키값들의 해시맵
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		HashMap<String, Object> mapBest = new HashMap<String, Object>();
 		map.put("ITEM", ITEM);
 		map.put("ORDER", ORDER);
 		map.put("PAGE_NUM", PAGE_NUM);
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		map.put("SUB_ITEM", SUB_ITEM);
-		mapBest.put("ITEM", ITEM);
-		mapBest.put("ORDER", "C.SALE_CNT DESC");
-		mapBest.put("PAGE_NUM", "1");
-		mapBest.put("PAGE_SIZE", "3");
-		mapBest.put("SUB_ITEM", SUB_ITEM);
 		
 		List<CategoryDto> list = categorySvc.do_selectCategoryProductList(map);
 		List<CategoryDto> listBtn = categorySvc.do_selectSub_itemList(res.getParameter("ITEM"));
-		List<CategoryDto> listBest = categorySvc.do_bestList(mapBest);
-		System.out.println(list);
+		List<CategoryDto> listBest = categorySvc.do_selectCategoryProductBestList(ITEM);
 		mav.addObject("ITEM",ITEM);
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);

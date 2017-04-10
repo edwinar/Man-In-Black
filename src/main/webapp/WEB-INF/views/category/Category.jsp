@@ -24,6 +24,7 @@
 /* 베스트 상품 부분, 카테고리부분 */
 .thumbnail{
  width: 100%;
+ height: 400px;
 }
 .thumbnail{
    opacity: 1;
@@ -91,7 +92,7 @@ function addCookie(pd_no) {
 %>
   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=listBest.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=listBest.get(i).getSTORED_NAME()%>" alt="...">
+      <img src="<%=listBest.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 300px;">
       <div class="caption">
         <h5><%=listBest.get(i).getPRO_NAME() %></h5>
         <p><%=listBest.get(i).getPRO_PRICE() %> Won</p>
@@ -108,11 +109,11 @@ function addCookie(pd_no) {
 <div class="row" align="center">
    <div class="col-md-6 visible-md visible-lg" align="left">
    <p>
-      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=ALL" class="btn btn-primary" role="button">전체보기</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=ALL" class="btn btn-default" role="button">전체보기</a>
       <%
          for(int i=0;i<listBtn.size();i++){
       %>
-      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-primary" role="button"><%=listBtn.get(i).getSUB_ITEM() %></a>
+      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-default" role="button"><%=listBtn.get(i).getSUB_ITEM() %></a>
       <%
          }
       %>
@@ -120,10 +121,10 @@ function addCookie(pd_no) {
    </div>
    <div class="col-md-6 visible-md visible-lg" align="right">
    <p>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">신상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">낮은가격순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">인기상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-primary" role="button">리뷰수순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">신상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">낮은가격순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">인기상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">리뷰수순</a>
    </p>
    </div>
    <br></br><br></br>
@@ -135,7 +136,7 @@ function addCookie(pd_no) {
 %>
    <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
       <div class="thumbnail">
-         <img src="<%=list.get(i).getSTORED_NAME()%>" alt="...">
+         <img src="<%=list.get(i).getSTORED_NAME()%>" alt="..."  style="width: 100%; height: 300px;">
          <div class="caption">
             <h5><%=list.get(i).getPRO_NAME() %></h5>
             <p><%=list.get(i).getPRO_PRICE() %> Won</p>

@@ -82,7 +82,7 @@
 			<p><h5 align="left" style="margin-left: 30px;">내용</h5></p>
 			<textarea rows="5px" cols="100px" readonly="readonly"><%=qnaDto.getQNA_CONTENT()%></textarea>
 		</div>
-		<%if(dto.getUSER_ID().equals(qnaDto.getUSER_ID())){ %>
+		<%if(dto!=null && dto.getUSER_ID().equals(qnaDto.getUSER_ID())){ %>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
 				<button style="width: 50%; height: 100%;" class="btn btn-default" onclick="update(<%=qnaDto.getQNA_SEQ()%>)">수정하기</button>
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		
-		<%}else if(dto.getUSER_ID().equals("adm")){ %>
+		<%}else if(dto!=null && dto.getUSER_ID().equals("adm")){ %>
 		
 		<div align="center">
 				<button style="width: 80%; height: 100%;"class="btn btn-default" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
