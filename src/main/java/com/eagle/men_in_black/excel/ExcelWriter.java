@@ -6,7 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 
 import com.eagle.men_in_black.model.CeoMypageDto;
@@ -34,12 +40,12 @@ public class ExcelWriter {
 		//cell생성
 		HSSFCell  cell;
 		
-		
+		/*
 		 * 	private String id;
 	private String name;
 	private String email;
 	private String passwd;
-		 
+		 */
 		
 		//스타일 설정
 
