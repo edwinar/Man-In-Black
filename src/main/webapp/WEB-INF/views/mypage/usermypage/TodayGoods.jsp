@@ -13,6 +13,7 @@
 <style>
 .thumbnail {
 	width: 100%;
+	
 }
 .thumbnail {
 	opacity: 1;
@@ -66,7 +67,7 @@ margin-right: -50px
 				for (int i = 0; i < goodslist.size(); i++) {
 			%>
 
-		<div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
+		<div class="col-xs-8 col-lg-4"  onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
 			<div class="thumbnail">
 				<img src="<%=goodslist.get(i).getSTORED_NAME()%>" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
 				<div class="caption">
