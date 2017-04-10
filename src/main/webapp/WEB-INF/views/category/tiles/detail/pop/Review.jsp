@@ -136,15 +136,15 @@
 				<%
 					if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")&&dto.getUSER_ID().equals(detailDto.getUSER_ID())){
 				%>
-				<button class="mbtn"  style="width: 100%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
+				<button class="btn btn-default"  style="width: 100%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<%
 					}else if(dto!=null&&dto.getUSER_ID().equalsIgnoreCase("adm")){
-				%><button class="mbtn" style="width: 100%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
+				%><button class="btn btn-default" style="width: 100%; height: 100%;" onclick="reviewReplyPop(<%=detailDto.getREV_SEQ() %>)">답글달기</button>
 				
 				<%} %>
 				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) && dto!=null && !dto.getUSER_ID().equalsIgnoreCase("adm")){ %>
-				<button  class="mbtn" style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
-				<input type="button"  class="mbtn" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
+				<button  class="btn btn-default" style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
+				<input type="button"  class="btn btn-default" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
 	
 				<%} %>
 				
