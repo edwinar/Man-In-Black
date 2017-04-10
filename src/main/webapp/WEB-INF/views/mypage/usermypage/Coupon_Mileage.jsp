@@ -28,7 +28,7 @@ body {
 
 #divl {
 	width: 45%;
-	height: 60%;
+	height: 70%;
 	display: inline-block;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 	float: left;
@@ -84,7 +84,7 @@ body {
 					<col width="40%">
 					<col width="30%">
 					<col width="30%">
-					<tr>
+					<tr style="height: 30px">
 						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
 						<th style="text-align: center; margin-top: 10px">할인 금액</th>
 						<th style="text-align: center; margin-top: 10px">사용 기한</th>

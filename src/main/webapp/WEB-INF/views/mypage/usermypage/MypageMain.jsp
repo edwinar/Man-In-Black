@@ -218,7 +218,7 @@ td, th {
 				</table>
 			</div>
 			<button class="btn btn-default" type="button" onclick="location.href='coupon_Mileage.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95.5%; margin-top: 5px" class="btn btn-default">더보기</button>
 		</div>
 
 
