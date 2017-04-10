@@ -50,9 +50,54 @@ private int TOT_CNT;
 private int DEL_SEQ;
 private String DEL_STEP;
 private String SIZE;
+private String START_DATE;
+private String END_DATE;
+private String SEARCH;
+private int propricesum;
+private String PAGE_NUM;
 
 
 
+
+public String getPAGE_NUM() {
+	return PAGE_NUM;
+}
+
+public void setPAGE_NUM(String pAGE_NUM) {
+	PAGE_NUM = pAGE_NUM;
+}
+
+public String getSTART_DATE() {
+	return START_DATE;
+}
+
+public void setSTART_DATE(String sTART_DATE) {
+	START_DATE = sTART_DATE;
+}
+
+public String getEND_DATE() {
+	return END_DATE;
+}
+
+public void setEND_DATE(String eND_DATE) {
+	END_DATE = eND_DATE;
+}
+
+public String getSEARCH() {
+	return SEARCH;
+}
+
+public void setSEARCH(String sEARCH) {
+	SEARCH = sEARCH;
+}
+
+public int getPropricesum() {
+	return propricesum;
+}
+
+public void setPropricesum(int propricesum) {
+	this.propricesum = propricesum;
+}
 
 public String getREV_CONTENT() {
 	return REV_CONTENT;

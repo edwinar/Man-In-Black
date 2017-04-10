@@ -72,7 +72,7 @@
 			<div class="thumbnail">
 				<div class="panel panel-default"
 					style="margin-left: 40px; margin-bottom: 30px">
-					<input type="file" name="onefile" id="onefile" >
+					<input type="file"  class="btn btn-default" name="onefile" id="onefile" >
 
 					<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
 						id="imgone-div" ></div>
@@ -118,7 +118,7 @@
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" class="mbtn" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" class="btn btn-default" value="리뷰 달기"  onclick="closeSelf()">
 					</div>
 
 				</div>

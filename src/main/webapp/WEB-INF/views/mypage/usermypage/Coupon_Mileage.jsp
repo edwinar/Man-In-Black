@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::쿠폰 & 적립금::</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <style type="text/css">
 body {
 	font-family: "Lato", sans-serif;
@@ -26,7 +28,7 @@ body {
 
 #divl {
 	width: 45%;
-	height: 60%;
+	height: 70%;
 	display: inline-block;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 	float: left;
@@ -82,7 +84,7 @@ body {
 					<col width="40%">
 					<col width="30%">
 					<col width="30%">
-					<tr>
+					<tr style="height: 30px">
 						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
 						<th style="text-align: center; margin-top: 10px">할인 금액</th>
 						<th style="text-align: center; margin-top: 10px">사용 기한</th>
@@ -142,7 +144,7 @@ body {
 								for (int i = 1; i <= pageCountc; i++) {
 							%>
 							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&"
-								class="btn btn-default" role="button"><%=i%></a>
+								class="btn btn-default" role="btn btn-default"><%=i%></a>
 							<%
 					}%>
 						</p>

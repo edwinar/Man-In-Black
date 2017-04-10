@@ -154,7 +154,7 @@ $(document).ready(function(){
         var fullDate = year + mon + day;
         
         var weekDate = year+''+mon+''+(day-7);
-		
+        
         // 오늘날짜가 7일보다 작을때 
 		for(i=1;i<=7;i++){
 			if(day==i){
@@ -167,6 +167,11 @@ $(document).ready(function(){
 				
 			}
 		}
+        
+		if((day-7)<10){
+        	day = '0'+(day-7);
+        	weekDate = year+''+mon+''+(day);
+        }
 		
 		fullDate = fullDate.substring(2,8);
 		weekDate = weekDate.substring(2,8);
@@ -296,6 +301,37 @@ function delStep(SEQ) {
 		});		
 }
 
+// 엑셀다운 아작스
+$(document).ready(function() {
+	$("#exexldown").click(function() {
+		var PAGE_NUMexel = $("#PAGE_NUMexel").val();
+		var START_DATEexel = $("#START_DATEexel").val();
+		var END_DATEexel = $("#END_DATEexel").val();
+		var searchexel = $("#searchexel").val();
+		
+		$.ajax({
+			type : "POST",
+			url : "exexldown.mib",
+			async : true,
+			dataType : "html",
+			data : {
+				"PAGE_NUMexel" : PAGE_NUMexel,
+				"START_DATEexel" : START_DATEexel,
+				"END_DATEexel" : END_DATEexel,
+				"searchexel" : searchexel
+			},
+			success : function(data) {
+				alert(data);
+				 
+			},
+			complete : function(data) {
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});		
+	});
+});
 
 </script>
 </head>
@@ -330,19 +366,18 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 
 	</center>
 	<!--엑셀로 다운받기-->
-	<form id="excel" method="POST" action="toExcel.mib" >
-	<input type="hidden" name="PAGE_SIZE" value="10">
-	<input type="hidden" name="PAGE_NUM" value="1">
-	<input type="hidden" name="START_DATE" value="<%=START_DATE%>">
-	<input type="hidden" name="END_DATE" value="<%=END_DATE%>">
-	<input type="hidden" name="search" value="<%=search%>">
+	
+	<input type="hidden" id="PAGE_NUMexel" value="1">
+	<input type="hidden" id="START_DATEexel" value="<%=START_DATE%>">
+	<input type="hidden" id="END_DATEexel" value="<%=END_DATE%>">
+	<input type="hidden" id="searchexel" value="<%=search%>">
 	
 	<div align="right">
-	<input type="submit" onclick="exportToExcel();" value="엑셀다운">
+	<input type="button" id="exexldown" value="엑셀다운">
 	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
 				aria-hidden="true"></span></a> -->
 	</div>
-	</form>
+	
 	
 	<!--검색(유저ID,상품이름)-->
 	<form class="search" action="ceoMypage_Main.mib">
@@ -361,13 +396,17 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 			<tr>
 				<th>수량</th>
 				<th>총매출액</th>
-				<th>순이익</th>
 			</tr>
 			<!--데이터 받아오는부분  -->
 			<tr>
-				<th>5</th>
-				<td>500000원</td>
-				<td>200000원</td>
+				<th><%=list.size() %></th>
+				<% int propricesum=0; int finalpricesum=0;
+				for(int i=0; i<list.size();i++){ 
+					propricesum += list.get(i).getPRO_PRICE(); 
+					}%>
+				<td><%=propricesum %></td>
+				
+				
 			</tr>
 		</table>
 	</div>
@@ -417,7 +456,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<td>구매한 사람  <%=list.get(i).getUSER_ID() %></td>
 						<td><%=list.get(i).getSEL_NUM() %></td>
 						<td><%=list.get(i).getSTOCK() %></td>
-						<td><%=list.get(i).getFINAL_PRICE() %></td>
+						<td><%=list.get(i).getPRO_PRICE() %></td>
 						<td><%=list.get(i).getSELTIME() %></td>
 						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
@@ -445,12 +484,12 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	
 	int page_num = Integer.parseInt(PAGE_NUM);
 	int page_size = Integer.parseInt(PAGE_SIZE);
-	System.out.println("페이지 넘버 = " +PAGE_NUM);
-	System.out.println("페이지 사이즈 = " +PAGE_SIZE);
+	//System.out.println("페이지 넘버 = " +PAGE_NUM);
+	//System.out.println("페이지 사이즈 = " +PAGE_SIZE);
 	
 	int pageCount = list.get(0).getTOT_CNT()%page_size==0?list.get(0).getTOT_CNT()/page_size:(list.get(0).getTOT_CNT()/page_size)+1; 
-	System.out.println(list.get(0).getTOT_CNT());
-	System.out.println("페이지 카운트 = " +pageCount);
+	//System.out.println(list.get(0).getTOT_CNT());
+	//System.out.println("페이지 카운트 = " +pageCount);
 %>
 	<div class="row" align="center">
 		<p><%

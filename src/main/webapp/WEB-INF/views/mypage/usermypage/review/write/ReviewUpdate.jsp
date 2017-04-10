@@ -203,7 +203,7 @@
 					<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
 				</div>
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
-					<button class="mbtn" style="width: 50%; height: 100%;" id="admup">수정하기</button>
+					<button class="btn btn-default" style="width: 50%; height: 100%;" id="admup">수정하기</button>
 				</div>
 			</div>
 		</div>
@@ -218,7 +218,7 @@
 				<div class="thumbnail">
 					<div class="panel panel-default"
 						style="margin-left: 40px; margin-bottom: 30px">
-						<input type="file" name="onefile" id="onefile"> <img
+						<input type="file"  name="onefile" id="onefile"> <img
 							class="PP" alt="..." src="<%=detailDto.getSTORED_NAME()%>"
 							width="100%">
 
@@ -254,7 +254,7 @@
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title"
+						제목 : <input default  class="btn btn-default btn-sm" type="text" name="title"
 							value="<%=detailDto.getREV_TITLE()%>"> <input
 							type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>"> <input
 							type="hidden" name="REV_SEQ" value="<%=detailDto.getREV_SEQ()%>">
@@ -269,14 +269,14 @@
 					</div>
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
-						<input type="text" name="content"
+						<input type="text" class="btn btn-default " name="content"
 							style="width: 100%; height: 100px"
 							value="<%=detailDto.getREV_CONTENT()%>">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" class="mbtn" value="수정 하기"
-							onclick="closeSelf()"> <input type="button" class="mbtn"
+						<input type="button" class="btn btn-default" value="수정 하기"
+							onclick="closeSelf()"> <input type="button" class="btn btn-default"
 							value="닫기" onclick="window.close()">
 					</div>
 
