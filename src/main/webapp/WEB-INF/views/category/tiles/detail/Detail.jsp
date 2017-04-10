@@ -16,7 +16,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::Detail:::</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 #outerH1{
 margin-top: 150px;
@@ -443,6 +442,7 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
+    	alert("ASdsad");
     	reviewPage(1);
     });
     $('#tab3').on('click',function(){
@@ -572,14 +572,13 @@ function QnADetail(QNA_SEQ){
 	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnAWrite(){
-	if(<%=dto%>!=null){
-		window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
-	}else{
-		alert("로그인을 하셔야합니다!고갱님");
-	}
+	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
 }
 function BuyPop(){
 	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
+}
+function QnAWrite2(){
+	alert("로그인을 하셔야합니다!");
 }
 </script>
 <div>
@@ -843,7 +842,17 @@ function BuyPop(){
 			<div align="center" id="QnAPage">
 			</div>
 			<div align="right" style="margin-right: 30px;">
+			<%
+				if(dto!=null){
+			%>
 				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			<%
+				}else{
+			%>
+				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite2()">글쓰기</button>
+			<%
+				}
+			%>
 			</div>
 		</div>
     </div>
