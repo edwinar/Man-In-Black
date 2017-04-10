@@ -144,7 +144,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -157,7 +157,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -170,7 +170,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -183,7 +183,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -196,7 +196,7 @@ margin-top: 150px;
   transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
   position: relative;
   top: 0;
-  z-index: 100;
+  z-index: 1;
   -webkit-transform: translateY(0px);
           transform: translateY(0px);
   text-shadow: 0 0 0;
@@ -443,102 +443,124 @@ $(document).ready(function () {
         $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
-    	var PRO_SEQ = <%=PRO_SEQ %>;
-    	var strInput = "";
-		$.ajax({
- 			type : "POST",
- 			url : "ReviewListAjax.mib",
- 			async : true,
- 			dataType : "html",
- 			data : {
- 				"PRO_SEQ" : PRO_SEQ
- 			},
- 			success : function(data) {
- 				var flag = $.parseJSON(data);
- 				reviewBody.innerHTML = "";
- 				
- 				for(i=0;i<flag.length;i++){
- 					console.log(flag);
- 					if(flag[i].USER_ID=="adm"){ 			        
- 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
- 						+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
- 						+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
- 					}else{
- 						strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
- 						+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
- 			       		if(flag[i].SCORE==1){
- 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
- 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
- 			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==2){
- 			       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
-			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==3){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==4){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
- 			       		}else if(flag[i].SCORE==5){
-	 			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-			       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
- 			       		}else{
- 			       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
- 			       		}
- 			       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
- 					}
- 				}
- 				/* strInput = strInput + "<tr><td colspan='3'><a href='category.mib' class='btn btn-default' role='button'>1</a></td></tr>"; */
- 				reviewBody.innerHTML = strInput;
- 			},
- 			complete : function(data) {
- 			},
- 			error : function(xhr, status, error) {
- 				alert("에러발생");
- 			}
- 		});
+    	reviewPage(1);
     });
     $('#tab3').on('click',function(){
-    	var PRO_SEQ = <%=PRO_SEQ %>;
-    	var strInput = "";
-		$.ajax({
- 			type : "POST",
- 			url : "QnAListAjax.mib",
- 			async : true,
- 			dataType : "html",
- 			data : {
- 				"PRO_SEQ" : PRO_SEQ
- 			},
- 			success : function(data) {
- 				var flag = $.parseJSON(data);
- 				//console.log(flag);
-
- 				QnABody.innerHTML = "";
- 				
- 				for(i=0;i<flag.length;i++){
- 					if(flag[i].USER_ID=="adm"){
- 						strInput = strInput + "";
- 					}else{
- 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
- 						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
- 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
- 			       	}
- 				}
- 					QnABody.innerHTML = strInput;
- 			},
- 			complete : function(data) {
- 			},
- 			error : function(xhr, status, error) {
- 				alert("에러발생");
- 			}
- 		});
+    	QnAPage(1);
     });
 });
-
+function reviewPage(page){
+	var PRO_SEQ = <%=PRO_SEQ %>;
+	var PAGE_NUM = page;
+	var strInput = "";
+	$.ajax({
+		type : "POST",
+		url : "ReviewListAjax.mib",
+		async : true,
+		dataType : "html",
+		data : {
+			"PRO_SEQ" : PRO_SEQ,
+			"PAGE_NUM" : PAGE_NUM
+		},
+		success : function(data) {
+			var flag = $.parseJSON(data);
+			reviewBody.innerHTML = "";
+			for(var i=0;i<flag.length;i++){
+				if(flag[i].USER_ID=="adm"){ 			        
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
+					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
+					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+				}else{
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/LOVE.jpg' class='imgr' width='200px'></td>"
+					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
+		       		if(flag[i].SCORE==1){
+		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==2){
+		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
+	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==3){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==4){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       		}else if(flag[i].SCORE==5){
+			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
+	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
+		       		}else{
+		       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
+		       		}
+		       		strInput = strInput + "<br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td><td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
+				}
+			}
+			var PAGE_SIZE = 15;
+			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+			strInput = strInput + "<tr><td colspan='3'>";
+			for(var j=1;j<=pageCount;j++){
+ 				strInput = strInput + "<a onclick='page("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+			}
+			strInput = strInput + "</td></tr>";
+			reviewBody.innerHTML = strInput;
+		},
+		complete : function(data) {
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});
+}
+function QnAPage(page){
+	var PRO_SEQ = <%=PRO_SEQ %>;
+	var PAGE_NUM = page;
+	var strInput = "";
+	var strInput2 = "";
+	$.ajax({
+			type : "POST",
+			url : "QnAListAjax.mib",
+			async : true,
+			dataType : "html",
+			data : {
+				"PRO_SEQ" : PRO_SEQ,
+				"PAGE_NUM" : PAGE_NUM
+			},
+			success : function(data) {
+				var flag = $.parseJSON(data);
+				var QnABody = document.getElementById("QnABody");
+				var QnAPage = document.getElementById("QnAPage");
+				QnABody.innerHTML = "";
+				QnAPage.innerHTML = "";
+				for(i=0;i<flag.length;i++){
+					if(flag[i].USER_ID=="adm"){
+						strInput = strInput + "";
+					}else{
+						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
+			       	}
+				}
+				
+				var PAGE_SIZE = 15;
+				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+				console.log(flag[0].TOT_CNT);
+				for(var j=1;j<=pageCount;j++){
+					strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+				}
+				QnABody.innerHTML = strInput;
+				QnAPage.innerHTML = strInput2;
+			},
+			complete : function(data) {
+			},
+			error : function(xhr, status, error) {
+				alert("에러발생");
+			}
+		});
+}
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
@@ -546,7 +568,11 @@ function QnADetail(QNA_SEQ){
 	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnAWrite(){
-	window.open("QnAWrite.mib?PRO_SEQ="+<%=PRO_SEQ %>,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	if(dto!=null){
+		window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+	}else{
+		alert("로그인을 하셔야합니다!고갱님");
+	}
 }
 function BuyPop(){
 	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
@@ -784,25 +810,10 @@ function BuyPop(){
         </tr>
     </thead>
     <tbody id="reviewBody">
-    
- 	<%-- <tr>
- 	<td colspan="3">
- 	<%
-	int PAGE_SIZE = 9;
-	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
-	%>
- 	<%
-		for (int i = 1; i <= pageCount; i++) {
-	%>
-	<a href="category.mib?" class="btn btn-default" role="button">1</a>
-	<%
-		}
-	%>
- 	</td>
- 	</tr> --%>
  	
     </tbody>
 	</table>
+	
 	</div>
 	
     <!-- QNA -->
@@ -822,9 +833,13 @@ function BuyPop(){
        
     </tbody>
 	</table>
-		<p align="right" style="margin-right: 30px;">
-			<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
-		</p>
+		<div align="center">
+			<div align="center" id="QnAPage">
+			</div>
+			<div align="right" style="margin-right: 30px;">
+				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			</div>
+		</div>
     </div>
 	</div>
 </div>
