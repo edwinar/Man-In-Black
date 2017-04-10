@@ -20,13 +20,27 @@
 .thumbnail:hover {
 	opacity: 0.5;
 }
+#mypageheada{
+margin-right: 100px
+}
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+#mypagehead{
+width: 94.5%
+}
+#mypageheada{
+margin-right: -50px
+}
+}
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: 5%">
+<div style="width: 90%; margin-left: 5%" class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="todayGoods.mib">오늘본 상품</a>
 			</h4>

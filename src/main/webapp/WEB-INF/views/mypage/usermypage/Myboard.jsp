@@ -12,12 +12,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<style type="text/css">
+#mypageheada{
+margin-right: 100px;
+
+}
+
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+#mypageheada{
+margin-right: -5px;
+
+}
+
+
+    }
+</style>
 <title>::내가쓴 게시물::</title>
 </head>
 <body>
+<div class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 align="right" id="mypageheada">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
@@ -179,7 +198,7 @@ function goqna(qseq) {
 
 	
 
-
+</div>
 
 </body>
 </html>

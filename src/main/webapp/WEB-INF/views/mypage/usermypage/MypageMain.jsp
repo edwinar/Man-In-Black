@@ -113,15 +113,35 @@ td, th {
 		visibility: hidden;
 	}
 }
+/*1024해상도가 1200px임*/
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+margin-left: -50px;
+
+}   
+#버튼{
+margin-right: 33px;
+
+}   
+#mypagehead{
+margin-right: -60px;
+}   
+#boarddiv{
+width: 94.5%
+}
+}
+
+
 </style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
-<div style=" ">
+<div class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 align="right" style="margin-right: 70px">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a>
 			</h4>
 			<h3>MY Order</h3>
@@ -179,15 +199,11 @@ td, th {
 					<%} %>
 					</p>
 				<table style="text-align: center;">
-					<col width="150px">
-					<col width="200px%">
-					<col width="150px">
-					<col width="150px">
 					<tr>
-						<th style="text-align: center;">날짜</th>
-						<th style="text-align: center;">상품명</th>
-						<th style="text-align: center;">금액</th>
-						<th style="text-align: center;">최종</th>
+						<th style="text-align: center; width: 20%">날짜</th>
+						<th style="text-align: center; width: 45%">상품명</th>
+						<th style="text-align: center; width: 20%">금액</th>
+						<th style="text-align: center; width: 15%">최종</th>
 					</tr>
 					<col width="200px">
 					<%
@@ -204,7 +220,7 @@ td, th {
 						for (int i = 0; i < point5.size(); i++) {
 					%>
 					<tr>
-						<td><%=point5.get(i).getPOINT_TIME()%></td>
+						<td ><%=point5.get(i).getPOINT_TIME()%></td>
 						<td><%=point5.get(i).getPRO_NAME()%></td>
 						<td><%=point5.get(i).getPOINT_PRICE()%></td>
 						<td><%=point5.get(i).getPOINT_FINAL()%></td>
@@ -217,8 +233,10 @@ td, th {
 
 				</table>
 			</div>
-			<button class="btn btn-default" type="button" onclick="location.href='coupon_Mileage.mib'"
+			<div id="버튼">
+			<button  class="btn btn-default" type="button" onclick="location.href='coupon_Mileage.mib'"
 				style="margin-left: 95.5%; margin-top: 5px" class="btn btn-default">더보기</button>
+			</div>	
 		</div>
 
 
@@ -229,16 +247,16 @@ td, th {
 			<table class="table">
 	
 				<tr height="40px">
-					<th class="boardone" style="width: 9%">이미지</th>
-					<th class="boardone"style="width: 7%">분류</th>
-					<th style="width: 23%">상품이름1234512</th>
-					<th class="boardone"style="width: 8%">수량</th>
-					<th class="boardtwo"style="width: 9%">판매가</th>
-					<th class="boardtwo"style="width: 8%">쿠폰</th>
-					<th class="boardtwo"style="width: 8%">적립금</th>
-					<th style="width: 9%">결제금액</th>
-					<th class="#boardthree"style="width: 12%">판매일</th>
-					<th style="width: 7%">상태</th>
+					<th  class="boardone" style="width: 9%;text-align: center;">이미지</th>
+					<th  class="boardone"style="width: 7%;text-align: center;">분류</th>
+					<th style="width: 23%;text-align: center;">상품이름</th>
+					<th class="boardone"style="width: 8%;text-align: center;">수량</th>
+					<th class="boardtwo"style="width: 9%;text-align: center;">판매가</th>
+					<th class="boardtwo"style="width: 8%;text-align: center;">쿠폰</th>
+					<th class="boardtwo"style="width: 8%;text-align: center;">적립금</th>
+					<th style="width: 9%;text-align: center;">결제금액</th>
+					<th class="#boardthree"style="width: 12%;text-align: center;">판매일</th>
+					<th style="width: 7%;text-align: center;">상태</th>
 				</tr>
 				<%
 					if (buy == null || buy.size() == 0) {
@@ -273,9 +291,10 @@ td, th {
 				%>
 			</table>
 
-
+			<div id="버튼">
 			<button class="btn btn-default" type="button" onclick="location.href='buylist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
+			</div>
 		</div>
 		<br> <br> <br> <br> <br> <br>
 
@@ -291,11 +310,11 @@ td, th {
 				<col width="10%">
 				<col width="10%">
 				<tr>
-					<th class="boardone">이미지</th>
-					<th class="boardone">분류</th>
-					<th>상품이름</th>
-					<th class="boardone">수량</th>
-					<th class="boardtwo">금액</th>
+					<th style="text-align: center;">이미지</th>
+					<th style="text-align: center;">분류</th>
+					<th style="text-align: center;">상품이름</th>
+					<th style="text-align: center;">수량</th>
+					<th style="text-align: center;">금액</th>
 				</tr>
 				<%
 					if (basket == null || basket.size() == 0) {
@@ -312,13 +331,13 @@ td, th {
 
 				<tr>
 
-					<td class="boardone" rowspan="2" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><img
+					<td  rowspan="2" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><img
 						alt="not found" src="<%=basket.get(i).getSTORED_NAME()%>"
 						style="width: 100px; height: 100px"></a></td>
-					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
+					<td  rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><%=basket.get(i).getPRO_NAME()%></a></td>
-					<td class="boardone" rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
-					<td class="boardtwo" rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE()%></td>
+					<td  rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
+					<td  rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE()%></td>
 				</tr>
 				<tr>
 					<td><%=basket.get(i).getPRO_SIZE()%> : <%=basket.get(i).getCOLOR()%></td>
@@ -328,8 +347,10 @@ td, th {
 					}
 				%>
 			</table>
+			<div id="버튼">
 			<button type="button" onclick="location.href='basketlist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
+			</div>	
 		</div>
 
 
@@ -339,12 +360,12 @@ td, th {
 			<p style="background-color: #696969">Q&A</p>
 			<table class="table">
 
-				<tr>
-					<th>번호</th>
-					<th>상품명</th>
-					<th>제목</th>
-					<th>날짜</th>
-					<th>답변여부</th>
+				<tr >
+					<th style="text-align: center;">번호</th>
+					<th style="text-align: center;">상품명</th>
+					<th style="text-align: center;">제목</th>
+					<th style="text-align: center;">날짜</th>
+					<th >답변여부</th>
 				</tr>
 				<%
 					if (qna == null || qna.size() == 0) {
@@ -380,8 +401,10 @@ td, th {
 					}
 				%>
 			</table>
+			<div id="버튼">
 			<button type="button" class="btn btn-default" onclick="location.href='myboard.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 95%" class="btn btn-default">더보기</button>
+			</div>
 		</div>
 
 	</div>

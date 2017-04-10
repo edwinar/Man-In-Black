@@ -10,9 +10,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::리뷰::</title>
+<style type="text/css">
+
+@media ( max-width : 1200px) { 
+	.ty{
+	margin-top: 30px;
+	}
+	
+	
+    }
+</style>
+</style>
 </head>
 
 <body>
+<div class="ty">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -104,7 +116,7 @@
 			
 		</div>
 	</div>
-
+</div>
 	<script type="text/javascript">
 	function goreview(rseq) {
 		 window.open(

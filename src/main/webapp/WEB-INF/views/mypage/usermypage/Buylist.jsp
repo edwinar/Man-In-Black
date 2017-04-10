@@ -102,13 +102,19 @@ input{
 		display: none;
 		visibility: hidden;
 	}
-
+	
+	}
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
 
 </style>
 <title>::구매내역::</title>
 </head>
 <body>
-<div style="width: 90%">
+<div style="width: 90%" class="ty">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -145,7 +151,7 @@ input{
 						<tr height="40px">
 							<th class="boardone" style="width: 9%">이미지</th>
 							<th class="boardone"style="width: 7%">분류</th>
-							<th style="width: 23%">상품이름1234512</th>
+							<th style="width: 23%">상품이름</th>
 							<th class="boardone"style="width: 8%">수량</th>
 							<th class="boardtwo"style="width: 9%">판매가</th>
 							<th class="boardtwo"style="width: 8%">쿠폰</th>

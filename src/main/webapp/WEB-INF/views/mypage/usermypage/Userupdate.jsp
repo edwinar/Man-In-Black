@@ -91,6 +91,21 @@ height: 30px;
 background:black;
 color:white;
 -webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;}
+#mypageheada{
+margin-right: 100px;
+}
+
+@media ( max-width : 1200px) { 
+#mypagehead{
+margin-top:30px;
+margin-right: -50px;
+}
+
+#mypageheada{
+margin-right: -10px
+}
+
+}
 </style>
 </head>
 <body>
@@ -105,7 +120,7 @@ if(updateResult.equals("OK")){
 
 <center>
 <div id="mypagehead">
-<h4 align="right" style="margin-right: 100px"><a href="meninblack.mib">홈</a> > 
+<h4 id="mypageheada" align="right" ><a href="meninblack.mib">홈</a> > 
 <a href="mymain.mib">MY PAGE</a> > 
 <a href="userup.mib">회원정보수정</a></h4>
 <h3>MY Order</h3>

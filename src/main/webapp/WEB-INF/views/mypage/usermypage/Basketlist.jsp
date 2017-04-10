@@ -20,17 +20,37 @@
 td, th {
 	text-align: center;
 }
+#mypageheada{
+ style="margin-right: 70px"
+}
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+#mypagehead{
+width: 94.5%
+}
+#mypageheada{
+margin-right: -20px
+}
+#budiv{
+margin-right: -5px;
+
+
+
+}
+}
 </style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>::장바구니::</title>
 </head>
 <body>
-
+	<div class="ty">
 	<input type="hidden" value="<%=basketlist.size()%>" id="list">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="basketlist.mib">장바구니</a>
 			</h4>
@@ -50,17 +70,18 @@ td, th {
 			<form name="f1">
 				<table class="table">
 					<col width="5%">
-					<col width="5%">
+					<col width="6%">
 					<col width="9%">
 					<col width="50%">
 					<col width="10%">
+					<col width="15%">
 					<tr>
-						<th>&nbsp</th>
-						<th>번호</th>
-						<th>이미지</th>
-						<th>상품정보</th>
-						<th>수량</th>
-						<th>가격</th>	
+						<th style="text-align: center;">&nbsp</th>
+						<th style="text-align: center;">번호</th>
+						<th style="text-align: center;">이미지</th>
+						<th style="text-align: center;">상품정보</th>
+						<th style="text-align: center;">수량</th>
+						<th style="text-align: center;">가격</th>	
 					</tr>
 					<%
 						if (basketlist == null || basketlist.size() == 0) {
@@ -118,7 +139,7 @@ td, th {
 						<td><input type="text" id="tag" value="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 						<td>=</td>
-						<td><input type="text" id="top" value="" readonly="readonly" class="form-control" style="text-align: center;">
+						<td><input type="text" id="top" svalue="" readonly="readonly" class="form-control" style="text-align: center;">
 						</td>
 					</tr>
 				</table>
@@ -127,12 +148,12 @@ td, th {
 			</form>
 
 		</div>
-		<div align="right">
+		<div align="right" id="budiv" >
 			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="btn btn-default"
-				style="width: 14%; margin-right: 1% ">
+				style="width: 14.35%; margin-right: 1% ">
 		
 			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
-				class="btn btn-default" style="width: 14%; margin-right: 8px">
+				class="btn btn-default" style="width: 14.4%; margin-right: 8px">
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -270,6 +291,6 @@ td, th {
 
 
 
-
+</div>
 </body>
 </html>

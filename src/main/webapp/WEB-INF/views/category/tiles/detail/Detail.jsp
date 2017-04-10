@@ -537,16 +537,27 @@ function QnAPage(page){
 				var QnAPage = document.getElementById("QnAPage");
 				QnABody.innerHTML = "";
 				QnAPage.innerHTML = "";
+				var openNum = -1;
+				
+				
 				for(i=0;i<flag.length;i++){
+					if(flag[i].QNA_OPEN=='비공개'){
+						 openNum = 0
+						}else{
+					     openNum = 1
+						}
+				
 					if(flag[i].USER_ID=="adm"){
 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
 					}else{
 						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+")'>"+flag[i].QNA_TITLE+"</a></td>"
+						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'>"+flag[i].QNA_TITLE+"</a></td>"
 						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
-			       	}
+			       	
+					}
+				
 				}
 				
 				var PAGE_SIZE = 15;
@@ -567,8 +578,26 @@ function QnAPage(page){
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
-function QnADetail(QNA_SEQ){
-	window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
+	//alert("QNA_OPEN"+QNA_OPEN);
+	//alert($("#userIdlog").val());
+	if(QNA_OPEN==0){ //비공개일때
+		if($("#userIdlog").val()=='nolog' ){ //로그인 안했거나 글쓴이와 다를때 
+			alert("비공개글입니다."); 
+			return;
+		}else if(USER_ID==$("#userIdlog").val() || $("#userIdlog").val()=='adm'){
+			window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+			return;
+		}
+		alert("비공개글입니다."); 
+		return;
+	}else{ // 공개일때 
+		
+		window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+	} 
+			
+	
+	
 }
 function QnAWrite(){
 	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
@@ -580,6 +609,11 @@ function QnAWrite2(){
 	alert("로그인을 하셔야합니다!");
 }
 </script>
+<%if(dto!=null){ %>
+<input type="hidden" id="userIdlog" value="<%=dto.getUSER_ID() %>" >
+<%}else{ %>
+<input type="hidden" id="userIdlog" value="nolog" >
+<%} %>
 <div>
 <div>
 	<div class="slide-container">
