@@ -28,7 +28,7 @@ span.bar {
   background: transparent;
   cursor: pointer;
  }
-mypagemenu .megaMenu {
+.mypagemenu .megaMenu {
   transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -45,7 +45,7 @@ mypagemenu .megaMenu {
   height: 100%;
   padding-top: 10px;
   margin-top:80px;
-  z-index: 1000;
+  z-index: 9999;
   opacity: .99;
   
   border-right: 2px solid #ddd;
@@ -63,7 +63,9 @@ mypagemenu .megaMenu {
   -webkit-transform: translateX(-180px);
   -moz-transform: translateX(-180px);
 }
-mypagemenu .megaMenu li {
+.mypagemenu .megaMenu li {
+
+  z-index: 9999;
   transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -71,7 +73,9 @@ mypagemenu .megaMenu li {
   -moz-transition: all 0.3s ease-in-out;
   border-left: 5px solid transparent;
 }
-mypagemenu .megaMenu li a {
+.mypagemenu .megaMenu li a {
+
+  z-index: 9999;
   text-align: center;
   padding: 15px 0;
   width: 90%;
@@ -85,10 +89,10 @@ mypagemenu .megaMenu li a {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
 }
-mypagemenu .megaMenu li a:hover {
+.mypagemenu .megaMenu li a:hover {
   color: #51e980;
 }
-mypagemenu .megaMenu li:hover {
+.mypagemenu .megaMenu li:hover {
   border-left: 5px solid #51e980;
 }
 #close:hover{
@@ -116,8 +120,8 @@ cursor: pointer;
 	<span class='bar'></span>
 	<span class='bar'></span>
 	</button>
-<mypagemenu>
-	
+<div class="mypagemenu">
+ <div style="position: relative; z-index: 1200;">	
 	<ul class='megaMenu push'>
 	<%if(dto.getUSER_ID().equals("adm")){ %>
   		<li><p id="close" style="text-align: right; padding-right: 10px; font-size: 15px;">x</p></li>
@@ -175,7 +179,8 @@ cursor: pointer;
 		</li>
 	<%} %>
 	</ul>
-</mypagemenu>
+	</div>
+</div>
 </div>
 
 <script type="text/javascript">

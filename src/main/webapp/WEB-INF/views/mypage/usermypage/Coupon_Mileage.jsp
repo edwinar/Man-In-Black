@@ -33,6 +33,7 @@ body {
 	border: 2px solid rgba(39, 44, 48, 0.36);
 	float: left;
 	margin-left: 45px;
+	
 }
 
 #divl .head {
@@ -79,7 +80,9 @@ height: 90%
 #mypageheada{
 margin-right: -20px
 }	
-	
+#contain{
+height: 600px
+}	
 	
 }
 
@@ -100,7 +103,7 @@ margin-right: -20px
 
 
 	<div id="contain">
-		<div id="divl" style="position: relative;">
+		<div id="divl">
 			<div class="head gray">사용가능한 쿠폰</div>
 
 			<div class="offer" align="center">
@@ -142,12 +145,12 @@ margin-right: -20px
 					if (couponList == null || couponList.size() == 0) {
 				%>
 				<div class="paging"
-					style="position: absolute; right: 0px; bottom: 0px"></div>
+					style=" right: 0px; bottom: 0px"></div>
 				<%
 					} else {
 				%>
 				<div class="paging"
-					style="position: absolute; right: 0px; bottom: 0px">
+					style=" right: 0px; bottom: 0px">
 					<%
 						// 페이징 및 날짜 선택 
 							String PAGE_NUMC = (request.getParameter("PAGE_NUMC") == null
@@ -185,7 +188,13 @@ margin-right: -20px
 				<!--페이징 -->
 			</div>
 		</div>
-		<div id="divl" align="center" style="position: relative;">
+		
+		
+		
+		
+		
+		
+		<div id="divl" align="center" ">
 			<div class="head gray">적립금</div>
 			<p align="center">
 				<%
@@ -247,12 +256,12 @@ margin-right: -20px
 				if (pointList == null || pointList.size() == 0) {
 			%>
 			<div class="paging"
-				style="position: absolute; right: 0px; bottom: 0px"></div>
+				></div>
 			<%
 				} else {
 			%>
 			<div class="paging"
-				style="position: absolute; right: 0px; bottom: 0px">
+				 >
 				<%
 					// 페이징 및 날짜 선택 
 						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
@@ -285,8 +294,17 @@ margin-right: -20px
 				
 			</div>
 		</div>
-
+		
 	</div>
 	</div>
+	
+	<div style="background-color: red; width: 1418px; height: 50px; margin-left:45px; margin-top: -210px">
+	<div style="background-color: olive; width: 684px; height: 50px; float: left"></div>
+	<div style="background-color: blue; float: left; width: 48px; height: 50px; "></div>
+	<div style="background-color: olive; width: 684px; height: 50px; float: left"></div>
+	
+	</div>
+	
+	
 </body>
 </html>
