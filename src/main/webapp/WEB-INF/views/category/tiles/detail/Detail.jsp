@@ -349,7 +349,7 @@ table.responsive-table{
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 80em){
+/* @media (max-width: 80em){
     table.responsive-table{
       box-shadow: none;  
     }
@@ -396,7 +396,7 @@ table.responsive-table{
     table.responsive-table td{
         border-top: none;
     }
-    /* 작아졌을때 색상  */
+    
     table.responsive-table th.organisationnumber{
         background: #D5E0CC;
         border-top: 1px solid #B3BFAA;
@@ -408,9 +408,9 @@ table.responsive-table{
         border: none;
         background: none;
     }
-}
+} */
 
-@media (max-width: 30em){
+/* @media (max-width: 30em){
     table.responsive-table{
       box-shadow: none;  
     }
@@ -456,7 +456,7 @@ table.responsive-table{
     table.responsive-table td{
         border-top: none;
     }
-    /* 작아졌을때 색상  */
+    
     table.responsive-table th.organisationnumber{
         background: #D5E0CC;
         border-top: 1px solid #B3BFAA;
@@ -468,7 +468,7 @@ table.responsive-table{
         border: none;
         background: none;
     }
-}
+} */
 </style>
 </head>
 <body>
