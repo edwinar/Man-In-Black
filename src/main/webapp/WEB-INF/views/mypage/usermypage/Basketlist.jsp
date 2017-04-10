@@ -20,10 +20,9 @@
 td, th {
 	text-align: center;
 }
-
-
-
 </style>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>::장바구니::</title>
 </head>
 <body>
@@ -46,7 +45,7 @@ td, th {
 		<div>
 			<div align="left">
 			<input type="checkbox" id="allCheck" class="chbox"
-				style="width: 20px; height: 20px; " >
+				style="width: 20px; height: 20px; background-color: white;" >
 				</div>
 			<form name="f1">
 				<table class="table">
@@ -129,11 +128,11 @@ td, th {
 
 		</div>
 		<div align="right">
-			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="mbtn"
-				style="width: 15%; margin-right: 1% ">
+			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="btn btn-default"
+				style="width: 14%; margin-right: 1% ">
 		
 			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
-				class="mbtn" style="width: 15%; margin-right: 3%">
+				class="btn btn-default" style="width: 14%; margin-right: 8px">
 		</div>
 	</div>
 	<script type="text/javascript">

@@ -15,12 +15,21 @@ request.setCharacterEncoding("UTF-8");
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 </script>
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 /* General Styles for Menu  */
+.dud1{
+margin-right: 50px; 
+float: left;
+}
+
+.dud2{
+float: left;  
+margin-right: 80px;
+}
+
 .menuBackground {
 	background: black;
 	text-align: center;
@@ -174,11 +183,22 @@ width: 100%;
 }
 /*1024가 1200px임*/
 @media ( max-width : 1200px) { /* 최소 768 사이즈때 보이는 크기 */
+	.dropDownMenu > li:first-child {
+	margin-top:15px;
+	margin-left: 5px;
+	}
 	.cate{
 	margin-left: 8px;
 	margin-right: 8px;
 	/* background-color: cyan; */
 	}
+	.dud1{
+	margin-right: 30px;
+	}
+	.dud2{
+	margin-right: 30px;
+	}
+	
 	
 	.subouter{
 	}
@@ -272,7 +292,7 @@ width: 100%;
 
 <div class="logsi"> 
 	<div class="loglog" style=" float: right; margin-top: 10px;">
-		<div style="margin-right: 50px; float: left;">
+		<div class="dud1" >
 			<li style="list-style: none; " >
 			
 			<%
@@ -285,7 +305,7 @@ width: 100%;
 			%>
 			</li> 
 		</div>
-		<div style="float: left;  margin-right: 80px;">
+		<div class="dud2" >
 			<li style="list-style: none;">
 			<%
 							if (dto != null) {

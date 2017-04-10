@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eagle.men_in_black.excel.ExcelWriter;
 import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
@@ -768,45 +769,18 @@ public class CeoMypageController {
 				return gson.toJson(step);
 			}
 			
+			//엑셀 다운 
+			@RequestMapping(value="exexldown.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
+			public @ResponseBody String exexldown(HttpServletRequest res) throws Exception{
 			
-/*			//Excel down
-			@RequestMapping("exceldown.mib")
-			public ModelAndView exceldown(HttpServletRequest res, HttpServletResponse rep) {
+			ModelAndView mav = new ModelAndView();
 
-				ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
-				
-				HashMap<String, String> map = new HashMap<>();
-			      map.put("PAGE_SIZE", PAGE_SIZE);
-			      map.put("PAGE_NUM", PAGE_NUM);
-			      map.put("START_DATE",START_DATE);
-			      map.put("END_DATE",END_DATE);
-			      map.put("search", search);
-			   
-			      System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
-			      System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
-			      System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
-			      System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
-			      System.out.println("컨트롤러 ======== search"+search);
-			      
-			      
-			      List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
-
-				return mav;
-
-			}*/
-				
+			String PAGE_NUM = (res.getParameter("PAGE_NUMexel")==null ||res.getParameter("PAGE_NUMexel")=="")?"1":res.getParameter("PAGE_NUMexel");
+			String PAGE_SIZE = "10";
+			String START_DATE = (res.getParameter("START_DATEexel")==null ||res.getParameter("START_DATEexel")=="")?"SYSDATE":res.getParameter("START_DATEexel");
+			String END_DATE = (res.getParameter("END_DATEexel")==null ||res.getParameter("END_DATEexel")=="")?"SYSDATE":res.getParameter("END_DATEexel");
+			String search = (res.getParameter("searchexel")==null ||res.getParameter("searchexel")=="")?"%%":"%"+res.getParameter("searchexel")+"%";
 			
-			@RequestMapping(value = "toExcel.mib", method = RequestMethod.POST)
-			 public ModelAndView toExcel(HttpServletRequest res, HttpSession session) {
-
-			ModelAndView result = new ModelAndView();
-
-			String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
-			String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
-			String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
-			String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
-			String search = (res.getParameter("search")==null ||res.getParameter("PRO_NAME")=="")?"%%":"%"+res.getParameter("search")+"%";
-
 			HashMap<String, String> param = new HashMap<>();
 			param.put("PAGE_SIZE", PAGE_SIZE);
 			param.put("PAGE_NUM", PAGE_NUM);
@@ -815,29 +789,35 @@ public class CeoMypageController {
 			param.put("search", search);
 			 
 
-			List list = ceoMypageSvc.do_ceomypage_main(param); //쿼리
+			List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(param); //쿼리
 
-			result.addObject("list",list); // 쿼리 결과를 model에 담아줌
-
-			 
-
-			Calendar now = new GregorianCalendar();
-			int month = now.get(Calendar.MONTH) + 1;
-			int day = now.get(Calendar.DAY_OF_MONTH);
-			int hour = now.get(Calendar.HOUR_OF_DAY);
-			int minute = now.get(Calendar.MINUTE);
-			int second = now.get(Calendar.SECOND);
-			int MILLISECOND = now.get(Calendar.MILLISECOND);
-			StringBuffer filename = new StringBuffer();
-			filename.append( month ).append( day ).append( hour ).append( minute ).append( second ).append( MILLISECOND );
-			result.addObject("filename",filename);
 			
-
-			result.setViewName("exportToExcel");// 엑셀로 출력하기 위한 jsp 페이지
-
-			 
-
-			return result;
+			int propricesum=0; 
+			for(int i=0; i<list.size();i++){ 
+				propricesum += list.get(i).getPRO_PRICE(); 
+			}
+			
+			
+			CeoMypageDto ceoDto = new CeoMypageDto();
+			ceoDto.setSTART_DATE(START_DATE);
+			ceoDto.setEND_DATE(END_DATE);
+			ceoDto.setSEARCH(search);
+			ceoDto.setPAGE_NUM(PAGE_NUM);
+			ceoDto.setPropricesum(propricesum);
+			
+			ExcelWriter eWriter=new ExcelWriter();
+			int flag = eWriter.xlsWriter(list, "판매내역", ceoDto);
+			Gson gson = new Gson();
+			
+			if(flag!=-1){
+				return gson.toJson("엑셀저장성공");
+			}else{
+				return gson.toJson("엑셀저장실패");
+			}
+			
+			
+			
+			
 
 			 
 

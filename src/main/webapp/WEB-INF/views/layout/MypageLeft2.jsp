@@ -94,6 +94,16 @@ color:red;
 cursor: pointer;
 }
 
+/*1024가 1200px임*/
+@media ( max-width : 1200px) { /* 최소 768 사이즈때 보이는 크기 */
+
+#togg_menu{
+	margin-top: 10px;
+}
+	
+	
+}
+
 </style>
 </head>
 <body>
