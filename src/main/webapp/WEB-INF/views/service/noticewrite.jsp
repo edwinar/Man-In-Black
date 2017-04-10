@@ -72,9 +72,15 @@
 	font-size: 12px;
 	transform: translateY(0);
 }
+
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
 </style>
 <body>
-	<center>
+	<center class="ty">
 		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">공지사항</a>

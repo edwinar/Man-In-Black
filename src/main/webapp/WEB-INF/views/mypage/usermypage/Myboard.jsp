@@ -35,13 +35,13 @@ margin-right: -5px;
 <body>
 <div class="ty">
 	<center>
-		<div id="mypagehead">
-			<h4 align="right" id="mypageheada">
+		<div id="mypagehead" style="margin-left: 40px;">
+			<p align="right" id="mypageheada">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">내가 쓴 게시물</a>
-			</h4>
+			</p>
 			<h3>My Post</h3>
-			<h4 style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</h4>
+			<p style="margin-bottom: 80px">회원님님의 게시물 작성 리스트 입니다</p>
 		</div>
 	</center>
 

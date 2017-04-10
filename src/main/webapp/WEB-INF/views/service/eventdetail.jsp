@@ -14,9 +14,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::EVENT DETAIL:::</title>
+<style type="text/css">
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+
+</style>
 </head>
 <body>
-	<center>
+	<center class="ty">
 		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
