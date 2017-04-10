@@ -20,14 +20,23 @@ td, th {
 }
 
 .table {
-	margin-left: 144px;
-	width: 86%;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	margin-left: 30px;
 }
+ 
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+
 </style>
 <title>::NOTICEBOARD::</title>
 </head>
 <body>
-	<center>
+	<center class="ty">
 		<div id="noticehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">공지사항</a>

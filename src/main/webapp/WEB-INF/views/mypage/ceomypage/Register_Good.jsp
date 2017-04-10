@@ -103,13 +103,16 @@
   transform: translateY(0);
 }
 
- .reg_good {
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
 
-} 
 </style>
 
 <body>
-	<center>
+	<center class="ty">
 	<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >

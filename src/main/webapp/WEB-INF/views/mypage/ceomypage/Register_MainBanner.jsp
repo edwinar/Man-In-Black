@@ -22,12 +22,19 @@
 td, th {
 	text-align: center;
 }
+
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+
 </style>
 </head>
 <body>
 <body>
 	<input type="hidden" value="<%=list.size()%>" id="list">
-	<center>
+	<center class="ty">
 		<div id="mypagehead" >
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >

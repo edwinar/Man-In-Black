@@ -98,6 +98,12 @@ td, th {
 	outline: 0;
 	background: transparent;
 }
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+
 
 </style>
 <script type="text/javascript">
@@ -314,7 +320,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<center>
+	<center class="ty">
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >

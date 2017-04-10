@@ -13,9 +13,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::NOTICEDETAIL::</title>
+<style>
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+}
+</style>
 </head>
 <body>
-	<center>
+	<center class="ty">
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">공지사항</a>
