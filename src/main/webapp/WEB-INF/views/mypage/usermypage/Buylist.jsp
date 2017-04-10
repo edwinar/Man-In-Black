@@ -116,17 +116,17 @@ margin-top: 30px;
 <body>
 <div style="width: 90%" class="ty">
 	<center>
-		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+		<div id="mypagehead" style="margin-left: 40px;">
+			<h4 align="right" >
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="buylist.mib">구매내역</a>
 			</h4>
-			<h3 style="margin-left: -3%">MY Order</h3>
-			<h4>회원님이 M.I.B에서 구매하신 내역입니다.</h4>
+			<h3 >MY Order</h3>
+			<p style="margin-bottom: 80px;">회원님이 M.I.B에서 구매하신 내역입니다.</p>
 		</div>
 	</center>
 
-	<div align="center" style="margin-top: 50px">
+	<div align="center" style="margin-top: 50px; margin-left: 40px;">
 		<p>
 			<input type="date" height="50px" name="start_date" id="start_date"
 				value="<%=START_DATE%>">~<input type="date" name="end_date"
@@ -151,7 +151,7 @@ margin-top: 30px;
 						<tr height="40px">
 							<th class="boardone" style="width: 9%">이미지</th>
 							<th class="boardone"style="width: 7%">분류</th>
-							<th style="width: 23%">상품이름</th>
+							<th style="width: 20%">상품이름</th>
 							<th class="boardone"style="width: 8%">수량</th>
 							<th class="boardtwo"style="width: 9%">판매가</th>
 							<th class="boardtwo"style="width: 8%">쿠폰</th>
