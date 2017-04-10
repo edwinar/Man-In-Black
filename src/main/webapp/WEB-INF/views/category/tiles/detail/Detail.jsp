@@ -531,6 +531,8 @@ function QnAPage(page){
 			},
 			success : function(data) {
 				var flag = $.parseJSON(data);
+				var QnABody = document.getElementById("QnABody");
+				var QnAPage = document.getElementById("QnAPage");
 				QnABody.innerHTML = "";
 				QnAPage.innerHTML = "";
 				for(i=0;i<flag.length;i++){
@@ -543,7 +545,7 @@ function QnAPage(page){
 			       	}
 				}
 				
-				var PAGE_SIZE = 2;
+				var PAGE_SIZE = 15;
 				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
 				console.log(flag[0].TOT_CNT);
 				for(var j=1;j<=pageCount;j++){
@@ -826,14 +828,13 @@ function BuyPop(){
        
     </tbody>
 	</table>
-		<p align="center">
-			<p align="center" id="QnAPage" style="background: RED;">
-			dssdf
-			</p>
-			<p align="right" style="margin-right: 30px;">
+		<div align="center">
+			<div align="center" id="QnAPage">
+			</div>
+			<div align="right" style="margin-right: 30px;">
 				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
-			</p>
-		</p>
+			</div>
+		</div>
     </div>
 	</div>
 </div>
