@@ -43,7 +43,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               %>
                                     <li><a href="ceoMypage_Main.mib">판매내역</a></li>
                               <%  }else {
-   							  %>    <li><a href="mymain.mib">오늘본상품</a></li> 
+   							  %>    <li><a href="todayGoods.mib">오늘본상품</a></li> 
    								<%
    								  }
                                }else{ %>
@@ -55,7 +55,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               %>
                                     <li><a href="qnA_Administer.mib">문의글관리</a></li>
                               <%  }else {
-   							  %>    <li><a href="mymain.mib">내가쓴게시물</a></li> 
+   							  %>    <li><a href="myboard.mib">내가쓴게시물</a></li> 
    								<%
    								  }
                                }else{ %>

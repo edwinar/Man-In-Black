@@ -22,13 +22,13 @@ body {
 #contain {
 	margin: 0 auto;
 	width: 100%;
-	height: 700px;
+	height: 500px;
 	margin-top: 70px;
 }
 
 #divl {
 	width: 45%;
-	height: 70%;
+	height: 100%;
 	display: inline-block;
 	border: 2px solid rgba(39, 44, 48, 0.36);
 	float: left;
@@ -45,6 +45,17 @@ body {
 	line-height: 50px;
 }
 
+.head{
+float: left;
+width: 100%;
+}
+
+.contentDiv{
+width: 100%;
+height:81.5%;
+float: left;
+}
+
 .paging {
 	width: 100%;
 	height: 35px;
@@ -55,6 +66,7 @@ body {
 	font-size: 15px;
 	font-weight: 900;
 	background-color: #D5D5D5;
+	clear: left
 }
 
 .gray {
@@ -76,12 +88,17 @@ height: 90%
 .ty{
 	margin-top: 30px;
 	}
-	
+#mypagehead{
+margin-left: 30px;
+}
 #mypageheada{
-margin-right: -20px
+margin-right: -20px;
 }	
 #contain{
 height: 600px
+}
+.contentDiv{
+height:82.5%;
 }	
 	
 }
@@ -97,7 +114,7 @@ height: 600px
 					href="coupon_Mileage.mib">쿠폰&적립금</a>
 			</h4>
 			<h3>MY Order</h3>
-			<h4>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</h4>
+			<p>회원님이 M.I.B에서 받으신 쿠폰 및 적립 내역입니다.</p>
 		</div>
 	</center>
 
@@ -105,7 +122,7 @@ height: 600px
 	<div id="contain">
 		<div id="divl">
 			<div class="head gray">사용가능한 쿠폰</div>
-
+			<div class=contentDiv>
 			<div class="offer" align="center">
 				<table class="ta" style="text-align: center; width: 90%">
 					<col width="40%">
@@ -140,17 +157,16 @@ height: 600px
 
 
 				</table>
-
-				<%
+			</div>
+			</div>
+			<%
 					if (couponList == null || couponList.size() == 0) {
 				%>
-				<div class="paging"
-					style=" right: 0px; bottom: 0px"></div>
+				
 				<%
 					} else {
 				%>
-				<div class="paging"
-					style=" right: 0px; bottom: 0px">
+				<div class="paging">
 					<%
 						// 페이징 및 날짜 선택 
 							String PAGE_NUMC = (request.getParameter("PAGE_NUMC") == null
@@ -182,8 +198,7 @@ height: 600px
 					}
 					
 				%>
-
-			</div>
+			
 			<div>
 				<!--페이징 -->
 			</div>
@@ -194,13 +209,14 @@ height: 600px
 		
 		
 		
-		<div id="divl" align="center" ">
+		<div id="divl" align="center">
 			<div class="head gray">적립금</div>
+			<div class=contentDiv>
 			<p align="center">
 				<%
 						if (mypageDto == null) {
 					%>
-				적립금이 없습니다.
+				
 				<%
 						} else {
 					%>
@@ -252,16 +268,15 @@ height: 600px
 
 
 			</table>
+			</div>
 			<%
 				if (pointList == null || pointList.size() == 0) {
 			%>
-			<div class="paging"
-				></div>
+			
 			<%
 				} else {
 			%>
-			<div class="paging"
-				 >
+			<div class="paging">
 				<%
 					// 페이징 및 날짜 선택 
 						String PAGE_NUM = (request.getParameter("PAGE_NUM") == null || request.getParameter("PAGE_NUM") == "")
@@ -298,10 +313,6 @@ height: 600px
 	</div>
 	</div>
 	
-	<div style="background-color: red; width: 1418px; height: 50px; margin-left:45px; margin-top: -210px">
-	<div style="background-color: olive; width: 684px; height: 50px; float: left"></div>
-	<div style="background-color: blue; float: left; width: 48px; height: 50px; "></div>
-	<div style="background-color: olive; width: 684px; height: 50px; float: left"></div>
 	
 	</div>
 	

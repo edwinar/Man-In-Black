@@ -23,11 +23,29 @@ td, th {
 	text-align: center;
 }
 
+#total{
+margin-top: 150px;
+margin-left: 100px;
+}
+#mypagehead{
+margin-left: 80px;
+}
+
 @media ( max-width : 1200px) { 
 .ty{
 margin-top: 30px;
 }
+#mypagehead{
+margin-left: 60px;
 }
+#total{
+margin-left: 80px;
+margin-top:  100px;
+}
+
+}
+
+
 
 </style>
 </head>
@@ -36,7 +54,7 @@ margin-top: 30px;
 	<input type="hidden" value="<%=list.size()%>" id="list">
 	<center class="ty">
 		<div id="mypagehead" >
-			<h4 align="right" style="margin-right: 100px">
+			<h4 align="right" style="margin-right: 100px" >
 				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
 				<a href="register_MainBanner.mib">메인배너등록</a>
 			</h4>
@@ -48,7 +66,7 @@ margin-top: 30px;
 	
 	
 	
-	<div id="total" style="margin-top: 150px">
+	<div id="total" >
 		<div id="table" style="width: 90%">
 
 			

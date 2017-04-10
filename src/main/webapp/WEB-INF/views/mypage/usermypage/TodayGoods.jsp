@@ -36,21 +36,34 @@ margin-right: -50px
 } */
 
 .todi{
-background-color: red; margin: 1%; float: left; width: 400px;
+ margin: 1%; float: left; width: 400px;
+}
+.todi img{
+width: 100%; height: 300px;
+}
+
+/*1024해상도가 1200px임*/
+@media ( max-width : 1200px) { 
+   .todi{
+ margin: 1%; float: left; width: 220px;
+}
+.todi img{
+width: 100%; height: 180px;
+}
 }
 
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: 5%" class="ty">
+<div style="width: 90%; margin-left: 10%" class="ty">
 	<center>
-		<div id="mypagehead">
+		<div id="mypagehead" style="margin-top: 50px;">
 			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="todayGoods.mib">오늘본 상품</a>
 			</h4>
 			<h3>MY Order</h3>
-			<h4>회원님이 M.I.B에서 오늘 보신 상품입니다.</h4>
+			<p>회원님이 M.I.B에서 오늘 보신 상품입니다.</p>
 		</div>
 	</center>
 	<div class="row" align="center" style="margin-top: 70px">
@@ -82,8 +95,8 @@ background-color: red; margin: 1%; float: left; width: 400px;
 		</div> --%>
 		
 			<div class="todi"  onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
-			<img src="../images/jn.jpg" alt="<%=goodslist.get(i).getSTORED_NAME()%>" style="width: 100%; height: 300px;">
-			<div class="caption">
+			<img src="../images/jn.jpg" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
+			<div class="caption" style="width: 100%;">
 					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
 					<p><%=goodslist.get(i).getPRO_PRICE()%></p>
 				</div>

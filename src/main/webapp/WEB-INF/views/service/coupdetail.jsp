@@ -285,6 +285,16 @@ $(document).ready(function() {
             $(this).parent().removeClass("is-completed");
          $(this).parent().removeClass("is-active");
       });
+      
+      $(document).ready(function() {
+
+          if($(".mat-input").val()===''){
+        	  }else{
+        		  $(".mat-input").parent().addClass("is-active is-completed");
+        	      
+          }
+          
+          });
    </script>
 
 </body>

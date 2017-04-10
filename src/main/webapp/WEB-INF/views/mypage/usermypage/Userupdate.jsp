@@ -33,6 +33,11 @@ border-radius:5px;
 
 }
 
+
+#passcheckform{
+margin-top: 200px;
+}
+
 #signupdiv .inputsnlables:last-child{border-bottom:none;}
 
 .inputsnlables
@@ -70,6 +75,10 @@ outline: none;
 @media ( max-width : 1200px) { 
 .ty{
 margin-top: 30px;
+}
+
+#passcheckform{
+margin-top: 140px;
 }
 }
 
@@ -145,7 +154,7 @@ $(document).ready(function() {
 
 	<div style="width: 100%; height: 700px;" id="pwdCheck">
 		<center>
-			<form style="margin-top: 200px">
+			<form id="passcheckform">
 				비밀 번호 확인 <br>
 				<input type="password" size="30" style="background-color: white;" class="" name="pw" id="pw"><br>
 				<input type="button" class="btn btn-default" value="확인" class="checkbtn" id="checkbtn">
@@ -218,7 +227,7 @@ $(document).ready(function() {
 
 	$("#signA").click(function(){
 		var email = $("#sign_email-a").val();
-		alert(email);
+		//alert(email);
 		$.ajax({
 		 			type : "POST",
 		 			url : "emailCheck.mib",

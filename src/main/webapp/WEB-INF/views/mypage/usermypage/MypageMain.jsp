@@ -76,6 +76,9 @@ body {
 .parea {
 	border-bottom: 5px solid #696969;
 }
+#mypagehead{
+margin-left: 90px;
+}
 
 td, th {
 	text-align: center;
@@ -125,8 +128,8 @@ margin-right: 33px;
 
 }   
 #mypagehead{
-margin-right: -60px;
-}   
+margin-left: 50px;
+}  
 #boarddiv{
 width: 94.5%
 }

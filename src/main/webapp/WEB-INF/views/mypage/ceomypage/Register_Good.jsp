@@ -135,7 +135,7 @@ margin-top: 30px;
  	<option value="BAGnACC">BAG&ACC</option> 		
  	</select>
    	<div style="float: left; height: 30px; width: 20px;"></div>
-    <select name="sub_item" id="sub_item" style="float: left; width: 20%; height: 30px;">
+    <select name="sub_item" id="sub_item" style="float: left; width: 30%; height: 30px;">
     <option value="none">서브 카테고리</option>
     <option value="add">추가</option>				
  	</select>
@@ -149,14 +149,14 @@ margin-top: 30px;
     
     
     <div class="mat-label-check" style="font-weight: bold; clear: left; "><p align="center">메인 사진 등록</p>
-  	<div style="float: left; width: 25%; background: #f2f2f2; border: 8px solid #E0E0E0; " >메인<input type="file" name="onefile" id="onefile" ></div>	
+  	<div style="float: left; width: 25%; " >메인<input type="file" name="onefile" id="onefile" ></div>	
   	<div style="width: 12.5%; height:100px; float:left; " ></div>		
     
-    <div style="width:25%; float: left; background: #f2f2f2; border: 8px solid #E0E0E0;">서브메인<input type="file" name="twofile" id="twofile"></div>	
+    <div style="width:25%; float: left; ">서브메인<input type="file" name="twofile" id="twofile"></div>	
   	
   	<div style="width: 12.5%; height:100px;  float:left; " ></div>		
     
-    <div style="width:25%; float: left; background: #f2f2f2; border: 8px solid #E0E0E0;">서브메인<input type="file" name="threefile" id="threefile"></div>
+    <div style="width:25%; float: left; ">서브메인<input type="file" name="threefile" id="threefile"></div>
     
    
 	
@@ -337,7 +337,7 @@ $(function() {
 function addDetail() {
    num++;
    
-   alert("num="+num);
+   //alert("num="+num);
    
     var cloneElements = $('#addDt').clone(true).find("input[name^=color]").attr("name", "color"+num).end()
                                      .find("input[name^=size]").attr("name", "size"+num).end()

@@ -84,7 +84,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
     <div class="thumbnail">
       <img src="<%=outerlist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
-        <h3><%=outerlist.get(i).getPRO_NAME()%></h3>
+        <h5><%=outerlist.get(i).getPRO_NAME()%></h5>
         <p><%=outerlist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>
@@ -101,7 +101,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
     <div class="thumbnail">
       <img src="<%=toplist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
-        <h3><%=toplist.get(i).getPRO_NAME()%></h3>
+        <h5><%=toplist.get(i).getPRO_NAME()%></h5>
         <p><%=toplist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>
@@ -119,7 +119,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
     <div class="thumbnail">
       <img src="<%=pantslist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
-        <h3><%=pantslist.get(i).getPRO_NAME()%></h3>
+        <h5><%=pantslist.get(i).getPRO_NAME()%></h5>
         <p><%=pantslist.get(i).getPRO_PRICE()%>원</p>
       </div>
     </div>

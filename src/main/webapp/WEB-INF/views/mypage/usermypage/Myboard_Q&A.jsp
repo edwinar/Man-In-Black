@@ -36,7 +36,7 @@ margin-right: -30px
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>
 			<h3>My Post</h3>
-			<h4 style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</h4>
+			<p style="margin-bottom: 50px">회원님님의 게시물 작성 리스트 입니다</p>
 		</div>
 	</center>
 
