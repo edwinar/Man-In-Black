@@ -76,10 +76,10 @@ td, th {
 }
 
 .search {
-	width: 500px;
-	height: 40px;
+	width: 28%;
+	height: 36px;
 	margin: 0px auto;
-	background: #f3ffec;
+	background: #dedede;
 	border-radius: 3px;
 	border: 1px solid #fff;
 }
@@ -88,7 +88,7 @@ td, th {
 	width: 370px;
 	padding: 10px 5px;
 	float: left;
-	color: #ccc;
+	color: #000000;
 	border: 0;
 	background: transparent;
 	border-radius: 3px 0 0 3px;
@@ -99,28 +99,6 @@ td, th {
 	background: transparent;
 }
 
-.search button {
-	position: relative;
-	float: right;
-	border: 0;
-	padding: 0;
-	cursor: pointer;
-	height: 40px;
-	width: 120px;
-	color: #fff;
-	border-left: 15px solid #fff;
-	border-radius: 0 3px 3px 0;
-}
-
-
-
-.search button:active {
-	box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
-}
-
-.search button:focus {
-	outline: 0;
-}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -342,20 +320,24 @@ $(document).ready(function() {
 				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
 				<a href="ceoMypage_Main.mib">판매내역</a>
 			</h4>
-			<h4>M.I.B 판매 내역입니다.</h4>
+			<h4>MIB 판매 내역과 매출현황입니다.</h4>
 		</div>
 
 
 		<div class="datediv">
-			<p>
+			
 			<br><br>
 				<h5>날짜별 검색</h5>
-				<button class="mbtn" id="week">1주</button> 
-				<button class="mbtn" id="month">1개월</button> 
-				<button class="mbtn" id="threeMonth">3개월</button> <br> <br> 
-		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn" class="mbtn">검색</button>
+				<button class="btn btn-default" id="week">1주</button> 
+				<button class="btn btn-default" id="month">1개월</button> 
+				<button class="btn btn-default" id="threeMonth">3개월</button> <br> <br>
+				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~
+		<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 
+		<input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" >
+		<button type="button" id="dateBtn" class="btn btn-default">검색</button>
 				<br>
-			</p>
+		
 		</div>
 <%
 START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
@@ -373,7 +355,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	<input type="hidden" id="searchexel" value="<%=search%>">
 	
 	<div align="right">
-	<input type="button" id="exexldown" value="엑셀다운">
+	<input type="button" class="btn btn-default" id="exexldown" value="Excel다운" style= "font-weight:bold">
 	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
 				aria-hidden="true"></span></a> -->
 	</div>
@@ -384,7 +366,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
 		<input type="hidden" name="START_DATE" value="<%=START_DATE %>">
 		<input type="hidden" name="END_DATE" value="<%=END_DATE %>">
-		<button type="submit" class="mbtn">검색</button>
+		<button type="submit" class="btn btn-default" >검색</button>
 	</form>
 
 	<!--수량 총매출액 순이익 -->
@@ -461,7 +443,8 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else{ %>
-						<td id="deltd<%=list.get(i).getDEL_SEQ()%>"><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<td id="deltd<%=list.get(i).getDEL_SEQ()%>">
+						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						<%} %>
 					</tr>
 				<%}
