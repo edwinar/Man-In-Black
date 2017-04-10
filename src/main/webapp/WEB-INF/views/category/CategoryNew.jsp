@@ -14,6 +14,7 @@
 /* 베스트 상품 부분, 카테고리부분 */
 .thumbnail{
  width: 100%;
+ height: 400px;
 }
 .thumbnail{
 	opacity: 1;
@@ -97,7 +98,7 @@ function addCookie(pd_no) {
   %>
   <div class="col-xs-12 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="...">
+      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="..." style="width: 100%; height: 300px;">
       <div class="caption">
         <h5><%=list.get(i).getPRO_NAME() %></h5>
         <p><%=list.get(i).getPRO_PRICE() %> Won</p>
