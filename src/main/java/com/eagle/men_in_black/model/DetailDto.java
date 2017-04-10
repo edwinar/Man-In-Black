@@ -63,7 +63,14 @@ public class DetailDto implements Serializable {
 	private	int	STOCK;
 	private	String	STORED_NAME;
 	private	String ORIGINAL_NAME;
+	private int TOT_CNT;
 	
+	public int getTOT_CNT() {
+		return TOT_CNT;
+	}
+	public void setTOT_CNT(int tOT_CNT) {
+		TOT_CNT = tOT_CNT;
+	}
 	public String getCOUP_NAME() {
 		return COUP_NAME;
 	}
@@ -451,7 +458,7 @@ public class DetailDto implements Serializable {
 				+ REV_TITLE + ", REV_CONTENT=" + REV_CONTENT + ", SCORE=" + SCORE + ", AVG_SCORE=" + AVG_SCORE
 				+ ", SEL_COLOR=" + SEL_COLOR + ", SEL_NUM=" + SEL_NUM + ", SEL_SEQ=" + SEL_SEQ + ", SEL_SIZE="
 				+ SEL_SIZE + ", SEL_TIME=" + SEL_TIME + ", STOCK=" + STOCK + ", STORED_NAME=" + STORED_NAME
-				+ ", ORIGINAL_NAME=" + ORIGINAL_NAME + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID=" + USER_ID + ", WASH="
-				+ WASH + "]";
+				+ ", ORIGINAL_NAME=" + ORIGINAL_NAME + ", TOT_CNT=" + TOT_CNT + ", SUB_ITEM=" + SUB_ITEM + ", USER_ID="
+				+ USER_ID + ", WASH=" + WASH + "]";
 	}
 }
