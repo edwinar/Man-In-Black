@@ -20,12 +20,20 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 /* 베스트 상품 부분, 카테고리부분 */
 .thumbnail{
  width: 100%;
+ height: 600px;
 }
 .thumbnail{
 	opacity: 1;
 }
 .thumbnail:hover{
 	opacity: 0.5;
+}
+/*1024해상도가 1200px임*/
+@media ( max-width : 1200px) { 
+	.thumbnail{
+		width: 100%;
+	 	height: 330px;
+	}
 }
 </style>
 </head>
@@ -72,9 +80,9 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 <h1 style="font-size: 50px; font-weight: bold; " id="main-best-h1"  > OUTER </h1>
 <div class="row" align="center">
   <%for(int i=0;i<outerlist.size();i++){ %>
-  <div class="col-xs-12 col-lg-4" onclick="detail(<%=outerlist.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=outerlist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=outerlist.get(i).getSTORED_NAME()%>" alt="...">
+      <img src="<%=outerlist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h3><%=outerlist.get(i).getPRO_NAME()%></h3>
         <p><%=outerlist.get(i).getPRO_PRICE()%>원</p>
@@ -89,9 +97,9 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 <h1 style="font-size: 50px; font-weight: bold; " > TOP </h1>
 <div class="row" align="center">
    <%for(int i=0;i<toplist.size();i++){ %>
-  <div class="col-xs-12 col-lg-4" onclick="detail(<%=toplist.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=toplist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=toplist.get(i).getSTORED_NAME()%>" alt="...">
+      <img src="<%=toplist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h3><%=toplist.get(i).getPRO_NAME()%></h3>
         <p><%=toplist.get(i).getPRO_PRICE()%>원</p>
@@ -107,9 +115,9 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 <h1 style="font-size: 50px; font-weight: bold; " > PANTS </h1>
 <div class="row" align="center">
    <%for(int i=0;i<pantslist.size();i++){ %>
-  <div class="col-xs-12 col-lg-4" onclick="detail(<%=pantslist.get(i).getPRO_SEQ()%>)">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=pantslist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=pantslist.get(i).getSTORED_NAME()%>" alt="...">
+      <img src="<%=pantslist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h3><%=pantslist.get(i).getPRO_NAME()%></h3>
         <p><%=pantslist.get(i).getPRO_PRICE()%>원</p>
