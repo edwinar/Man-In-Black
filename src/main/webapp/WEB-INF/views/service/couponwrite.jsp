@@ -20,23 +20,6 @@ section {
 	background: #fff;
 }
 
-.btn {
-	text-align: center;
-	padding: .5em .75em;
-	background: #3FBF7F;
-	background: linear-gradient(to right, #1CCEB0, #3FBF7F);
-	border: none;
-	font-weight: 300;
-	font-size: 1.25EM;
-	color: #fff;
-	border-radius: 4px;
-	transition: all 500ms;
-}
-
-.btn:hover {
-	border-radius: 12px;
-}
-
 input[type=file] {
 	width: 0;
 	height: 0;
@@ -95,9 +78,9 @@ body {
 }
 
 .wrap {
-	width: 20%;
+	width: 30%;
 	text-align: center;
-	margin-left: 560px;
+	margin-left: 35%;
 }
 .mat-label {
 	display: block;
@@ -172,7 +155,7 @@ body {
 	<!--메인 이미지등록  -->
 	<div class="preview"></div>
 	<div align="center">
-		<button id="triggerUpload" class="btn">쿠폰메인이미지등록</button>
+		<button id="triggerUpload" class="btn btn-default" style="font-weight:bold">이미지등록</button>
 	</div>
 	
 	<form name="myform" action="couponreg.mib" method="post" enctype="multipart/form-data">
@@ -199,17 +182,12 @@ body {
 			<input type="text" class="mat-input" name="couponlimit" id="제목">
 		</div>
 		<br>
-		<input type="submit" value="등록">	
+		<input type="submit" class="btn btn-default" value="등록">	
 	</div>
 	</form>
 	
 	
 	
-	<!-- 테스트용p태그 -->
-	<p align="right">
-			<a  class="btn btn-primary" href="test.mib" role="button">회원가입테스트</a>
-	</p>
-
 <script type="text/javascript">
     var triggerUpload = document.getElementById('triggerUpload'), upInput = document
             .getElementById('filePicker'), preview = document

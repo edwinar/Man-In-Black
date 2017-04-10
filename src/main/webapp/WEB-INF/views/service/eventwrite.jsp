@@ -24,22 +24,6 @@ section {
 	background: #fff;
 }
 
-.btn {
-	text-align: center;
-	padding: .5em .75em;
-	background: #3FBF7F;
-	background: linear-gradient(to right, #1CCEB0, #3FBF7F);
-	border: none;
-	font-weight: 300;
-	font-size: 1.25EM;
-	color: #fff;
-	border-radius: 4px;
-	transition: all 500ms;
-}
-
-.btn:hover {
-	border-radius: 12px;
-}
 
 input[type=file] {
 	width: 0;
@@ -99,9 +83,9 @@ body {
 }
 
 .wrap {
-	width: 20%;
+	width: 30%;
 	text-align: center;
-	margin-left: 560px;
+	margin-left: 35%;
 }
 
 .mat-label {
@@ -172,17 +156,14 @@ body {
 		</div>
 	</center>
 	<h3>이벤트를 등록해주세요</h3>
-	<br>
-	<br>
-	<br>
-
+	<br><br><br>
 
 	<!--메인 이미지등록  -->
 	<div class="preview">
 	<img src="<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
 	</div>
 	<div align="center">
-		<button id="triggerUpload" class="btn">메인이미지등록</button>
+		<button id="triggerUpload" class="btn btn-default" style= "font-weight:bold">이미지등록</button>
 	</div>
 	
 	<form <%if(serviceDto==null){%> action="eventreg.mib"<%}else{ %> action="eventupdate.mib" <%} %>
@@ -227,8 +208,8 @@ body {
 	
 		<p align="right">
 			<input type="hidden" id="filePickertmp" name="filePickertmp" value=""> 
-			<input type="submit" class="btn btn-primary" id="regbtn" value="등록"> 
-			<a class="btn btn-primary" href="event.mib" role="button">취소</a>
+			<input type="submit" class="btn btn-default" id="regbtn" value="등록"> 
+			<a class="btn btn-default" href="event.mib" role="button">취소</a>
 		</p>
 	</form>
 
@@ -293,9 +274,7 @@ body {
          }
       });
       $(document).ready(function() {
-		
-    	  alert("밸류1212"+$(".mat-input").val());
-		
+
       if($(".mat-input").val()===''){
     	  }else{
     		  $(".mat-input").parent().addClass("is-active is-completed");

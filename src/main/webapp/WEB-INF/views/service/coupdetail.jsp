@@ -24,23 +24,6 @@ section {
 	background: #fff;
 }
 
-.btn {
-	text-align: center;
-	padding: .5em .75em;
-	background: #3FBF7F;
-	background: linear-gradient(to right, #1CCEB0, #3FBF7F);
-	border: none;
-	font-weight: 300;
-	font-size: 1.25EM;
-	color: #fff;
-	border-radius: 4px;
-	transition: all 500ms;
-}
-
-.btn:hover {
-	border-radius: 12px;
-}
-
 input[type=file] {
 	width: 0;
 	height: 0;
@@ -99,9 +82,9 @@ body {
 }
 
 .wrap {
-	width: 20%;
+	width: 30%;
 	text-align: center;
-	margin-left: 560px;
+	margin-left: 35%;
 }
 
 .mat-label {
@@ -182,9 +165,12 @@ $(document).ready(function() {
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">쿠폰</a>
 			</h4>
+			<h4>쿠폰정보를 수정하세요.</h4>
 		</div>
 	</center>
-	<h3>쿠폰 정보</h3>
+	
+	
+	<h3>COUPON DETAIL</h3>
 	<br>
 	<br>
 	<br>
@@ -194,7 +180,7 @@ $(document).ready(function() {
 	<img src="<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
 	</div>
 	<div align="center">
-		<button id="triggerUpload" class="btn">쿠폰메인이미지등록</button>
+		<button id="triggerUpload" class="btn btn-default" style= "font-weight:bold">이미지등록</button>
 	</div>
 	
 	<form name="myform" id="myform" method="post" enctype="multipart/form-data">
@@ -229,8 +215,10 @@ $(document).ready(function() {
 			<%if(serviceDto!=null){ %>value="<%=serviceDto.getCOUP_LIMIT() %>"<%} %>
 			>
 		</div>
-		<input type="button" id="coupupdate" value="수정">
-		<input type="button" id="coupdelete" value="삭제">	
+		
+		<br>
+		<input type="button" id="coupupdate" class="btn btn-default" value="수정">
+		<input type="button" id="coupdelete" class="btn btn-default" value="삭제">	
 	</div>
 	</form>
 

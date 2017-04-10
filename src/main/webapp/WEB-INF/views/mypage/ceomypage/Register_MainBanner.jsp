@@ -33,8 +33,13 @@ td, th {
 				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
 				<a href="register_MainBanner.mib">메인배너등록</a>
 			</h4>
+			<h3>메인배너등록</h3>
+			<h4>신상품리스트중 메인이미지 3개를 등록합니다.</h4>
 		</div>
 	</center>
+	
+	
+	
 	
 	<div id="total" style="margin-top: 150px">
 		<div id="table" style="width: 90%">
@@ -75,7 +80,7 @@ td, th {
 						<td rowspan="2"><img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
-						<td rowspan="2" id="price<%=i%>"><%=list.get(i).getPRO_PRICE()%></td>
+						<td rowspan="2" id="price<%=i%>" style="vertical-align: middle"><%=list.get(i).getPRO_PRICE()%></td>
 					</tr>
 					<tr>
 						<td><%=list.get(i).getITEM()%> : <%=list.get(i).getSUB_ITEM()%></td>
@@ -92,7 +97,7 @@ td, th {
 		</div>
 		<div align="right">
 			<input type="button" id="addBanner"  align="right" value="배너등록" 
-				class="mbtn" style="width: 15%; margin-right: 10.5%">
+				class="btn btn-default" style="width: 15%; font-weight:bold; margin-right: 10.5%">
 		</div>
 	</div>
 	<script type="text/javascript">

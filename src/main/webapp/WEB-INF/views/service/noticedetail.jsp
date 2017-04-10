@@ -18,10 +18,11 @@
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">고객센터</a>
+				<a href="meninblack.mib">홈</a> > <a href="servicenotice.mib">공지사항</a>
 			</h4>
-			<h3>고객센터</h3>
-			<h4>MIB 공지사항입니다</h4>
+			<h3>공지사항</h3>
+			
+		
 		</div>
 	</center>
 	<h3>NOTICEDETAIL</h3>
@@ -36,15 +37,14 @@
 		</div>
 		<p align="right">
 				<%if(userdto!=null && userdto.getUSER_ID().equals("adm")){ %>
-				<a class="btn btn-primary btn-sm"
+				<a class="btn btn-default btn-sm"
 				href="CkeditorNoticeUpload.mib?seq=<%=serviceDto.getNOTICE_SEQ()%>"
-				role="button">수정</a> <a class="btn btn-primary btn-sm"
+				role="button">수정</a> <a class="btn btn-default btn-sm"
 				href="servicedelete.mib?seq=<%=serviceDto.getNOTICE_SEQ()%>"
 				role="button">삭제</a> 
 				<%} %>
-				<a class="btn btn-primary btn-sm"
+				<a class="btn btn-default btn-sm"
 				href="servicenotice.mib" role="button">목록으로</a>
-			<!-- <a  class="btn btn-primary btn-sm" href="servicenotice.mib" role="button">목록으로</a> -->
 		</p>
 
 	</div>
