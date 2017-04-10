@@ -78,7 +78,7 @@ outline: none;
 <div id="inputlbl">
 <div class="inputsnlables"><label>EMAIL</label>
 <input type="text" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
-<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default"style="font-weight:bold" >
+<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" style="font-weight:bold" >
 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
  인증받기</a></div> 
 
@@ -118,6 +118,7 @@ outline: none;
 <script type="text/javascript">
  function cl() {
    var email1 = $("#sign_email").val();
+   //alert("왜안먹냐??"+email1);
    $("#modal-email").modal({
         remote : 'mail.mib?sign_email='+email1,
         backdrop: 'static' // 배경누르고 닫힘 방지 
@@ -201,7 +202,7 @@ $(document).ready(function() {
    
    $("#signA").click(function(){
       var email = $("#sign_email").val();
-      //alert(email);
+     // alert(email);
       $.ajax({
                 type : "POST",
                 url : "emailCheck.mib",
@@ -211,13 +212,10 @@ $(document).ready(function() {
                    "email" : email
                 },
                 success : function(data) {
-                   //alert("success " + data);
+                  
                    var flag = $.parseJSON(data);
-                   //alert(flag.success);
                    if(flag.success==='success'){
-                      
-                      //$("#signA").attr('data-target','#modal-email');
-                      //$("#signA").attr('href','mail.mib?sign_email='+email);
+                      //alert("ASdasdas");
                       cl();
                       //return false;
                    }else{
