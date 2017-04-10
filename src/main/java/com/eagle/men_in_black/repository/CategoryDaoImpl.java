@@ -29,14 +29,14 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public List<CategoryDto> do_bestList(HashMap<String, Object> map) {
-		String statement = namespace+".do_selectCategoryProductList";
+	public List<CategoryDto> do_selectNewProductList(HashMap<String, Object> map) {
+		String statement = namespace+".do_selectNewProductList";
 		return sqlSession.selectList(statement,map);
 	}
 
 	@Override
-	public List<CategoryDto> do_selectNewProductList(HashMap<String, Object> map) {
-		String statement = namespace+".do_selectNewProductList";
-		return sqlSession.selectList(statement,map);
+	public List<CategoryDto> do_selectCategoryProductBestList(String ITEM) {
+		String statement = namespace+".do_selectCategoryProductBestList";
+		return sqlSession.selectList(statement, ITEM);
 	}
 }
