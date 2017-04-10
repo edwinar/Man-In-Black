@@ -125,10 +125,10 @@ input{
 			<input type="date" height="50px" name="start_date" id="start_date"
 				value="<%=START_DATE%>">~<input type="date" name="end_date"
 				id="end_date" value="<%=END_DATE%>" min="<%=END_DATE%>">
-			<button type="button" id="dateBtn" class="btn btn-default" style="height: 38px">검색</button><br>
-			<button class="btn btn-default" id="week"  >1주</button>
-			<button class="btn btn-default" id="month"  >1개월</button>
-			<button class="btn btn-default" id="threeMonth"  >3개월</button>
+			<button  type="button" id="dateBtn" class="btn btn-default" style="height: 38px">검색</button><br>
+			<button style="margin-top: 5px" class="btn btn-default" id="week"  >1주</button>
+			<button style="margin-top: 5px" class="btn btn-default" id="month"  >1개월</button>
+			<button style="margin-top: 5px" class="btn btn-default" id="threeMonth"  >3개월</button>
 		</p>
 	</div>
 

@@ -129,10 +129,10 @@ td, th {
 		</div>
 		<div align="right">
 			<input type="button" id="delete"  value="삭제하기" onclick="deletes()" class="btn btn-default"
-				style="width: 15%; margin-right: 1% ">
+				style="width: 14%; margin-right: 1% ">
 		
 			<input type="button" id="buy"  align="right" value="결제하기" onclick="buy()"
-				class="btn btn-default" style="width: 15%; margin-right: 3%">
+				class="btn btn-default" style="width: 14%; margin-right: 8px">
 		</div>
 	</div>
 	<script type="text/javascript">
