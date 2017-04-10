@@ -109,7 +109,7 @@ outline: none;
 </div>
 <br>
 <div align="center">
-<input type="button" id="complete" value="가입하기" class="btn btn-default btn-lg" style="font-weight:bold">
+<input type="button" id="complete" value="가입하기" class="btn btn-default" style="font-weight:bold">
 </div>
 </div></div>
 

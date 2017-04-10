@@ -114,6 +114,8 @@ td, th {
 	}
 }
 </style>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
 <div style=" ">
@@ -215,7 +217,7 @@ td, th {
 
 				</table>
 			</div>
-			<button class="mbtn" type="button" onclick="location.href='coupon_Mileage.mib'"
+			<button class="btn btn-default" type="button" onclick="location.href='coupon_Mileage.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
@@ -272,7 +274,7 @@ td, th {
 			</table>
 
 
-			<button class="mbtn" type="button" onclick="location.href='buylist.mib'"
+			<button class="btn btn-default" type="button" onclick="location.href='buylist.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
@@ -327,7 +329,7 @@ td, th {
 				%>
 			</table>
 			<button type="button" onclick="location.href='basketlist.mib'"
-				style="margin-left: 94%" class="mbtn">더보기</button>
+				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
 
@@ -378,7 +380,7 @@ td, th {
 					}
 				%>
 			</table>
-			<button type="button" class="mbtn" onclick="location.href='myboard.mib'"
+			<button type="button" class="btn btn-default" onclick="location.href='myboard.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 

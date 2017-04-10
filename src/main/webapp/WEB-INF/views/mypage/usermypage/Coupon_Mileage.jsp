@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::쿠폰 & 적립금::</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <style type="text/css">
 body {
 	font-family: "Lato", sans-serif;
@@ -142,7 +144,7 @@ body {
 								for (int i = 1; i <= pageCountc; i++) {
 							%>
 							<a href="coupon_Mileage.mib?PAGE_NUMC=<%=i%>&"
-								class="btn btn-default" role="button"><%=i%></a>
+								class="btn btn-default" role="btn btn-default"><%=i%></a>
 							<%
 					}%>
 						</p>

@@ -141,9 +141,9 @@ input, select, textarea {
 				</div>
 
 				<div align="center" style="width: 100%;">
-					<button class="mbtn" style="width: 85%;"
+					<button class="btn btn-default" style="width: 85%;"
 						onclick="reps()">답글저장</button>
-					<button class="mbtn" style="width: 85%;"
+					<button class="btn btn-default" style="width: 85%;"
 						onclick="windowClose()">취소</button>
 				</div>
 			</div>

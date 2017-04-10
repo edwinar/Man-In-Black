@@ -219,13 +219,13 @@ var bas_pro_num;
 		</div>
 		<div style="height: 15%; width: 100%; text-align: center;" align="center">
 			<h5>수량</h5><br>
-			<button class="mbtn" id="minus" type="submit" style="width: 15%; height: 100%;" disabled="disabled">-</button>
+			<button class="btn btn-default" id="minus" type="submit" style="width: 15%; height: 100%;" disabled="disabled">-</button>
 			<input type="text" id="number" size="5px" value="<%=count %>" style="text-align: center;" readonly="readonly"/>
-			<button class="mbtn" id="plus" style="width: 15%; height: 100%;" disabled="disabled">+</button>
+			<button class="btn btn-default" id="plus" style="width: 15%; height: 100%;" disabled="disabled">+</button>
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
-			<button type="button" class="mbtn" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
-			<button type="button" cclass="mbtn" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
+			<button type="button" class="btn btn-default" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
+			<button type="button" class="btn btn-default" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
 		</div>
 	</div>
 </div>
