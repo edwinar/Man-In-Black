@@ -86,7 +86,7 @@
 				int page_num = Integer.parseInt(PAGE_NUM);
 				int page_size = Integer.parseInt(PAGE_SIZE);
 
-				int pageCount = reviewlist.get(0).getTOT_CNT() / page_size == 0
+				int pageCount = reviewlist.get(0).getTOT_CNT() % page_size == 0
 						? reviewlist.get(0).getTOT_CNT() / page_size
 						: (reviewlist.get(0).getTOT_CNT() / page_size) + 1;
 		%>

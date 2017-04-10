@@ -15,12 +15,13 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::Review:::</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 <style type="text/css">
 .layout {
 	width: 790px;
@@ -117,7 +118,7 @@
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 
-						<input type="button" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" class="mbtn" value="리뷰 달기"  onclick="closeSelf()">
 					</div>
 
 				</div>

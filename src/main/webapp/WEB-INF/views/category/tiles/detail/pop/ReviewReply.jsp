@@ -33,6 +33,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <title>:::ReviewReply:::</title>
+
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 .photoLayout{
@@ -204,7 +206,7 @@ $(function() {
 				<textarea id="review_content" rows="5px" cols="50px"></textarea>
 			</div>
 			<div class="btn" align="center" style="height: 10%; width:100%;">
-				<button style="width: 50%; height: 100%;" id="reply">답글달기</button>
+				<button class="mbtn" style="width: 50%; height: 100%;" id="reply">답글달기</button>
 			</div>
 		</div>
 	</div>

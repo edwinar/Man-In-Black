@@ -2,10 +2,15 @@ package com.eagle.men_in_black.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +35,7 @@ import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
 import com.google.gson.Gson;
+
 
 @Controller
 public class CeoMypageController {
@@ -763,7 +769,80 @@ public class CeoMypageController {
 			}
 			
 			
+/*			//Excel down
+			@RequestMapping("exceldown.mib")
+			public ModelAndView exceldown(HttpServletRequest res, HttpServletResponse rep) {
+
+				ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
 				
+				HashMap<String, String> map = new HashMap<>();
+			      map.put("PAGE_SIZE", PAGE_SIZE);
+			      map.put("PAGE_NUM", PAGE_NUM);
+			      map.put("START_DATE",START_DATE);
+			      map.put("END_DATE",END_DATE);
+			      map.put("search", search);
+			   
+			      System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
+			      System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
+			      System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
+			      System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
+			      System.out.println("컨트롤러 ======== search"+search);
+			      
+			      
+			      List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
+
+				return mav;
+
+			}*/
+				
+			
+			@RequestMapping(value = "toExcel.mib", method = RequestMethod.POST)
+			 public ModelAndView toExcel(HttpServletRequest res, HttpSession session) {
+
+			ModelAndView result = new ModelAndView();
+
+			String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+			String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+			String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
+			String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+			String search = (res.getParameter("search")==null ||res.getParameter("PRO_NAME")=="")?"%%":"%"+res.getParameter("search")+"%";
+
+			HashMap<String, String> param = new HashMap<>();
+			param.put("PAGE_SIZE", PAGE_SIZE);
+			param.put("PAGE_NUM", PAGE_NUM);
+			param.put("START_DATE",START_DATE);
+			param.put("END_DATE",END_DATE);
+			param.put("search", search);
+			 
+
+			List list = ceoMypageSvc.do_ceomypage_main(param); //쿼리
+
+			result.addObject("list",list); // 쿼리 결과를 model에 담아줌
+
+			 
+
+			Calendar now = new GregorianCalendar();
+			int month = now.get(Calendar.MONTH) + 1;
+			int day = now.get(Calendar.DAY_OF_MONTH);
+			int hour = now.get(Calendar.HOUR_OF_DAY);
+			int minute = now.get(Calendar.MINUTE);
+			int second = now.get(Calendar.SECOND);
+			int MILLISECOND = now.get(Calendar.MILLISECOND);
+			StringBuffer filename = new StringBuffer();
+			filename.append( month ).append( day ).append( hour ).append( minute ).append( second ).append( MILLISECOND );
+			result.addObject("filename",filename);
+			
+
+			result.setViewName("exportToExcel");// 엑셀로 출력하기 위한 jsp 페이지
+
+			 
+
+			return result;
+
+			 
+
+			}
+
 }
 
 			

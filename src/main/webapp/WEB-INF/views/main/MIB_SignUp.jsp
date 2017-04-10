@@ -51,7 +51,7 @@ float:left;
 font-weight:bold;
 }
 
- #MIBsignupform input
+ #MIBsignupform input[type=text]
 {
 border:none;
 padding:20px 0px;
@@ -66,41 +66,6 @@ input:focus, textarea:focus
 outline: none;
 }
 
-
-
-
-
-#MIBsignupform input[type=button]
-{
-background:#fff;
-text-align:center;
-width:100%;
-border-radius:10px;
-border-style:groove;
-border-color:#f2f2f2;
-font-size:1.2em;
-color:black;
-margin-top:10px;
-cursor:pointer;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
-height: 15px;
-
-}
-#MIBsignupform button{
-background:#fff;
-text-align:center;
-border-radius:5px;
-font-size:1em;
-color:black;
-margin-top:10px;
-cursor:pointer;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;
-height: 30px;
-}
-#MIBsignupform button:hover{
-background:black;
-color:white;
--webkit-transition:0.5s ease;-moz-transition:0.5s ease;transition:0.5s ease;}
 </style>
 </head>
 <body>
@@ -112,31 +77,40 @@ color:white;
 <br><br>
 <div id="inputlbl">
 <div class="inputsnlables"><label>EMAIL</label>
-<input type="email" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
-<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default" >
- EMAIL인증</a></div> 
+<input type="text" placeholder="EMAIL" name="sign_email" id="sign_email" value="<%=map.get("sign_email") %>" /> 
+<a href="" id="signA" data-toggle="modal" data-target="" class="btn btn-default"style="font-weight:bold" >
+<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+ 인증받기</a></div> 
 
 
-<div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock"/>
-   <button type="button" id="IDBtn">ID중복확인</button>
+<div class="inputsnlables"><label>ID</label>
+<input type="text" placeholder="ID" name="id" id="id" class="lock"/>
+   <button type="button" id="IDBtn"class="btn btn-default"style="font-weight:bold">
+   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>중복확인</button>
 </div>
-<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
-<div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
+<div class="inputsnlables"><label>PassWord</label>
+<input type="text" placeholder="PassWord" id="password" name="password" class="lock"/></div>
+<div class="inputsnlables"><label>Name</label>
+<input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
 <div class="inputsnlables"><label>TEL</label>
 <input type="text" placeholder="TEL" id="tel" name="tel" class="lock" value="010-" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)" />
 </div>
-<div class="inputsnlables"><label>POSTCODE</label><input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
-<button onclick="Postcode()" type="button" >우편번호 찾기</button></div>
+<div class="inputsnlables"><label>POSTCODE</label>
+<input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
+<button onclick="Postcode()" type="button" class="btn btn-default" style="font-weight:bold">
+<span class="glyphicon glyphicon-search" aria-hidden="true"></span>검색하기</button></div>
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label><input type="text" placeholder="SEX" name="sex"; id="sex"; class="lock"/></div>
+<div class="inputsnlables"><label>SEX</label>
+<input type="text" placeholder="ex)남자" name="sex"; id="sex"; class="lock"/></div>
 <div class="inputsnlables"><label>BIRTH</label>
-<input type="text" placeholder="900411" name="birth"; id="birth"; class="lock" onkeyup="showKeyCode(event)"/>
+<input type="text" placeholder="ex)900411" name="birth" id="birth" class="lock" onkeyup="showKeyCode(event)"/>
 </div>
-
-
-<input type="button" id="complete" value="회원가입하기">
+<br>
+<div align="center">
+<input type="button" id="complete" value="가입하기" class="btn btn-default btn-lg" style="font-weight:bold">
+</div>
 </div></div>
 
 </form>

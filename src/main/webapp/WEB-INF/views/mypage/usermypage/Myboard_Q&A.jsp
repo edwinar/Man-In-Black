@@ -47,7 +47,7 @@
 						if (qnaList == null || qnaList.size() == 0) {
 					%>
 					<tr>
-						<td colspan="5" style="text-align: center;">내역이 없습니다.</td>
+						<td colspan="5" style="text-align: center; height: 300px">내역이 없습니다.</td>
 					</tr>
 					<%
 						} else {

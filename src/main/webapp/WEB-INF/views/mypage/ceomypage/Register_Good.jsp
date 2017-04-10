@@ -137,7 +137,7 @@
     
     
     <div class="mat-label-check" style="font-weight: bold; clear: left; "><p align="center">메인 사진 등록</p>
-  	<div style="float: left; width: 25%; background: #f2f2f2; border: 8px solid #E0E0E0; " >메인<input type="file" name="onefile" id="onefile"></div>	
+  	<div style="float: left; width: 25%; background: #f2f2f2; border: 8px solid #E0E0E0; " >메인<input type="file" name="onefile" id="onefile" ></div>	
   	<div style="width: 12.5%; height:100px; float:left; " ></div>		
     
     <div style="width:25%; float: left; background: #f2f2f2; border: 8px solid #E0E0E0;">서브메인<input type="file" name="twofile" id="twofile"></div>	
@@ -158,7 +158,7 @@
     	<div style="width: 25%; height: 200px; float:left; background: #f2f2f2; border: 8px solid #E0E0E0;" id="imgthree-div"></div>	
     </div>
     
-    <button type="button" onclick="addDetail()">추가</button>
+    <button type="button" onclick="addDetail()" class="mbtn">추가</button>
     <div style="clear: left; width: 100%; height: 300px;" id="add" >
     
     <div style="float:left; width: 20%; height: 300px;" id="addDt">
@@ -241,8 +241,8 @@
 							});
 		</script>
 		
-		<input type="submit" value="글올리기" class="reg_good" >
-		<input type="button" value="취소" class="reg_good">
+		<input type="submit" value="글올리기" class="reg_good mbtn"  >
+		<input type="button" value="취소" class="reg_good mbtn">
 	</form>
 
 
@@ -250,23 +250,26 @@
 <script type="text/javascript">
 var num = 0;
 
-$(".mat-input").focus(function(){
+	$(".mat-input").focus(function(){
 	  $(this).parent().addClass("is-active is-completed");
 	});
 
 	$(".mat-input").focusout(function(){
-	  if($(this).val() === "")
+	  if($(this).val() === ""){
 	    $(this).parent().removeClass("is-completed");
 	  $(this).parent().removeClass("is-active");
+	  }
 	});
-$(".mat-input-color").focus(function(){
+		
+		$(".mat-input-color").focus(function(){
 		  $(this).parent().addClass("is-active is-completed");
 		});
 
 		$(".mat-input-color").focusout(function(){
-		  if($(this).val() === "")
+		  if($(this).val() === ""){
 		    $(this).parent().removeClass("is-completed");
 		  $(this).parent().removeClass("is-active");
+		  }
 		});	
 
 // 파일 업로드 이미지 미리보기 	
@@ -375,7 +378,7 @@ function addDetail() {
 	 				
 	 				for(i=0;i<flag.length;i++){
 	 					
-	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+'</option>');
+	 					$("#sub_item option:eq(0)").after("<option value="+flag[i]+'>'+flag[i]+"</option>");
 
 	 				}
 	 				

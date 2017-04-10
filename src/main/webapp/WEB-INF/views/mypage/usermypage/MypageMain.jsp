@@ -15,8 +15,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>::마이 페이지::</title>
 <style type="text/css">
 body {
@@ -118,7 +116,7 @@ td, th {
 </style>
 </head>
 <body>
-<div style="width: 90%; margin-left: -5%"></div>
+<div style=" ">
 	<center>
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
@@ -217,7 +215,7 @@ td, th {
 
 				</table>
 			</div>
-			<button type="button" onclick="location.href='coupon_Mileage.mib'"
+			<button class="mbtn" type="button" onclick="location.href='coupon_Mileage.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
@@ -274,7 +272,7 @@ td, th {
 			</table>
 
 
-			<button type="button" onclick="location.href='buylist.mib'"
+			<button class="mbtn" type="button" onclick="location.href='buylist.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 		<br> <br> <br> <br> <br> <br>
@@ -329,7 +327,7 @@ td, th {
 				%>
 			</table>
 			<button type="button" onclick="location.href='basketlist.mib'"
-				style="margin-left: 94%" class="btn btn-default">더보기</button>
+				style="margin-left: 94%" class="mbtn">더보기</button>
 		</div>
 
 
@@ -380,10 +378,11 @@ td, th {
 					}
 				%>
 			</table>
-			<button type="button" onclick="location.href='myboard.mib'"
+			<button type="button" class="mbtn" onclick="location.href='myboard.mib'"
 				style="margin-left: 94%" class="btn btn-default">더보기</button>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>

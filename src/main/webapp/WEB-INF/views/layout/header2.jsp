@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8");
 	display: block;
 	color : white;
 	/* background-color: gray; */
-	z-index: 1;
+	z-index: 999999999999;
 	padding: 15px 20px 20px 20px;
 	margin-left: -40px;
 	width: 130px;
@@ -106,6 +106,7 @@ request.setCharacterEncoding("UTF-8");
 	
 	display: none;
 	/* background:transparent; */
+	position:fixed;
 	position: absolute;
 	top:100%;
 	z-index: 999999; /* if you have YouTube iframes, is good to have a bigger z-index so the video can appear above the video */
@@ -306,9 +307,9 @@ width: 100%;
 	
 </div>
 
-<div class="lologo" style="width: 150px; height: 80px; float: left; " >
+<div class="lologo" style="width: 180px; height: 80px; float: left; " >
 <a href="meninblack.mib">
-<img alt="" src="../images/LOGO1.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
+<img alt="" src="../images/MIBlogo.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
 </a>
 </div>
 

@@ -516,14 +516,13 @@ body{
 	right: 0;
 	top: 0;
 	bottom: 0;
-	margin-top: 630px;
+	margin-top: 200px;
 	border-radius: .5em;
-	pointer-events: none;
+	cursor:pointer;
 	-webkit-transition: all 0.45s ease-in;
 	-ms-transition: all 0.45s ease-in;
  	-o-transition: all 0.45s ease-in;
   	-moz-transition: all 0.45s ease-in;
-	
 	transition: all 0.45s ease-in;
 }
 
@@ -775,25 +774,15 @@ body{
 	margin-bottom: 20px;
 }
 
-.signin-container input[type=submit]{
-	padding: 10px 110px;
-	border: 1px solid rgba(0, 0, 0, 0.4);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px
-		rgba(255, 255, 255, 0.1);
-	border-radius: 0.3em;
-	background: #FFFFFF;
-	float: right;
-	font-weight: bold;
-	cursor: pointer;
-	font-size: 13px;
-}
 
 .signin-container {
 	padding: 0 20px 20px 20px;
 }
+.signin-container input[type=submit]{
+	font-weight:bold
+}
 /*회원가입 모달 */
-.signup-container input[type=submit] {
+/* .signup-container input[type=submit] {
 	padding: 10px 20px 10px 160px;
 	border: 1px solid rgba(0, 0, 0, 0.4);
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
@@ -804,25 +793,12 @@ body{
 	cursor: pointer;
 	font-size: 13px;
 }
-
+ */
 .signup-container {
 	padding: 5px 20px 20px 20px;
 }
 
 
-/*회원가입 모달 */
-.signup-container input[type=submit] {
-  padding: 10px 90px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  text-align: right;
-  border-radius: 0.3em;
-  background: #FFFFFF;
-  float: right;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 13px;
-}
 .signup-container{
    padding: 5px 20px 20px 20px;
    
@@ -834,4 +810,22 @@ body{
 .social-login-types{
    padding: 52px 20px 56px 18px;
    
+}
+
+
+/* 통합 버튼 */
+.mbtn {
+	text-align: center;
+	padding: .5em .75em;
+	background: #000000;
+	border: none;
+	font-weight: bold;
+	font-size: 1.25EM;
+	color: #FFFFFF;
+	border-radius: 4px;
+	transition: all 500ms;
+}
+
+.mbtn:hover {
+	color: #FF0000;
 }

@@ -198,7 +198,7 @@ $(document).ready(function() {
 <div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
 
 
-<input type="button" id="complete" value="정보수정하기">
+<input type="button" id="complete"  value="정보수정하기">
 </div>
 
 </form></div>

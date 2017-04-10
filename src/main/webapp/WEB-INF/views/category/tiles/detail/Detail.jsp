@@ -745,7 +745,7 @@ function BuyPop(){
     <div class="tab__content">
      <center>
      <h1>상품상세 TEST</h1>
-     <img alt="..." src="../images/LOVE.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <img alt="..." src="../images/jn.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
      </center>
     </div>
 

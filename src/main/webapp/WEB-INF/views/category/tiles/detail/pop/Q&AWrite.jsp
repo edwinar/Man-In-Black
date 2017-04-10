@@ -15,6 +15,8 @@ System.out.println(today);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../../../../../css/Mib.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>:::Q&ADetail:::</title>
@@ -102,10 +104,10 @@ function windowClose(){
 		</div>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
-				<button class="btn btn-default" style="width: 50%; height: 100%;" onclick="qnawrite()">등록하기</button>
+				<button class="mbtn" style="width: 50%; height: 100%;" onclick="qnawrite()">등록하기</button>
 			</div>
 			<div style="float: right; width: 50%;">
-				<button class="btn btn-default" style="width: 50%; height: 100%;" onclick="windowClose()">취소하기</button>
+				<button class="mbtn"" style="width: 50%; height: 100%;" onclick="windowClose()">취소하기</button>
 			</div>
 		</div>
 		</form>

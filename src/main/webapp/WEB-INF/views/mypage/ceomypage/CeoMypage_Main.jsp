@@ -108,7 +108,6 @@ td, th {
 	height: 40px;
 	width: 120px;
 	color: #fff;
-	background: #6ac56d;
 	border-left: 15px solid #fff;
 	border-radius: 0 3px 3px 0;
 }
@@ -296,6 +295,8 @@ function delStep(SEQ) {
 			}
 		});		
 }
+
+
 </script>
 </head>
 <body>
@@ -313,26 +314,13 @@ function delStep(SEQ) {
 			<p>
 			<br><br>
 				<h5>날짜별 검색</h5>
-				<button class="btn btn-success" id="week">1주</button> 
-				<button class="btn btn-success" id="month">1개월</button> 
-				<button class="btn btn-success" id="threeMonth">3개월</button> <br> <br> 
-		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn">검색</button>
+				<button class="mbtn" id="week">1주</button> 
+				<button class="mbtn" id="month">1개월</button> 
+				<button class="mbtn" id="threeMonth">3개월</button> <br> <br> 
+		<input type="date" name="start_date" id="start_date" height="50px" value="<%=START_DATE %>" > ~ <input type="date" name="end_date" id="end_date" value="<%=END_DATE %>" min="<%=END_DATE%>" > <button type="button" id="dateBtn" class="mbtn">검색</button>
 				<br>
 			</p>
 		</div>
-
-
-	</center>
-	<!--엑셀로 다운받기-->
-	<form name="searchForm" method="POST" action="" >
-	<div align="right">
-		<button type="button" onclick="exportToExcel();" class="btn btn-success">
-			엑셀 다운로드 <span class="glyphicon glyphicon-download-alt"
-				aria-hidden="true"></span>
-		</button>
-	</div>
-	</form>
-
 <%
 START_DATE = START_DATE.substring(2,4) + START_DATE.substring(5,7) + START_DATE.substring(8, 10);
 
@@ -340,12 +328,28 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 
 %>
 
+	</center>
+	<!--엑셀로 다운받기-->
+	<form id="excel" method="POST" action="toExcel.mib" >
+	<input type="hidden" name="PAGE_SIZE" value="10">
+	<input type="hidden" name="PAGE_NUM" value="1">
+	<input type="hidden" name="START_DATE" value="<%=START_DATE%>">
+	<input type="hidden" name="END_DATE" value="<%=END_DATE%>">
+	<input type="hidden" name="search" value="<%=search%>">
+	
+	<div align="right">
+	<input type="submit" onclick="exportToExcel();" value="엑셀다운">
+	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
+				aria-hidden="true"></span></a> -->
+	</div>
+	</form>
+	
 	<!--검색(유저ID,상품이름)-->
 	<form class="search" action="ceoMypage_Main.mib">
 		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
 		<input type="hidden" name="START_DATE" value="<%=START_DATE %>">
 		<input type="hidden" name="END_DATE" value="<%=END_DATE %>">
-		<button type="submit">검색</button>
+		<button type="submit" class="mbtn">검색</button>
 	</form>
 
 	<!--수량 총매출액 순이익 -->
@@ -418,7 +422,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else{ %>
-						<td id="deltd<%=list.get(i).getDEL_SEQ()%>" ><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<td id="deltd<%=list.get(i).getDEL_SEQ()%>"><button type="button" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						<%} %>
 					</tr>
 				<%}
