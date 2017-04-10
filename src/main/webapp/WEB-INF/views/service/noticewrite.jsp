@@ -14,9 +14,9 @@
 <style type="text/css">
 
 .wrap {
-	width: 20%;
+	width: 30%;
 	text-align: center;
-	margin-left: 560px;
+	margin-left: 35%;
 }
 
 .mat-label {
@@ -117,8 +117,8 @@
 		</script>
 		<!-- <input type="submit" class="btn btn-primary" value="등록"> -->
 		<p align="right">
-			<input type="submit" class="btn btn-primary" value="등록"> <a
-				class="btn btn-primary" href="servicenotice.mib" role="button">취소</a>
+			<input type="submit" class="btn btn-default" value="등록"> <a
+				class="btn btn-default" href="servicenotice.mib" role="button">취소</a>
 		</p>
 
 	</form>

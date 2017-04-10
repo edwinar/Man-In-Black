@@ -43,7 +43,7 @@ td, th {
 		if(dto.getUSER_ID().equals("adm")){
 		%>
 	<p align="right">
-			<a  class="btn btn-primary" href="CkeditorNoticeUpload.mib" role="button">공지사항 쓰기</a>
+			<a  class="btn btn-default" href="CkeditorNoticeUpload.mib" role="button">공지사항 쓰기</a>
 	</p>
 	<%} 
 	}%>
