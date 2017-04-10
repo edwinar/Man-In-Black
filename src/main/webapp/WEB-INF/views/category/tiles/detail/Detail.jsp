@@ -708,12 +708,12 @@ function QnAWrite2(){
 		        	<% 	 
 					if(dto!=null){
 					%>
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
+		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
 		        	<%
 		        	}else{ 
 		        	%>
 		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
-		        		<button style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
+		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
 		        		구매하기
 		        		</button>	
 		        		</a>
@@ -844,11 +844,11 @@ function QnAWrite2(){
 			<%
 				if(dto!=null){
 			%>
-				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+				<button class="btn btn-default" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
 			<%
 				}else{
 			%>
-				<button class="writeBtn" style="width: 10%;" onclick="QnAWrite2()">글쓰기</button>
+				<button class="btn btn-default" style="width: 10%;" onclick="QnAWrite2()">글쓰기</button>
 			<%
 				}
 			%>
