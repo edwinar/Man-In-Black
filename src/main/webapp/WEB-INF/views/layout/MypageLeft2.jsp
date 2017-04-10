@@ -45,7 +45,9 @@ mypagemenu .megaMenu {
   height: 100%;
   padding-top: 10px;
   margin-top:80px;
-  z-index: 100;
+  z-index: 1000;
+  opacity: .99;
+  
   border-right: 2px solid #ddd;
   box-shadow: 2px 2px 50px 3px #000;
   -ms-box-shadow: 2px 2px 50px 3px #000;

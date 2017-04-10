@@ -11,14 +11,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::리뷰::</title>
 <style type="text/css">
-
+#mypageheada {
+	margin-right: 100px 
+	
 @media ( max-width : 1200px) { 
-	.ty{
-	margin-top: 30px;
-	}
-	
-	
-    }
+
+#mypageheada {
+
+margin-right: -30px;
+}
+#mypagehead{
+margin-top:30px;
+}
+}
 </style>
 </style>
 </head>
@@ -27,7 +32,7 @@
 <div class="ty">
 	<center>
 		<div id="mypagehead">
-			<h4 align="right" style="margin-right: 100px">
+			<h4 id="mypageheada" align="right" >
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="myboard.mib">내가 쓴 게시물</a>
 			</h4>

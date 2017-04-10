@@ -62,9 +62,9 @@ margin-top: 150px;
 	height: 100%;
 }
 
-/*작아졌을때*/
-@media (max-width: 80em){
-#outerH1{
+/*1024해상도가 1200px임*/
+@media (max-width: 1200px){
+/* #outerH1{
 margin-top: 150px;
 }
 .productExplain{
@@ -83,7 +83,7 @@ margin-top: 150px;
 }
 .sub-slide{
 	/* float: none; */
-	width: auto;
+	/* width: auto;
 	height: auto;
 }
 .sub-photo{
@@ -96,8 +96,50 @@ margin-top: 150px;
 .slide{
   width: auto;
   height: auto;
+} */
+.toptotal{
+	margin-left: -130px;
 }
-
+.productExplain{
+	margin-top : 70px;
+	position: relative;
+	width: 40%;
+	height: 700px;
+	float: right;
+}
+.slide-container{
+	margin-top : 70px;
+	position: relative;
+	width: 60%;
+	height: 700px;
+	float: left;
+}
+.sub-slide{
+	float: left;
+	width: 30%;
+	height: 95%;
+	border-top: double gray 0.1px;
+	border-left: double gray 0.1px;
+}
+.sub-photo{
+	width: 100%;
+	height: 33.333333333333333%;
+	opacity: 1;
+	border-bottom: double gray 0.1px;
+}
+.sub-photo:hover{
+	opacity: 0.5;
+}
+.slide{
+	width: 70%;
+	height: 95%;
+	float: right;
+	border: double gray 0.1px;
+}
+.content, .content1, .content2, .content3{
+	width: 100%;
+	height: 100%;
+}
 }
 
 /* 베스트 상품 부분 스타일*/
@@ -307,7 +349,7 @@ table.responsive-table{
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 80em){
+/* @media (max-width: 80em){
     table.responsive-table{
       box-shadow: none;  
     }
@@ -354,7 +396,7 @@ table.responsive-table{
     table.responsive-table td{
         border-top: none;
     }
-    /* 작아졌을때 색상  */
+    
     table.responsive-table th.organisationnumber{
         background: #D5E0CC;
         border-top: 1px solid #B3BFAA;
@@ -366,9 +408,9 @@ table.responsive-table{
         border: none;
         background: none;
     }
-}
+} */
 
-@media (max-width: 30em){
+/* @media (max-width: 30em){
     table.responsive-table{
       box-shadow: none;  
     }
@@ -414,7 +456,7 @@ table.responsive-table{
     table.responsive-table td{
         border-top: none;
     }
-    /* 작아졌을때 색상  */
+    
     table.responsive-table th.organisationnumber{
         background: #D5E0CC;
         border-top: 1px solid #B3BFAA;
@@ -426,7 +468,7 @@ table.responsive-table{
         border: none;
         background: none;
     }
-}
+} */
 </style>
 </head>
 <body>
@@ -615,7 +657,7 @@ function QnAWrite2(){
 <input type="hidden" id="userIdlog" value="nolog" >
 <%} %>
 <div>
-<div>
+<div class="toptotal">
 	<div class="slide-container">
 		<div class="sub-slide visible-lg">
 			<div class="sub-photo">

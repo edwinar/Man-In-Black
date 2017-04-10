@@ -128,7 +128,7 @@ function coup(seq){
 		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
-	}else if(userdto.getUSER_ID().equals("adm")){
+	}else if(userdto!=null && userdto.getUSER_ID().equals("adm")){
 		for(int i=0;i<couplist.size();i++){
 	%>
 	<div class="previewcoup" style="margin-left: 21px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
