@@ -49,13 +49,13 @@ margin-right: -5px;
 	<div class="ty">
 	<input type="hidden" value="<%=basketlist.size()%>" id="list">
 	<center>
-		<div id="mypagehead">
+		<div id="mypagehead"  style="margin-left: 40px;">
 			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
 				<a href="basketlist.mib">장바구니</a>
 			</h4>
 			<h3>MY Order</h3>
-			<h4 style="margin-bottom: 50px">회원님의 장바구니 입니다.</h4>
+			<p style="margin-bottom: 50px">회원님의 장바구니 입니다.</p>
 		</div>
 	</center>
 

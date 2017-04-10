@@ -94,7 +94,7 @@ $(document).ready(function() {
    $("#right-toggle").click(function(){
    if($("#right-toggle").prop("checked")) {
    
-      $("#buyaside").css('margin-top','380px');
+      $("#buyaside").css('margin-top','480px');
    
    }else{
       
