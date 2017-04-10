@@ -88,7 +88,7 @@
 				<button style="width: 50%; height: 100%;" class="mbtn" onclick="update(<%=qnaDto.getQNA_SEQ()%>)">수정하기</button>
 			</div>
 			<div style="float: right; width: 50%;">
-				<button style="width: 50%; height: 100%;" class="mbtn" onclick="del()">삭제하기</button>
+				<button style="width: 50%; height: 100%;" class="mbtn" onclick="del(<%=qnaDto.getQNA_SEQ()%>)">삭제하기</button>
 			</div>
 		</div>
 		
@@ -111,32 +111,40 @@ function rep(QNA_SEQ){
 	window.colse();
 };
 
-function del() {
-	var QNA_SEQ =$("#QNA_SEQ").val();
+function del(QNA_SEQ) {
+	var formData = new FormData();
 
-	$.ajax({
-			type : "POST",
-			url : "qnadel.mib",
-			async : true,
-			dataType : "html",
-			data : {
-				"QNA_SEQ" : QNA_SEQ
-			},
-			success : function(data) {
-				//alert("success " + data);
-				var flag = $.parseJSON(data);
-				if(flag.result=='success'){
-					opener.parent.location.reload();
-					windowClose();	
-				}; 		
-			},
-			complete : function(data) {
-			},
-			error : function(xhr, status, error) {
-				alert("에러발생");
-			}
-		});	
-	};
+    formData.append("QNA_SEQ",QNA_SEQ);
+	
+	
+    $.ajax({
+        type: "POST",
+        url: "qnadelete.mib",
+        async: true,
+        data: formData,
+        dataType: "html",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+//
+            var flag = $.parseJSON(data);
+
+            if (flag.result == 'success') {
+                alert("삭제되었습니다");
+                opener.parent.location.reload();
+                window.close();
+            } else {
+                alert("업뎃실패");
+            }
+        },
+        complete: function (data) {
+        },
+        error: function (xhr, status, error) {
+            alert("에러발생");
+        }
+    });
+
+}
 
 	function windowClose(){
 		window.close();

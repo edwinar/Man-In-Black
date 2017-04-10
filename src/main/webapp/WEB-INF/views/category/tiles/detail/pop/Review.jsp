@@ -45,7 +45,7 @@
 }
 .thumbnail{
  width: 100%;
- height: 100%;
+ height: 115%;
  text-align: center;
 }
 </style>
@@ -143,7 +143,7 @@
 				
 				<%} %>
 				<%if(dto.getUSER_ID().equals(detailDto.getUSER_ID()) && dto!=null && !dto.getUSER_ID().equalsIgnoreCase("adm")){ %>
-				<button style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
+				<button  class="mbtn" style="width: 50%; height: 100%;" onclick="reviewUpdate(<%=detailDto.getREV_SEQ() %>)">수정하기</button>
 				<input type="button"  class="mbtn" value="삭제하기" style="width: 50%; height: 100%;" onclick="closeSelf(<%=detailDto.getREV_SEQ() %>)">
 	
 				<%} %>
