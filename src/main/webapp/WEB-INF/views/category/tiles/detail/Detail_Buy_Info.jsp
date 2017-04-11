@@ -66,7 +66,7 @@ td, th {
 	<div id="table" style="width: 90%">
 		<form name="f1">
 			<table class="table">
-				<col width="5%"><col width="9%"><col width="45%"><col width="10%"><col width="10%">
+				<col width="10%"><col width="9%"><col width="30%"><col width="10%"><col width="20%">
 				<tr>
 					<th>번호</th>
 					<th>이미지</th>
@@ -132,12 +132,12 @@ td, th {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_1" value="<%=dto.getADDRESS() %>"/>
+						<input type="text" size="30px" readonly="readonly" id="orderAddress_1" value="<%=dto.getADDRESS() %>"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" readonly="readonly" id="orderAddress_2" value="<%=dto.getDETAILADDRESS() %>"/>
+						<input type="text" size="30px" readonly="readonly" id="orderAddress_2" value="<%=dto.getDETAILADDRESS() %>"/>
 					</td>
 				</tr>
 			</table>
@@ -163,7 +163,7 @@ td, th {
 					<td colspan="2" style="padding-left: 150px">수령인</td>
 					<td colspan="1">
 						<input type="checkbox" id="ch" class="chbox" style="width: 20px; height: 20px"/>
-						주문자와 동일
+						주문자동일
 					</td>
 				</tr>
 				<tr>
@@ -192,12 +192,12 @@ td, th {
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_1" name="receiveAddress_1"/>
+						<input type="text" size="30px" id="receiveAddress_1" name="receiveAddress_1"/>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" size="42px" id="receiveAddress_2" name="receiveAddress_2"/>
+						<input type="text" size="30px" id="receiveAddress_2" name="receiveAddress_2"/>
 					</td>
 				</tr>
 			</table>
@@ -251,11 +251,11 @@ td, th {
 					<td>Won 사용가능</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<input type="text" size="30px" id="pointValue" disabled="disabled" onkeypress="onlyNumber();"/>
+					<td colspan="2" style="text-align: right;">
+						<input type="text" size="20px" id="pointValue" disabled="disabled" onkeypress="onlyNumber();"/>
 					</td>
 					<td>
-						<button id="pointBtn" disabled="disabled">Won 사용하기</button>
+						<button id="pointBtn" disabled="disabled">사용하기</button>
 					</td>
 				</tr>
 				<tr>
