@@ -160,14 +160,6 @@ function reps() {
 			var USER_ID = $("#USER_ID").val();
 			var PRO_SEQ =$("#PRO_SEQ").val();
 			
-			alert("secretz:"+secretz+" : "+
-					"secret:"+secret+" : "+
-					"QNA_REF:"+QNA_REF+" : "+
-					"title:"+title+" : "+
-					"QNA_CONTENT:"+QNA_CONTENT+" : "+
-					"USER_ID:"+USER_ID+" : "+
-					"PRO_SEQ:"+PRO_SEQ);
-			
 			
 			$.ajax({
 					type : "POST",
@@ -184,7 +176,6 @@ function reps() {
 						"PRO_SEQ" : PRO_SEQ
 					},
 					success : function(data) {
-						//alert("success " + data);
 						var flag = $.parseJSON(data);
 						if(flag.result=='success'){
 							opener.parent.location.reload();
@@ -196,7 +187,7 @@ function reps() {
 					},
 					
 					error : function(xhr, status, error) {
-						alert("에러발생");
+						alert("빈칸없이 작성해주세요");
 					}
 				});	
 };

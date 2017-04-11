@@ -267,7 +267,6 @@
         var commend = document.getElementsByName('commend').value;
 
         if ('교환' == commend) {
-            alert('커맨드 = ' + commend);
             formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
             formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
 
@@ -301,13 +300,13 @@
                     opener.parent.location.reload();
                     window.close();
                 } else {
-                    alert("업뎃실패");
+                    alert("시스템 오류 잠시후 다시 시도해주세요 ");
                 }
             },
             complete: function (data) {
             },
             error: function (xhr, status, error) {
-                alert("에러발생");
+                alert("빈칸없이 작성해주세요");
             }
         });
 

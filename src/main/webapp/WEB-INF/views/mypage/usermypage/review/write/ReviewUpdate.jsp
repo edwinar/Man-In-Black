@@ -452,7 +452,6 @@ input, select, textarea {
             processData: false,
             contentType: false,
             success : function(data) {
-                //alert("success " + data);
                 var flag = $.parseJSON(data);
 
                 if(flag.result=='OK'){
@@ -480,7 +479,6 @@ input, select, textarea {
 			var REV_SEQ = <%=detailDto.getREV_SEQ() %>;
 			var PRO_SEQ = <%=detailDto.getPRO_SEQ() %>;
 			
-			alert("ASDasdasd");
 			
 				$.ajax({
 		 			type : "POST",
