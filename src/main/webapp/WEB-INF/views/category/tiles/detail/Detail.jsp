@@ -64,42 +64,6 @@ margin-top: 150px;
 
 /*1024해상도가 1200px임*/
 @media (max-width: 1200px){
-/* #outerH1{
-margin-top: 150px;
-}
-.productExplain{
-  margin:auto;
-  position: relative;
-  width: 100%;
-  height: 600px;
-  float: none;
-}
-.slide-container{
-  position: relative;
-  width: 100%;
-  height: 200px;
-  margin: auto;
-  float: none;
-}
-.sub-slide{
-	/* float: none; */
-	/* width: auto;
-	height: auto;
-}
-.sub-photo{
-	width: auto;
-	height: 50;
-	opacity: 1;
-	border: double gray 0.1px;
-	float: none;
-}
-.slide{
-  width: auto;
-  height: auto;
-} */
-.toptotal{
-	margin-left: -130px;
-}
 .productExplain{
 	margin-top : 70px;
 	position: relative;
@@ -348,127 +312,6 @@ table.display td{ background: #fff; }
 table.responsive-table{
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
-
-/* @media (max-width: 80em){
-    table.responsive-table{
-      box-shadow: none;  
-    }
-    table.responsive-table thead{
-      display: none; 
-    }
-  table.display th,
-  table.display td{
-    padding: .5em;
-  }
-    
-  .imgr{
-     margin-top: 50px;
-     width: 30%;
-     height: 40%;
-     
-  } 
-  .star{
-  width: 6%;
-  }
-  
-  table.responsive-table td:nth-child(1){
-     text-align: center;
-     
-  }
-  
-  table.responsive-table td:nth-child(1):before,
-  table.responsive-table td:nth-child(2):before,
-  table.responsive-table td:nth-child(3):before{
-    position: absolute;
-    left: .5em;
-    font-weight: bold;
-  }
-  
-    table.responsive-table tr,
-    table.responsive-table td{
-        display: block;
-    }
-    table.responsive-table tr{
-        position: relative;
-        margin-bottom: 1em;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    }
-    table.responsive-table td{
-        border-top: none;
-    }
-    
-    table.responsive-table th.organisationnumber{
-        background: #D5E0CC;
-        border-top: 1px solid #B3BFAA;
-    }
-    table.responsive-table td.actions{
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: none;
-        background: none;
-    }
-} */
-
-/* @media (max-width: 30em){
-    table.responsive-table{
-      box-shadow: none;  
-    }
-    table.responsive-table thead{
-      display: none; 
-    }
-  table.display th,
-  table.display td{
-    padding: .5em;
-  }
-    
-  .imgr{
-     margin-top: 50px;
-     width: 50%;
-     
-  } 
-  .star{
-  width: 10%;
-  }
-  
-  table.responsive-table td:nth-child(1){
-     text-align: center;
-     
-  }
-  
-  table.responsive-table td:nth-child(1):before,
-  table.responsive-table td:nth-child(2):before,
-  table.responsive-table td:nth-child(3):before{
-    position: absolute;
-    left: .5em;
-    font-weight: bold;
-  }
-  
-    table.responsive-table tr,
-    table.responsive-table td{
-        display: block;
-    }
-    table.responsive-table tr{
-        position: relative;
-        margin-bottom: 1em;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    }
-    table.responsive-table td{
-        border-top: none;
-    }
-    
-    table.responsive-table th.organisationnumber{
-        background: #D5E0CC;
-        border-top: 1px solid #B3BFAA;
-    }
-    table.responsive-table td.actions{
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: none;
-        background: none;
-    }
-} */
 </style>
 </head>
 <body>
@@ -659,7 +502,7 @@ function QnAWrite2(){
 <div>
 <div class="toptotal">
 	<div class="slide-container">
-		<div class="sub-slide visible-lg">
+		<div class="sub-slide ">
 			<div class="sub-photo">
 				<div class="content1">
 		    		<img src="<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%">
