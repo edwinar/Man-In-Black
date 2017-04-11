@@ -657,7 +657,8 @@ function QnAWrite2(){
     <div class="tab__content">
      <center>
      <h1>상품상세 TEST</h1>
-     <img alt="..." src="../images/jn.jpg" class="detailPhto col-xs-12 col-lg-12"><br/>
+     <%=list.get(0).getPRO_DETAIL() %>
+     <!-- <img alt="..." src="../images/jn.jpg" class="detailPhto col-xs-12 col-lg-12"><br/> -->
      </center>
     </div>
 
