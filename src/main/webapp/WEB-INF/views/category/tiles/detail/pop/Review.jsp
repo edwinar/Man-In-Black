@@ -70,7 +70,17 @@ input, select, textarea {
 	<div class="fullLayout">
 	<%} %>
 		<div class="thumbnail">
-			<div class="score" align="center" style="height: 20%"> 평점 
+			<div class="score" align="center" style="height: 20%"> 
+			<%
+				if(detailDto.getUSER_ID().equals("adm")){
+			%>
+			<%
+				}else{
+			%>
+			평점 
+			<%
+				}
+			%>
 				<%
 	        		if(detailDto.getSCORE()==1){
 	        	%>
