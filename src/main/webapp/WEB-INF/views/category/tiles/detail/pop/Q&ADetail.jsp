@@ -29,6 +29,12 @@
 	height: 100%;
 	text-align: center;
 }
+input, select, textarea {
+	border: 1px solid #ccc;
+	display: inline-block;
+	border-radius: 3px;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
 </style>
 </head>
 <body>
@@ -63,18 +69,18 @@
 		<div style="height: 10%; width: 100%;">
 			<div style="height: 100%; width: 50%; float: left;">
 				<p align="left" style="margin-left: 30px;">
-					작성자 : <input type="text" value="<%=qnaDto.getUSER_ID()%>" readonly="readonly">
+					작성자 : <input style="margin-left: 14px" type="text" value="<%=qnaDto.getUSER_ID()%>" readonly="readonly">
 				</p>
 			</div>
 			<div style="height: 100%; width: 50%; float: right;">
 				<p align="left" style="margin-left: 30px;">
-					작성일 : <input type="text" value="<%=qnaDto.getQNA_TIME()%>" readonly="readonly">
+					작성일 : <input style="margin-left: 14px" type="text" value="<%=qnaDto.getQNA_TIME()%>" readonly="readonly">
 				</p>
 			</div>
 		</div>
 		<div style="height: 10%; width: 100%;">
 			<p align="left" style="margin-left: 30px;">
-				제목 : <input type="text" value="<%=qnaDto.getQNA_TITLE()%>" readonly="readonly">
+				제목 : <input style="margin-left: 28px" type="text" value="<%=qnaDto.getQNA_TITLE()%>" readonly="readonly">
 					<input type="hidden" id="QNA_SEQ" name="QNA_SEQ" value="<%=qnaDto.getQNA_SEQ()%>" >
 			</p>
 		</div>
@@ -95,7 +101,7 @@
 		<%}else if(dto!=null && dto.getUSER_ID().equals("adm")){ %>
 		
 		<div align="center">
-				<button style="width: 80%; height: 100%;"class="btn btn-default" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
+				<button style="width: 92%; height: 100%;"class="btn btn-default" onclick="rep(<%=qnaDto.getQNA_SEQ()%>)">답글달기</button>
 			</div>
 		<%} %>
 		
@@ -140,7 +146,7 @@ function del(QNA_SEQ) {
         complete: function (data) {
         },
         error: function (xhr, status, error) {
-            alert("에러발생");
+            alert("빈칸없이 작성하여 주세요");
         }
     });
 

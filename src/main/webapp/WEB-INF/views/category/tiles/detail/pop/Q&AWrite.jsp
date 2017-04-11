@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%
 MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
-SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 String PRO_SEQ = request.getParameter("PRO_SEQ");
 Date date = new Date(); // 현재 날짜 생성
 String today = df.format(date);
@@ -82,20 +82,20 @@ function windowClose(){
 		<div style="height: 10%; width: 100%;">
 			<div style="height: 100%; width: 50%; float: left;">
 				<p align="left" style="margin-left: 30px;">
-					작성자 : <input type="text" id="USER_ID" name="USER_ID" value="<%=dto.getUSER_ID() %>" readonly="readonly">
+					작성자 : <input style="margin-left: 14px" type="text" id="USER_ID" name="USER_ID" value="<%=dto.getUSER_ID() %>" readonly="readonly">
 				<input type="hidden" value="<%=PRO_SEQ%>" id="PRO_SEQ" name="PRO_SEQ">
 				
 				</p>
 			</div>
 			<div style="height: 100%; width: 50%; float: right;">
 				<p align="left" style="margin-left: 30px;">
-					작성일 : <input type="text" value="<%=today %>" readonly="readonly">
+					작성일 : <input style="margin-left: 14px" type="text" value="<%=today %>" readonly="readonly">
 				</p>
 			</div>
 		</div>
 		<div style="height: 10%; width: 100%;">
 			<p align="left" style="margin-left: 30px;">
-				제목 : <input type="text" id="title" name="title">
+				제목 : <input style="margin-left: 28px" type="text" id="title" name="title">
 			</p>
 		</div>
 		<div style="height: 35%; width: 100%;">
@@ -123,12 +123,7 @@ function qnawrite(){
 			var USER_ID = $("#USER_ID").val();
 			var PRO_SEQ =$("#PRO_SEQ").val();
 			
-			alert("secretz:"+secretz+" : "+
-					"secret:"+secret+" : "+
-					"title:"+title+" : "+
-					"QNA_CONTENT:"+QNA_CONTENT+" : "+
-					"USER_ID:"+USER_ID+" : "+
-					"PRO_SEQ:"+PRO_SEQ);
+			
 					
 			$.ajax({
 					type : "POST",
@@ -157,7 +152,7 @@ function qnawrite(){
 					},
 					
 					error : function(xhr, status, error) {
-						alert("에러발생");
+						alert("빈칸없이 작성하여주세요.");
 					}
 				});	
 };

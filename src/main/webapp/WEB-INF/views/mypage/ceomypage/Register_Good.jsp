@@ -252,7 +252,7 @@ margin-top: 30px;
 							});
 		</script>
 		<div align="right">
-		<input type="submit" class="btn btn-default" value="글올리기" class="reg_good mbtn">
+		<input type="button" id="writebtn" class="btn btn-default" value="글올리기" class="reg_good mbtn">
 		<input type="button" class="btn btn-default" value="취소" class="reg_good mbtn">
 		</div>
 	</form>
@@ -352,6 +352,29 @@ function addDetail() {
 }
     
     $(document).ready(function() {
+    	
+    	//글올리기
+    	$("#writebtn").click(function() {
+			if($("#item").val()=='none'){ alert("카테고리를 정해주세요"); return;}
+			else if($("#sub_item").val()=='none'){ alert("서브 카테고리를 정해주세요"); return;}
+			else if($("#onefile").val()==''){ alert("메인사진을 올려주세요"); return;}
+			else if($("#twofile").val()==''){ alert("서브메인사진을 올려주세요"); return;}
+			else if($("#threefile").val()==''){ alert("서브메인사진을 올려주세요"); return;}
+			else if($("#제품색상").val()==''){ alert("색상을 작성해주세요"); return;}
+			else if($("#사이즈").val()==''){ alert("사이즈를 작성해주세요"); return;}
+			else if($("#stock").val()==''){ alert("재고를 작성해주세요"); return;}
+			else if($("#상품이름").val()==''){ alert("상품이름을 작성해주세요"); return;}
+			else if($("#pro_price").val()==''){ alert("가격을 작성해주세요"); return;}
+			else if($("#소재").val()==''){ alert("소재를 작성해주세요"); return;}
+			else if($("#세탁방법").val()==''){ alert("세탁방법을 작성해주세요"); return;}
+			else if($("#모델체형").val()==''){ alert("모델체형을 작성해주세요"); return;}
+			else if($("#간단설명").val()==''){ alert("간단설명을 작성해주세요"); return;}
+			else {
+				$("#writeform").submit();
+			}
+			
+		});
+    	
       $("#sub_item").change(function() {
          if($(this).val()=='add'){
             $("#sub_item").removeAttr("name").attr({

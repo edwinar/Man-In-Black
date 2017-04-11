@@ -29,6 +29,12 @@
 	height: 100%;
 	text-align: center;
 }
+input, select, textarea {
+	border: 1px solid #ccc;
+	display: inline-block;
+	border-radius: 3px;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
 </style>
 </head>
 <body>
@@ -68,14 +74,14 @@
 			<div style="height: 100%; width: 50%; float: left;">
 				<p align="left" style="margin-left: 30px;">
 				
-					작성자 : <input type="text" value="<%=qnaDto.getUSER_ID()%>" readonly="readonly">
+					작성자 : <input style="margin-left: 14px" type="text" value="<%=qnaDto.getUSER_ID()%>" readonly="readonly">
 					
 				</p>
 			</div>
 			<div style="height: 100%; width: 50%; float: right;">
 				<p align="left" style="margin-left: 30px;">
 				
-					작성일 : <input type="text" value="<%=qnaDto.getQNA_TIME()%>" readonly="readonly">
+					작성일 : <input style="margin-left: 14px" type="text" value="<%=qnaDto.getQNA_TIME()%>" readonly="readonly">
 					
 				</p>
 			</div>
@@ -83,7 +89,7 @@
 		<div style="height: 10%; width: 100%;">
 			<p align="left" style="margin-left: 30px;">
 			
-				제목 : <input type="text"  name="title" id="title" value="<%=qnaDto.getQNA_TITLE()%>">
+				제목 : <input style="margin-left: 28px" type="text"  name="title" id="title" value="<%=qnaDto.getQNA_TITLE()%>">
 				
 				<input type="hidden" name="QNA_SEQ" id="QNA_SEQ" value=<%=qnaDto.getQNA_SEQ()%>>
 			</p>

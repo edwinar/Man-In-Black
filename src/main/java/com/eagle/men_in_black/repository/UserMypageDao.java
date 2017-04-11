@@ -77,6 +77,7 @@ public interface UserMypageDao {
 	public int do_insert_qnareply(HashMap<String, Object> map);
 
 	public void do_update_qnastep(int QNA_REF);
+
 	public int do_insert_qna(HashMap<String, Object> map);
 
 }
