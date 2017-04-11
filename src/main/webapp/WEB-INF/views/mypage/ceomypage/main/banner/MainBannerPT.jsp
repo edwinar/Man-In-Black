@@ -9,21 +9,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   	
 <style type="text/css">
 td, th {
 	text-align: center;
 }
-table{
-	margin-left: 13%
+#table{
+	margin-left: 7%;
+	width: 80%;
 }
 </style>
 </head>
 <body>
 <input type="hidden" id="listsize" value="<%=list.size()%>">
 <div id="total" >
-		<div id="table" style="width: 90%">
+		<div id="table" >
 
 			
 			<form name="f1" method="post" enctype="multipart/form-data">
@@ -52,7 +53,7 @@ table{
 					%>
 					<tr>
 						<td rowspan="2">
-						<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+						<img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
 						<input type="hidden" name="pro_seq<%=i%>" value="<%=list.get(i).getPRO_SEQ()%>">
 						</td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
