@@ -53,6 +53,18 @@ public class MainDaoImpl implements MainDao {
 		return sqlSession.selectList(statement);
 	}
 
+	@Override
+	public int do_insert_point(String USER_ID) {
+		String statement = namespace+".do_insert_point";
+		return sqlSession.insert(statement, USER_ID);
+	}
+
+	@Override
+	public int do_insert_coup(String USER_ID) {
+		String statement = namespace+".do_insert_coup";
+		return sqlSession.insert(statement, USER_ID);
+	}
+
 	
 
 }

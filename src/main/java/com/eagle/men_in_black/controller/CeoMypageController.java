@@ -40,7 +40,7 @@ import com.google.gson.Gson;
 
 @Controller
 public class CeoMypageController {
-	Logger loger = LoggerFactory.getLogger(this.getClass());
+	//Logger loger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private CeoMypageSvc ceoMypageSvc;
@@ -94,7 +94,7 @@ public class CeoMypageController {
 	        String attach_path = "images\\"; 
 			String filePath = root_path+attach_path;
 	         
-			System.out.println("저장경로=========================================================================================="+filePath);
+			//System.out.println("저장경로=========================================================================================="+filePath);
 
 	        MultipartFile multipartFile = null;
 
@@ -300,7 +300,7 @@ public class CeoMypageController {
                 storedFileName = getRandomString() + originalFileExtension;
 				
 				File file = new File(root_path + attach_path + storedFileName);
-				loger.info(root_path + attach_path + filename); 
+				//loger.info(root_path + attach_path + filename); 
 				upload.transferTo(file); 
 			} catch (IOException e) { 
 				e.printStackTrace(); } 
@@ -336,11 +336,11 @@ public class CeoMypageController {
 		map.put("END_DATE",END_DATE);
 		map.put("search", search);
 	
-		System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
+		/*System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
 		System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
 		System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
 		System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
-		System.out.println("컨트롤러 ======== search"+search);
+		System.out.println("컨트롤러 ======== search"+search);*/
 		
 		
 		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
@@ -546,7 +546,7 @@ public class CeoMypageController {
 		String PRO_SEQ_A = res.getParameter("PRO_SEQ_A"); 
 		String PRO_SEQ[] = PRO_SEQ_A.split(",");
 		
-		System.out.println(PRO_SEQ[0]);
+		//System.out.println(PRO_SEQ[0]);
 		
 		List<Integer> seqlist = new ArrayList<>();
 		for(int i=0;i<PRO_SEQ.length;i++){

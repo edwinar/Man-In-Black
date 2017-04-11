@@ -144,6 +144,18 @@ public class MainSvcImpl implements MainSvc {
 		return mainDao.do_select_subitemheader();
 	}
 
+	@Override
+	public int do_insert_point(String USER_ID) {
+		// TODO Auto-generated method stub
+		return mainDao.do_insert_point(USER_ID);
+	}
+
+	@Override
+	public int do_insert_coup(String USER_ID) {
+		// TODO Auto-generated method stub
+		return mainDao.do_insert_coup(USER_ID);
+	}
+
 	
 
 

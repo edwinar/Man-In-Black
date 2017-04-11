@@ -53,4 +53,57 @@ WHERE ROWNUM <=3
 SELECT SUB_ITEM, ITEM FROM PRODUCT  GROUP BY SUB_ITEM,ITEM ORDER BY ITEM , SUB_ITEM
 </select>
 
+<insert id="do_insert_point" parameterType="String">
+INSERT
+INTO POINTS
+  (
+    POINT_SEQ,
+    POINT_TIME,
+    POINT_PRICE,
+    POINT_FINAL,
+    INCREASE,
+    USER_ID,
+    PRO_SEQ
+  )
+  VALUES
+  (
+    POINT_SEQ.NEXTVAL,
+    SYSDATE,
+    2000,
+    2000,
+    'PLUS',
+    #{USER_ID},
+    0
+  )
+</insert>
+
+<insert id="do_insert_coup" parameterType="String">
+  INSERT
+INTO COUPON
+  (
+    COUP_SEQ,
+    COUP_NAME,
+    COUP_PRICE,
+    CONDITION,
+    COUP_TIME,
+    COUP_LIMIT,
+    COUP_USE,
+    USER_ID,
+    COUP_RECV
+  )
+  VALUES
+  (
+    COUP_SEQ.NEXTVAL,
+    '회원가입쿠폰',
+    10000,
+    10000,
+    to_date(SYSDATE),
+    to_date(SYSDATE+365),
+    '가능',
+    #{USER_ID},
+    0
+  )
+</insert>
+
+
 </mapper>
