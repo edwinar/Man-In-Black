@@ -58,6 +58,12 @@
 	boder-left: 0px;
 	boder-bottom: 0px;
 }
+input, select, textarea {
+   border: 1px solid #ccc;
+   display: inline-block;
+   border-radius: 3px;
+   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
 </style>
 </head>
 <body>
@@ -101,20 +107,20 @@
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title">
+						제목 : <input type="text" name="title" >
 						<input type="hidden" name="PRO_SEQ" value="<%=PRO_SEQ%>">
 						<input type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
-						작성자 :<input type="text" id="id" name="id" value="<%=userdto.getUSER_ID()%>님"
+						작성자 :<input type="text" id="id" name="id"  value="<%=userdto.getUSER_ID()%>님"
 							size="7" readonly="readonly" class="non"> 
 							작성일 <%=time%>
 						
 					</div>
 					<div class="content" align="center"
 						style="height: 38%; width: 100%; text-align: left;">
-						<input type="text" name="content" style="width: 100%; height: 100px">
+						<input type="text" name="content"  style="width: 100%; height: 100px">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
 

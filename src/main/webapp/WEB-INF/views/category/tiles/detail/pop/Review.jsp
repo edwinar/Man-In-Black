@@ -48,6 +48,12 @@
  height: 115%;
  text-align: center;
 }
+input, select, textarea {
+   border: 1px solid #ccc;
+   display: inline-block;
+   border-radius: 3px;
+   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
 </style>
 </head>
 <body>
@@ -127,7 +133,7 @@
 			</div>
 			<div class="content" align="center" style="height: 28%; width: 100%; text-align: left;">
 			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
-				<textarea rows="5px" cols="50px" readonly="readonly"><%=detailDto.getREV_CONTENT() %></textarea>
+				<textarea  rows="5px" cols="50px" readonly="readonly"><%=detailDto.getREV_CONTENT() %></textarea>
 			<%}else{ %>
 			<textarea rows="5px" cols="100px" readonly="readonly" style="margin-left: 20px;"><%=detailDto.getREV_CONTENT() %></textarea>
 			<%} %>
