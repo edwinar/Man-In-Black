@@ -31,7 +31,7 @@ margin-top: 150px;
   margin-top : 130px;
   position: relative;
   width: 60%;
-  height: 700px;
+  height: 600px;
   float: left;
 }
 .sub-slide{
@@ -75,7 +75,7 @@ margin-top: 150px;
 	margin-top : 70px;
 	position: relative;
 	width: 60%;
-	height: 700px;
+	height: 600px;
 	float: left;
 }
 .sub-slide{
