@@ -269,7 +269,9 @@ public class MainController {
 			map.put("ADDRESS", fullAddress);
 			map.put("DETAILADDRESS", detailAddress);
 		 
-			int insert = mainSvc.do_join_MIB(map);
+			mainSvc.do_join_MIB(map);
+			mainSvc.do_insert_point(id);
+			int insert =mainSvc.do_insert_coup(id);
 			
 			if(insert==0){
 				mav.setViewName("main/MIB_SignUp");

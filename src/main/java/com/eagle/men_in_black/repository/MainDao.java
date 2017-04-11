@@ -18,4 +18,8 @@ public interface MainDao {
 	public List<MainDto> do_select_bestItem(String ITEM);
 	
 	public List<MainDto> do_select_subitemheader();
+	
+	public int do_insert_point(String USER_ID);
+	
+	public int do_insert_coup(String USER_ID);
 }
