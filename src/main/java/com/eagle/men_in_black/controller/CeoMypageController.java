@@ -269,6 +269,37 @@ public class CeoMypageController {
 			System.out.println("파일이름"+list.get(i).get("ORIGINAL_FILE_NAME"));
 			System.out.println("파일이름"+list.get(i).get("STORED_FILE_NAME"));
 		}*/
+		
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
+		String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+		String search = (res.getParameter("search")==null ||res.getParameter("PRO_NAME")=="")?"%%":"%"+res.getParameter("search")+"%";
+
+		HashMap<String, String> mapli = new HashMap<>();
+		mapli.put("PAGE_SIZE", PAGE_SIZE);
+		mapli.put("PAGE_NUM", PAGE_NUM);
+		mapli.put("START_DATE",START_DATE);
+		mapli.put("END_DATE",END_DATE);
+		mapli.put("search", search);
+	
+		/*System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
+		System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
+		System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
+		System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
+		System.out.println("컨트롤러 ======== search"+search);*/
+		
+		
+		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(mapli);
+		
+		mav.addObject("list", list);
+		mav.addObject("PAGE_SIZE", PAGE_SIZE);
+		mav.addObject("PAGE_NUM", PAGE_NUM);
+		mav.addObject("START_DATE",START_DATE);
+		mav.addObject("END_DATE",END_DATE);
+		mav.addObject("search", search);
+		
+		
 			 return mav;
 		}
 
