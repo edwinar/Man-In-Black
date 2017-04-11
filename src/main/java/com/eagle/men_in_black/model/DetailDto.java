@@ -33,6 +33,7 @@ public class DetailDto implements Serializable {
 	private	int	PHOTO_SEQ;
 	private	String	POINT;
 	private	String	PRO_CONTENT;
+	private	String	PRO_DETAIL;
 	private	String	PRO_NAME;
 	private	int	PRO_PRICE;
 	private	int	PRO_SEQ;
@@ -65,6 +66,12 @@ public class DetailDto implements Serializable {
 	private	String ORIGINAL_NAME;
 	private int TOT_CNT;
 	
+	public String getPRO_DETAIL() {
+		return PRO_DETAIL;
+	}
+	public void setPRO_DETAIL(String pRO_DETAIL) {
+		PRO_DETAIL = pRO_DETAIL;
+	}
 	public int getTOT_CNT() {
 		return TOT_CNT;
 	}
