@@ -32,18 +32,15 @@ var bas_pro_num;
 		num = Number(num);
 		if(num<stockLimit)num = num+1;
 		$('#number').val(num);
-		//alert(num);
 	});
 	$('#minus').on('click',function(){		
 		var num = $('#number').val();
 		num = Number(num);
 		if(num>1)num = num-1;
 		$('#number').val(num);
-		//alert(num);
 	});
 	$('#colorSelect').change(function(){
 		color = $('#colorSelect option:selected').val();
-		//alert(color);
 		if(color=='no'){
 			$('#sizeSelect').attr('disabled',true);
 			$('#minus').attr('disabled',true);
@@ -67,7 +64,6 @@ var bas_pro_num;
 	 				$("#sizeSelect").append("<option value='no' selected='selected'>사이즈선택</option>");
 
 	 				for(i=0;i<flag.length;i++){
-	 					//console.log(flag[i]);
 	 					$("#sizeSelect option:eq(0)").after("<option value="+flag[i].PRO_SIZE+'>'+flag[i].PRO_SIZE+'</option>');
 	 				}
 	 			},
@@ -82,7 +78,6 @@ var bas_pro_num;
 	$('#sizeSelect').change(function(){
 		color = $('#colorSelect option:selected').val();
 		size = $('#sizeSelect option:selected').val();
-		//alert(size);
 		if(size=='no'){
 			$('#minus').attr('disabled',true);
 			$('#plus').attr('disabled',true);
@@ -102,7 +97,6 @@ var bas_pro_num;
 	 			},
 	 			success : function(data) {
 	 				var flag = $.parseJSON(data);
-	 				//console.log(flag);
 	 				stockLimit = flag;
 	 			},
 	 			complete : function(data) {

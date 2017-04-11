@@ -4,8 +4,6 @@
 	pageEncoding="UTF-8"%>
 <%
 	UserMypageDto qnaDto = (UserMypageDto) request.getAttribute("qnaDto");
-	
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,20 +37,17 @@ input, select, textarea {
 </head>
 <body>
 
-
 <div class="layout">
 	<div class="thumbnail">
 		<form id="form1">
 		<div align="center" style="height: 15%;">
 			<h3>Q&A 수정</h3>
 		</div>
-	
 		<div align="center" style="height: 10%; width: 100%;">
 			<div style="float: left; width: 50%; height: 100%;" align="left">
 				<p style="margin-left: 30px;">
 				공개설정 : 
 				<select name=secret size=1 id="secret">
-				
 			        <option  value="<%=qnaDto.getQNA_OPEN()%>"  ><%=qnaDto.getQNA_OPEN()%></option>	   
 			        <option value="공개">공개</option>
 			        <option value="비공개">비공개</option>
@@ -116,15 +111,12 @@ input, select, textarea {
 
 <script type="text/javascript">
 function update() {
-
-var QNA_SEQ =$("#QNA_SEQ").val();
-var title = $("#title").val();
-var QNA_CONTENT= $("#QNA_CONTENT").val();
-var secretz = $("#secretz").find(":selected").val();
-var secret = $("#secret").find(":selected").val();
-
-
-$.ajax({
+	var QNA_SEQ =$("#QNA_SEQ").val();
+	var title = $("#title").val();
+	var QNA_CONTENT= $("#QNA_CONTENT").val();
+	var secretz = $("#secretz").find(":selected").val();
+	var secret = $("#secret").find(":selected").val();
+	$.ajax({
 		type : "POST",
 		url : "qnaupdate.mib",
 		async : true,
@@ -137,14 +129,11 @@ $.ajax({
 			"QNA_CONTENT" : QNA_CONTENT
 		},
 		success : function(data) {
-			//alert("success " + data);
 			var flag = $.parseJSON(data);
 			if(flag.result=='success'){
 				opener.parent.location.reload();
 				windowClose();
 			} 	
-			
-			
 		},
 		complete : function(data) {
 		},
@@ -153,12 +142,9 @@ $.ajax({
 		}
 	});	
 }
-
 function windowClose(){
 	window.close();
-	}
-
-
+}
 </script>
 </body>
 </html>

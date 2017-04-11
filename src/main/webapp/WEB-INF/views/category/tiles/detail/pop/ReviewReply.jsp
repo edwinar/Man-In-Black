@@ -97,7 +97,6 @@ $(function() {
 	 			},
 	 			success : function(data) {
 	 				var flag = $.parseJSON(data);
-	 				//console.log(flag);
 	 				if(flag>0){
 	 					window.close();
 	 				}else{
@@ -181,7 +180,6 @@ $(function() {
 				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
 				<textarea  rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
 			</div>
-			
 			<%
 			}else{
 			%>
@@ -189,8 +187,6 @@ $(function() {
             <textarea rows="5px" cols="50px" readonly="readonly"></textarea>
         	</div>
 			<%} %>
-			
-			
 			<div class="btn" align="center" style="height: 10%; width:100%;">
 			</div>
 		</div>

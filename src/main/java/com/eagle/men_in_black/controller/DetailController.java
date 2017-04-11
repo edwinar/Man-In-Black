@@ -79,19 +79,12 @@ public class DetailController {
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&ADetail");
 		
 		int QNA_SEQ = Integer.parseInt(res.getParameter("QNA_SEQ"));
-		
-		//DetailDto detailDto = detailSvc.do_selectQnADetail(QNA_SEQ);
-		//mav.addObject("detailDto", detailDto);
 
 		return mav;
 	}
 	
 	@RequestMapping("QnAWrite.mib")
 	public ModelAndView QnAWrite() {
-
-		loger.debug("=Controller ===========================");
-		loger.debug("codeMSvc === " + "앙 기무띠~");
-		loger.debug("============================");
 
 		ModelAndView mav = new ModelAndView("category/tiles/detail/pop/Q&AWrite");
 		mav.addObject("msg", "김옥지");

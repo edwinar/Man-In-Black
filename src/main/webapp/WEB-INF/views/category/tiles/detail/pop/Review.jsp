@@ -186,7 +186,6 @@ function closeSelf(REV_SEQ) {
         processData: false,
         contentType: false,
         success: function (data) {
-//
             var flag = $.parseJSON(data);
 
             if (flag.result == 'success') {
@@ -203,9 +202,7 @@ function closeSelf(REV_SEQ) {
             alert("에러발생");
         }
     });
-
 }
-
 </script>
 </body>
 </html>

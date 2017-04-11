@@ -65,7 +65,7 @@ function getCookie(cookie_name) {
         x = z[i].substr(0, z[i].indexOf("="));
         y = z[i].substr(z[i].indexOf("=") + 1);
         x = x.replace(/^s+|s+$/g, "");
-        x = x + 's'
+        x = x + 's';
         if (x == cookie_name) {
             return unescape(y);
         }
@@ -82,7 +82,7 @@ function addCookie(pd_no) {
             prev_pd_no = prev_pd_no.substring(prev_pd_no.indexOf(',') + 1);
         }
         if (prev_pd_no.match(','+pd_no)) {
-            console.log(pd_no); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
+            //console.log(pd_no); // 이미 존재하는 경우 console에만 출력하고 실제 반영되지 않음
         }else{
             setCookie('recentitems', prev_pd_no + ',' + pd_no);
         }

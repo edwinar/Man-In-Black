@@ -74,30 +74,29 @@ td, th {
 					<th>가격정보</th>
 					<th>가격</th>
 				</tr>
-				
 				<%
-					for(int i=0;i<basketList.size();i++){
-						int count = i+1;
+				for(int i=0;i<basketList.size();i++){
+					int count = i+1;
 				%>
-					<tr>
-						<td rowspan="2"><%=count %>번</td>
-						<td rowspan="2">
-							<img alt="not found" src="<%=basketList.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
-						</td>
-						<td><%=basketList.get(i).getPRO_NAME() %></td>
-						<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
-						<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
-					</tr>
-					<tr>
-						<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
-						<td>상품 합계</td>
-						<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
-					</tr>
+				<tr>
+					<td rowspan="2"><%=count %>번</td>
+					<td rowspan="2">
+						<img alt="not found" src="<%=basketList.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
+					</td>
+					<td><%=basketList.get(i).getPRO_NAME() %></td>
+					<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
+					<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
+				</tr>
+				<tr>
+					<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
+					<td>상품 합계</td>
+					<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+				</tr>
 				<%
-						finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
-					}
-					if(finalPrice<124950)deliveryFee = 2500;
-					else deliveryFee = 0;
+					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
+				}
+				if(finalPrice<124950) deliveryFee = 2500;
+				else deliveryFee = 0;
 				%>
 			</table>
 		</form>

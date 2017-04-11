@@ -11,10 +11,8 @@
 	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	UserMypageDto qnaDto = (UserMypageDto) request.getAttribute("qnaDto");
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-
 	Date date = new Date(); // 현재 날짜 생성
 	String today = df.format(date);
-	System.out.println(today);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -51,7 +49,6 @@ input, select, textarea {
 </style>
 </head>
 <body>
-
 	<div class="layout">
 		<div class="thumbnail">
 			<div align="center" style="height: 15%;">
@@ -152,60 +149,44 @@ input, select, textarea {
 <script type="text/javascript">
 	
 function reps() {
-			var secretz = $("#secretz").find(":selected").val();
-			var secret = $("#secret").find(":selected").val();
-			var QNA_REF =$("#QNA_REF").val();
-			var title = $("#title").val();
-			var QNA_CONTENT= $("#QNA_CONTENT").val();
-			var USER_ID = $("#USER_ID").val();
-			var PRO_SEQ =$("#PRO_SEQ").val();
-			
-			alert("secretz:"+secretz+" : "+
-					"secret:"+secret+" : "+
-					"QNA_REF:"+QNA_REF+" : "+
-					"title:"+title+" : "+
-					"QNA_CONTENT:"+QNA_CONTENT+" : "+
-					"USER_ID:"+USER_ID+" : "+
-					"PRO_SEQ:"+PRO_SEQ);
-			
-			
-			$.ajax({
-					type : "POST",
-					url : "qnareps.mib",
-					async : true,
-					dataType : "html",
-					data : {
-						"secretz" : secretz,
-						"secret" : secret,
-						"title" : title,
-						"QNA_REF" : QNA_REF,
-						"QNA_CONTENT" : QNA_CONTENT,
-						"USER_ID" : USER_ID,
-						"PRO_SEQ" : PRO_SEQ
-					},
-					success : function(data) {
-						//alert("success " + data);
-						var flag = $.parseJSON(data);
-						if(flag.result=='success'){
-							opener.parent.location.reload();
-							windowClose();
-						} 	
-
-					},
-					complete : function(data) {
-					},
-					
-					error : function(xhr, status, error) {
-						alert("에러발생");
-					}
-				});	
+	var secretz = $("#secretz").find(":selected").val();
+	var secret = $("#secret").find(":selected").val();
+	var QNA_REF =$("#QNA_REF").val();
+	var title = $("#title").val();
+	var QNA_CONTENT= $("#QNA_CONTENT").val();
+	var USER_ID = $("#USER_ID").val();
+	var PRO_SEQ =$("#PRO_SEQ").val();
+	$.ajax({
+		type : "POST",
+		url : "qnareps.mib",
+		async : true,
+		dataType : "html",
+		data : {
+			"secretz" : secretz,
+			"secret" : secret,
+			"title" : title,
+			"QNA_REF" : QNA_REF,
+			"QNA_CONTENT" : QNA_CONTENT,
+			"USER_ID" : USER_ID,
+			"PRO_SEQ" : PRO_SEQ
+		},
+		success : function(data) {
+			var flag = $.parseJSON(data);
+			if(flag.result=='success'){
+				opener.parent.location.reload();
+				windowClose();
+			} 	
+		},
+		complete : function(data) {
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});	
 };
-
-	
-
-	function windowClose() {
-		window.close();
-	}
+function windowClose() {
+	window.close();
+}
 </script>
 </body>
 </html>

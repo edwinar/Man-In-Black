@@ -56,7 +56,6 @@ margin-top: 150px;
   float: right;
   border: double gray 0.1px;
 }
-
 .content, .content1, .content2, .content3{
 	width: 100%;
 	height: 100%;
@@ -408,64 +407,56 @@ function QnAPage(page){
 	var strInput = "";
 	var strInput2 = "";
 	$.ajax({
-			type : "POST",
-			url : "QnAListAjax.mib",
-			async : true,
-			dataType : "html",
-			data : {
-				"PRO_SEQ" : PRO_SEQ,
-				"PAGE_NUM" : PAGE_NUM
-			},
-			success : function(data) {
-				var flag = $.parseJSON(data);
-				var QnABody = document.getElementById("QnABody");
-				var QnAPage = document.getElementById("QnAPage");
-				QnABody.innerHTML = "";
-				QnAPage.innerHTML = "";
-				var openNum = -1;
-				
-				
-				for(i=0;i<flag.length;i++){
-					if(flag[i].QNA_OPEN=='비공개'){
-						 openNum = 0
-						}else{
-					     openNum = 1
-						}
-				
-					if(flag[i].USER_ID=="adm"){
-						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
-						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
-					}else{
-						strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-						+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'>"+flag[i].QNA_TITLE+"</a></td>"
-						+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
-			       	
-					}
-				
+		type : "POST",
+		url : "QnAListAjax.mib",
+		async : true,
+		dataType : "html",
+		data : {
+			"PRO_SEQ" : PRO_SEQ,
+			"PAGE_NUM" : PAGE_NUM
+		},
+		success : function(data) {
+			var flag = $.parseJSON(data);
+			var QnABody = document.getElementById("QnABody");
+			var QnAPage = document.getElementById("QnAPage");
+			QnABody.innerHTML = "";
+			QnAPage.innerHTML = "";
+			var openNum = -1;
+			for(i=0;i<flag.length;i++){
+				if(flag[i].QNA_OPEN=='비공개'){
+					openNum = 0;
+				}else{
+					openNum = 1;
 				}
-				
-				var PAGE_SIZE = 15;
-				var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
-				for(var j=1;j<=pageCount;j++){
-					strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+				if(flag[i].USER_ID=="adm"){
+					strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+					+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
+					+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
+				}else{
+					strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
+					+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'>"+flag[i].QNA_TITLE+"</a></td>"
+					+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
 				}
-				QnABody.innerHTML = strInput;
-				QnAPage.innerHTML = strInput2;
-			},
-			complete : function(data) {
-			},
-			error : function(xhr, status, error) {
-				alert("에러발생");
 			}
-		});
+			var PAGE_SIZE = 15;
+			var pageCount = ((flag[0].TOT_CNT%PAGE_SIZE)==0 ? flag[0].TOT_CNT/PAGE_SIZE : ((flag[0].TOT_CNT/PAGE_SIZE)+1));
+			for(var j=1;j<=pageCount;j++){
+				strInput2 = strInput2 + "<a onclick='QnAPage("+j+")' class='btn btn-default' role='button'>"+j+"</a>";
+			}
+			QnABody.innerHTML = strInput;
+			QnAPage.innerHTML = strInput2;
+		},
+		complete : function(data) {
+		},
+		error : function(xhr, status, error) {
+			alert("에러발생");
+		}
+	});
 }
 function popup(REV_SEQ){
 	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 }
 function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
-	//alert("QNA_OPEN"+QNA_OPEN);
-	//alert($("#userIdlog").val());
 	if(QNA_OPEN==0){ //비공개일때
 		if($("#userIdlog").val()=='nolog' ){ //로그인 안했거나 글쓴이와 다를때 
 			alert("비공개글입니다."); 
@@ -477,12 +468,8 @@ function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
 		alert("비공개글입니다."); 
 		return;
 	}else{ // 공개일때 
-		
 		window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
 	} 
-			
-	
-	
 }
 function QnAWrite(){
 	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
