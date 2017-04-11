@@ -119,10 +119,7 @@ function rep(QNA_SEQ){
 
 function del(QNA_SEQ) {
 	var formData = new FormData();
-
     formData.append("QNA_SEQ",QNA_SEQ);
-	
-	
     $.ajax({
         type: "POST",
         url: "qnadelete.mib",
@@ -132,7 +129,6 @@ function del(QNA_SEQ) {
         processData: false,
         contentType: false,
         success: function (data) {
-//
             var flag = $.parseJSON(data);
 
             if (flag.result == 'success') {
@@ -149,16 +145,11 @@ function del(QNA_SEQ) {
             alert("빈칸없이 작성하여 주세요");
         }
     });
-
 }
 
-	function windowClose(){
-		window.close();
-		}
-
-
+function windowClose(){
+	window.close();
+}
 </script>
-
-
 </body>
 </html>

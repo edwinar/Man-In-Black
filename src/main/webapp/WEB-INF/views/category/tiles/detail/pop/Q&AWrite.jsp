@@ -9,7 +9,6 @@ SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 String PRO_SEQ = request.getParameter("PRO_SEQ");
 Date date = new Date(); // 현재 날짜 생성
 String today = df.format(date);
-System.out.println(today);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -116,52 +115,43 @@ function windowClose(){
 <script type="text/javascript">
 	
 function qnawrite(){
-			var secretz = $("#secretz").find(":selected").val();
-			var secret = $("#secret").find(":selected").val();
-			var title = $("#title").val();
-			var QNA_CONTENT= $("#QNA_CONTENT").val();
-			var USER_ID = $("#USER_ID").val();
-			var PRO_SEQ =$("#PRO_SEQ").val();
-			
-			
-					
-			$.ajax({
-					type : "POST",
-					url : "qnaWrite.mib",
-					async : true,
-					dataType : "html",
-					data : {
-						"secretz" : secretz,
-						"secret" : secret,
-						"title" : title,
-						"QNA_CONTENT" : QNA_CONTENT,
-						"USER_ID" : USER_ID,
-						"PRO_SEQ" : PRO_SEQ
-					},
-					success : function(data) {
-						//alert("success " + data);
-						var flag = $.parseJSON(data);
-						if(flag.result=='success'){
-							alert("성공");
-							opener.parent.location.reload();
-							windowClose();
-						} 	
-
-					},
-					complete : function(data) {
-					},
-					
-					error : function(xhr, status, error) {
-						alert("빈칸없이 작성하여주세요.");
-					}
-				});	
+	var secretz = $("#secretz").find(":selected").val();
+	var secret = $("#secret").find(":selected").val();
+	var title = $("#title").val();
+	var QNA_CONTENT= $("#QNA_CONTENT").val();
+	var USER_ID = $("#USER_ID").val();
+	var PRO_SEQ =$("#PRO_SEQ").val();
+	$.ajax({
+		type : "POST",
+		url : "qnaWrite.mib",
+		async : true,
+		dataType : "html",
+		data : {
+			"secretz" : secretz,
+			"secret" : secret,
+			"title" : title,
+			"QNA_CONTENT" : QNA_CONTENT,
+			"USER_ID" : USER_ID,
+			"PRO_SEQ" : PRO_SEQ
+		},
+		success : function(data) {
+			var flag = $.parseJSON(data);
+			if(flag.result=='success'){
+				alert("성공");
+				opener.parent.location.reload();
+				windowClose();
+			} 	
+		},
+		complete : function(data) {
+		},
+		error : function(xhr, status, error) {
+			alert("빈칸없이 작성하여주세요.");
+		}
+	});	
 };
-
-	
-
-	function windowClose() {
-		window.close();
-	}
+function windowClose() {
+	window.close();
+}
 </script>
 </body>
 </html>
