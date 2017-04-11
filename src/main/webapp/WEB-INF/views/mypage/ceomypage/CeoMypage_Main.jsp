@@ -60,8 +60,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <style type="text/css">
 td, th {
 	text-align: center;
@@ -378,12 +377,12 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	<!--수량 총매출액 순이익 -->
 
 	<div>
-	<div style="width: 100%; padding-left: 1044px">
+	<div style="width: 100%; padding-left: 690px">
 
 		<table class="table table-condensed">
 			<tr>
 				<th>수량</th>
-				<th>총매출액</th>
+				<th>총매출</th>
 			</tr>
 			<!--데이터 받아오는부분  -->
 			<tr>
