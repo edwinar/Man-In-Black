@@ -14,20 +14,18 @@ import com.eagle.men_in_black.repository.UserMypageDao;
 public class UserMypageSvcImpl implements UserMypageSvc {
 	@Autowired
 	private UserMypageDao userMypageDao;
-	
+
 	@Override
 	public UserMypageDto do_search_point(String id) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_point(id);
 	}
 
-	
 	@Override
 	public List<UserMypageDto> do_search_coupon(String id) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_coupon(id);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_buy(String id) {
@@ -35,13 +33,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_buy(id);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_qna(String id) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_qna(id);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_basket(String id) {
@@ -49,13 +45,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_basket(id);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_buylist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_buylist(map);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_pointlist(HashMap<String, String> map) {
@@ -63,13 +57,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_pointlist(map);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_couponlist(HashMap<String, String> mapc) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_couponlist(mapc);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_point5(String id) {
@@ -77,13 +69,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_point5(id);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_basketlist(String id) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_basketlist(id);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_myboradreview(String id) {
@@ -91,20 +81,17 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_search_myboradreview(id);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_myboradqna(String id) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_myboradqna(id);
 	}
 
-
 	@Override
 	public List<UserMypageDto> do_search_reviewlist(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_reviewlist(map);
 	}
-
 
 	@Override
 	public List<UserMypageDto> do_search_qnalist(HashMap<String, String> map) {
@@ -113,9 +100,9 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 	}
 
 	@Override
-	public void do_delete_basketlist(List<Integer> list){
+	public void do_delete_basketlist(List<Integer> list) {
 		// TODO Auto-generated method stub
-		 userMypageDao.do_delete_basketlist(list);
+		userMypageDao.do_delete_basketlist(list);
 	}
 
 	@Override
@@ -123,7 +110,6 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_goods(param);
 	}
-
 
 	@Override
 	public int do_member_update(HashMap<String, String> map) {
@@ -143,13 +129,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_update_cancel(map);
 	}
 
-
 	@Override
 	public int do_insert_review(HashMap<String, String> map) {
 		return userMypageDao.do_insert_review(map);
 
 	}
-
 
 	@Override
 	public int do_insert_reviewphoto(HashMap<String, Object> map) {
@@ -157,13 +141,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 
 	}
 
-
 	@Override
 	public int do_select_revseq() {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_select_revseq();
 	}
-
 
 	@Override
 	public int do_insert_point(HashMap<String, Object> map) {
@@ -171,19 +153,17 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_insert_point(map);
 	}
 
-
 	@Override
 	public int do_update_del_step(int del_seq) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_del_step(del_seq);
 	}
-	
+
 	@Override
 	public int do_update_del_step2(int del_seq) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_del_step2(del_seq);
 	}
-
 
 	@Override
 	public DetailDto do_select_review(int REV_SEQ) {
@@ -191,14 +171,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_select_review(REV_SEQ);
 	}
 
-
-
 	@Override
 	public int do_update_review(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_review(map);
 	}
-
 
 	@Override
 	public int do_update_reviewphoto(HashMap<String, Object> map) {
@@ -217,13 +194,11 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_delete_reviewList(REV_SEQ);
 	}
 
-
 	@Override
 	public int do_update_qna(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_update_qna(map);
 	}
-
 
 	@Override
 	public int do_delete_qna(int qna) {
@@ -237,20 +212,18 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		return userMypageDao.do_delete_reviewPhoto(REV_SEQ);
 	}
 
-
 	@Override
 	public int do_insert_qnareply(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_insert_qnareply(map);
 	}
 
-
 	@Override
 	public void do_update_qnastep(int QNA_REF) {
 		userMypageDao.do_update_qnastep(QNA_REF);
-		
+
 	}
-	
+
 	@Override
 	public int do_insert_qna(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
