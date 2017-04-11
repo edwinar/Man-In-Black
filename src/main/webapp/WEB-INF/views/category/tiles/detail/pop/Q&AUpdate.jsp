@@ -137,7 +137,6 @@ $.ajax({
 			"QNA_CONTENT" : QNA_CONTENT
 		},
 		success : function(data) {
-			//alert("success " + data);
 			var flag = $.parseJSON(data);
 			if(flag.result=='success'){
 				opener.parent.location.reload();
@@ -149,7 +148,7 @@ $.ajax({
 		complete : function(data) {
 		},
 		error : function(xhr, status, error) {
-			alert("에러발생");
+			alert("빈칸없이 작성해주세요");
 		}
 	});	
 }

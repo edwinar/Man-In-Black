@@ -139,7 +139,6 @@ function qnawrite(){
 						"PRO_SEQ" : PRO_SEQ
 					},
 					success : function(data) {
-						//alert("success " + data);
 						var flag = $.parseJSON(data);
 						if(flag.result=='success'){
 							alert("성공");

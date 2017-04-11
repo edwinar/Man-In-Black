@@ -144,7 +144,7 @@ $(document).ready(function() {
  			complete : function(data) {
  			},
  			error : function(xhr, status, error) {
- 				alert("에러발생");
+ 				alert("빈칸 없이 입력하여 주세요");
  			}
  		});		
  
@@ -209,7 +209,6 @@ $(document).ready(function() {
 function cl() {
 	var email = $("#sign_email-a").val();
 	var signupdate = 'update';
-	//alert("씨엘"+email);
 	$("#modal-email").modal({
         remote : 'mail.mib?signupdate='+signupdate+'&sign_email='+email,
         backdrop: 'static' // 배경누르고 닫힘 방지 
@@ -219,15 +218,12 @@ function cl() {
 $(document).ready(function() {
 	
 	$("#signB").click(function(){
-		//var email = $("#sign_email").val();
-		//document.getElementById("signB").innerHTML = "EMAIL인증";
 		$("#signB-div").hide();
 		$("#signA-div").show();
 	});	
 
 	$("#signA").click(function(){
 		var email = $("#sign_email-a").val();
-		//alert(email);
 		$.ajax({
 		 			type : "POST",
 		 			url : "emailCheck.mib",
@@ -238,27 +234,17 @@ $(document).ready(function() {
 		 			   
 		 			},
 		 			success : function(data) {
-		 				//alert("success " + data);
 		 				var flag = $.parseJSON(data);
-		 				//alert(flag.success);
 		 				if(flag.success==='success'){
-		 					
 		 					cl();
-		 					
 		 				}else{
-
 		 					$("#sign_email-a").val('');
-		 					alert(flag.check); 
-		 					
-		 				
 		 				}
-		 					
-		 				
 		 			},
 		 			complete : function(data) {
 		 			},
 		 			error : function(xhr, status, error) {
-		 				alert("에러발생");
+		 				alert("빈칸없이 작성하여주세요");
 		 			}
 		 		});		
         	

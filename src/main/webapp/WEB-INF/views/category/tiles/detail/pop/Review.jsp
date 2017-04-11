@@ -176,7 +176,6 @@ function closeSelf(REV_SEQ) {
     var formData = new FormData();
 
     formData.append("REV_SEQ",REV_SEQs);
-    alert(REV_SEQs);
     $.ajax({
         type: "POST",
         url: "reviewDel.mib",
@@ -200,7 +199,7 @@ function closeSelf(REV_SEQ) {
         complete: function (data) {
         },
         error: function (xhr, status, error) {
-            alert("에러발생");
+            alert("빈칸없이 작성해주세요");
         }
     });
 

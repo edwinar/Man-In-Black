@@ -379,8 +379,6 @@ margin-top: 30px;
 									fullDate = fullDate.substring(2, 8);
 									weekDate = weekDate.substring(2, 8);
 
-									//alert(fullDate);
-									//alert(weekDate);
 
 									location.href = 'buylist.mib?START_DATE='
 											+ weekDate + "&END_DATE="
@@ -439,8 +437,6 @@ margin-top: 30px;
 											fullDate = fullDate.substring(2, 8);
 											monthDate = monthDate.substring(2,
 													8);
-											//alert(fullDate);
-											//alert(monthDate);	
 											location.href = 'buylist.mib?START_DATE='
 													+ monthDate
 													+ "&END_DATE="
@@ -507,20 +503,16 @@ margin-top: 30px;
 											for (i = 1; i <= 2; i++) { // 1,2,월일때 연도,월 바꿔줌 
 												if (mon == i) {
 													year = year - 1;
-													//alert(year);
 													monthdate_mon = 10 + i;
 													monthDate = year + ''
 															+ monthdate_mon
 															+ day;
-													//alert(monthDate);
 												}
 											}
 
 											fullDate = fullDate.substring(2, 8);
 											monthDate = monthDate.substring(2,
 													8);
-											//alert(fullDate);
-											//alert(monthDate);	
 											location.href = 'buylist.mib?START_DATE='
 													+ monthDate
 													+ "&END_DATE="
@@ -551,13 +543,13 @@ margin-top: 30px;
  					$("#cancle"+SEQ).remove();
  					
  				}else{
- 					alert("실패");
+ 					alert("시스템 오류 잠시후 다시 시도해주세요 ");
  				}
  			},
  			complete : function(data) {
  			},
  			error : function(xhr, status, error) {
- 				alert("에러발생");
+ 				alert("다시 시도 해주세요");
  			}
  		});
 		
@@ -580,7 +572,6 @@ margin-top: 30px;
         function open_win(SEQ)
         {
             var DEL_SEQ = SEQ;
-            alert(DEL_SEQ);
 
             cw=screen.availWidth;     //화면 넓이
             ch=screen.availHeight;    //화면 높이

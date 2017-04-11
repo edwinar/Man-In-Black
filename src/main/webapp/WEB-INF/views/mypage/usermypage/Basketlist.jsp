@@ -236,11 +236,9 @@ margin-right: -5px;
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
-               // alert("start");
 
                 if (document.f1.elements[i].checked == true) {
                     BAS_SEQ += document.f1.elements[i].value + ",";
-                   // alert(BAS_SEQ+'중간');
                 }
 
             }
@@ -251,9 +249,7 @@ margin-right: -5px;
             
             
             
-            alert(BAS_SEQ);
             BAS_SEQ = BAS_SEQ.slice(0,-1);
-            alert(BAS_SEQ + 'end');
             document.location.href='basketdelete.mib?BAS_SEQ='+BAS_SEQ;
             }
 
@@ -265,11 +261,9 @@ margin-right: -5px;
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
-               // alert("start");
 
                 if (document.f1.elements[i].checked == true) {
                 	BAS_SEQ += document.f1.elements[i].value + ",";
-                   // alert(BAS_SEQ+'중간');
                 }
 
             }
@@ -277,9 +271,7 @@ margin-right: -5px;
             	alert("결제할 상품이 없습니다.");
             }else{
             
-            alert(BAS_SEQ);
             BAS_SEQ = BAS_SEQ.slice(0,-1);
-            alert(BAS_SEQ + 'end');
             document.location.href='Detail_Buy_Info.mib?BAS_SEQ='+BAS_SEQ+'&FINAL_PRICE='+FINAL_PRICE;
 
         }

@@ -233,7 +233,6 @@ input, select, textarea {
 	 			processData: false,
 	 			contentType: false,
 	 			success : function(data) {
-	 				//alert("success " + data);
 	 				var flag = $.parseJSON(data);
 	 				
 	 				if(flag.result=='OK'){
