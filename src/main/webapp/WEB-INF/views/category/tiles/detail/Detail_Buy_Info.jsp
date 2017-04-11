@@ -82,7 +82,7 @@ td, th {
 					<tr>
 						<td rowspan="2"><%=count %>번</td>
 						<td rowspan="2">
-							<img alt="not found" src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+							<img alt="not found" src="<%=basketList.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
 						</td>
 						<td><%=basketList.get(i).getPRO_NAME() %></td>
 						<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
@@ -99,8 +99,6 @@ td, th {
 					if(finalPrice<124950)deliveryFee = 2500;
 					else deliveryFee = 0;
 				%>
-				
-				
 			</table>
 		</form>
 	</div>

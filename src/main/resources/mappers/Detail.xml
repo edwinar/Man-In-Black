@@ -166,12 +166,6 @@ ORDER BY QNA_REF DESC, QNA_SEQ ASC
 WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
 
-<!-- <select id="do_selectQnADetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
-SELECT *
-FROM QNA
-WHERE QNA_SEQ=#{QNA_SEQ}
-</select> -->
-
 <select id="do_selectFinalBuy" parameterType="hashmap" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT A.PRO_SEQ
 	, A.BAS_SEQ
