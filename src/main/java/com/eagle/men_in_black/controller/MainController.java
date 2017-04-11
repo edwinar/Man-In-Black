@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 
 @Controller
 public class MainController {
-	Logger loger = LoggerFactory.getLogger(this.getClass());
+	//Logger loger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private MainSvc mainSvc;

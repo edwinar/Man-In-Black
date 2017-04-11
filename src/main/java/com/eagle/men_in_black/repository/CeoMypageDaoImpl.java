@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.eagle.men_in_black.model.CeoMypageDto;
 @Repository
 public class CeoMypageDaoImpl implements CeoMypageDao {
-	Logger loger = LoggerFactory.getLogger(this.getClass());
+	//Logger loger = LoggerFactory.getLogger(this.getClass());
 	private final String namespace="com.eagle.repository.mapper.CeoMypage";
 	
 	@Autowired
@@ -65,8 +65,8 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 	public int do_insert_product_detail(CeoMypageDto map) {
 		
 		String statement = namespace+".do_insert_product_detail";
-		loger.debug(statement);
-		loger.debug(map.toString());
+		//loger.debug(statement);
+		//loger.debug(map.toString());
 		return sqlSession.update(statement, map);
 	}
 
