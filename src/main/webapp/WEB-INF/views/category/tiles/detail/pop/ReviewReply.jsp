@@ -38,7 +38,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 .photoLayout{
-background-color:red;
 	width: 370px;
 	height: 250px;
 	margin-top: -40px;
@@ -67,6 +66,12 @@ background-color:red;
  width: 100%;
  height: 100%;
  text-align: center;
+}
+input, select, textarea {
+   border: 1px solid #ccc;
+   display: inline-block;
+   border-radius: 3px;
+   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
 </style>
 </head>
@@ -174,7 +179,7 @@ $(function() {
 			
 			<div class="photoLayout" >
 				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
-				<textarea rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
+				<textarea  rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
 			</div>
 			
 			<%

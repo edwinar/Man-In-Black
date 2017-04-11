@@ -34,6 +34,7 @@
 	//리뷰읽기에서 끌거온거
 	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
 	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
+	
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -56,7 +57,6 @@
 }
 
 .photoLayout {
-	background-color: red;
 	width: 370px;
 	height: 250px;
 	margin-top: -40px;
@@ -89,6 +89,12 @@
 	border-top: 0px;
 	boder-left: 0px;
 	boder-bottom: 0px;
+}
+input, select, textarea {
+   border: 1px solid #ccc;
+   display: inline-block;
+   border-radius: 3px;
+   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
 </style>
 </head>
@@ -156,16 +162,17 @@
 					<h5><%=detailDto.getREV_TITLE() %></h5>
 				</div>
 				<div class="info"
-					style="height: 15%; width: 100%; text-align: right; margin-top: -70px;">
-					<h6>
-						작성자:<%=detailDto.getUSER_ID() %><br />작성날짜:<%=detailDto.getREV_TIME() %></h6>
+					style="height: 15%; width: 100%; text-align: left; margin-top: -70px; ">
+					<h6 >
+						작성자:<%=detailDto.getUSER_ID() %><br>
+						작성날짜:<%=detailDto.getREV_TIME() %></h6>
 				</div>
 				<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 
 				<div class="photoLayout">
 					<img alt="..." src="<%=detailDto.getSTORED_NAME()%>"
 						style="float: left; width: 48%; height: 100%;">
-					<textarea rows="5px" cols="10px" readonly="readonly"
+					<textarea rows="5px" cols="10px" readonly="readonly" 
 						style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
 				</div>
 
@@ -174,12 +181,12 @@
 			%>
 				<div class="content" align="center"
 					style="height: 28%; width: 100%; text-align: left;">
-					<textarea rows="5px" cols="50px" readonly="readonly"></textarea>
+					<textarea rows="5px" cols="50px" readonly="readonly" ></textarea>
 				</div>
 				<%} %>
 
 
-				<div class="btn" align="center" style="height: 10%; width: 100%;">
+				<div class="btn btn-default" align="center" style="height: 10%; width: 100%;">
 				</div>
 			</div>
 		</div>
@@ -190,17 +197,18 @@
 					<hr style="border: solid black 1px; width: 70%;">
 				</div>
 				<div class="title" align="center" style="height: 20%; width: 100%;">
-					제목 : <input type="text" id="review_title" size="30px"
+					제목 : <input type="text" id="review_title" size="30px" 
 						value="<%=detailDto.getREV_TITLE() %>" />
 				</div>
 				<div class="info"
 					style="height: 15%; width: 100%; text-align: right;">
 					<h5>
-						작성자:<%=userdto.getUSER_ID() %><br />작성날짜:<%=today %></h5>
+						작성자:<%=userdto.getUSER_ID() %>
+						<br/>작성날짜:<%=today %></h5>
 				</div>
 				<div class="content" align="center"
 					style="height: 28%; width: 100%; text-align: left;">
-					<textarea id="review_content" rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
+					<textarea id="review_content"  rows="5px" cols="50px"><%=detailDto.getREV_CONTENT() %></textarea>
 				</div>
 				<div class="btn" align="center" style="height: 10%; width: 100%;">
 					<button class="btn btn-default" style="width: 50%; height: 100%;" id="admup">수정하기</button>
@@ -254,7 +262,7 @@
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input default  class="btn btn-default btn-sm" type="text" name="title"
+						제목 : <input  type="text" name="title" 
 							value="<%=detailDto.getREV_TITLE()%>"> <input
 							type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>"> <input
 							type="hidden" name="REV_SEQ" value="<%=detailDto.getREV_SEQ()%>">

@@ -225,6 +225,7 @@ var bas_pro_num;
 		</div>
 		<div class="btn" align="center" style="height: 35%; width:80%; text-align: center;">
 			<button type="button" class="btn btn-default" id="basketBtn" style="width: 100%; height: 50%;">장바구니담기</button>
+			<br><br>
 			<button type="button" class="btn btn-default" id="buyBtn" style="width: 100%; height: 50%;">구매하기</button>
 		</div>
 	</div>
