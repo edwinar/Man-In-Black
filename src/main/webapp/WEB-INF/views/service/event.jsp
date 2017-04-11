@@ -17,15 +17,45 @@
 <title>:::EVENT:::</title>
 <style type="text/css">
 #container { 
+   width:100%; 
+   height:600px;
+   padding-top: 20px;
+}
+
+.preview {
+   position: relative;
+   width: 250px;
+   height: 250px;
+   background: #f2f2f2;
+   /* border-radius: 100%; */
+   margin: 0 auto 25px auto;
+   overflow: hidden;
+   border: 8px solid #E0E0E0;
+}
+.previewcoup {
+   position: relative;
+   width: 250px;
+   height: 250px;
+   background: #f2f2f2;
+   border-radius: 100%; 
+   margin: 0 auto 25px auto;
+   overflow: hidden;
+   border: 8px solid #E0E0E0;
+}
+@media ( max-width : 1200px) { 
+.ty{
+margin-top: 30px;
+}
+#container { 
 	width:100%; 
-	height:600px;
+	height:438px;
 	padding-top: 20px;
 }
 
 .preview {
 	position: relative;
-	width: 250px;
-	height: 250px;
+	width: 247px;
+	height: 184px;
 	background: #f2f2f2;
 	/* border-radius: 100%; */
 	margin: 0 auto 25px auto;
@@ -34,17 +64,13 @@
 }
 .previewcoup {
 	position: relative;
-	width: 250px;
-	height: 250px;
+	width: 180px;
+	height: 180px;
 	background: #f2f2f2;
 	border-radius: 100%; 
 	margin: 0 auto 25px auto;
 	overflow: hidden;
 	border: 8px solid #E0E0E0;
-}
-@media ( max-width : 1200px) { 
-.ty{
-margin-top: 30px;
 }
 }
 
@@ -194,7 +220,7 @@ function coup(seq){
 				? eventlist.get(0).getTOT_CNT() / page_size : (eventlist.get(0).getTOT_CNT() / page_size) + 1;
 	%>
 
-		<div class="row" style="margin-top: 300px" align="center">
+		<div class="row" align="center">
 		<p>
 			<%
 				for (int i = 1; i <= pageCount; i++) {
