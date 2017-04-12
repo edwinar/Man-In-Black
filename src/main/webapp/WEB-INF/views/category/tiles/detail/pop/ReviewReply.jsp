@@ -100,6 +100,7 @@ $(function() {
 	 				var flag = $.parseJSON(data);
 	 				if(flag>0){
 	 					window.close();
+	 					opener.parent.location.reload();
 	 				}else{
 	 					alert("리뷰답글달기실패");
 	 				}

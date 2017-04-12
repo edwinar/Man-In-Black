@@ -80,17 +80,13 @@ input, select, textarea {
 				<div class="panel panel-default"
 					style="margin-left: 40px; margin-bottom: 30px">
 					<input type="file"  class="btn btn-default" name="onefile" id="onefile" >
-
 					<div style="width: 100%; height: 100%; float: left; margin-top: 1%"
 						id="imgone-div" ></div>
-
-
 				</div>
 			</div>
 		</div>
 
 		<div class="rightLayout">
-			
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
 						평점 <img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png" id="star1"
@@ -108,10 +104,11 @@ input, select, textarea {
 
 
 					<div class="title" align="center" style="height: 10%; width: 100%;">
-						제목 : <input type="text" name="title" >
+						제목 : <input type="text" name="title" onclick="error()">
 						<input type="hidden" name="PRO_SEQ" value="<%=PRO_SEQ%>">
 						<input type="hidden" name="DEL_SEQ" value="<%=DEL_SEQ%>">
 					</div>
+					
 					<div class="info"
 						style="height: 10%; width: 100%; text-align: right;">
 						작성자 :<input type="text" id="id" name="id"  value="<%=userdto.getUSER_ID()%>님"
@@ -138,6 +135,7 @@ input, select, textarea {
 
 	<script type="text/javascript">
 		var score = 0;
+		
 		$(function() {
 			$("#star1").click(function() {
 
@@ -216,41 +214,68 @@ input, select, textarea {
 
 		};
 		
-		function closeSelf(){
+		
+
+		function error() {
+			var photo = $("#onefile").val();
+			
+			
+			if (photo == '' || photo == null) {
+				if (score == null || score == 0) {
+					alert("사진과 별점을 추가해주세요 ");
+					return;
+				} else {
+					alert("사진을 추가해주세요 ");
+					return;
+				};
+			};
+			
+			if (score == null || score == 0) {
+				alert("별점을 추가해주세요 ");
+				return;
+			}
+			;
+
+		};
+
+		function closeSelf() {
 			var formData = new FormData();
-			formData.append("title", $("input[name=title]").val()); 
-			formData.append("content", $("input[name=content]").val()); 
-			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val()); 
-			formData.append("score", $("input[name=score]").val()); 
-			formData.append("onefile", $("input[name=onefile]")[0].files[0]); 
+			formData.append("title", $("input[name=title]").val());
+			formData.append("content", $("input[name=content]").val());
+			formData.append("PRO_SEQ", $("input[name=PRO_SEQ]").val());
+			formData.append("score", $("input[name=score]").val());
+			formData.append("onefile", $("input[name=onefile]")[0].files[0]);
 			formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
 
-			$.ajax({
-	 			type : "POST",
-	 			url : "reviewWrite.mib",
-	 			async : true,
-	 			dataType : "html",
-	 			data : formData,
-	 			processData: false,
-	 			contentType: false,
-	 			success : function(data) {
-	 				var flag = $.parseJSON(data);
-	 				
-	 				if(flag.result=='OK'){
-	 					window.close();
-	 					opener.parent.location.reload();
-	 				}else{
-	 					alert("리뷰등록실패");
-	 				}
-	 			},
-	 			complete : function(data) {
-	 			},
-	 			error : function(xhr, status, error) {
-	 				alert("사진, 평점, 제목, 내용을 빠짐없이 채워주세요");
-	 			}
-	 		});		
+				$.ajax({
+					type : "POST",
+					url : "reviewWrite.mib",
+					async : true,
+					dataType : "html",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						var flag = $.parseJSON(data);
 
-	}
+						if (flag.result == 'OK') {
+							window.close();
+							opener.parent.location.reload();
+						} else {
+							alert("리뷰등록실패");
+						}
+					},
+					complete : function(data) {
+						
+					},
+					error : function(xhr, status, error) {
+						alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);
+
+				
+					}
+				});
+
+			}
 		
 	</script>
 </body>

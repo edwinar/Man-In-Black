@@ -535,13 +535,11 @@ public class UserMypageController {
 			RE_OPTION = res.getParameter("RE_OPTION");
 			RE_REASON = res.getParameter("RE_REASON");
 
-		} else if (commend.equals("취소")) {
-			CA_ACCOUNT = res.getParameter("CA_ACCOUNT");
-		}
+		} 
 
 		update.put("RETURN", commend);
 		update.put("RE_OPTION", RE_OPTION);
-		update.put("CA_REASON", RE_REASON);
+		update.put("RE_REASON", RE_REASON);
 		update.put("CA_ACCOUNT", CA_ACCOUNT);
 		update.put("DEL_SEQ", DEL_SEQ);
 
