@@ -32,7 +32,7 @@ margin-top: 30px;
 		
 		</div>
 	</center>
-	<h3>NOTICEDETAIL</h3>
+	<h3>NOTICE DETAIL</h3>
 
 
 	<div class="jumbotron">

@@ -129,7 +129,7 @@ margin-right: -5px;
 					<tr>
 						<td>상품가격</td>
 						<td>+</td>
-						<td>택배비(5만이상 무료)</td>
+						<td>택배비(5만원이상 무료)</td>
 						<td>=</td>
 						<td>총가격</td>
 					</tr>
