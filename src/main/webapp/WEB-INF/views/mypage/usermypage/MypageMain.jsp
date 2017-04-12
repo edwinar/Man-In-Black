@@ -163,6 +163,14 @@ width: 94.5%
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
+						<tr>
+						<th style="text-align: center;">쿠폰이름</th>
+						<th style="text-align: center;">쿠폰가격</th>						
+						</tr>
+						<tr>
+						<td style="height: 10px;"></td>
+						<td></td>
+						</tr>
 						<%
 							if (coupon == null || coupon.size() == 0) {
 						%>
@@ -176,8 +184,8 @@ width: 94.5%
 							for (int i = 0; i < coupon.size(); i++) {
 						%>
 						<tr>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></th>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></th>
+							<td style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></td>
+							<td style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></td>
 						</tr>
 						<%
 							}
@@ -208,6 +216,9 @@ width: 94.5%
 						<th style="text-align: center; width: 45%">상품명</th>
 						<th style="text-align: center; width: 20%">금액</th>
 						<th style="text-align: center; width: 15%">최종</th>
+					</tr>
+					<tr>
+					<td colspan="9999" style="height: 10px;"></td>
 					</tr>
 					<col width="200px">
 					<%
