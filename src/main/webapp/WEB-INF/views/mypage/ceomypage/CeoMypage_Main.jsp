@@ -322,7 +322,7 @@ $(document).ready(function() {
 	<center class="ty">
 		<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main.mib">MY PAGE</a> >
 				<a href="ceoMypage_Main.mib">판매내역</a>
 			</h4>
 			<h4>MIB 판매 내역과 매출현황입니다.</h4>

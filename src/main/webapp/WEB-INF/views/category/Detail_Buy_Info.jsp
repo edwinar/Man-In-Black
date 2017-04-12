@@ -97,8 +97,9 @@ td, th {
 				<%
 					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 				}
-				if(finalPrice<50000) deliveryFee = 2500;
-				else deliveryFee = 0;
+				if(finalPrice<50000){
+					finalPrice = finalPrice + 2500;
+				}
 				%>
 			</table>
 		</form>
@@ -156,7 +157,7 @@ td, th {
 		%>
 			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
 			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
-			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE"/>
+			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE" value="<%=finalPrice%>"/>
 			<input type="hidden" name="POINT" id="POINT"/>
 			<input type="hidden" name="COUPON" id="COUPON"/>
 			<input type="hidden" name="COUP_SEQ" id="COUP_SEQ"/>
@@ -394,8 +395,14 @@ var midPrice;
 			
 		if(pointsValue==''){
 			$('#final').text(Number(fafapri)-array[0]);
+			$("#FINAL_PRICE").val(Number(fafapri)-array[0]);
+			$("#COUPON").val(array[0]);
+			$("#COUP_SEQ").val(array[1]);
 		}else{
 			$('#final').text(Number(fafapri)-array[0]-Number(pointsValue));
+			$("#FINAL_PRICE").val(Number(fafapri)-array[0]-Number(pointsValue));
+			$("#COUPON").val(array[0]);
+			$("#COUP_SEQ").val(array[1]);
 		}
 	
 		}
@@ -438,9 +445,14 @@ var midPrice;
 						if(couppri==''){
 						//alert("여기들어오니111?");
 						$('#final').text(Number(fafapri)-Number(pointsValue));
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+						$("#POINT").val(pointsValue);
 						}else{
 						//alert("여기들어오니222?");
 						$('#final').text(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#POINT").val(pointsValue);
+						
 						}
 				}
 			}
