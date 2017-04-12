@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	List<UserMypageDto> basketlist = (List<UserMypageDto>) request.getAttribute("basketlist");
+String rootPath = request.getContextPath();	
+List<UserMypageDto> basketlist = (List<UserMypageDto>) request.getAttribute("basketlist");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -106,7 +107,7 @@ margin-right: -5px;
 
 						<td rowspan="2"><%=i + 1%>
 						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>">
-						<img alt="<%=basketlist.get(i).getSTORED_NAME()%>" src="<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
+						<img alt="<%=basketlist.get(i).getSTORED_NAME()%>" src="..<%=rootPath %>/images/<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
 						<td rowspan="2" id="num<%=i%>" valign="middle"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
 						<td rowspan="1" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>

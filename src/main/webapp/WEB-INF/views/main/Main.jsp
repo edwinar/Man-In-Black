@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <%
-	
+
+String rootPath = request.getContextPath();
 String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
 String insert = (String)request.getAttribute("insert")==null?"noinsert":(String)request.getAttribute("insert");
 List<MainDto> list = (List<MainDto>)request.getAttribute("list");
@@ -61,7 +62,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 %>
 	<div class="main-slide" >
 	<div class="main-slide-content">
-    <img src="<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%" onclick="detail(<%=list.get(i).getPRO_SEQ() %>)">
+    <img src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>" height="100%" width="100%" onclick="detail(<%=list.get(i).getPRO_SEQ() %>)">
     </div>
     </div>
 <%}
@@ -82,7 +83,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
   <%for(int i=0;i<outerlist.size();i++){ %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=outerlist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=outerlist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
+      <img src="..<%=rootPath %>/images/<%=outerlist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=outerlist.get(i).getPRO_NAME()%></h5>
         <p><%=outerlist.get(i).getPRO_PRICE()%>원</p>
@@ -99,7 +100,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
    <%for(int i=0;i<toplist.size();i++){ %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=toplist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=toplist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
+      <img src="..<%=rootPath %>/images/<%=toplist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=toplist.get(i).getPRO_NAME()%></h5>
         <p><%=toplist.get(i).getPRO_PRICE()%>원</p>
@@ -117,7 +118,7 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
    <%for(int i=0;i<pantslist.size();i++){ %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" onclick="detail(<%=pantslist.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=pantslist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
+      <img src="..<%=rootPath %>/images/<%=pantslist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=pantslist.get(i).getPRO_NAME()%></h5>
         <p><%=pantslist.get(i).getPRO_PRICE()%>원</p>

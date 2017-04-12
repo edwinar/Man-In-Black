@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	ServiceDto serviceDto = (ServiceDto)request.getAttribute("write");
+String rootPath = request.getContextPath();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -151,7 +152,6 @@ margin-top: 30px;
 }
 
 </style>
-<script src="../js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -167,7 +167,7 @@ margin-top: 30px;
 
 	<!--메인 이미지등록  -->
 	<div class="preview">
-	<img src="<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
+	<img src="..<%=rootPath %>/images/<%if(serviceDto!=null){ %><%=serviceDto.getSTORED_NAME() %><%} %>">
 	</div>
 	<div align="center">
 		<button id="triggerUpload" class="btn btn-default" style= "font-weight:bold">이미지등록</button>

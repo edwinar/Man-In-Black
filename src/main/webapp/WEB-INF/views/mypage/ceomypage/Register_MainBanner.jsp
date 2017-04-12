@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
+	String rootPath = request.getContextPath();
 %>
 <html>
 <head>
@@ -102,7 +103,7 @@ margin-top:  100px;
 						value="<%=list.get(i).getPRO_SEQ()%>" name="ch" id="check<%=list.get(i).getPRO_SEQ()%>" class="chbox" style="width: 20px; height: 20px"></td>
 
 						<td rowspan="2"><%=i + 1%>
-						<td rowspan="2"><img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>"
+						<td rowspan="2"><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
 						<td rowspan="2" id="price<%=i%>" style="vertical-align: middle"><%=list.get(i).getPRO_PRICE()%></td>

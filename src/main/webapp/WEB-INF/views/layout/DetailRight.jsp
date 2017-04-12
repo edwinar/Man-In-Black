@@ -4,6 +4,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 request.setCharacterEncoding("UTF-8");
+String rootPath = request.getContextPath();
 %>
 
 <%
@@ -74,14 +75,14 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 					if(dto!=null){
 					%>
 		        		<aside id="buyaside" class="buyaside" onclick="BuyPop()">
-   						<img alt="" src="../images/buybtn.png" width="50px" height="50px">
+   						<img alt="" src="..<%=rootPath%>/images/buybtn.png" width="50px" height="50px">
 						</aside>
 		        	<%
 		        	}else{ 
 		        	%>
 		        	<aside id="buyaside" class="buyaside" >
 		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
-		        		<img alt="" src="../images/buybtn.png" width="50px" height="50px">	
+		        		<img alt="" src="..<%=rootPath%>/images/buybtn.png" width="50px" height="50px">	
 		        		</a>
 		        	</aside>
 		        	<%

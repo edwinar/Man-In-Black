@@ -125,19 +125,21 @@ height:82.5%;
 			<div class=contentDiv>
 			<div class="offer" align="center">
 				<table class="ta" style="text-align: center; width: 90%">
-					<col width="40%">
 					<col width="30%">
-					<col width="30%">
+					<col width="25">
+					<col width="25%">
+					<col width="25%">
 					<tr style="height: 30px">
 						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
 						<th style="text-align: center; margin-top: 10px">할인 금액</th>
 						<th style="text-align: center; margin-top: 10px">사용 기한</th>
+						<th style="text-align: center; margin-top: 10px">사용조건금액</th>
 					</tr>
 					<%
 						if (couponList == null || couponList.size() == 0) {
 					%>
 					<tr>
-						<td colspan="3" style="text-align: center;">내역이 없습니다.</td>
+						<td colspan="4" style="text-align: center;">내역이 없습니다.</td>
 					</tr>
 					<%
 						} else {
@@ -149,6 +151,7 @@ height:82.5%;
 						<td><%=couponList.get(i).getCOUP_NAME()%></td>
 						<td><%=couponList.get(i).getCOUP_PRICE()%></td>
 						<td><%=couponList.get(i).getCOUP_LIMIT()%></td>
+						<td><%=couponList.get(i).getCONDITION() %></td>
 					</tr>
 					<%
 						}
@@ -220,7 +223,7 @@ height:82.5%;
 				<%
 						} else {
 					%>
-				현재<%=mypageDto.getPOINT_FINAL()%>
+				사용가능 포인트<br> <%=mypageDto.getPOINT_FINAL()%><br>
 				<%} %>
 			</p>
 			<table class="ta" style="text-align: center; width: 90%">

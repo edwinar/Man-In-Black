@@ -10,7 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:::공지사항 글쓰기:::</title>
-<script src="../js/ckeditor/ckeditor.js"></script>
 <style type="text/css">
 
 .wrap {

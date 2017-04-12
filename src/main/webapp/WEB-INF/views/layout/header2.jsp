@@ -7,6 +7,9 @@
 request.setCharacterEncoding("UTF-8");
 %>
 <%
+
+String rootPath = request.getContextPath();
+//System.out.println("패쓰" + rootPath);
 		MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 		List<MainDto> subitemheader = (List<MainDto>)request.getSession().getAttribute("subitemheader");
 		
@@ -329,7 +332,7 @@ width: 100%;
 
 <div class="lologo" style="width: 180px; height: 80px; float: left; " >
 <a href="meninblack.mib">
-<img alt="" src="../images/MIBlogo.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
+<img alt="" src="..<%=rootPath %>/images/MIBlogo.png" style="float: left; margin-left: 20px;" width="100%" height="100%">
 </a>
 </div>
 

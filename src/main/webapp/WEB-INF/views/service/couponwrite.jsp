@@ -158,6 +158,7 @@ margin-top: 30px;
 	<br>
 
 
+	
 	<!--메인 이미지등록  -->
 	<div class="preview"></div>
 	<div align="center">

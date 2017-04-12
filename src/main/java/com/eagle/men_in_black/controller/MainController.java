@@ -241,7 +241,6 @@ public class MainController {
 			String id            = (res.getParameter("id")==null || res.getParameter("id")=="")?"":res.getParameter("id");
 			String name          = (res.getParameter("name")==null || res.getParameter("name")=="")?"":res.getParameter("name");
 			String tel           = (res.getParameter("tel")==null || res.getParameter("tel")=="")?"":res.getParameter("tel");
-			String sex           = (res.getParameter("sex")==null || res.getParameter("sex")=="")?"":res.getParameter("sex");
 			String birth         = (res.getParameter("birth")==null || res.getParameter("birth")=="")?"":res.getParameter("birth");
 			String postcode      = (res.getParameter("postcode")==null || res.getParameter("postcode")=="")?"":res.getParameter("postcode");
 			String password      = (res.getParameter("password")==null || res.getParameter("password")=="")?"":res.getParameter("password");
@@ -261,7 +260,6 @@ public class MainController {
 			map.put("ID", id);
 			map.put("NAME", name);
 			map.put("TEL", tel);
-			map.put("SEX", sex);
 			map.put("BIRTH", birth);
 			map.put("POSTCODE", postcode);
 			map.put("PW", password);
@@ -304,8 +302,8 @@ public class MainController {
 		 
 		 String authNum = RandomNum();
 		 
-		// mainSvc.sendEmail(email, authNum);
-		 System.out.println("모달컨트롤러"+email+authNum+signupdate);
+		 mainSvc.sendEmail(email, authNum);
+		 //System.out.println("모달컨트롤러"+email+authNum+signupdate);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
 		 mav.addObject("sign_email",email);

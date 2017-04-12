@@ -238,7 +238,7 @@ public class DetailController {
 	
 	@RequestMapping("Detail_Buy_Info.mib")
 	public ModelAndView Detail_Buy_Info(HttpServletRequest res, HttpServletResponse rep) {
-		ModelAndView mav = new ModelAndView("category/tiles/detail/Detail_Buy_Info");
+		ModelAndView mav = new ModelAndView("category/Detail_Buy_Info");
 		
 		MainDto userdto = (MainDto)res.getSession().getAttribute("LoginInfo");
 		int FINAL_PRICE = Integer.parseInt(res.getParameter("FINAL_PRICE"));

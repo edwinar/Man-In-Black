@@ -93,8 +93,8 @@ public class CeoMypageController {
 			//String root_path = System.getProperty("catalina.home");
 	        String attach_path = "images\\"; 
 			String filePath = root_path+attach_path;
-	         
-			//System.out.println("저장경로=========================================================================================="+filePath);
+			//String rootPath = request.getContextPath();
+			System.out.println("저장경로=========================================================================================="+filePath);
 
 	        MultipartFile multipartFile = null;
 
@@ -130,8 +130,9 @@ public class CeoMypageController {
 
 	                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 	                
-	                storedFileName = "../images/MAIN" + getRandomString() + originalFileExtension;
-	                
+	               // storedFileName = ".."+rootPath+"/images/MAIN" + getRandomString() + originalFileExtension;
+	                storedFileName = "MAIN" + getRandomString() + originalFileExtension;
+	               // System.out.println("저장경로와 파일이름 = " + filePath + storedFileName);
 	                 
 	                // 첨부한 파일 생성 
 	                file = new File(filePath + storedFileName);
@@ -153,7 +154,7 @@ public class CeoMypageController {
 
 	 	               originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 	 	                
-	 	               storedFileName = "../images/" + getRandomString() + originalFileExtension;
+	 	               storedFileName = getRandomString() + originalFileExtension;
 	 	                
 	 	                 
 	 	                // 첨부한 파일 생성 
@@ -309,16 +310,17 @@ public class CeoMypageController {
 			HttpSession session = request.getSession(); 
 			
 			String root_path = session.getServletContext().getRealPath("/"); // 웹서비스 root 경로
-			System.err.println("===>root_path" + root_path);
+			//System.err.println("===>root_path" + root_path);
 			
 			String attach_path = "images\\"; 
 			
-			System.err.println("===>attach_path" + attach_path);
+			//System.err.println("===>attach_path" + attach_path);
 			
 			MultipartFile upload = fileBean.getUpload();
 			String filename = ""; 
 			String CKEditorFuncNum = "";
 			String storedFileName = "";
+			String rootPath = request.getContextPath();
 			if (upload != null) { 
 				filename = upload.getOriginalFilename(); 
 				fileBean.setFilename(filename); 
@@ -337,7 +339,7 @@ public class CeoMypageController {
 				e.printStackTrace(); } 
 			} 
 			
-			String file_path = "../" + "images/" + storedFileName; 
+			String file_path = ".."+rootPath+"/" + "images/" + storedFileName; 
 					
 			ModelAndView mov = new ModelAndView("/mypage/ceomypage/NewFile");
 			mov.addObject("file_path", file_path);
@@ -676,7 +678,8 @@ public class CeoMypageController {
 				        String originalFileExtension = null;
 
 				        String storedFileName = null;
-
+				        
+				        String rootPath = res.getContextPath();
 
 				        HashMap<String, String> listMap = null;
 				        List<HashMap<String, String>> banptlist = new ArrayList<>();
@@ -699,7 +702,7 @@ public class CeoMypageController {
 
 				                originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-				                storedFileName = "../images/" + getRandomString() + originalFileExtension;
+				                storedFileName =  getRandomString() + originalFileExtension;
 
 				                // 첨부한 파일 생성
 				                file = new File(filePath + storedFileName);

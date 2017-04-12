@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
+String rootPath = request.getContextPath();
 %>
 <html>
 <head>
@@ -105,7 +106,7 @@ function addCookie(pd_no) {
   %>
   <div class="col-xs-12 col-md-4 col-lg-4" onclick="movedetail(<%=list.get(i).getPRO_SEQ()%>)">
     <div class="thumbnail">
-      <img src="<%=list.get(i).getSTORED_NAME() %>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
+      <img src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=list.get(i).getPRO_NAME() %></h5>
         <p><%=list.get(i).getPRO_PRICE() %> Won</p>

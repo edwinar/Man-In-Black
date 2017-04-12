@@ -9,6 +9,7 @@
 	List<DetailDto> list = (List<DetailDto>)request.getAttribute("list");
 	List<DetailDto> listColor = (List<DetailDto>)request.getAttribute("listColor");
 	List<DetailDto> listSize = (List<DetailDto>)request.getAttribute("listSize");
+	String rootPath = request.getContextPath();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -317,13 +318,13 @@ table.responsive-table{
 <script type="text/javascript">
 $(document).ready(function () {
     $('.content1').hover(function () {
-        $('#mainImage').attr("src", "<%=list.get(0).getSTORED_NAME() %>");
+        $('#mainImage').attr("src", "..<%=rootPath %>/images/<%=list.get(0).getSTORED_NAME() %>");
     });
     $('.content2').hover(function () {
-        $('#mainImage').attr("src", "<%=list.get(1).getSTORED_NAME() %>");
+        $('#mainImage').attr("src", "..<%=rootPath %>/images/<%=list.get(1).getSTORED_NAME() %>");
     });
     $('.content3').hover(function () {
-        $('#mainImage').attr("src", "<%=list.get(2).getSTORED_NAME() %>");
+        $('#mainImage').attr("src", "..<%=rootPath %>/images/<%=list.get(2).getSTORED_NAME() %>");
     });
     $('#tab2').on('click',function(){
     	reviewPage(1);
@@ -350,36 +351,37 @@ function reviewPage(page){
 			var flag = $.parseJSON(data);
 			var reviewBody = document.getElementById("reviewBody");
 			var reviewPage = document.getElementById("reviewPage");
+			var rootpath = $("#rootpath").val();
 			reviewBody.innerHTML = "";
 			reviewPage.innerHTML = "";
 			for(var i=0;i<flag.length;i++){
 				if(flag[i].USER_ID=="adm"){ 			        
-					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='../images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='.."+rootpath+"/images/arrow.PNG' class='imgr' width='200px'></td><td class='organisationname' width='60%'>"
 					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
 					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
 				}else{
 					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='"+flag[i].STORED_NAME+"' class='imgr' width='200px'></td>"
 					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
 		       		if(flag[i].SCORE==1){
-		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
-		       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       			strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+		       			+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"
+		       			+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>";
 		       		}else if(flag[i].SCORE==2){
-		       			strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>"
-	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+		       			strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>";
 		       		}else if(flag[i].SCORE==3){
-			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreEmpty.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+			       		strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>";
 		       		}else if(flag[i].SCORE==4){
-			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreEmpty.png'>";
+			       		strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreEmpty.png'>";
 		       		}else if(flag[i].SCORE==5){
-			       		strInput = strInput + "<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>"
-	       			+"<img alt='...' src='../images/scoreFull.png'>"+"<img alt='...' src='../images/scoreFull.png'>";
+			       		strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
+	       			+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"+"<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>";
 		       		}else{
 		       			strInput = strInput + "<h4>평점 데이터가 없습니다.</h4>";
 		       		}
@@ -430,7 +432,7 @@ function QnAPage(page){
 				}
 				if(flag[i].USER_ID=="adm"){
 					strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
-					+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='../images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
+					+"<td class='organisationname'><a href='javascript:QnADetail("+flag[i].QNA_SEQ+",\""+flag[i].USER_ID+"\","+openNum+")'><img alt='' src='.."+rootpath+"/images/arrow.PNG' class='imgr' width='30px'>"+flag[i].QNA_TITLE+"</a></td>"
 					+"<td>"+flag[i].USER_ID+"</td><td>"+flag[i].QNA_TIME+"</td></tr>";
 				}else{
 					strInput = strInput + "<tr><td class='organisationnumber'>"+flag[i].QNA_OPEN+"</td><td>"+flag[i].QNA_TYPE+"</td>"
@@ -486,29 +488,30 @@ function QnAWrite2(){
 <%}else{ %>
 <input type="hidden" id="userIdlog" value="nolog" >
 <%} %>
+<input type="hidden" id="rootpath" value="<%=rootPath %>">
 <div>
 <div class="toptotal">
 	<div class="slide-container">
 		<div class="sub-slide ">
 			<div class="sub-photo">
 				<div class="content1">
-		    		<img src="<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%">
+		    		<img src="..<%=rootPath %>/images/<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
 				<div class="content2">
-		    		<img src="<%=list.get(1).getSTORED_NAME() %>" height="100%" width="100%">
+		    		<img src="..<%=rootPath %>/images/<%=list.get(1).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 			<div class="sub-photo">
 				<div class="content3">
-		    		<img src="<%=list.get(2).getSTORED_NAME() %>" height="100%" width="100%">
+		    		<img src="..<%=rootPath %>/images/<%=list.get(2).getSTORED_NAME() %>" height="100%" width="100%">
 		    	</div>
 			</div>
 		</div>
 	  	<div class="slide">
 		    <div class="content">
-		    	<img src="<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%" id="mainImage">
+		    	<img src="..<%=rootPath %>/images/<%=list.get(0).getSTORED_NAME() %>" height="100%" width="100%" id="mainImage">
 		    </div>
 	  	</div>	
 	</div>
@@ -565,43 +568,43 @@ function QnAWrite2(){
 	        		<%
 		        		if(list.get(0).getAVG_SCORE()==1){
 		        	%>
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<%
 		        		}else if(list.get(0).getAVG_SCORE()==2){
 	        		%>
-	        			<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
+	        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<%
 		        		}else if(list.get(0).getAVG_SCORE()==3){
 	        		%>
-	        			<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
+	        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<%
 		        		}else if(list.get(0).getAVG_SCORE()==4){
 	        		%>
-	        			<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreEmpty.png">
+	        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<%
 		        		}else if(list.get(0).getAVG_SCORE()==5){
 	        		%>
-	        			<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
-		        		<img alt="..." src="../images/scoreFull.png">
+	        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+		        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
 		        	<%
 		        		}else{
 	        		%>
@@ -658,7 +661,6 @@ function QnAWrite2(){
      <center>
      <h1>상품상세 TEST</h1>
      <%=list.get(0).getPRO_DETAIL() %>
-     <!-- <img alt="..." src="../images/jn.jpg" class="detailPhto col-xs-12 col-lg-12"><br/> -->
      </center>
     </div>
 
@@ -671,43 +673,43 @@ function QnAWrite2(){
             <%
         		if(list.get(0).getAVG_SCORE()==1){
         	%>
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
        		<%
         		}else if(list.get(0).getAVG_SCORE()==2){
        		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
+       			<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
        		<%
         		}else if(list.get(0).getAVG_SCORE()==3){
        		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
+       			<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
        		<%
         		}else if(list.get(0).getAVG_SCORE()==4){
        		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreEmpty.png">
+       			<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png">
        		<%
         		}else if(list.get(0).getAVG_SCORE()==5){
        		%>
-       			<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
-        		<img alt="..." src="../images/scoreFull.png">
+       			<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
+        		<img alt="..." src="..<%=rootPath%>/images/scoreFull.png">
         	<%
         		}else{
        		%>

@@ -61,6 +61,16 @@ font-size:1.2em;
 
 }
 
+ #MIBsignupform input[type=password]
+{
+border:none;
+padding:20px 0px;
+background:transparent;
+width:230px;
+font-size:1.2em;
+
+}
+
 input:focus, textarea:focus
 {     
 outline: none;
@@ -89,7 +99,7 @@ outline: none;
    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>중복확인</button>
 </div>
 <div class="inputsnlables"><label>PassWord</label>
-<input type="text" placeholder="PassWord" id="password" name="password" class="lock"/></div>
+<input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
 <div class="inputsnlables"><label>Name</label>
 <input type="text" placeholder="Name" id="name" name="name" class="lock"/></div>
 <div class="inputsnlables"><label>TEL</label>
@@ -102,8 +112,8 @@ outline: none;
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label>
-<input type="text" placeholder="ex)남자" name="sex" id="sex" class="lock"/></div>
+<!-- <div class="inputsnlables"><label>SEX</label>
+<input type="text" placeholder="ex)남자" name="sex" id="sex" class="lock"/></div> -->
 <div class="inputsnlables"><label>BIRTH</label>
 <input type="text" placeholder="ex)900411" name="birth" id="birth" class="lock" onkeyup="showKeyCode(event)"/>
 </div>

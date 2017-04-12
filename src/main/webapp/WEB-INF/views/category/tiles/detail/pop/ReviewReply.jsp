@@ -7,6 +7,7 @@
 <%
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	DetailDto detailDto = (DetailDto)request.getAttribute("detailDto");
+	String rootPath = request.getContextPath();
 	
 	Calendar cal = Calendar.getInstance();
 	int tyear = cal.get(Calendar.YEAR);
@@ -122,43 +123,43 @@ $(function() {
 				<%
 	        		if(detailDto.getSCORE()==1){
 	        	%>
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
         		<%
 	        		}else if(detailDto.getSCORE()==2){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
         		<%
 	        		}else if(detailDto.getSCORE()==3){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
         		<%
 	        		}else if(detailDto.getSCORE()==4){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
         		<%
 	        		}else if(detailDto.getSCORE()==5){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
 	        	<%
 	        		}else{
         		%>
@@ -177,7 +178,7 @@ $(function() {
 			<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 			
 			<div class="photoLayout" >
-				<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
+				<img alt="..." src="..<%=rootPath %>/images/<%=detailDto.getSTORED_NAME()%>" style="float: left; width: 48%; height: 100%;">
 				<textarea  rows="5px" cols="10px" readonly="readonly" style="float: left; width: 52%; height: 100%;"><%=detailDto.getREV_CONTENT() %></textarea>
 			</div>
 			<%

@@ -29,7 +29,6 @@ margin-top: 30px;
 			<h4 align="right" style="margin-right: 100px">
 				<a href="meninblack.mib">홈</a> > <a href="event.mib">이벤트</a>
 			</h4>
-			<h4>이벤트정보를 수정하세요.</h4>
 		</div>
 	</center>
 	<h3>EVENT DETAIL</h3>

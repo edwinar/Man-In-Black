@@ -7,6 +7,7 @@
 	MainDto userdto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	List<ServiceDto> eventlist = (List<ServiceDto>) request.getAttribute("eventlist");
 	List<ServiceDto> couplist = (List<ServiceDto>) request.getAttribute("couplist");
+	String rootPath = request.getContextPath();
 	
 %>
 
@@ -24,8 +25,8 @@
 
 .preview {
    position: relative;
-   width: 250px;
-   height: 250px;
+   width: 450px;
+	height: 250px;
    background: #f2f2f2;
    /* border-radius: 100%; */
    margin: 0 auto 25px auto;
@@ -156,14 +157,14 @@ function coup(seq){
 	for(int i=0;i<couplist.size();i++){
 	%>
 	<div class="previewcoup" style="margin-left: 21px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
-		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+		<img alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
 	}else if(userdto!=null && userdto.getUSER_ID().equals("adm")){
 		for(int i=0;i<couplist.size();i++){
 	%>
 	<div class="previewcoup" style="margin-left: 21px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
-		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+		<img alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%}
 	
@@ -172,7 +173,7 @@ function coup(seq){
 			
 	%>
 	<div class="previewcoup" style="margin-left: 21px; float: left" >
-		<img alt="" src="<%=couplist.get(i).getSTORED_NAME()%>">
+		<img alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%}
 	}
@@ -192,7 +193,7 @@ function coup(seq){
 		for(int i=0; i<eventlist.size();i++){
 	%>
 	<div class="preview" style="margin-left: 21px; float: left" onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
-		<img alt="" src="<%=eventlist.get(i).getSTORED_NAME()%>">
+		<img alt="" src="..<%=rootPath %>/images/<%=eventlist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%
 		}

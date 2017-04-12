@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+String rootPath = request.getContextPath();
 	List<UserMypageDto> buyList = (List<UserMypageDto>) request.getAttribute("buyList");
 	String START_DATE = (request.getParameter("START_DATE") == null || request.getParameter("START_DATE") == "")
 			? ""
@@ -185,7 +186,7 @@ margin-top: 30px;
 				%>
 
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found" src="<%=buyList.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found" src="..<%=rootPath %>/images/<%=buyList.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>

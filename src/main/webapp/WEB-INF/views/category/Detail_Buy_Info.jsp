@@ -9,6 +9,7 @@
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	List<DetailDto> couponList = (List<DetailDto>)request.getAttribute("couponList");
 	Object points = (Object)request.getAttribute("points");
+	String rootPath = request.getContextPath();
 	int finalPrice = 0;
 	int deliveryFee = 0;
 	int finalFee = 0;
@@ -81,7 +82,7 @@ td, th {
 				<tr>
 					<td rowspan="2"><%=count %>번</td>
 					<td rowspan="2">
-						<img alt="not found" src="<%=basketList.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
+						<img alt="not found" src="..<%=rootPath %>/images/<%=basketList.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
 					</td>
 					<td><%=basketList.get(i).getPRO_NAME() %></td>
 					<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
@@ -91,11 +92,12 @@ td, th {
 					<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 					<td>상품 합계</td>
 					<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+					<input type="hidden" id="ffip" value="<%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %>">
 				</tr>
 				<%
 					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 				}
-				if(finalPrice<124950) deliveryFee = 2500;
+				if(finalPrice<50000) deliveryFee = 2500;
 				else deliveryFee = 0;
 				%>
 			</table>
@@ -127,7 +129,7 @@ td, th {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" readonly="readonly" id="orderNum" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호" disabled="disabled"/>
+						<input type="text" size="10px" readonly="readonly" id="orderNum" value="<%=dto.getPOSTCODE() %>" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" class="btn btn-default" value="우편번호" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
@@ -187,7 +189,7 @@ td, th {
 				<tr>
 					<td rowspan="3">주소</td>
 					<td colspan="2">
-						<input type="text" size="10px" id="receiveNum" name="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" value="우편번호"/>
+						<input type="text" size="10px" id="receiveNum" name="receiveNum" style="text-align: center;"/>&nbsp&nbsp&nbsp&nbsp<input type="submit" class="btn btn-default" value="우편번호"/>
 					</td>
 				</tr>
 				<tr>
@@ -215,15 +217,16 @@ td, th {
 					<td colspan="3">쿠폰</td>
 				</tr>
 				<tr>
-					<td colspan="2">쿠폰선택</td>
-					<td rowspan="2">
+					<td colspan="3">쿠폰선택</td>
+					
+					<!-- <td rowspan="2">
 						<button style="width: 80%; height: 80%;" id="couponBtn">적용하기</button>
-					</td>
+					</td> -->
 				</tr>
 				<tr>
-					<td colspan="2">
-						<select name=coupon size=1 id="couponChoice">
-					        <option value="no" selected="selected">미선택</option>
+					<td colspan="3">
+						<select name=coupon style="width: 100px;" size=1 id="couponChoice">
+					        <option value="0" selected="selected">미선택</option>
 					        <%
 					        	for(int i=0;i<couponList.size();i++){
 					        %>
@@ -235,7 +238,7 @@ td, th {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3">* 쿠폰을 고르시고 적용하기버튼을 눌러주세요!</td>
+					<td colspan="3" id="copricetd"></td>
 				</tr>
 			</table>
 		</div>
@@ -252,14 +255,14 @@ td, th {
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: right;">
-						<input type="text" size="20px" id="pointValue" disabled="disabled" onkeypress="onlyNumber();"/>
+						<input type="text" size="20px" id="pointValue"  onkeypress="onlyNumber();"/>
 					</td>
 					<td>
-						<button id="pointBtn" disabled="disabled">사용하기</button>
+						<button id="pointBtn" class="btn btn-default">사용하기</button>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3">* 쿠폰선택을 먼저 하셔야합니다!</td>
+					<td colspan="3" ></td>
 				</tr>
 			</table>
 		</div>
@@ -273,6 +276,16 @@ td, th {
 			<td>배송비</td>
 			<td id="deliveryFee"><%=deliveryFee %></td>
 			<td>Won</td>
+		</tr>
+		<tr>
+		<td>쿠폰사용금액</td>
+		<td id="couusepri"></td>
+		<td>Won</td>
+		</tr>
+		<tr>
+		<td>포인트사용금액</td>
+		<td id="pousepri"></td>
+		<td>Won</td>
 		</tr>
 		<tr>
 			<td>총 결제 금액</td>
@@ -293,7 +306,7 @@ td, th {
 		</tr>
 		<tr>
 			<td colspan="3">
-				<button style="width: 80%; height: 100%" id="buy">결제하기</button>
+				<button style="width:100%; height: 40px" id="buy" class="btn btn-default">결제하기</button>
 			</td>
 		</tr>
 	</table>
@@ -346,6 +359,32 @@ var midPrice;
 		}
 		deliveryFeeChange();
 	});
+	
+	var couppri = "";
+	
+	$("#couponChoice").change(function() {
+		var couponValue = $("#couponChoice option:selected").val();
+		var array = couponValue.split(",");
+		couppri = array[0];
+		var pointsValue = $('#pointValue').val();
+		$("#copricetd").text('쿠폰가격은 '+array[0]+'입니다.');
+		$("#couusepri").text(array[0]);
+		var pointsValue = $('#pointValue').val();
+	
+		if(pointsValue==''){
+			$('#final').text($('#ffip').val()-array[0]);
+		}else{
+			$('#final').text(($('#ffip').val()-array[0])-pointsValue);
+		}
+	
+	});
+	
+	
+	
+	
+	
+	
+	
 	$('#pointBtn').on('click',function(){
 		var useablePoints = <%=points %>;
 		var pointsValue = $('#pointValue').val();
@@ -357,8 +396,18 @@ var midPrice;
 				$('#final').text(midPrice);
 				$('#pointValue').val("0");
 			}else{
-				finalPrice = midPrice - pointsValue;
-				$('#final').text(finalPrice);
+				$("#pousepri").text(pointsValue);
+				
+				if(couppri==''){
+					//alert("여기들어오니111?");
+					$('#final').text($('#ffip').val()-pointsValue);
+				}else{
+					//alert("여기들어오니222?");
+					$('#final').text(($('#ffip').val()-couppri)-pointsValue);
+				}
+				
+				//finalPrice = midPrice - pointsValue; 최종금액 바꾸는부분 
+				
 			}
 		}
 		deliveryFeeChange();

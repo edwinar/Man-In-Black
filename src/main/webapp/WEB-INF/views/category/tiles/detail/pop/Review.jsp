@@ -7,6 +7,7 @@
 	MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
 	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
 	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
+	String rootPath = request.getContextPath();
 %>
 <html>
 <head>
@@ -61,7 +62,7 @@ input, select, textarea {
 <div class="layout">
 	<%if(!detailDto.getSTORED_NAME().equals("none")){ %>
 	<div class="leftLayout">
-		<img alt="..." src="<%=detailDto.getSTORED_NAME()%>" width="100%">
+		<img alt="..." src="..<%=rootPath %>/images/<%=detailDto.getSTORED_NAME()%>" width="100%">
 	</div>
 	<div class="rightLayout">
 	<%
@@ -84,47 +85,47 @@ input, select, textarea {
 				<%
 	        		if(detailDto.getSCORE()==1){
 	        	%>
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==2){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==3){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==4){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreEmpty.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreEmpty.png">
 	        		<hr style="border: solid black 1px; width: 70%;">
         		<%
 	        		}else if(detailDto.getSCORE()==5){
         		%>
-        			<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
-	        		<img alt="..." src="../images/scoreFull.png">
+        			<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
+	        		<img alt="..." src="..<%=rootPath %>/images/scoreFull.png">
 	        		<hr style="border: solid black 1px; width: 70%;">
 	        	<%
 	        		}else{

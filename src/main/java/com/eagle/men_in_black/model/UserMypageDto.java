@@ -6,6 +6,7 @@ public class UserMypageDto implements Serializable {
 
     private static final long serialVersionUID = 9097026812134548681L;
 
+    private int CONDITION;
     private int TOT_CNT;
     private	String	BODYTYPE;
     private	String	COLOR;
@@ -85,7 +86,17 @@ public class UserMypageDto implements Serializable {
     private String QNA_CONTENT;
     
     
-    public int getTOT_CNT() {
+    
+    
+    public int getCONDITION() {
+		return CONDITION;
+	}
+
+	public void setCONDITION(int cONDITION) {
+		CONDITION = cONDITION;
+	}
+
+	public int getTOT_CNT() {
 		return TOT_CNT;
 	}
 

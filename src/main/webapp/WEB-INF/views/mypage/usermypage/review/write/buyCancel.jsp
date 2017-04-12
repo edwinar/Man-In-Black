@@ -12,6 +12,7 @@
 
 <%
     UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
+	String rootPath = request.getContextPath();
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../../../css/Mib.css">
@@ -60,7 +61,7 @@
 
                 <tr height="30px">
                     <td class="boardone" rowspan="2"><img alt="not found"
-                                                          src="../images/LOVE.jpg" style="width: 100px; height: 100px">
+                                                          src="..<%=rootPath %>/images/<%=cancelList.getSTORED_NAME() %>" style="width: 100px; height: 100px">
                     </td>
                     <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSUB_ITEM()%>
                     </td>

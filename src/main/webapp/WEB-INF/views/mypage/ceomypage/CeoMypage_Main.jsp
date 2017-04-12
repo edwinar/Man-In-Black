@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 	<%
 	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
-	
+	String rootPath = request.getContextPath();
 	String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
 	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
 	String search = (request.getParameter("search")==null || request.getParameter("search")=="")?"":request.getParameter("search");
@@ -433,7 +433,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				<%}else{
 				for(int i=0; i<list.size(); i++){ %>
 					<tr>
-						<td><img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>"
+						<td><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getITEM() %></td>
 						<td>

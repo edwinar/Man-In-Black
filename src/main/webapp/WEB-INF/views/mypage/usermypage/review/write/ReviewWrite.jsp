@@ -8,6 +8,7 @@
 	Date now = new Date();
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
+	String rootPath = request.getContextPath();
 	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -92,13 +93,13 @@ input, select, textarea {
 			
 				<div class="thumbnail">
 					<div class="score" align="center" style="height: 20%">
-						평점 <img alt="..." src="../images/scoreEmpty.png" id="star1"
+						평점 <img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png" id="star1"
 							onclick="star1()"> <img alt="..."
-							src="../images/scoreEmpty.png" id="star2" onclick="star2()">
-						<img alt="..." src="../images/scoreEmpty.png" id="star3"
+							src="..<%=rootPath%>/images/scoreEmpty.png" id="star2" onclick="star2()">
+						<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png" id="star3"
 							onclick="star3()"> <img alt="..."
-							src="../images/scoreEmpty.png" id="star4" onclick="star4()">
-						<img alt="..." src="../images/scoreEmpty.png" id="star5"
+							src="..<%=rootPath%>/images/scoreEmpty.png" id="star4" onclick="star4()">
+						<img alt="..." src="..<%=rootPath%>/images/scoreEmpty.png" id="star5"
 							onclick="star5()">
 
 						<hr style="border: solid black 1px; width: 70%;">
@@ -140,49 +141,49 @@ input, select, textarea {
 		$(function() {
 			$("#star1").click(function() {
 
-				$("#star1").attr("src", "../images/scoreFull.png");
-				$("#star2").attr("src", "../images/scoreEmpty.png");
-				$("#star3").attr("src", "../images/scoreEmpty.png");
-				$("#star4").attr("src", "../images/scoreEmpty.png");
-				$("#star5").attr("src", "../images/scoreEmpty.png");
+				$("#star1").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star2").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star3").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star4").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star5").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
 				score = 1;
 				$("#score").val(score);
 			});
 
 			$("#star2").click(function() {
-				$("#star1").attr("src", "../images/scoreFull.png");
-				$("#star2").attr("src", "../images/scoreFull.png");
-				$("#star3").attr("src", "../images/scoreEmpty.png");
-				$("#star4").attr("src", "../images/scoreEmpty.png");
-				$("#star5").attr("src", "../images/scoreEmpty.png");
+				$("#star1").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star2").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star3").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star4").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star5").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
 				score = 2;
 				$("#score").val(score);
 			});
 			$("#star3").click(function() {
-				$("#star1").attr("src", "../images/scoreFull.png");
-				$("#star2").attr("src", "../images/scoreFull.png");
-				$("#star3").attr("src", "../images/scoreFull.png");
-				$("#star4").attr("src", "../images/scoreEmpty.png");
-				$("#star5").attr("src", "../images/scoreEmpty.png");
+				$("#star1").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star2").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star3").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star4").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
+				$("#star5").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
 				score = 3;
 				$("#score").val(score);
 			});
 			$("#star4").click(function() {
-				$("#star1").attr("src", "../images/scoreFull.png");
-				$("#star2").attr("src", "../images/scoreFull.png");
-				$("#star3").attr("src", "../images/scoreFull.png");
-				$("#star4").attr("src", "../images/scoreFull.png");
-				$("#star5").attr("src", "../images/scoreEmpty.png");
+				$("#star1").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star2").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star3").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star4").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star5").attr("src", "..<%=rootPath%>/images/scoreEmpty.png");
 				score = 4;
 				$("#score").val(score);
 			});
 			$("#star5").click(function() {
 
-				$("#star1").attr("src", "../images/scoreFull.png");
-				$("#star2").attr("src", "../images/scoreFull.png");
-				$("#star3").attr("src", "../images/scoreFull.png");
-				$("#star4").attr("src", "../images/scoreFull.png");
-				$("#star5").attr("src", "../images/scoreFull.png");
+				$("#star1").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star2").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star3").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star4").attr("src", "..<%=rootPath%>/images/scoreFull.png");
+				$("#star5").attr("src", "..<%=rootPath%>/images/scoreFull.png");
 				score = 5;
 				$("#score").val(score);
 			});

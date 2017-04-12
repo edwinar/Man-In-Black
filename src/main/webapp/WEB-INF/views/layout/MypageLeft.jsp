@@ -4,6 +4,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
 request.setCharacterEncoding("UTF-8");
+String rootPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,7 +21,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
  		 
   <%if(dto.getUSER_ID().equals("adm")){ %>
   <nav class="side-menusize" >
-         <img src="../images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
+         <img src="..<%=rootPath%>/images/mymenu.PNG" width="100%" height="100%" style="cursor: pointer;">
   </nav>
  
  <ul>

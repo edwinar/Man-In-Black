@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<% List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list"); %>
+<% List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list"); 
+String rootPath = request.getContextPath();%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,7 +54,7 @@ td, th {
 					%>
 					<tr>
 						<td rowspan="2">
-						<img alt="not found" src="<%=list.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
+						<img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>" style="width: 100px; height: 100px">
 						<input type="hidden" name="pro_seq<%=i%>" value="<%=list.get(i).getPRO_SEQ()%>">
 						</td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>

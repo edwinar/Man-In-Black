@@ -44,11 +44,6 @@ input, select, textarea {
 </head>
 <body>
 
-<script type="text/javascript">
-function windowClose(){
-	window.close();
-}
-</script>
 
 <div class="layout">
 	<div class="thumbnail">
@@ -61,8 +56,7 @@ function windowClose(){
 				<p style="margin-left: 30px;">
 				공개설정 : 
 				<select name=secret size=1 id="secret" >
-			        <option value="" selected="selected">공개/비공개</option>
-			        <option value="공개">공개</option>
+			        <option value="공개" selected="selected">공개</option>
 			        <option value="비공개">비공개</option>
 		    	</select>
 		    	</p>
@@ -71,7 +65,7 @@ function windowClose(){
 				<p style="margin-left: 30px;">
 				문의설정 : 
 				<select name="secretz" size=1 id="secretz">
-			        <option value="" selected="selected">문의구분</option>
+			        <option value="none" selected="selected">문의구분</option>
 			        <option value="배송문의">배송문의</option>
 			        <option value="상품/교환/환불문의">상품/교환/환불문의</option>
 		    	</select>
@@ -94,12 +88,12 @@ function windowClose(){
 		</div>
 		<div style="height: 10%; width: 100%;">
 			<p align="left" style="margin-left: 30px;">
-				제목 : <input style="margin-left: 28px" type="text" id="title" name="title">
+				제목 : <input style="margin-left: 28px" type="text" id="title" name="title" readonly="readonly" onclick="clclick()">
 			</p>
 		</div>
 		<div style="height: 35%; width: 100%;">
 			<p><h5 align="left" style="margin-left: 30px;">내용</h5></p>
-			<textarea rows="5px" cols="100px" id="QNA_CONTENT" name="QNA_CONTENT"></textarea>
+			<textarea rows="5px" cols="100px" id="QNA_CONTENT" name="QNA_CONTENT" readonly="readonly" onclick="clclick()"></textarea>
 		</div>
 		<div class="btn" align="center" style="height: 10%; width:100%;">
 			<div style="float: left; width: 50%;">
@@ -114,6 +108,22 @@ function windowClose(){
 </div>
 <script type="text/javascript">
 	
+function clclick() {
+	var secretz = $("#secretz").find(":selected").val();
+	
+	if(secretz=='none'){
+		alert("문의구분먼저 선택해주세요 ");
+	}
+}	
+
+$(document).ready(function() {
+	$("#secretz").change(function() {
+		$("#title").attr('readonly',false);
+
+		$("#QNA_CONTENT").attr('readonly',false);
+	});
+});
+	
 function qnawrite(){
 	var secretz = $("#secretz").find(":selected").val();
 	var secret = $("#secret").find(":selected").val();
@@ -121,6 +131,18 @@ function qnawrite(){
 	var QNA_CONTENT= $("#QNA_CONTENT").val();
 	var USER_ID = $("#USER_ID").val();
 	var PRO_SEQ =$("#PRO_SEQ").val();
+	
+	if(secretz=='none'){
+	alert("문의설정을 골라주세요");
+	return;
+	}else if(title==''){
+		alert("제목을 작성해주세요");
+		return;
+	}else if(QNA_CONTENT==''){
+		alert("내용을 작성해주세요");
+		return;
+	}else {
+	
 	$.ajax({
 		type : "POST",
 		url : "qnaWrite.mib",
@@ -145,9 +167,10 @@ function qnawrite(){
 		complete : function(data) {
 		},
 		error : function(xhr, status, error) {
-			alert("빈칸없이 작성하여주세요.");
+			alert("먹니?");
 		}
 	});	
+	}
 };
 function windowClose() {
 	window.close();

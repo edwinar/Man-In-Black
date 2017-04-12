@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	List<UserMypageDto> goodslist= (List<UserMypageDto>)request.getAttribute("goodslist");
+String rootPath = request.getContextPath();
 %>
 <html>
 <head>
@@ -86,7 +87,7 @@ width: 100%; height: 180px;
 
 	<%-- 	<div class="col-xs-12 col-lg-4" onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
 			<div class="thumbnail">
-				<img src="<%=goodslist.get(i).getSTORED_NAME()%>" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
+				<img src="..<%=rootPath %>/images/<%=goodslist.get(i).getSTORED_NAME()%>" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
 				<div class="caption">
 					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
 					<p><%=goodslist.get(i).getPRO_PRICE()%></p>
@@ -95,7 +96,7 @@ width: 100%; height: 180px;
 		</div> --%>
 		
 			<div class="todi"  onclick="location.href='detail.mib?PRO_SEQ=<%=goodslist.get(i).getPRO_SEQ()%>'">
-			<img src="../images/jn.jpg" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
+			<img src="..<%=rootPath %>/images/<%=goodslist.get(i).getSTORED_NAME() %>" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
 			<div class="caption" style="width: 100%;">
 					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
 					<p><%=goodslist.get(i).getPRO_PRICE()%></p>

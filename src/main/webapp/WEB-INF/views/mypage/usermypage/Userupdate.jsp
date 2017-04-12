@@ -67,6 +67,16 @@ font-size:1.2em;
 
 }
 
+#MIBsignupform input[type=password]
+{
+border:none;
+padding:20px 0px;
+background:transparent;
+width:230px;
+font-size:1.2em;
+
+}
+
 input:focus, textarea:focus
 {     
 outline: none;
@@ -180,7 +190,7 @@ $(document).ready(function() {
 
 
 <div class="inputsnlables"><label>ID</label><input type="text" placeholder="ID" name="id" id="id" class="lock" readonly="readonly" value="<%=userinfo.getUSER_ID()%>"/></div>
-<div class="inputsnlables"><label>PassWord</label><input type="text" placeholder="PassWord" id="password" name="password" /></div>
+<div class="inputsnlables"><label>PassWord</label><input type="password" placeholder="PassWord" id="password" name="password" /></div>
 <div class="inputsnlables"><label>Name</label><input type="text" placeholder="Name" id="name" name="name" readonly="readonly" value="<%=userinfo.getUSER_NAME()%>"/></div>
 <div class="inputsnlables"><label>TEL</label>
 <input type="text" placeholder="TEL" id="tel" name="tel" value="<%=userinfo.getTEL()%>" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)"/>
@@ -192,9 +202,9 @@ $(document).ready(function() {
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
-<div class="inputsnlables"><label>SEX</label>
+<%-- <div class="inputsnlables"><label>SEX</label>
 <input type="text" placeholder="SEX" name="sex" id="sex" readonly="readonly" value="<%=userinfo.getSEX()%>"/></div>
-<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
+ --%><div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
 
 <br>
 <div align="center">

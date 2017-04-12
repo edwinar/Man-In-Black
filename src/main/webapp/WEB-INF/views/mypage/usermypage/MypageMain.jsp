@@ -9,6 +9,7 @@
 	List<UserMypageDto> qna = (List<UserMypageDto>) request.getAttribute("qna");
 	List<UserMypageDto> basket = (List<UserMypageDto>) request.getAttribute("basket");
 	List<UserMypageDto> point5 = (List<UserMypageDto>) request.getAttribute("point5");
+	String rootPath = request.getContextPath();
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -274,7 +275,7 @@ width: 94.5%
 					for (int i = 0; i < buy.size(); i++) {
 				%>
 				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><img alt="not found" src="<%=buy.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
+					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><img alt="not found" src="..<%=rootPath %>/images/<%=buy.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><%=buy.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
@@ -335,7 +336,7 @@ width: 94.5%
 				<tr>
 
 					<td  rowspan="2" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><img
-						alt="not found" src="<%=basket.get(i).getSTORED_NAME()%>"
+						alt="not found" src="..<%=rootPath %>/images/<%=basket.get(i).getSTORED_NAME()%>"
 						style="width: 100px; height: 100px"></a></td>
 					<td  rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><%=basket.get(i).getPRO_NAME()%></a></td>

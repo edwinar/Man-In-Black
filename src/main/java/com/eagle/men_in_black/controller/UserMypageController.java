@@ -410,7 +410,7 @@ public class UserMypageController {
 			if (multipartFile.isEmpty() == false) {
 				originalFileName = multipartFile.getOriginalFilename();
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				storedFileName = "../images/" + getRandomString() + originalFileExtension;
+				storedFileName = getRandomString() + originalFileExtension;
 
 				// 첨부한 파일 생성
 				file = new File(filePath + storedFileName);
@@ -481,7 +481,7 @@ public class UserMypageController {
 				if (multipartFile.isEmpty() == false) {
 					originalFileName = multipartFile.getOriginalFilename();
 					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-					storedFileName = "../images/" + getRandomString() + originalFileExtension;
+					storedFileName =  getRandomString() + originalFileExtension;
 					// 첨부한 파일 생성
 					file = new File(filePath + storedFileName);
 					multipartFile.transferTo(file);
@@ -638,7 +638,7 @@ public class UserMypageController {
 				if (multipartFile.isEmpty() == false) {
 					originalFileName = multipartFile.getOriginalFilename();
 					originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-					storedFileName = "../images/" + getRandomString() + originalFileExtension;
+					storedFileName =  getRandomString() + originalFileExtension;
 					// 첨부한 파일 생성
 					file = new File(filePath + storedFileName);
 					multipartFile.transferTo(file);
