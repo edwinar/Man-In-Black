@@ -44,7 +44,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               %>
                                     <li><a href="ceoMypage_Main.mib">판매내역</a></li>
                               <%  }else {
-   							  %>    <li><a onclick="movegoods()">오늘본상품</a></li> 
+   							  %>    <li><a onclick="movegoods()" style="cursor: pointer;">오늘본상품</a></li> 
    								<%
    								  }
                                }else{ %>
