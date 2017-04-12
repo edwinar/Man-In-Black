@@ -146,8 +146,8 @@
 
         } else if (commend == '반품') {
             strInput = "<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' rows='10' style='resize: none; wrap:hard;'> </textarea>" +
-                "<label>은행<select name='bank' id='bank' class='form-control' onclick='error1()'>" +
-                "<option value='' >-선택-</option>" +
+                "<label>은행<select name='bank' id='bank' class='form-control' onclick='errorre()''>" +
+                "<option value='' onclick='errorre()'>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
                 "<option value='광주은행'>광주은행</option>" +
@@ -197,7 +197,7 @@
                 "<option value='현대증권'>현대증권</option>" +
                 "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' type='text' onclick='error()'></label></div>";
+                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onclick='error()'></label></div>";
 
 
         } 
@@ -205,6 +205,8 @@
         inputBox.innerHTML = strInput;
     }
 
+    
+    
     function error() {
 		var bank = $("#bank").find(":selected").val();
 		if (bank == '' || bank == null) {
@@ -213,14 +215,7 @@
 			};
 		};
 		
-	 function error1() {
-			var RE_REASON = $("#RE_REASON").val();
-			if (RE_REASON == '' || RE_REASON == null) {
-				alert("사유를 작성해주세요 ");
-				return;
-				};
-			};	
-	
+
 
 	
 
@@ -228,7 +223,17 @@
         var formData = new FormData();
         var txt = $("textarea[name=RE_REASON]").val();
         var commend = document.getElementsByName('commend').value;
-
+        var RE_REASON = $("#RE_REASON").val();
+	
+        if($("textarea[name=RE_REASON]").val() == '' || $("textarea[name=RE_REASON]").val() == null) {
+			alert("사유를 작성해주세요 ");
+			return;
+		}else if($("#CA_ACCOUNT").val() == '' || $("#CA_ACCOUNT").val() == null) {
+					alert("환불계좌를 입력하여주세요 ");
+					return;
+		}else{
+			
+			
         if ('교환' == commend) {
             formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
             formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
@@ -271,7 +276,7 @@
         });
 
     }
-
+    }
 </script>
 
 
