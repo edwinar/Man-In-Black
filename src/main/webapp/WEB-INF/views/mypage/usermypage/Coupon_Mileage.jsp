@@ -133,13 +133,13 @@ height:82.5%;
 						<th style="text-align: center; margin-top: 10px">쿠폰명</th>
 						<th style="text-align: center; margin-top: 10px">할인 금액</th>
 						<th style="text-align: center; margin-top: 10px">사용 기한</th>
-						<th style="text-align: center; margin-top: 10px">사용조건금액</th>
+						<th style="text-align: center; margin-top: 10px">사용조건</th>
 					</tr>
 					<%
 						if (couponList == null || couponList.size() == 0) {
 					%>
 					<tr>
-						<td colspan="4" style="text-align: center;">내역이 없습니다.</td>
+						<td colspan="4" style="text-align: center; height: 100px;">내역이 없습니다.</td>
 					</tr>
 					<%
 						} else {
@@ -147,11 +147,12 @@ height:82.5%;
 					<%
 						for (int i = 0; i < couponList.size(); i++) {
 					%>
+					<tr><td style="height:10px; " colspan="99999"></td></tr>
 					<tr>
 						<td><%=couponList.get(i).getCOUP_NAME()%></td>
-						<td><%=couponList.get(i).getCOUP_PRICE()%></td>
+						<td><%=couponList.get(i).getCOUP_PRICE()%>원</td>
 						<td><%=couponList.get(i).getCOUP_LIMIT()%></td>
-						<td><%=couponList.get(i).getCONDITION() %></td>
+						<td><%=couponList.get(i).getCONDITION() %>원</td>
 					</tr>
 					<%
 						}
@@ -223,7 +224,7 @@ height:82.5%;
 				<%
 						} else {
 					%>
-				사용가능 포인트<br> <%=mypageDto.getPOINT_FINAL()%><br>
+				사용가능 포인트 <STRONG style="font-size: 20px;"><%=mypageDto.getPOINT_FINAL()%></STRONG> POINT
 				<%} %>
 			</p>
 			<table class="ta" style="text-align: center; width: 90%">
@@ -238,7 +239,7 @@ height:82.5%;
 					if (pointList == null || pointList.size() == 0) {
 				%>
 				<tr>
-					<td colspan="9999" style="text-align: center;">내역이 없습니다.</td>
+					<td colspan="9999" style="text-align: center; height: 100px;">내역이 없습니다.</td>
 				</tr>
 				<%
 					} else {
@@ -246,7 +247,7 @@ height:82.5%;
 						for (int i = 0; i < pointList.size(); i++) {
 				%>
 
-
+				<tr><td style="height:10px; " colspan="99999"></td></tr>
 				<tr style="height: 27px">
 					<td class="boardone"><%=pointList.get(i).getPOINT_TIME()%></td>
 					<td><%=pointList.get(i).getPRO_NAME()%></td>

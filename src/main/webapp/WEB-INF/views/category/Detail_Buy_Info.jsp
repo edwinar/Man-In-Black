@@ -92,18 +92,20 @@ td, th {
 					<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 					<td>상품 합계</td>
 					<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
-					<input type="hidden" id="ffip" value="<%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %>">
+					
 				</tr>
 				<%
 					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 				}
-				if(finalPrice<50000) deliveryFee = 2500;
-				else deliveryFee = 0;
+				if(finalPrice<50000){
+					finalPrice = finalPrice + 2500;
+				}
 				%>
 			</table>
 		</form>
 	</div>
 </div>
+<input type="hidden" id="ffip" value="<%=finalPrice %>">
 
 <div id="orderInfo" style="margin-top: 100px;" align="center">
 	<hr style="border: solid black 1px; width: 90%;" align="center">
@@ -155,7 +157,7 @@ td, th {
 		%>
 			<input type="hidden" name="basketListSize" value="<%=basketList.size()%>"/>
 			<input type="hidden" name="DEL_PRICE" id="DEL_PRICE"/>
-			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE"/>
+			<input type="hidden" name="FINAL_PRICE" id="FINAL_PRICE" value="<%=finalPrice%>"/>
 			<input type="hidden" name="POINT" id="POINT"/>
 			<input type="hidden" name="COUPON" id="COUPON"/>
 			<input type="hidden" name="COUP_SEQ" id="COUP_SEQ"/>
@@ -278,6 +280,11 @@ td, th {
 			<td>Won</td>
 		</tr>
 		<tr>
+		<td>상품 총 금액</td>
+		<td><%=finalPrice %></td>
+		<td>Won</td>
+		</tr>
+		<tr>
 		<td>쿠폰사용금액</td>
 		<td id="couusepri"></td>
 		<td>Won</td>
@@ -339,7 +346,7 @@ var midPrice;
 			$("#receiveAddress_2").val('');	
 		}
 	});
-	$('#couponBtn').on('click',function(){
+	/* $('#couponBtn').on('click',function(){
 		var couponValue = $("#couponChoice option:selected").val();
 		var array = couponValue.split(",");
 		midPrice = finalPrice;
@@ -358,25 +365,47 @@ var midPrice;
 			$('#couponChoice').attr('disabled',true);
 		}
 		deliveryFeeChange();
-	});
+	}); */
 	
 	var couppri = "";
 	
 	$("#couponChoice").change(function() {
 		var couponValue = $("#couponChoice option:selected").val();
 		var array = couponValue.split(",");
-		couppri = array[0];
 		var pointsValue = $('#pointValue').val();
+		var finalpri = $('#final').text();
+		
+		if(finalpri==0){
+			alert("결제하실 금액이 0원입니다.")
+			$("#couponChoice").val("0");
+			return;
+		}else{
+			couppri = array[0];
+			var fafapri = $('#ffip').val();
+			if(Number(fafapri) > 50000){
+				//택배비 없는거고
+				
+			}else{ //택배비있는거
+				fafapri = Number(fafapri)+2500;
+				//alert("파파프리 "+fafapri);
+			}
+			
 		$("#copricetd").text('쿠폰가격은 '+array[0]+'입니다.');
 		$("#couusepri").text(array[0]);
-		var pointsValue = $('#pointValue').val();
-	
+			
 		if(pointsValue==''){
-			$('#final').text($('#ffip').val()-array[0]);
+			$('#final').text(Number(fafapri)-array[0]);
+			$("#FINAL_PRICE").val(Number(fafapri)-array[0]);
+			$("#COUPON").val(array[0]);
+			$("#COUP_SEQ").val(array[1]);
 		}else{
-			$('#final').text(($('#ffip').val()-array[0])-pointsValue);
+			$('#final').text(Number(fafapri)-array[0]-Number(pointsValue));
+			$("#FINAL_PRICE").val(Number(fafapri)-array[0]-Number(pointsValue));
+			$("#COUPON").val(array[0]);
+			$("#COUP_SEQ").val(array[1]);
 		}
 	
+		}
 	});
 	
 	
@@ -388,29 +417,47 @@ var midPrice;
 	$('#pointBtn').on('click',function(){
 		var useablePoints = <%=points %>;
 		var pointsValue = $('#pointValue').val();
-		if(pointsValue==""||pointsValue==null){
-			$('#final').text(midPrice);
-		}else{
+		//alert("사용가능포인트" + useablePoints);
+		//alert("사용한포인트" + pointsValue);
 			if(pointsValue>useablePoints){
 				alert(useablePoints+"를 넘습니다.");
 				$('#final').text(midPrice);
 				$('#pointValue').val("0");
 			}else{
-				$("#pousepri").text(pointsValue);
+				var fafapri = $('#ffip').val();
 				
-				if(couppri==''){
-					//alert("여기들어오니111?");
-					$('#final').text($('#ffip').val()-pointsValue);
-				}else{
-					//alert("여기들어오니222?");
-					$('#final').text(($('#ffip').val()-couppri)-pointsValue);
+				if(Number(fafapri) > 50000){
+					//택배비 없는거고
+					
+				}else{ //택배비있는거
+					fafapri = Number(fafapri)+2500;
+					//alert("파파프리 "+fafapri);
 				}
+				//alert("파파프리 "+fafapri);
+				//alert("pointsValue "+pointsValue);
+				if(Number(pointsValue)>Number(fafapri)){
+					alert("구매금액보다 사용포인트가 큽니다.");
+					$('#pointValue').val('');
+					return;
+				}else{
+					$("#pousepri").text(pointsValue);
 				
-				//finalPrice = midPrice - pointsValue; 최종금액 바꾸는부분 
-				
+						if(couppri==''){
+						//alert("여기들어오니111?");
+						$('#final').text(Number(fafapri)-Number(pointsValue));
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+						$("#POINT").val(pointsValue);
+						}else{
+						//alert("여기들어오니222?");
+						$('#final').text(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#POINT").val(pointsValue);
+						
+						}
+				}
 			}
-		}
-		deliveryFeeChange();
+		//}
+		//deliveryFeeChange();
 	});
 	$('#buy').on('click',function(){
 		if($('#receiveName').val()==""||$('#receiveName').val()==null||

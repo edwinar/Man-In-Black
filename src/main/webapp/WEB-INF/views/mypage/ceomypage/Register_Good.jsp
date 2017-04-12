@@ -115,7 +115,7 @@ margin-top: 30px;
 	<center class="ty">
 	<div id="mypagehead">
 			<h4 align="right" style="margin-right: 100px">
-				<a href="MenInBlack.jsp">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main.mib">MY PAGE</a> >
 				<a href="register_Good.mib">제품등록</a>
 			</h4>
 			<h3>새로운 제품을 등록하세요.</h3>

@@ -163,6 +163,14 @@ width: 94.5%
 					<table style="text-align: center;">
 						<col width="200px">
 						<col width="200px">
+						<tr>
+						<th style="text-align: center;">쿠폰이름</th>
+						<th style="text-align: center;">쿠폰가격</th>						
+						</tr>
+						<tr>
+						<td style="height: 10px;"></td>
+						<td></td>
+						</tr>
 						<%
 							if (coupon == null || coupon.size() == 0) {
 						%>
@@ -176,8 +184,8 @@ width: 94.5%
 							for (int i = 0; i < coupon.size(); i++) {
 						%>
 						<tr>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></th>
-							<th style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></th>
+							<td style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></td>
+							<td style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></td>
 						</tr>
 						<%
 							}
@@ -195,12 +203,12 @@ width: 94.5%
 					<%
 						if (mypageDto == null) {
 					%>
-					적립금이 없습니다.
-					<%
+				
+				<%
 						} else {
 					%>
-					현재<%=mypageDto.getPOINT_FINAL()%>
-					<%} %>
+				사용가능 포인트 <STRONG style="font-size: 20px;"><%=mypageDto.getPOINT_FINAL()%></STRONG> POINT
+				<%} %>
 					</p>
 				<table style="text-align: center;">
 					<tr>
@@ -209,30 +217,44 @@ width: 94.5%
 						<th style="text-align: center; width: 20%">금액</th>
 						<th style="text-align: center; width: 15%">최종</th>
 					</tr>
+					<tr>
+					<td colspan="9999" style="height: 10px;"></td>
+					</tr>
 					<col width="200px">
 					<%
-						if (point5 == null || point5.size() == 0) {
+					if (point5 == null || point5.size() == 0) {
+				%>
+				<tr>
+					<td colspan="9999" style="text-align: center; height: 100px;">내역이 없습니다.</td>
+				</tr>
+				<%
+					} else {
+
+						for (int i = 0; i < point5.size(); i++) {
+				%>
+
+				
+				<tr style="height: 27px">
+					<td class="boardone"><%=point5.get(i).getPOINT_TIME()%></td>
+					<td><%=point5.get(i).getPRO_NAME()%></td>
+					<%
+						if (point5.get(i).getINCREASE().equals("PLUS")) {
 					%>
-					<tr>
-						<td colspan="4" style="text-align: center;">내역이 없습니다.</td>
-					</tr>
+					<td style="color: #002266"><b>+<%=point5.get(i).getPOINT_PRICE()%></b></td>
 					<%
 						} else {
 					%>
+					<td style="color: #750028;"><b>-<%=point5.get(i).getPOINT_PRICE()%></b></td>
+					<%
+						}
+					%>
+					<td><%=point5.get(i).getPOINT_FINAL()%></td>
+				</tr>
+				<%
+					}
+					}
+				%>
 
-					<%
-						for (int i = 0; i < point5.size(); i++) {
-					%>
-					<tr>
-						<td ><%=point5.get(i).getPOINT_TIME()%></td>
-						<td><%=point5.get(i).getPRO_NAME()%></td>
-						<td><%=point5.get(i).getPOINT_PRICE()%></td>
-						<td><%=point5.get(i).getPOINT_FINAL()%></td>
-					</tr>
-					<%
-						}
-						}
-					%>
 
 
 				</table>

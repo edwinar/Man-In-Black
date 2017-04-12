@@ -278,9 +278,11 @@ public class DetailController {
 		String REC_TEL = (res.getParameter("receivePhone")==null||res.getParameter("receivePhone").equals("") )?"error":res.getParameter("receivePhone");
 		String DEL_DETAIL_ADDRESS = (res.getParameter("receiveAddress_2")==null||res.getParameter("receiveAddress_2").equals("") )?"error":res.getParameter("receiveAddress_2");
 		int basketListSize = Integer.parseInt((res.getParameter("basketListSize")==null||res.getParameter("basketListSize").equals("") )?"0":res.getParameter("basketListSize"));
+		
 		int FINAL_PRICE = Integer.parseInt((res.getParameter("FINAL_PRICE")==null||res.getParameter("FINAL_PRICE").equals("") )?"0":res.getParameter("FINAL_PRICE"));
 		int COUPON = Integer.parseInt((res.getParameter("COUPON")==null||res.getParameter("COUPON").equals("no")||res.getParameter("COUPON").equals("") )?"0":res.getParameter("COUPON"));
 		int POINT = Integer.parseInt((res.getParameter("POINT")==null||res.getParameter("POINT").equals("") )?"0":res.getParameter("POINT"));
+		
 		int COUP_SEQ = Integer.parseInt((res.getParameter("COUP_SEQ")==null||res.getParameter("COUP_SEQ").equals("undefined")||res.getParameter("COUP_SEQ").equals("") )?"0":res.getParameter("COUP_SEQ"));
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();

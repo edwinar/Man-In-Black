@@ -44,7 +44,7 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                               %>
                                     <li><a href="ceoMypage_Main.mib">판매내역</a></li>
                               <%  }else {
-   							  %>    <li><a href="todayGoods.mib">오늘본상품</a></li> 
+   							  %>    <li><a onclick="movegoods()" style="cursor: pointer;">오늘본상품</a></li> 
    								<%
    								  }
                                }else{ %>
@@ -62,6 +62,18 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
                                }else{ %>
                               		<li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">내가쓴게시물</a></li>
                               <%} %>
+                               <%if(dto!=null){ 
+                            	  if (!dto.getUSER_ID().equals("adm")) {
+                              %>
+                              <li><a href="basketlist.mib">장바구니</a></li>
+                              <%
+                            	  }
+                            	  }else{
+                              %>
+                              <li><a href="login.mib" data-toggle="modal" data-target="#modal-signup">장바구니</a></li>
+                              <%
+                              }
+                              %>
                               </ul>
                         </nav>
                         
@@ -105,7 +117,31 @@ $(document).ready(function() {
    });
    
 });
+function movegoods() {
+    if ((document.cookie == '') || (document.cookie == null)) {
+        location.href='todayGoods.mib?pro_seq=nocookie';
+    }
+    var pro_seq = getCookie('recentitems');
+    pro_seq = pro_seq.substring(1);
+    location.href='todayGoods.mib?pro_seq='+pro_seq;
+}
 
+
+
+function getCookie(cookie_name) {
+
+    var i, x, y, z = document.cookie.split(";");
+
+    for (i = 0; i < z.length; i++) {
+        x = z[i].substr(0, z[i].indexOf("="));
+        y = z[i].substr(z[i].indexOf("=") + 1);
+        x = x.replace(/^s+|s+$/g, "");
+        x = x + 's'
+        if (x == cookie_name) {
+            return unescape(y);
+        }
+    }
+}
 </script>
 </body>
 </html>

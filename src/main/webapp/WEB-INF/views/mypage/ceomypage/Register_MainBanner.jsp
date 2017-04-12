@@ -56,7 +56,7 @@ margin-top:  100px;
 	<center class="ty">
 		<div id="mypagehead" >
 			<h4 align="right" style="margin-right: 100px" >
-				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main">MY PAGE</a> >
+				<a href="meninblack.mib">홈</a> > <a href="ceoMypage_Main.mib">MY PAGE</a> >
 				<a href="register_MainBanner.mib">메인배너등록</a>
 			</h4>
 			<h3>메인배너등록</h3>

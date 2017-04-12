@@ -61,7 +61,7 @@ width: 100%; height: 180px;
 		<div id="mypagehead" style="margin-top: 50px;">
 			<h4 id="mypageheada" align="right">
 				<a href="meninblack.mib">홈</a> > <a href="mymain.mib">MY PAGE</a> >
-				<a href="todayGoods.mib">오늘본 상품</a>
+				<a onclick="movegoods()" style="cursor: pointer;">오늘본 상품</a>
 			</h4>
 			<h3>MY Order</h3>
 			<p>회원님이 M.I.B에서 오늘 보신 상품입니다.</p>
@@ -111,6 +111,34 @@ width: 100%; height: 180px;
 
 				</div>
 				</div>
+				
+				<script type="text/javascript">
+				function movegoods() {
+				    if ((document.cookie == '') || (document.cookie == null)) {
+				        location.href='todayGoods.mib?pro_seq=nocookie';
+				    }
+				    var pro_seq = getCookie('recentitems');
+				    pro_seq = pro_seq.substring(1);
+				    location.href='todayGoods.mib?pro_seq='+pro_seq;
+				}
+
+
+
+				function getCookie(cookie_name) {
+
+				    var i, x, y, z = document.cookie.split(";");
+
+				    for (i = 0; i < z.length; i++) {
+				        x = z[i].substr(0, z[i].indexOf("="));
+				        y = z[i].substr(z[i].indexOf("=") + 1);
+				        x = x.replace(/^s+|s+$/g, "");
+				        x = x + 's'
+				        if (x == cookie_name) {
+				            return unescape(y);
+				        }
+				    }
+				}
+				</script>
 				
 </body>
 </html>

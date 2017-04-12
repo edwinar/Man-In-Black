@@ -326,7 +326,7 @@ public class UserMypageController {
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
 		String PAGE_NUM = (res.getParameter("PAGE_NUM") == null || res.getParameter("PAGE_NUM") == "") ? "1"
 				: res.getParameter("PAGE_NUM");
-		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "10"
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE") == null || res.getParameter("PAGE_SIZE") == "") ? "8"
 				: res.getParameter("PAGE_SIZE");
 
 		String PAGE_NUMC = (res.getParameter("PAGE_NUMC") == null || res.getParameter("PAGE_NUMC") == "") ? "1"
