@@ -144,6 +144,9 @@ input, select, textarea {
 <script type="text/javascript">
 	
 function reps() {
+	
+	alert("답글을 저장하였습니다.");
+	
 	var secretz = $("#secretz").val();
 	var secret = $("#secret").val();
 	var QNA_REF =$("#QNA_REF").val();
