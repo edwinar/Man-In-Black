@@ -63,8 +63,18 @@ private String DEL_DETAIL_ADDRESS  ;
 private String PRO_SEQ_st;
 private String DEL_TIME     ;
 private int COUP_SEQ;
+private String REVIEW_SEQ;
 
 
+
+
+public String getREVIEW_SEQ() {
+	return REVIEW_SEQ;
+}
+
+public void setREVIEW_SEQ(String rEVIEW_SEQ) {
+	REVIEW_SEQ = rEVIEW_SEQ;
+}
 
 public int getCOUP_SEQ() {
 	return COUP_SEQ;

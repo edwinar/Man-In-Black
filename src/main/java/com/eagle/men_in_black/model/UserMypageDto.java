@@ -44,15 +44,22 @@ public class UserMypageDto implements Serializable {
     private	int	STOCK;
     private	String	WASH;
     private	String	POINT_REASON;
+    private	String	REVIEW_SEQ;
 
 
 
 
 
 
+    public String getREVIEW_SEQ() {
+		return REVIEW_SEQ;
+	}
 
+	public void setREVIEW_SEQ(String rEVIEW_SEQ) {
+		REVIEW_SEQ = rEVIEW_SEQ;
+	}
 
-    public String getPOINT_REASON() {
+	public String getPOINT_REASON() {
 		return POINT_REASON;
 	}
 

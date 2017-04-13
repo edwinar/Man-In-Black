@@ -1,7 +1,7 @@
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
@@ -14,6 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../../../css/Mib.css">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style type="text/css">
 td{
 text-align: center;
@@ -23,6 +26,7 @@ text-align: center;
 <title>Insert title here</title>
 </head>
 <body>
+<input type="hidden" value="<%=pro_seq_st %>" id="asd"> 
 	<table class="table" style="width: 80%">
 
 					<tr>
@@ -61,11 +65,28 @@ text-align: center;
 						<td><%=list.get(i).getCOUPON() %></td>
 						<td><%=list.get(i).getPOINT() %></td>
 						<td><%=list.get(i).getFINAL_PRICE() %></td>
+					
+						<%
+						if(list.get(i).getREVIEW_SEQ().contains(",")){
+						String strstr[] = list.get(i).getREVIEW_SEQ().split(",");
+						
+						if(strstr[i].equals(list.get(i).getPRO_SEQ()+"")){
+						%>
 						<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=DEL_SEQ%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
 					</tr>
-				<%}
+						
+						
+				<%}else{%>
+				 <td>리뷰작성완료</td>
+					</tr>
+				<%
 				}
-				%>	
+						}else%>
+							<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=DEL_SEQ%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
+							</tr>
+		<%	}
+				}
+				%>	 
 				
 				</table>
 			
@@ -73,10 +94,11 @@ text-align: center;
 <script type="text/javascript">
 function reviewopen(DEL_SEQ, seq) {
 	var PRO_SEQ = seq;
+	var str = $("#asd").val(); 
 	alert('DEL_SEQ'+DEL_SEQ);
 	alert('PRO_SEQ'+PRO_SEQ);
-	alert('pro_seq_st'+'<%=pro_seq_st%>');
-	location.href="reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ +"&DEL_SEQ=" + DEL_SEQ + "&pro_seq_st=" + '<%=pro_seq_st%>'; 
+	alert('pro_seq_st'+str);
+	location.href='reveiwwrite.mib?PRO_SEQ= '+ PRO_SEQ +'&DEL_SEQ=' + DEL_SEQ + '&pro_seq_st='+str; 
 }
 
 

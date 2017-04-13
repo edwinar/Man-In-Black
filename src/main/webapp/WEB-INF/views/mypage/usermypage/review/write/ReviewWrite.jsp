@@ -263,7 +263,7 @@ input, select, textarea {
 						}
 					},
 					complete : function(data) {
-						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+st;
+						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+flag.st;
 					},
 					error : function(xhr, status, error) {
 						alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);

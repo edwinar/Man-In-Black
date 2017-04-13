@@ -247,4 +247,18 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_search_buylist_photo(PRO_SEQ);
 	}
+
+	@Override
+	public void do_update_REVIEW_SEQ(UserMypageDto dto) {
+		// TODO Auto-generated method stub
+		 userMypageDao.do_update_REVIEW_SEQ(dto);
+		
+	}
+
+	@Override
+	public UserMypageDto do_select_PRO_SEQ_st(HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_select_PRO_SEQ_st(map);
+	}
+	
 }

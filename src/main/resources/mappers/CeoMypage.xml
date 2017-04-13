@@ -280,7 +280,7 @@ B.STORED_NAME LIKE '%MAIN%'
 </select>
 
 <select id="do_select_maindetail" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
-select a.pro_seq,a.user_id,a.SEL_NUM, a.SEL_COLOR, a.SEL_SIZE, b.ITEM, b.PRO_NAME, c.STOCK, d.STORED_NAME,e.POINT,e.COUPON,e.FINAL_PRICE,b.PRO_PRICE
+select a.pro_seq,a.user_id,a.SEL_NUM, a.SEL_COLOR, a.SEL_SIZE, b.ITEM, b.PRO_NAME, c.STOCK, d.STORED_NAME,e.POINT,e.COUPON,e.FINAL_PRICE,b.PRO_PRICE, e.REVIEW_SEQ
 from SALES a inner join PRODUCT b
 on a.PRO_SEQ = b.PRO_SEQ
 inner join PRO_DETAIL c

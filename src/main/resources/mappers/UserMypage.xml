@@ -24,15 +24,13 @@ WHERE ROWNUM = 1
 <![CDATA[
 SELECT * 
 FROM(SELECT 
-A.POINT_SEQ, 
-B.PRO_NAME, 
 A.POINT_PRICE,
 A.INCREASE, 
 A.POINT_FINAL, 
 A.POINT_TIME,
+A.POINT_REASON,
 A.PRO_SEQ
-    FROM POINTS A JOIN PRODUCT B
-    ON A.PRO_SEQ = B.PRO_SEQ
+FROM POINTS A
     WHERE USER_ID = #{id} 
     ORDER BY POINT_SEQ DESC)
 WHERE ROWNUM <=5
@@ -321,9 +319,8 @@ SELECT TT1.*
 FROM (
       SELECT ROWNUM RNUM,T1.*,T2.*
       FROM(
-           SELECT A.POINT_SEQ, B.PRO_NAME, A.POINT_PRICE,A.INCREASE, A.POINT_FINAL, A.POINT_TIME,A.PRO_SEQ
-           FROM POINTS A JOIN PRODUCT B
-           ON A.PRO_SEQ = B.PRO_SEQ
+           SELECT A.POINT_SEQ, A.POINT_PRICE,A.INCREASE, A.POINT_FINAL, A.POINT_TIME,A.PRO_SEQ, A.POINT_REASON
+           FROM POINTS A
            WHERE USER_ID = #{id}
            ORDER BY A.POINT_SEQ DESC
            ) T1
@@ -615,11 +612,19 @@ WHERE DEL_SEQ= #{del_seq}
 
 
 <!-- 리뷰작성완료  -->
+<update id="do_update_REVIEW_SEQ" parameterType="com.eagle.men_in_black.model.DetailDto" >
+UPDATE DELIVERY
+SET REVIEW_SEQ=#{REVIEW_SEQ}
+WHERE DEL_SEQ= #{DEL_SEQ}
+</update>
+
+<!-- 리뷰작성완료  -->
 <update id="do_update_del_step2" parameterType="int" >
 UPDATE DELIVERY
 SET DEL_STEP='리뷰완료'
 WHERE DEL_SEQ= #{DEL_SEQ}
 </update>
+
 <!-- 리뷰읽기  -->
 <select id="do_selectReviewDetail" parameterType="int" resultType="com.eagle.men_in_black.model.DetailDto">
 SELECT 
@@ -758,6 +763,36 @@ INTO QNA
      #{PRO_SEQ}
   )
 </insert>
+
+<select id="do_select_PRO_SEQ_st" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<![CDATA[
+SELECT 
+A.DEL_SEQ
+,A.DEL_ADDRESS
+,A.DEL_POSTCODE
+,A.DEL_NUMBER
+,A.DEL_CONTENT
+,A.REC_NAME
+,A.REC_TEL
+,A.DEL_TIME
+,A.DEL_PRICE
+,A.DEL_STEP
+,A.PRO_SEQ PRO_SEQ_st
+,A.USER_ID
+,A.COUPON
+,A.COUP_SEQ
+,A.POINT
+,A.FINAL_PRICE
+,A.REVIEW_SEQ
+FROM DELIVERY A
+WHERE USER_ID=#{USER_ID} AND A.DEL_SEQ = #{DEL_SEQ}
+
+
+]]>
+</select>
+
+
+
 
 <select id="do_select_deldel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[

@@ -86,5 +86,8 @@ public interface UserMypageSvc {
 	public UserMypageDto do_select_propho(int PRO_SEQ);
 	
 	public UserMypageDto do_search_buylist_photo(int PRO_SEQ);
-
+	
+	public void do_update_REVIEW_SEQ(UserMypageDto dto);
+	
+	public UserMypageDto do_select_PRO_SEQ_st(HashMap<String, String> map);
 }

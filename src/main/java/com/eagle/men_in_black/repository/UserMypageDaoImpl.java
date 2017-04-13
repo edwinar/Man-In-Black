@@ -259,4 +259,16 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace + ".do_search_buylist_photo";
 		return sqlSession.selectOne(statement, PRO_SEQ);
 	}
+
+	@Override
+	public void do_update_REVIEW_SEQ(UserMypageDto dto) {
+		String statement = namespace + ".do_update_REVIEW_SEQ";
+		sqlSession.update(statement, dto);
+	}
+
+	@Override
+	public UserMypageDto do_select_PRO_SEQ_st(HashMap<String, String> map) {
+		String statement = namespace + ".do_select_PRO_SEQ_st";
+		return sqlSession.selectOne(statement, map);
+	}
 }

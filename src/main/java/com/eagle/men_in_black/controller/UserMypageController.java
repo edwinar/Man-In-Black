@@ -261,7 +261,6 @@ public class UserMypageController {
 	}
 
 	
-	
 	//리뷰 선택창
  // 사장 판매내역 상세보기
     @RequestMapping("buyreviewlist.mib")
@@ -521,13 +520,49 @@ public class UserMypageController {
 
 		// 이걸로먼저 review table에 인설트
 		HashMap<String, String> remap = new HashMap<>();
-		remap.put("REV_TITLE", REV_TITLE);
-		remap.put("REV_CONTENT", REV_CONTENT);
-		remap.put("SCORE", SCORE);
-		remap.put("PRO_SEQ", PRO_SEQ);
-		remap.put("USER_ID", userdto.getUSER_ID());
+		remap.put("REV_TITLE", REV_TITLE.trim());
+		remap.put("REV_CONTENT", REV_CONTENT.trim());
+		remap.put("SCORE", SCORE.trim());
+		remap.put("PRO_SEQ", PRO_SEQ.trim());
+		remap.put("USER_ID", userdto.getUSER_ID().trim());
 		int rev = userMypageSvc.do_insert_review(remap);
-
+		
+		UserMypageDto dto =new UserMypageDto();
+		
+		HashMap<String, String> PRO_SEQ_stemap = new HashMap<>();
+		PRO_SEQ_stemap.put("USER_ID", userdto.getUSER_ID().trim());
+		PRO_SEQ_stemap.put("DEL_SEQ", DEL_SEQ.trim());
+		
+		
+		
+		dto = userMypageSvc.do_select_PRO_SEQ_st(PRO_SEQ_stemap);
+		
+		String proseq =dto.getREVIEW_SEQ();
+		
+		
+			
+			
+			String updateseq = "";
+			String st[]= proseq.split(",");
+			System.out.println("st[0] " + st[0]);
+			System.out.println("st[1] " + st[1]);
+			for(int i=0;i<st.length;i++){
+				if(Integer.parseInt(PRO_SEQ.trim())!= Integer.parseInt(st[i].trim())){
+					updateseq += st[i].trim();
+				}
+			}
+	
+			
+		
+		
+		
+		UserMypageDto dto1 =new UserMypageDto();
+		dto1.setDEL_SEQ(Integer.parseInt(DEL_SEQ));
+		dto1.setREVIEW_SEQ(updateseq.trim());
+		
+		
+		
+		
 		HashMap<String, String> resultMap = new HashMap<>();
 		if (rev > 0) {
 			// 사진 파일 부분
@@ -578,14 +613,17 @@ public class UserMypageController {
 
 			if (revp > 0) {
 				resultMap.put("result", "OK");
+				resultMap.put("st", updateseq);
 				userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
+				
+				userMypageSvc.do_update_REVIEW_SEQ(dto1);
 
 			}
 		}
 
 		// 적립금 지급
 		HashMap<String, Object> pointmap = new HashMap<>();
-		pointmap.put("PRO_SEQ", Integer.parseInt(PRO_SEQ));
+		pointmap.put("PRO_SEQ", Integer.parseInt(PRO_SEQ.trim()));
 		pointmap.put("USER_ID", userdto.getUSER_ID());
 		userMypageSvc.do_insert_point(pointmap);
 
@@ -629,7 +667,7 @@ public class UserMypageController {
 		if (suc > 0) {
 
 			resultMap.put("result", "success");
-
+			
 		}
 		Gson gson = new Gson();
 		return gson.toJson(resultMap);

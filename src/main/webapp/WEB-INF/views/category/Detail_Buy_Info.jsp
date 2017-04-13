@@ -328,7 +328,7 @@ var midPrice;
          
          $("#receiveName").val(name);
          $("#receiveEmail").val(email);
-         $("#receivePhone").val(콜);
+         $("#receivePhone").val(phone);
          $("#receiveNum").val(num);
          $("#receiveAddress_1").val(address_1);
          $("#receiveAddress_2").val(address_2);   
