@@ -445,8 +445,15 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<td><%=list.get(i).getSTOCK() %></td>
 						<td><%=list.get(i).getPRO_PRICE() %></td>
 						<td><%=list.get(i).getSELTIME() %></td>
-						<%if(list.get(i).getDEL_STEP().equals("배송완료")){ %>
+						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
+						<%}else if(list.get(i).getDEL_STEP().equals("리뷰완료")){%>
+						<td>구매확정</td>
+						<%}else if(list.get(i).getDEL_STEP().equals("변경사항 처리중")){ %>
+						<td  onclick="open_win(<%=list.get(i).getDEL_SEQ()%>)">
+						<button type="button" class="btn btn-default" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						
+						
 						<%}else{ %>
 						<td id="deltd<%=list.get(i).getDEL_SEQ()%>">
 						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
@@ -490,8 +497,27 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 		</p>
 	</div>
 	<%
-	}
+				}
 	%>
+	
+	<script type="text/javascript">
+	 function open_win(SEQ)
+     {
+         var DEL_SEQ = SEQ;
+
+         cw=screen.availWidth;     //화면 넓이
+         ch=screen.availHeight;    //화면 높이
+
+         sw=1080;    //띄울 창의 넓이
+         sh=700;    //띄울 창의 높이
+
+         ml=(cw-sw)/2;        
+         mt=(ch-sh)/2;         
+
+
+         window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+     }
+	</script>
 
 </body>
 </html>

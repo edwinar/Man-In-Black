@@ -227,7 +227,7 @@ margin-top: 30px;
 
 
 				<%
-				} else if (buyList.get(i).getDEL_STEP().equals("배송준비중")) {
+				} else if (buyList.get(i).getDEL_STEP().equals("상품준비")) {
 				%>
 				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
@@ -254,7 +254,7 @@ margin-top: 30px;
 
 
 
-				<td rowspan="2" valign="middle">구매확정</td>
+				<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP() %></td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
