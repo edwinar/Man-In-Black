@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import com.eagle.men_in_black.excel.ExcelWriter;
 import com.eagle.men_in_black.model.CeoMypageDto;
@@ -38,6 +39,7 @@ import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
 import com.eagle.men_in_black.service.UserMypageSvcImpl;
+import com.eagle.men_in_black.util.GenericExcelView;
 import com.google.gson.Gson;
 
 
@@ -49,6 +51,62 @@ public class CeoMypageController {
 	
 	@Autowired
 	private CeoMypageSvc ceoMypageSvc;
+	
+	//엑셀 2
+	@RequestMapping("excel.mib")
+	public View  do_excel( Map<String, Object> modelMap, HttpServletRequest res) {
+
+		List<String> colName = new ArrayList<String>();
+		colName.add("상품이름");
+		colName.add("구매자");
+		colName.add("수량");
+		colName.add("쿠폰사용");
+		colName.add("적립금사용");
+		colName.add("결제금액");
+		colName.add("판매일");
+		
+		// 내용부분
+		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
+		String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
+		String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
+		String search = (res.getParameter("search")==null ||res.getParameter("PRO_NAME")=="")?"%%":"%"+res.getParameter("search")+"%";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("PAGE_SIZE", PAGE_SIZE);
+		map.put("PAGE_NUM", PAGE_NUM);
+		map.put("START_DATE",START_DATE);
+		map.put("END_DATE",END_DATE);
+		map.put("search", search);
+	
+		
+		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
+		HashMap<String, String> prophomap = new HashMap<>();
+		for(int i=0; i<list.size();i++){
+		String proseq = list.get(i).getPRO_SEQ_st();
+		String proarr[] = proseq.split(",");
+					
+		CeoMypageDto ddto = ceoMypageSvc.do_select_prophoceo(Integer.parseInt(proarr[0])); 
+		prophomap.put("PRO_NAME"+i, ddto.getPRO_NAME());
+		prophomap.put("STOREDNAME"+i, ddto.getSTORED_NAME());
+		prophomap.put("count"+i, proarr.length+"");
+					// 0번째가 list에서 첫번째 
+		}
+		
+		List<CeoMypageDto> colValue =new ArrayList<CeoMypageDto>();
+		colValue = list;
+		
+				
+		modelMap.put("excelName", "test");
+		modelMap.put("colName", colName);
+		modelMap.put("colValue", colValue);
+		modelMap.put("prophomap", prophomap);
+		
+		
+		return new GenericExcelView();
+	}	
+	
+	
 	
 	// 제품등록
 	@RequestMapping("register_Good.mib")
