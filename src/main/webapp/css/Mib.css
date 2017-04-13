@@ -690,7 +690,36 @@ body{
 		border-radius: 50%;
 		background-color: #eee;
 	}
+/*오른쪽 메뉴 기본*/
+#right-aside {
+	z-index:99;
+	position: absolute;
+	position: fixed;
+	right: 0;
+	width: 17%;
+	min-width: 10.5em;
+	height: 100px;
+	top: 0;
+	bottom: 0;
+	margin-top:60px;
+	min-height: 25em;
+	border-radius: .5em;
+	pointer-events: none;
+	-ms-transition: all 0.45s ease-in;
+  	-o-transition: all 0.45s ease-in;
+  	-moz-transition: all 0.45s ease-in;
+	-webkit-transition: all 0.45s ease-in;
+	transition: all 0.45s ease-in;
+	-ms-transform: translateX(calc(100% - .75em));
+ 	 -o-transform: translateX(calc(100% - .75em));
+  	-moz-transform: translateX(calc(100% - .75em));
+	-webkit-transform: translateX(calc(100% - .75em));
+	transform: translateX(calc(100% - .75em));
 }
+
+}
+
+
 /* 로그인, 회원가입 모달팝업 부분 */
 .modal-content {
 	width: 300px;
