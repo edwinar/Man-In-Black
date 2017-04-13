@@ -254,7 +254,7 @@ margin-top: 30px;
 
 
 
-				<td rowspan="2" valign="middle">구매확정</td>
+				<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP() %></td>
 				</tr>
 				<tr>
 					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
