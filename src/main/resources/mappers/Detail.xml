@@ -280,7 +280,12 @@ INSERT INTO POINTS(
 	POINT_FINAL,
 	INCREASE,
 	USER_ID,
-	PRO_SEQ)
+	PRO_SEQ,
+	DEL_SEQ,
+	POINT_REASON
+	)
+	
+	
 VALUES(
 	POINT_SEQ.NEXTVAL,
 	SYSDATE, 
@@ -295,7 +300,10 @@ VALUES(
   	)-(#{POINT_PRICE})),
        		'MINUS',
        		#{USER_ID},
-       		#{PRO_SEQ})
+       		0,
+       		#{DEL_SEQ},
+       		'사용'
+       		)
 </insert>
 
 <delete id="do_deleteBuyBasket" parameterType="int">

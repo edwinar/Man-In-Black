@@ -62,9 +62,17 @@ private String CA_ACCOUNT          ;
 private String DEL_DETAIL_ADDRESS  ;
 private String PRO_SEQ_st;
 private String DEL_TIME     ;
+private int COUP_SEQ;
 
 
 
+public int getCOUP_SEQ() {
+	return COUP_SEQ;
+}
+
+public void setCOUP_SEQ(int cOUP_SEQ) {
+	COUP_SEQ = cOUP_SEQ;
+}
 
 public String getDEL_TIME() {
 	return DEL_TIME;
