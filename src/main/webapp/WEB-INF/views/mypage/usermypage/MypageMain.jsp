@@ -280,10 +280,10 @@ width: 94.5%
 					<th  class="boardone" style="width: 9%;text-align: center;">이미지</th>
 					<th style="width: 23%;text-align: center;">상품이름</th>
 					<th class="boardone"style="width: 8%;text-align: center;">수량</th>
-					<th class="boardtwo"style="width: 8%;text-align: center;">쿠폰</th>
-					<th class="boardtwo"style="width: 8%;text-align: center;">적립금</th>
+					<th class="boardtwo"style="width: 8%;text-align: center;">쿠폰사용</th>
+					<th class="boardtwo"style="width: 8%;text-align: center;">적립금사용</th>
 					<th style="width: 9%;text-align: center;">결제금액</th>
-					<th class="#boardthree"style="width: 12%;text-align: center;">판매일</th>
+					<th class="#boardthree"style="width: 12%;text-align: center;">구매일</th>
 					<th style="width: 7%;text-align: center;">상태</th>
 				</tr>
 				<%
@@ -302,7 +302,7 @@ width: 94.5%
 				%>
 				<tr height="40px">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%> 외<%=conum %> 개</td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buy.get(i).getCOUPON())%></td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buy.get(i).getPOINT())%></td>

@@ -61,6 +61,7 @@ public class UserMypageController {
 		List<UserMypageDto> buy = userMypageSvc.do_select_deldel(userdto.getUSER_ID());
 		
 		HashMap<String, String> prophomap = new HashMap<>();
+		
 		for(int i=0; i<buy.size();i++){
 			String proseq = buy.get(i).getPRO_SEQ_st();
 			String proarr[] = proseq.split(",");
