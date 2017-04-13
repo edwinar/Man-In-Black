@@ -231,7 +231,7 @@ height:82.5%;
 		
 				<tr>
 					<th style="text-align: center; margin-top: 5px; width: 20%" class="boardone">날짜</th>
-					<th style="text-align: center; margin-top: 5px; width: 40%">상품명</th>
+					<th style="text-align: center; margin-top: 5px; width: 40%">사유</th>
 					<th style="text-align: center; margin-top: 5px; width: 20%">금액</th>
 					<th style="text-align: center; margin-top: 5px; width: 20%">최종</th>
 				</tr>
@@ -250,7 +250,7 @@ height:82.5%;
 				<tr><td style="height:10px; " colspan="99999"></td></tr>
 				<tr style="height: 27px">
 					<td class="boardone"><%=pointList.get(i).getPOINT_TIME()%></td>
-					<td><%=pointList.get(i).getPRO_NAME()%></td>
+					<td><%=pointList.get(i).getPOINT_REASON()%></td>
 					<%
 						if (pointList.get(i).getINCREASE().equals("PLUS")) {
 					%>

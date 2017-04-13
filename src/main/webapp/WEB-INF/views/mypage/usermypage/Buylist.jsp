@@ -200,8 +200,10 @@ margin-top: 30px;
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td> <%=buyList.get(i).getDEL_STEP()%>
+						<input type="hidden"value="<%=buyList.get(i).getPRO_SEQ_st()%>" id="proseqg" >
+						<input type="hidden"value="<%=i%>" id="iseq" >
 						<input type="button" class="btn btn-default"" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
-						<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)">
+						<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 					</td>
 				 </tr>
 				<%
@@ -217,7 +219,8 @@ margin-top: 30px;
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td> <%=buyList.get(i).getDEL_STEP()%>
-						<input type="hidden"value="" id="proseqg"> 
+						<input type="hidden"value="<%=buyList.get(i).getPRO_SEQ_st()%>" id="proseqg" >
+						<input type="hidden"value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg" >
 						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="revielistwopen(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;">
 					</td>
 				 </tr>
@@ -497,9 +500,8 @@ margin-top: 30px;
 
 	
 	
-	function change(SEQ) {
-		
-		
+	function change(SEQ,st) {
+	
 		$.ajax({
  			type : "POST",
  			url : "delstep.mib",
@@ -513,9 +515,8 @@ margin-top: 30px;
  				
  				if(flag.success=='success'){
  					$("#btn"+SEQ).attr("value","리뷰쓰기");
- 					$("#btn"+SEQ).attr("onclick","revielistwopen("+$('#proseqg').val()+","+$('#delseqg').val()+ ")");
+ 					$("#btn"+SEQ).attr("onclick","revielistwopen("+SEQ+",'"+st+ "')");
  					$("#cancle"+SEQ).remove();
- 					
  				}else{
  					alert("시스템 오류 잠시후 다시 시도해주세요 ");
  				}
@@ -546,6 +547,7 @@ margin-top: 30px;
 	function revielistwopen(SEQ,st) {
         var DEL_SEQ = SEQ;
       var pro_seq_st = st;
+   
         cw=screen.availWidth;     //화면 넓이
         ch=screen.availHeight;    //화면 높이
 

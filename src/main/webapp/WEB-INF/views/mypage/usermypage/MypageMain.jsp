@@ -217,7 +217,7 @@ width: 94.5%
 				<table style="text-align: center;">
 					<tr>
 						<th style="text-align: center; width: 20%">날짜</th>
-						<th style="text-align: center; width: 45%">상품명</th>
+						<th style="text-align: center; width: 45%">사유</th>
 						<th style="text-align: center; width: 20%">금액</th>
 						<th style="text-align: center; width: 15%">최종</th>
 					</tr>
@@ -240,7 +240,7 @@ width: 94.5%
 				
 				<tr style="height: 27px">
 					<td class="boardone"><%=point5.get(i).getPOINT_TIME()%></td>
-					<td><%=point5.get(i).getPRO_NAME()%></td>
+					<td><%=point5.get(i).getPOINT_REASON()%></td>
 					<%
 						if (point5.get(i).getINCREASE().equals("PLUS")) {
 					%>

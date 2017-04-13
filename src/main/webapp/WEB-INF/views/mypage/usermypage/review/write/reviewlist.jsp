@@ -7,7 +7,8 @@
 <%
 	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 	String rootPath = request.getContextPath();
-
+	String DEL_SEQ = request.getParameter("del_seq");
+	String pro_seq_st = request.getParameter("pro_seq_st");
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -60,22 +61,22 @@ text-align: center;
 						<td><%=list.get(i).getCOUPON() %></td>
 						<td><%=list.get(i).getPOINT() %></td>
 						<td><%=list.get(i).getFINAL_PRICE() %></td>
-						<td><%=list.get(i).getDEL_TIME() %></td>
-						<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=list.get(i).getDEL_SEQ()%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
+						<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=DEL_SEQ%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
 					</tr>
 				<%}
 				}
 				%>	
 				
 				</table>
-				<%-- 11<%=list.get(0).getDEL_SEQ()%>22<%=list.get(0).getPRO_SEQ()%> --%>
+			
 				
 <script type="text/javascript">
 function reviewopen(DEL_SEQ, seq) {
 	var PRO_SEQ = seq;
 	alert('DEL_SEQ'+DEL_SEQ);
 	alert('PRO_SEQ'+PRO_SEQ);
-	location.href="reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ +"&DEL_SEQ=" + DEL_SEQ 
+	alert('pro_seq_st'+'<%=pro_seq_st%>');
+	location.href="reveiwwrite.mib?PRO_SEQ=" + PRO_SEQ +"&DEL_SEQ=" + DEL_SEQ + "&pro_seq_st=" + '<%=pro_seq_st%>'; 
 }
 
 

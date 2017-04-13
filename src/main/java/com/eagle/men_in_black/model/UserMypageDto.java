@@ -43,6 +43,7 @@ public class UserMypageDto implements Serializable {
     private	String	SEL_TIME;
     private	int	STOCK;
     private	String	WASH;
+    private	String	POINT_REASON;
 
 
 
@@ -51,8 +52,15 @@ public class UserMypageDto implements Serializable {
 
 
 
+    public String getPOINT_REASON() {
+		return POINT_REASON;
+	}
 
-    private String ADDRESS;
+	public void setPOINT_REASON(String pOINT_REASON) {
+		POINT_REASON = pOINT_REASON;
+	}
+
+	private String ADDRESS;
     private String COUP_NAME;
     private int COUP_PRICE;
     private String EMAIL;

@@ -9,7 +9,9 @@
 	SimpleDateFormat fm = new SimpleDateFormat("yy-MM-dd");
 	String time = fm.format(now);
 	String rootPath = request.getContextPath();
-	
+	String DEL_SEQ=request.getParameter("DEL_SEQ");
+	String PRO_SEQ=request.getParameter("PRO_SEQ");
+	String pro_seq_st=request.getParameter("pro_seq_st");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -68,9 +70,6 @@ input, select, textarea {
 </style>
 </head>
 <body>
-<% String PRO_SEQ = request.getParameter("PRO_SEQ"); 
-   String DEL_SEQ = request.getParameter("DEL_SEQ"); 
-%>
 
 
 <form id="f1"  action="reviewWrite.mib" method="post" enctype="multipart/form-data" >
@@ -121,8 +120,7 @@ input, select, textarea {
 						<input type="text" name="content"  style="width: 100%; height: 100px">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
-
-						<input type="button" class="btn btn-default" value="리뷰 달기"  onclick="closeSelf()">
+						<input type="button" class="btn btn-default" value="리뷰 달기"  onclick="closeSelf(<%=DEL_SEQ%>,'<%=pro_seq_st%>')">
 					</div>
 
 				</div>
@@ -238,7 +236,7 @@ input, select, textarea {
 
 		};
 
-		function closeSelf() {
+		function closeSelf(SEQ,st) {
 			var formData = new FormData();
 			formData.append("title", $("input[name=title]").val());
 			formData.append("content", $("input[name=content]").val());
@@ -259,14 +257,13 @@ input, select, textarea {
 						var flag = $.parseJSON(data);
 
 						if (flag.result == 'OK') {
-							window.close();
-							opener.parent.location.reload();
+						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+st;
 						} else {
 							alert("리뷰등록실패");
 						}
 					},
 					complete : function(data) {
-						
+						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+st;
 					},
 					error : function(xhr, status, error) {
 						alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);

@@ -263,24 +263,27 @@ public class UserMypageController {
 	
 	
 	//리뷰 선택창
-	// 구매목록 반품 교환 환불 목록
+ // 사장 판매내역 상세보기
     @RequestMapping("buyreviewlist.mib")
-    public ModelAndView buyCancelceo(HttpServletRequest res, HttpServletResponse rep) {
-       String DEL_SEQ = res.getParameter("DEL_SEQ");
+    public ModelAndView ceoMypage_Maindetail(HttpServletRequest res, HttpServletResponse rep) {
+    	ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/reviewlist");
        
-       //UserMypageSvc userMypageSvc= new UserMypageSvcImpl();
+       String del_seq = res.getParameter("del_seq");
+       String pro_seq_st = res.getParameter("pro_seq_st");
+       String proarr[] = pro_seq_st.split(",");
        
-       UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
-       System.out.println(cancelList.getBAS_PRO_NUM()+"이거널인가요??");
-       CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(DEL_SEQ));
-
-       ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/reviewlist");
-       mav.addObject("cancelList", cancelList);
-       mav.addObject("dto",dto);
-
+       List<CeoMypageDto> list = new ArrayList<>();
+       
+       for(int i=0; i<proarr.length;i++){
+       HashMap<String, Object> map = new HashMap<>();
+       map.put("PRO_SEQ", Integer.parseInt(proarr[i]));
+       map.put("DEL_SEQ", Integer.parseInt(del_seq));
+       
+       list.add(ceoMypageSvc.do_select_maindetail(map));
+       }
+       mav.addObject("list", list);
        return mav;
     }
-	
 	
 	
 	// 장바구니
