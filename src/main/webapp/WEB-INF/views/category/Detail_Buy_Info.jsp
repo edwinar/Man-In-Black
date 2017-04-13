@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="java.util.List"%>
@@ -87,12 +88,12 @@ td, th {
 					</td>
 					<td><%=basketList.get(i).getPRO_NAME() %></td>
 					<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
-					<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
+					<td><%=StringUtil.NumFomat(basketList.get(i).getPRO_PRICE()) %> Won</td>
 				</tr>
 				<tr>
 					<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 					<td>상품 합계</td>
-					<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
+					<td id="finalPrice"><%=StringUtil.NumFomat(basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE()) %> Won</td>
 					
 				</tr>
 				<%
@@ -235,7 +236,7 @@ td, th {
 					        <%
 					        	for(int i=0;i<couponList.size();i++){
 					        %>
-					        	<option value="<%=couponList.get(i).getCOUP_PRICE()%>,<%=couponList.get(i).getCOUP_SEQ()%>"><%=couponList.get(i).getCOUP_NAME() %></option>
+					        	<option value="<%=StringUtil.NumFomat(couponList.get(i).getCOUP_PRICE())%>,<%=couponList.get(i).getCOUP_SEQ()%>"><%=couponList.get(i).getCOUP_NAME() %></option>
 					        <%
 					        	}
 					        %>
@@ -255,7 +256,7 @@ td, th {
 				</tr>
 				<tr>
 					<td>사용가능적립금</td>
-					<td><%=points %></td>
+					<td><%=StringUtil.NumFomat(Integer.parseInt((points).toString())) %></td>
 					<td>Won 사용가능</td>
 				</tr>
 				<tr>

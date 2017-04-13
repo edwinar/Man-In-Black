@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -185,7 +186,7 @@ width: 94.5%
 						%>
 						<tr>
 							<td style="text-align: center;"><%=coupon.get(i).getCOUP_NAME()%></td>
-							<td style="text-align: center;"><%=coupon.get(i).getCOUP_PRICE()%></td>
+							<td style="text-align: center;"><%=StringUtil.NumFomat(coupon.get(i).getCOUP_PRICE())%></td>
 						</tr>
 						<%
 							}
@@ -207,7 +208,7 @@ width: 94.5%
 				<%
 						} else {
 					%>
-				사용가능 포인트 <STRONG style="font-size: 20px;"><%=mypageDto.getPOINT_FINAL()%></STRONG> POINT
+				사용가능 포인트 <STRONG style="font-size: 20px;"><%=StringUtil.NumFomat(mypageDto.getPOINT_FINAL())%></STRONG> POINT
 				<%} %>
 					</p>
 				<table style="text-align: center;">
@@ -240,15 +241,15 @@ width: 94.5%
 					<%
 						if (point5.get(i).getINCREASE().equals("PLUS")) {
 					%>
-					<td style="color: #002266"><b>+<%=point5.get(i).getPOINT_PRICE()%></b></td>
+					<td style="color: #002266"><b>+<%=StringUtil.NumFomat(point5.get(i).getPOINT_PRICE())%></b></td>
 					<%
 						} else {
 					%>
-					<td style="color: #750028;"><b>-<%=point5.get(i).getPOINT_PRICE()%></b></td>
+					<td style="color: #750028;"><b>-<%=StringUtil.NumFomat(point5.get(i).getPOINT_PRICE())%></b></td>
 					<%
 						}
 					%>
-					<td><%=point5.get(i).getPOINT_FINAL()%></td>
+					<td><%=StringUtil.NumFomat(point5.get(i).getPOINT_FINAL())%></td>
 				</tr>
 				<%
 					}
@@ -301,11 +302,11 @@ width: 94.5%
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><%=buy.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getCOUPON()%></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getPOINT()%></th>
-					<td rowspan="2" valign="middle"><%=buy.get(i).getFINAL_PRICE()%></td>
-					<th class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></th>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getCOUPON())%></td>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getPOINT())%></td>
+					<td rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></td>
 					<td rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></td>
 				</tr>
 				<tr>
@@ -363,7 +364,7 @@ width: 94.5%
 					<td  rowspan="2" rowspan="2"><%=basket.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=basket.get(i).getPRO_SEQ()%>"><%=basket.get(i).getPRO_NAME()%></a></td>
 					<td  rowspan="2" rowspan="2"><%=basket.get(i).getBAS_PRO_NUM()%></td>
-					<td  rowspan="2" rowspan="2"><%=basket.get(i).getPRO_PRICE()%></td>
+					<td  rowspan="2" rowspan="2"><%=StringUtil.NumFomat(basket.get(i).getPRO_PRICE())%></td>
 				</tr>
 				<tr>
 					<td><%=basket.get(i).getPRO_SIZE()%> : <%=basket.get(i).getCOLOR()%></td>
