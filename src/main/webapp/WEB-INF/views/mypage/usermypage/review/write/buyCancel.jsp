@@ -129,10 +129,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
         selectForm($("#sel option:first").val());
-
-
     });
 
 
@@ -142,62 +139,27 @@
 
         if (commend == '교환') {
             strInput = "<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' id ='RE_OPTION'  name='RE_OPTION' rows='10'> </textarea></div>" +
-                "<div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' name='RE_REASON'  id ='RE_REASON' rows='10'> </textarea></div>";
+                "<div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' value='' name='RE_REASON'  id ='RE_REASON' rows='10'></textarea></div>";
 
         } else if (commend == '반품') {
-            strInput = "<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' rows='10' style='resize: none; wrap:hard;'> </textarea>" +
+            strInput = "<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' value='' rows='10' style='resize: none; wrap:hard;'></textarea> " +
                 "<label>은행<select name='bank' id='bank' class='form-control' onclick='errorre()''>" +
                 "<option value='' onclick='errorre()'>-선택-</option>" +
                 "<option value='SC제일은행'>SC제일은행</option>" +
                 "<option value='경남은행'>경남은행</option>" +
                 "<option value='광주은행'>광주은행</option>" +
                 "<option value='국민은행'>국민은행</option>" +
-                "<option value='굿모닝신한증권'>굿모닝신한증권</option>" +
                 "<option value='기업은행'>기업은행</option>" +
                 "<option value='농협중앙회'>농협중앙회</option>" +
                 "<option value='농협회원조합'>농협회원조합</option>" +
-                "<option value='대구은행'>대구은행</option>" +
-                "<option value='대신증권'>대신증권</option>" +
-                "<option value='대우증권'>대우증권</option>" +
-                "<option value='동부증권'>동부증권</option>" +
-                "<option value='동양종합금융증권'>동양종합금융증권</option>" +
-                "<option value='메리츠증권'>메리츠증권</option>" +
-                "<option value='미래에셋증권'>미래에셋증권</option>" +
-                "<option value='뱅크오브아메리카(BOA)'>뱅크오브아메리카(BOA)</option>" +
-                "<option value='부국증권'>부국증권</option>" +
-                "<option value='부산은행'>부산은행</option>" +
-                "<option value='산림조합중앙회'>산림조합중앙회</option>" +
                 "<option value='산업은행'>산업은행</option>" +
-                "<option value='삼성증권'>삼성증권</option>" +
-                "<option value='상호신용금고'>상호신용금고</option>" +
-                "<option value='새마을금고'>새마을금고</option>" +
-                "<option value='수출입은행'>수출입은행</option>" +
-                "<option value='수협중앙회'>수협중앙회</option>" +
-                "<option value='신영증권'>신영증권</option>" +
                 "<option value='신한은행'>신한은행</option>" +
-                "<option value='신협중앙회'>신협중앙회</option>" +
-                "<option value='에스케이증권'>에스케이증권</option>" +
-                "<option value='에이치엠씨투자증권'>에이치엠씨투자증권</option>" +
-                "<option value='엔에이치투자증권'>엔에이치투자증권</option>" +
-                "<option value='엘아이지투자증권'>엘아이지투자증권</option>" +
                 "<option value='외환은행'>외환은행</option>" +
                 "<option value='우리은행'>우리은행</option>" +
                 "<option value='우리투자증권'>우리투자증권</option>" +
                 "<option value='우체국'>우체국</option>" +
-                "<option value='유진투자증권'>유진투자증권</option>" +
-                "<option value='전북은행'>전북은행</option>" +
-                "<option value='제주은행'>제주은행</option>" +
-                "<option value='키움증권'>키움증권</option>" +
-                "<option value='하나대투증권'>하나대투증권</option>" +
-                "<option value='하나은행'>하나은행</option>" +
-                "<option value='하이투자증권'>하이투자증권</option>" +
-                "<option value='한국씨티은행'>한국씨티은행</option>" +
-                "<option value='한국투자증권'>한국투자증권</option>" +
-                "<option value='한화증권'>한화증권</option>" +
-                "<option value='현대증권'>현대증권</option>" +
-                "<option value='홍콩상하이은행'>홍콩상하이은행</option>" +
                 "</select></label>" +
-                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onclick='error()'></label></div>";
+                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onclick='error()'></label></label></div>";
 
 
         } 
@@ -216,21 +178,21 @@
 		};
 		
 
-
-	
-
     function closeSelf() {
         var formData = new FormData();
-        var txt = $("textarea[name=RE_REASON]").val();
         var commend = document.getElementsByName('commend').value;
         var RE_REASON = $("#RE_REASON").val();
-	
-        if($("textarea[name=RE_REASON]").val() == '' || $("textarea[name=RE_REASON]").val() == null) {
+
+
+		
+		
+		if($("#RE_REASON").val() == '' || $("#RE_REASON").val() == null) {
 			alert("사유를 작성해주세요 ");
 			return;
+			
 		}else if($("#CA_ACCOUNT").val() == '' || $("#CA_ACCOUNT").val() == null) {
-					alert("환불계좌를 입력하여주세요 ");
-					return;
+			alert("환불계좌를 입력하여주세요 ");
+			return;
 		}else{
 			
 			
@@ -257,9 +219,7 @@
             processData: false,
             contentType: false,
             success: function (data) {
-
                 var flag = $.parseJSON(data);
-
                 if (flag.result == 'success') {
                     alert("반영되었습니다");
                     opener.parent.location.reload();
