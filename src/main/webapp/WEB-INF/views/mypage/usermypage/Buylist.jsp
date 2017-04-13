@@ -227,7 +227,7 @@ margin-top: 30px;
 
 
 				<%
-				} else if (buyList.get(i).getDEL_STEP().equals("배송준비중")) {
+				} else if (buyList.get(i).getDEL_STEP().equals("상품준비")) {
 				%>
 				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
 
