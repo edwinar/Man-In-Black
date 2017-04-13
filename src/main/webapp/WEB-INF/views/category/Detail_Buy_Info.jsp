@@ -150,7 +150,7 @@ td, th {
 				</tr>
 			</table>
 		</div>
-		<div id="rightOrder">
+		<div id="rightOrder"> 
 		<form action="buymymain.mib" id="form">
 		<%
 			for(int i = 0; i<basketList.size();i++){
