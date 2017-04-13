@@ -295,7 +295,7 @@ margin-top: 30px;
 				 window.open(
 							"qnadetail.mib?QNA_SEQ=" + qseq,+
 							"pop",
-							"width=900 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+							"width=900 height=520 resizable=no location=no screenX=100 screenY=100 scrollbars=no");
 			}
 			</script>
 
