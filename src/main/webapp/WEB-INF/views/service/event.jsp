@@ -68,7 +68,7 @@ margin-top: 30px;
 	width: 180px;
 	height: 180px;
 	background: #f2f2f2;
-	border-radius: 100%; 
+/* 	border-radius: 100%; */ 
 	margin: 0 auto 25px auto;
 	overflow: hidden;
 	border: 8px solid #E0E0E0;
@@ -156,15 +156,15 @@ function coup(seq){
 	if(userdto!=null && !userdto.getUSER_ID().equals("adm")){ // 로그인했는데 회원일때 
 	for(int i=0;i<couplist.size();i++){
 	%>
-	<div class="previewcoup" style="margin-left: 21px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
-		<img alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
+	<div class="previewcoup"  style="margin-left: 21px; float: left" onclick="coup(<%=couplist.get(i).getCOUP_SEQ() %>)" >
+		<img style="width: 100%; height: 100%" alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<% }
 	}else if(userdto!=null && userdto.getUSER_ID().equals("adm")){
 		for(int i=0;i<couplist.size();i++){
 	%>
 	<div class="previewcoup" style="margin-left: 21px; float: left"onclick="coupdetail(<%=couplist.get(i).getCOUP_SEQ() %>)" >
-		<img alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
+		<img style="width: 100%; height: 100%" alt="" src="..<%=rootPath %>/images/<%=couplist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%}
 	
@@ -193,7 +193,7 @@ function coup(seq){
 		for(int i=0; i<eventlist.size();i++){
 	%>
 	<div class="preview" style="margin-left: 21px; float: left" onclick="eventdetail(<%=eventlist.get(i).getEVENT_SEQ() %>)" >
-		<img alt="" src="..<%=rootPath %>/images/<%=eventlist.get(i).getSTORED_NAME()%>">
+		<img style="width: 100%; height: 100%" alt="" src="..<%=rootPath %>/images/<%=eventlist.get(i).getSTORED_NAME()%>">
 	</div>
 	<%
 		}

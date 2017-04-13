@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
@@ -10,6 +11,7 @@
 	List<UserMypageDto> qna = (List<UserMypageDto>) request.getAttribute("qna");
 	List<UserMypageDto> basket = (List<UserMypageDto>) request.getAttribute("basket");
 	List<UserMypageDto> point5 = (List<UserMypageDto>) request.getAttribute("point5");
+	HashMap<String, String> prophomap = (HashMap<String, String>)request.getAttribute("prophomap");
 	String rootPath = request.getContextPath();
 %>
 
@@ -84,6 +86,7 @@ margin-left: 90px;
 
 td, th {
 	text-align: center;
+	vertical-align: middle;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -275,10 +278,8 @@ width: 94.5%
 	
 				<tr height="40px">
 					<th  class="boardone" style="width: 9%;text-align: center;">이미지</th>
-					<th  class="boardone"style="width: 7%;text-align: center;">분류</th>
 					<th style="width: 23%;text-align: center;">상품이름</th>
 					<th class="boardone"style="width: 8%;text-align: center;">수량</th>
-					<th class="boardtwo"style="width: 9%;text-align: center;">판매가</th>
 					<th class="boardtwo"style="width: 8%;text-align: center;">쿠폰</th>
 					<th class="boardtwo"style="width: 8%;text-align: center;">적립금</th>
 					<th style="width: 9%;text-align: center;">결제금액</th>
@@ -295,23 +296,21 @@ width: 94.5%
 					} else {
 				%>
 				<%
+				    
 					for (int i = 0; i < buy.size(); i++) {
+						int conum = Integer.parseInt(prophomap.get("count"+i))-1;
 				%>
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><img alt="not found" src="..<%=rootPath %>/images/<%=buy.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSUB_ITEM()%></td>
-					<td><a href="detail.mib?PRO_SEQ=<%=buy.get(i).getPRO_SEQ()%>"><%=buy.get(i).getPRO_NAME()%></a></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=buy.get(i).getSEL_NUM()%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getCOUPON())%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getPOINT())%></td>
-					<td rowspan="2" valign="middle"><%=StringUtil.NumFomat(buy.get(i).getFINAL_PRICE())%></td>
-					<td class="#boardthree" rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></td>
-					<td rowspan="2" valign="middle"><%=buy.get(i).getSEL_TIME()%></td>
+				<tr height="40px">
+					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%> 외<%=conum %> 개</td>
+					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buy.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buy.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buy.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree"  style="vertical-align: middle;"><%=buy.get(i).getDEL_TIME()%></td>
+					<td style="vertical-align: middle;"><%=buy.get(i).getDEL_STEP()%></td>
 				</tr>
-				<tr>
-					<td><%=buy.get(i).getSEL_SIZE()%> : <%=buy.get(i).getSEL_COLOR()%></td>
-				</tr>
+				
 				<%
 					}
 					}

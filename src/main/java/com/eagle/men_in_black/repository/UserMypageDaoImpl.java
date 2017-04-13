@@ -241,4 +241,16 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace + ".do_insert_qna";
 		return sqlSession.insert(statement, map);
 	}
+
+	@Override
+	public List<UserMypageDto> do_select_deldel(String USER_ID) {
+		String statement = namespace + ".do_select_deldel";
+		return sqlSession.selectList(statement, USER_ID);
+	}
+
+	@Override
+	public UserMypageDto do_select_propho(int PRO_SEQ) {
+		String statement = namespace + ".do_select_propho";
+		return sqlSession.selectOne(statement, PRO_SEQ);
+	}
 }

@@ -47,7 +47,7 @@ public interface DetailSvc {
 	//결제버튼 구매내역등록
 	public int do_insertBuySales(HashMap<String, Object> map);
 	//결제버튼 클릭시 구매내역디비등록시 필요한 DEL_SEQ 가져오는 쿼리
-	public int do_selectBuyDEL_SEQ(int PRO_SEQ);
+	public int do_selectBuyDEL_SEQ();
 	//결제버튼 클릭시 사용한 쿠폰 상태 업데이트
 	public int do_updateBuyCouponState(int COUP_SEQ);
 	//결제버튼 클릭시 사용한 포인트 디비 등록

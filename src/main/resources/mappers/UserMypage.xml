@@ -208,8 +208,7 @@ FROM (
             D.DEL_STEP,
             A.SEL_SIZE,
             A.SEL_COLOR,
-            D.DEL_SEQ,
-            D.SEL_NUM
+            D.DEL_SEQ
         FROM SALES A JOIN PRODUCT B
            ON A.PRO_SEQ = B.PRO_SEQ
            JOIN PHOTO C
@@ -556,7 +555,7 @@ REV_REF,
 USER_ID,
 PRO_SEQ,
 REV_STEP,
-NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=41), 'none') STORED_NAME
+NVL((select PHOTO.STORED_NAME from PHOTO where rev_seq=#{REV_SEQ}), 'none') STORED_NAME
 FROM REVIEW 
 WHERE REV_SEQ=#{REV_SEQ}
 </select>
@@ -682,5 +681,36 @@ INTO QNA
      #{PRO_SEQ}
   )
 </insert>
+
+<select id="do_select_deldel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+SELECT 
+A.DEL_SEQ
+,A.DEL_ADDRESS
+,A.DEL_POSTCODE
+,A.DEL_NUMBER
+,A.DEL_CONTENT
+,A.REC_NAME
+,A.REC_TEL
+,A.DEL_TIME
+,A.DEL_PRICE
+,A.DEL_STEP
+,A.PRO_SEQ PRO_SEQ_st
+,A.USER_ID
+,A.COUPON
+,A.COUP_SEQ
+,A.POINT
+,A.FINAL_PRICE
+FROM DELIVERY A
+WHERE USER_ID=#{USER_ID}
+ORDER BY A.DEL_SEQ 
+</select>
+
+<select id="do_select_propho" parameterType="int" resultType="com.eagle.men_in_black.model.UserMypageDto">
+SELECT A.PRO_NAME,B.STORED_NAME 
+FROM PRODUCT A INNER JOIN PHOTO B 
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE A.PRO_SEQ = #{PRO_SEQ} AND
+B.STORED_NAME LIKE '%MAIN%'
+</select>
 
 </mapper>

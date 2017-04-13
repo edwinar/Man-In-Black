@@ -229,4 +229,16 @@ public class UserMypageSvcImpl implements UserMypageSvc {
 		// TODO Auto-generated method stub
 		return userMypageDao.do_insert_qna(map);
 	}
+
+	@Override
+	public List<UserMypageDto> do_select_deldel(String USER_ID) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_select_deldel(USER_ID);
+	}
+
+	@Override
+	public UserMypageDto do_select_propho(int PRO_SEQ) {
+		// TODO Auto-generated method stub
+		return userMypageDao.do_select_propho(PRO_SEQ);
+	}
 }
