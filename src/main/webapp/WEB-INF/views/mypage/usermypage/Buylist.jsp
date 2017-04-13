@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
@@ -7,6 +8,8 @@
 <%
 String rootPath = request.getContextPath();
 	List<UserMypageDto> buyList = (List<UserMypageDto>) request.getAttribute("buyList");
+	HashMap<String, String> prophomap = (HashMap<String, String>)request.getAttribute("prophomap");
+
 	String START_DATE = (request.getParameter("START_DATE") == null || request.getParameter("START_DATE") == "")
 			? ""
 			: request.getParameter("START_DATE");
@@ -52,6 +55,8 @@ String rootPath = request.getContextPath();
 		}
 
 	}
+	
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -151,16 +156,14 @@ margin-top: 30px;
 				<form name="f1">
 					<table class="table">
 						<tr height="40px">
-							<th class="boardone" style="width: 9%">이미지</th>
-							<th class="boardone"style="width: 7%">분류</th>
-							<th style="width: 20%">상품이름</th>
-							<th class="boardone"style="width: 8%">수량</th>
-							<th class="boardtwo"style="width: 9%">판매가</th>
-							<th class="boardtwo"style="width: 8%">쿠폰</th>
-							<th class="boardtwo"style="width: 8%">적립금</th>
-							<th style="width: 9%">결제금액</th>
-							<th class="#boardthree"style="width: 12%">판매일</th>
-							<th style="width: 7%">상태</th>
+							<th  class="boardone" style="width: 9%;text-align: center;">이미지</th>
+							<th style="width: 23%;text-align: center;">상품이름</th>
+							<th class="boardone"style="width: 8%;text-align: center;">수량</th>
+							<th class="boardtwo"style="width: 8%;text-align: center;">쿠폰</th>
+							<th class="boardtwo"style="width: 8%;text-align: center;">적립금</th>
+							<th style="width: 9%;text-align: center;">결제금액</th>
+							<th class="#boardthree"style="width: 12%;text-align: center;">판매일</th>
+							<th style="width: 7%;text-align: center;">상태</th>
 						</tr>
 						<%
 							if (buyList == null || buyList.size() == 0) {
@@ -184,94 +187,61 @@ margin-top: 30px;
 					} else {
 
 						for (int i = 0; i < buyList.size(); i++) {
+							int conum = Integer.parseInt(prophomap.get("count"+i))-1;
+							if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
 				%>
 
-				<tr height="30px">
-					<td class="boardone" rowspan="2"><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><img alt="not found" src="..<%=rootPath %>/images/<%=buyList.get(i).getSTORED_NAME()%>" style="width: 100px; height: 100px"></a></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
-					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
-					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getPRO_PRICE())%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
-					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
-					<td rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
-					<td class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></td>
-					<%
-						if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
-					%>
-					<td rowspan="1" valign="middle"> <%=buyList.get(i).getDEL_STEP()%>
-
+					<tr height="40px">
+					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%> 외<%=conum %> 개</td>
+					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
+					<td> <%=buyList.get(i).getDEL_STEP()%>
 						<input type="button" class="btn btn-default"" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+						<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)">
 					</td>
-				</tr>
-				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					<td><input type="hidden" value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg">
-					<input type="hidden" value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg"> 
-					<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
-				</tr>
-
+				 </tr>
 				<%
-					} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {
+						} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {	
+				%>
+				
+				<tr height="40px">
+					<td class="boardone" ><img alt="not found"  style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"> 개</td>
+					<td class="boardone"  style="vertical-align: middle;"></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
+					<td> <%=buyList.get(i).getDEL_STEP()%>
+						<input type="hidden"value="" id="proseqg"> 
+						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default">
+					</td>
+				 </tr>
+				<%
+				}else{
+				%>
+				<tr height="40px">
+					<td class="boardone" ><img alt="not found"  style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"> 개</td>
+					<td class="boardone"  style="vertical-align: middle;"></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
+					<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
+				</tr>
+				<%
+				}
+						}			
 				%>
 				
 				
-				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>
-				</tr>
-				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					<td><input type="hidden"
-						value="<%=buyList.get(i).getPRO_SEQ()%>" id="proseqg"> <input
-						type="button" value="리뷰쓰기" id="btn"class="btn btn-default"
-						onclick="go(<%=buyList.get(i).getPRO_SEQ()%>,<%=buyList.get(i).getDEL_SEQ()%> )"></td>
-				</tr>
-
-
-				<%
-				} else if (buyList.get(i).getDEL_STEP().equals("상품준비")) {
-				%>
-				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
-
-
-				</tr>
-				<tr>
-					<td colspan="2"><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					
-				</tr>
-						<%
-				} else if (buyList.get(i).getDEL_STEP().equals("변경사항 처리중")) {
-				%>
-				<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%>
-
-
-					</tr>
-				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-				</tr>
-				<%
-					} else {
-				%>
-
-
-
-				<td rowspan="2" valign="middle"><%=buyList.get(i).getDEL_STEP() %></td>
-				</tr>
-				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-
-				</tr>
-
-				<%
-					}
-						}
-				%>
-
 			</table>
-
-
-
 		</div>
-
 	</div>
 
 	<%
@@ -287,6 +257,7 @@ margin-top: 30px;
 			int pageCount = buyList.get(0).getTOT_CNT() % page_size == 0 ? buyList.get(0).getTOT_CNT() / page_size
 					: (buyList.get(0).getTOT_CNT() / page_size) + 1;
 	%>
+	
 	<div class="row" align="center">
 		<p>
 			<%
@@ -300,12 +271,14 @@ margin-top: 30px;
 				href="buylist.mib?PAGE_NUM=<%=i%>&START_DATE=<%=START_DATE%>&END_DATE=<%=END_DATE%>"
 				class="btn btn-default" role="button"><%=i%></a>
 			<%
-				}
+					
+			}
 			%>
 		</p>
 	</div>
 
 	<%
+						
 		}
 	%>
 	</div>

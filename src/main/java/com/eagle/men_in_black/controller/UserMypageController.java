@@ -59,6 +59,7 @@ public class UserMypageController {
 		
 		// 구매내역 5개 뽑기 
 		List<UserMypageDto> buy = userMypageSvc.do_select_deldel(userdto.getUSER_ID());
+		
 		HashMap<String, String> prophomap = new HashMap<>();
 		for(int i=0; i<buy.size();i++){
 			String proseq = buy.get(i).getPRO_SEQ_st();
@@ -216,8 +217,22 @@ public class UserMypageController {
 
 		// userMypageSvc.do_update_del_step(DEL_SEQ);
 		List<UserMypageDto> buyList = userMypageSvc.do_search_buylist(map);
+		
+		HashMap<String, String> prophomap = new HashMap<>();
+		for(int i=0; i<buyList.size();i++){
+			String proseq = buyList.get(i).getPRO_SEQ_st();
+			String proarr[] = proseq.split(",");
+			UserMypageDto ddto = userMypageSvc.do_search_buylist_photo(Integer.parseInt(proarr[0])); 
+			prophomap.put("PRO_NAME"+i, ddto.getPRO_NAME());
+			prophomap.put("STOREDNAME"+i, ddto.getSTORED_NAME());
+			prophomap.put("count"+i, proarr.length+"");
+			
+		}
+		
+		
 
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Buylist");
+		mav.addObject("prophomap",prophomap);
 		mav.addObject("buyList", buyList);
 		return mav;
 
