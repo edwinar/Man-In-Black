@@ -346,7 +346,8 @@ public class DetailController {
 			pointMap.put("POINT_PRICE", POINT);
 			pointMap.put("USER_ID", userdto.getUSER_ID());
 			pointMap.put("POINT_PRICE", POINT);
-			pointMap.put("PRO_SEQ", PRO_SEQ);
+			pointMap.put("DEL_SEQ", DEL_SEQ);
+		
 			int pointFlag = detailSvc.do_insertBuyPoint(pointMap);
 		}
 		//////////////////////////////////////////////////////////////////////////////

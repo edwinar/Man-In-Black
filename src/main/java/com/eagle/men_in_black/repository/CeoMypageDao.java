@@ -44,4 +44,8 @@ public interface CeoMypageDao {
 	public CeoMypageDto do_select_prophoceo(int PRO_SEQ);
 	
 	public CeoMypageDto do_select_maindetail(HashMap<String, Object> map);
+	
+	public int do_insert_canclepoint(HashMap<String, Object> map);
+	
+	public int do_update_canclecoup(int COUP_SEQ);
 }

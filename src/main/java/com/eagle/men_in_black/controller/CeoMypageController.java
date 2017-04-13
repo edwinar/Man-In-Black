@@ -851,7 +851,7 @@ public class CeoMypageController {
 				String proarr[] = pro_seq_st.split(",");
 				
 				System.out.println("음여기되니?"+del_seq);
-				//CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
+				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
 				//System.out.println("음여기되니2222?"+dto);
 				List<CeoMypageDto> list = new ArrayList<>();
 				
@@ -866,29 +866,51 @@ public class CeoMypageController {
 				ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancelceo");
 				mav.addObject("list", list);
 				
-				//mav.addObject("dto",dto);
+				mav.addObject("dto",dto);
 
 				return mav;
 			}
 			@RequestMapping(value = "cancelceo.mib", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 			public @ResponseBody String cancelceo(HttpServletRequest res, HttpServletResponse rep) {
 				HashMap<String, String> resultMap = new HashMap<>();
-				HashMap<String, Object> update = new HashMap<String, Object>();
-				String DEL_SEQ = res.getParameter("DEL_SEQ");
+				HashMap<String, String> update = new HashMap<String, String>();
+				String DEL_SEQ = res.getParameter("del_seq");
 				String commend = res.getParameter("commend");
+				
+				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(DEL_SEQ));
 				
 				if (commend.equals("반품")) {
 					//포인트 사용했던거 취소, 쿠폰사용했던거 취소, 결제취소, 
 					// 배송스텝이 반품으로 바뀌어야함 
+					//System.out.println(DEL_SEQ + commend);
+					HashMap<String, Object> map = new HashMap<>();
 					
+					map.put("POINT", dto.getPOINT());
+					map.put("USER_ID", dto.getUSER_ID());
+					map.put("DEL_SEQ", Integer.parseInt(DEL_SEQ));
+					// 포인트 사용햇을때
+					if(dto.getPOINT()>0){
+					ceoMypageSvc.do_insert_canclepoint(map);
+					}
+					// 쿠폰 사용했을때 
+					if(dto.getCOUP_SEQ()>0){
+					ceoMypageSvc.do_update_canclecoup(dto.getCOUP_SEQ());
+					}
+					update.put("delstep", "반품완료");
+					update.put("del_seq", DEL_SEQ);
+					ceoMypageSvc.do_update_delstep(update);
+					resultMap.put("result", "success");
 				} else if (commend.equals("교환")) {
 					// 배송step이 다시 상품준비로 돌아가야함 
-					
+					update.put("delstep", "상품준비");
+					update.put("del_seq", DEL_SEQ);
+					ceoMypageSvc.do_update_delstep(update);
+					resultMap.put("result", "success");
 
 				}
 
 				
-				resultMap.put("result", "success");
+				
 				Gson gson = new Gson();
 				return gson.toJson(resultMap);
 

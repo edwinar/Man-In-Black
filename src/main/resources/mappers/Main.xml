@@ -63,7 +63,9 @@ INTO POINTS
     POINT_FINAL,
     INCREASE,
     USER_ID,
-    PRO_SEQ
+    PRO_SEQ,
+    DEL_SEQ,
+    POINT_REASON
   )
   VALUES
   (
@@ -73,7 +75,9 @@ INTO POINTS
     2000,
     'PLUS',
     #{USER_ID},
-    0
+    0,
+    0,
+    '회원가입 지급'
   )
 </insert>
 

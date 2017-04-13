@@ -143,4 +143,16 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.selectOne(statement, map);
 	}
 
+	@Override
+	public int do_insert_canclepoint(HashMap<String, Object> map) {
+		String statement = namespace+".do_insert_canclepoint";
+		return sqlSession.insert(statement, map);
+	}
+
+	@Override
+	public int do_update_canclecoup(int COUP_SEQ) {
+		String statement = namespace+".do_update_canclecoup";
+		return sqlSession.update(statement, COUP_SEQ);
+	}
+
 }

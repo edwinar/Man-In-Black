@@ -456,18 +456,18 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getPOINT() %></td>
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getFINAL_PRICE() %></td>
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getDEL_TIME() %></td>
-						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")){ %>
+						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")|| list.get(i).getDEL_STEP().equals("반품완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else if(list.get(i).getDEL_STEP().equals("리뷰완료")){%>
 						<td>구매확정</td>
 						<%}else if(list.get(i).getDEL_STEP().equals("변경사항 처리중")){ %>
-						<td  onclick="open_win(<%=list.get(i).getDEL_SEQ()%>)">
+						<td  onclick="open_win(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')">
 						<button type="button" class="btn btn-default" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						
 						
 						<%}else{ %>
 						<td id="deltd<%=list.get(i).getDEL_SEQ()%>">
-						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>,'<%=list.get(i).getPRO_SEQ_st()%>')" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						<%} %>
 					</tr>
 				<%}

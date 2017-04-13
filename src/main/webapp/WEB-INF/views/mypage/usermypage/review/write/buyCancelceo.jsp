@@ -18,7 +18,7 @@
 	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../../../../css/Mib.css">
+<link rel="stylesheet" href="../../../../..<%=rootPath %>/css/Mib.css">
 
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -33,29 +33,27 @@
     <div id="total" style="margin-top: 10px" align="center">
         <div id="table" style="width: 90%">
             <table class="table">
-					<col width="5%">
 					<col width="8%">
-					<col width="10%">
-					<col width="10%">
-					<col width="10%">
-					<col width="10%">
+					<col width="20%">
+					<col width="15%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
 					<tr>
-					<th style="border: 0;"></th>
-					<th style="border: 0;"></th>
 					<th style="border: 0;"></th>
 				<th colspan="1" style="text-align: center;">쿠폰사용</th>
 				<th colspan="1" style="text-align: center;">포인트사용</th>
 				<th></th>
 				<th colspan="1" style="text-align: center;">결제금액</th>
+				<th style="border: 0;"></th>
 				</tr>
 				<tr>
-				<th style="border: 0;"></th>
-				<th style="border: 0;"></th>
 				<th style="border: 0;"></th>
 				<td colspan="1" style="text-align: center;"><%=list.get(0).getPOINT() %></td>
 				<td colspan="1" style="text-align: center;"><%=list.get(0).getCOUPON() %></td>
 				<td></td>
 				<td colspan="1" style="text-align: center;"><%=list.get(0).getFINAL_PRICE() %></td>
+				<th style="border: 0;"></th>
 				</tr>
 					<tr>
 						<th>상품</th>
@@ -83,16 +81,12 @@
 					<tr>
 						<td><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
-						<td>
-						<%=list.get(i).getITEM() %> 
-						</td>
+						
 						<td><%=list.get(i).getPRO_NAME() %></td>
 						<td><%=list.get(i).getSEL_SIZE() %></td>
 						<td><%=list.get(i).getSEL_COLOR() %></td>
 						<td><%=list.get(i).getSEL_NUM() %></td>
 						<td><%=list.get(i).getPRO_PRICE() %></td>
-						<td><%=list.get(i).getSTOCK() %></td>
-						<td><%=list.get(i).getUSER_ID() %></td>
 					</tr>
 				<%}
 				}
@@ -101,13 +95,12 @@
 				</table>
         </div>
     </div>
-    <select class='form-control' id="sel" onchange="selectForm(this.value);" style="width: 100px">
-       
-       
+    <hr style="border: solid black 1px;">
+    <p align="center">
+    <select class='form-control' id="sel" onchange="selectForm(this.value);" style="width: 100px;">
         <option value="<%=dto.getRETURN()%>" selected="selected"><%=dto.getRETURN()%></option>
-       
-        
     </select>
+    </p>
     <br>
 
     <div id="inputBox" align="center">
@@ -124,9 +117,9 @@
 
     </div>
 <center>
-    <input class="btn btn-default" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
+    <input class="btn btn-default" type="button" value="확정" onclick="closeSelf(<%=dto.getDEL_SEQ() %>)" style="margin-left: 2px" style="display: inline-block">
     <input class="btn btn-default" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
-    <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
+    <%-- <input type="hidden" name="DEL_SEQ" value=<%=list.getDEL_SEQ() %>> --%>
     <input type="hidden" name="commend" value="">
 </center>
 
@@ -135,15 +128,21 @@
 
 <script type="text/javascript">
 
-    	
+    function closeSelf(seq) {
+    	//alert(seq);
+		var del_seq = seq;
+		//alert(del_seq);
+		var commend = '<%=dto.getRETURN()%>';
+		
         $.ajax({
             type: "POST",
             url: "cancelceo.mib",
             async: true,
-            data: formData,
+            data: {
+            	"del_seq":del_seq,
+            	"commend":commend
+            },
             dataType: "html",
-            processData: false,
-            contentType: false,
             success: function (data) {
                 var flag = $.parseJSON(data);
                 if (flag.result == 'success') {
@@ -157,12 +156,11 @@
             complete: function (data) {
             },
             error: function (xhr, status, error) {
-                alert("빈칸없이 작성해주세요");
+                alert("에러");
             }
         });
-
-    }
-    }
+    }	
+    
 </script>
 
 

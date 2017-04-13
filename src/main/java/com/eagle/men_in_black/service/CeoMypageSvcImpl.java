@@ -184,6 +184,18 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_select_maindetail(map);
 	}
 
+	@Override
+	public int do_insert_canclepoint(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_insert_canclepoint(map);
+	}
+
+	@Override
+	public int do_update_canclecoup(int COUP_SEQ) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_update_canclecoup(COUP_SEQ);
+	}
+
 	
 	
 
