@@ -172,6 +172,18 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_select_cancle(DEL_SEQ);
 	}
 
+	@Override
+	public CeoMypageDto do_select_prophoceo(int PRO_SEQ) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_prophoceo(PRO_SEQ);
+	}
+
+	@Override
+	public CeoMypageDto do_select_maindetail(HashMap<String, Object> map) {
+		
+		return ceoMypageDao.do_select_maindetail(map);
+	}
+
 	
 	
 

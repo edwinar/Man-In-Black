@@ -131,4 +131,16 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.selectOne(statement, DEL_SEQ);
 	}
 
+	@Override
+	public CeoMypageDto do_select_prophoceo(int PRO_SEQ) {
+		String statement = namespace+".do_select_prophoceo";
+		return sqlSession.selectOne(statement, PRO_SEQ);
+	}
+
+	@Override
+	public CeoMypageDto do_select_maindetail(HashMap<String, Object> map) {
+		String statement = namespace+".do_select_maindetail";
+		return sqlSession.selectOne(statement, map);
+	}
+
 }

@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@page import="java.util.List"%>
@@ -5,6 +6,7 @@
 	pageEncoding="UTF-8"%>
 	<%
 	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
+	HashMap<String,String> prophomap= (HashMap<String,String>)request.getAttribute("prophomap");
 	String rootPath = request.getContextPath();
 	String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
 	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
@@ -368,7 +370,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	
 	<!--검색(유저ID,상품이름)-->
 	<form class="search" action="ceoMypage_Main.mib">
-		<input type="search" placeholder="유저ID,상품이름" name="search" value="<%=search%>">
+		<input type="search" placeholder="유저ID" name="search" value="<%=search%>">
 		<input type="hidden" name="START_DATE" value="<%=START_DATE %>">
 		<input type="hidden" name="END_DATE" value="<%=END_DATE %>">
 		<button type="submit" class="btn btn-default" >검색</button>
@@ -405,17 +407,15 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 			<form name="f1">
 				<table class="table">
 					<col width="5%">
-					<col width="9%">
-					<col width="50%">
+					<col width="20%">
+					<col width="30%">
 					<col width="10%">
 					<tr>
 						<th>상품</th>
-						<th>분류</th>
 						<th>상품이름</th>
 						<th>구매자</th>
 						<th>수량</th>
-						<th>재고</th>
-						<th>가격</th>
+						<th>결제금액</th>
 						<th>판매일</th>
 						<th>상태</th>
 					</tr>
@@ -431,20 +431,22 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				</div>
 				</div>
 				<%}else{
-				for(int i=0; i<list.size(); i++){ %>
+				for(int i=0; i<list.size(); i++){ 
+					int conum = Integer.parseInt(prophomap.get("count"+i))-1;
+				%>
 					<tr>
-						<td><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
+						<td><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i) %>"
 							style="width: 100px; height: 100px"></td>
-						<td><%=list.get(i).getITEM() %></td>
-						<td>
-						<p>상품이름 - <%= list.get(i).getPRO_NAME() %></p>
-						컬러-<%=list.get(i).getSEL_COLOR() %>,사이즈-<%=list.get(i).getSEL_SIZE() %>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')">
+						<%=prophomap.get("PRO_NAME"+i) %> 
+						<%if(conum>0){ %>
+						 외 <br> <%=conum %>개
+						 <%} %>
 						</td>
-						<td>구매한 사람  <%=list.get(i).getUSER_ID() %></td>
-						<td><%=list.get(i).getSEL_NUM() %></td>
-						<td><%=list.get(i).getSTOCK() %></td>
-						<td><%=list.get(i).getPRO_PRICE() %></td>
-						<td><%=list.get(i).getSELTIME() %></td>
+						<td><%=list.get(i).getUSER_ID() %></td>
+						<td><%=prophomap.get("count"+i) %></td>
+						<td><%=list.get(i).getFINAL_PRICE() %></td>
+						<td><%=list.get(i).getDEL_TIME() %></td>
 						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else if(list.get(i).getDEL_STEP().equals("리뷰완료")){%>
@@ -501,6 +503,23 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	%>
 	
 	<script type="text/javascript">
+	 function detail(SEQ,st)
+     {
+         var DEL_SEQ = SEQ;
+		 var pro_seq_st = st;
+         cw=screen.availWidth;     //화면 넓이
+         ch=screen.availHeight;    //화면 높이
+
+         sw=1080;    //띄울 창의 넓이
+         sh=700;    //띄울 창의 높이
+
+         ml=(cw-sw)/2;        
+         mt=(ch-sh)/2;         
+
+
+         window.open("ceoMypage_Maindetail.mib?del_seq="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+     }
+	
 	 function open_win(SEQ)
      {
          var DEL_SEQ = SEQ;

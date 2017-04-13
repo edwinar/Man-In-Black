@@ -5,51 +5,35 @@
 <mapper namespace="com.eagle.repository.mapper.CeoMypage">
 
 <select id="do_ceomypage_main" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto" >
+
 SELECT TT1.*
   FROM (
        SELECT ROWNUM RNUM,T1.*,T2.*
-       FROM(
-            SELECT Z.*, Y.STORED_NAME, X.STOCK, W.DEL_STEP
+      
             FROM(
-                 SELECT B.ITEM, B.PRO_NAME, B.PRO_PRICE 
-                 , A.SEL_TIME SELTIME, A.SEL_COLOR SEL_COLOR,
-                 A.SEL_SIZE SEL_SIZE, A.PRO_SEQ, A.SEL_SEQ,A.SEL_NUM 
-                 ,A.POINT,A.COUPON,A.FINAL_PRICE,A.SEL_TIME,A.USER_ID,A.DEL_SEQ   
-                 FROM SALES A LEFT OUTER JOIN PRODUCT B
-                 ON A.PRO_SEQ=B.PRO_SEQ
-                 WHERE B.PRO_NAME LIKE #{search}
-                 or A.USER_ID LIKE #{search}
-                 ) Z INNER JOIN PHOTO Y
-                 ON Z.PRO_SEQ=Y.PRO_SEQ
-             INNER JOIN PRO_DETAIL X
-                 ON Z.PRO_SEQ=X.PRO_SEQ
-             INNER JOIN DELIVERY W
-                 ON Z.PRO_SEQ=W.PRO_SEQ 
-                 AND Z.USER_ID=W.USER_ID
-                 AND Z.DEL_SEQ = W.DEL_SEQ	
-             WHERE Y.STORED_NAME LIKE '%MAIN%' 
-             AND X.PRO_SIZE=Z.SEL_SIZE  
-             AND X.COLOR=Z.SEL_COLOR
-            
-             AND Z.SELTIME BETWEEN TO_DATE(${START_DATE}) 
-             AND TO_DATE(${END_DATE})  
-             
-             ORDER BY Z.SEL_SEQ DESC
-         ) T1
-NATURAL JOIN
+                select 
+                PRO_SEQ PRO_SEQ_st,
+                USER_ID,
+                COUPON, 
+                POINT, 
+                FINAL_PRICE, 
+                DEL_TIME, 
+                DEL_STEP,
+                DEL_SEQ
+                from DELIVERY 
+                where USER_ID like #{search}
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+                AND TO_DATE(${END_DATE})
+                ORDER BY DEL_SEQ
+              ) T1
+ NATURAL JOIN
   	(
      SELECT COUNT(*) TOT_CNT
-     FROM SALES A LEFT OUTER JOIN PRODUCT B
-     ON A.PRO_SEQ=B.PRO_SEQ
-     INNER JOIN PRO_DETAIL X
-     ON A.PRO_SEQ=X.PRO_SEQ
-     WHERE X.PRO_SIZE=A.SEL_SIZE  
-     AND X.COLOR=A.SEL_COLOR
-     AND (B.PRO_NAME LIKE #{search}
-     or A.USER_ID LIKE #{search})
-     AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
-             AND TO_DATE(${END_DATE}) 
-     ) T2
+     FROM DELIVERY
+     where USER_ID like #{search}
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+                AND TO_DATE(${END_DATE})
+    ) T2
   	) TT1
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 </select>
@@ -282,4 +266,24 @@ FROM DELIVERY
 where DEL_SEQ=#{DEL_SEQ}
 </select>
 
+<select id="do_select_prophoceo" parameterType="int" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT A.PRO_NAME,B.STORED_NAME 
+FROM PRODUCT A INNER JOIN PHOTO B 
+ON A.PRO_SEQ = B.PRO_SEQ
+WHERE A.PRO_SEQ = #{PRO_SEQ} AND
+B.STORED_NAME LIKE '%MAIN%'
+</select>
+
+<select id="do_select_maindetail" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+select a.user_id,a.SEL_NUM, a.SEL_COLOR, a.SEL_SIZE, b.ITEM, b.PRO_NAME, c.STOCK, d.STORED_NAME
+from SALES a inner join PRODUCT b
+on a.PRO_SEQ = b.PRO_SEQ
+inner join PRO_DETAIL c
+on a.PRO_SEQ = c.PRO_SEQ and a.SEL_SIZE=c.PRO_SIZE and a.SEL_COLOR=c.COLOR
+inner join PHOTO d
+on a.PRO_SEQ = d.PRO_SEQ
+where d.STORED_NAME like '%MAIN%'
+and a.PRO_SEQ = #{PRO_SEQ}
+and a.DEL_SEQ = #{DEL_SEQ}
+</select>
 </mapper>

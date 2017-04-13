@@ -24,4 +24,6 @@ public interface CeoMypageSvc {
 	public int do_insert_banpt(List<HashMap<String, String>> map);
 	public int do_update_admre(CeoMypageDto dto);
 	public CeoMypageDto do_select_cancle(int DEL_SEQ);
+	public CeoMypageDto do_select_prophoceo(int PRO_SEQ);
+	public CeoMypageDto do_select_maindetail(HashMap<String, Object> map);
 }

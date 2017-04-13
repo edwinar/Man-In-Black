@@ -60,9 +60,27 @@ private String RE_OPTION           ;
 private String RE_REASON           ;
 private String CA_ACCOUNT          ;
 private String DEL_DETAIL_ADDRESS  ;
+private String PRO_SEQ_st;
+private String DEL_TIME     ;
 
 
 
+
+public String getDEL_TIME() {
+	return DEL_TIME;
+}
+
+public void setDEL_TIME(String dEL_TIME) {
+	DEL_TIME = dEL_TIME;
+}
+
+public String getPRO_SEQ_st() {
+	return PRO_SEQ_st;
+}
+
+public void setPRO_SEQ_st(String pRO_SEQ_st) {
+	PRO_SEQ_st = pRO_SEQ_st;
+}
 
 public String getRETURN() {
 	return RETURN;

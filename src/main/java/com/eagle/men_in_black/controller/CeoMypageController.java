@@ -374,16 +374,25 @@ public class CeoMypageController {
 		map.put("END_DATE",END_DATE);
 		map.put("search", search);
 	
-		/*System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
-		System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
-		System.out.println("컨트롤러 ======== START_DATE"+START_DATE);
-		System.out.println("컨트롤러 ======== END_DATE"+END_DATE);
-		System.out.println("컨트롤러 ======== search"+search);*/
-		
 		
 		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
+		HashMap<String, String> prophomap = new HashMap<>();
+		for(int i=0; i<list.size();i++){
+		String proseq = list.get(i).getPRO_SEQ_st();
+		String proarr[] = proseq.split(",");
+					
+		CeoMypageDto ddto = ceoMypageSvc.do_select_prophoceo(Integer.parseInt(proarr[0])); 
+		prophomap.put("PRO_NAME"+i, ddto.getPRO_NAME());
+		prophomap.put("STOREDNAME"+i, ddto.getSTORED_NAME());
+		prophomap.put("count"+i, proarr.length+"");
+					// 0번째가 list에서 첫번째 
+		}
+		
+		
+		//List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(map);
 		
 		mav.addObject("list", list);
+		mav.addObject("prophomap", prophomap);
 		mav.addObject("PAGE_SIZE", PAGE_SIZE);
 		mav.addObject("PAGE_NUM", PAGE_NUM);
 		mav.addObject("START_DATE",START_DATE);
@@ -394,6 +403,32 @@ public class CeoMypageController {
 		return mav;
 
 	}
+	// 사장 판매내역 상세보기
+	@RequestMapping("ceoMypage_Maindetail.mib")
+	public ModelAndView ceoMypage_Maindetail(HttpServletRequest res, HttpServletResponse rep) {
+		ModelAndView mav = new ModelAndView("mypage/ceomypage/main/banner/maindetail");
+		
+		String del_seq = res.getParameter("del_seq");
+		String pro_seq_st = res.getParameter("pro_seq_st");
+		String proarr[] = pro_seq_st.split(",");
+		
+		List<CeoMypageDto> list = new ArrayList<>();
+		
+		for(int i=0; i<proarr.length;i++){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("PRO_SEQ", Integer.parseInt(proarr[i]));
+		map.put("DEL_SEQ", Integer.parseInt(del_seq));
+		
+		list.add(ceoMypageSvc.do_select_maindetail(map));
+		}
+		mav.addObject("list", list);
+		return mav;
+	}
+	
+	
+	
+	
+	
 	//배송 단계 아작스 부분 
 		@RequestMapping(value="del_step.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
 		
