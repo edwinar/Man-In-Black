@@ -117,9 +117,7 @@
                 <label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' value="<%=dto.getCA_ACCOUNT()%>"></label></div>
 
 	
-	<%}else if(dto.getRETURN().equals("취소")){ %>
-	
-	<%} %>
+	<%}%>
 
     </div>
 <center>
@@ -137,7 +135,7 @@
     	
         $.ajax({
             type: "POST",
-            url: "cancel.mib",
+            url: "cancelceo.mib",
             async: true,
             data: formData,
             dataType: "html",
