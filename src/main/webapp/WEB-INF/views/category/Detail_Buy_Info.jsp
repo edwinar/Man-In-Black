@@ -423,12 +423,12 @@ var midPrice;
 		if(pointsValue==''){
 			$('#final').text((Number(fafapri)-Number(array[0])).format());
 			$("#FINAL_PRICE").val(Number(fafapri)-array[0]);
-			$("#COUPON").val((Number(array[0])).format());
+			$("#COUPON").val(array[0]);
 			$("#COUP_SEQ").val(array[1]);
 		}else{
 			$('#final').text((Number(fafapri)-array[0]-Number(pointsValue)).format());
 			$("#FINAL_PRICE").val(Number(fafapri)-array[0]-Number(pointsValue));
-			$("#COUPON").val((Number(array[0])).format());
+			$("#COUPON").val(array[0]);
 			$("#COUP_SEQ").val(array[1]);
 		}
 	
@@ -468,13 +468,13 @@ var midPrice;
 						if(couppri==''){
 						//alert("여기들어오니111?");
 						$('#final').text((Number(fafapri)-Number(pointsValue)).format());
-						$("#FINAL_PRICE").val((Number(fafapri)-Number(pointsValue)).format());
-						$("#POINT").val((pointsValue).format());
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+						$("#POINT").val(pointsValue);
 						}else{
 						//alert("여기들어오니222?");
 						$('#final').text((Number(fafapri)-Number(pointsValue)-couppri).format());
-						$("#FINAL_PRICE").val((Number(fafapri)-Number(pointsValue)-couppri).format());
-						$("#POINT").val((pointsValue).format());
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#POINT").val(pointsValue);
 						
 						}
 				}
