@@ -146,7 +146,7 @@ WHERE ROWNUM <=5
 
 
 <!-- 구매한상품LIST  -->
-<select id="do_search_buylist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<!-- <select id="do_search_buylist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT TT1.*
 FROM (
@@ -191,7 +191,83 @@ FROM (
        WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
 
 ]]>
+</select> -->
+<select id="do_search_buylist" parameterType="hashmap" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<![CDATA[
+SELECT TT1.*
+FROM (
+      SELECT ROWNUM RNUM,T1.*,T2.*
+      from(
+			SELECT 
+				 A.DEL_SEQ
+				,A.DEL_ADDRESS
+				,A.DEL_POSTCODE
+				,A.DEL_NUMBER
+				,A.DEL_CONTENT
+				,A.REC_NAME
+				,A.REC_TEL
+				,A.DEL_TIME
+				,A.DEL_PRICE
+				,A.DEL_STEP
+				,A.PRO_SEQ PRO_SEQ_st
+				,A.USER_ID
+				,A.COUPON
+				,A.COUP_SEQ
+				,A.POINT
+				,A.FINAL_PRICE
+			FROM DELIVERY A
+			WHERE USER_ID=#{id}
+			ORDER BY A.DEL_SEQ 
+			) T1
+          NATURAL JOIN
+          (
+          SELECT COUNT(*) TOT_CNT FROM DELIVERY WHERE 
+          USER_ID= #{id}
+          AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
+             AND TO_DATE(${END_DATE}) 
+          ) T2
+      ) TT1
+       WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
+
+]]>
 </select>
+
+<select id="do_search_buylist_photo" parameterType="int" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<![CDATA[
+			SELECT A.PRO_NAME,B.STORED_NAME 
+			FROM PRODUCT A INNER JOIN PHOTO B 
+			ON A.PRO_SEQ = B.PRO_SEQ
+			WHERE A.PRO_SEQ = #{PRO_SEQ} AND
+			B.STORED_NAME LIKE '%MAIN%'		
+		
+			
+]]>
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- 취소,반품,교환할 상품목록  -->
@@ -683,7 +759,10 @@ INTO QNA
 </insert>
 
 <select id="do_select_deldel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-SELECT 
+<![CDATA[
+SELECT *
+FROM
+(SELECT 
 A.DEL_SEQ
 ,A.DEL_ADDRESS
 ,A.DEL_POSTCODE
@@ -703,14 +782,23 @@ A.DEL_SEQ
 FROM DELIVERY A
 WHERE USER_ID=#{USER_ID}
 ORDER BY A.DEL_SEQ 
+)
+WHERE ROWNUM <=5
+]]>
 </select>
 
 <select id="do_select_propho" parameterType="int" resultType="com.eagle.men_in_black.model.UserMypageDto">
-SELECT A.PRO_NAME,B.STORED_NAME 
+<![CDATA[
+SELECT *
+FROM
+(SELECT A.PRO_NAME,B.STORED_NAME 
 FROM PRODUCT A INNER JOIN PHOTO B 
 ON A.PRO_SEQ = B.PRO_SEQ
 WHERE A.PRO_SEQ = #{PRO_SEQ} AND
 B.STORED_NAME LIKE '%MAIN%'
+)
+WHERE ROWNUM <=5
+]]>
 </select>
 
 </mapper>

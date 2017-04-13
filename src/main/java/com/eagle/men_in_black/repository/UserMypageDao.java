@@ -83,5 +83,7 @@ public interface UserMypageDao {
 	public List<UserMypageDto> do_select_deldel(String USER_ID);
 	
 	public UserMypageDto do_select_propho(int PRO_SEQ);
+	
+	public UserMypageDto do_search_buylist_photo(int PRO_SEQ);
 
 }

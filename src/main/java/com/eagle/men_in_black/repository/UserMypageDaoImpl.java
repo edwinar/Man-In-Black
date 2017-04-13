@@ -253,4 +253,10 @@ public class UserMypageDaoImpl implements UserMypageDao {
 		String statement = namespace + ".do_select_propho";
 		return sqlSession.selectOne(statement, PRO_SEQ);
 	}
+
+	@Override
+	public UserMypageDto do_search_buylist_photo(int PRO_SEQ) {
+		String statement = namespace + ".do_search_buylist_photo";
+		return sqlSession.selectOne(statement, PRO_SEQ);
+	}
 }
