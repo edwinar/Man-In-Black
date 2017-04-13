@@ -12,17 +12,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../../css/Mib.css">
+
 </head>
 <body>
+	<h1><p align="center" style="margin-bottom: 50px;"><%=list.get(0).getUSER_ID() %> 님의   구매목록 상세 입니다. </p></h1>
 	<table class="table">
 					<col width="5%">
 					<col width="8%">
-					<col width="20%">
+					<col width="10%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
 					<col width="10%">
 					<col width="15%">
+					<tr>
+					<th style="border: 0;"></th>
+					<th style="border: 0;"></th>
+					<th style="border: 0;"></th>
+				<th colspan="1" style="text-align: center;">쿠폰사용</th>
+				<th colspan="1" style="text-align: center;">포인트사용</th>
+				<th></th>
+				<th colspan="1" style="text-align: center;">결제금액</th>
+				</tr>
+				<tr>
+				<th style="border: 0;"></th>
+				<th style="border: 0;"></th>
+				<th style="border: 0;"></th>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getPOINT() %></td>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getCOUPON() %></td>
+				<td></td>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getFINAL_PRICE() %></td>
+				</tr>
 					<tr>
 						<th>상품</th>
 						<th>분류</th>
@@ -30,6 +52,7 @@
 						<th>구매사이즈</th>
 						<th>구매색상</th>
 						<th>상품구매수량</th>
+						<th>상품가격</th>
 						<th>남은재고</th>
 						<th>구매자</th>
 					</tr>
@@ -58,6 +81,7 @@
 						<td><%=list.get(i).getSEL_SIZE() %></td>
 						<td><%=list.get(i).getSEL_COLOR() %></td>
 						<td><%=list.get(i).getSEL_NUM() %></td>
+						<td><%=list.get(i).getPRO_PRICE() %></td>
 						<td><%=list.get(i).getSTOCK() %></td>
 						<td><%=list.get(i).getUSER_ID() %></td>
 					</tr>
@@ -66,5 +90,6 @@
 				%>	
 				
 				</table>
+				
 </body>
 </html>

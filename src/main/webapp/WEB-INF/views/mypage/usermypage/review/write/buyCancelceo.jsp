@@ -12,9 +12,10 @@
 <%@ page import="java.util.List" %>
 
 <%
-    UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
+    //UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
 	String rootPath = request.getContextPath();
 	CeoMypageDto dto = (CeoMypageDto)request.getAttribute("dto");
+	List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../../../css/Mib.css">
@@ -32,70 +33,72 @@
     <div id="total" style="margin-top: 10px" align="center">
         <div id="table" style="width: 90%">
             <table class="table">
-                <col width="9%">
-                <col width="7%">
-                <col width="23%">
-                <col width="6%">
-                <col width="6%">
-                <col width="7%">
-                <col width="7%">
-                <col width="7%">
-                <col width="9%">
-                <col width="12%">
-                <col width="7%">
-                <tr height="40px">
-                    <th class="boardone">이미지</th>
-                    <th class="boardone">분류</th>
-                    <th>상품이름</th>
-                    <th class="boardone">수량</th>
-                    <th class="boardtwo">판매가</th>
-                    <th class="boardtwo">쿠폰</th>
-                    <th class="boardtwo">적립금</th>
-                    <th>결제금액</th>
-                    <th class="#boardthree">판매일</th>
-                    <th>상태</th>
-                </tr>
+					<col width="5%">
+					<col width="8%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<tr>
+					<th style="border: 0;"></th>
+					<th style="border: 0;"></th>
+					<th style="border: 0;"></th>
+				<th colspan="1" style="text-align: center;">쿠폰사용</th>
+				<th colspan="1" style="text-align: center;">포인트사용</th>
+				<th></th>
+				<th colspan="1" style="text-align: center;">결제금액</th>
+				</tr>
+				<tr>
+				<th style="border: 0;"></th>
+				<th style="border: 0;"></th>
+				<th style="border: 0;"></th>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getPOINT() %></td>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getCOUPON() %></td>
+				<td></td>
+				<td colspan="1" style="text-align: center;"><%=list.get(0).getFINAL_PRICE() %></td>
+				</tr>
+					<tr>
+						<th>상품</th>
+						<th>상품이름</th>
+						<th>구매사이즈</th>
+						<th>구매색상</th>
+						<th>상품구매수량</th>
+						<th>상품가격</th>
+					</tr>
 
-
-                <tr height="30px">
-                    <td class="boardone" rowspan="2"><img alt="not found"
-                                                          src="..<%=rootPath %>/images/<%=cancelList.getSTORED_NAME() %>" style="width: 100px; height: 100px">
-                    </td>
-                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSUB_ITEM()%>
-                    </td>
-                    <td><%=cancelList.getPRO_NAME()%>
-                    </td>
-                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSEL_NUM()%>
-                    </td>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPRO_PRICE()%>
-                    </th>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getCOUPON()%>
-                    </th>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPOINT()%>
-                    </th>
-                    <td rowspan="2" valign="middle"><%=cancelList.getFINAL_PRICE()%>
-                    </td>
-                    <th class="#boardthree" rowspan="2" valign="middle"><%=cancelList.getSEL_TIME()%>
-                    </th>
-                    <td rowspan="2" valign="middle"><%=cancelList.getDEL_STEP()%>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td><%=cancelList.getSEL_SIZE()%> : <%=cancelList.getSEL_COLOR()%>
-                    </td>
-                </tr>
-                <tfoot>
-                <tr>
-                    <td colspan="20">
-
-                    </td>
-                </tr>
-                </tfoot>
-
-
-            </table>
-
+				<%
+				
+				if(list==null || list.size()==0){%>
+				<tr>
+					<td colspan="999999">내역이 없습니다.</td>
+				</tr>
+				</table>
+				</form>
+				</div>
+				</div>
+				<%}else{
+				for(int i=0; i<list.size(); i++){ 
+					
+				%>
+					<tr>
+						<td><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
+							style="width: 100px; height: 100px"></td>
+						<td>
+						<%=list.get(i).getITEM() %> 
+						</td>
+						<td><%=list.get(i).getPRO_NAME() %></td>
+						<td><%=list.get(i).getSEL_SIZE() %></td>
+						<td><%=list.get(i).getSEL_COLOR() %></td>
+						<td><%=list.get(i).getSEL_NUM() %></td>
+						<td><%=list.get(i).getPRO_PRICE() %></td>
+						<td><%=list.get(i).getSTOCK() %></td>
+						<td><%=list.get(i).getUSER_ID() %></td>
+					</tr>
+				<%}
+				}
+				%>	
+				
+				</table>
         </div>
     </div>
     <select class='form-control' id="sel" onchange="selectForm(this.value);" style="width: 100px">

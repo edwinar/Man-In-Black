@@ -391,7 +391,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				<th><%=list.size() %></th>
 				<% int propricesum=0; int finalpricesum=0;
 				for(int i=0; i<list.size();i++){ 
-					propricesum += list.get(i).getPRO_PRICE(); 
+					propricesum += list.get(i).getFINAL_PRICE();
 					}%>
 				<td><%=propricesum %></td>
 				
@@ -408,13 +408,20 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				<table class="table">
 					<col width="5%">
 					<col width="20%">
-					<col width="30%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
 					<col width="10%">
 					<tr>
 						<th>상품</th>
 						<th>상품이름</th>
 						<th>구매자</th>
 						<th>수량</th>
+						<th>쿠폰사용</th>
+						<th>적립금사용</th>
 						<th>결제금액</th>
 						<th>판매일</th>
 						<th>상태</th>
@@ -434,19 +441,21 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				for(int i=0; i<list.size(); i++){ 
 					int conum = Integer.parseInt(prophomap.get("count"+i))-1;
 				%>
-					<tr>
-						<td><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i) %>"
+					<tr >
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i) %>"
 							style="width: 100px; height: 100px"></td>
-						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')">
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;">
 						<%=prophomap.get("PRO_NAME"+i) %> 
 						<%if(conum>0){ %>
 						 외 <br> <%=conum %>개
 						 <%} %>
 						</td>
-						<td><%=list.get(i).getUSER_ID() %></td>
-						<td><%=prophomap.get("count"+i) %></td>
-						<td><%=list.get(i).getFINAL_PRICE() %></td>
-						<td><%=list.get(i).getDEL_TIME() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getUSER_ID() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=prophomap.get("count"+i) %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getCOUPON() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getPOINT() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getFINAL_PRICE() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getDEL_TIME() %></td>
 						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
 						<%}else if(list.get(i).getDEL_STEP().equals("리뷰완료")){%>
@@ -458,7 +467,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						
 						<%}else{ %>
 						<td id="deltd<%=list.get(i).getDEL_SEQ()%>">
-						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>)" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
+						<button type="button" class="btn btn-default" onclick="delStep(<%=list.get(i).getDEL_SEQ() %>,'<%=list.get(i).getPRO_SEQ_st()%>')" id="dels<%=list.get(i).getDEL_SEQ()%>"><%=list.get(i).getDEL_STEP() %></button></td>
 						<%} %>
 					</tr>
 				<%}
@@ -520,10 +529,10 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
          window.open("ceoMypage_Maindetail.mib?del_seq="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
      }
 	
-	 function open_win(SEQ)
+	 function open_win(SEQ,st)
      {
          var DEL_SEQ = SEQ;
-
+         var pro_seq_st = st;
          cw=screen.availWidth;     //화면 넓이
          ch=screen.availHeight;    //화면 높이
 
@@ -534,7 +543,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
          mt=(ch-sh)/2;         
 
 
-         window.open("buyCancelceo.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+         window.open("buyCancelceo.mib?del_seq="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
      }
 	</script>
 

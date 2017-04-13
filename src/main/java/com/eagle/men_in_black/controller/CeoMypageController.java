@@ -193,7 +193,7 @@ public class CeoMypageController {
 	 /*글쓰기버튼 눌렀을 때*/
 	@RequestMapping(value="writeGood.mib" , method=RequestMethod.POST)
 	public ModelAndView writeGood(HttpServletRequest res) throws Exception{
-		ModelAndView mav = new ModelAndView("mypage/ceomypage/CeoMypage_Main");
+		ModelAndView mav = new ModelAndView();
 		
 		// product 부분 
 		String pro_detail=res.getParameter("editor")==null?"":res.getParameter("editor");
@@ -276,7 +276,7 @@ public class CeoMypageController {
 			System.out.println("파일이름"+list.get(i).get("STORED_FILE_NAME"));
 		}*/
 		
-		String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
+		/*String PAGE_NUM = (res.getParameter("PAGE_NUM")==null ||res.getParameter("PAGE_NUM")=="")?"1":res.getParameter("PAGE_NUM");
 		String PAGE_SIZE = (res.getParameter("PAGE_SIZE")==null ||res.getParameter("PAGE_SIZE")=="")?"10":res.getParameter("PAGE_SIZE");
 		String START_DATE = (res.getParameter("START_DATE")==null ||res.getParameter("START_DATE")=="")?"SYSDATE":res.getParameter("START_DATE");
 		String END_DATE = (res.getParameter("END_DATE")==null ||res.getParameter("END_DATE")=="")?"SYSDATE":res.getParameter("END_DATE");
@@ -287,7 +287,7 @@ public class CeoMypageController {
 		mapli.put("PAGE_NUM", PAGE_NUM);
 		mapli.put("START_DATE",START_DATE);
 		mapli.put("END_DATE",END_DATE);
-		mapli.put("search", search);
+		mapli.put("search", search);*/
 	
 		/*System.out.println("컨트롤러 ======== PAGE_NUM"+PAGE_NUM);
 		System.out.println("컨트롤러 ======== PAGE_SIZE"+PAGE_SIZE);
@@ -296,15 +296,15 @@ public class CeoMypageController {
 		System.out.println("컨트롤러 ======== search"+search);*/
 		
 		
-		List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(mapli);
+		/*List<CeoMypageDto> list = ceoMypageSvc.do_ceomypage_main(mapli);
 		
 		mav.addObject("list", list);
 		mav.addObject("PAGE_SIZE", PAGE_SIZE);
 		mav.addObject("PAGE_NUM", PAGE_NUM);
 		mav.addObject("START_DATE",START_DATE);
 		mav.addObject("END_DATE",END_DATE);
-		mav.addObject("search", search);
-		
+		mav.addObject("search", search);*/
+			mav.setViewName("redirect:ceoMypage_Main.mib");
 		
 			 return mav;
 		}
@@ -846,16 +846,26 @@ public class CeoMypageController {
 			// 구매목록 반품 교환 환불 목록
 			@RequestMapping("buyCancelceo.mib")
 			public ModelAndView buyCancelceo(HttpServletRequest res, HttpServletResponse rep) {
-				String DEL_SEQ = res.getParameter("DEL_SEQ");
+				String del_seq = res.getParameter("del_seq");
+				String pro_seq_st = res.getParameter("pro_seq_st");
+				String proarr[] = pro_seq_st.split(",");
 				
-				//UserMypageSvc userMypageSvc= new UserMypageSvcImpl();
+				System.out.println("음여기되니?"+del_seq);
+				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
+				System.out.println("음여기되니2222?"+dto);
+				List<CeoMypageDto> list = new ArrayList<>();
 				
-				UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
-				//System.out.println(cancelList.getBAS_PRO_NUM()+"이거널인가요??");
-				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(DEL_SEQ));
-
+				for(int i=0; i<proarr.length;i++){
+				HashMap<String, Object> map = new HashMap<>();
+				map.put("PRO_SEQ", Integer.parseInt(proarr[i]));
+				map.put("DEL_SEQ", Integer.parseInt(del_seq));
+				
+				list.add(ceoMypageSvc.do_select_maindetail(map));
+				}
+				
 				ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancelceo");
-				mav.addObject("cancelList", cancelList);
+				mav.addObject("list", list);
+				
 				mav.addObject("dto",dto);
 
 				return mav;
