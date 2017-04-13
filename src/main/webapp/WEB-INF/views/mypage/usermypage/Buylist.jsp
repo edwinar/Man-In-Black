@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@page import="java.util.List"%>
@@ -190,11 +191,11 @@ margin-top: 30px;
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSUB_ITEM()%></td>
 					<td><a href="detail.mib?PRO_SEQ=<%=buyList.get(i).getPRO_SEQ()%>"><%=buyList.get(i).getPRO_NAME()%></a></td>
 					<td class="boardone" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_NUM()%></td>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPRO_PRICE()%></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getCOUPON()%></th>
-					<th class="boardtwo" rowspan="2" valign="middle"><%=buyList.get(i).getPOINT()%></th>
-					<td rowspan="2" valign="middle"><%=buyList.get(i).getFINAL_PRICE()%></td>
-					<th class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></th>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getPRO_PRICE())%></td>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo" rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td rowspan="2" valign="middle"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree" rowspan="2" valign="middle"><%=buyList.get(i).getSEL_TIME()%></td>
 					<%
 						if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
 					%>

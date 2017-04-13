@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,7 +100,7 @@ width: 100%; height: 180px;
 			<img src="..<%=rootPath %>/images/<%=goodslist.get(i).getSTORED_NAME() %>" alt="<%=goodslist.get(i).getSTORED_NAME()%>">
 			<div class="caption" style="width: 100%;">
 					<h5><%=goodslist.get(i).getPRO_NAME()%></h5>
-					<p><%=goodslist.get(i).getPRO_PRICE()%></p>
+					<p><%=StringUtil.NumFomat(goodslist.get(i).getPRO_PRICE())%></p>
 				</div>
 			</div>
 			
