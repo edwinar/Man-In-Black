@@ -98,6 +98,7 @@ td, th {
 					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 				}
 				if(finalPrice<50000){
+					deliveryFee = 2500;
 					finalPrice = finalPrice + 2500;
 				}
 				%>
@@ -297,17 +298,9 @@ td, th {
 		<tr>
 			<td>총 결제 금액</td>
 			<td id="final">
-			<%
-				if(deliveryFee==2500){
-			%>
-			<%=finalPrice + deliveryFee%>
-			<%
-				}else{
-			%>
+			
 			<%=finalPrice%>
-			<%
-				}
-			%>
+			
 			</td>
 			<td>Won</td>
 		</tr>
@@ -376,20 +369,36 @@ var midPrice;
 		var finalpri = $('#final').text();
 		
 		if(finalpri==0){
-			alert("결제하실 금액이 0원입니다.")
-			$("#couponChoice").val("0");
-			return;
+			var fafapri = $('#ffip').val();
+			if(Number(pointsValue)>0){
+				alert("결제하실 금액이 0원입니다.");
+				$("#couponChoice").val("0");
+				$("#copricetd").text('');
+				$("#couusepri").text('0');
+				$("#COUPON").val('0');
+				$("#COUP_SEQ").val('0');
+				$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+				$('#final').text(Number(fafapri)-Number(pointsValue));
+				return;
+			}else{
+				alert("쿠폰사용을 초기화 합니다");
+				$("#couponChoice").val("0");
+				$("#copricetd").text('');
+				$("#couusepri").text('0');
+				$("#COUPON").val('0');
+				$("#COUP_SEQ").val('0');
+				$("#FINAL_PRICE").val(fafapri);
+				$('#final').text(Number(fafapri));
+				return;
+			}
+			
+			
+			
+			
 		}else{
 			couppri = array[0];
 			var fafapri = $('#ffip').val();
-			if(Number(fafapri) > 50000){
-				//택배비 없는거고
-				
-			}else{ //택배비있는거
-				fafapri = Number(fafapri)+2500;
-				//alert("파파프리 "+fafapri);
-			}
-			
+						
 		$("#copricetd").text('쿠폰가격은 '+array[0]+'입니다.');
 		$("#couusepri").text(array[0]);
 			
@@ -426,13 +435,7 @@ var midPrice;
 			}else{
 				var fafapri = $('#ffip').val();
 				
-				if(Number(fafapri) > 50000){
-					//택배비 없는거고
-					
-				}else{ //택배비있는거
-					fafapri = Number(fafapri)+2500;
-					//alert("파파프리 "+fafapri);
-				}
+				
 				//alert("파파프리 "+fafapri);
 				//alert("pointsValue "+pointsValue);
 				if(Number(pointsValue)>Number(fafapri)){
@@ -475,7 +478,7 @@ var midPrice;
 function onlyNumber(){
     if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;
 }
-function deliveryFeeChange(){
+/* function deliveryFeeChange(){
 	var value=$('#final').text();
 	if(value<50000){
 		$('#deliveryFee').text("2500");
@@ -494,7 +497,7 @@ function deliveryFeeChange(){
 	var array = couponTwo.split(",");
 	$("#COUPON").val(array[0]);
 	$("#COUP_SEQ").val(array[1]);
-}
+} */
 </script>
 </body>
 </html>
