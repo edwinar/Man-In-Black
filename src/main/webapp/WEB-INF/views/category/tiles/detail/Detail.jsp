@@ -457,7 +457,7 @@ function QnAPage(page){
 	});
 }
 function popup(REV_SEQ){
-	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+	window.open("review.mib?REV_SEQ="+REV_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=100 screenY=100 scrollbars=no");
 }
 function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
 	if(QNA_OPEN==0){ //비공개일때
@@ -465,20 +465,20 @@ function QnADetail(QNA_SEQ,USER_ID,QNA_OPEN){
 			alert("비공개글입니다."); 
 			return;
 		}else if(USER_ID==$("#userIdlog").val() || $("#userIdlog").val()=='adm'){
-			window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+			window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=100 screenY=100 scrollbars=no");	
 			return;
 		}
 		alert("비공개글입니다."); 
 		return;
 	}else{ // 공개일때 
-		window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+		window.open("qnadetail.mib?QNA_SEQ="+QNA_SEQ,"pop","width=820 height=420 resizable=no location=no screenX=100 screenY=100 scrollbars=no");	
 	} 
 }
 function QnAWrite(){
-	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
+	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=100 screenY=100 scrollbars=no");	
 }
 function BuyPop(){
-	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
+	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=310 screenY=100 scrollbars=no");
 }
 function QnAWrite2(){
 	alert("로그인을 하셔야합니다!");

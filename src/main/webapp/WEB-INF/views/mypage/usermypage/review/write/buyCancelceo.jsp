@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
 <%@ page import="java.util.List" %>
@@ -13,6 +14,7 @@
 <%
     UserMypageDto cancelList = (UserMypageDto) request.getAttribute("cancelList");
 	String rootPath = request.getContextPath();
+	CeoMypageDto dto = (CeoMypageDto)request.getAttribute("dto");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../../../css/Mib.css">
@@ -21,7 +23,9 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-<h1 align="center">상품 교환&환불</h1>
+
+<h1 align="center"><%=dto.getRETURN() %></h1>
+
 
 <form>
 
@@ -94,22 +98,26 @@
 
         </div>
     </div>
-    <%if (cancelList.getDEL_STEP().equals("상품준비")) { %>
-        
-        <%} else {%>
     <select class='form-control' id="sel" onchange="selectForm(this.value);" style="width: 100px">
-        
-        <option value="반품">반품</option>
-        <option value="교환">교환</option>
        
+       
+        <option value="<%=dto.getRETURN()%>" selected="selected"><%=dto.getRETURN()%></option>
+       
+        
     </select>
-     <%
-            }
-        %>
     <br>
 
     <div id="inputBox" align="center">
+    <%if(dto.getRETURN().equals("교환")){ %>
+	<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' id ='RE_OPTION'  name='RE_OPTION' rows='10'><%=dto.getRE_OPTION() %> </textarea></div>
+    <div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' value='' name='RE_REASON'  id ='RE_REASON' rows='10'><%=dto.getRE_REASON() %></textarea></div>
+	<%}else if(dto.getRETURN().equals("반품")){ %>
+	
+     			<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' value='' rows='10' style='resize: none; wrap:hard;'><%=dto.getRE_REASON() %></textarea> 
+                <label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' value="<%=dto.getCA_ACCOUNT()%>"></label></div>
 
+	
+	<%}%>
 
     </div>
 <center>
@@ -124,91 +132,10 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-        selectForm($("#sel option:first").val());
-    });
-
-
-    function selectForm(commend) {
-        var strInput = "";
-        inputBox.innerHTML = "";
-
-        if (commend == '교환') {
-            strInput = "<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' id ='RE_OPTION'  name='RE_OPTION' rows='10'> </textarea></div>" +
-                "<div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' value='' name='RE_REASON'  id ='RE_REASON' rows='10'></textarea></div>";
-
-        } else if (commend == '반품') {
-            strInput = "<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' value='' rows='10' style='resize: none; wrap:hard;'></textarea> " +
-                "<label>은행<select name='bank' id='bank' class='form-control' onclick='errorre()''>" +
-                "<option value='' onclick='errorre()'>-선택-</option>" +
-                "<option value='SC제일은행'>SC제일은행</option>" +
-                "<option value='경남은행'>경남은행</option>" +
-                "<option value='광주은행'>광주은행</option>" +
-                "<option value='국민은행'>국민은행</option>" +
-                "<option value='기업은행'>기업은행</option>" +
-                "<option value='농협중앙회'>농협중앙회</option>" +
-                "<option value='농협회원조합'>농협회원조합</option>" +
-                "<option value='산업은행'>산업은행</option>" +
-                "<option value='신한은행'>신한은행</option>" +
-                "<option value='외환은행'>외환은행</option>" +
-                "<option value='우리은행'>우리은행</option>" +
-                "<option value='우리투자증권'>우리투자증권</option>" +
-                "<option value='우체국'>우체국</option>" +
-                "</select></label>" +
-                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onclick='error()'></label></label></div>";
-
-
-        } 
-        document.getElementsByName('commend').value = commend;
-        inputBox.innerHTML = strInput;
-    }
-
-    
-    
-    function error() {
-		var bank = $("#bank").find(":selected").val();
-		if (bank == '' || bank == null) {
-			alert("환불받을 은행을 선택해주세요 ");
-			return;
-			};
-		};
-		
-
-    function closeSelf() {
-        var formData = new FormData();
-        var commend = document.getElementsByName('commend').value;
-        var RE_REASON = $("#RE_REASON").val();
-
-
-		
-		
-		if($("#RE_REASON").val() == '' || $("#RE_REASON").val() == null) {
-			alert("사유를 작성해주세요 ");
-			return;
-			
-		}else if($("#CA_ACCOUNT").val() == '' || $("#CA_ACCOUNT").val() == null) {
-			alert("환불계좌를 입력하여주세요 ");
-			return;
-		}else{
-			
-			
-        if ('교환' == commend) {
-            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
-            formData.append("RE_OPTION", $("textarea[name=RE_OPTION]").val());
-
-
-        } else if ('반품' == commend) {
-            formData.append("RE_REASON", $("textarea[name=RE_REASON]").val());
-            formData.append("CA_ACCOUNT", $("select[name=bank]").val() + " " + $("input[name=CA_ACCOUNT]").val());
-
-        } 
-        formData.append("DEL_SEQ", $("input[name=DEL_SEQ]").val());
-        formData.append("commend", document.getElementsByName('commend').value);
-
-
+    	
         $.ajax({
             type: "POST",
-            url: "cancel.mib",
+            url: "cancelceo.mib",
             async: true,
             data: formData,
             dataType: "html",

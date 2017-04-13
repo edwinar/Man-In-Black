@@ -166,6 +166,12 @@ public class CeoMypageSvcImpl implements CeoMypageSvc {
 		return ceoMypageDao.do_update_admre(dto);
 	}
 
+	@Override
+	public CeoMypageDto do_select_cancle(int DEL_SEQ) {
+		// TODO Auto-generated method stub
+		return ceoMypageDao.do_select_cancle(DEL_SEQ);
+	}
+
 	
 	
 

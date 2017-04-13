@@ -54,10 +54,55 @@ private String START_DATE;
 private String END_DATE;
 private String SEARCH;
 private int propricesum;
-private String PAGE_NUM;
+private String PAGE_NUM;           
+private String RETURN              ;
+private String RE_OPTION           ;
+private String RE_REASON           ;
+private String CA_ACCOUNT          ;
+private String DEL_DETAIL_ADDRESS  ;
 
 
 
+
+public String getRETURN() {
+	return RETURN;
+}
+
+public void setRETURN(String rETURN) {
+	RETURN = rETURN;
+}
+
+public String getRE_OPTION() {
+	return RE_OPTION;
+}
+
+public void setRE_OPTION(String rE_OPTION) {
+	RE_OPTION = rE_OPTION;
+}
+
+public String getRE_REASON() {
+	return RE_REASON;
+}
+
+public void setRE_REASON(String rE_REASON) {
+	RE_REASON = rE_REASON;
+}
+
+public String getCA_ACCOUNT() {
+	return CA_ACCOUNT;
+}
+
+public void setCA_ACCOUNT(String cA_ACCOUNT) {
+	CA_ACCOUNT = cA_ACCOUNT;
+}
+
+public String getDEL_DETAIL_ADDRESS() {
+	return DEL_DETAIL_ADDRESS;
+}
+
+public void setDEL_DETAIL_ADDRESS(String dEL_DETAIL_ADDRESS) {
+	DEL_DETAIL_ADDRESS = dEL_DETAIL_ADDRESS;
+}
 
 public String getPAGE_NUM() {
 	return PAGE_NUM;
