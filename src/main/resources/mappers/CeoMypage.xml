@@ -272,4 +272,14 @@ SET  REV_TITLE   = #{REV_TITLE},
 WHERE REV_SEQ   = #{REV_SEQ}
 </update>
 
+<select id="do_select_cancle" parameterType="int" resultType="com.eagle.men_in_black.model.CeoMypageDto">
+SELECT RETURN,
+RE_OPTION,
+RE_REASON,
+CA_ACCOUNT,
+DEL_DETAIL_ADDRESS 
+FROM DELIVERY
+where DEL_SEQ=#{DEL_SEQ}
+</select>
+
 </mapper>

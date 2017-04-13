@@ -38,4 +38,6 @@ public interface CeoMypageDao {
 	public int do_insert_banpt(HashMap<String, String> map);
 	
 	public int do_update_admre(CeoMypageDto dto);
+	
+	public CeoMypageDto do_select_cancle(int DEL_SEQ);
 }

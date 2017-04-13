@@ -125,4 +125,10 @@ public class CeoMypageDaoImpl implements CeoMypageDao {
 		return sqlSession.update(statement, dto);
 	}
 
+	@Override
+	public CeoMypageDto do_select_cancle(int DEL_SEQ) {
+		String statement = namespace+".do_select_cancle";
+		return sqlSession.selectOne(statement, DEL_SEQ);
+	}
+
 }

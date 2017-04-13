@@ -547,7 +547,9 @@ public class UserMypageController {
 			RE_OPTION = res.getParameter("RE_OPTION");
 			RE_REASON = res.getParameter("RE_REASON");
 
-		} 
+		}else{
+			
+		}
 
 		update.put("RETURN", commend);
 		update.put("RE_OPTION", RE_OPTION);

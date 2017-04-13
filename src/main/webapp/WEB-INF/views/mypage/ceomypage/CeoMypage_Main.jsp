@@ -515,7 +515,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
          mt=(ch-sh)/2;         
 
 
-         window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+         window.open("buyCancelceo.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
      }
 	</script>
 

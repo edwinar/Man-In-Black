@@ -34,14 +34,19 @@ import com.eagle.men_in_black.excel.ExcelWriter;
 import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
+import com.eagle.men_in_black.model.UserMypageDto;
 import com.eagle.men_in_black.service.CeoMypageSvc;
+import com.eagle.men_in_black.service.UserMypageSvc;
+import com.eagle.men_in_black.service.UserMypageSvcImpl;
 import com.google.gson.Gson;
 
 
 @Controller
 public class CeoMypageController {
 	//Logger loger = LoggerFactory.getLogger(this.getClass());
-
+	@Autowired
+	private UserMypageSvc userMypageSvc;
+	
 	@Autowired
 	private CeoMypageSvc ceoMypageSvc;
 	
@@ -784,7 +789,7 @@ public class CeoMypageController {
 				String REV_CONTENT = (res.getParameter("REV_CONTENT")==null || res.getParameter("REV_CONTENT")=="")?"":res.getParameter("REV_CONTENT");
 				int REV_SEQ = Integer.parseInt((res.getParameter("REV_SEQ")==null || res.getParameter("REV_SEQ")=="")?"":res.getParameter("REV_SEQ"));
 				
-				System.out.println("넘어오니?"+REV_TITLE);
+				//System.out.println("넘어오니?"+REV_TITLE);
 				
 				// 이걸로먼저 review table에 인설트
 				
@@ -802,6 +807,26 @@ public class CeoMypageController {
 				
 				return gson.toJson(step);
 			}
+			
+			// 구매목록 반품 교환 환불 목록
+			@RequestMapping("buyCancelceo.mib")
+			public ModelAndView buyCancelceo(HttpServletRequest res, HttpServletResponse rep) {
+				String DEL_SEQ = res.getParameter("DEL_SEQ");
+				
+				//UserMypageSvc userMypageSvc= new UserMypageSvcImpl();
+				
+				UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
+				//System.out.println(cancelList.getBAS_PRO_NUM()+"이거널인가요??");
+				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(DEL_SEQ));
+
+				ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancelceo");
+				mav.addObject("cancelList", cancelList);
+				mav.addObject("dto",dto);
+
+				return mav;
+			}
+			
+			
 			
 			//엑셀 다운 
 			@RequestMapping(value="exexldown.mib", method=RequestMethod.POST,produces = "application/json; charset=utf8")
