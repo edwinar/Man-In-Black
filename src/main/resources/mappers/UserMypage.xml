@@ -178,7 +178,7 @@ FROM (
            WHERE A.USER_ID = #{id} AND C.STORED_NAME LIKE '%MAIN%'
            AND A.SEL_TIME BETWEEN TO_DATE(${START_DATE}) 
              AND TO_DATE(${END_DATE})
-              ORDER BY SEL_TIME DESC
+              ORDER BY DEL_SEQ DESC
            ) T1
           NATURAL JOIN
           (
@@ -522,7 +522,7 @@ VALUES
               WHERE PRO_SEQ= #{PRO_SEQ}
              )
              ) ,
-             'MINUS' ,
+             'PLUS' ,
              #{USER_ID} ,
              #{PRO_SEQ}
    )
