@@ -13,6 +13,7 @@
 	int finalPrice = 0;
 	int deliveryFee = 0;
 	int finalFee = 0;
+	int dudfinal = 0;
 %>
 <html>
 <head>
@@ -96,6 +97,7 @@ td, th {
 				</tr>
 				<%
 					finalPrice = finalPrice + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
+					dudfinal  = dudfinal + (basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE());
 				}
 				if(finalPrice<50000){
 					deliveryFee = 2500;
@@ -282,7 +284,7 @@ td, th {
 		</tr>
 		<tr>
 		<td>상품 총 금액</td>
-		<td><%=finalPrice %></td>
+		<td><%=dudfinal %></td>
 		<td>Won</td>
 		</tr>
 		<tr>
