@@ -437,7 +437,7 @@ INTO REVIEW
     REV_SEQ,
     REV_TITLE,
     REV_CONTENT,
-    REV_TIME,S
+    REV_TIME,
     SCORE,
     REV_REF,
     USER_ID,
