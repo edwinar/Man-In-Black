@@ -11,7 +11,9 @@
 	String START_DATE = (request.getParameter("START_DATE")==null||request.getParameter("START_DATE")=="")?"":request.getParameter("START_DATE");
 	String END_DATE = (request.getParameter("END_DATE")==null || request.getParameter("END_DATE")=="")?"":request.getParameter("END_DATE");
 	String search = (request.getParameter("search")==null || request.getParameter("search")=="")?"":request.getParameter("search");
-	
+	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
+	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
+
 	System.out.println("시작 데이트 = " +START_DATE);
 	System.out.println("끝 search  = " +search);
 	
@@ -295,8 +297,8 @@ $(document).ready(function() {
 		var searchexel = $("#searchexel").val();
 		
 		$.ajax({
-			type : "POST",
-			url : "exexldown.mib",
+			type : "GET",
+			url : "excel.mib",
 			async : true,
 			dataType : "html",
 			data : {
@@ -306,7 +308,7 @@ $(document).ready(function() {
 				"searchexel" : searchexel
 			},
 			success : function(data) {
-				alert(data);
+				
 				 
 			},
 			complete : function(data) {
@@ -362,7 +364,8 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 	<input type="hidden" id="searchexel" value="<%=search%>">
 	
 	<div align="right">
-	<input type="button" class="btn btn-default" id="exexldown" value="Excel다운" style= "font-weight:bold">
+	<a href="excel.mib?START_DATE=<%=START_DATE%>&END_DATE=<%=END_DATE%>&search=<%=search%>&PAGE_NUM=<%=PAGE_NUM%>" role="button" class="btn btn-default" >엑셀다운</a>
+	<!-- <input type="button" class="btn btn-default" id="exexldown" value="Excel다운" style= "font-weight:bold"> -->
 	<!-- <a  class="btn btn-success" href="exceldown.mib" role="button">엑셀 다운로드<span class="glyphicon glyphicon-download-alt"
 				aria-hidden="true"></span></a> -->
 	</div>
@@ -484,9 +487,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 </div>
 <%  
 				// 페이징 및 날짜 선택 
-	String PAGE_NUM = (request.getParameter("PAGE_NUM")==null || request.getParameter("PAGE_NUM")=="")?"1":request.getParameter("PAGE_NUM");
-	String PAGE_SIZE = (request.getParameter("PAGE_SIZE")==null || request.getParameter("PAGE_SIZE")=="")?"10":request.getParameter("PAGE_SIZE");
-
+	
 	
 	int page_num = Integer.parseInt(PAGE_NUM);
 	int page_size = Integer.parseInt(PAGE_SIZE);
