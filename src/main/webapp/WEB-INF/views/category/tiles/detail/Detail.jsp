@@ -360,7 +360,7 @@ function reviewPage(page){
 					+"<a href='javascript:popup("+flag[i].REV_SEQ+")'><br><br><h4>"+flag[i].REV_TITLE+"</h4></a></td>"
 					+"<td class='actions' width='20%'>작성자 : "+flag[i].USER_ID+"<br>작성일 : "+flag[i].REV_TIME+"</td></tr>";
 				}else{
-					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='"+flag[i].STORED_NAME+"' class='imgr' width='200px'></td>"
+					strInput = strInput + "<tr><td class='organisationnumber' width='20%'><img alt='' src='.."+rootpath+"/images/"+flag[i].STORED_NAME+"' class='imgr' width='200px'></td>"
 					+"<td class='organisationname' width='60%'><a href='javascript:popup("+flag[i].REV_SEQ+")'>";
 		       		if(flag[i].SCORE==1){
 		       			strInput = strInput + "<img alt='...' src='.."+rootpath+"/images/scoreFull.png'>"
