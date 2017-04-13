@@ -10,7 +10,7 @@
 <%
 	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	UserMypageDto qnaDto = (UserMypageDto) request.getAttribute("qnaDto");
-	SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	Date date = new Date(); // 현재 날짜 생성
 	String today = df.format(date);
 %>
