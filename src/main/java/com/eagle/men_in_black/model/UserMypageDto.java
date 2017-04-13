@@ -30,6 +30,7 @@ public class UserMypageDto implements Serializable {
     private	int	PRO_PRICE;
     private	int	PRO_SEQ;
     private	String	PRO_SIZE;
+    private	String	PRO_SEQ_st;
     private	String	QNA_OPEN;
     private	int	QNA_SEQ;
     private	String	QNA_STEP;
@@ -88,7 +89,15 @@ public class UserMypageDto implements Serializable {
     
     
     
-    public int getCONDITION() {
+    public String getPRO_SEQ_st() {
+		return PRO_SEQ_st;
+	}
+
+	public void setPRO_SEQ_st(String pRO_SEQ_st) {
+		PRO_SEQ_st = pRO_SEQ_st;
+	}
+
+	public int getCONDITION() {
 		return CONDITION;
 	}
 

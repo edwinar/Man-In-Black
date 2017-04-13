@@ -116,8 +116,8 @@ public class DetailSvcImpl implements DetailSvc {
 	}
 
 	@Override
-	public int do_selectBuyDEL_SEQ(int PRO_SEQ) {
-		return detailDao.do_selectBuyDEL_SEQ(PRO_SEQ);
+	public int do_selectBuyDEL_SEQ() {
+		return detailDao.do_selectBuyDEL_SEQ();
 	}
 
 	@Override

@@ -286,33 +286,52 @@ public class DetailController {
 		int COUP_SEQ = Integer.parseInt((res.getParameter("COUP_SEQ")==null||res.getParameter("COUP_SEQ").equals("undefined")||res.getParameter("COUP_SEQ").equals("") )?"0":res.getParameter("COUP_SEQ"));
 		List<Integer> BAS_SEQList = new ArrayList<>();
 		List<DetailDto> basketInfoList = new ArrayList<>();
+		
+		String pro_seq_group = "";
 		for(int i=0;i<basketListSize;i++){
 			BAS_SEQList.add(Integer.parseInt(res.getParameter("BAS_SEQ"+i)));
 			basketInfoList.add(detailSvc.do_selectBasketInfo(BAS_SEQList.get(i)));
 			
-			HashMap<String, Object> deliveryMap = new HashMap<>();
+			if(i==(basketListSize-1)){
+				pro_seq_group += basketInfoList.get(i).getPRO_SEQ();
+			}else{
+				pro_seq_group += basketInfoList.get(i).getPRO_SEQ()+",";
+			}
+		}
+		//System.out.println("pro_seq_group=="+pro_seq_group);
+		
+		// 딜리버리 테이블 인설트
+		HashMap<String, Object> deliveryMap = new HashMap<>();
+		
+		deliveryMap.put("DEL_PRICE", DEL_PRICE);
+		deliveryMap.put("DEL_ADDRESS", DEL_ADDRESS);
+		deliveryMap.put("DEL_POSTCODE", DEL_POSTCODE);
+		deliveryMap.put("REC_NAME", REC_NAME);
+		deliveryMap.put("REC_TEL", REC_TEL);
+		deliveryMap.put("DEL_DETAIL_ADDRESS", DEL_DETAIL_ADDRESS);
+		deliveryMap.put("USER_ID", userdto.getUSER_ID());
+		deliveryMap.put("PRO_SEQ", pro_seq_group);
+		deliveryMap.put("COUPON", COUPON);
+		deliveryMap.put("POINT", POINT);
+		deliveryMap.put("COUP_SEQ", COUP_SEQ);
+		deliveryMap.put("FINAL_PRICE", FINAL_PRICE);
+		
+		int deliveryFlag = detailSvc.do_insertBuyDel(deliveryMap);
+		
+		int DEL_SEQ = detailSvc.do_selectBuyDEL_SEQ();
+		
+		for(int i=0;i<basketListSize;i++){
+			BAS_SEQList.add(Integer.parseInt(res.getParameter("BAS_SEQ"+i)));
+			basketInfoList.add(detailSvc.do_selectBasketInfo(BAS_SEQList.get(i)));
+			
 			HashMap<String, Object> salesMap = new HashMap<>();
 			
-			deliveryMap.put("DEL_PRICE", DEL_PRICE);
-			deliveryMap.put("DEL_ADDRESS", DEL_ADDRESS);
-			deliveryMap.put("DEL_POSTCODE", DEL_POSTCODE);
-			deliveryMap.put("REC_NAME", REC_NAME);
-			deliveryMap.put("REC_TEL", REC_TEL);
-			deliveryMap.put("DEL_DETAIL_ADDRESS", DEL_DETAIL_ADDRESS);
-			deliveryMap.put("USER_ID", userdto.getUSER_ID());
-			deliveryMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
-			deliveryMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
-			int deliveryFlag = detailSvc.do_insertBuyDel(deliveryMap);
 			
-			int DEL_SEQ = detailSvc.do_selectBuyDEL_SEQ(basketInfoList.get(i).getPRO_SEQ());
 			salesMap.put("PRO_SEQ", basketInfoList.get(i).getPRO_SEQ());
 			salesMap.put("USER_ID", userdto.getUSER_ID());
 			salesMap.put("DEL_SEQ", DEL_SEQ);
 			salesMap.put("SEL_SIZE", basketInfoList.get(i).getPRO_SIZE());
 			salesMap.put("SEL_COLOR", basketInfoList.get(i).getCOLOR());
-			salesMap.put("COUPON", COUPON);
-			salesMap.put("POINT", POINT);
-			salesMap.put("FINAL_PRICE", FINAL_PRICE);
 			salesMap.put("SEL_NUM", basketInfoList.get(i).getBAS_PRO_NUM());
 			int salesFlag = detailSvc.do_insertBuySales(salesMap);
 			
@@ -334,17 +353,32 @@ public class DetailController {
 		
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
 		List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
-		List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
+		//List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
 		List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
 		List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
 		List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
 		mav.addObject("point",mypageDto);
 		mav.addObject("coupon",coupon);
-		mav.addObject("buy",buy);
+		
 		mav.addObject("qna",qna);
 		mav.addObject("basket",basket);
 		mav.addObject("point5",point5);
+		// 구매내역 5개 뽑기 
+				List<UserMypageDto> buy = userMypageSvc.do_select_deldel(userdto.getUSER_ID());
+				HashMap<String, String> prophomap = new HashMap<>();
+				for(int i=0; i<buy.size();i++){
+					String proseq = buy.get(i).getPRO_SEQ_st();
+					String proarr[] = proseq.split(",");
+					
+					UserMypageDto ddto = userMypageSvc.do_select_propho(Integer.parseInt(proarr[0])); 
+					prophomap.put("PRO_NAME"+i, ddto.getPRO_NAME());
+					prophomap.put("STOREDNAME"+i, ddto.getSTORED_NAME());
+					prophomap.put("count"+i, proarr.length+"");
+					// 0번째가 list에서 첫번째 
+				}
+		mav.addObject("buy",buy);
+		mav.addObject("prophomap",prophomap);
 		return mav;
 	}
 }

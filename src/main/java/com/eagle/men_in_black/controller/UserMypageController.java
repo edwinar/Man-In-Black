@@ -51,14 +51,32 @@ public class UserMypageController {
 		MainDto userdto = (MainDto) res.getSession().getAttribute("LoginInfo");
 		UserMypageDto mypageDto = userMypageSvc.do_search_point(userdto.getUSER_ID());
 		List<UserMypageDto> coupon = userMypageSvc.do_search_coupon(userdto.getUSER_ID());
-		List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());
+		/*List<UserMypageDto> buy = userMypageSvc.do_search_buy(userdto.getUSER_ID());*/
 		List<UserMypageDto> qna = userMypageSvc.do_search_qna(userdto.getUSER_ID());
 		List<UserMypageDto> basket = userMypageSvc.do_search_basket(userdto.getUSER_ID());
 		List<UserMypageDto> point5 = userMypageSvc.do_search_point5(userdto.getUSER_ID());
 		ModelAndView mav = new ModelAndView("mypage/usermypage/MypageMain");
+		
+		// 구매내역 5개 뽑기 
+		List<UserMypageDto> buy = userMypageSvc.do_select_deldel(userdto.getUSER_ID());
+		HashMap<String, String> prophomap = new HashMap<>();
+		for(int i=0; i<buy.size();i++){
+			String proseq = buy.get(i).getPRO_SEQ_st();
+			String proarr[] = proseq.split(",");
+			
+			UserMypageDto ddto = userMypageSvc.do_select_propho(Integer.parseInt(proarr[0])); 
+			prophomap.put("PRO_NAME"+i, ddto.getPRO_NAME());
+			prophomap.put("STOREDNAME"+i, ddto.getSTORED_NAME());
+			prophomap.put("count"+i, proarr.length+"");
+			// 0번째가 list에서 첫번째 
+		}
+				
+		
+		
 		mav.addObject("point", mypageDto);
 		mav.addObject("coupon", coupon);
 		mav.addObject("buy", buy);
+		mav.addObject("prophomap",prophomap);
 		mav.addObject("qna", qna);
 		mav.addObject("basket", basket);
 		mav.addObject("point5", point5);

@@ -1,4 +1,3 @@
-<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="java.util.List"%>
@@ -88,12 +87,12 @@ td, th {
 					</td>
 					<td><%=basketList.get(i).getPRO_NAME() %></td>
 					<td>수량 : <%=basketList.get(i).getBAS_PRO_NUM() %></td>
-					<td><%=StringUtil.NumFomat(basketList.get(i).getPRO_PRICE()) %> Won</td>
+					<td><%=basketList.get(i).getPRO_PRICE() %> Won</td>
 				</tr>
 				<tr>
 					<td>SIZE:<%=basketList.get(i).getPRO_SIZE() %>, COLOR: <%=basketList.get(i).getCOLOR() %></td>
 					<td>상품 합계</td>
-					<td id="finalPrice"><%=StringUtil.NumFomat(basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE()) %> Won</td>
+					<td id="finalPrice"><%=basketList.get(i).getBAS_PRO_NUM()*basketList.get(i).getPRO_PRICE() %> Won</td>
 					
 				</tr>
 				<%
@@ -150,7 +149,7 @@ td, th {
 				</tr>
 			</table>
 		</div>
-		<div id="rightOrder">  
+		<div id="rightOrder">
 		<form action="buymymain.mib" id="form">
 		<%
 			for(int i = 0; i<basketList.size();i++){
@@ -256,13 +255,12 @@ td, th {
 				</tr>
 				<tr>
 					<td>사용가능적립금</td>
-					<td><%=StringUtil.NumFomat(Integer.parseInt((points).toString())) %></td>
+					<td><%=points %></td>
 					<td>Won 사용가능</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: right;">
-						<input type="text" size="20px" id="pointValue"  name="cma_test" onkeyup="cmaComma(this);" onchange="cmaComma(this)"/>
-						
+						<input type="text" size="20px" id="pointValue"  onkeypress="onlyNumber();"/>
 					</td>
 					<td>
 						<button id="pointBtn" class="btn btn-default">사용하기</button>
@@ -281,12 +279,12 @@ td, th {
 	<col width="50%"/><col width="40%"/><col width="10%"/>
 		<tr>
 			<td>배송비</td>
-			<td id="deliveryFee"><%=StringUtil.NumFomat(deliveryFee) %></td>
+			<td id="deliveryFee"><%=deliveryFee %></td>
 			<td>Won</td>
 		</tr>
 		<tr>
 		<td>상품 총 금액</td>
-		<td><%=StringUtil.NumFomat(dudfinal) %></td>
+		<td><%=dudfinal %></td>
 		<td>Won</td>
 		</tr>
 		<tr>
@@ -303,7 +301,7 @@ td, th {
 			<td>총 결제 금액</td>
 			<td id="final">
 			
-			<%=StringUtil.NumFomat(finalPrice)%>
+			<%=finalPrice%>
 			
 			</td>
 			<td>Won</td>
@@ -316,19 +314,6 @@ td, th {
 	</table>
 </div>
 <script type="text/javascript">
-//천단위 쉼표
-Number.prototype.format = function(){
-    if(this==0) return 0;
- 
-    var reg = /(^[+-]?\d+)(\d{3})/;
-    var n = (this + '');
- 
-    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
- 
-    return n;
-};
-
-
 $(function() {
 var finalPrice = "<%=finalPrice %>";
 var midPrice;
@@ -383,7 +368,6 @@ var midPrice;
 		var couponValue = $("#couponChoice option:selected").val();
 		var array = couponValue.split(",");
 		var pointsValue = $('#pointValue').val();
-		pointsValue=pointsValue.replace(/,/gi, ""); 
 		var finalpri = $('#final').text();
 		
 		if(finalpri==0){
@@ -416,19 +400,19 @@ var midPrice;
 		}else{
 			couppri = array[0];
 			var fafapri = $('#ffip').val();
-		
-		$("#copricetd").text('쿠폰가격은 '+Number(couppri).format()+'입니다.');
-		$("#couusepri").text(Number(array[0]).format());
+						
+		$("#copricetd").text('쿠폰가격은 '+array[0]+'입니다.');
+		$("#couusepri").text(array[0]);
 			
 		if(pointsValue==''){
-			$('#final').text((Number(fafapri)-Number(array[0])).format());
+			$('#final').text(Number(fafapri)-array[0]);
 			$("#FINAL_PRICE").val(Number(fafapri)-array[0]);
-			$("#COUPON").val((Number(array[0])).format());
+			$("#COUPON").val(array[0]);
 			$("#COUP_SEQ").val(array[1]);
 		}else{
-			$('#final').text((Number(fafapri)-array[0]-Number(pointsValue)).format());
+			$('#final').text(Number(fafapri)-array[0]-Number(pointsValue));
 			$("#FINAL_PRICE").val(Number(fafapri)-array[0]-Number(pointsValue));
-			$("#COUPON").val((Number(array[0])).format());
+			$("#COUPON").val(array[0]);
 			$("#COUP_SEQ").val(array[1]);
 		}
 	
@@ -443,8 +427,7 @@ var midPrice;
 	
 	$('#pointBtn').on('click',function(){
 		var useablePoints = <%=points %>;
-		var pointsValue1 = $('#pointValue').val();
-		pointsValue=pointsValue1.replace(/,/gi, ""); 
+		var pointsValue = $('#pointValue').val();
 		//alert("사용가능포인트" + useablePoints);
 		//alert("사용한포인트" + pointsValue);
 			if(pointsValue>useablePoints){
@@ -460,21 +443,20 @@ var midPrice;
 				if(Number(pointsValue)>Number(fafapri)){
 					alert("구매금액보다 사용포인트가 큽니다.");
 					$('#pointValue').val('');
-					
 					return;
 				}else{
-					$("#pousepri").text(pointsValue1);
+					$("#pousepri").text(pointsValue);
 				
 						if(couppri==''){
 						//alert("여기들어오니111?");
-						$('#final').text((Number(fafapri)-Number(pointsValue)).format());
-						$("#FINAL_PRICE").val((Number(fafapri)-Number(pointsValue)).format());
-						$("#POINT").val((pointsValue).format());
+						$('#final').text(Number(fafapri)-Number(pointsValue));
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+						$("#POINT").val(pointsValue);
 						}else{
 						//alert("여기들어오니222?");
-						$('#final').text((Number(fafapri)-Number(pointsValue)-couppri).format());
-						$("#FINAL_PRICE").val((Number(fafapri)-Number(pointsValue)-couppri).format());
-						$("#POINT").val((pointsValue).format());
+						$('#final').text(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue)-couppri);
+						$("#POINT").val(pointsValue);
 						
 						}
 				}
@@ -482,8 +464,6 @@ var midPrice;
 		//}
 		//deliveryFeeChange();
 	});
-	
-	
 	$('#buy').on('click',function(){
 		if($('#receiveName').val()==""||$('#receiveName').val()==null||
 			$('#receiveEmail').val()==""||$('#receiveEmail').val()==null||
@@ -497,8 +477,6 @@ var midPrice;
 		}
 	});
 });
-
-
 function onlyNumber(){
     if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;
 }
@@ -522,65 +500,6 @@ function onlyNumber(){
 	$("#COUPON").val(array[0]);
 	$("#COUP_SEQ").val(array[1]);
 } */
-
-//인풋 천단위 콤마
-function cmaComma(obj) {
-    var firstNum = obj.value.substring(0,1); // 첫글자 확인 변수
-    var strNum = /^[/,/,0,1,2,3,4,5,6,7,8,9,/]/; // 숫자와 , 만 가능
-    var str = "" + obj.value.replace(/,/gi,''); // 콤마 제거  
-    var regx = new RegExp(/(-?\d+)(\d{3})/);  
-    var bExists = str.indexOf(".",0);  
-    var strArr = str.split('.');  
- 
-    if (!strNum.test(obj.value)) {
-        alert("숫자만 입력하십시오.\n\n특수문자와 한글/영문은 사용할수 없습니다.");
-        obj.value = 1;
-        obj.focus();
-        return false;
-    }
- 
-    if ((firstNum < "0" || "9" < firstNum)){
-        alert("숫자만 입력하십시오.");
-        obj.value = 1;
-        obj.focus();
-        return false;
-    }
- 
-    while(regx.test(strArr[0])){  
-        strArr[0] = strArr[0].replace(regx,"$1,$2");  
-    }  
-    if (bExists > -1)  {
-        obj.value = strArr[0] + "." + strArr[1];  
-    } else  {
-        obj.value = strArr[0]; 
-    }
-}
- 
-function commaSplit(n) {// 콤마 나누는 부분
-    var txtNumber = '' + n;
-    var rxSplit = new RegExp('([0-9])([0-9][0-9][0-9][,.])');
-    var arrNumber = txtNumber.split('.');
-    arrNumber[0] += '.';
-    do {
-        arrNumber[0] = arrNumber[0].replace(rxSplit, '$1,$2');
-    }
-    while (rxSplit.test(arrNumber[0]));
-    if(arrNumber.length > 1) {
-        return arrNumber.join('');
-    } else {
-        return arrNumber[0].split('.')[0];
-    }
-}
- 
-function removeComma(n) {  // 콤마제거
-    if ( typeof n == "undefined" || n == null || n == "" ) {
-        return "";
-    }
-    var txtNumber = '' + n;
-    return txtNumber.replace(/(,)/g, "");
-}
-
-
 </script>
 </body>
 </html>

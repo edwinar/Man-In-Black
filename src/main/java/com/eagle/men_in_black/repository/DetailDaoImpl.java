@@ -137,9 +137,9 @@ public class DetailDaoImpl implements DetailDao {
 	}
 
 	@Override
-	public int do_selectBuyDEL_SEQ(int PRO_SEQ) {
+	public int do_selectBuyDEL_SEQ() {
 		String statement = namespace+".do_selectBuyDEL_SEQ";
-		return sqlSession.selectOne(statement, PRO_SEQ);
+		return sqlSession.selectOne(statement);
 	}
 
 	@Override

@@ -79,5 +79,9 @@ public interface UserMypageDao {
 	public void do_update_qnastep(int QNA_REF);
 
 	public int do_insert_qna(HashMap<String, Object> map);
+	
+	public List<UserMypageDto> do_select_deldel(String USER_ID);
+	
+	public UserMypageDto do_select_propho(int PRO_SEQ);
 
 }
