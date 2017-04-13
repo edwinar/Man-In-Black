@@ -71,6 +71,8 @@ public class UserMypageController {
 		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
 		String sign_email = (res.getParameter("sign_email") == null || res.getParameter("sign_email") == "") ? ""
 				: res.getParameter("sign_email");
+		String sign_email_b = (res.getParameter("sign_email-b") == null || res.getParameter("sign_email-b") == "") ? ""
+				: res.getParameter("sign_email-b");
 		String tel = (res.getParameter("tel") == null || res.getParameter("tel") == "") ? "" : res.getParameter("tel");
 		String postcode = (res.getParameter("postcode") == null || res.getParameter("postcode") == "") ? ""
 				: res.getParameter("postcode");
@@ -85,7 +87,11 @@ public class UserMypageController {
 		String id = (res.getParameter("id") == null || res.getParameter("id") == "") ? "" : res.getParameter("id");
 
 		String fullAddress = jibunAddress + roadAddress + "";
-
+		
+		if(!sign_email_b.equals("")){
+			sign_email = sign_email_b;
+		}
+		//System.out.println("sign_email" + sign_email);
 		HashMap<String, String> map = new HashMap<>();
 		map.put("EMAIL", sign_email);
 		map.put("TEL", tel);

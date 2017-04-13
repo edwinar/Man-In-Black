@@ -196,15 +196,21 @@ $(document).ready(function() {
 <input type="text" placeholder="TEL" id="tel" name="tel" value="<%=userinfo.getTEL()%>" onkeypress="telKeyCode(event)" onkeyup="telKeyCode(event)" onkeydown="telKeyCode(event)"/>
 </div>
 <div class="inputsnlables"><label>POSTCODE</label>
-<input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" class="lock"/>
+<input type="text" placeholder="POSTCODE" id="postcode" name="postcode" readonly="readonly" value="<%=userinfo.getPOSTCODE() %>" class="lock"/>
 <button onclick="Postcode()" type="button" class="btn btn-default">
 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>검색하기</button></div>
+<div class="inputsnlables" id="oriadd"><label>주소</label><input type="text" placeholder="Name"  name="jibunAddress" readonly="readonly" value="<%=userinfo.getADDRESS()%>"/></div>
+<div class="inputsnlables" id="oridetail"><label>주소상세</label><input type="text" placeholder="Name"  name="detailAddress" readonly="readonly" value="<%=userinfo.getDETAILADDRESS()%>"/></div>
+
+
 <div class="inputsnlables" id="roadAddressdiv"></div>
 <div class="inputsnlables" id="jibunAddressdiv"></div>
 <div class="inputsnlables" id="detailAddressdiv"></div>
+
 <%-- <div class="inputsnlables"><label>SEX</label>
 <input type="text" placeholder="SEX" name="sex" id="sex" readonly="readonly" value="<%=userinfo.getSEX()%>"/></div>
- --%><div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
+ --%>
+<div class="inputsnlables"><label>BIRTH</label><input type="text" placeholder="19900411" name="birth"; id="birth"; readonly="readonly" value="<%=userinfo.getBIRTH()%>" /></div>
 
 <br>
 <div align="center">
@@ -349,6 +355,8 @@ function Postcode() {
             document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
             
             if(fullRoadAddr!=null&&fullRoadAddr!=""){
+            	document.getElementById('oriadd').innerHTML = '';
+            	document.getElementById('oridetail').innerHTML = '';
             	document.getElementById('jibunAddressdiv').innerHTML = '';
             	document.getElementById('roadAddressdiv').innerHTML = '<label>도로명주소</label><input type="text" placeholder="RoadADDRESS" id="roadAddress" name="roadAddress" readonly="readonly" />';
                 document.getElementById('roadAddress').value = fullRoadAddr;
@@ -356,7 +364,9 @@ function Postcode() {
                
             }
             if(data.jibunAddress!=null&&data.jibunAddress!=""){
-          
+            	document.getElementById('oriadd').innerHTML = '';
+            	document.getElementById('oridetail').innerHTML = '';
+            	
             document.getElementById('roadAddressdiv').innerHTML ='';
             document.getElementById('jibunAddressdiv').innerHTML = '<label>지번주소</label><input type="text" placeholder="ADDRESS" id="jibunAddress" name="jibunAddress" readonly="readonly"/>';
             document.getElementById('jibunAddress').value = data.jibunAddress;

@@ -302,8 +302,8 @@ public class MainController {
 		 
 		 String authNum = RandomNum();
 		 
-		 mainSvc.sendEmail(email, authNum);
-		 //System.out.println("모달컨트롤러"+email+authNum+signupdate);
+		 //mainSvc.sendEmail(email, authNum);
+		 System.out.println("모달컨트롤러"+email+authNum+signupdate);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
 		 mav.addObject("sign_email",email);
