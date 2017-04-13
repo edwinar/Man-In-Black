@@ -825,7 +825,29 @@ public class CeoMypageController {
 
 				return mav;
 			}
-			
+			@RequestMapping(value = "cancelceo.mib", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+			public @ResponseBody String cancelceo(HttpServletRequest res, HttpServletResponse rep) {
+				HashMap<String, String> resultMap = new HashMap<>();
+				HashMap<String, Object> update = new HashMap<String, Object>();
+				String DEL_SEQ = res.getParameter("DEL_SEQ");
+				String commend = res.getParameter("commend");
+				
+				if (commend.equals("반품")) {
+					//포인트 사용했던거 취소, 쿠폰사용했던거 취소, 결제취소, 
+					// 배송스텝이 반품으로 바뀌어야함 
+					
+				} else if (commend.equals("교환")) {
+					// 배송step이 다시 상품준비로 돌아가야함 
+					
+
+				}
+
+				
+				resultMap.put("result", "success");
+				Gson gson = new Gson();
+				return gson.toJson(resultMap);
+
+			};
 			
 			
 			//엑셀 다운 

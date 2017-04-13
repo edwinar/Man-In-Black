@@ -235,9 +235,8 @@ margin-top: 30px;
 
 				</tr>
 				<tr>
-					<td><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
-					<td><input type="button" class="btn btn-default" value="취소" id="cancle"
-							   onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)"></td>
+					<td colspan="2"><%=buyList.get(i).getSEL_SIZE()%> : <%=buyList.get(i).getSEL_COLOR()%></td>
+					
 				</tr>
 						<%
 				} else if (buyList.get(i).getDEL_STEP().equals("변경사항 처리중")) {
