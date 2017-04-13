@@ -1,10 +1,15 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%
 String rootPath = request.getContextPath();	
 List<UserMypageDto> basketlist = (List<UserMypageDto>) request.getAttribute("basketlist");
+
+DecimalFormat df = new DecimalFormat("#,##0");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -104,17 +109,16 @@ margin-right: -5px;
 						<td rowspan="2"><input type="checkbox" onclick="ty(<%=i%>)"
 							value="<%=basketlist.get(i).getBAS_SEQ()%>" id="ch1"
 							class="chbox" style="width: 20px; height: 20px"></td>
-
 						<td rowspan="2"><%=i + 1%>
 						<td rowspan="2"><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>">
 						<img alt="<%=basketlist.get(i).getSTORED_NAME()%>" src="..<%=rootPath %>/images/<%=basketlist.get(i).getSTORED_NAME()%>"style="width: 100px; height: 100px"></a></td>
 						<td><a href="detail.mib?PRO_SEQ=<%=basketlist.get(i).getPRO_SEQ()%>"><%=basketlist.get(i).getPRO_NAME()%></a></td>
 						<td rowspan="2" id="num<%=i%>" valign="middle"><%=basketlist.get(i).getBAS_PRO_NUM()%></td>
-						<td rowspan="1" id="price<%=i%>"><%=basketlist.get(i).getPRO_PRICE()%></td>
+						<td rowspan="1" id="price<%=i%>"><%=StringUtil.NumFomat(basketlist.get(i).getPRO_PRICE())%></td> 
 					</tr>
 					<tr>
 						<td><%=basketlist.get(i).getPRO_SIZE()%> : <%=basketlist.get(i).getCOLOR()%></td>
-						<td>총:<%=basketlist.get(i).getPRO_PRICE()*basketlist.get(i).getBAS_PRO_NUM()%></td>
+						<td>총:<%=StringUtil.NumFomat(basketlist.get(i).getPRO_PRICE()*basketlist.get(i).getBAS_PRO_NUM())%></td>
 					</tr>
 					<%
 						}
@@ -161,28 +165,52 @@ margin-right: -5px;
 		var b = 0;
 		var sum = 0;
 		var list = $("#list").val();
+		var tax =2500;
+		Number.prototype.format = function(){
+		    if(this==0) return 0;
+		 
+		    var reg = /(^[+-]?\d+)(\d{3})/;
+		    var n = (this + '');
+		 
+		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+		 
+		    return n;
+		};
 
+		
+		
 		function ty(n) {
 			if (document.f1.elements[n].checked == true) {
-				b += Number(Number(document.getElementById('num'+[n]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[n]).childNodes[0].nodeValue));
-				document.getElementById('pay').value = b;
+				var number1 =document.getElementById('num'+[n]).childNodes[0].nodeValue;
+				number1=number1.replace(/,/gi, ""); 
+				var number2 =document.getElementById('price'+[n]).childNodes[0].nodeValue
+				number2=number2.replace(/,/gi, ""); 
+				
+				b += Number(Number(number1)*Number(number2));
+				
+				document.getElementById('pay').value = (b).format();
 				if (b < 50000) {
-					document.getElementById('top').value = b + 2500;
-					document.getElementById('tag').value = 2500;
+					document.getElementById('top').value = (b + tax).format();
+					document.getElementById('tag').value = (tax).format();
 				} else {
-					document.getElementById('top').value = b;
+					document.getElementById('top').value = (b).format();
 					document.getElementById('tag').value = "무료";
 				}
 
 			} else if (document.f1.elements[n].checked == false) {
-				b -= Number(Number(document.getElementById('num'+[n]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[n]).childNodes[0].nodeValue));
+				var number1 =document.getElementById('num'+[n]).childNodes[0].nodeValue;
+				number1=number1.replace(/,/gi, ""); 
+				var number2 =document.getElementById('price'+[n]).childNodes[0].nodeValue
+				number2=number2.replace(/,/gi, ""); 
+				
+				b -= Number(Number(number1)*Number(number2));
 					/* Number(document.getElementById('price'+[n]).childNodes[0].nodeValue) */;
-				document.getElementById('pay').value = b;
+				document.getElementById('pay').value = (b).format();
 				if (b < 50000) {
-					document.getElementById('top').value = b + 2500;
-					document.getElementById('tag').value = 2500;
+					document.getElementById('top').value = (b + tax).format();
+					document.getElementById('tag').value = (tax).format();
 				} else {
-					document.getElementById('top').value = b;
+					document.getElementById('top').value = (b).format();
 					document.getElementById('tag').value = "무료";
 				}
 			}
@@ -198,14 +226,19 @@ margin-right: -5px;
 				}
 				for (var i =0 ; i < list; i++) {
 					if (document.f1.elements[i].checked == true) {
-						b += Number(Number(document.getElementById('num'+[i]).childNodes[0].nodeValue)*Number(document.getElementById('price'+[i]).childNodes[0].nodeValue));
-						document.getElementById('pay').value = b;
+						var number3 =document.getElementById('num'+[i]).childNodes[0].nodeValue;
+						number3=number3.replace(/,/gi, ""); 
+						
+						var number4 =document.getElementById('price'+[i]).childNodes[0].nodeValue
+						number4=number4.replace(/,/gi, ""); 
+						
+						b += Number(Number(number3)*Number(number4));
+						document.getElementById('pay').value = (b).format();
 						if (b < 50000) {
-							document.getElementById('tag').value = 2500;
-							document.getElementById('top').value = b + 2500;
-							
+							document.getElementById('top').value = (b + tax).format();
+							document.getElementById('tag').value = (tax).format();
 						} else {
-							document.getElementById('top').value = b;
+							document.getElementById('top').value = (b).format();
 							document.getElementById('tag').value = "무료";
 						}
 					} else {
@@ -259,6 +292,8 @@ margin-right: -5px;
         function buy() {
             var BAS_SEQ = "";
             var FINAL_PRICE = document.getElementById('top').value;
+            FINAL_PRICE=FINAL_PRICE.replace(/,/gi, ""); 
+            
             var list = $("#list").val();
 
             for (var i = 0; i < list; i++) {
