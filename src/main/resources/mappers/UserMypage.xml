@@ -272,29 +272,30 @@ FROM (
 
     <!-- 취소,반품,교환할 상품목록  -->
 <select id="do_search_cancel" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
-        <![CDATA[
-        SELECT C.STORED_NAME,
-            B.SUB_ITEM,
-            B.PRO_NAME,
-            B.PRO_PRICE,
-            A.COUPON,
-            A.POINT,
-            A.FINAL_PRICE,
-            A.SEL_TIME,
-            D.DEL_STEP,
-            A.SEL_SIZE,
-            A.SEL_COLOR,
-            D.DEL_SEQ
-        FROM SALES A JOIN PRODUCT B
-           ON A.PRO_SEQ = B.PRO_SEQ
-           JOIN PHOTO C
-           ON B.PRO_SEQ = C.PRO_SEQ
-           JOIN DELIVERY D
-           ON A.USER_ID = D.USER_ID
-           AND A.DEL_SEQ = D.DEL_SEQ
-           WHERE D.DEL_SEQ = #{DEL_SEQ} AND C.STORED_NAME LIKE '%MAIN%'
-
-
+<![CDATA[
+SELECT DEL_SEQ,
+  DEL_ADDRESS,
+  DEL_POSTCODE,
+  DEL_NUMBER,
+  DEL_CONTENT,
+  REC_NAME,
+  REC_TEL,
+  DEL_TIME,
+  DEL_PRICE,
+  DEL_STEP,
+  PRO_SEQ,
+  USER_ID,
+  RETURN,
+  RE_OPTION,
+  RE_REASON,
+  CA_ACCOUNT,
+  DEL_DETAIL_ADDRESS,
+  COUPON,
+  COUP_SEQ,
+  POINT,
+  FINAL_PRICE
+FROM DELIVERY 
+WHERE DEL_SEQ= 106
 ]]>
 </select>
 

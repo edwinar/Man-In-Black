@@ -27,10 +27,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.eagle.men_in_black.model.CeoMypageDto;
 import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.FileModel;
 import com.eagle.men_in_black.model.MainDto;
 import com.eagle.men_in_black.model.UserMypageDto;
+import com.eagle.men_in_black.service.CeoMypageSvc;
 import com.eagle.men_in_black.service.DetailSvc;
 import com.eagle.men_in_black.service.UserMypageSvc;
 import com.google.gson.Gson;
@@ -43,7 +45,8 @@ public class UserMypageController {
 	private UserMypageSvc userMypageSvc;
 	@Autowired
 	private DetailSvc detailSvc;
-
+	@Autowired
+	private CeoMypageSvc ceoMypageSvc;
 	// 마이페이지 메인
 	@RequestMapping("mymain.mib")
 	public ModelAndView mymain(HttpServletRequest res, HttpServletResponse rep) {
@@ -246,12 +249,40 @@ public class UserMypageController {
 
 		UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
 
+		
+			
+		
+		
+		
+		
 		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
 		mav.addObject("cancelList", cancelList);
-
 		return mav;
 	}
 
+	
+	
+	//리뷰 선택창
+	// 구매목록 반품 교환 환불 목록
+    @RequestMapping("buyreviewlist.mib")
+    public ModelAndView buyCancelceo(HttpServletRequest res, HttpServletResponse rep) {
+       String DEL_SEQ = res.getParameter("DEL_SEQ");
+       
+       //UserMypageSvc userMypageSvc= new UserMypageSvcImpl();
+       
+       UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
+       System.out.println(cancelList.getBAS_PRO_NUM()+"이거널인가요??");
+       CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(DEL_SEQ));
+
+       ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/reviewlist");
+       mav.addObject("cancelList", cancelList);
+       mav.addObject("dto",dto);
+
+       return mav;
+    }
+	
+	
+	
 	// 장바구니
 	@RequestMapping("basketlist.mib")
 	public ModelAndView basketlist(HttpServletRequest res, HttpServletResponse rep) {

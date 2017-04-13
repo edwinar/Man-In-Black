@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.eagle.men_in_black.model.UserMypageDto" %>
 <%@ page import="java.util.List" %>
@@ -41,46 +42,27 @@
                 <col width="7%">
                 <tr height="40px">
                     <th class="boardone">이미지</th>
-                    <th class="boardone">분류</th>
                     <th>상품이름</th>
                     <th class="boardone">수량</th>
-                    <th class="boardtwo">판매가</th>
-                    <th class="boardtwo">쿠폰</th>
-                    <th class="boardtwo">적립금</th>
+                    <th class="boardtwo">쿠폰사용</th>
+                    <th class="boardtwo">적립금사용</th>
                     <th>결제금액</th>
-                    <th class="#boardthree">판매일</th>
-                    <th>상태</th>
+                    <th class="#boardthree">구매일</th>
                 </tr>
 
 
-                <tr height="30px">
-                    <td class="boardone" rowspan="2"><img alt="not found"
-                                                          src="..<%=rootPath %>/images/<%=cancelList.getSTORED_NAME() %>" style="width: 100px; height: 100px">
-                    </td>
-                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSUB_ITEM()%>
-                    </td>
-                    <td><%=cancelList.getPRO_NAME()%>
-                    </td>
-                    <td class="boardone" rowspan="2" valign="middle"><%=cancelList.getSEL_NUM()%>
-                    </td>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPRO_PRICE()%>
-                    </th>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getCOUPON()%>
-                    </th>
-                    <th class="boardtwo" rowspan="2" valign="middle"><%=cancelList.getPOINT()%>
-                    </th>
-                    <td rowspan="2" valign="middle"><%=cancelList.getFINAL_PRICE()%>
-                    </td>
-                    <th class="#boardthree" rowspan="2" valign="middle"><%=cancelList.getSEL_TIME()%>
-                    </th>
-                    <td rowspan="2" valign="middle"><%=cancelList.getDEL_STEP()%>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td><%=cancelList.getSEL_SIZE()%> : <%=cancelList.getSEL_COLOR()%>
-                    </td>
-                </tr>
+                
+                   <tr height="40px">
+					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
+					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(cancelList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(cancelList.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(cancelList.get(i).getFINAL_PRICE())%></td>
+					<td class="#boardthree"  style="vertical-align: middle;"><%=cancelList.get(i).getDEL_TIME()%></td>
+					<td style="vertical-align: middle;"><%=cancelList.get(i).getDEL_STEP()%></td>
+				</tr>
+             
                 <tfoot>
                 <tr>
                     <td colspan="20">

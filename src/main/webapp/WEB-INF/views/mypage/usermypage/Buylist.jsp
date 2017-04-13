@@ -193,7 +193,7 @@ margin-top: 30px;
 
 					<tr height="40px">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%> 외<%=conum %> 개</td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
@@ -210,7 +210,7 @@ margin-top: 30px;
 				
 				<tr height="40px">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%> 외<%=conum %> 개</td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
@@ -218,16 +218,16 @@ margin-top: 30px;
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td> <%=buyList.get(i).getDEL_STEP()%>
 						<input type="hidden"value="" id="proseqg"> 
-						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default">
+						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="revielistwopen(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;">
 					</td>
 				 </tr>
 				<%
 				}else{
 				%>
 				<tr height="40px">
-					<td class="boardone" ><img alt="not found"  style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"> 개</td>
-					<td class="boardone"  style="vertical-align: middle;"></td>
+					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
+					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
 					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
@@ -513,7 +513,7 @@ margin-top: 30px;
  				
  				if(flag.success=='success'){
  					$("#btn"+SEQ).attr("value","리뷰쓰기");
- 					$("#btn"+SEQ).attr("onclick","go("+$('#proseqg').val()+","+$('#delseqg').val()+ ")");
+ 					$("#btn"+SEQ).attr("onclick","revielistwopen("+$('#proseqg').val()+","+$('#delseqg').val()+ ")");
  					$("#cancle"+SEQ).remove();
  					
  				}else{
@@ -533,7 +533,7 @@ margin-top: 30px;
 	
 	
 
-	function go(seq, DEL_SEQ) {
+	function reviewopen(seq, DEL_SEQ) {
 		var PRO_SEQ = seq;
 		
 		window.open(
@@ -541,8 +541,24 @@ margin-top: 30px;
 						"pop",
 						"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
 	}
+	
+	
+	function revielistwopen(SEQ,st) {
+        var DEL_SEQ = SEQ;
+      var pro_seq_st = st;
+        cw=screen.availWidth;     //화면 넓이
+        ch=screen.availHeight;    //화면 높이
+
+        sw=1080;    //띄울 창의 넓이
+        sh=700;    //띄울 창의 높이
+
+        ml=(cw-sw)/2;        
+        mt=(ch-sh)/2;         
 
 
+        window.open("buyreviewlist.mib?del_seq="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+    }
+	
         function open_win(SEQ)
         {
             var DEL_SEQ = SEQ;
