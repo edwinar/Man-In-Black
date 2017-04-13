@@ -478,7 +478,7 @@ function QnAWrite(){
 	window.open("QnAWrite.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=820 height=420 resizable=no location=no screenX=400 screenY=300 scrollbars=no");	
 }
 function BuyPop(){
-	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=200 screenY=200 scrollbars=no");
+	window.open("BuyPop.mib?PRO_SEQ=<%=PRO_SEQ %>","pop","width=380 height=540 resizable=no location=no screenX=730 screenY=280 scrollbars=no");
 }
 function QnAWrite2(){
 	alert("로그인을 하셔야합니다!");
