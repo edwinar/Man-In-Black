@@ -35,7 +35,7 @@ String updateResult = (request.getAttribute("updateResult")==null || request.get
 @media ( max-width : 1200px) { 
 	.thumbnail{
 		width: 100%;
-	 	height: 330px;
+	 	height: 300px;
 	}
 }
 </style>

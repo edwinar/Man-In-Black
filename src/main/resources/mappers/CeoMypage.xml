@@ -275,13 +275,15 @@ B.STORED_NAME LIKE '%MAIN%'
 </select>
 
 <select id="do_select_maindetail" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
-select a.user_id,a.SEL_NUM, a.SEL_COLOR, a.SEL_SIZE, b.ITEM, b.PRO_NAME, c.STOCK, d.STORED_NAME
+select a.user_id,a.SEL_NUM, a.SEL_COLOR, a.SEL_SIZE, b.ITEM, b.PRO_NAME, c.STOCK, d.STORED_NAME,e.POINT,e.COUPON,e.FINAL_PRICE,b.PRO_PRICE
 from SALES a inner join PRODUCT b
 on a.PRO_SEQ = b.PRO_SEQ
 inner join PRO_DETAIL c
 on a.PRO_SEQ = c.PRO_SEQ and a.SEL_SIZE=c.PRO_SIZE and a.SEL_COLOR=c.COLOR
 inner join PHOTO d
 on a.PRO_SEQ = d.PRO_SEQ
+inner join DELIVERY e
+on a.DEL_SEQ = e.DEL_SEQ
 where d.STORED_NAME like '%MAIN%'
 and a.PRO_SEQ = #{PRO_SEQ}
 and a.DEL_SEQ = #{DEL_SEQ}
