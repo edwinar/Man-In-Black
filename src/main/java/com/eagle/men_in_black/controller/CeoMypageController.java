@@ -851,8 +851,8 @@ public class CeoMypageController {
 				String proarr[] = pro_seq_st.split(",");
 				
 				System.out.println("음여기되니?"+del_seq);
-				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
-				System.out.println("음여기되니2222?"+dto);
+				//CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
+				//System.out.println("음여기되니2222?"+dto);
 				List<CeoMypageDto> list = new ArrayList<>();
 				
 				for(int i=0; i<proarr.length;i++){
@@ -866,7 +866,7 @@ public class CeoMypageController {
 				ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancelceo");
 				mav.addObject("list", list);
 				
-				mav.addObject("dto",dto);
+				//mav.addObject("dto",dto);
 
 				return mav;
 			}
