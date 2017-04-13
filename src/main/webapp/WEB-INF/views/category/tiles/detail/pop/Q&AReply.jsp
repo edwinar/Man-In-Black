@@ -10,7 +10,7 @@
 <%
 	MainDto dto = (MainDto) request.getSession().getAttribute("LoginInfo");
 	UserMypageDto qnaDto = (UserMypageDto) request.getAttribute("qnaDto");
-	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
 	Date date = new Date(); // 현재 날짜 생성
 	String today = df.format(date);
 %>
@@ -104,18 +104,13 @@ input, select, textarea {
 					<!-- 오른쪽  -->
 					<form>
 						<p>
-							공개설정 : <select name=secret size=1 style="width: 100%" id="secret">
-								<option value="" selected="selected" style="width: 100%"></option>
-								<option value="공개">공개</option>
-								<option value="비공개">비공개</option>
-							</select>
+							공개설정 : <input type="text" id="secret" selected="selected" style="width: 100%;" value="<%=qnaDto.getQNA_OPEN()%>" readonly="readonly">
+							
+							
+		
 						</p>
 						<p>
-							문의설정 : <select name="secretz" size=1 style="width: 100%" id="secretz">
-								<option value="" selected="selected" style="width: 100%"></option>
-								<option value="배송문의">배송문의</option>
-								<option value="상품/교환/환불문의">상품/교환/환불문의</option>
-							</select>
+							문의설정 :<input type="text" id="secretz" selected="selected"  style="width: 100%;" value="<%=qnaDto.getQNA_TYPE()%>" readonly="readonly">
 						</p>
 						<p>
 							작성자 : <input type="text" value="<%=dto.getUSER_ID()%>"
@@ -149,13 +144,26 @@ input, select, textarea {
 <script type="text/javascript">
 	
 function reps() {
-	var secretz = $("#secretz").find(":selected").val();
-	var secret = $("#secret").find(":selected").val();
+	var secretz = $("#secretz").val();
+	var secret = $("#secret").val();
 	var QNA_REF =$("#QNA_REF").val();
 	var title = $("#title").val();
 	var QNA_CONTENT= $("#QNA_CONTENT").val();
 	var USER_ID = $("#USER_ID").val();
 	var PRO_SEQ =$("#PRO_SEQ").val();
+	
+	if(title==''||title==null){
+		
+		if(QNA_CONTENT==''||QNA_CONTENT==null){
+			alert('제목과 내용을 입력해주세요');	
+			
+		}else{
+		alert('제목을 입력해주세요');
+	}
+	}else if(QNA_CONTENT==''||QNA_CONTENT==null){
+		alert('내용을 입력해주세요');
+	}else{
+	
 	$.ajax({
 		type : "POST",
 		url : "qnareps.mib",
@@ -183,6 +191,7 @@ function reps() {
 			alert("에러발생");
 		}
 	});	
+	}
 };
 function windowClose() {
 	window.close();
