@@ -180,7 +180,7 @@ function goreview(rseq) {
 		 window.open(
 					"review.mib?REV_SEQ=" + rseq,+
 					"pop",
-					"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+					"width=800 height=520 resizable=no location=no screenX=100 screenY=100 scrollbars=no");
 }
 
 
@@ -188,7 +188,7 @@ function goqna(qseq) {
 	 window.open(
 				"qnadetail.mib?QNA_SEQ=" + qseq,+
 				"pop",
-				"width=800 height=520 resizable=no location=no screenX=400 screenY=300 scrollbars=no");
+				"width=800 height=520 resizable=no location=no screenX=100 screenY=100 scrollbars=no");
 }
 
 
