@@ -11,6 +11,8 @@ List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 List<MainDto> outerlist = (List<MainDto>)request.getAttribute("outerlist");
 List<MainDto> toplist = (List<MainDto>)request.getAttribute("toplist");
 List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
+String updateResult = (request.getAttribute("updateResult")==null || request.getAttribute("updateResult")=="")?"":(String)request.getAttribute("updateResult");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,6 +41,14 @@ List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
 </style>
 </head>
 <body>
+<%
+if(updateResult.equals("OK")){
+%>
+<script type="text/javascript"> alert("회원정보수정 완료! 다시로그인해주세요"); </script>
+<%}
+%>
+
+
 <% if(insert.equals("insert")){ %>
 <script type="text/javascript"> alert("회원가입 성공!") </script>
  <%} %> 

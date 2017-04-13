@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.eagle.men_in_black.model.DetailDto;
 import com.eagle.men_in_black.model.FileModel;
@@ -68,7 +69,8 @@ public class UserMypageController {
 	// 회원정보수정
 	@RequestMapping("userup.mib")
 	public ModelAndView userupdate(HttpServletRequest res) {
-		ModelAndView mav = new ModelAndView("mypage/usermypage/Userupdate");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/usermypage/Userupdate");
 		String sign_email = (res.getParameter("sign_email") == null || res.getParameter("sign_email") == "") ? ""
 				: res.getParameter("sign_email");
 		String sign_email_b = (res.getParameter("sign_email-b") == null || res.getParameter("sign_email-b") == "") ? ""
@@ -105,14 +107,18 @@ public class UserMypageController {
 				: res.getParameter("upda");
 		mav.addObject("upda", upda);
 		mav.addObject("sign_email", sign_email);
-
+		
 		if (userMypageSvc.do_member_update(map) == 0) {
-			if (!id.equals(""))
-				mav.addObject("updateResult", "NO");
+			if (!id.equals("")){
+				mav.setViewName("mypage/usermypage/Userupdate");
+				mav.addObject("updateResult", "NO");}
 		} else {
-			mav.addObject("updateResult", "OK");
-			mav.addObject("upda", "NO");
+		mav.setViewName("forward:meninblack.mib");
+		res.getSession().removeAttribute("LoginInfo");
+		mav.addObject("updateResult", "OK");
+		mav.addObject("upda", "NO");
 		}
+		
 
 		return mav;
 
