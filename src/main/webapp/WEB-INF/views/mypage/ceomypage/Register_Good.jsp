@@ -253,7 +253,7 @@ margin-top: 30px;
 		</script>
 		<div align="right">
 		<input type="button" id="writebtn" class="btn btn-default" value="글올리기" class="reg_good mbtn">
-		<input type="button" class="btn btn-default" value="취소" class="reg_good mbtn">
+		<input type="button" class="btn btn-default" value="취소" onclick="location.href='register_Good.mib'" class="reg_good mbtn">
 		</div>
 	</form>
 
