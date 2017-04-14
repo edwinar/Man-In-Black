@@ -89,15 +89,16 @@ margin-top: 30px;
 	<h3>공지사항을 작성해주세요</h3>
 
 	<form <%if(serviceDto==null){ %>action="servicereg.mib"<%}else{ %>action="serviceupdate.mib"<%} %> method="post"
-		enctype="multipart/form-data">
+		name="form" enctype="multipart/form-data">
 		<%if(serviceDto!=null){ %>
+		
 		<input type="hidden" name="seq" value="<%=serviceDto.getNOTICE_SEQ()%>">
 		<%} %>
 		<div class="wrap">
 
 			<div class="mat-div">
 				<label for="first-name" class="mat-label">제목</label>
-				 <input type="text" class="mat-input" name="noticetitle" id="제목"
+				 <input type="text" class="mat-input" name="noticetitle" id="notice_title"
 				 	<%if(serviceDto!=null){ %>value="<%=serviceDto.getNOTICE_TITLE() %>" <%} %>
 				 >
 			</div>
@@ -122,7 +123,7 @@ margin-top: 30px;
 		</script>
 		<!-- <input type="submit" class="btn btn-primary" value="등록"> -->
 		<p align="right">
-			<input type="submit" class="btn btn-default" value="등록"> <a
+			<input type="button" id="write"  class="btn btn-default" onclick="check();" value="등록"> <a
 				class="btn btn-default" href="servicenotice.mib" role="button">취소</a>
 		</p>
 
@@ -131,6 +132,15 @@ margin-top: 30px;
 
 	<!--공지사항제목 스크립트  -->
 	<script type="text/javascript">
+	
+    function check() {
+  		if($("#notice_title").val()==""||$("#editor1").val()=="") {
+  			alert("제목과 내용을 입력하세요");
+  		} else {
+  			form.submit();
+  		}
+	}
+	
 		$(".mat-input").focus(function() {
 			$(this).parent().addClass("is-active is-completed");
 		});
@@ -148,6 +158,7 @@ margin-top: 30px;
 		    		  $(".mat-input").parent().addClass("is-active is-completed");
 		    	      
 		      }
+				  	
 		      
 		      });
 	</script>
