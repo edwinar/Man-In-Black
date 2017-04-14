@@ -100,7 +100,7 @@ INTO COUPON
     COUP_SEQ.NEXTVAL,
     '회원가입쿠폰',
     10000,
-    10000,
+    20000,
     to_date(SYSDATE),
     to_date(SYSDATE+365),
     '가능',

@@ -68,6 +68,8 @@ public class CategoryController {
 		mav.addObject("list", list);
 		mav.addObject("listBtn",listBtn);
 		mav.addObject("listBest", listBest);
+		mav.addObject("ORDER", ORDER);
+		mav.addObject("SUB_ITEM", SUB_ITEM);
 		return mav;
 	}
 }
