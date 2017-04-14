@@ -300,7 +300,7 @@ width: 94.5%
 					for (int i = 0; i < buy.size(); i++) {
 						int conum = Integer.parseInt(prophomap.get("count"+i))-1;
 				%>
-				<tr height="40px" onclick="open_win(<%=buy.get(i).getDEL_SEQ()%>,'<%=buy.get(i).getPRO_SEQ_st()%>')">
+				<tr height="40px" style="cursor: pointer;" onclick="open_win(<%=buy.get(i).getDEL_SEQ()%>,'<%=buy.get(i).getPRO_SEQ_st()%>')">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>

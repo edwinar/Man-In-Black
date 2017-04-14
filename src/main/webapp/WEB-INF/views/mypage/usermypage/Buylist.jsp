@@ -191,7 +191,7 @@ margin-top: 30px;
 							if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
 				%>
 
-					<tr height="40px">
+					<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
@@ -210,7 +210,7 @@ margin-top: 30px;
 						} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {	
 				%>
 				
-				<tr height="40px">
+				<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
@@ -227,7 +227,7 @@ margin-top: 30px;
 				<%
 				}else{
 				%>
-				<tr height="40px">
+				<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
@@ -518,13 +518,13 @@ margin-top: 30px;
  					$("#btn"+SEQ).attr("onclick","revielistwopen("+SEQ+",'"+st+ "')");
  					$("#cancle"+SEQ).remove();
  				}else{
- 					alert("시스템 오류 잠시후 다시 시도해주세요 ");
+ 					alert("error");
  				}
  			},
  			complete : function(data) {
  			},
  			error : function(xhr, status, error) {
- 				alert("다시 시도 해주세요");
+ 				alert("error");
  			}
  		});
 		
@@ -578,7 +578,24 @@ margin-top: 30px;
 
             window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
         }
+        
+        function open_detail_wind(SEQ,st)
+        {
+            var DEL_SEQ = SEQ;
+            var pro_seq_st = st;
 
+            cw=screen.availWidth;     //화면 넓이
+            ch=screen.availHeight;    //화면 높이
+
+            sw=700;    //띄울 창의 넓이
+            sh=400;    //띄울 창의 높이
+
+            ml=(cw-sw)/2;        
+            mt=(ch-sh)/2;         
+
+
+            window.open("buydetlist.mib?DEL_SEQ="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+        }
 
 
 </script>

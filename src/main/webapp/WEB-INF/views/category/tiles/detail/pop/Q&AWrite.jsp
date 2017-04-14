@@ -159,7 +159,6 @@ function qnawrite(){
 		success : function(data) {
 			var flag = $.parseJSON(data);
 			if(flag.result=='success'){
-				alert("성공");
 				opener.parent.location.reload();
 				windowClose();
 			} 	

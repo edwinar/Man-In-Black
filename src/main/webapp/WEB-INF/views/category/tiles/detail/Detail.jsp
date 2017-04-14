@@ -400,7 +400,7 @@ function reviewPage(page){
 		complete : function(data) {
 		},
 		error : function(xhr, status, error) {
-			alert("에러발생");
+			alert("error");
 		}
 	});
 }
@@ -453,7 +453,7 @@ function QnAPage(page){
 		complete : function(data) {
 		},
 		error : function(xhr, status, error) {
-			alert("에러발생");
+			alert("error");
 		}
 	});
 }

@@ -130,13 +130,13 @@ var bas_pro_num;
 	 					alert("장바구니에 등록하였습니다!");
 	 					window.close();
 	 				}else{
-	 					alert("장바구니등록실패");
+	 					alert("장바구니 등록 실패 다시 시도해주세요");
 	 				}
 	 			},
 	 			complete : function(data) {
 	 			},
 	 			error : function(xhr, status, error) {
-	 				alert("에러발생");
+	 				alert("에러발생 잠시 후 다시 시도해주세요");
 	 			}
 	 		});
 		}else{
@@ -166,17 +166,17 @@ var bas_pro_num;
 	 					opener.location = 'basketlist.mib';
 	 					window.close();
 	 				}else{
-	 					alert("장바구니등록실패");
+	 					alert("error");
 	 				}
 	 			},
 	 			complete : function(data) {
 	 			},
 	 			error : function(xhr, status, error) {
-	 				alert("에러발생");
+	 				alert("error");
 	 			}
 	 		});
 		}else{
-			alert("옵션과 수량을 다시 한번 확인해주십시오.");
+			alert("error");
 		}
 	});
 });

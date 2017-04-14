@@ -203,13 +203,13 @@ function closeSelf(REV_SEQ) {
                 opener.parent.location.reload();
                 window.close();
             } else {
-                alert("업뎃실패");
+                alert("error");
             }
         },
         complete: function (data) {
         },
         error: function (xhr, status, error) {
-            alert("빈칸없이 작성해주세요");
+            alert("error");
         }
     });
 }
