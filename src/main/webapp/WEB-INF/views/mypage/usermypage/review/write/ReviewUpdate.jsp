@@ -458,7 +458,6 @@ input, select, textarea {
 
                 if(flag.result=='OK'){
                     alert("수정되었습니다");
-                    opener.parent.location.reload();
                     window.close();
 
                 }else if(flag.result=='NO'){
@@ -497,6 +496,7 @@ input, select, textarea {
 		 				var flag = $.parseJSON(data);
 		 				//console.log(flag);
 		 				if(flag>0){
+		 					alert("수정되었습니다");
 		 					window.close();
 		 				}else{
 		 					alert("리뷰수정실패");
