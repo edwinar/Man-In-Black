@@ -178,22 +178,6 @@ function addCookie(pd_no) {
    </p>
 </div>
 <script type="text/javascript">
-
-$(document).ready(function() {
-	$("#newor").click(function() {
-		$("#ororder").val('C.PRO_SEQ DESC');
-	});
-	$("#lowor").click(function() {
-		$("#ororder").val('C.PRO_PRICE ASC');
-	});
-	$("#bestor").click(function() {
-		$("#ororder").val('C.SALE_CNT DESC');
-	});
-	$("#reor").click(function() {
-		$("#ororder").val('REVIEW_CNT');
-	});
-});
-
 function pagemove(page_num,item){
 	var ITEM = item;
 	var ORDER = $("#ororder").val();

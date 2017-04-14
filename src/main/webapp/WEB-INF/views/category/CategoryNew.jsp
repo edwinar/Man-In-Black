@@ -6,7 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	List<CategoryDto> list = (List<CategoryDto>)request.getAttribute("list");
-String rootPath = request.getContextPath();
+	String rootPath = request.getContextPath();
+	String ORDER = (String)request.getAttribute("ORDER");
 %>
 <html>
 <head>
@@ -79,6 +80,11 @@ function addCookie(pd_no) {
         }
     }
 }
+
+function pagemove(page_num){
+	var ORDER = $("#ororder").val();
+	location.href="NewCategory.mib?PAGE_NUM="+page_num+"&ORDER="+ORDER;
+}
 </script>
 <br></br>
 <h1 style="font-size: 50px; font-weight: bold; text-align: center; " > NEW </h1>   
@@ -92,7 +98,7 @@ function addCookie(pd_no) {
 	</div>
 	<div class="col-md-6 visible-md visible-lg" align="right">
 	<p>
-		<a href="NewCategory.mib?ORDER=C.PRO_SEQ DESC" class="btn btn-default" role="button">신상품순</a>
+		<a href="NewCategory.mib?ORDER=C.PRO_SEQ DESC" class="btn btn-default" role="button" >신상품순</a>
 		<a href="NewCategory.mib?ORDER=C.PRO_PRICE ASC" class="btn btn-default" role="button">낮은가격순</a>
 		<a href="NewCategory.mib?ORDER=C.SALE_CNT DESC" class="btn btn-default" role="button">인기상품순</a>
 		<a href="NewCategory.mib?ORDER=REVIEW_CNT DESC" class="btn btn-default" role="button">리뷰수순</a>
@@ -118,7 +124,7 @@ function addCookie(pd_no) {
   	}
   %>
 </div>
-
+<input type="hidden" id="ororder" value="<%=ORDER%>">
 <%
 	int PAGE_SIZE = 15;
 	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
@@ -129,7 +135,7 @@ function addCookie(pd_no) {
 	<%
 		for (int i = 1; i <= pageCount; i++) {
 	%>
-	<a href="NewCategory.mib?PAGE_NUM=<%=i%>" class="btn btn-default" role="button"><%=i%></a>
+	<a onclick="pagemove(<%=i %>)" class="btn btn-default" role="button"><%=i%></a>
 	<%
 		}
 	%>

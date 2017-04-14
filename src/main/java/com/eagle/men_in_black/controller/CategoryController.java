@@ -39,7 +39,7 @@ public class CategoryController {
 
 		List<CategoryDto> list = categorySvc.do_selectNewProductList(map);
 		mav.addObject("list", list);
-
+		mav.addObject("ORDER", ORDER);
 		return mav;
 	}
 
