@@ -105,12 +105,12 @@
 
     <div id="inputBox" align="center">
     <%if(dto.getRETURN().equals("교환")){ %>
-	<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' id ='RE_OPTION'  name='RE_OPTION' rows='10'><%=dto.getRE_OPTION() %> </textarea></div>
-    <div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' value='' name='RE_REASON'  id ='RE_REASON' rows='10'><%=dto.getRE_REASON() %></textarea></div>
+	<div style='float: left; width: 48%;margin-left: 1%'>교환받을 옵션<textarea class='form-control' id ='RE_OPTION'  name='RE_OPTION' rows='10' disabled="disabled"><%=dto.getRE_OPTION() %> </textarea></div>
+    <div style='float: left; width: 48%; margin-left: 1%'>교환 사유<textarea class='form-control' value='' name='RE_REASON'  id ='RE_REASON' rows='10' disabled="disabled"><%=dto.getRE_REASON() %></textarea></div>
 	<%}else if(dto.getRETURN().equals("반품")){ %>
 	
-     			<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' value='' rows='10' style='resize: none; wrap:hard;'><%=dto.getRE_REASON() %></textarea> 
-                <label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' value="<%=dto.getCA_ACCOUNT()%>"></label></div>
+     			<div><label>반품 사유<textarea class='form-control' id ='RE_REASON' name='RE_REASON' value='' rows='10' style='resize: none; wrap:hard;' disabled="disabled"><%=dto.getRE_REASON() %></textarea> 
+                <label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' value="<%=dto.getCA_ACCOUNT()%>" disabled="disabled"></label></div>
 
 	
 	<%}%>
