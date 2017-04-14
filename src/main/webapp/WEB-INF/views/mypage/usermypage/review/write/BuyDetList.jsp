@@ -44,15 +44,15 @@ text-align: center;
 					
 				%>
 					<tr>
-						<td><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
+						<td style="vertical-align: middle;"><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
-						<td><%=list.get(i).getPRO_NAME() %></td>
-						<td><%=list.get(i).getSEL_SIZE() %></td>
-						<td><%=list.get(i).getSEL_COLOR() %></td>
-						<td><%=list.get(i).getSEL_NUM() %></td>
-						<td><%=list.get(i).getCOUPON() %></td>
-						<td><%=list.get(i).getPOINT() %></td>
-						<td><%=list.get(i).getFINAL_PRICE() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getPRO_NAME() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getSEL_SIZE() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getSEL_COLOR() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getSEL_NUM() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getCOUPON() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getPOINT() %></td>
+						<td style="vertical-align: middle;"><%=list.get(i).getFINAL_PRICE() %></td>
 					</tr>
 						<%} %>
 				
