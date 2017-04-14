@@ -228,7 +228,7 @@ String DEL_SEQ = (String)request.getAttribute("DEL_SEQ");
             complete: function (data) {
             },
             error: function (xhr, status, error) {
-                alert("에러");
+                alert("error");
             }
         });
 

@@ -97,9 +97,6 @@ text-align: center;
 function reviewopen(DEL_SEQ, seq) {
 	var PRO_SEQ = seq;
 	var str = $("#asd").val(); 
-	alert('DEL_SEQ'+DEL_SEQ);
-	alert('PRO_SEQ'+PRO_SEQ);
-	alert('pro_seq_st'+str);
 	location.href='reveiwwrite.mib?PRO_SEQ= '+ PRO_SEQ +'&DEL_SEQ=' + DEL_SEQ + '&pro_seq_st='+str; 
 }
 

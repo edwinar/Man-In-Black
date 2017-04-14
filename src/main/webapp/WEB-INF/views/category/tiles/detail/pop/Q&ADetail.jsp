@@ -136,13 +136,13 @@ function del(QNA_SEQ) {
                alert("삭제되었습니다");
                 window.close();
             } else {
-                alert(" 창을 받고 다시 시도해주세요");
+                alert("error");
             }
         },
         complete: function (data) {
         },
         error: function (xhr, status, error) {
-            alert("빈칸없이 작성하여 주세요");
+            alert("error");
         }
     });
 }

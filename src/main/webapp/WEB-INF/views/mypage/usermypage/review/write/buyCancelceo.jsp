@@ -150,13 +150,13 @@
                     opener.parent.location.reload();
                     window.close();
                 } else {
-                    alert("시스템 오류 잠시후 다시 시도해주세요 ");
+                    alert("error");
                 }
             },
             complete: function (data) {
             },
             error: function (xhr, status, error) {
-                alert("에러");
+                alert("error");
             }
         });
     }	

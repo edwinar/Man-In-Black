@@ -284,7 +284,7 @@ function delStep(SEQ) {
 			complete : function(data) {
 			},
 			error : function(xhr, status, error) {
-				alert("에러발생");
+				alert("error");
 			}
 		});		
 }
@@ -315,7 +315,7 @@ $(document).ready(function() {
 			complete : function(data) {
 			},
 			error : function(xhr, status, error) {
-				alert("에러발생");
+				alert("error");
 			}
 		});		
 	});

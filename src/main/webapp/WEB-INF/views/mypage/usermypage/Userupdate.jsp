@@ -102,7 +102,7 @@ if(updateResult.equals("OK")){
 <script type="text/javascript"> alert("회원정보수정 완료!"); </script>
 <%}else if(updateResult.equals("NO")){
 %>
-<script type="text/javascript">alert("회원정보수정 실패!");</script>
+<script type="text/javascript">alert("error");</script>
 <%} %>
 
 <center class="ty">
@@ -148,13 +148,13 @@ $(document).ready(function() {
  					$('#pwdCheck').hide();  
  					$("#signupdiv").show();
  				}else{
- 					alert(flag.check); 	
+ 					alert('error'); 	
  				}
  			},
  			complete : function(data) {
  			},
  			error : function(xhr, status, error) {
- 				alert("빈칸 없이 입력하여 주세요");
+ 				alert("error");
  			}
  		});		
  

@@ -139,7 +139,7 @@ function update() {
 		complete : function(data) {
 		},
 		error : function(xhr, status, error) {
-			alert("에러발생");
+			alert("error");
 		}
 	});	
 }

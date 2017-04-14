@@ -518,13 +518,13 @@ margin-top: 30px;
  					$("#btn"+SEQ).attr("onclick","revielistwopen("+SEQ+",'"+st+ "')");
  					$("#cancle"+SEQ).remove();
  				}else{
- 					alert("시스템 오류 잠시후 다시 시도해주세요 ");
+ 					alert("error");
  				}
  			},
  			complete : function(data) {
  			},
  			error : function(xhr, status, error) {
- 				alert("다시 시도 해주세요");
+ 				alert("error");
  			}
  		});
 		

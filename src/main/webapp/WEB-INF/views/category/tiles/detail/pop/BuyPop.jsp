@@ -166,17 +166,17 @@ var bas_pro_num;
 	 					opener.location = 'basketlist.mib';
 	 					window.close();
 	 				}else{
-	 					alert("장바구니등록실패");
+	 					alert("error");
 	 				}
 	 			},
 	 			complete : function(data) {
 	 			},
 	 			error : function(xhr, status, error) {
-	 				alert("에러발생");
+	 				alert("error");
 	 			}
 	 		});
 		}else{
-			alert("옵션과 수량을 다시 한번 확인해주십시오.");
+			alert("error");
 		}
 	});
 });
