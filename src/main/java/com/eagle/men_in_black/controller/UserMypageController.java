@@ -925,5 +925,27 @@ public class UserMypageController {
 		Gson gson = new Gson();
 		return gson.toJson(resultMap);
 	}
+	
+	// 사장 판매내역 상세보기
+    @RequestMapping("buydetlist.mib")
+    public ModelAndView UserMypage_Maindetail(HttpServletRequest res, HttpServletResponse rep) {
+    	ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/BuyDetList");
+		String DEL_SEQ = res.getParameter("DEL_SEQ"); //너머오고잇음
+		String pro_seq_st = res.getParameter("pro_seq_st");
+
+       String proarr[] = pro_seq_st.split(",");
+       
+       List<CeoMypageDto> list = new ArrayList<>();
+       
+       for(int i=0; i<proarr.length;i++){
+       HashMap<String, Object> map = new HashMap<>();
+       map.put("PRO_SEQ", Integer.parseInt(proarr[i]));
+       map.put("DEL_SEQ", Integer.parseInt(DEL_SEQ));
+       
+       list.add(ceoMypageSvc.do_select_maindetail(map));
+       }
+       mav.addObject("list", list);
+       return mav;
+    }
 
 }

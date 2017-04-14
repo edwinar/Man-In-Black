@@ -300,7 +300,7 @@ width: 94.5%
 					for (int i = 0; i < buy.size(); i++) {
 						int conum = Integer.parseInt(prophomap.get("count"+i))-1;
 				%>
-				<tr height="40px">
+				<tr height="40px" onclick="open_win(<%=buy.get(i).getDEL_SEQ()%>,'<%=buy.get(i).getPRO_SEQ_st()%>')">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
 					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
@@ -310,7 +310,7 @@ width: 94.5%
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buy.get(i).getDEL_TIME()%></td>
 					<td style="vertical-align: middle;"><%=buy.get(i).getDEL_STEP()%></td>
 				</tr>
-				
+		
 				<%
 					}
 					}
@@ -435,5 +435,26 @@ width: 94.5%
 
 	</div>
 	</div>
+	
+	<script type="text/javascript">
+	function open_win(SEQ,st)
+    {
+        var DEL_SEQ = SEQ;
+        var pro_seq_st = st;
+
+        cw=screen.availWidth;     //화면 넓이
+        ch=screen.availHeight;    //화면 높이
+
+        sw=700;    //띄울 창의 넓이
+        sh=400;    //띄울 창의 높이
+
+        ml=(cw-sw)/2;        
+        mt=(ch-sh)/2;         
+
+
+        window.open("buydetlist.mib?DEL_SEQ="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+    }
+	
+	</script>
 </body>
 </html>
