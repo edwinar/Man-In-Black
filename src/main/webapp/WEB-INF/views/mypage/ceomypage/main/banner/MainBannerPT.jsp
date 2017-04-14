@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -58,7 +59,7 @@ td, th {
 						<input type="hidden" name="pro_seq<%=i%>" value="<%=list.get(i).getPRO_SEQ()%>">
 						</td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
-						<td rowspan="2" id="price<%=i%>"><%=list.get(i).getPRO_PRICE()%></td>
+						<td rowspan="2" id="price<%=i%>"><%=StringUtil.NumFomat(list.get(i).getPRO_PRICE())%></td>
 					</tr>
 					<tr>
 						<td><%=list.get(i).getITEM()%> : <%=list.get(i).getSUB_ITEM()%></td>

@@ -35,7 +35,6 @@
 	int REV_SEQ = Integer.parseInt(request.getParameter("REV_SEQ"));
 	DetailDto detailDto = (DetailDto)request.getAttribute("detaildto");
 	
-	System.out.println(detailDto);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -229,9 +228,9 @@ input, select, textarea {
 						<input type="file"  name="onefile" id="onefile"> <img
 							class="PP" alt="여기냐" src="..<%=rootPath %>/images/<%=detailDto.getSTORED_NAME()%>"
 							width="100%">
-							<script type="text/javascript">
+							<%-- <script type="text/javascript">
 							alert("<%=detailDto.getSTORED_NAME()%>");
-							</script>
+							</script> --%>
 
 						<div
 							style="width: 100%; height: 100%; float: left; margin-top: 1%"

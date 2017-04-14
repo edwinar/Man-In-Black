@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -106,7 +107,7 @@ margin-top:  100px;
 						<td rowspan="2"><img alt="not found" src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME() %>"
 							style="width: 100px; height: 100px"></td>
 						<td><%=list.get(i).getPRO_NAME()%> : <%=list.get(i).getPRO_CONTENT() %></td>
-						<td rowspan="2" id="price<%=i%>" style="vertical-align: middle"><%=list.get(i).getPRO_PRICE()%></td>
+						<td rowspan="2" id="price<%=i%>" style="vertical-align: middle"><%=StringUtil.NumFomat(list.get(i).getPRO_PRICE())%></td>
 					</tr>
 					<tr>
 						<td><%=list.get(i).getITEM()%> : <%=list.get(i).getSUB_ITEM()%></td>

@@ -75,7 +75,7 @@ input{
   border-radius: 3px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
-@media only screen and (max-width: 1400px) {
+/* @media only screen and (max-width: 1400px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
@@ -110,7 +110,7 @@ input{
 		visibility: hidden;
 	}
 	
-	}
+	} */
 @media ( max-width : 1200px) { 
 .ty{
 margin-top: 30px;

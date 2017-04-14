@@ -261,7 +261,7 @@ td, th {
             </tr>
             <tr>
                <td colspan="2" style="text-align: right;">
-                  <input type="text" size="20px" id="pointValue"  name="cma_test" onkeyup="cmaComma(this);" onchange="cmaComma(this)"/>
+                  <input type="text" size="20px" id="pointValue"  name="cma_test" onkeypress="onlyNumber()" onkeyup="cmaComma(this);" onchange="cmaComma(this)"/>
                   
                </td>
                <td>
@@ -525,7 +525,7 @@ function onlyNumber(){
 
 //인풋 천단위 콤마
 function cmaComma(obj) {
-    var firstNum = obj.value.substring(0,1); // 첫글자 확인 변수
+	var firstNum = obj.value.substring(0,1); // 첫글자 확인 변수
     var strNum = /^[/,/,0,1,2,3,4,5,6,7,8,9,/]/; // 숫자와 , 만 가능
     var str = "" + obj.value.replace(/,/gi,''); // 콤마 제거  
     var regx = new RegExp(/(-?\d+)(\d{3})/);  
@@ -533,8 +533,8 @@ function cmaComma(obj) {
     var strArr = str.split('.');  
  
     if (!strNum.test(obj.value)) {
-        alert("숫자만 입력하십시오.\n\n특수문자와 한글/영문은 사용할수 없습니다.");
-        obj.value = 1;
+        //alert("숫자만 입력하십시오.\n\n특수문자와 한글/영문은 사용할수 없습니다.");
+        obj.value = '';
         obj.focus();
         return false;
     }

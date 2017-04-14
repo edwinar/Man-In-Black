@@ -89,7 +89,7 @@ td, th {
 	vertical-align: middle;
 }
 
-@media only screen and (max-width: 1400px) {
+/* @media only screen and (max-width: 1400px) {
 	#boardone, .boardone {
 		display: none;
 		visibility: hidden;
@@ -120,7 +120,7 @@ td, th {
 		display: none;
 		visibility: hidden;
 	}
-}
+} */
 /*1024해상도가 1200px임*/
 @media ( max-width : 1200px) { 
 .ty{

@@ -24,7 +24,7 @@ SELECT TT1.*
                 where USER_ID like #{search}
                 AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
                 AND TO_DATE(${END_DATE})
-                ORDER BY DEL_SEQ
+                ORDER BY DEL_SEQ DESC
               ) T1
  NATURAL JOIN
   	(
