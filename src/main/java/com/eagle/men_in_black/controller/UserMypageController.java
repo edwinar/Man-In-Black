@@ -917,6 +917,7 @@ public class UserMypageController {
 	public @ResponseBody String qnaDelete(HttpServletRequest res, HttpServletResponse rep) {
 		HashMap<String, String> resultMap = new HashMap<>();
 		String QNA_SEQ = res.getParameter("QNA_SEQ");
+		System.out.println(QNA_SEQ);
 		int delreview = userMypageSvc.do_delete_qna(Integer.parseInt(QNA_SEQ));
 		if (delreview > 0) {
 			resultMap.put("result", "success");

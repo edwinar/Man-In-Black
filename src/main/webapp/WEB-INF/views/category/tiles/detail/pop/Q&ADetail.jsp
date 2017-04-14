@@ -132,6 +132,8 @@ function del(QNA_SEQ) {
             var flag = $.parseJSON(data);
 
             if (flag.result == 'success') {
+
+				opener.parent.location.reload();
                 alert("삭제되었습니다");
                 window.close();
             } else {
