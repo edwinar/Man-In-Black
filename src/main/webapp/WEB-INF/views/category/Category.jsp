@@ -13,6 +13,8 @@
    String SUB_ITEM = (request.getParameter("SUB_ITEM")==null||request.getParameter("SUB_ITEM").equals("") )?"ALL":request.getParameter("SUB_ITEM");
    String ITEM = request.getParameter("ITEM");
    String centerName = "";
+   String ORDER = (String)request.getAttribute("ORDER");
+   
    if(ITEM.equalsIgnoreCase("BAGnACC"))centerName="BAG&ACC";
    else centerName=ITEM;
    String rootPath = request.getContextPath();
@@ -122,7 +124,7 @@ function addCookie(pd_no) {
       <%
          for(int i=0;i<listBtn.size();i++){
       %>
-      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-default" role="button"><%=listBtn.get(i).getSUB_ITEM() %></a>
+      <a href="category.mib?ITEM=<%=ITEM %>&SUB_ITEM=<%=listBtn.get(i).getSUB_ITEM() %>" class="btn btn-default" role="button" ><%=listBtn.get(i).getSUB_ITEM() %></a>
       <%
          }
       %>
@@ -130,10 +132,10 @@ function addCookie(pd_no) {
    </div>
    <div class="col-md-6 visible-md visible-lg" align="right">
    <p>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">신상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_PRICE ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">낮은가격순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">인기상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">리뷰수순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="newor">신상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_PRICE ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="lowor">낮은가격순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="bestor">인기상품순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button" id="reor">리뷰수순</a>
    </p>
    </div>
    <br></br><br></br>
@@ -157,7 +159,8 @@ function addCookie(pd_no) {
 %>
 
 </div>
-
+<input type="hidden" id="ororder" value="<%=ORDER%>">
+<input type="hidden" id="susubtem" value="<%=SUB_ITEM%>">
 <%
 	int PAGE_SIZE = 9;
 	int pageCount = (list.get(0).getTOT_CNT() % PAGE_SIZE) == 0? list.get(0).getTOT_CNT() / PAGE_SIZE : (list.get(0).getTOT_CNT() / PAGE_SIZE) + 1;
@@ -168,12 +171,38 @@ function addCookie(pd_no) {
    <%
 		for (int i = 1; i <= pageCount; i++) {
 	%>
-	<a href="category.mib?PAGE_NUM=<%=i%>&ITEM=<%=ITEM %>" class="btn btn-default" role="button"><%=i%></a>
+	<a onclick="pagemove(<%=i %>,'<%=ITEM%>')" class="btn btn-default" role="button"><%=i%></a>
 	<%
 		}
 	%>
    </p>
 </div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#newor").click(function() {
+		$("#ororder").val('C.PRO_SEQ DESC');
+	});
+	$("#lowor").click(function() {
+		$("#ororder").val('C.PRO_PRICE ASC');
+	});
+	$("#bestor").click(function() {
+		$("#ororder").val('C.SALE_CNT DESC');
+	});
+	$("#reor").click(function() {
+		$("#ororder").val('REVIEW_CNT');
+	});
+});
+
+function pagemove(page_num,item){
+	var ITEM = item;
+	var ORDER = $("#ororder").val();
+	var SUBITEM = $("#susubtem").val();
+	location.href="category.mib?PAGE_NUM="+page_num+"&ITEM="+ITEM+"&ORDER="+ORDER+"&SUB_ITEM="+SUBITEM;
+}
+
+</script>
+
 
 </body>
 </html>
