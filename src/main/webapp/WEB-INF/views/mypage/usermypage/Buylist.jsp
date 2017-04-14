@@ -202,7 +202,7 @@ margin-top: 30px;
 					<td> <%=buyList.get(i).getDEL_STEP()%>
 						<input type="hidden"value="<%=buyList.get(i).getPRO_SEQ_st()%>" id="proseqg" >
 						<input type="hidden"value="<%=i%>" id="iseq" >
-						<input type="button" class="btn btn-default"" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>)">
+						<input type="button" class="btn btn-default"" value=" 반품 & 교환 " id="cancle<%=buyList.get(i).getDEL_SEQ()%>" onclick="open_win(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 						<input type="button" class="btn btn-default" value="구매확정" id="btn<%=buyList.get(i).getDEL_SEQ()%>" onclick="change(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
 					</td>
 				 </tr>
@@ -561,9 +561,10 @@ margin-top: 30px;
         window.open("buyreviewlist.mib?del_seq="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
     }
 	
-        function open_win(SEQ)
+        function open_win(SEQ,st)
         {
             var DEL_SEQ = SEQ;
+            var pro_seq_st = st;
 
             cw=screen.availWidth;     //화면 넓이
             ch=screen.availHeight;    //화면 높이
@@ -575,7 +576,7 @@ margin-top: 30px;
             mt=(ch-sh)/2;         
 
 
-            window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
+            window.open("buyCancel.mib?DEL_SEQ="+DEL_SEQ+"&pro_seq_st="+pro_seq_st,"pop", 'width='+sw+',height='+sh+',top='+mt+',left='+ml+', toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no');
         }
 
 

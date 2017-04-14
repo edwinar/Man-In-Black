@@ -908,7 +908,7 @@ public class CeoMypageController {
 				String pro_seq_st = res.getParameter("pro_seq_st");
 				String proarr[] = pro_seq_st.split(",");
 				
-				System.out.println("음여기되니?"+del_seq);
+				//System.out.println("음여기되니?"+del_seq);
 				CeoMypageDto dto = ceoMypageSvc.do_select_cancle(Integer.parseInt(del_seq));
 				//System.out.println("음여기되니2222?"+dto);
 				List<CeoMypageDto> list = new ArrayList<>();
