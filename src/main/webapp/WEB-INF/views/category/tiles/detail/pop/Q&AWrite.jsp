@@ -165,9 +165,11 @@ function qnawrite(){
 			} 	
 		},
 		complete : function(data) {
+			opener.parent.location.reload();
+			windowClose();
 		},
 		error : function(xhr, status, error) {
-			alert("먹니?");
+			
 		}
 	});	
 	}

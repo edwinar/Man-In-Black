@@ -908,7 +908,6 @@ public class UserMypageController {
 			resultMap.put("result", "success");
 		}
 		Gson gson = new Gson();
-
 		return gson.toJson(resultMap);
 
 	};
