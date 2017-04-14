@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.UserMypageDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -150,9 +151,9 @@ height:82.5%;
 					<tr><td style="height:10px; " colspan="99999"></td></tr>
 					<tr>
 						<td><%=couponList.get(i).getCOUP_NAME()%></td>
-						<td><%=couponList.get(i).getCOUP_PRICE()%>원</td>
+						<td><%=StringUtil.NumFomat(couponList.get(i).getCOUP_PRICE())%>원</td>
 						<td><%=couponList.get(i).getCOUP_LIMIT()%></td>
-						<td><%=couponList.get(i).getCONDITION() %>원</td>
+						<td><%=StringUtil.NumFomat(couponList.get(i).getCONDITION()) %>원</td>
 					</tr>
 					<%
 						}
@@ -224,7 +225,7 @@ height:82.5%;
 				<%
 						} else {
 					%>
-				사용가능 포인트 <STRONG style="font-size: 20px;"><%=mypageDto.getPOINT_FINAL()%></STRONG> POINT
+				사용가능 포인트 <STRONG style="font-size: 20px;"><%=StringUtil.NumFomat(mypageDto.getPOINT_FINAL())%></STRONG> POINT
 				<%} %>
 			</p>
 			<table class="ta" style="text-align: center; width: 90%">
@@ -254,15 +255,15 @@ height:82.5%;
 					<%
 						if (pointList.get(i).getINCREASE().equals("PLUS")) {
 					%>
-					<td style="color: #002266"><b>+<%=pointList.get(i).getPOINT_PRICE()%></b></td>
+					<td style="color: #002266"><b>+<%=StringUtil.NumFomat(pointList.get(i).getPOINT_PRICE())%></b></td>
 					<%
 						} else {
 					%>
-					<td style="color: #750028;"><b>-<%=pointList.get(i).getPOINT_PRICE()%></b></td>
+					<td style="color: #750028;"><b>-<%=StringUtil.NumFomat(pointList.get(i).getPOINT_PRICE())%></b></td>
 					<%
 						}
 					%>
-					<td><%=pointList.get(i).getPOINT_FINAL()%></td>
+					<td><%=StringUtil.NumFomat(pointList.get(i).getPOINT_FINAL())%></td>
 				</tr>
 				<%
 					}
