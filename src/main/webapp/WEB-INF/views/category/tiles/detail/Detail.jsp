@@ -617,20 +617,22 @@ function QnAWrite2(){
 		        	</div>
 		        	<div class="buy" align="center">
 		        	<% 	 
-					if(dto!=null){
+					if(dto!=null && !dto.getUSER_ID().equals("adm")){
 					%>
 		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;" onclick="BuyPop()">구매하기</button>
 		        	<%
-		        	}else{ 
+		        	}else if(dto!=null && dto.getUSER_ID().equals("adm")){ 
 		        	%>
-		        		<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
+		        		
+		        	<%
+		        	}else{
+		        	%>
+		        	<a href="login.mib" data-toggle="modal" data-target="#modal-signup">
 		        		<button class="btn btn-default" style="width: 80%; height: 50px; margin-top: 15px; margin-bottom: 15px;">
 		        		구매하기
 		        		</button>	
 		        		</a>
-		        	<%
-		        	}
-		        	%>
+		        	<%} %>
 		        	</div>
 		        </div>
 		      </div>
@@ -753,9 +755,15 @@ function QnAWrite2(){
 			</div>
 			<div align="right" style="margin-right: 30px;">
 			<%
-				if(dto!=null){
+				if(dto!=null && !dto.getUSER_ID().equals("adm")){
 			%>
 				<button class="btn btn-default" style="width: 10%;" onclick="QnAWrite()">글쓰기</button>
+			
+			   <%}else if(dto!=null && dto.getUSER_ID().equals("adm")){ %>
+			
+			
+			
+			
 			<%
 				}else{
 			%>

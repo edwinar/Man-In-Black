@@ -84,11 +84,18 @@ MainDto dto = (MainDto)request.getSession().getAttribute("LoginInfo");
       </article>
       </aside>
 					<% 	 
-					if(dto!=null){
+					if(dto!=null && !dto.getUSER_ID().equals("adm")){
 					%>
 		        		<aside id="buyaside" class="buyaside" onclick="BuyPop()">
    						<img alt="" src="..<%=rootPath%>/images/buybtn.png" width="50px" height="50px">
 						</aside>
+		        	
+		        	<%}else if(dto!=null && dto.getUSER_ID().equals("adm")){ %>
+		        	
+		        	
+		        	
+		        	
+		        	
 		        	<%
 		        	}else{ 
 		        	%>
