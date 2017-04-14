@@ -131,7 +131,7 @@ function addCookie(pd_no) {
    <div class="col-md-6 visible-md visible-lg" align="right">
    <p>
       <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">신상품순</a>
-      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_SEQ ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">낮은가격순</a>
+      <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.PRO_PRICE ASC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">낮은가격순</a>
       <a href="category.mib?ITEM=<%=ITEM %>&ORDER=C.SALE_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">인기상품순</a>
       <a href="category.mib?ITEM=<%=ITEM %>&ORDER=REVIEW_CNT DESC&SUB_ITEM=<%=SUB_ITEM %>" class="btn btn-default" role="button">리뷰수순</a>
    </p>
