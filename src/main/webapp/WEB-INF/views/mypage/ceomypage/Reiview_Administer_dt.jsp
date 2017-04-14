@@ -53,7 +53,7 @@ List<CeoMypageDto> list = (List<CeoMypageDto>)request.getAttribute("list");
 					<tr>
 						<td><%=i+1%></td>
 						<td><%=list.get(i).getPRO_NAME() %></td>
-						<td style="cursor: pointer;" onclick="goreview(<%=list.get(i).getQNA_SEQ()%>)"><%=list.get(i).getREV_TITLE() %></td>
+						<td style="cursor: pointer;" onclick="goreview(<%=list.get(i).getREV_SEQ()%>)"><%=list.get(i).getREV_TITLE() %></td>
 						<td><%=list.get(i).getREV_TIME()%></td>
 						<td><%=list.get(i).getSCORE()%></td>
 				</tr>

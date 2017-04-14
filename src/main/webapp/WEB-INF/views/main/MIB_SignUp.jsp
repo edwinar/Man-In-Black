@@ -97,6 +97,7 @@ outline: none;
 <input type="text" placeholder="ID" name="id" id="id" class="lock"/>
    <button type="button" id="IDBtn"class="btn btn-default"style="font-weight:bold">
    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>중복확인</button>
+   <input type="hidden" id="idcch" value="none">
 </div>
 <div class="inputsnlables"><label>PassWord</label>
 <input type="password" placeholder="PassWord" id="password" name="password" class="lock"/></div>
@@ -172,6 +173,7 @@ $(document).ready(function() {
       else if(detailAddress == "") {alert("주소정보를 입력해주세요");      }
       else if(sex           == "") {alert("SEX을 작성해주세요");       }
       else if(birth         == "") {alert("BIRTH을 작성해주세요");     }
+      else if($("#idcch").val()=='none'){alert("아이디 중복체크해주세요")}
       else{
          
          $("#MIBsignupform").submit();
@@ -199,7 +201,10 @@ $(document).ready(function() {
                       alert(flag.check);    
                       if(flag.result=='NO'){
                          $("#id").val('');
+                      return;
                       }
+                      $("#idcch").val('ok');
+                      
                    },
                    complete : function(data) {
                    },
