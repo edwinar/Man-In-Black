@@ -155,4 +155,8 @@ git_hub 기반의 스프링을 활용한 실전 프레임워크 설계와 구축
 
 ### Entity-Relationship Diagram
 
-![Modeling](https://github.com/sistfers/Man-In-Black/blob/master/modeling/Man_In_Black_ERD.png?raw=true)
+![ERD](https://github.com/sistfers/Man-In-Black/blob/master/modeling/Man_In_Black_ERD.png?raw=true)
+
+### Flowchart
+
+![Flowchart](https://github.com/sistfers/Man-In-Black/blob/master/modeling/Flowchart.jpg)
