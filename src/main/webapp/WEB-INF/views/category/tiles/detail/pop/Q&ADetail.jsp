@@ -136,7 +136,7 @@ function del(QNA_SEQ) {
                alert("삭제되었습니다");
                 window.close();
             } else {
-                alert("업뎃실패");
+                alert(" 창을 받고 다시 시도해주세요");
             }
         },
         complete: function (data) {
