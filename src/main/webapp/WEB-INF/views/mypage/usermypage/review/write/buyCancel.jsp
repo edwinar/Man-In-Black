@@ -153,7 +153,7 @@ String DEL_SEQ = (String)request.getAttribute("DEL_SEQ");
                 "<option value='우리투자증권'>우리투자증권</option>" +
                 "<option value='우체국'>우체국</option>" +
                 "</select></label>" +
-                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onclick='error()'></label></label></div>";
+                "<label>환불 계좌<input class='form-control' name='CA_ACCOUNT' id='CA_ACCOUNT' type='text' onkeypress='onlyNumber()' onclick='error()'/></label></label></div>";
 
 
         } 
@@ -232,6 +232,9 @@ String DEL_SEQ = (String)request.getAttribute("DEL_SEQ");
             }
         });
 
+    }
+    function onlyNumber(){
+        if((event.keyCode<48)||(event.keyCode>57))event.returnValue=false;
     }
     
 </script>
