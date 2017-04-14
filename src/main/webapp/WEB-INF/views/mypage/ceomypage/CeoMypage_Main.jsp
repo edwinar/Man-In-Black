@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="com.eagle.men_in_black.model.CeoMypageDto"%>
@@ -396,7 +397,7 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 				for(int i=0; i<list.size();i++){ 
 					propricesum += list.get(i).getFINAL_PRICE();
 					}%>
-				<td><%=propricesum %></td>
+				<td><%=StringUtil.NumFomat(propricesum) %></td>
 				
 				
 			</tr>
@@ -455,9 +456,9 @@ END_DATE = END_DATE.substring(2,4) + END_DATE.substring(5,7) + END_DATE.substrin
 						</td>
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getUSER_ID() %></td>
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=prophomap.get("count"+i) %></td>
-						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getCOUPON() %></td>
-						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getPOINT() %></td>
-						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getFINAL_PRICE() %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=StringUtil.NumFomat(list.get(i).getCOUPON()) %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=StringUtil.NumFomat(list.get(i).getPOINT()) %></td>
+						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=StringUtil.NumFomat(list.get(i).getFINAL_PRICE()) %></td>
 						<td onclick="detail(<%=list.get(i).getDEL_SEQ()%>,'<%=list.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;"><%=list.get(i).getDEL_TIME() %></td>
 						<%if(list.get(i).getDEL_STEP().equals("배송완료") || list.get(i).getDEL_STEP().equals("구매확정")|| list.get(i).getDEL_STEP().equals("반품완료")){ %>
 						<td><%=list.get(i).getDEL_STEP() %></td>
