@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="java.util.List"%>
 <%@page import="com.eagle.men_in_black.model.DetailDto"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
@@ -528,7 +529,7 @@ function QnAWrite2(){
 			        <h4><%=list.get(0).getPRO_CONTENT() %></h4>
 			        <hr style="width: 100%;border: solid black 1px;">
 			        <p><h3 align="center">판매가</h3></p>
-			        <p><h4 align="center"><%=list.get(0).getPRO_PRICE() %> Won</h4></p>
+			        <p><h4 align="center"><%=StringUtil.NumFomat(list.get(0).getPRO_PRICE()) %> Won</h4></p>
 			        <br/>
 		        	<p><ul>
 		        	<li><h4>모델체형 : <%=list.get(0).getBODYTYPE() %></h4></li>

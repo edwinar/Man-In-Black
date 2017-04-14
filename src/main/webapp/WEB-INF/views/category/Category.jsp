@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="com.eagle.men_in_black.model.CategoryDto"%>
 <%@page import="java.util.List"%>
@@ -103,7 +104,7 @@ function addCookie(pd_no) {
       <img src="..<%=rootPath %>/images/<%=listBest.get(i).getSTORED_NAME()%>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=listBest.get(i).getPRO_NAME() %></h5>
-        <p><%=listBest.get(i).getPRO_PRICE() %> Won</p>
+        <p><%=StringUtil.NumFomat(listBest.get(i).getPRO_PRICE()) %> Won</p>
       </div>
     </div>
   </div>
@@ -147,7 +148,7 @@ function addCookie(pd_no) {
          <img src="..<%=rootPath %>/images/<%=list.get(i).getSTORED_NAME()%>" alt="..." class="thumbnailImg" style="width: 100%; height: 80%;">
          <div class="caption">
             <h5><%=list.get(i).getPRO_NAME() %></h5>
-            <p><%=list.get(i).getPRO_PRICE() %> Won</p>
+            <p><%=StringUtil.NumFomat(list.get(i).getPRO_PRICE()) %> Won</p>
          </div>
       </div>
    </div>

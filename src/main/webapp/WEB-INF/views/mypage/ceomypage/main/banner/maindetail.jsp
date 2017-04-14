@@ -31,8 +31,8 @@
 					<th style="border: 0;"></th>
 					<th style="border: 0;"></th>
 					<th style="border: 0;"></th>
-				<th colspan="1" style="text-align: center;">쿠폰사용</th>
 				<th colspan="1" style="text-align: center;">포인트사용</th>
+				<th colspan="1" style="text-align: center;">쿠폰사용</th>
 				<th></th>
 				<th colspan="1" style="text-align: center;">결제금액</th>
 				</tr>

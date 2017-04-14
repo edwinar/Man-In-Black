@@ -1,3 +1,4 @@
+<%@page import="com.eagle.men_in_black.util.StringUtil"%>
 <%@page import="com.eagle.men_in_black.model.MainDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -96,7 +97,7 @@ if(updateResult.equals("OK")){
       <img src="..<%=rootPath %>/images/<%=outerlist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=outerlist.get(i).getPRO_NAME()%></h5>
-        <p><%=outerlist.get(i).getPRO_PRICE()%>원</p>
+        <p><%=StringUtil.NumFomat(outerlist.get(i).getPRO_PRICE())%>원</p>
       </div>
     </div>
   </div>
@@ -113,7 +114,7 @@ if(updateResult.equals("OK")){
       <img src="..<%=rootPath %>/images/<%=toplist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=toplist.get(i).getPRO_NAME()%></h5>
-        <p><%=toplist.get(i).getPRO_PRICE()%>원</p>
+        <p><%=StringUtil.NumFomat(toplist.get(i).getPRO_PRICE())%>원</p>
       </div>
     </div>
   </div>
@@ -131,7 +132,7 @@ if(updateResult.equals("OK")){
       <img src="..<%=rootPath %>/images/<%=pantslist.get(i).getSTORED_NAME()%>" alt="..." style="width: 100%; height: 80%;">
       <div class="caption">
         <h5><%=pantslist.get(i).getPRO_NAME()%></h5>
-        <p><%=pantslist.get(i).getPRO_PRICE()%>원</p>
+        <p><%=StringUtil.NumFomat(pantslist.get(i).getPRO_PRICE())%>원</p>
       </div>
     </div>
   </div>
