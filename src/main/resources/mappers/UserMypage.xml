@@ -213,6 +213,7 @@ FROM (
 				,A.COUP_SEQ
 				,A.POINT
 				,A.FINAL_PRICE
+				,A.REVIEW_SEQ
 			FROM DELIVERY A
 			WHERE USER_ID=#{id}
 			ORDER BY A.DEL_SEQ 
@@ -568,7 +569,9 @@ INTO POINTS
            POINT_FINAL,
            INCREASE,
            USER_ID,
-           PRO_SEQ
+           PRO_SEQ,
+           DEL_SEQ,
+           POINT_REASON
            )
 VALUES
       (
@@ -597,7 +600,10 @@ VALUES
              ) ,
              'PLUS' ,
              #{USER_ID} ,
-             #{PRO_SEQ}
+             #{PRO_SEQ},
+             #{DEL_SEQ},
+             '상품구입'
+             
    )
 
 ]]>

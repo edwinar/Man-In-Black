@@ -70,23 +70,25 @@ text-align: center;
 						if(list.get(i).getREVIEW_SEQ().contains(",")){
 						String strstr[] = list.get(i).getREVIEW_SEQ().split(",");
 						
-						if(strstr[i].equals(list.get(i).getPRO_SEQ()+"")){
+							if(Integer.parseInt(strstr[i])==(list.get(i).getPRO_SEQ())){
 						%>
+						
 						<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=DEL_SEQ%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
-					</tr>
+						</tr>
 						
 						
-				<%}else{%>
-				 <td>리뷰작성완료</td>
-					</tr>
-				<%
-				}
-						}else%>
+							<%}else{%>
+				 			<td>리뷰작성완료</td>
+							</tr>
+							<%
+							  }
+						}else{%>
 							<td><input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="reviewopen(<%=DEL_SEQ%>,<%=list.get(i).getPRO_SEQ()%>)" style="cursor: pointer;"></td>
 							</tr>
-		<%	}
+						<%	}
+						}
 				}
-				%>	 
+						%>	 
 				
 				</table>
 			
