@@ -196,7 +196,7 @@ $(function() {
 	<div class="rightLayout">
 		<div class="thumbnail">
 			<div class="score" align="center" style="height: 20%"> 
-			<h4>< 답글 ></h4>
+			<h4>답글</h4>
 				<hr style="border: solid black 1px; width: 70%;">
 			</div>
 			<div class="title" align="center" style="height: 20%; width: 100%;">
