@@ -247,7 +247,7 @@ public class UserMypageController {
 	public ModelAndView buyCancel(HttpServletRequest res, HttpServletResponse rep) {
 		String DEL_SEQ = res.getParameter("DEL_SEQ");
 
-		UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
+		//UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
 		String del_seq = res.getParameter("del_seq");
 		String pro_seq_st = res.getParameter("pro_seq_st");
 		String proarr[] = pro_seq_st.split(",");
@@ -265,12 +265,7 @@ public class UserMypageController {
 		
 		
 		
-			
-		
-		
-		
-		
-		mav.addObject("cancelList", cancelList);
+		//mav.addObject("cancelList", cancelList);
 		mav.addObject("list", list);
 		return mav;
 	}

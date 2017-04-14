@@ -51,7 +51,7 @@
                 </tr>
 
 
-                
+              <%--   
                    <tr height="40px">
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
 					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
@@ -61,7 +61,7 @@
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(cancelList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=cancelList.get(i).getDEL_TIME()%></td>
 					<td style="vertical-align: middle;"><%=cancelList.get(i).getDEL_STEP()%></td>
-				</tr>
+				</tr> --%>
              
                 <tfoot>
                 <tr>
@@ -97,7 +97,7 @@
 <center>
     <input class="btn btn-default" type="button" value="확정" onclick="closeSelf()" style="margin-left: 2px" style="display: inline-block">
     <input class="btn btn-default" type="button" value="돌아가기" onclick="window.close()" style="display: inline-block">
-    <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>>
+    <%-- <input type="hidden" name="DEL_SEQ" value=<%=cancelList.getDEL_SEQ() %>> --%>
     <input type="hidden" name="commend" value="">
 </center>
 
