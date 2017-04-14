@@ -133,7 +133,6 @@ function del(QNA_SEQ) {
 
             if (flag.result == 'success') {
                 alert("삭제되었습니다");
-                opener.parent.location.reload();
                 window.close();
             } else {
                 alert("업뎃실패");
