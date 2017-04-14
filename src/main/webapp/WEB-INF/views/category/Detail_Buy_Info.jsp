@@ -356,39 +356,21 @@ var midPrice;
          $("#receiveAddress_2").val('');   
       }
    });
-   /* $('#couponBtn').on('click',function(){
-      var couponValue = $("#couponChoice option:selected").val();
-      var array = couponValue.split(",");
-      midPrice = finalPrice;
-      if(array[0]=="no"){
-         $('#final').text(midPrice);
-         $('#pointValue').attr('disabled',false);
-         $('#pointBtn').attr('disabled',false);
-         $('#couponBtn').attr('disabled',true);
-         $('#couponChoice').attr('disabled',true);
-      }else{
-         midPrice = midPrice - array[0];
-         $('#final').text(midPrice);
-         $('#pointValue').attr('disabled',false);
-         $('#pointBtn').attr('disabled',false);
-         $('#couponBtn').attr('disabled',true);
-         $('#couponChoice').attr('disabled',true);
-      }
-      deliveryFeeChange();
-   }); */
    
    var couppri = "";
    
-   $("#couponChoice").change(function() {
+   $("#couponChoice").change(function() { //쿠폰 변경했을때 
       var couponValue = $("#couponChoice option:selected").val();
       var array = couponValue.split(",");
       var pointsValue = $('#pointValue').val();
       pointsValue=pointsValue.replace(/,/gi, ""); 
       var finalpri = $('#final').text();
+      finalpri=finalpri.replace(/,/gi, ""); 
+      var fafapri = $('#ffip').val();
+      fafapri=fafapri.replace(/,/gi, ""); 
       
-      if(finalpri==0){
-         var fafapri = $('#ffip').val();
-         if(Number(pointsValue)>0){
+      if(finalpri==0){ // 결제금액이 0일때 
+         if(Number(pointsValue)>0){ // 포인트를 사용했을때 
             alert("결제하실 금액이 0원입니다.");
             $("#couponChoice").val("0");
             $("#copricetd").text('');
@@ -398,7 +380,7 @@ var midPrice;
             $("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
             $('#final').text(Number(fafapri)-Number(pointsValue));
             return;
-         }else{
+         }else{ // 포인트를  사용안했을때 
             alert("쿠폰사용을 초기화 합니다");
             $("#couponChoice").val("0");
             $("#copricetd").text('');
@@ -409,11 +391,21 @@ var midPrice;
             $('#final').text(Number(fafapri));
             return;
          }
-         
-         
-         
-         
-      }else{
+      
+      }else if(Number(pointsValue)>0 && Number(array[0])>Number(finalpri)){//결제 금액은 0이 아닌데 포인트 사용했을때 쿠폰가격이 결제금액보다 클때 
+    	alert("결제금액보다 쿠폰할인이 더큽니다.")
+      	$("#couponChoice").val("0");
+        $("#copricetd").text('');
+        $("#couusepri").text('0');
+        $("#COUPON").val('0');
+        $("#COUP_SEQ").val('0');
+        $("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
+        $('#final').text(Number(fafapri)-Number(pointsValue));
+        return;
+      
+      
+      
+      }else{ // 결제금액이 0이아닐때 
          couppri = array[0];
          var fafapri = $('#ffip').val();
       
@@ -442,45 +434,39 @@ var midPrice;
    
    
    $('#pointBtn').on('click',function(){
-      var useablePoints = <%=points %>;
-      var pointsValue1 = $('#pointValue').val();
+      var useablePoints = <%=points %>; // 사용가능한애
+      var pointsValue1 = $('#pointValue').val(); // 사용하는애 
       pointsValue=pointsValue1.replace(/,/gi, ""); 
-      //alert("사용가능포인트" + useablePoints);
-      //alert("사용한포인트" + pointsValue);
-         if(pointsValue>useablePoints){
+         
+      	if(pointsValue>useablePoints){ // 원래있는 포인트보다 사용하는 포인트가 클때 
             alert(useablePoints+"를 넘습니다.");
             $('#final').text(midPrice);
             $('#pointValue').val("0");
-         }else{
+         }else{ // 원래있는 포인트보다 사용하는 포인트가 안클때 
             var fafapri = $('#ffip').val();
+            var finaltext = $('#final').text();
+            finaltext=finaltext.replace(/,/gi, ""); 
             
-            
-            //alert("파파프리 "+fafapri);
-            //alert("pointsValue "+pointsValue);
-            if(Number(pointsValue)>Number(fafapri)){
+            if(Number(pointsValue)>Number(fafapri) || Number(pointsValue)>Number(finaltext) ){ // 구매금액보다 포인트가 클때 
                alert("구매금액보다 사용포인트가 큽니다.");
                $('#pointValue').val('');
                
                return;
-            }else{
+            }else{ // 구매금액보다 포인트가 안클때 
                $("#pousepri").text(pointsValue1);
             
                   if(couppri==''){
-                  //alert("여기들어오니111?");
                   $('#final').text((Number(fafapri)-Number(pointsValue)).format());
                   $("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue));
                   $("#POINT").val(pointsValue);
                   }else{
-                  //alert("여기들어오니222?");
                   $('#final').text((Number(fafapri)-Number(pointsValue)-couppri).format());
                   $("#FINAL_PRICE").val(Number(fafapri)-Number(pointsValue)-couppri);
                   $("#POINT").val(pointsValue);
                   
                   }
-            }
-         }
-      //}
-      //deliveryFeeChange();
+            } // 구매금액보다 포인트가 안클때 
+         } // 원래있는 포인트보다 사용하는 포인트가 안클때 
    });
    
    
@@ -525,7 +511,7 @@ function onlyNumber(){
 
 //인풋 천단위 콤마
 function cmaComma(obj) {
-	var firstNum = obj.value.substring(0,1); // 첫글자 확인 변수
+   var firstNum = obj.value.substring(0,1); // 첫글자 확인 변수
     var strNum = /^[/,/,0,1,2,3,4,5,6,7,8,9,/]/; // 숫자와 , 만 가능
     var str = "" + obj.value.replace(/,/gi,''); // 콤마 제거  
     var regx = new RegExp(/(-?\d+)(\d{3})/);  

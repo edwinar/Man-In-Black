@@ -131,7 +131,8 @@ function update() {
 		success : function(data) {
 			var flag = $.parseJSON(data);
 			if(flag.result=='success'){
-				opener.parent.location.reload();
+				opener.location.reload();
+				alert("수정되었습니다");
 				windowClose();
 			} 	
 		},
