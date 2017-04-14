@@ -247,16 +247,26 @@ public class UserMypageController {
 	public ModelAndView buyCancel(HttpServletRequest res, HttpServletResponse rep) {
 		String DEL_SEQ = res.getParameter("DEL_SEQ");
 
-		UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
-
+		//UserMypageDto cancelList = userMypageSvc.do_search_cancel(DEL_SEQ);
+		String del_seq = res.getParameter("del_seq");
+		String pro_seq_st = res.getParameter("pro_seq_st");
+		String proarr[] = pro_seq_st.split(",");
 		
-			
+		List<CeoMypageDto> list = new ArrayList<>();
 		
+		for(int i=0; i<proarr.length;i++){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("PRO_SEQ", Integer.parseInt(proarr[i]));
+		map.put("DEL_SEQ", Integer.parseInt(del_seq));
 		
-		
-		
+		list.add(ceoMypageSvc.do_select_maindetail(map));
+		}
 		ModelAndView mav = new ModelAndView("mypage/usermypage/review/write/buyCancel");
-		mav.addObject("cancelList", cancelList);
+		
+		
+		
+		//mav.addObject("cancelList", cancelList);
+		mav.addObject("list", list);
 		return mav;
 	}
 
@@ -544,8 +554,8 @@ public class UserMypageController {
 			
 			String updateseq = "";
 			String st[]= proseq.split(",");
-			System.out.println("st[0] " + st[0]);
-			System.out.println("st[1] " + st[1]);
+			//System.out.println("st[0] " + st[0]);
+			//System.out.println("st[1] " + st[1]);
 			for(int i=0;i<st.length;i++){
 				if(Integer.parseInt(PRO_SEQ.trim())!= Integer.parseInt(st[i].trim())){
 					updateseq += st[i].trim();
@@ -614,7 +624,7 @@ public class UserMypageController {
 			if (revp > 0) {
 				resultMap.put("result", "OK");
 				resultMap.put("st", updateseq);
-				userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
+				//
 				
 				userMypageSvc.do_update_REVIEW_SEQ(dto1);
 
@@ -625,8 +635,14 @@ public class UserMypageController {
 		HashMap<String, Object> pointmap = new HashMap<>();
 		pointmap.put("PRO_SEQ", Integer.parseInt(PRO_SEQ.trim()));
 		pointmap.put("USER_ID", userdto.getUSER_ID());
+		pointmap.put("DEL_SEQ", Integer.parseInt(DEL_SEQ.trim()));
 		userMypageSvc.do_insert_point(pointmap);
-
+		
+		if(updateseq.equals("")){
+			userMypageSvc.do_update_del_step2(Integer.parseInt(DEL_SEQ));
+			
+		}
+		
 		Gson gson = new Gson();
 
 		return gson.toJson(resultMap);

@@ -120,7 +120,7 @@ input, select, textarea {
 						<input type="text" name="content"  style="width: 100%; height: 100px">
 					</div>
 					<div class="btn" align="center" style="height: 10%; width: 100%;">
-						<input type="button" class="btn btn-default" value="리뷰 달기"  onclick="closeSelf(<%=DEL_SEQ%>,'<%=pro_seq_st%>')">
+						<input type="button" class="btn btn-default" value="리뷰 달기"  onclick="closeSelf(<%=DEL_SEQ%>)">
 					</div>
 
 				</div>
@@ -236,7 +236,7 @@ input, select, textarea {
 
 		};
 
-		function closeSelf(SEQ,st) {
+		function closeSelf(SEQ) {
 			var formData = new FormData();
 			formData.append("title", $("input[name=title]").val());
 			formData.append("content", $("input[name=content]").val());
@@ -257,13 +257,19 @@ input, select, textarea {
 						var flag = $.parseJSON(data);
 
 						if (flag.result == 'OK') {
-						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+st;
+							if(flag.st!=''){
+								opener.parent.location.reload();
+						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+flag.st;
+							}else{
+								opener.parent.location.reload();
+								window.close();
+							}
 						} else {
 							alert("리뷰등록실패");
 						}
 					},
 					complete : function(data) {
-						location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+flag.st;
+						//location.href="buyreviewlist.mib?del_seq="+SEQ+"&pro_seq_st="+flag.st;
 					},
 					error : function(xhr, status, error) {
 						alert("code:"+xhr.status+"\n"+"message:"+xhr.responseText+"\n"+"error:"+error);

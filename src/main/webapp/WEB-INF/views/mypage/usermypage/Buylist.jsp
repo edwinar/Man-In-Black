@@ -221,7 +221,7 @@ margin-top: 30px;
 					<td> <%=buyList.get(i).getDEL_STEP()%>
 						<input type="hidden"value="<%=buyList.get(i).getPRO_SEQ_st()%>" id="proseqg" >
 						<input type="hidden"value="<%=buyList.get(i).getDEL_SEQ()%>" id="delseqg" >
-						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="revielistwopen(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')" style="cursor: pointer;">
+						<input type="button" value="리뷰쓰기" id="btn"class="btn btn-default" onclick="revielistwopen(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getREVIEW_SEQ()%>')" style="cursor: pointer;">
 					</td>
 				 </tr>
 				<%
