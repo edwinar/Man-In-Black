@@ -32,6 +32,12 @@
 td, th {
    text-align: center;
 }
+input{
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 3px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.075);
+}
 #order{
    width: 90%;
 }
@@ -231,7 +237,7 @@ td, th {
             </tr>
             <tr>
                <td colspan="3">
-                  <select name=coupon style="width: 100px;" size=1 id="couponChoice">
+                  <select name=coupon style="width: 100px; height: 25px" size=1 id="couponChoice">
                        <option value="0" selected="selected">미선택</option>
                        <%
                           for(int i=0;i<couponList.size();i++){
