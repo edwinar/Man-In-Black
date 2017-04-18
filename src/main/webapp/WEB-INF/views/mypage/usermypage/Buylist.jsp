@@ -191,13 +191,13 @@ margin-top: 30px;
 							if (buyList.get(i).getDEL_STEP().equals("배송완료")) {
 				%>
 
-					<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
-					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
-					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
-					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
+					<tr height="40px" >
+					<td class="boardone" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
+					<td class="boardone"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td> <%=buyList.get(i).getDEL_STEP()%>
 						<input type="hidden"value="<%=buyList.get(i).getPRO_SEQ_st()%>" id="proseqg" >
@@ -210,12 +210,12 @@ margin-top: 30px;
 						} else if (buyList.get(i).getDEL_STEP().equals("구매확정")) {	
 				%>
 				
-				<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
+				<tr height="40px" style="cursor: pointer;" >
 					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
-					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+					<td class="boardone" style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
+					<td class="boardone"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td> <%=buyList.get(i).getDEL_STEP()%>
@@ -227,12 +227,12 @@ margin-top: 30px;
 				<%
 				}else{
 				%>
-				<tr height="40px" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')">
-					<td class="boardone" ><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
-					<td class="boardone" style="vertical-align: middle;"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
-					<td class="boardone"  style="vertical-align: middle;"><%=prophomap.get("count"+i) %>개</td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
-					<td class="boardtwo"  style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
+				<tr height="40px" >
+					<td class="boardone" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><img alt="not found" src="..<%=rootPath %>/images/<%=prophomap.get("STOREDNAME"+i)%>" style="width: 100px; height: 100px"></td>
+					<td class="boardone" style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("PRO_NAME"+i)%>  <%if(conum>0){ %> 외  <%=conum %>개<%} %> </td>
+					<td class="boardone"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=prophomap.get("count"+i) %>개</td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getCOUPON())%></td>
+					<td class="boardtwo"  style="vertical-align: middle;" style="cursor: pointer;" onclick="open_detail_wind(<%=buyList.get(i).getDEL_SEQ()%>,'<%=buyList.get(i).getPRO_SEQ_st()%>')"><%=StringUtil.NumFomat(buyList.get(i).getPOINT())%></td>
 					<td style="vertical-align: middle;"><%=StringUtil.NumFomat(buyList.get(i).getFINAL_PRICE())%></td>
 					<td class="#boardthree"  style="vertical-align: middle;"><%=buyList.get(i).getDEL_TIME()%></td>
 					<td rowspan="1" valign="middle"><%=buyList.get(i).getDEL_STEP()%></td>

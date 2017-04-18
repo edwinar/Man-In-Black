@@ -202,14 +202,18 @@ WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE
 </select>
 
 <select id="do_select_mainbanpt" parameterType="hashmap" resultType="com.eagle.men_in_black.model.CeoMypageDto">
-SELECT  PRO_SEQ,
-        PRO_NAME,
-        ITEM,
-        SUB_ITEM,
-        PRO_PRICE,
-        PRO_CONTENT
-FROM PRODUCT WHERE NEW_ITEM='Y'
-AND PRO_SEQ = ANY
+SELECT  a.PRO_SEQ,
+        a.PRO_NAME,
+        a.ITEM,
+        a.SUB_ITEM,
+        a.PRO_PRICE,
+        a.PRO_CONTENT,
+        b.STORED_NAME
+FROM PRODUCT a inner join PHOTO b
+on a.PRO_SEQ = b.PRO_SEQ
+WHERE NEW_ITEM='Y'
+and b.STORED_NAME like '%MAIN%'
+AND a.PRO_SEQ = ANY
 <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
    #{item.value}
 </foreach>

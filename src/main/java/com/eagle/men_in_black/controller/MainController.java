@@ -97,10 +97,11 @@ public class MainController {
 				mav.addObject("LoginInfo", "success");
 				if(list.get(0).getBAN_SEQ()!=0){
 					mav.addObject("list", list);
-					mav.addObject("outerlist", outerlist);
-					mav.addObject("toplist", toplist);
-					mav.addObject("pantslist", pantslist);
+					
 				}
+				mav.addObject("outerlist", outerlist);
+				mav.addObject("toplist", toplist);
+				mav.addObject("pantslist", pantslist);
 			}else{
 				// 비밀번호 틀렸을 때 
 				//System.out.println("계정정보 불일치");
@@ -108,20 +109,22 @@ public class MainController {
 				mav.addObject("LoginInfo", "NotPwd");
 				if(list.get(0).getBAN_SEQ()!=0){
 					mav.addObject("list", list);
-					mav.addObject("outerlist", outerlist);
-					mav.addObject("toplist", toplist);
-					mav.addObject("pantslist", pantslist);
+					
 				}
+				mav.addObject("outerlist", outerlist);
+				mav.addObject("toplist", toplist);
+				mav.addObject("pantslist", pantslist);
 			}
 		}else{
 			// 로그인 안됬을 때 
 			
 			if(list.get(0).getBAN_SEQ()!=0){
 				mav.addObject("list", list);
-				mav.addObject("outerlist", outerlist);
-				mav.addObject("toplist", toplist);
-				mav.addObject("pantslist", pantslist);
+				
 			}
+			mav.addObject("outerlist", outerlist);
+			mav.addObject("toplist", toplist);
+			mav.addObject("pantslist", pantslist);
 			mav.addObject("LoginInfo", "NoMember");
 		}
 		
@@ -275,17 +278,8 @@ public class MainController {
 				mav.setViewName("main/MIB_SignUp");
 				mav.addObject("insert", "noinsert");
 			}else{
-				mav.setViewName("main/Main");
-				List<MainDto> list = mainSvc.do_select_banner();
-				List<MainDto> outerlist = mainSvc.do_select_bestItem("OUTER");
-				List<MainDto> toplist = mainSvc.do_select_bestItem("TOP");
-				List<MainDto> pantslist = mainSvc.do_select_bestItem("PANTS");
+				mav.setViewName("redirect:meninblack.mib");
 				
-				mav.addObject("outerlist", outerlist);
-				mav.addObject("toplist", toplist);
-				mav.addObject("pantslist", pantslist);
-				mav.addObject("list", list);
-				mav.addObject("insert", "insert");
 			}
 			
 			
@@ -302,7 +296,7 @@ public class MainController {
 		 
 		 String authNum = RandomNum();
 		 
-		 //mainSvc.sendEmail(email, authNum);
+		 mainSvc.sendEmail(email, authNum);
 		 System.out.println("모달컨트롤러"+email+authNum+signupdate);
 		 ModelAndView mav = new ModelAndView("main/empty/modal/modladla/EmailCheck");
 		 mav.addObject("randomNum", authNum);
