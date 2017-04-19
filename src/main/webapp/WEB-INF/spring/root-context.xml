@@ -24,7 +24,7 @@
        class="org.apache.commons.dbcp.BasicDataSource"
        p:driverClassName="oracle.jdbc.driver.OracleDriver"
        p:url="jdbc:oracle:thin:@tydb.ckiuongolcyg.ap-northeast-2.rds.amazonaws.com:ORCL"
-       p:username="TYDB"
+       p:username="TYDB" 
        p:password="95259525"
        p:maxActive="10"
        p:maxIdle="5"
