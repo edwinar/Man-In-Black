@@ -82,7 +82,7 @@ git_hub 기반의 스프링을 활용한 실전 프레임워크 설계와 구축
 - 제품관리
    - 등록
    - 수정
-    - 삭제
+   - 삭제
    - 조회
 - 게시판 관리
    - 등록
@@ -90,7 +90,10 @@ git_hub 기반의 스프링을 활용한 실전 프레임워크 설계와 구축
    - 삭제
    - 답글
 - 쿠폰&적립금
-   - 지급
+   - 등록
+   - 지급
+   - 수정
+   - 삭제
 - 판매관리
    - 기간별 조회
    - 배송상태 변경
@@ -160,3 +163,56 @@ git_hub 기반의 스프링을 활용한 실전 프레임워크 설계와 구축
 ### Flowchart
 
 ![Flowchart](https://github.com/sistfers/Man-In-Black/blob/master/modeling/Flowchart.jpg)
+
+## 개발 환경 및 개발 툴
+- [Java SE 8 (Oracle JDK 1.8.x)](http://www.oracle.com/technetwork/java/javase/downloads)
+- [Oracle Database 12c Release 1 (12.1.x Enterprise Edition)](http://www.oracle.com/technetwork/database/enterprise-edition/downloads)
+- [Spring Tool Suite (3.8.x)](http://spring.io/tools/sts/all)
+- [Apache Tomcat (8.5.x)](http://tomcat.apache.org)
+- [Apache Maven (3.3.x)](http://maven.apache.org)
+- [eXERD](http://exerd.com)
+- [Gliffy Diagrams](http://www.gliffy.com)
+- [Git](http://git-scm.com)
+- [GitHub](http://github.com)
+- [Maven Central Repository](http://maven.org)
+
+## 적용 기술 및 라이브러리 의존성
+- [Spring Framework 4.3.x](http://projects.spring.io/spring-framework)
+- [JUnit 4.12](http://junit.org/junit4)
+- [MyBatis 3.4.x](http://www.mybatis.org/mybatis-3)
+- [MyBatis-Spring 1.3.x](http://www.mybatis.org/spring)
+- [Servlet 3.1.x](http://jcp.org/en/jsr/detail?id=340)
+- [JSP 2.3.x](http://jcp.org/en/jsr/detail?id=245)
+- [EL 3.0.x](http://jcp.org/en/jsr/detail?id=341)
+- [JSTL 1.2.x](http://jcp.org/en/jsr/detail?id=52)
+- [JSON Processing](http://jcp.org/en/jsr/detail?id=374)
+- [Oracle JDBC Thin Driver 12.2.0.1](http://www.oracle.com/technetwork/database/features/jdbc/jdbc-ucp-122-3110062.html)
+- [Oracle 11g Release 2 (11.2) Standard SQL](http://docs.oracle.com/cd/E11882_01/server.112/e41084/ap_standard_sql.htm)
+- [Oracle 12c Release 1 (12.1) Standard SQL](http://docs.oracle.com/database/121/SQLRF/ap_standard_sql.htm)
+- [HTML5](http://w3.org/TR/html5)
+- [CSS3](http://w3.org/TR/CSS)
+- [JavaScript (ECMA-262 ECMAScript)](http://ecma-international.org/publications/standards/Ecma-262.htm)
+- [jQuery 3.1.x](http://jquery.com)
+- [jQuery UI 1.12.x](http://jqueryui.com)
+- [Bootstrap 3.3.x](http://bootstrapk.com)
+- [Log4j 2.8.x](http://logging.apache.org/log4j)
+- [SLF4J 1.7.x](http://slf4j.org)
+- [Semantic Versioning](http://semver.org)
+- [NAVER Maps](http://github.com/navermaps/maps.js)
+- [NAVER SmartEditor](http://github.com/naver/smarteditor2)
+- [Daum Maps](http://apis.map.daum.net)
+- [Daum Postcode](http://github.com/daumPostcode)
+- [Google Maps](http://enterprise.google.com/intl/ko/maps)
+
+## 배포 타겟 서버 런타임 환경 및 브라우저 호환성
+- Microsoft Windows 10 Insider Preview
+- Oracle Java SE HotSpot Virtual Machine JRE 8u121
+- Oracle Database 12c Release 1 Enterprise Edition 12.1.0.2.0
+- Apache Tomcat 8.5.12
+- Chrome Stable Version
+
+## Site
+[GitHub Pages](http://sistfers.github.io/Man-In-Black)
+
+## Repository
+[GitHub](http://github.com/sistfers/Man-In-Black)

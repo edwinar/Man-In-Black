@@ -23,9 +23,9 @@
     <bean id="dataSource"
        class="org.apache.commons.dbcp.BasicDataSource"
        p:driverClassName="oracle.jdbc.driver.OracleDriver"
-       p:url="jdbc:oracle:thin:@211.238.142.162:1521:xe"
-       p:username="eagle"
-       p:password="eagle"
+       p:url="jdbc:oracle:thin:@tydb.ckiuongolcyg.ap-northeast-2.rds.amazonaws.com:1521:ORCL"
+       p:username="TYDB" 
+       p:password="95259525"
        p:maxActive="10"
        p:maxIdle="5"
        p:maxWait="-1"
@@ -54,8 +54,8 @@
  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
   <property name="host" value="smtp.gmail.com"/>
   <property name="port" value="587"/>
-  <property name="username" value=""/>
-  <property name="password" value=""/>
+  <property name="username" value="tyhjgood88@daum.net"/> <!-- 메일주소 -->
+  <property name="password" value="sisteagle5"/> <!-- 메일비번 -->
   <property name="javaMailProperties">
   <props>
     <prop key="mail.smtp.auth">true</prop>

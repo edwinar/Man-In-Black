@@ -6,13 +6,13 @@
 <%
 
 String rootPath = request.getContextPath();
-String loginInfo = (String)request.getAttribute("LoginInfo")==null?"":(String)request.getAttribute("LoginInfo");
+String loginInfo = (String)request.getAttribute("LoginInfo")==null?"asd":(String)request.getAttribute("LoginInfo");
 String insert = (String)request.getAttribute("insert")==null?"noinsert":(String)request.getAttribute("insert");
 List<MainDto> list = (List<MainDto>)request.getAttribute("list");
 List<MainDto> outerlist = (List<MainDto>)request.getAttribute("outerlist");
 List<MainDto> toplist = (List<MainDto>)request.getAttribute("toplist");
 List<MainDto> pantslist = (List<MainDto>)request.getAttribute("pantslist");
-String updateResult = (request.getAttribute("updateResult")==null || request.getAttribute("updateResult")=="")?"":(String)request.getAttribute("updateResult");
+String updateResult = (request.getAttribute("updateResult")==null || request.getAttribute("updateResult")=="")?"asd":(String)request.getAttribute("updateResult");
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
