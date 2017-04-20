@@ -45,7 +45,7 @@
 		NOTICE_BOARD
 		(NOTICE_SEQ,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_TIME)
 		<!--시퀀스 설정하고 등록 -->
-		VALUES(NOTICE_SEQ.NEXTVAL,#{noticetitle},#{content},SYSDATE)
+		VALUES(NOTICE_SEQ.NEXTVAL,#{noticetitle},#{content},TO_CHAR(SYSDATE, 'yy/mm/dd'))
 
 	</insert>
 
@@ -54,7 +54,7 @@
 		UPDATE
 		NOTICE_BOARD
 		SET
-		NOTICE_TITLE=#{noticetitle},NOTICE_CONTENT=#{content},NOTICE_TIME=SYSDATE
+		NOTICE_TITLE=#{noticetitle},NOTICE_CONTENT=#{content},NOTICE_TIME=TO_CHAR(SYSDATE, 'yy/mm/dd')
 		WHERE NOTICE_SEQ=#{seq}
 
 
@@ -116,7 +116,7 @@
 		EVENT_BOARD
 		(EVENT_SEQ,EVENT_TITLE,EVENT_CONTENT,EVENT_TIME)
 		<!--시퀀스 설정하고 등록 -->
-		VALUES(EVENT_SEQ.NEXTVAL,#{eventtitle},#{eventcontent},SYSDATE)
+		VALUES(EVENT_SEQ.NEXTVAL,#{eventtitle},#{eventcontent},TO_CHAR(SYSDATE, 'yy/mm/dd'))
 
 	</insert>
 
@@ -154,7 +154,7 @@
 		UPDATE
 		EVENT_BOARD
 		SET
-		EVENT_TITLE=#{eventtitle},EVENT_CONTENT=#{content},EVENT_TIME=SYSDATE
+		EVENT_TITLE=#{eventtitle},EVENT_CONTENT=#{content},EVENT_TIME=TO_CHAR(SYSDATE, 'yy/mm/dd')
 		WHERE EVENT_SEQ=#{seq}
 
 	</update>
@@ -207,7 +207,7 @@
 		#{COUP_NAME},
 		#{COUP_PRICE},
 		#{CONDITION},
-		SYSDATE,
+		TO_CHAR(SYSDATE, 'yy/mm/dd'),
 		#{COUP_LIMIT},
 		'가능',
 		#{USER_ID},

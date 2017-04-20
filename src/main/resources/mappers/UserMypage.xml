@@ -523,7 +523,7 @@ INTO REVIEW
     REV_SEQ.NEXTVAL,
     #{REV_TITLE},
     #{REV_CONTENT},
-     SYSDATE,
+     TO_CHAR(SYSDATE, 'yy/mm/dd'),
     #{SCORE},
      REV_SEQ.currval,
     #{USER_ID},
@@ -576,7 +576,7 @@ INTO POINTS
 VALUES
       (
       POINT_SEQ.NEXTVAL,
-      SYSDATE,
+      TO_CHAR(SYSDATE, 'yy/mm/dd'),
       (
        SELECT (PRO_PRICE)/20 AS POINT
        FROM PRODUCT
@@ -723,7 +723,7 @@ INTO QNA
     QNA_SEQ.NEXTVAL,
     #{QNA_TITLE},
     #{QNA_CONTENT},
-    SYSDATE,
+    TO_CHAR(SYSDATE, 'yy/mm/dd'),
     #{QNA_OPEN},
     #{QNA_REF},
     #{QNA_TYPE},
@@ -760,7 +760,7 @@ INTO QNA
     QNA_SEQ.NEXTVAL,
      #{QNA_TITLE},
      #{QNA_CONTENT},
-    SYSDATE,
+    TO_CHAR(SYSDATE, 'yy/mm/dd'),
      #{QNA_OPEN},
      QNA_SEQ.CURRVAL,
      #{QNA_TYPE},

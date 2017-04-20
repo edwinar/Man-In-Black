@@ -224,7 +224,7 @@ INSERT INTO MAINBANNER
   ) VALUES
   (BAN_SEQ.NEXTVAL,
   #{PRO_SEQ},
-  SYSDATE
+  TO_CHAR(SYSDATE, 'yy/mm/dd')
   )
 </insert>
 
@@ -254,7 +254,7 @@ INTO PHOTO
 UPDATE REVIEW
 SET  REV_TITLE   = #{REV_TITLE},
      REV_CONTENT = #{REV_CONTENT},
-     REV_TIME    = SYSDATE
+     REV_TIME    = TO_CHAR(SYSDATE, 'yy/mm/dd')
 WHERE REV_SEQ   = #{REV_SEQ}
 </update>
 
@@ -314,7 +314,7 @@ INTO POINTS
   (
     POINT_SEQ.NEXTVAL,
     
-    SYSDATE,
+    TO_CHAR(SYSDATE, 'yy/mm/dd'),
     
     #{POINT},
     

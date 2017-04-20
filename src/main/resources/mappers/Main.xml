@@ -70,7 +70,7 @@ INTO POINTS
   VALUES
   (
     POINT_SEQ.NEXTVAL,
-    SYSDATE,
+    TO_CHAR(SYSDATE, 'yy/mm/dd'),
     2000,
     2000,
     'PLUS',
@@ -101,8 +101,8 @@ INTO COUPON
     '회원가입쿠폰',
     10000,
     20000,
-    to_date(SYSDATE),
-    to_date(SYSDATE+365),
+    TO_CHAR(SYSDATE, 'yy/mm/dd'),
+    TO_CHAR(SYSDATE+365, 'yy/mm/dd'),
     '가능',
     #{USER_ID},
     0
