@@ -51,7 +51,7 @@ COUP_PRICE
 FROM COUPON
 WHERE USER_ID  = #{id}
 AND COUP_USE = '가능'
-AND TO_DATE(COUP_LIMIT) >  to_char(SYSDATE, 'yy/mm/dd')
+<!-- AND COUP_LIMIT >  SYSDATE -->
 )
 WHERE ROWNUM <=3
 ]]>
