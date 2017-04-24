@@ -222,8 +222,8 @@ FROM (
           (
           SELECT COUNT(*) TOT_CNT FROM DELIVERY WHERE 
           USER_ID= #{id}
-          AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
-             AND TO_DATE(${END_DATE}) 
+          AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
+             AND TO_DATE(${END_DATE}, 'YY-MM-DD') 
           ) T2
       ) TT1
        WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
@@ -523,7 +523,7 @@ INTO REVIEW
     REV_SEQ.NEXTVAL,
     #{REV_TITLE},
     #{REV_CONTENT},
-     TO_CHAR(SYSDATE, 'yy/mm/dd'),
+     SYSDATE,
     #{SCORE},
      REV_SEQ.currval,
     #{USER_ID},
@@ -576,7 +576,7 @@ INTO POINTS
 VALUES
       (
       POINT_SEQ.NEXTVAL,
-      TO_CHAR(SYSDATE, 'yy/mm/dd'),
+      SYSDATE,
       (
        SELECT (PRO_PRICE)/20 AS POINT
        FROM PRODUCT
@@ -723,7 +723,7 @@ INTO QNA
     QNA_SEQ.NEXTVAL,
     #{QNA_TITLE},
     #{QNA_CONTENT},
-    TO_CHAR(SYSDATE, 'yy/mm/dd'),
+    SYSDATE,
     #{QNA_OPEN},
     #{QNA_REF},
     #{QNA_TYPE},
@@ -760,7 +760,7 @@ INTO QNA
     QNA_SEQ.NEXTVAL,
      #{QNA_TITLE},
      #{QNA_CONTENT},
-    TO_CHAR(SYSDATE, 'yy/mm/dd'),
+    SYSDATE,
      #{QNA_OPEN},
      QNA_SEQ.CURRVAL,
      #{QNA_TYPE},

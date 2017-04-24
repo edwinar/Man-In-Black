@@ -11,7 +11,7 @@ SELECT TT1.*
        SELECT ROWNUM RNUM,T1.*,T2.*
       
             FROM(
-                select 
+                SELECT 
                 PRO_SEQ PRO_SEQ_st,
                 USER_ID,
                 COUPON, 
@@ -20,10 +20,10 @@ SELECT TT1.*
                 DEL_TIME, 
                 DEL_STEP,
                 DEL_SEQ
-                from DELIVERY 
-                where USER_ID like #{search}
-                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
-                AND TO_DATE(${END_DATE})
+                FROM DELIVERY 
+                WHERE USER_ID LIKE #{search}
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
+                AND TO_DATE(${END_DATE}, 'YY-MM-DD')
                 ORDER BY DEL_SEQ DESC
               ) T1
  NATURAL JOIN
@@ -31,8 +31,8 @@ SELECT TT1.*
      SELECT COUNT(*) TOT_CNT
      FROM DELIVERY
      where USER_ID like #{search}
-                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}) 
-                AND TO_DATE(${END_DATE})
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
+                AND TO_DATE(${END_DATE}, 'YY-MM-DD')
     ) T2
   	) TT1
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
@@ -229,7 +229,7 @@ INSERT INTO MAINBANNER
   ) VALUES
   (BAN_SEQ.NEXTVAL,
   #{PRO_SEQ},
-  TO_CHAR(SYSDATE, 'yy/mm/dd')
+  SYSDATE
   )
 </insert>
 
@@ -259,7 +259,7 @@ INTO PHOTO
 UPDATE REVIEW
 SET  REV_TITLE   = #{REV_TITLE},
      REV_CONTENT = #{REV_CONTENT},
-     REV_TIME    = TO_CHAR(SYSDATE, 'yy/mm/dd')
+     REV_TIME    = SYSDATE
 WHERE REV_SEQ   = #{REV_SEQ}
 </update>
 
@@ -319,7 +319,7 @@ INTO POINTS
   (
     POINT_SEQ.NEXTVAL,
     
-    TO_CHAR(SYSDATE, 'yy/mm/dd'),
+    SYSDATE,
     
     #{POINT},
     
