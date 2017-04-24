@@ -38,7 +38,7 @@ WHERE ROWNUM <=5
 </select>
 
 
-<!-- 메인쿠폰 -->
+<!-- 메인쿠폰  AND COUP_LIMIT >  SYSDATE -->
 <select id="do_search_coupon" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT
@@ -51,15 +51,14 @@ COUP_PRICE
 FROM COUPON
 WHERE USER_ID  = #{id}
 AND COUP_USE = '가능'
-<!-- AND COUP_LIMIT >  SYSDATE -->
 )
 WHERE ROWNUM <=3
 ]]>
 </select>
-
+ 
 
     <!-- 구매한상품 -->
-    <select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
+<select id="do_search_buy" parameterType="String" resultType="com.eagle.men_in_black.model.UserMypageDto">
 <![CDATA[
 SELECT *
 FROM(
