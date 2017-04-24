@@ -22,8 +22,8 @@ SELECT TT1.*
                 DEL_SEQ
                 FROM DELIVERY 
                 WHERE USER_ID LIKE #{search}
-                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
-                AND TO_DATE(${END_DATE}, 'YY-MM-DD')
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YYYY-MM-DD') 
+                AND TO_DATE(${END_DATE}, 'YYYY-MM-DD')
                 ORDER BY DEL_SEQ DESC
               ) T1
  NATURAL JOIN
@@ -31,8 +31,8 @@ SELECT TT1.*
      SELECT COUNT(*) TOT_CNT
      FROM DELIVERY
      where USER_ID like #{search}
-                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
-                AND TO_DATE(${END_DATE}, 'YY-MM-DD')
+                AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YYYY-MM-DD') 
+                AND TO_DATE(${END_DATE}, 'YYYY-MM-DD')
     ) T2
   	) TT1
   	WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
