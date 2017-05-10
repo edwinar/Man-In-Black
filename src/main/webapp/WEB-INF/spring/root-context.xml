@@ -48,7 +48,7 @@
 	<bean id="transactionManager" 
 	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource"/>
-	</bean>
+	</bean> 
 	
 	<!-- mail bean -->
  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
