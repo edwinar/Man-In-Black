@@ -222,8 +222,8 @@ FROM (
           (
           SELECT COUNT(*) TOT_CNT FROM DELIVERY WHERE 
           USER_ID= #{id}
-          AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YYYY-MM-DD') 
-             AND TO_DATE(${END_DATE}, 'YYYY-MM-DD') 
+          AND DEL_TIME BETWEEN TO_DATE(${START_DATE}, 'YY-MM-DD') 
+             AND TO_DATE(${END_DATE}, 'YY-MM-DD') 
           ) T2
       ) TT1
        WHERE RNUM BETWEEN (#{PAGE_SIZE} * (#{PAGE_NUM}-1)+1) and ((#{PAGE_SIZE}*(#{PAGE_NUM}-1))+#{PAGE_SIZE})
@@ -760,7 +760,7 @@ INTO QNA
     QNA_SEQ.NEXTVAL,
      #{QNA_TITLE},
      #{QNA_CONTENT},
-    SYSDATE,
+   	 SYSDATE,
      #{QNA_OPEN},
      QNA_SEQ.CURRVAL,
      #{QNA_TYPE},
